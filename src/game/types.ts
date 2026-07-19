@@ -24,7 +24,14 @@ export type Pressing = 'low' | 'medium' | 'high'
 export type Tempo = 'slow' | 'normal' | 'fast'
 export type Width = 'narrow' | 'normal' | 'wide'
 export type PlayStyle = 'possession' | 'balanced' | 'counter'
-export type CompetitionKind = 'league' | 'cup' | 'ucl' | 'league_cup' | 'trophy'
+export type CompetitionKind =
+  | 'league'
+  | 'cup'
+  | 'ucl'
+  | 'uel'
+  | 'uecl'
+  | 'league_cup'
+  | 'trophy'
 export type SetPiecePlan = 'mixed' | 'near_post' | 'far_post' | 'short' | 'direct'
 export type InjuryType = 'muscle' | 'ligament' | 'bone'
 export type InjuryTreatment = 'rest' | 'physio' | 'injection'
@@ -67,6 +74,7 @@ export interface InjuryRecord {
 }
 
 export interface PlayerAttributes {
+  /** All values use FMInside-style 1–99 scale */
   finishing: number
   passing: number
   tackling: number
@@ -176,6 +184,8 @@ export interface Player {
   social: PlayerSocial
   /** ประวัติ FM26 / SortItOutSI (ถ้ามีใน data pack) */
   bio?: PlayerBio | null
+  /** Status / attrs จาก FMInside (0–99) */
+  fmInside?: FmInsideProfile | null
 }
 
 export type LifestyleOrder = 'none' | 'curfew' | 'extra_gym' | 'rest' | 'media_quiet'
@@ -212,6 +222,37 @@ export interface PlayerBio {
   releaseClauseGbp?: number | null
   developNote?: string | null
   sourceUrl?: string | null
+}
+
+/** FMInside normalized attributes (0–99) */
+export interface FmInsideAttrs {
+  technical: Record<string, number>
+  mental: Record<string, number>
+  physical: Record<string, number>
+  setPieces: Record<string, number>
+}
+
+/** Status pack จาก fminside.net */
+export interface FmInsideProfile {
+  fmId: string
+  name: string
+  age?: number
+  heightCm?: number | null
+  leftFoot?: number | null
+  rightFoot?: number | null
+  positions?: string | null
+  caps?: number | null
+  goalsIntl?: number | null
+  club?: string | null
+  sellValueEur?: number | null
+  wageEurPw?: number | null
+  contractEnd?: string | null
+  rating?: number | null
+  potential?: number | null
+  attrs: FmInsideAttrs
+  bestRolesIn?: { name: string; score: number }[]
+  bestRolesOut?: { name: string; score: number }[]
+  sourceUrl?: string
 }
 
 export interface Club {
@@ -925,6 +966,8 @@ export interface CupState {
   name: string
   championClubId: string | null
   eliminated: string[]
+  /** seeds 1–6 ที่ได้บายเข้า QF หลัง play-in (UEL/UECL) */
+  playinByes?: string[]
 }
 
 export interface PersonalityEventLog {
@@ -1239,8 +1282,14 @@ export interface GameSave {
   leagueCup: CupState
   /** ถ้วยลีกล่าง */
   trophy: CupState
-  /** UEFA Champions League knockout (domestic top 4 + invite clubs). */
+  /** UEFA Champions League — อันดับ 1–4 ทุกลีกยุโรป */
   ucl: CupState
+  /** UEFA Europa League — อันดับ 5–6 */
+  uel: CupState
+  /** UEFA Conference League — อันดับ 7–8 */
+  uecl: CupState
+  /** อันดับจบลีกยุโรปฤดูกาลก่อน (โควตาถ้วย) */
+  euroAccess: EuroAccessState
   development: DevelopmentState
   /** นัดคุยผู้จัดการ ↔ นักเตะ / คำขอเรียกคุย */
   talks: TalksState
@@ -1335,11 +1384,19 @@ export interface WorldLeaguePulse {
   leader: string
   second: string
   note: string
+  /** อันดับคลับ (def.key) จำลองสะสม — ใช้ตัดโควตายุโรป */
+  orderedKeys?: string[]
 }
 
 export interface WorldPulseState {
   leagues: WorldLeaguePulse[]
   lastUpdateMatchday: number
+}
+
+/** อันดับจบลีกยุโรปสำหรับตัดโควตาถ้วย */
+export interface EuroAccessState {
+  /** club def.key เรียงอันดับ 1→n ต่อลีก */
+  ranksByLeague: Partial<Record<string, string[]>>
 }
 
 export interface JobOffer {

@@ -1,0 +1,9 @@
+{
+  "name": "UEFA Conference League",
+  "rounds": [
+    { "id": "playin", "label": "Play-off", "matchdayOffset": 7 },
+    { "id": "qf", "label": "Quarter-final", "matchdayOffset": 19, "twoLegged": true, "returnOffset": 21 },
+    { "id": "sf", "label": "Semi-final", "matchdayOffset": 27, "twoLegged": true, "returnOffset": 29 },
+    { "id": "final", "label": "Final", "matchdayOffset": 35, "twoLegged": false }
+  ]
+}

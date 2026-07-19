@@ -650,9 +650,12 @@ Data: `src/data/world/` · New game เลือกลีก+สโมสร · 
 
 ### Phase UCL + Full real names ✅
 - **ทุกคนในสควอดใช้ชื่อนักเตะจริง** (stars + ธนาคารชื่อต่อลีก + overflow โลก) — ไม่สุ่ม First+Last
-- **UEFA Champions League**: เฉพาะ **5 ลีกยุโรป** (ENG/ESP/GER/FRA/ITA) — **ไทยไม่เข้า UCL** (เล่นในประเทศอย่างเดียว)
-- Top 4 ลีกบ้าน + เชิญจากลีกยุโรปอื่น → League phase → QF → SF → Final
-- หน้า `/competitions` แสดง UCL + ถ้วยในประเทศ · ไม่มีเสมอใน UCL/ถ้วย · Save **v6** (`fc-manager-save-v6`)
+- **ถ้วยยุโรป (5 ลีก · ไม่มีไทย)**: โควตาตายตัวจากอันดับจบลีกก่อนหน้า
+  - **1–4 → UCL** (20 ทีม · league phase → top 8 → QF/SF/F)
+  - **5–6 → Europa League** (play-off → QF/SF/F)
+  - **7–8 → Conference League** (play-off → QF/SF/F)
+- ซีซันแรกใช้เรียงชื่อเสียงแทนอันดับจบ · จบลีกแล้ว snapshot เข้า `euroAccess`
+- หน้า `/competitions` · Save **v6**
 
 ### Referees ✅
 - พูลกรรมการ **50 คน** (`src/data/referees.json`) — `reputation` (สถานะ Elite/FIFA/Pro) + `strictness` (ผ่อนปรน→เข้มงวดมาก)

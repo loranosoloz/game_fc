@@ -1,18 +1,19 @@
 import uclFormat from '@/data/uclFormat.json'
-import type { Club, CupState, Fixture, GameSave, Player, Tactics } from './types'
-import { ALL_LEAGUES, getLeague, type LeagueId } from '@/data/world'
-import { createPlayersForClubDef } from './worldSeed'
-import { autoPickTactics } from './seed'
-import { createClubSocial } from './social'
+import uelFormat from '@/data/uelFormat.json'
+import ueclFormat from '@/data/ueclFormat.json'
+import type { Club, CupState, Fixture, Player, Tactics } from './types'
+import type { LeagueId } from '@/data/world'
+import {
+  createEuropeCupsPack,
+  generateLeaguePhaseFixtures,
+  generateTenTeamEuroCupFixtures,
+  playinByeSeeds,
+  isEuropeLeague,
+  EUROPE_LEAGUE_IDS,
+} from './europeAccess'
 
 export type UclState = CupState
-
-/** ลีกยุโรปที่แข่ง UCL ได้ — ไทยไม่เข้าร่วม (เล่นในประเทศอย่างเดียว) */
-export const EUROPE_LEAGUE_IDS: LeagueId[] = ['eng', 'esp', 'ger', 'fra', 'ita']
-
-export function isEuropeLeague(id: LeagueId | string): boolean {
-  return (EUROPE_LEAGUE_IDS as string[]).includes(id)
-}
+export { isEuropeLeague, EUROPE_LEAGUE_IDS }
 
 export function createUclState(): UclState {
   return {
@@ -22,165 +23,65 @@ export function createUclState(): UclState {
   }
 }
 
+export function createUelState(): CupState {
+  return { name: uelFormat.name, championClubId: null, eliminated: [], playinByes: [] }
+}
+
+export function createUeclState(): CupState {
+  return { name: ueclFormat.name, championClubId: null, eliminated: [], playinByes: [] }
+}
+
 function addDays(iso: string, days: number) {
   const d = new Date(iso + 'T12:00:00')
   d.setDate(d.getDate() + days)
   return d.toISOString().slice(0, 10)
 }
 
-/**
- * เชิญคลับจากลีกยุโรปอื่น (ไม่รวมไทย · ไม่รวมลีกบ้าน)
- * ถ้าเล่นไทย → ไม่มี UCL
- */
+/** @deprecated — ใช้ createEuropeCupsPack */
 export function createUclInviteClubs(homeLeagueId: LeagueId): {
   clubs: Club[]
   players: Player[]
   tactics: Record<string, Tactics>
 } {
-  if (!isEuropeLeague(homeLeagueId)) {
-    return { clubs: [], players: [], tactics: {} }
-  }
-
-  const others = ALL_LEAGUES.filter(
-    (l) => isEuropeLeague(l.id) && l.id !== homeLeagueId,
-  )
-  const candidates: Array<{ leagueId: LeagueId; clubIndex: number; rep: number }> = []
-  for (const league of others) {
-    league.clubs.forEach((c, i) => {
-      candidates.push({ leagueId: league.id as LeagueId, clubIndex: i, rep: c.rep })
-    })
-  }
-  candidates.sort((a, b) => b.rep - a.rep)
-  const picked = candidates.slice(0, uclFormat.inviteSlots)
-
-  const clubs: Club[] = []
-  const players: Player[] = []
-  const tactics: Record<string, Tactics> = {}
-  const usedNames = new Set<string>()
-  let n = 50_000
-
-  picked.forEach((pick, idx) => {
-    const league = getLeague(pick.leagueId)
-    const def = league.clubs[pick.clubIndex]
-    const id = `ucl-${idx + 1}`
-    const balance = Math.round(10_000_000 + def.rep * 250_000)
-    const club: Club = {
-      id,
-      name: def.name,
-      shortName: def.shortName,
-      color: def.color,
-      controlledBy: 'ai',
-      reputation: def.rep,
-      stadiumCapacity: 40_000 + def.rep * 500,
-      balance,
-      wageBudgetWeekly: Math.round(100_000 + def.rep * 3_000),
-      seasonStartBalance: balance,
-      originLeagueId: pick.leagueId,
-      division: 1,
-      social: createClubSocial({
-        id,
-        name: def.name,
-        shortName: def.shortName,
-        reputation: def.rep,
-        stadiumCapacity: 40_000 + def.rep * 500,
-        division: 1,
-      }),
-    }
-    clubs.push(club)
-
-    const built = createPlayersForClubDef({
-      leagueId: pick.leagueId,
-      club,
-      def,
-      seed: 8000 + idx * 97,
-      idPrefix: 'ucl-p',
-      startN: n,
-      usedNames,
-    })
-    n = built.nextN
-    players.push(...built.players)
-    tactics[id] = autoPickTactics(id, built.players)
-  })
-
-  return { clubs, players, tactics }
+  const pack = createEuropeCupsPack(homeLeagueId, [], { ranksByLeague: {} })
+  return { clubs: pack.clubs, players: pack.players, tactics: pack.tactics }
 }
 
-/** Top 4 domestic + invite → league phase (16 ทีม เล่น 6 นัด) แล้ว top 8 เข้า QF */
 export function generateUclFixtures(
-  domesticClubs: Club[],
-  inviteClubs: Club[],
-  humanClubId: string,
+  field: Club[],
   seasonStartDate: string,
   homeLeagueId?: LeagueId,
 ): Fixture[] {
   if (homeLeagueId && !isEuropeLeague(homeLeagueId)) return []
-  if (!inviteClubs.length) return []
+  const size = (uclFormat as { fieldSize?: number }).fieldSize ?? 20
+  if (field.length < size) return []
+  const offsets =
+    (uclFormat.rounds[0] as { matchdayOffsets?: number[] }).matchdayOffsets ?? [
+      4, 6, 8, 10, 12, 14,
+    ]
+  return generateLeaguePhaseFixtures(field.slice(0, size), 'ucl', seasonStartDate, offsets)
+}
 
-  const domesticSlots = uclFormat.domesticSlots
-  let domestic = domesticClubs
-    .slice()
-    .sort((a, b) => b.reputation - a.reputation)
-    .slice(0, domesticSlots)
+export function generateUelFixtures(
+  field: Club[],
+  seasonStartDate: string,
+  homeLeagueId?: LeagueId,
+): { fixtures: Fixture[]; byes: string[] } {
+  if (homeLeagueId && !isEuropeLeague(homeLeagueId)) return { fixtures: [], byes: [] }
+  const md = (uelFormat.rounds[0] as { matchdayOffset: number }).matchdayOffset
+  const fixtures = generateTenTeamEuroCupFixtures(field, 'uel', seasonStartDate, md)
+  return { fixtures, byes: playinByeSeeds(field) }
+}
 
-  if (!domestic.some((c) => c.id === humanClubId)) {
-    const human = domesticClubs.find((c) => c.id === humanClubId)
-    if (human) domestic = [...domestic.slice(0, domesticSlots - 1), human]
-  }
-
-  const field = [...domestic, ...inviteClubs].slice(0, 16)
-  if (field.length < 16) return []
-
-  const leagueRound = uclFormat.rounds[0] as {
-    id: string
-    leaguePhase?: boolean
-    matchdayOffsets?: number[]
-  }
-  if (!leagueRound.leaguePhase || !leagueRound.matchdayOffsets?.length) {
-    // fallback แบบเก่า
-    const r16 = uclFormat.rounds[0]
-    const fixtures: Fixture[] = []
-    for (let i = 0; i < 8; i++) {
-      fixtures.push({
-        id: `ucl-${r16.id}-${i + 1}`,
-        matchday: (r16 as { matchdayOffset: number }).matchdayOffset,
-        date: addDays(seasonStartDate, ((r16 as { matchdayOffset: number }).matchdayOffset - 1) * 7),
-        homeClubId: field[i].id,
-        awayClubId: field[15 - i].id,
-        played: false,
-        competition: 'ucl',
-        cupRound: r16.id,
-      })
-    }
-    return fixtures
-  }
-
-  const fixtures: Fixture[] = []
-  const ids = field.map((c) => c.id)
-  let fxN = 1
-  for (let mi = 0; mi < leagueRound.matchdayOffsets.length; mi++) {
-    const md = leagueRound.matchdayOffsets[mi]
-    // หมุนคู่แข่งแต่ละนัด
-    const rot = ids.slice()
-    for (let k = 0; k < mi; k++) {
-      const last = rot.pop()!
-      rot.splice(1, 0, last)
-    }
-    for (let i = 0; i < 8; i++) {
-      const home = rot[i]
-      const away = rot[15 - i]
-      fixtures.push({
-        id: `ucl-league-${fxN++}`,
-        matchday: md,
-        date: addDays(seasonStartDate, (md - 1) * 7),
-        homeClubId: home,
-        awayClubId: away,
-        played: false,
-        competition: 'ucl',
-        cupRound: 'league',
-      })
-    }
-  }
-  return fixtures
+export function generateUeclFixtures(
+  field: Club[],
+  seasonStartDate: string,
+  homeLeagueId?: LeagueId,
+): { fixtures: Fixture[]; byes: string[] } {
+  if (homeLeagueId && !isEuropeLeague(homeLeagueId)) return { fixtures: [], byes: [] }
+  const md = (ueclFormat.rounds[0] as { matchdayOffset: number }).matchdayOffset
+  const fixtures = generateTenTeamEuroCupFixtures(field, 'uecl', seasonStartDate, md)
+  return { fixtures, byes: playinByeSeeds(field) }
 }
 
 function leaguePhaseTable(fixtures: Fixture[]): string[] {
@@ -217,21 +118,23 @@ function leaguePhaseTable(fixtures: Fixture[]): string[] {
     .map(([id]) => id)
 }
 
-export function advanceUclAfterMatchday(
+function advanceEuroKnockout(
   fixtures: Fixture[],
-  ucl: UclState,
+  cup: CupState,
   matchday: number,
-): { fixtures: Fixture[]; ucl: UclState } {
-  const roundOrder = uclFormat.rounds.map((r) => r.id)
+  competition: 'ucl' | 'uel' | 'uecl',
+  format: { rounds: Array<Record<string, unknown>>; name: string },
+): { fixtures: Fixture[]; cup: CupState } {
+  const roundOrder = format.rounds.map((r) => r.id as string)
   const playedThis = fixtures.filter(
-    (f) => f.competition === 'ucl' && f.matchday === matchday && f.played,
+    (f) => f.competition === competition && f.matchday === matchday && f.played,
   )
-  if (playedThis.length === 0) return { fixtures, ucl }
+  if (playedThis.length === 0) return { fixtures, cup }
 
   const roundId = playedThis[0].cupRound
-  if (!roundId) return { fixtures, ucl }
+  if (!roundId) return { fixtures, cup }
 
-  const roundMeta = uclFormat.rounds.find((r) => r.id === roundId) as {
+  const roundMeta = format.rounds.find((r) => r.id === roundId) as {
     id: string
     leaguePhase?: boolean
     qualifyCount?: number
@@ -239,13 +142,13 @@ export function advanceUclAfterMatchday(
     returnOffset?: number
     matchdayOffset?: number
   }
-  const roundAll = fixtures.filter((f) => f.competition === 'ucl' && f.cupRound === roundId)
+  const roundAll = fixtures.filter((f) => f.competition === competition && f.cupRound === roundId)
   if (!roundAll.every((f) => f.played)) {
-    return { fixtures, ucl }
+    return { fixtures, cup }
   }
 
   let winners: string[] = []
-  const eliminated = [...ucl.eliminated]
+  const eliminated = [...cup.eliminated]
 
   if (roundMeta?.leaguePhase) {
     const ranked = leaguePhaseTable(roundAll)
@@ -254,6 +157,16 @@ export function advanceUclAfterMatchday(
     for (const id of ranked.slice(q)) {
       if (!eliminated.includes(id)) eliminated.push(id)
     }
+  } else if (roundId === 'playin') {
+    for (const f of roundAll) {
+      const hg = f.homeGoals ?? 0
+      const ag = f.awayGoals ?? 0
+      const winner = hg >= ag ? f.homeClubId : f.awayClubId
+      const loser = winner === f.homeClubId ? f.awayClubId : f.homeClubId
+      winners.push(winner)
+      if (!eliminated.includes(loser)) eliminated.push(loser)
+    }
+    winners = [...(cup.playinByes ?? []), ...winners]
   } else if (roundMeta?.twoLegged) {
     const byTie = new Map<string, Fixture[]>()
     for (const f of roundAll) {
@@ -298,19 +211,21 @@ export function advanceUclAfterMatchday(
   if (idx === roundOrder.length - 1) {
     return {
       fixtures,
-      ucl: { ...ucl, eliminated, championClubId: winners[0] ?? null },
+      cup: { ...cup, eliminated, championClubId: winners[0] ?? null },
     }
   }
 
-  const nextRound = uclFormat.rounds[idx + 1] as {
+  const nextRound = format.rounds[idx + 1] as {
     id: string
     matchdayOffset: number
     twoLegged?: boolean
     returnOffset?: number
   }
-  const existingNext = fixtures.some((f) => f.competition === 'ucl' && f.cupRound === nextRound.id)
+  const existingNext = fixtures.some(
+    (f) => f.competition === competition && f.cupRound === nextRound.id,
+  )
   if (existingNext || winners.length < 2) {
-    return { fixtures, ucl: { ...ucl, eliminated } }
+    return { fixtures, cup: { ...cup, eliminated } }
   }
 
   const newFx: Fixture[] = []
@@ -318,42 +233,42 @@ export function advanceUclAfterMatchday(
     if (!winners[i + 1]) break
     const home = winners[i]
     const away = winners[i + 1]
-    const tieId = `ucl-tie-${nextRound.id}-${i / 2 + 1}`
+    const tieId = `${competition}-tie-${nextRound.id}-${i / 2 + 1}`
     if (nextRound.twoLegged) {
       newFx.push({
-        id: `ucl-${nextRound.id}-${i / 2 + 1}-l1`,
+        id: `${competition}-${nextRound.id}-${i / 2 + 1}-l1`,
         matchday: nextRound.matchdayOffset,
         date: addDays(playedThis[0].date, (nextRound.matchdayOffset - matchday) * 7),
         homeClubId: home,
         awayClubId: away,
         played: false,
-        competition: 'ucl',
+        competition,
         cupRound: nextRound.id,
         leg: 1,
         tieId,
       })
       const ret = nextRound.returnOffset ?? nextRound.matchdayOffset + 2
       newFx.push({
-        id: `ucl-${nextRound.id}-${i / 2 + 1}-l2`,
+        id: `${competition}-${nextRound.id}-${i / 2 + 1}-l2`,
         matchday: ret,
         date: addDays(playedThis[0].date, (ret - matchday) * 7),
         homeClubId: away,
         awayClubId: home,
         played: false,
-        competition: 'ucl',
+        competition,
         cupRound: nextRound.id,
         leg: 2,
         tieId,
       })
     } else {
       newFx.push({
-        id: `ucl-${nextRound.id}-${i / 2 + 1}`,
+        id: `${competition}-${nextRound.id}-${i / 2 + 1}`,
         matchday: nextRound.matchdayOffset,
         date: addDays(playedThis[0].date, (nextRound.matchdayOffset - matchday) * 7),
         homeClubId: home,
         awayClubId: away,
         played: false,
-        competition: 'ucl',
+        competition,
         cupRound: nextRound.id,
       })
     }
@@ -361,14 +276,35 @@ export function advanceUclAfterMatchday(
 
   return {
     fixtures: [...fixtures, ...newFx],
-    ucl: { ...ucl, eliminated },
+    cup: { ...cup, eliminated },
   }
 }
 
-export function isUclClub(clubId: string) {
-  return clubId.startsWith('ucl-')
+export function advanceUclAfterMatchday(
+  fixtures: Fixture[],
+  ucl: UclState,
+  matchday: number,
+): { fixtures: Fixture[]; ucl: UclState } {
+  const r = advanceEuroKnockout(fixtures, ucl, matchday, 'ucl', uclFormat)
+  return { fixtures: r.fixtures, ucl: r.cup }
 }
 
-export function domesticClubsOnly(save: GameSave): Club[] {
-  return save.clubs.filter((c) => !isUclClub(c.id))
+export function advanceUelAfterMatchday(
+  fixtures: Fixture[],
+  uel: CupState,
+  matchday: number,
+): { fixtures: Fixture[]; uel: CupState } {
+  const r = advanceEuroKnockout(fixtures, uel, matchday, 'uel', uelFormat)
+  return { fixtures: r.fixtures, uel: r.cup }
 }
+
+export function advanceUeclAfterMatchday(
+  fixtures: Fixture[],
+  uecl: CupState,
+  matchday: number,
+): { fixtures: Fixture[]; uecl: CupState } {
+  const r = advanceEuroKnockout(fixtures, uecl, matchday, 'uecl', ueclFormat)
+  return { fixtures: r.fixtures, uecl: r.cup }
+}
+
+export { createEuropeCupsPack }

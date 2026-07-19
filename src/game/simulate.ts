@@ -7,7 +7,7 @@ import { applyMatchToOwner, ensureOwner } from './owner'
 import { processStadiumPresence } from './clubAtmosphere'
 import { scanTakeoverMarket } from './takeover'
 import { enterUnemployment, refreshJobMarket } from './jobs'
-import { processFacilities, medicalFacilityBonus, commercialGateBonus, trainingFacilityBonus } from './facilities'
+import { processFacilities, commercialGateBonus, trainingFacilityBonus } from './facilities'
 import { tickSocialAfterMatchday } from './social'
 import { transferWindowKind } from './transferWindow'
 import { tickWorldPulse } from './worldPulse'
@@ -48,7 +48,8 @@ import {
   advanceLeagueCupAfterMatchday,
   advanceTrophyAfterMatchday,
 } from './extraCups'
-import { advanceUclAfterMatchday } from './ucl'
+import { advanceUclAfterMatchday, advanceUelAfterMatchday, advanceUeclAfterMatchday } from './ucl'
+import { snapshotEuroRanks } from './europeAccess'
 import { assignRefereesToFixtures, getReferee } from './referees'
 import { fixtureWeatherSeed, pickWeather, weatherMatchModifiers } from './weather'
 import {
@@ -203,6 +204,8 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   let leagueCup = save.leagueCup ?? { name: 'League Cup', championClubId: null, eliminated: [] }
   let trophy = save.trophy ?? { name: 'Trophy', championClubId: null, eliminated: [] }
   let ucl = save.ucl
+  let uel = save.uel ?? { name: 'UEFA Europa League', championClubId: null, eliminated: [] }
+  let uecl = save.uecl ?? { name: 'UEFA Conference League', championClubId: null, eliminated: [] }
   let pressConference = save.pressConference ?? null
   let managerReputation = save.managerReputation ?? 50
   let clubFinance = ensureClubFinance(save)
@@ -360,7 +363,11 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
           ? `ถ้วย (${fixture.cupRound})`
           : fixture.competition === 'ucl'
             ? `UCL (${fixture.cupRound})`
-            : 'ลีก'
+            : fixture.competition === 'uel'
+              ? `Europa (${fixture.cupRound})`
+              : fixture.competition === 'uecl'
+                ? `Conference (${fixture.cupRound})`
+                : 'ลีก'
       const gateNote = usHome
         ? ` · ตั๋ว ${receipt.tickets.toLocaleString('th-TH')} + เสื้อ ${receipt.shirts.toLocaleString('th-TH')} ฿ (ผู้ชม ~${receipt.crowd.toLocaleString('th-TH')})`
         : ` · รายได้เจ้าบ้าน ${homeIncome.toLocaleString('th-TH')} ฿`
@@ -528,6 +535,40 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     clubFinance = uclPrize.clubFinance
   }
 
+  const uelAdv = advanceUelAfterMatchday(fixtures, uel, prepared.matchday)
+  fixtures = uelAdv.fixtures
+  uel = uelAdv.uel
+  if (uel.championClubId && !save.uel?.championClubId) {
+    const champ = clubs.find((c) => c.id === uel.championClubId)
+    inbox.unshift({
+      id: `msg-uel-${Date.now()}`,
+      date: prepared.date,
+      title: 'Europa League champions',
+      body: `${champ?.name ?? uel.championClubId} คว้าแชมป์ ${uel.name}`,
+      read: false,
+    })
+    if (uel.championClubId === save.humanClubId) {
+      managerReputation = Math.min(100, managerReputation + 5)
+    }
+  }
+
+  const ueclAdv = advanceUeclAfterMatchday(fixtures, uecl, prepared.matchday)
+  fixtures = ueclAdv.fixtures
+  uecl = ueclAdv.uecl
+  if (uecl.championClubId && !save.uecl?.championClubId) {
+    const champ = clubs.find((c) => c.id === uecl.championClubId)
+    inbox.unshift({
+      id: `msg-uecl-${Date.now()}`,
+      date: prepared.date,
+      title: 'Conference League champions',
+      body: `${champ?.name ?? uecl.championClubId} คว้าแชมป์ ${uecl.name}`,
+      read: false,
+    })
+    if (uecl.championClubId === save.humanClubId) {
+      managerReputation = Math.min(100, managerReputation + 4)
+    }
+  }
+
   let next: GameSave = {
     ...save,
     fixtures,
@@ -543,6 +584,8 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     leagueCup,
     trophy,
     ucl,
+    uel,
+    uecl,
     managerReputation,
     pressConference,
     clubFinance,
@@ -672,6 +715,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   )
   if (next.seasonComplete && !save.seasonComplete) {
     next = tickEndOfSeasonClauses(next)
+    next = { ...next, euroAccess: snapshotEuroRanks(next) }
   }
   next = processFanPolitics(next)
   next = processBoardPolitics(next)

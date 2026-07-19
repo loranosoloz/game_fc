@@ -40,7 +40,11 @@ function hashStr(s: string): number {
 /** Prefer higher-rep refs for UCL/cup; still deterministic from fixture id. */
 export function pickRefereeId(fixtureId: string, competition: CompetitionKind): string {
   const minRep =
-    competition === 'ucl' ? 15 : competition === 'cup' ? 12 : 1
+    competition === 'ucl' || competition === 'uel' || competition === 'uecl'
+      ? 15
+      : competition === 'cup'
+        ? 12
+        : 1
   const pool = REFEREES.filter((r) => r.reputation >= minRep)
   const list = pool.length > 0 ? pool : REFEREES
   const idx = hashStr(fixtureId) % list.length

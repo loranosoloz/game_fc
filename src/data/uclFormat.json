@@ -13,5 +13,6 @@
     { "id": "final", "label": "Final", "matchdayOffset": 34, "twoLegged": false }
   ],
   "domesticSlots": 4,
-  "inviteSlots": 12
+  "inviteSlots": 16,
+  "fieldSize": 20
 }

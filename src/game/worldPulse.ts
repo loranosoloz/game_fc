@@ -1,5 +1,6 @@
 import type { GameSave, WorldPulseState, WorldLeaguePulse } from './types'
 import { ALL_LEAGUES, type LeagueId } from '@/data/world'
+import { isEuropeLeague } from './europeAccess'
 
 export type { WorldPulseState, WorldLeaguePulse }
 
@@ -16,6 +17,7 @@ export function createWorldPulse(homeLeagueId: string): WorldPulseState {
         leader: sorted[0]?.name ?? '—',
         second: sorted[1]?.name ?? '—',
         note: 'เปิดฤดูกาล',
+        orderedKeys: sorted.map((c) => c.key),
       }
     })
   return { leagues, lastUpdateMatchday: -1 }
@@ -26,7 +28,7 @@ export function ensureWorldPulse(save: GameSave): WorldPulseState {
   return save.worldPulse
 }
 
-/** อัปเดตตารางลีกอื่นแบบเบา — ไม่จำลองเต็มแค่สุ่มแชมป์นำ */
+/** อัปเดตตารางลีกอื่นแบบเบา — สุ่มคะแนน + เก็บอันดับคีย์ */
 export function tickWorldPulse(save: GameSave): GameSave {
   let pulse = ensureWorldPulse(save)
   if (pulse.lastUpdateMatchday === save.matchday) return { ...save, worldPulse: pulse }
@@ -35,8 +37,8 @@ export function tickWorldPulse(save: GameSave): GameSave {
     const league = ALL_LEAGUES.find((l) => l.id === row.leagueId)
     if (!league) return { ...row, matchday: save.matchday }
     const clubs = league.clubs.slice()
-    // สุ่มคะแนนสะสมคร่าวๆ ตามชื่อเสียง + noise
     const scored = clubs.map((c) => ({
+      key: c.key,
       name: c.name,
       pts: Math.round(c.rep * 0.35 + Math.random() * 18 + save.matchday * (0.4 + Math.random() * 0.5)),
     }))
@@ -53,6 +55,7 @@ export function tickWorldPulse(save: GameSave): GameSave {
       leader: leader.name,
       second: second.name,
       note,
+      orderedKeys: scored.map((s) => s.key),
     }
   })
 
@@ -65,4 +68,11 @@ export function tickWorldPulse(save: GameSave): GameSave {
 export function homeLeagueLabel(save: GameSave): string {
   const id = (save.leagueId || 'eng') as LeagueId
   return ALL_LEAGUES.find((l) => l.id === id)?.nameTh ?? save.leagueName
+}
+
+export function europePulseNote(save: GameSave): string {
+  if (!isEuropeLeague(save.leagueId || 'eng')) {
+    return 'ลีกนอกยุโรป — ไม่มีโควตา UCL / Europa / Conference'
+  }
+  return 'โควตา: อันดับ 1–4 UCL · 5–6 Europa · 7–8 Conference (ตัดจากจบฤดูกาลก่อน)'
 }

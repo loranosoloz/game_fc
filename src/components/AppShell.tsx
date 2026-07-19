@@ -77,13 +77,9 @@ export function AppShell() {
               <ClubCrest club={club} size="md" className="rounded-md bg-white/10 p-0.5" />
               <h1 className="truncate text-xl font-bold tracking-tight md:text-2xl">{club.name}</h1>
             </div>
-              <p className="text-[11px] font-bold tracking-[0.22em] text-lime-300/90 uppercase">
-                FC Manager · {save.leagueName}
-              </p>
-            </div>
-            <h1 className="mt-1 truncate text-2xl font-bold tracking-tight md:text-3xl">
-              {club.name}
-            </h1>
+            <p className="mt-1 text-[11px] font-bold tracking-[0.22em] text-lime-300/90 uppercase">
+              FC Manager · {save.leagueName}
+            </p>
             <p className="mt-1 text-sm text-slate-400">
               {save.managerName} · ฤดูกาล {save.season} · {save.currentDate} · อันดับ #
               {rank || '—'}

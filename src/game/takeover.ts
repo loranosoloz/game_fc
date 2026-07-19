@@ -889,6 +889,8 @@ export function attemptTakeoverDeal(
         lastApproachSeason: save.season,
         nextEligibleSeason: save.season + Math.max(2, rollNextInterval(0)),
         strugglingSeasons: 0,
+        lastSeasonReviewed: takeover.lastSeasonReviewed ?? save.season,
+        cadenceSeason: takeover.cadenceSeason ?? save.season,
         history: [{ matchday: save.matchday, note }, ...takeover.history].slice(0, 10),
       },
       inbox: [

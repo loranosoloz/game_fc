@@ -2,9 +2,14 @@ import type { GameSave, InboxMessage, Player } from './types'
 import { blankTable, generateSeasonFixtures } from './fixtures'
 import {
   createUclState,
-  createUclInviteClubs,
+  createUelState,
+  createUeclState,
   generateUclFixtures,
+  generateUelFixtures,
+  generateUeclFixtures,
+  createEuropeCupsPack,
 } from './ucl'
+import { snapshotEuroRanks } from './europeAccess'
 import { assignRefereesToFixtures } from './referees'
 import { getLeague, type LeagueId, EXTRA_CUP_NAMES, DIV2_LEAGUE_NAME } from '@/data/world'
 import { ensureBoard } from './board'
@@ -105,7 +110,7 @@ function rollPlayersForNewSeason(players: Player[], newSeason: number): {
       minutesPlayed: 0,
       banMatches: 0,
       form: Math.max(1, Math.min(10, Math.round((p.form + 6) / 2))),
-      fatigue: Math.max(0, Math.round(p.fatigue * 0.35)),
+      condition: Math.min(100, Math.round((p.condition + 100) / 2)),
       injuryDays: 0,
       illnessDays: p.illnessDays ? Math.min(p.illnessDays, 3) : 0,
     }
@@ -123,7 +128,7 @@ function rollPlayersForNewSeason(players: Player[], newSeason: number): {
       ...aged,
       contractYears: 1,
       contractEndSeason: newSeason + 1,
-      wageWeekly: Math.round(aged.wageWeekly * (aged.age >= 32 ? 0.92 : 1.02)),
+      wage: Math.round(aged.wage * (aged.age >= 32 ? 0.92 : 1.02)),
     }
     notes.push(`${aged.name} ต่อสัญญาอัตโนมัติ 1 ปี`)
     return aged
@@ -190,8 +195,13 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
   const rolled = rollPlayersForNewSeason(players, newSeason)
   players = rolled.players
 
-  const invite = createUclInviteClubs(leagueId)
-  players = [...players, ...invite.players]
+  const euroAccess = snapshotEuroRanks(save)
+  const pack = createEuropeCupsPack(
+    leagueId,
+    domesticClubs.filter((c) => c.division === 1),
+    euroAccess,
+  )
+  players = [...players, ...pack.players]
 
   let clubs = [
     ...domesticClubs.map((c) => ({
@@ -200,7 +210,7 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
       ticketRevenueSeason: 0,
       shirtRevenueSeason: 0,
     })),
-    ...invite.clubs,
+    ...pack.clubs,
   ]
 
   if (championId === save.humanClubId) {
@@ -219,7 +229,7 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
   for (const id of Object.keys(tacticsByClub)) {
     if (id.startsWith('ucl-')) delete tacticsByClub[id]
   }
-  Object.assign(tacticsByClub, invite.tactics)
+  Object.assign(tacticsByClub, pack.tactics)
 
   for (const club of domesticClubs) {
     const t = tacticsByClub[club.id]
@@ -264,13 +274,9 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
     startDate,
     EXTRA_CUP_NAMES[leagueId].trophy,
   )
-  const uclFx = generateUclFixtures(
-    domesticClubs.filter((c) => c.division === 1),
-    invite.clubs,
-    save.humanClubId,
-    startDate,
-    leagueId,
-  )
+  const uclFx = generateUclFixtures(pack.uclField, startDate, leagueId)
+  const uelGen = generateUelFixtures(pack.uelField, startDate, leagueId)
+  const ueclGen = generateUeclFixtures(pack.ueclField, startDate, leagueId)
   const fixtures = assignRefereesToFixtures([
     ...leagueFx,
     ...leagueFx2,
@@ -278,6 +284,8 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
     ...lc.fixtures,
     ...tr.fixtures,
     ...uclFx,
+    ...uelGen.fixtures,
+    ...ueclGen.fixtures,
   ])
 
   const board = ensureBoard(save)
@@ -326,6 +334,9 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
     leagueCup: lc.state,
     trophy: tr.state,
     ucl: createUclState(),
+    uel: { ...createUelState(), playinByes: uelGen.byes },
+    uecl: { ...createUeclState(), playinByes: ueclGen.byes },
+    euroAccess,
     lastHumanResult: null,
     pressConference: null,
     clubFinance: {

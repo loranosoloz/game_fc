@@ -25,9 +25,14 @@ import {
 } from './extraCups'
 import {
   createUclState,
-  createUclInviteClubs,
+  createUelState,
+  createUeclState,
   generateUclFixtures,
+  generateUelFixtures,
+  generateUeclFixtures,
+  createEuropeCupsPack,
 } from './ucl'
+import { createEuroAccess } from './europeAccess'
 import { DIV2_LEAGUE_NAME, EXTRA_CUP_NAMES } from '@/data/world'
 import { assignRefereesToFixtures } from './referees'
 import { createDevelopmentState } from './development'
@@ -84,12 +89,17 @@ export function createNewGame(
   const league = getLeague(leagueId)
   const domesticClubs = createClubsFromLeague(leagueId, humanClubId)
   const domesticPlayers = createPlayersFromLeague(leagueId, domesticClubs)
-  const invite = createUclInviteClubs(leagueId)
-  const clubs = [...domesticClubs, ...invite.clubs]
-  const players = [...domesticPlayers, ...invite.players]
+  const euroAccess = createEuroAccess()
+  const pack = createEuropeCupsPack(
+    leagueId,
+    domesticClubs.filter((c) => c.division === 1),
+    euroAccess,
+  )
+  const clubs = [...domesticClubs, ...pack.clubs]
+  const players = [...domesticPlayers, ...pack.players]
   const tacticsByClub = {
     ...createTacticsForAll(domesticClubs, domesticPlayers),
-    ...invite.tactics,
+    ...pack.tactics,
   }
   const clubIds = domesticClubs.filter((c) => c.division === 1).map((c) => c.id)
   const d2Ids = domesticClubs.filter((c) => c.division === 2).map((c) => c.id)
@@ -108,13 +118,9 @@ export function createNewGame(
     seasonStart,
     EXTRA_CUP_NAMES[leagueId].trophy,
   )
-  const uclFx = generateUclFixtures(
-    domesticClubs.filter((c) => c.division === 1),
-    invite.clubs,
-    humanClubId,
-    seasonStart,
-    leagueId,
-  )
+  const uclFx = generateUclFixtures(pack.uclField, seasonStart, leagueId)
+  const uelGen = generateUelFixtures(pack.uelField, seasonStart, leagueId)
+  const ueclGen = generateUeclFixtures(pack.ueclField, seasonStart, leagueId)
   const fixtures = assignRefereesToFixtures([
     ...leagueFx,
     ...leagueFx2,
@@ -122,6 +128,8 @@ export function createNewGame(
     ...lc.fixtures,
     ...tr.fixtures,
     ...uclFx,
+    ...uelGen.fixtures,
+    ...ueclGen.fixtures,
   ])
   const human = domesticClubs.find((c) => c.id === humanClubId)!
 
@@ -147,7 +155,7 @@ export function createNewGame(
         id: 'welcome',
         date: seasonStart,
         title: `Welcome to ${human.name}`,
-        body: `คุณคุม ${human.name} ใน ${league.name} · มี${DIV2_LEAGUE_NAME[leagueId].nameTh} · ถ้วยชาติ + ${EXTRA_CUP_NAMES[leagueId].leagueCup} + ${EXTRA_CUP_NAMES[leagueId].trophy} · ตกชั้น/เลื่อนชั้นท้ายฤดูกาล`,
+        body: `คุณคุม ${human.name} ใน ${league.name} · มี${DIV2_LEAGUE_NAME[leagueId].nameTh} · ถ้วยชาติ + ${EXTRA_CUP_NAMES[leagueId].leagueCup} + ${EXTRA_CUP_NAMES[leagueId].trophy} · ตกชั้น/เลื่อนชั้นท้ายฤดูกาล · ยุโรป: 1–4 UCL / 5–6 Europa / 7–8 Conference`,
         read: false,
       },
     ],
@@ -170,6 +178,9 @@ export function createNewGame(
     leagueCup: lc.state,
     trophy: tr.state,
     ucl: createUclState(),
+    uel: { ...createUelState(), playinByes: uelGen.byes },
+    uecl: { ...createUeclState(), playinByes: ueclGen.byes },
+    euroAccess,
     development: createDevelopmentState(),
     talks: createTalksState(),
     loans: createLoansState(),
@@ -218,6 +229,9 @@ export function ensurePhase5(save: GameSave): GameSave {
   }
   if (!next.cup) next = { ...next, cup: createCupState() }
   if (!next.ucl) next = { ...next, ucl: createUclState() }
+  if (!next.uel) next = { ...next, uel: createUelState() }
+  if (!next.uecl) next = { ...next, uecl: createUeclState() }
+  if (!next.euroAccess) next = { ...next, euroAccess: createEuroAccess() }
   if (!next.development) next = { ...next, development: createDevelopmentState() }
   if (!next.talks) next = { ...next, talks: ensureTalks(next) }
   if (!next.loans) next = { ...next, loans: ensureLoans(next) }
@@ -527,6 +541,9 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
     leagueCup: (raw.leagueCup as GameSave['leagueCup']) ?? createCupState('League Cup'),
     trophy: (raw.trophy as GameSave['trophy']) ?? createCupState('Trophy'),
     ucl: (raw.ucl as GameSave['ucl']) ?? createUclState(),
+    uel: (raw.uel as GameSave['uel']) ?? createUelState(),
+    uecl: (raw.uecl as GameSave['uecl']) ?? createUeclState(),
+    euroAccess: (raw.euroAccess as GameSave['euroAccess']) ?? createEuroAccess(),
     development: (raw.development as GameSave['development']) ?? createDevelopmentState(),
     talks: (raw.talks as GameSave['talks']) ?? createTalksState(),
     loans: (raw.loans as GameSave['loans']) ?? createLoansState(),

@@ -3,6 +3,8 @@ import cupFormat from '@/data/cupFormat.json'
 import leagueCupFormat from '@/data/leagueCupFormat.json'
 import trophyFormat from '@/data/trophyFormat.json'
 import uclFormat from '@/data/uclFormat.json'
+import uelFormat from '@/data/uelFormat.json'
+import ueclFormat from '@/data/ueclFormat.json'
 import { ensurePhase5 } from '@/game/save'
 
 function RoundBlock({
@@ -97,12 +99,19 @@ export function CompetitionsPage() {
       .sort((a, b) => a.matchday - b.matchday)
 
   const uclFx = byComp('ucl')
-  const hasUcl = uclFx.length > 0
+  const uelFx = byComp('uel')
+  const ueclFx = byComp('uecl')
+  const hasEurope = uclFx.length > 0 || uelFx.length > 0 || ueclFx.length > 0
 
   return (
     <div className="space-y-8">
-      {hasUcl ? (
+      {hasEurope ? (
         <>
+          <p className="rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-sm text-slate-700">
+            โควตาตายตัว (ยังไม่ใช้สัมประสิทธิ์): อันดับจบลีกก่อนหน้า{' '}
+            <strong>1–4 → UCL</strong> · <strong>5–6 → Europa</strong> ·{' '}
+            <strong>7–8 → Conference</strong> · ทุกประเทศยุโรป 5 ลีก
+          </p>
           <RoundBlock
             title={save.ucl?.name ?? 'UEFA Champions League'}
             rounds={uclFormat.rounds.map((r) => ({
@@ -116,19 +125,57 @@ export function CompetitionsPage() {
           />
           {save.ucl?.championClubId ? (
             <p className="-mt-6 text-sm font-semibold text-emerald-800">
-              แชมป์ยุโรป: {nameOf(save.ucl.championClubId)}
+              แชมป์ UCL: {nameOf(save.ucl.championClubId)}
             </p>
           ) : (
             <p className="-mt-6 text-sm text-slate-600">
-              League phase → Top 8 → QF/SF/Final · เฉพาะ 5 ลีกยุโรป (ไม่มีไทย)
+              20 ทีม (1–4 × 5 ลีก) · League phase → Top 8 → QF/SF/Final
             </p>
+          )}
+
+          <RoundBlock
+            title={save.uel?.name ?? 'UEFA Europa League'}
+            rounds={uelFormat.rounds.map((r) => ({
+              id: r.id,
+              label: r.label,
+              matchdayOffset: (r as { matchdayOffset?: number }).matchdayOffset,
+            }))}
+            fixtures={uelFx}
+            nameOf={nameOf}
+            tone="violet"
+          />
+          {save.uel?.championClubId ? (
+            <p className="-mt-6 text-sm font-semibold text-emerald-800">
+              แชมป์ Europa: {nameOf(save.uel.championClubId)}
+            </p>
+          ) : (
+            <p className="-mt-6 text-sm text-slate-600">อันดับ 5–6 × 5 ลีก · Play-off → QF/SF/Final</p>
+          )}
+
+          <RoundBlock
+            title={save.uecl?.name ?? 'UEFA Conference League'}
+            rounds={ueclFormat.rounds.map((r) => ({
+              id: r.id,
+              label: r.label,
+              matchdayOffset: (r as { matchdayOffset?: number }).matchdayOffset,
+            }))}
+            fixtures={ueclFx}
+            nameOf={nameOf}
+            tone="emerald"
+          />
+          {save.uecl?.championClubId ? (
+            <p className="-mt-6 text-sm font-semibold text-emerald-800">
+              แชมป์ Conference: {nameOf(save.uecl.championClubId)}
+            </p>
+          ) : (
+            <p className="-mt-6 text-sm text-slate-600">อันดับ 7–8 × 5 ลีก · Play-off → QF/SF/Final</p>
           )}
         </>
       ) : (
         <section className="rounded-xl border border-amber-100 bg-amber-50/60 p-5 text-sm text-amber-950">
-          <h2 className="text-lg font-semibold">UEFA Champions League</h2>
+          <h2 className="text-lg font-semibold">ถ้วยยุโรป</h2>
           <p className="mt-1 text-slate-700">
-            เซฟนี้เล่นลีกนอกยุโรป — ไม่มีโควตา UCL (ไทยเล่นในประเทศอย่างเดียว)
+            เซฟนี้เล่นลีกนอกยุโรป — ไม่มีโควตา UCL / Europa / Conference (ไทยเล่นในประเทศอย่างเดียว)
           </p>
         </section>
       )}

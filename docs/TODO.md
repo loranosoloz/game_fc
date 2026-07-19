@@ -12,6 +12,7 @@
 | Match weather | ✅ | ✅ on master |
 | พรีแมตช์ hub (briefing · XI · ทีมทอล์ค) | ✅ | ✅ on master |
 | Player Depth Pack (clauses · agent · lifestyle) | ✅ | ✅ on master |
+| ถ้วยยุโรปโควตาตามอันดับ (UCL/UEL/UECL) | ✅ | ✅ on master |
 | DB / Data Hub | ⏸ | ข้าม — ผู้ใช้กำลังรวบรวมข้อมูล |
 
 Data packs: `src/data/` + `src/data/world/` · Save **v6**

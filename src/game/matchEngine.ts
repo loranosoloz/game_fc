@@ -223,7 +223,10 @@ export function simulateFixture(
 
   // Cup / UCL: no draws (ยกเว้นสองนัด — อนุญาตเสมอในนัดเดียว)
   if (
-    (fixture.competition === 'cup' || fixture.competition === 'ucl') &&
+    (fixture.competition === 'cup' ||
+      fixture.competition === 'ucl' ||
+      fixture.competition === 'uel' ||
+      fixture.competition === 'uecl') &&
     homeGoals === awayGoals &&
     !fixture.tieId
   ) {

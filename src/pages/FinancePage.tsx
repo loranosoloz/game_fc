@@ -15,7 +15,7 @@ import {
   stadiumCapacityForTier,
 } from '@/game/facilities'
 import type { FacilityKind } from '@/game/types'
-import { PageHeader, Panel, ProgressBar, StatTile, PrimaryButton, GhostButton } from '@/components/ui'
+import { PageHeader, Panel, ProgressBar, StatTile, GhostButton } from '@/components/ui'
 
 export function FinancePage() {
   const saveRaw = useGameStore((s) => s.save)!
@@ -121,8 +121,6 @@ export function FinancePage() {
           {formatMoney(finance.shirtSeason || 0)}
         </p>
       </Panel>
-
-      </div>
 
       <Panel>
         <h3 className="text-sm font-bold text-slate-900">สนามและสิ่งอำนวยความสะดวก</h3>

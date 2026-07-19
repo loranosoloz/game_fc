@@ -1,10 +1,9 @@
 import mentoringDb from '@/data/mentoring.json'
 import type { GameSave, Player, TrainingFocus, TrainingState } from './types'
-import { overallFromCa } from './attributes'
+import { ATTR_BUMP, ATTR_MAX, ATTR_MIN, overallFromCa } from './attributes'
 import { applyInjury, tickPlayerInjury } from './medical'
 import { applyTrainingWear, bodyWearInjuryBonus } from './bodyMap'
 import { FOCUS_ATTRS } from './focusAttrs'
-import { trainingFacilityBonus } from './facilities'
 
 export function defaultTraining(): TrainingState {
   return { focus: 'tactics', intensity: 'medium', individual: {} }
@@ -74,7 +73,7 @@ export function applyTrainingWeek(
       const k = keys[Math.floor(Math.random() * keys.length)]
       const learnMul = p.growth.learningRate / 20
       if (learnMul > 0.2 || Math.random() < 0.2) {
-        attrs[k] = clamp(attrs[k] + 1, 1, 20)
+        attrs[k] = clamp(attrs[k] + ATTR_BUMP, ATTR_MIN, ATTR_MAX)
       }
     }
 

@@ -1,0 +1,9 @@
+{
+  "name": "UEFA Europa League",
+  "rounds": [
+    { "id": "playin", "label": "Play-off", "matchdayOffset": 5 },
+    { "id": "qf", "label": "Quarter-final", "matchdayOffset": 18, "twoLegged": true, "returnOffset": 20 },
+    { "id": "sf", "label": "Semi-final", "matchdayOffset": 26, "twoLegged": true, "returnOffset": 28 },
+    { "id": "final", "label": "Final", "matchdayOffset": 33, "twoLegged": false }
+  ]
+}

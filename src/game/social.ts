@@ -113,7 +113,7 @@ export function tickSocialAfterMatchday(save: GameSave): GameSave {
     const draw = hg === ag
     const margin = Math.abs(hg - ag)
 
-    const apply = (clubId: string, won: boolean, lost: boolean) => {
+    const apply = (clubId: string, won: boolean, _lost: boolean) => {
       let d = 0
       let eng = 0
       if (won) {
