@@ -35,19 +35,49 @@ export function ClubVisionPage() {
   const investorCount = listInvestors().length
 
   if (board.sacked) {
+    const career = save.career
+    const openJobs = (career?.jobOffers ?? []).filter((o) => o.status === 'open')
+    const acceptJob = useGameStore.getState().acceptJob
+    const rejectJob = useGameStore.getState().rejectJob
     return (
       <div className="space-y-5">
-        <PageHeader title="Club Vision" subtitle="คุณถูกปลดจากตำแหน่งผู้จัดการ" />
+        <PageHeader title="ว่างงาน" subtitle="คุณถูกปลด — เลือกงานใหม่จากตลาดผู้จัดการ" />
         <Panel tone="warn">
           <p className="font-semibold text-rose-900">{board.sackedNote}</p>
           <p className="mt-2 text-sm text-slate-700">
-            เริ่มเกมใหม่จากหน้าแรกเพื่อรับงานคลับอื่น
+            ชื่อเสียงผู้จัดการ {save.managerReputation ?? 50}/100
+            {career?.lastJobNote ? ` · ${career.lastJobNote}` : ''}
           </p>
+        </Panel>
+        <Panel>
+          <h3 className="text-sm font-bold text-slate-900">ข้อเสนองาน</h3>
+          {openJobs.length === 0 ? (
+            <p className="mt-2 text-sm text-slate-500">
+              ยังไม่มีงานเปิด — รอการ์ดใหม่หลังเวลาผ่าน หรือเริ่มเกมใหม่จากหน้าแรก
+            </p>
+          ) : (
+            <ul className="mt-3 space-y-3">
+              {openJobs.map((j) => (
+                <li key={j.id} className="rounded-md border border-slate-200 bg-slate-50 px-3 py-3">
+                  <p className="font-semibold">{j.clubName}</p>
+                  <p className="text-xs text-slate-500">
+                    ต้องการรีพ ≥ {j.reputationRequired} · ค่าเหนื่อย ~{formatMoney(j.wageWeekly)}
+                    /สัปดาห์ · หมด MD{j.expiresMatchday}
+                  </p>
+                  <p className="mt-1 text-sm text-slate-600">{j.note}</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    <PrimaryButton onClick={() => acceptJob(j.id)}>รับงาน</PrimaryButton>
+                    <GhostButton onClick={() => rejectJob(j.id)}>ปฏิเสธ</GhostButton>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
           <Link
             to="/"
             className="mt-4 inline-block text-sm font-semibold underline underline-offset-2"
           >
-            กลับหน้าแรก →
+            หรือเริ่มอาชีพใหม่จากหน้าแรก →
           </Link>
         </Panel>
       </div>

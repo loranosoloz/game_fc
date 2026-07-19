@@ -53,6 +53,21 @@ export function PortalPage() {
   return (
     <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
       <section className="space-y-4">
+        {save.board?.sacked || save.career?.unemployed ? (
+          <div className="rounded-xl border border-rose-300 bg-rose-50 p-5">
+            <h2 className="text-lg font-semibold text-rose-950">ว่างงาน · ตลาดงาน</h2>
+            <p className="mt-1 text-sm text-rose-900">
+              {(save.career?.jobOffers ?? []).filter((o) => o.status === 'open').length} ข้อเสนอเปิดอยู่ —
+              ไปหน้าบอร์ด/แฟนเพื่อรับงาน
+            </p>
+            <Link
+              to="/club-vision"
+              className="mt-3 inline-block text-sm font-semibold underline underline-offset-2"
+            >
+              เปิดตลาดงาน →
+            </Link>
+          </div>
+        ) : null}
         {save.seasonComplete && !save.board?.sacked ? (
           <div className="rounded-xl border border-lime-300 bg-lime-50 p-5">
             <h2 className="text-lg font-semibold text-lime-950">จบฤดูกาล {save.season}</h2>

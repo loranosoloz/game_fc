@@ -57,6 +57,7 @@ import {
   rejectTakeoverOffer,
 } from '@/game/takeover'
 import { startNextSeason } from '@/game/season'
+import { acceptJobOffer, rejectJobOffer } from '@/game/jobs'
 import { managerTalk, respondToPlayerRequest } from '@/game/playerTalks'
 import type { ManagerTalkTopic, TalkResponse } from '@/game/types'
 import {
@@ -130,6 +131,8 @@ interface GameStore {
   attemptTakeover: (offerId: string) => boolean
   rejectTakeover: (offerId: string) => boolean
   startNewSeason: () => boolean
+  acceptJob: (offerId: string) => boolean
+  rejectJob: (offerId: string) => boolean
   answerPressConference: (answerIds: string[]) => void
   dismissPressConference: () => void
 }
@@ -850,6 +853,28 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (!result.ok) return false
     saveToStorage(result.save)
     set({ save: result.save, liveMatch: null })
+    return true
+  },
+
+  acceptJob: (offerId) => {
+    const { save } = get()
+    if (!save) return false
+    const result = acceptJobOffer(save, offerId)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save, liveMatch: null })
+    return true
+  },
+
+  rejectJob: (offerId) => {
+    const { save } = get()
+    if (!save) return false
+    const result = rejectJobOffer(save, offerId)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
     return true
   },
 

@@ -1075,6 +1075,31 @@ export interface GameSave {
   clubIncome: ClubIncomeState
   /** ตลาดเทคโอเวอร์ / ข้อเสนอจากกลุ่มทุน */
   takeover: TakeoverState
+  /** อาชีพผู้จัดการ · ว่างงาน · ข้อเสนองาน */
+  career: CareerState
+}
+
+export interface JobOffer {
+  id: string
+  clubId: string
+  clubName: string
+  issuedMatchday: number
+  issuedSeason: number
+  expiresMatchday: number
+  /** ชื่อเสียงผู้จัดการขั้นต่ำ */
+  reputationRequired: number
+  wageWeekly: number
+  note: string
+  status: 'open' | 'accepted' | 'rejected' | 'expired'
+}
+
+export interface CareerState {
+  unemployed: boolean
+  sackedFromClubId: string | null
+  sackedSeason: number | null
+  jobOffers: JobOffer[]
+  clubsManaged: string[]
+  lastJobNote: string | null
 }
 
 export const FORMATION_SLOTS: Record<FormationId, RoleCode[]> = {

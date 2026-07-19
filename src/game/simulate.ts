@@ -6,6 +6,7 @@ import { applyMatchToBoard, processBoardPolitics } from './board'
 import { applyMatchToOwner, ensureOwner } from './owner'
 import { processStadiumPresence } from './clubAtmosphere'
 import { scanTakeoverMarket } from './takeover'
+import { enterUnemployment, refreshJobMarket } from './jobs'
 import { applyTrainingWeek, updatePlayingTimeMorale } from './training'
 import { tickPlayerInjury } from './medical'
 import {
@@ -580,7 +581,13 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   next = processTransferDeskMatchday(next)
   next = processFanPolitics(next)
   next = processBoardPolitics(next)
+  if (next.board?.sacked) {
+    next = enterUnemployment(next)
+  }
   next = scanTakeoverMarket(next)
+  if (next.career?.unemployed || next.board?.sacked) {
+    next = refreshJobMarket(next)
+  }
   next = { ...next, media: ensureMediaFeed(next) }
   for (const n of newsBatch) next = pushNews(next, n)
   next = advanceMediaWeek(next)
