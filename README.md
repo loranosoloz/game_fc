@@ -5,12 +5,14 @@
 ## เอกสาร
 
 - [ระบบเกมทั้งหมด](docs/GAME_SYSTEMS.md)
-- [Todo list](docs/TODO.md) — ใช้ **GitHub Issues** เป็นที่ติดตามหลัก
+- [Todo list](docs/TODO.md) — ติดตามหลักที่ **[GitHub Issues](https://github.com/loranosoloz/game_fc/issues)** (68 งาน, label ตามเฟส)
 
 ## สถานะ
 
 ยังอยู่ขั้นออกแบบเอกสาร + ติดตั้ง UI Skills สำหรับ Cursor  
 ยังไม่เริ่ม scaffold โค้ดเกม
+
+Repo: https://github.com/loranosoloz/game_fc
 
 ## UI Skills
 
