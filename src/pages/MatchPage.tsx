@@ -13,7 +13,6 @@ import {
   predictedStartingXi,
   preMatchChecklist,
   TEAM_TALK_OPTIONS,
-  TOUCHLINE_SHOUT_OPTIONS,
 } from '@/game/preMatch'
 import { ensurePhase5 } from '@/game/save'
 import { formationLabel } from '@/game/types'
@@ -55,7 +54,6 @@ export function MatchPage() {
   const advanceDay = useGameStore((s) => s.advanceDay)
   const confirmPreMatchLineup = useGameStore((s) => s.confirmPreMatchLineup)
   const choosePreMatchTalk = useGameStore((s) => s.choosePreMatchTalk)
-  const queueTouchlineShout = useGameStore((s) => s.queueTouchlineShout)
   const assignScoutWatch = useGameStore((s) => s.assignScoutWatch)
 
   const next = nextHumanFixture(save)
@@ -229,6 +227,72 @@ export function MatchPage() {
             </div>
           </Panel>
 
+          <Panel className="border-lime-300 bg-lime-50/60">
+            <h3 className="text-sm font-bold text-slate-900">ขึ้นสนาม</h3>
+            <p className="mt-1 text-xs text-slate-600">
+              ยืนยัน XI + ทีมทอล์คอยู่ตรงนี้ · ตะโกนสั่งใช้บนหน้าแมตช์สด (ข้างสนาม)
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <PrimaryButton onClick={() => confirmPreMatchLineup()}>
+                {check.prep?.lineupConfirmed
+                  ? '✓ ยืนยัน XI แล้ว'
+                  : 'ยืนยัน XI + ตัวสำรอง'}
+              </PrimaryButton>
+              <Link to="/tactics" className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50">
+                แก้แท็กติก
+              </Link>
+            </div>
+            <p className="mt-4 text-xs font-semibold tracking-wide text-slate-500 uppercase">
+              ทีมทอล์คห้องแต่งตัว
+            </p>
+            <div className="mt-2 grid gap-2 sm:grid-cols-2">
+              {TEAM_TALK_OPTIONS.map((opt) => {
+                const active = check.prep?.talkKind === opt.id
+                return (
+                  <button
+                    key={opt.id}
+                    type="button"
+                    onClick={() => choosePreMatchTalk(opt.id)}
+                    className={cn(
+                      'rounded-lg border px-3 py-2.5 text-left transition',
+                      active
+                        ? 'border-slate-900 bg-slate-900 text-lime-300'
+                        : 'border-slate-200 bg-white hover:border-slate-400',
+                    )}
+                  >
+                    <p className="text-sm font-semibold">{opt.label}</p>
+                    <p className={cn('mt-0.5 text-xs', active ? 'text-slate-300' : 'text-slate-500')}>
+                      {opt.blurb}
+                    </p>
+                  </button>
+                )
+              })}
+            </div>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <PrimaryButton onClick={() => enterLive(false)} disabled={!check.ready}>
+                เข้าแมตช์สด · สนาม
+              </PrimaryButton>
+              <GhostButton
+                disabled={!check.ready}
+                onClick={() => playNextMatchday()}
+              >
+                ผลทันที
+              </GhostButton>
+              <GhostButton onClick={() => enterLive(true)}>
+                เตะแบบรีบ
+              </GhostButton>
+            </div>
+            {!check.ready ? (
+              <p className="mt-2 text-xs text-amber-800">
+                ยังไม่ครบ: ยืนยัน XI + เลือกทีมทอล์ค (หรือเตะแบบรีบ)
+              </p>
+            ) : (
+              <p className="mt-2 text-xs font-medium text-lime-800">
+                พร้อม · ตะโกนสั่งได้หลังเข้าแมตช์สดใต้สนาม
+              </p>
+            )}
+          </Panel>
+
           <Panel>
             <h3 className="text-sm font-bold text-slate-900">เช็คลิสต์ก่อนเตะ</h3>
             <ul className="mt-3 space-y-2">
@@ -347,73 +411,16 @@ export function MatchPage() {
                   ลูกตั้งเตะ: มุม {setPieces.corners} · FK {setPieces.freeKicks}
                 </p>
               ) : null}
-              <PrimaryButton className="mt-3" onClick={() => confirmPreMatchLineup()}>
-                {check.prep?.lineupConfirmed
-                  ? '✓ ยืนยัน XI + สำรองแล้ว'
-                  : 'ยืนยัน XI + ตัวสำรองนัดนี้'}
-              </PrimaryButton>
             </Panel>
           </div>
 
-          <Panel>
-            <h3 className="text-sm font-bold text-slate-900">ทีมทอล์คห้องแต่งตัว</h3>
-            <p className="mt-1 text-xs text-slate-500">เลือกหนึ่งอย่างก่อนขึ้นสนาม — มีผลโมราเล + โบนัสแมตช์</p>
-            <div className="mt-3 grid gap-2 sm:grid-cols-2">
-              {TEAM_TALK_OPTIONS.map((opt) => {
-                const active = check.prep?.talkKind === opt.id
-                return (
-                  <button
-                    key={opt.id}
-                    type="button"
-                    onClick={() => choosePreMatchTalk(opt.id)}
-                    className={cn(
-                      'rounded-lg border px-3 py-2.5 text-left transition',
-                      active
-                        ? 'border-slate-900 bg-slate-900 text-lime-300'
-                        : 'border-slate-200 bg-white hover:border-slate-400',
-                    )}
-                  >
-                    <p className="text-sm font-semibold">{opt.label}</p>
-                    <p className={cn('mt-0.5 text-xs', active ? 'text-slate-300' : 'text-slate-500')}>
-                      {opt.blurb}
-                    </p>
-                  </button>
-                )
-              })}
-            </div>
-          </Panel>
-
-          <Panel>
-            <h3 className="text-sm font-bold text-slate-900">ตะโกนสั่งข้างสนาม</h3>
-            <p className="mt-1 text-xs text-slate-500">
-              ไม่ใช่บัฟพลังตรงๆ — ปรับขวัญ/โฟกัสตามบริบทสกอร์ (คิวได้สูงสุด 3)
+          <Panel tone="dark">
+            <p className="text-xs text-slate-400">
+              ตะโกนริมเส้นอยู่บนหน้าแมตช์สดใต้สนาม — ไม่ต้องตั้งคิวก่อนเตะ
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
-              {TOUCHLINE_SHOUT_OPTIONS.map((opt) => {
-                const active = (check.prep?.touchlineShouts ?? []).includes(opt.id)
-                return (
-                  <button
-                    key={opt.id}
-                    type="button"
-                    onClick={() => queueTouchlineShout(opt.id)}
-                    className={cn(
-                      'rounded-md border px-2.5 py-1.5 text-xs font-semibold',
-                      active
-                        ? 'border-indigo-900 bg-indigo-900 text-white'
-                        : 'border-slate-300 bg-white text-slate-800 hover:bg-slate-50',
-                    )}
-                  >
-                    {opt.label}
-                  </button>
-                )
-              })}
-            </div>
-          </Panel>
-
-          <Panel tone="dark">
-            <div className="flex flex-wrap gap-2">
               <PrimaryButton onClick={() => enterLive(false)} disabled={!check.ready}>
-                เข้าแมตช์สด
+                เข้าแมตช์สด · สนาม
               </PrimaryButton>
               <GhostButton
                 className="border-slate-600 bg-slate-800 text-slate-100 hover:bg-slate-700"
@@ -421,12 +428,6 @@ export function MatchPage() {
                 onClick={() => playNextMatchday()}
               >
                 ผลทันที
-              </GhostButton>
-              <GhostButton
-                className="border-amber-700/60 bg-amber-950/50 text-amber-100"
-                onClick={() => enterLive(true)}
-              >
-                เตะแบบรีบ (ข้ามพิธี)
               </GhostButton>
               <GhostButton
                 className="border-amber-600/50 bg-amber-950/40 text-amber-100 hover:bg-amber-900/50"

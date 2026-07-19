@@ -232,6 +232,22 @@ export function LiveMatchPage() {
         className="aspect-[100/64] w-full"
       />
 
+      {!htOpen && !done ? (
+        <LiveTouchlineBoard
+          minute={current.minute}
+          pending={live.pendingLiveShouts ?? []}
+          defaultOpen
+          onShout={(shout) => {
+            const ok = applyLiveAdjustments({ shouts: [shout] }, current.minute)
+            if (ok && live.halfTime?.resolved) {
+              const ev = useGameStore.getState().liveMatch?.humanResult?.events ?? []
+              const idx = ev.findIndex((e) => e.minute >= current.minute)
+              if (idx >= 0) setIndex(idx)
+            }
+          }}
+        />
+      ) : null}
+
       {htOpen && live.halfTime && !live.halfTime.resolved ? (
         <HalfTimePanel
           title="พักครึ่ง · แก้เกม"
@@ -286,18 +302,6 @@ export function LiveMatchPage() {
               }
             }}
             onRemove={removeLiveSub}
-          />
-          <LiveTouchlineBoard
-            minute={current.minute}
-            pending={live.pendingLiveShouts ?? []}
-            onShout={(shout) => {
-              const ok = applyLiveAdjustments({ shouts: [shout] }, current.minute)
-              if (ok && live.halfTime?.resolved) {
-                const ev = useGameStore.getState().liveMatch?.humanResult?.events ?? []
-                const idx = ev.findIndex((e) => e.minute >= current.minute)
-                if (idx >= 0) setIndex(idx)
-              }
-            }}
           />
           <LiveTacticsBoard
             minute={current.minute}
@@ -426,36 +430,37 @@ function LiveTouchlineBoard(props: {
   minute: number
   pending: TouchlineShout[]
   onShout: (shout: TouchlineShout) => void
+  defaultOpen?: boolean
 }) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(props.defaultOpen ?? true)
   return (
-    <section className="rounded-xl border border-slate-300 bg-white p-3 shadow-sm">
+    <section className="rounded-xl border-2 border-lime-600/40 bg-lime-50/90 p-3 shadow-sm">
       <button
         type="button"
         className="flex w-full items-center justify-between text-left"
         onClick={() => setOpen((o) => !o)}
       >
         <div>
-          <p className="text-sm font-bold text-slate-900">ตะโกนริมเส้น</p>
-          <p className="text-xs text-slate-500">
-            กดสั่งได้ตลอด · นาที {props.minute}&apos;
+          <p className="text-sm font-bold text-slate-900">ตะโกนริมเส้น · ข้างสนาม</p>
+          <p className="text-xs text-slate-600">
+            สั่งจากขอบสนาม · นาที {props.minute}&apos;
             {props.pending.length ? ` · คิว ${props.pending.length}` : ''}
           </p>
         </div>
         <span className="text-xs font-medium text-slate-600">{open ? 'ซ่อน' : 'เปิด'}</span>
       </button>
       {open ? (
-        <div className="mt-3 flex flex-wrap gap-1.5 border-t border-slate-100 pt-3">
+        <div className="mt-3 flex flex-wrap gap-1.5 border-t border-lime-200 pt-3">
           {TOUCHLINE_SHOUT_OPTIONS.map((o) => (
             <button
               key={o.id}
               type="button"
               onClick={() => props.onShout(o.id)}
               className={cn(
-                'rounded border px-2 py-1 text-xs font-medium',
+                'rounded border px-2.5 py-1.5 text-xs font-semibold',
                 props.pending.includes(o.id)
                   ? 'border-slate-900 bg-slate-900 text-lime-300'
-                  : 'border-slate-300 bg-white hover:bg-slate-50',
+                  : 'border-slate-300 bg-white hover:bg-white',
               )}
             >
               {o.label}
