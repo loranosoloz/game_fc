@@ -224,6 +224,7 @@ export function acceptJobOffer(
       save.youth?.academyLevel ?? 8,
     ),
     affiliates: createAffiliates(club.reputation, save.season * 99 + offer.clubId.length),
+    preMatch: null,
     pressConference: null,
     managerReputation: clamp(rep + 4),
     career: {

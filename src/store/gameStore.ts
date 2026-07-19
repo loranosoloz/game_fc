@@ -32,11 +32,16 @@ import {
 } from '@/game/transferDesk'
 import { arrangeLoan, recallLoan, exerciseLoanOption } from '@/game/loans'
 import { toggleShortlist } from '@/game/shortlist'
-import type { OppositionInstructions } from '@/game/types'
+import type { OppositionInstructions, TeamTalkKind } from '@/game/types'
 import { applyTrainingWeek, recoverInjuriesOneDay } from '@/game/training'
 import { setPlayerTreatment } from '@/game/medical'
 import { upgradeStaff, staffUpgradeCost, staffLevel, hireStaff, convertPlayerToStaff, promoteStaffToCoach } from '@/game/staff'
 import { boostAffiliateRelations as boostAffiliateRelationsFn } from '@/game/affiliates'
+import {
+  confirmLineup as confirmLineupFn,
+  chooseTeamTalk as chooseTeamTalkFn,
+  preMatchChecklist,
+} from '@/game/preMatch'
 import { scoutPlayer, assignFormWatch } from '@/game/scouting'
 import { recomputeDynamics } from '@/game/dynamics'
 import { assignMentor } from '@/game/development'
@@ -90,8 +95,10 @@ interface GameStore {
   runTrainingNow: () => void
   setInjuryTreatment: (playerId: string, treatment: InjuryTreatment) => void
   autoPickHumanXi: () => void
-  playNextMatchday: () => void
-  startLiveMatch: () => boolean
+  playNextMatchday: (opts?: { force?: boolean }) => void
+  startLiveMatch: (opts?: { force?: boolean }) => boolean
+  confirmPreMatchLineup: () => boolean
+  choosePreMatchTalk: (kind: TeamTalkKind) => boolean
   finishLiveMatch: () => void
   abortLiveMatch: () => void
   advanceDay: () => void
@@ -427,11 +434,18 @@ export const useGameStore = create<GameStore>((set, get) => ({
     set({ save: next, status: 'เลือก XI ที่ดีที่สุดให้อัตโนมัติแล้ว' })
   },
 
-  playNextMatchday: () => {
+  playNextMatchday: (opts) => {
     const { save } = get()
     if (!save || save.seasonComplete) return
     if (save.board?.sacked) {
       set({ status: 'คุณถูกปลดแล้ว — เริ่มเกมใหม่ที่หน้าแรก' })
+      return
+    }
+    const check = preMatchChecklist(save)
+    if (check.prep && !check.ready && !opts?.force) {
+      set({
+        status: 'เตรียมนัดยังไม่ครบ — ไปหน้าแมตช์ยืนยัน XI + ทีมทอล์ค หรือกดเตะแบบรีบ',
+      })
       return
     }
     const md = nextUnplayedMatchday(save)
@@ -443,11 +457,40 @@ export const useGameStore = create<GameStore>((set, get) => ({
     set(finalizeApplied(next, md, resultsCount))
   },
 
-  startLiveMatch: () => {
+  confirmPreMatchLineup: () => {
+    const { save } = get()
+    if (!save) return false
+    const result = confirmLineupFn(save)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  choosePreMatchTalk: (kind) => {
+    const { save } = get()
+    if (!save) return false
+    const result = chooseTeamTalkFn(save, kind)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  startLiveMatch: (opts) => {
     const { save } = get()
     if (!save || save.seasonComplete) return false
     if (save.board?.sacked) {
       set({ status: 'คุณถูกปลดแล้ว — เริ่มเกมใหม่ที่หน้าแรก' })
+      return false
+    }
+    const check = preMatchChecklist(save)
+    if (check.prep && !check.ready && !opts?.force) {
+      set({
+        status: 'ยังเตรียมนัดไม่ครบ — ยืนยัน XI + เลือกทีมทอล์ค หรือเตะแบบรีบ',
+      })
       return false
     }
     const md = nextUnplayedMatchday(save)

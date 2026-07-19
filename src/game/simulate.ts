@@ -20,6 +20,7 @@ import {
 } from './illness'
 import { applyDevelopmentForSave } from './development'
 import { recomputeDynamics, dynamicsMatchBonus } from './dynamics'
+import { talkBonusFromSave } from './preMatch'
 import {
   newsAfterMatch,
   newsAfterInjury,
@@ -149,7 +150,8 @@ export function prepareMatchday(save: GameSave, matchday: number): PreparedMatch
   }
 
   const dynBonus =
-    save.humanClubId && save.dynamics ? dynamicsMatchBonus(save.dynamics) : 1
+    (save.humanClubId && save.dynamics ? dynamicsMatchBonus(save.dynamics) : 1) *
+    talkBonusFromSave(save)
 
   const results: PreparedMatchday['results'] = []
   let humanResult: MatchResult | null = null
@@ -550,6 +552,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       .filter((f) => f.competition === 'league')
       .every((f) => f.played),
     currentDate: prepared.date,
+    preMatch: null,
   }
 
   if (cardFineTriggers.length > 0) {

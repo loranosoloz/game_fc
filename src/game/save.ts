@@ -3,6 +3,7 @@ import { SAVE_KEY, DEFAULT_INSTRUCTIONS, DEFAULT_SET_PIECES } from './types'
 import { createTacticsForAll } from './seed'
 import { createClubsFromLeague, createPlayersFromLeague } from './worldSeed'
 import { getLeague, type LeagueId } from '@/data/world'
+import { crestKeyForShortName } from '@/lib/crests'
 import { blankTable, generateSeasonFixtures } from './fixtures'
 import { createFanState, ensureFans } from './fans'
 import { createBoardState, ensureBoard } from './board'
@@ -182,6 +183,7 @@ export function createNewGame(
     affiliates: createAffiliates(human.reputation, 2026 + humanClubId.length),
     contractTalks: createContractTalks(),
     worldPulse: createWorldPulse(leagueId),
+    preMatch: null,
   }
 }
 
@@ -243,13 +245,18 @@ export function ensurePhase5(save: GameSave): GameSave {
   if (!next.contractTalks) next = { ...next, contractTalks: ensureContractTalks(next) }
   if (!next.worldPulse) next = { ...next, worldPulse: createWorldPulse(next.leagueId || 'eng') }
   else next = { ...next, worldPulse: ensureWorldPulse(next) }
+  if (next.preMatch === undefined) next = { ...next, preMatch: null }
 
   next = {
     ...next,
-    clubs: next.clubs.map((c) => ({
-      ...c,
-      division: (c.division ?? (c.id.startsWith('d2-') ? 2 : 1)) as 1 | 2,
-    })),
+    clubs: next.clubs.map((c) => {
+      const division = (c.division ?? (c.id.startsWith('d2-') ? 2 : 1)) as 1 | 2
+      const crestKey =
+        c.crestKey !== undefined
+          ? c.crestKey
+          : crestKeyForShortName(c.shortName) ?? null
+      return { ...c, division, crestKey }
+    }),
   }
   if (!next.tableDiv2) next = { ...next, tableDiv2: [] }
   if (!next.leagueCup) {
@@ -532,6 +539,7 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
     worldPulse:
       (raw.worldPulse as GameSave['worldPulse']) ??
       createWorldPulse((raw.leagueId as string) ?? 'eng'),
+    preMatch: (raw.preMatch as GameSave['preMatch']) ?? null,
   } as GameSave
 
   return ensurePhase5(ensureFans(base))

@@ -111,6 +111,12 @@ export function PortalPage() {
                         ]}
                       </span>
                     ) : null}
+                    <Link
+                      to="/match"
+                      className="mt-1.5 inline-block text-xs font-bold text-sky-800 underline underline-offset-2"
+                    >
+                      เตรียมนัด →
+                    </Link>
                   </>
                 ) : (
                   '—'

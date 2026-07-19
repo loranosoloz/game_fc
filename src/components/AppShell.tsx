@@ -3,6 +3,7 @@ import { useGameStore } from '@/store/gameStore'
 import { cn } from '@/lib/cn'
 import { sortedTable } from '@/game/simulate'
 import { PrimaryButton } from '@/components/ui'
+import { ClubCrest } from '@/components/ClubCrest'
 
 const navGroups = [
   {
@@ -46,7 +47,6 @@ export function AppShell() {
   const save = useGameStore((s) => s.save)
   const status = useGameStore((s) => s.status)
   const clearStatus = useGameStore((s) => s.clearStatus)
-  const startLiveMatch = useGameStore((s) => s.startLiveMatch)
 
   if (!save) return null
 
@@ -74,10 +74,9 @@ export function AppShell() {
         <div className="flex flex-col gap-4 p-5 md:flex-row md:items-center md:justify-between">
           <div className="min-w-0">
             <div className="flex items-center gap-2">
-              <span
-                className="inline-block h-3 w-3 rounded-full ring-2 ring-lime-300/40"
-                style={{ backgroundColor: club.color }}
-              />
+              <ClubCrest club={club} size="md" className="rounded-md bg-white/10 p-0.5" />
+              <h1 className="truncate text-xl font-bold tracking-tight md:text-2xl">{club.name}</h1>
+            </div>
               <p className="text-[11px] font-bold tracking-[0.22em] text-lime-300/90 uppercase">
                 FC Manager · {save.leagueName}
               </p>
@@ -101,11 +100,9 @@ export function AppShell() {
             ) : null}
             <PrimaryButton
               disabled={save.seasonComplete}
-              onClick={() => {
-                if (startLiveMatch()) navigate('/match/live')
-              }}
+              onClick={() => navigate('/match')}
             >
-              {save.seasonComplete ? 'จบฤดูกาลแล้ว' : 'เล่นนัดถัดไป'}
+              {save.seasonComplete ? 'จบฤดูกาลแล้ว' : 'เตรียมนัด'}
             </PrimaryButton>
             {save.seasonComplete && !save.board?.sacked ? (
               <PrimaryButton

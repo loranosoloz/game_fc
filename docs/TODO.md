@@ -5,19 +5,12 @@
 | Phase 0–4 … เทคโอเวอร์ / Club Vision | ✅ | ✅ on master |
 | ลูปฤดูกาลใหม่ / ออฟซีซัน | ✅ | ✅ on master |
 | ตลาดงานผู้จัดการหลังปลด/ย้ายคลับ | ✅ | ✅ on master |
-| อัปเกรดสนาม / สิ่งอำนวยความสะดวก | ✅ | ✅ on master |
+| อัปเกรดสนาม / สิ่งอำนวย / youth / affiliates | ✅ | ✅ on master |
 | สนามเสนอเจ้าของ + เพดานตามขนาดทีม | ✅ | ✅ on master |
-| Youth facilities ผ่านข้อเสนอเจ้าของ | ✅ | ⏳ ชุดนี้ |
-| Affiliates / feeder clubs (เบา) | ✅ | ⏳ ชุดนี้ |
-| Match weather (เบา) | ✅ | ⏳ ชุดนี้ |
-| ตลาดฤดูหนาวแยกชัด | ✅ | ✅ on master |
-| เจรจาสัญญาหลายรอบ / agent fee | ✅ | ✅ on master |
-| UCL league phase | ✅ | ⏳ ชุดนี้ |
-| หลายลีก (world pulse) | ✅ | ⏳ ชุดนี้ |
-| Holiday ให้ AI คุมช่วงสั้น | ✅ | ⏳ ชุดนี้ |
-| ลีกล่าง + ตกชั้น/เลื่อนชั้น (3 ทีม) | ✅ | ⏳ ชุดนี้ |
-| ถ้วยในลีก +2 (League Cup / Trophy) | ✅ | ⏳ ชุดนี้ |
-| โซเชียลทุกสโมสร + นักเตะ | ✅ | ⏳ ชุดนี้ |
+| ตลาดฤดูหนาว / สัญญาหลายรอบ / UCL / world pulse / holiday | ✅ | ✅ on master |
+| ลีกล่าง + ถ้วย+2 + โซเชียล | ✅ | ✅ on master |
+| Match weather | ✅ | ✅ on master |
+| พรีแมตช์ hub (briefing · XI · ทีมทอล์ค) | ✅ | ⏳ ชุดนี้ |
 | DB / Data Hub | ⏸ | ข้าม — ผู้ใช้กำลังรวบรวมข้อมูล |
 
 Data packs: `src/data/` + `src/data/world/` · Save **v6**
@@ -26,5 +19,5 @@ Data packs: `src/data/` + `src/data/world/` · Save **v6**
 
 ## Git
 
-- สาขา: `master` · ไล่ commit+push ตามระบบแล้ว
-- ออปชันในรายการด้านบนทำครบแล้ว (ยกเว้น DB/Data Hub ที่ข้ามชั่วคราว)
+- สาขา: `master`
+- ออปชันระบบหลักทำครบแล้ว (ยกเว้น DB ที่ข้ามชั่วคราว)

@@ -201,6 +201,8 @@ export interface Club {
   originLeagueId?: string
   /** 1 = ดิวิชันบน · 2 = ลีกล่าง */
   division: 1 | 2
+  /** key สำหรับโลโก้ใน /public/crests (เช่น mci) */
+  crestKey?: string | null
   /** บัญชีโซเชียลทางการของสโมสร */
   social: ClubSocial
 }
@@ -581,6 +583,17 @@ export interface OppositionReport {
   weakness: string
   threatPlayers: string[]
   advice: string
+}
+
+export type TeamTalkKind = 'calm' | 'inspire' | 'focus_weakness' | 'trust_xi'
+
+/** พิธีกรรมก่อนเตะ — เคลียร์หลังจบนัด */
+export interface PreMatchState {
+  fixtureId: string
+  lineupConfirmed: boolean
+  talkKind: TeamTalkKind | null
+  /** คูณโบนัสแมตช์มนุษย์ (เช่น 1.05) */
+  talkMatchBonus: number
 }
 
 export interface DynamicsState {
@@ -1137,6 +1150,8 @@ export interface GameSave {
   contractTalks: ContractTalkState
   /** สรุปลีกอื่นในโลก (เบา) */
   worldPulse: WorldPulseState
+  /** พิธีกรรมก่อนเตะ (null เมื่อไม่มีนัด/หลังแข่งแล้ว) */
+  preMatch: PreMatchState | null
 }
 
 export type FacilityKind = 'stadium' | 'training' | 'medical' | 'commercial' | 'youth'
