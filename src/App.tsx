@@ -20,6 +20,7 @@ import { TransfersPage } from '@/pages/TransfersPage'
 import { FinancePage } from '@/pages/FinancePage'
 import { MediaPage } from '@/pages/MediaPage'
 import { MeetingsPage } from '@/pages/MeetingsPage'
+import { ClubVisionPage } from '@/pages/ClubVisionPage'
 import { SavePage } from '@/pages/SavePage'
 import { useGameStore } from '@/store/gameStore'
 
@@ -52,6 +53,7 @@ export default function App() {
         <Route path="/media" element={<MediaPage />} />
         <Route path="/squad" element={<SquadPage />} />
         <Route path="/meetings" element={<MeetingsPage />} />
+        <Route path="/club-vision" element={<ClubVisionPage />} />
         <Route path="/tactics" element={<TacticsPage />} />
         <Route path="/training" element={<TrainingPage />} />
         <Route path="/medical" element={<MedicalPage />} />

@@ -1,15 +1,22 @@
 import type { Club, Fixture, GameSave, InboxMessage, MatchResult, Player, TableRow, Tactics } from './types'
 import { applyMatchFatigue, simulateFixture } from './matchEngine'
 import { autoPickTactics } from './seed'
-import { applyMatchToFans, ensureFans } from './fans'
-import { applyMatchToBoard } from './board'
+import { applyMatchToFans, ensureFans, processFanPolitics } from './fans'
+import { applyMatchToBoard, processBoardPolitics } from './board'
+import { applyMatchToOwner, ensureOwner } from './owner'
 import { applyTrainingWeek, updatePlayingTimeMorale } from './training'
 import { tickPlayerInjury } from './medical'
+import {
+  tickIllness,
+  rollSquadIllnesses,
+  ILLNESS_RISK_ACTIVITIES,
+} from './illness'
 import { applyDevelopmentForSave } from './development'
 import { recomputeDynamics, dynamicsMatchBonus } from './dynamics'
 import {
   newsAfterMatch,
   newsAfterInjury,
+  newsAfterIllness,
   newsAfterTitle,
   newsRivalResult,
   detectNewInjuries,
@@ -168,6 +175,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   let clubs = save.clubs.map((c) => ({ ...c }))
   let fans = save.fans
   let board = save.board
+  let ownerState = ensureOwner(save)
   let cup = save.cup
   let ucl = save.ucl
   let pressConference = save.pressConference ?? null
@@ -218,6 +226,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       result.homeGoals,
       result.awayGoals,
       isHumanHome ? fans : undefined,
+      prepared.matchday,
     )
     clubs = clubs.map((c) =>
       c.id === home.id ? applyGateReceiptToClub(c, receipt) : c,
@@ -277,6 +286,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
         managerReputation,
       }
       board = applyMatchToBoard(midSave, usGoals, themGoals)
+      ownerState = applyMatchToOwner({ ...midSave, board, fans }, usGoals, themGoals)
       newsBatch.push(newsAfterMatch({ ...midSave, board }, usGoals, themGoals, opp.name))
       pressConference = createPressConference(
         { ...midSave, board, currentDate: fixture.date },
@@ -424,6 +434,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     tacticsByClub,
     fans,
     board,
+    owner: ownerState,
     cup,
     ucl,
     managerReputation,
@@ -502,12 +513,48 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   next = maybePlayersBecomeStaff(next)
   next = simulateDailyLife(next, 7)
   next = simulatePlayerSpending(next, 7)
+
+  // Illness rolls for ALL clubs (human + AI) — lifestyle + contagion + winter
+  const riskyByPlayer: Record<string, number> = {}
+  for (const log of next.dailyLogs ?? []) {
+    if (log.date !== next.currentDate) continue
+    const risk = ILLNESS_RISK_ACTIVITIES[log.activityId]
+    if (risk) riskyByPlayer[log.playerId] = (riskyByPlayer[log.playerId] ?? 0) + risk
+  }
+  const illRoll = rollSquadIllnesses(next.players, {
+    matchday: next.matchday,
+    season: next.season,
+    riskyByPlayer,
+  })
+  next = { ...next, players: illRoll.players }
+  const humanIll = illRoll.newlyIll.filter((x) => x.clubId === next.humanClubId)
+  if (humanIll.length > 0) {
+    next = {
+      ...next,
+      inbox: [
+        {
+          id: `msg-ill-${Date.now()}`,
+          date: next.currentDate,
+          title: 'รายงานป่วย',
+          body: humanIll.map((x) => `${x.name} · ${x.type} ${x.days} วัน`).join(' · '),
+          read: false,
+        },
+        ...next.inbox,
+      ].slice(0, 40),
+    }
+    for (const x of humanIll.slice(0, 2)) {
+      next = pushNews(next, newsAfterIllness(next, x.name, x.type, x.days))
+    }
+  }
+
   next = resolveTalkPromises(next)
   next = generatePlayerTalkRequests(next)
   next = processAiPlayerTalks(next)
   next = applyMatchdayIncome(next)
   next = processLoansMatchday(next)
   next = processTransferDeskMatchday(next)
+  next = processFanPolitics(next)
+  next = processBoardPolitics(next)
   next = { ...next, media: ensureMediaFeed(next) }
   for (const n of newsBatch) next = pushNews(next, n)
   next = advanceMediaWeek(next)
@@ -560,7 +607,8 @@ export function applyWeeklyWages(save: GameSave): GameSave {
 
 export function recoverSquad(players: Player[], physioLevel = 8): Player[] {
   return players.map((p) => {
-    const healed = tickPlayerInjury(p, physioLevel)
+    let healed = tickPlayerInjury(p, physioLevel)
+    healed = tickIllness(healed, physioLevel)
     const leave = healed.leaveDays ?? 0
     if (leave <= 0) return healed
     return { ...healed, leaveDays: Math.max(0, leave - 1) }

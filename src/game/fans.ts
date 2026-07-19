@@ -12,11 +12,25 @@ export function createFanState(clubReputation: number): FanState {
       corporate: 50 + Math.round(clubReputation / 8),
     },
     lastVerdict: 'แฟนบอลพร้อมสนับสนุนฤดูกาลใหม่',
+    protestActive: false,
+    boycottUntilMatchday: -1,
+    lastEvent: 'เปิดฤดูกาล — อัฒจันทร์พร้อม',
   }
 }
 
 function clamp(n: number, min = 0, max = 100) {
   return Math.max(min, Math.min(max, Math.round(n)))
+}
+
+export function ensureFanState(fans: FanState | undefined, clubRep = 50): FanState {
+  if (!fans) return createFanState(clubRep)
+  return {
+    ...createFanState(clubRep),
+    ...fans,
+    protestActive: fans.protestActive ?? false,
+    boycottUntilMatchday: fans.boycottUntilMatchday ?? -1,
+    lastEvent: fans.lastEvent ?? fans.lastVerdict,
+  }
 }
 
 export function fanMoodLabel(mood: number): string {
@@ -27,9 +41,13 @@ export function fanMoodLabel(mood: number): string {
   return 'โกรธจัด'
 }
 
-export function fanTicketMultiplier(fans: FanState): number {
-  // mood 50 = 1.0, 100 ~= 1.28, 0 ~= 0.62
-  return 0.62 + (fans.mood / 100) * 0.66
+export function fanTicketMultiplier(fans: FanState, matchday = 0): number {
+  let m = 0.62 + (fans.mood / 100) * 0.66
+  if (fans.boycottUntilMatchday >= matchday) m *= 0.55
+  if (fans.protestActive) m *= 0.85
+  // loyalty soft floor
+  m *= 0.92 + fans.loyalty / 800
+  return m
 }
 
 export function applyMatchToFans(
@@ -38,6 +56,7 @@ export function applyMatchToFans(
   themGoals: number,
   wasHome: boolean,
 ): FanState {
+  const base = ensureFanState(fans)
   const won = usGoals > themGoals
   const drawn = usGoals === themGoals
   const gd = usGoals - themGoals
@@ -46,34 +65,54 @@ export function applyMatchToFans(
   else if (drawn) delta = wasHome ? -1 : 1
   else delta = -5 - Math.min(4, -gd) - (wasHome ? 2 : 0)
 
-  // ความคาดหวังสูง = แพ้เจ็บกว่า / ชนะได้หน่อย
-  const pressure = (fans.expectation - 50) / 50
+  const pressure = (base.expectation - 50) / 50
   if (won) delta -= pressure * 1.5
   if (!won && !drawn) delta -= pressure * 3
 
-  const cushion = fans.loyalty / 200
+  const cushion = base.loyalty / 200
   if (delta < 0) delta *= 1 - cushion
 
-  const mood = clamp(fans.mood + delta)
-  let verdict = fans.lastVerdict
+  const mood = clamp(base.mood + delta)
+  let loyalty = base.loyalty
+  if (won) loyalty = clamp(loyalty + 0.4)
+  if (!won && !drawn && wasHome) loyalty = clamp(loyalty - 0.6)
+
+  let verdict = base.lastVerdict
   if (won) verdict = wasHome ? 'อัฒจันทร์ระเบิด! ชนะในบ้าน' : 'แฟนบอลชื่นชมชัยชนะเยือน'
   else if (drawn) verdict = 'ผลเสมอทำให้แฟนงงๆ — อยากเห็นเกมชัดกว่านี้'
   else verdict = wasHome ? 'แพ้ในบ้าน — เสียงโห่ดังก้อง' : 'แพ้เยือน — แฟนเริ่มกังวลฟอร์ม'
 
+  let protestActive = base.protestActive
+  let lastEvent = base.lastEvent
+  if (mood < 32 && !won && wasHome) {
+    protestActive = true
+    lastEvent = 'แฟนเริ่มประท้วงหลังเกมบ้าน'
+  }
+  if (mood >= 55) protestActive = false
+
   return {
-    ...fans,
+    ...base,
     mood,
-    expectation: clamp(fans.expectation + (won ? 1 : drawn ? 0 : -1)),
+    loyalty,
+    expectation: clamp(base.expectation + (won ? 1 : drawn ? 0 : -1)),
     factions: {
-      ultras: clamp(fans.factions.ultras + (won ? 3 : -4)),
-      casual: clamp(fans.factions.casual + (won ? 2 : drawn ? 0 : -2)),
-      corporate: clamp(fans.factions.corporate + (won ? 1 : drawn ? 0 : -1)),
+      ultras: clamp(base.factions.ultras + (won ? 3 : -4)),
+      casual: clamp(base.factions.casual + (won ? 2 : drawn ? 0 : -2)),
+      corporate: clamp(base.factions.corporate + (won ? 1 : drawn ? 0 : -1)),
     },
     lastVerdict: verdict,
+    protestActive,
+    lastEvent,
   }
 }
 
-export type TransferFanKind = 'buy_star' | 'buy_squad' | 'buy_flop_risk' | 'sell_star' | 'sell_surplus' | 'sell_veteran'
+export type TransferFanKind =
+  | 'buy_star'
+  | 'buy_squad'
+  | 'buy_flop_risk'
+  | 'sell_star'
+  | 'sell_surplus'
+  | 'sell_veteran'
 
 export function classifyTransferForFans(
   playerOverall: number,
@@ -97,6 +136,7 @@ export function applyTransferToFans(
   kind: TransferFanKind,
   playerName: string,
 ): { fans: FanState; message: string } {
+  const base = ensureFanState(fans)
   let delta = 0
   let message = ''
   switch (kind) {
@@ -126,16 +166,28 @@ export function applyTransferToFans(
       break
   }
 
-  const mood = clamp(fans.mood + delta)
+  const mood = clamp(base.mood + delta)
+  let protestActive = base.protestActive
+  let boycottUntilMatchday = base.boycottUntilMatchday
+  let lastEvent = base.lastEvent
+  if (kind === 'sell_star' && mood < 40) {
+    protestActive = true
+    boycottUntilMatchday = Math.max(boycottUntilMatchday, 0) // set by caller with matchday
+    lastEvent = `ประท้วงขายดาว ${playerName}`
+  }
+
   return {
     fans: {
-      ...fans,
+      ...base,
       mood,
+      protestActive,
+      boycottUntilMatchday,
+      lastEvent: lastEvent || message,
       factions: {
-        ultras: clamp(fans.factions.ultras + (kind === 'sell_star' ? -8 : kind === 'buy_star' ? 5 : 0)),
-        casual: clamp(fans.factions.casual + delta * 0.6),
+        ultras: clamp(base.factions.ultras + (kind === 'sell_star' ? -8 : kind === 'buy_star' ? 5 : 0)),
+        casual: clamp(base.factions.casual + delta * 0.6),
         corporate: clamp(
-          fans.factions.corporate +
+          base.factions.corporate +
             (kind === 'sell_star' || kind === 'sell_surplus' ? 3 : kind === 'buy_star' ? -1 : 0),
         ),
       },
@@ -143,6 +195,63 @@ export function applyTransferToFans(
     },
     message,
   }
+}
+
+/** สุ่มเหตุการณ์แฟนหลังแมตช์เดย์ */
+export function processFanPolitics(save: GameSave): GameSave {
+  let fans = ensureFanState(save.fans)
+  let inbox = save.inbox
+  let board = save.board
+
+  if (fans.mood < 28 && !fans.protestActive && Math.random() < 0.4) {
+    fans = {
+      ...fans,
+      protestActive: true,
+      boycottUntilMatchday: save.matchday + 1,
+      lastEvent: 'กลุ่ม Ultras นัดประท้วงหน้าสโมสร · คว่ำบาตรตั๋วนัดหน้า',
+    }
+    inbox = [
+      {
+        id: `msg-protest-${Date.now()}`,
+        date: save.currentDate,
+        title: 'แฟนประท้วง',
+        body: fans.lastEvent,
+        read: false,
+      },
+      ...inbox,
+    ].slice(0, 40)
+    board = {
+      ...board,
+      confidence: Math.max(0, board.confidence - 3),
+      lastNote: 'บอร์ดกังวลภาพลักษณ์จากประท้วงแฟน',
+    }
+  }
+
+  if (fans.protestActive && fans.mood >= 50) {
+    fans = {
+      ...fans,
+      protestActive: false,
+      lastEvent: 'บรรยากาศอัฒจันทร์สงบลง',
+    }
+  }
+
+  if (fans.boycottUntilMatchday < save.matchday && fans.boycottUntilMatchday >= 0) {
+    fans = { ...fans, boycottUntilMatchday: -1 }
+  }
+
+  // faction event: corporate happy when finance KPI met
+  if (board.kpis?.some((k) => k.id === 'finance' && k.met) && Math.random() < 0.15) {
+    fans = {
+      ...fans,
+      factions: {
+        ...fans.factions,
+        corporate: clamp(fans.factions.corporate + 2),
+      },
+      lastEvent: 'แฟนคอร์ปอเรตพอใจวินัยการเงิน',
+    }
+  }
+
+  return { ...save, fans, board, inbox }
 }
 
 export function fanInbox(save: GameSave, title: string, body: string): InboxMessage {
@@ -156,7 +265,6 @@ export function fanInbox(save: GameSave, title: string, body: string): InboxMess
 }
 
 export function ensureFans(save: GameSave): GameSave {
-  if (save.fans && typeof save.fans.mood === 'number') return save
-  const club = save.clubs.find((c) => c.id === save.humanClubId)!
-  return { ...save, fans: createFanState(club.reputation) }
+  const club = save.clubs.find((c) => c.id === save.humanClubId)
+  return { ...save, fans: ensureFanState(save.fans, club?.reputation ?? 50) }
 }

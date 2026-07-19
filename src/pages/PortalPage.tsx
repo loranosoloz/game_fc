@@ -288,7 +288,15 @@ export function PortalPage() {
         </div>
 
         <div className="rounded-xl border border-slate-200 bg-white/80 p-5">
-          <h2 className="text-lg font-semibold">บอร์ดสโมสร</h2>
+          <div className="flex items-center justify-between gap-2">
+            <h2 className="text-lg font-semibold">บอร์ดสโมสร</h2>
+            <Link
+              to="/club-vision"
+              className="text-xs font-semibold text-slate-600 underline underline-offset-2 hover:text-slate-900"
+            >
+              Club Vision →
+            </Link>
+          </div>
           <p className="mt-1 text-sm text-slate-600">{board.lastNote}</p>
           <div className="mt-3">
             <div className="mb-1 flex justify-between text-xs text-slate-500">

@@ -13,6 +13,7 @@ import {
   recoveryTickAmount,
 } from '@/game/medical'
 import { BODY_PART_LABEL, bodyMapSummary } from '@/game/bodyMap'
+import { ILLNESS_TYPE_LABEL, isIll } from '@/game/illness'
 import { staffLevel } from '@/game/staff'
 import { formatBanStatus } from '@/game/discipline'
 import { BodyMapFigure } from '@/components/BodyMapFigure'
@@ -36,6 +37,7 @@ export function MedicalPage() {
   const injured = squad
     .filter((p) => p.injuryDays > 0)
     .sort((a, b) => b.injuryDays - a.injuryDays)
+  const sick = squad.filter((p) => isIll(p)).sort((a, b) => b.illnessDays - a.illnessDays)
   const banned = squad.filter((p) => (p.banMatches ?? 0) > 0)
   const lowCond = squad
     .filter((p) => p.injuryDays <= 0 && p.condition < 70)
@@ -74,8 +76,9 @@ export function MedicalPage() {
         }
       />
 
-      <div className="grid gap-3 sm:grid-cols-4">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         <StatTile label="บาดเจ็บ" value={injured.length} hint="คนในสควอด" accent={injured.length > 0} />
+        <StatTile label="ป่วย" value={sick.length} hint="หวัด / ไข้ / ไวรัส" accent={sick.length > 0} />
         <StatTile label="เสี่ยง (แดง/เหลือง)" value={atRisk.length} hint="body map" />
         <StatTile label="โดนแบน" value={banned.length} hint="ใบแดง / สะสมเหลือง" />
         <StatTile label="สภาพต่ำ" value={lowCond.length} hint="condition &lt; 70%" />
@@ -99,7 +102,15 @@ export function MedicalPage() {
               return (
                 <option key={p.id} value={p.id}>
                   {roleShort(p.role)} {p.name}
-                  {p.injuryDays > 0 ? ' · เจ็บ' : s.red > 0 ? ' · แดง' : s.yellow > 3 ? ' · อ่อน' : ''}
+                  {p.injuryDays > 0
+                    ? ' · เจ็บ'
+                    : isIll(p)
+                      ? ' · ป่วย'
+                      : s.red > 0
+                        ? ' · แดง'
+                        : s.yellow > 3
+                          ? ' · อ่อน'
+                          : ''}
                 </option>
               )
             })}
@@ -166,6 +177,39 @@ export function MedicalPage() {
                     </li>
                   )
                 })}
+              </ul>
+            )}
+          </div>
+
+          <div>
+            <h3 className="text-sm font-bold text-slate-900">รายการป่วย</h3>
+            {sick.length === 0 ? (
+              <p className="mt-2 text-sm text-slate-500">ไม่มีนักเตะป่วย</p>
+            ) : (
+              <ul className="mt-3 space-y-2">
+                {sick.map((p) => (
+                  <li
+                    key={p.id}
+                    className={cn(
+                      'cursor-pointer rounded-xl border border-violet-200/80 bg-gradient-to-br from-violet-50 to-white px-4 py-3',
+                      selected?.id === p.id && 'ring-2 ring-slate-900/20',
+                    )}
+                    onClick={() => setSelectedId(p.id)}
+                  >
+                    <div className="flex flex-wrap items-baseline justify-between gap-2">
+                      <span className="font-bold text-violet-950">
+                        <span className="text-slate-500">{roleShort(p.role)}</span> {p.name}
+                      </span>
+                      <span className="text-sm font-semibold text-violet-800">
+                        {p.illnessType ? ILLNESS_TYPE_LABEL[p.illnessType] : 'ป่วย'} ·{' '}
+                        {p.illnessDays} วัน
+                      </span>
+                    </div>
+                    <p className="mt-1 text-xs text-slate-600">
+                      Condition {p.condition}% · ไม่พร้อมลงแข่งจนกว่าจะหาย
+                    </p>
+                  </li>
+                ))}
               </ul>
             )}
           </div>

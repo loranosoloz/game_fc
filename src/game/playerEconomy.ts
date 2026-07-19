@@ -9,6 +9,7 @@ import type {
   PlayerSpendDef,
   PlayerSpendLog,
 } from './types'
+import { fanTicketMultiplier } from './fans'
 
 export const PLAYER_SPENDINGS: PlayerSpendDef[] = spendingsDb.spendings as PlayerSpendDef[]
 
@@ -84,10 +85,9 @@ export function calcGateReceipt(
   goalsFor: number,
   goalsAgainst: number,
   fans?: FanState,
+  matchday = 0,
 ): GateReceipt {
-  const fanMult = fans
-    ? 0.62 + (fans.mood / 100) * 0.66
-    : 1
+  const fanMult = fans ? fanTicketMultiplier(fans, matchday) : 1
   const fill = 0.55 + Math.min(0.35, club.reputation / 200)
   const crowd = Math.round(club.stadiumCapacity * fill * fanMult)
   const resultMood = goalsFor > goalsAgainst ? 1.08 : goalsFor === goalsAgainst ? 1 : 0.92

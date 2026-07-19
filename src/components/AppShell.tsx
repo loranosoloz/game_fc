@@ -20,6 +20,7 @@ const navGroups = [
     links: [
       { to: '/squad', label: 'สควอด' },
       { to: '/meetings', label: 'คุยกับนักเตะ' },
+      { to: '/club-vision', label: 'บอร์ด/แฟน' },
       { to: '/tactics', label: 'แท็กติก' },
       { to: '/training', label: 'ซ้อม' },
       { to: '/medical', label: 'แพทย์' },
@@ -63,6 +64,9 @@ export function AppShell() {
   const injured = save.players.filter(
     (p) => p.clubId === save.humanClubId && p.injuryDays > 0,
   ).length
+  const sick = save.players.filter(
+    (p) => p.clubId === save.humanClubId && (p.illnessDays ?? 0) > 0,
+  ).length
 
   return (
     <div className="mx-auto flex min-h-full max-w-7xl flex-col gap-4 px-4 py-4 md:py-6">
@@ -85,6 +89,7 @@ export function AppShell() {
               {save.managerName} · ฤดูกาล {save.season} · {save.currentDate} · อันดับ #
               {rank || '—'}
               {injured > 0 ? ` · เจ็บ ${injured}` : ''}
+              {sick > 0 ? ` · ป่วย ${sick}` : ''}
               {banned > 0 ? ` · แบน ${banned}` : ''}
             </p>
           </div>

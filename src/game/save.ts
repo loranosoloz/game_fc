@@ -5,7 +5,8 @@ import { createClubsFromLeague, createPlayersFromLeague } from './worldSeed'
 import { getLeague, type LeagueId } from '@/data/world'
 import { blankTable, generateSeasonFixtures } from './fixtures'
 import { createFanState, ensureFans } from './fans'
-import { createBoardState } from './board'
+import { createBoardState, ensureBoard } from './board'
+import { createOwnerState, ensureOwner } from './owner'
 import { defaultTraining } from './training'
 import { ensurePlayerV3Fields } from './attributes'
 import { createDynamics } from './dynamics'
@@ -85,6 +86,7 @@ export function createNewGame(
     fans: createFanState(human.reputation),
     training: defaultTraining(),
     board: createBoardState(human.reputation),
+    owner: createOwnerState(human.reputation, humanClubId.length * 97 + 2026),
     dynamics: createDynamics(),
     staff: createStaff(clubs, humanClubId),
     dailyLogs: [],
@@ -113,6 +115,8 @@ export function ensurePhase5(save: GameSave): GameSave {
     next = { ...next, training: { ...next.training, individual: {} } }
   }
   if (!next.board || !next.board.kpis) next = { ...next, board: createBoardState(human.reputation) }
+  else next = { ...next, board: ensureBoard(next) }
+  if (!next.owner) next = { ...next, owner: ensureOwner(next) }
   if (!next.dynamics) next = { ...next, dynamics: createDynamics() }
   if (!next.staff) next = { ...next, staff: createStaff(next.clubs, next.humanClubId) }
   else next = { ...next, staff: ensureStaffState(next.staff, next.clubs, next.humanClubId) }
@@ -254,6 +258,9 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
       ? { ...defaultTraining(), ...trainingRaw, individual: trainingRaw.individual ?? {} }
       : defaultTraining(),
     board: (raw.board as GameSave['board']) ?? createBoardState(human.reputation),
+    owner:
+      (raw.owner as GameSave['owner']) ??
+      createOwnerState(human.reputation, humanClubId.length * 97),
     dynamics: (raw.dynamics as GameSave['dynamics']) ?? createDynamics(),
     staff: ensureStaffState(
       (raw.staff as GameSave['staff']) ?? createStaff(clubs, humanClubId),

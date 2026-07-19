@@ -265,6 +265,15 @@ export function sellPlayerToAi(save: GameSave, playerId: string, askFee: number)
     player.age,
   )
   const fanResult = applyTransferToFans(save.fans, kind, player.name)
+  let fansAfter = fanResult.fans
+  if (kind === 'sell_star') {
+    fansAfter = {
+      ...fansAfter,
+      protestActive: true,
+      boycottUntilMatchday: save.matchday + 1,
+      lastEvent: `ประท้วงขายดาว ${player.name}`,
+    }
+  }
 
   const inbox: InboxMessage[] = [
     {
@@ -283,7 +292,7 @@ export function sellPlayerToAi(save: GameSave, playerId: string, askFee: number)
     players,
     clubs,
     tacticsByClub,
-    fans: fanResult.fans,
+    fans: fansAfter,
     inbox: inbox.slice(0, 40),
     scouting: markPlayerAsAlumni(ensureScouting(save), playerId),
   }

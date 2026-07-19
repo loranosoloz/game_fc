@@ -42,6 +42,7 @@ import { recomputeDynamics } from '@/game/dynamics'
 import { assignMentor } from '@/game/development'
 import { plantRomanoStory } from '@/game/romanoPlant'
 import type { PlantOpts, RomanoPlantKind } from '@/game/romanoPlant'
+import { requestClubBudget } from '@/game/owner'
 import { managerTalk, respondToPlayerRequest } from '@/game/playerTalks'
 import type { ManagerTalkTopic, TalkResponse } from '@/game/types'
 import {
@@ -105,6 +106,7 @@ interface GameStore {
   plantRomano: (kind: RomanoPlantKind, opts?: PlantOpts) => boolean
   startManagerTalk: (topic: ManagerTalkTopic, playerId?: string) => boolean
   answerPlayerRequest: (requestId: string, response: TalkResponse) => boolean
+  requestBoardBudget: (amount: number) => boolean
   answerPressConference: (answerIds: string[]) => void
   dismissPressConference: () => void
 }
@@ -389,6 +391,10 @@ export const useGameStore = create<GameStore>((set, get) => ({
   playNextMatchday: () => {
     const { save } = get()
     if (!save || save.seasonComplete) return
+    if (save.board?.sacked) {
+      set({ status: 'คุณถูกปลดแล้ว — เริ่มเกมใหม่ที่หน้าแรก' })
+      return
+    }
     const md = nextUnplayedMatchday(save)
     if (md == null) {
       set({ status: 'จบฤดูกาลแล้ว' })
@@ -401,6 +407,10 @@ export const useGameStore = create<GameStore>((set, get) => ({
   startLiveMatch: () => {
     const { save } = get()
     if (!save || save.seasonComplete) return false
+    if (save.board?.sacked) {
+      set({ status: 'คุณถูกปลดแล้ว — เริ่มเกมใหม่ที่หน้าแรก' })
+      return false
+    }
     const md = nextUnplayedMatchday(save)
     if (md == null) {
       set({ status: 'จบฤดูกาลแล้ว' })
@@ -712,6 +722,16 @@ export const useGameStore = create<GameStore>((set, get) => ({
     saveToStorage(result.save)
     set({ save: result.save })
     return true
+  },
+
+  requestBoardBudget: (amount) => {
+    const { save } = get()
+    if (!save) return false
+    const result = requestClubBudget(save, amount)
+    set({ status: result.message })
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return result.ok
   },
 
   answerPressConference: (answerIds) => {

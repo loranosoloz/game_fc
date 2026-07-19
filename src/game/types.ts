@@ -28,6 +28,8 @@ export type CompetitionKind = 'league' | 'cup' | 'ucl'
 export type SetPiecePlan = 'mixed' | 'near_post' | 'far_post' | 'short' | 'direct'
 export type InjuryType = 'muscle' | 'ligament' | 'bone'
 export type InjuryTreatment = 'rest' | 'physio' | 'injection'
+/** Illness / sickness (separate from musculoskeletal injury) */
+export type IllnessType = 'cold' | 'flu' | 'stomach' | 'virus' | 'fever'
 
 /** Body regions for fitness / injury map (all players including AI) */
 export type BodyPartId =
@@ -138,6 +140,9 @@ export interface Player {
   /** Per-region fitness — all clubs (human + AI) */
   bodyMap: BodyMap
   injuryHistory: InjuryRecord[]
+  /** Days remaining sick (0 = healthy) — all clubs including AI */
+  illnessDays: number
+  illnessType: IllnessType | null
   /** Season yellow card tally (reset on accumulation ban) */
   seasonYellows: number
   /** Matches remaining suspended */
@@ -327,6 +332,11 @@ export interface FanState {
     corporate: number
   }
   lastVerdict: string
+  /** ประท้วงกำลังเกิด */
+  protestActive: boolean
+  /** คว่ำบาตรตั๋วจนแมตช์เดย์นี้ */
+  boycottUntilMatchday: number
+  lastEvent: string
 }
 
 export type TrainingFocus = 'tactics' | 'fitness' | 'attacking' | 'defending' | 'setpieces' | 'rest'
@@ -355,6 +365,15 @@ export interface VisionKpi {
   met: boolean
 }
 
+export interface BoardUltimatum {
+  issuedMatchday: number
+  deadlineMatchday: number
+  kind: 'win_streak' | 'improve_rank' | 'meet_kpis'
+  note: string
+  winsNeeded: number
+  winsSoFar: number
+}
+
 export interface BoardState {
   confidence: number
   targetMaxRank: number
@@ -362,6 +381,29 @@ export interface BoardState {
   preferredStyle: PlayStyle
   youthMinutesTarget: number
   kpis: VisionKpi[]
+  lowConfidenceStreak: number
+  ultimatum: BoardUltimatum | null
+  sacked: boolean
+  sackedNote: string | null
+  lastBudgetRequestMatchday: number
+}
+
+export type OwnerPersonality =
+  | 'ambitious'
+  | 'patient'
+  | 'frugal'
+  | 'meddling'
+  | 'glory_hunter'
+  | 'local_hero'
+
+export interface OwnerState {
+  name: string
+  personality: OwnerPersonality
+  patience: number
+  relationship: number
+  warChest: number
+  lastNote: string
+  takeoverHeat: number
 }
 
 export interface OppositionReport {
@@ -870,6 +912,8 @@ export interface GameSave {
   fans: FanState
   training: TrainingState
   board: BoardState
+  /** เจ้าของสโมสร / ประธาน */
+  owner: OwnerState
   dynamics: DynamicsState
   staff: StaffState
   /** Lifestyle diary (human squad focus) */
