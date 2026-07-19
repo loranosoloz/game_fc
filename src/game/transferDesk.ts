@@ -1,6 +1,7 @@
 import type { GameSave, PendingTransferOffer, TransferDeskState } from './types'
 import { buyPlayerFromAi, estimatedValue, sellPlayerToAi } from './transfer'
 import { formatMoney } from '@/lib/format'
+import { isTransferWindowOpen, transferWindowLabel } from './transferWindow'
 
 function uid(prefix: string) {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`
@@ -28,6 +29,7 @@ export function submitNegotiatedBuy(
   appearanceAddon = 0,
   sellOnPercent = 0,
 ): DeskResult {
+  if (!isTransferWindowOpen(save)) return { ok: false, message: transferWindowLabel(save) }
   const player = save.players.find((p) => p.id === playerId)
   if (!player) return { ok: false, message: 'ไม่พบนักเตะ' }
   if (player.clubId === save.humanClubId) return { ok: false, message: 'อยู่ในทีมแล้ว' }

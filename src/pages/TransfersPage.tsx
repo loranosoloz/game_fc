@@ -12,6 +12,7 @@ import { ensureScouting, knowledgeOf, recentFormForPlayer, revealOverall, reveal
 import { ensureTransferDesk } from '@/game/transferDesk'
 import { isShortlisted } from '@/game/shortlist'
 import { activeLoansForClub } from '@/game/loans'
+import { isTransferWindowOpen, transferWindowLabel, transferWindowKind } from '@/game/transferWindow'
 import { Link } from 'react-router-dom'
 
 type Tab = 'buy' | 'sell'
@@ -88,10 +89,27 @@ export function TransfersPage() {
   const desk = ensureTransferDesk(save)
   const loans = activeLoansForClub(save, save.humanClubId)
   const counters = desk.offers.filter((o) => o.status === 'countered')
+  const windowOpen = isTransferWindowOpen(save)
+  const windowKind = transferWindowKind(save)
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.15fr_1.15fr]">
       <section className="rounded-xl border border-slate-200 bg-white/80 p-5">
+        <div
+          className={cn(
+            'mb-3 rounded-md px-3 py-2 text-sm',
+            windowOpen ? 'bg-lime-50 text-lime-950' : 'bg-amber-50 text-amber-950',
+          )}
+        >
+          {windowKind === 'winter'
+            ? '❄ ตลาดวินเทอร์เปิดอยู่'
+            : windowKind === 'summer'
+              ? '☀ ตลาดซัมเมอร์เปิดอยู่'
+              : windowKind === 'offseason'
+                ? 'ออฟซีซัน — ตลาดเปิด'
+                : 'ตลาดปิด'}{' '}
+          · {transferWindowLabel(save)}
+        </div>
         <div className="flex flex-wrap items-center gap-2">
           <h2 className="mr-auto text-lg font-semibold">ตลาดซื้อขาย</h2>
           {(['buy', 'sell'] as const).map((t) => (

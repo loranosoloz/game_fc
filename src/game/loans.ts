@@ -3,6 +3,7 @@ import { autoPickTactics } from './seed'
 import { formatMoney } from '@/lib/format'
 import { ensureClubFinance } from './playerEconomy'
 import { estimatedValue } from './transfer'
+import { isTransferWindowOpen, transferWindowLabel } from './transferWindow'
 
 function uid(prefix: string) {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`
@@ -53,6 +54,9 @@ export function arrangeLoan(
     recallable?: boolean
   } = {},
 ): LoanResult {
+  if (!isTransferWindowOpen(save)) {
+    return { ok: false, message: `${transferWindowLabel(save)} — ยืมตัวได้เฉพาะช่วงตลาดเปิด` }
+  }
   const player = save.players.find((p) => p.id === playerId)
   if (!player) return { ok: false, message: 'ไม่พบนักเตะ' }
   if (player.loanParentClubId) return { ok: false, message: 'นักเตะคนนี้อยู่ในสัญญายืมอยู่แล้ว' }

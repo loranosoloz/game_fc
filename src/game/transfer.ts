@@ -12,6 +12,7 @@ import { newsAfterTransfer, newsAfterContract, pushNews } from './media'
 import { injuryHistoryPenalty } from './medical'
 import { ensureScouting, markPlayerAsAlumni } from './scouting'
 import { isTransferFrozen } from './clubAtmosphere'
+import { isTransferWindowOpen, transferWindowLabel } from './transferWindow'
 
 export function estimatedValue(player: Player): number {
   const ageFactor = player.age <= 24 ? 1.25 : player.age <= 29 ? 1.0 : player.age <= 32 ? 0.7 : 0.45
@@ -61,6 +62,9 @@ export function buyPlayerFromAi(
   contractYears = 3,
 ): OfferResult {
   save = ensureFans(save)
+  if (!isTransferWindowOpen(save)) {
+    return { ok: false, message: transferWindowLabel(save) }
+  }
   if (isTransferFrozen(save)) {
     return {
       ok: false,
@@ -187,6 +191,9 @@ export function buyPlayerFromAi(
 /** ขายนักเตะให้คลับ AI */
 export function sellPlayerToAi(save: GameSave, playerId: string, askFee: number): OfferResult {
   save = ensureFans(save)
+  if (!isTransferWindowOpen(save)) {
+    return { ok: false, message: transferWindowLabel(save) }
+  }
   if (isTransferFrozen(save)) {
     return {
       ok: false,

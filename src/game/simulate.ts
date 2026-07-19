@@ -8,6 +8,7 @@ import { processStadiumPresence } from './clubAtmosphere'
 import { scanTakeoverMarket } from './takeover'
 import { enterUnemployment, refreshJobMarket } from './jobs'
 import { processFacilities, medicalFacilityBonus, commercialGateBonus } from './facilities'
+import { transferWindowKind } from './transferWindow'
 import { applyTrainingWeek, updatePlayingTimeMorale } from './training'
 import { tickPlayerInjury } from './medical'
 import {
@@ -591,6 +592,21 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     next = refreshJobMarket(next)
   }
   next = processFacilities(next)
+  if (next.matchday === 19 && transferWindowKind(next) === 'winter') {
+    next = {
+      ...next,
+      inbox: [
+        {
+          id: `msg-winter-${Date.now()}`,
+          date: next.currentDate,
+          title: 'ตลาดวินเทอร์เปิด',
+          body: 'หน้าต่างตลาดฤดูหนาว MD19–23 — ซื้อ/ขาย/ยืมได้ในช่วงนี้',
+          read: false,
+        },
+        ...next.inbox,
+      ].slice(0, 40),
+    }
+  }
   next = { ...next, media: ensureMediaFeed(next) }
   for (const n of newsBatch) next = pushNews(next, n)
   next = advanceMediaWeek(next)
