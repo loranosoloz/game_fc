@@ -15,8 +15,10 @@ import { CompetitionsPage } from '@/pages/CompetitionsPage'
 import { MatchPage } from '@/pages/MatchPage'
 import { LiveMatchPage } from '@/pages/LiveMatchPage'
 import { TablePage } from '@/pages/TablePage'
+import { ScoutingPage } from '@/pages/ScoutingPage'
 import { TransfersPage } from '@/pages/TransfersPage'
 import { FinancePage } from '@/pages/FinancePage'
+import { MediaPage } from '@/pages/MediaPage'
 import { SavePage } from '@/pages/SavePage'
 import { useGameStore } from '@/store/gameStore'
 
@@ -46,6 +48,7 @@ export default function App() {
         }
       >
         <Route path="/portal" element={<PortalPage />} />
+        <Route path="/media" element={<MediaPage />} />
         <Route path="/squad" element={<SquadPage />} />
         <Route path="/tactics" element={<TacticsPage />} />
         <Route path="/training" element={<TrainingPage />} />
@@ -58,6 +61,7 @@ export default function App() {
         <Route path="/match" element={<MatchPage />} />
         <Route path="/table" element={<TablePage />} />
         <Route path="/transfers" element={<TransfersPage />} />
+        <Route path="/scouting" element={<ScoutingPage />} />
         <Route path="/finance" element={<FinancePage />} />
         <Route path="/save" element={<SavePage />} />
       </Route>

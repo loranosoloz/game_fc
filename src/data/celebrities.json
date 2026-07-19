@@ -1,0 +1,10 @@
+[
+  { "id": "cel-01", "name": "Pitchside One", "fame": "พอดแคสต์ฟุตบอล" },
+  { "id": "cel-02", "name": "Sir Trevor Lane", "fame": "อดีตกัปตันทีมชาติ" },
+  { "id": "cel-03", "name": "Maya Ortega", "fame": "นักวิเคราะห์ยูฟ่า" },
+  { "id": "cel-04", "name": "K. Chaiyaphum", "fame": "ผู้บรรยายไทย" },
+  { "id": "cel-05", "name": "Agent Voss", "fame": "เอเยนต์ดาวดัง" },
+  { "id": "cel-06", "name": "Dr. Lena Holt", "fame": "นักวิทยาศาสตร์กีฬา" },
+  { "id": "cel-07", "name": "UltraCam Live", "fame": "ครีเอเตอร์อัฒจันทร์" },
+  { "id": "cel-08", "name": "Coach Archive", "fame": "ยูทูบแท็กติก" }
+]

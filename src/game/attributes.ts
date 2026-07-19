@@ -160,9 +160,20 @@ export function ensurePlayerV3Fields(p: Partial<Player> & { id: string; clubId: 
     injuryType: p.injuryType ?? (p.injuryDays && p.injuryDays > 0 ? 'muscle' : null),
     treatment: p.treatment ?? (p.injuryDays && p.injuryDays > 0 ? 'physio' : null),
     injuryHistory: p.injuryHistory ?? [],
+    seasonYellows: p.seasonYellows ?? 0,
+    banMatches: p.banMatches ?? 0,
+    contractYears: p.contractYears ?? Math.max(1, 4 - Math.floor((p.age ?? 24) / 10)),
+    contractEndSeason: p.contractEndSeason ?? 2026 + (p.contractYears ?? 2),
+    releaseClause: p.releaseClause ?? null,
     minutesPlayed: p.minutesPlayed ?? 0,
     isYouth: p.isYouth ?? false,
     mentorId: p.mentorId ?? null,
+    mediaHandling: p.mediaHandling ?? Math.max(1, Math.min(20, Math.round(8 + Math.random() * 8))),
+    cash:
+      typeof p.cash === 'number'
+        ? p.cash
+        : Math.round((p.wage ?? 2000) * (6 + Math.random() * 14)),
+    lastActivityId: p.lastActivityId ?? null,
   }
 }
 

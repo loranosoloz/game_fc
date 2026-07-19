@@ -1,19 +1,29 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useGameStore } from '@/store/gameStore'
 import { buildOppositionReport } from '@/game/opposition'
+import { getReferee, pickRefereeId, reputationLabel, strictnessLabel } from '@/game/referees'
+import { MatchStatsPanel } from '@/components/MatchStatsPanel'
+import { GhostButton, PageHeader, Panel, PrimaryButton, StatTile } from '@/components/ui'
+import { ensureScouting, formWatchCost } from '@/game/scouting'
+import { formatMoney } from '@/lib/format'
 
 export function MatchPage() {
   const navigate = useNavigate()
   const save = useGameStore((s) => s.save)!
   const startLiveMatch = useGameStore((s) => s.startLiveMatch)
   const playNextMatchday = useGameStore((s) => s.playNextMatchday)
+  const assignScoutWatch = useGameStore((s) => s.assignScoutWatch)
 
   const humanFixtures = save.fixtures.filter(
     (f) => f.homeClubId === save.humanClubId || f.awayClubId === save.humanClubId,
   )
   const next = humanFixtures.find((f) => !f.played)
-  const recent = humanFixtures.filter((f) => f.played).slice(-5).reverse()
+  const recent = humanFixtures.filter((f) => f.played).slice(-8).reverse()
   const last = save.lastHumanResult
+  const scouting = ensureScouting(save)
+  const watchCost = formWatchCost(save)
+  const alreadyWatchingNext =
+    !!next && scouting.pendingWatches.some((w) => w.status === 'pending' && w.fixtureId === next.id)
 
   const nameOf = (id: string) => save.clubs.find((c) => c.id === id)?.name ?? id
   const tag = (id: string) => (id === save.humanClubId ? 'คุณ' : 'AI')
@@ -28,119 +38,164 @@ export function MatchPage() {
     : null
   const report = oppId ? buildOppositionReport(save, oppId) : null
 
+  const nextRef = next
+    ? getReferee(next.refereeId ?? pickRefereeId(next.id, next.competition ?? 'league'))
+    : null
+
+  const lastFx = last
+    ? save.fixtures.find((f) => f.id === last.fixtureId)
+    : null
+
   const enterLive = () => {
     if (startLiveMatch()) navigate('/match/live')
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-2">
-      <section className="rounded-xl border border-slate-200 bg-white/80 p-5">
-        <h2 className="text-lg font-semibold">นัดถัดไปของคุณ</h2>
-        {next ? (
-          <div className="mt-3 space-y-3">
-            <p className="text-2xl font-bold tracking-tight">
-              {nameOf(next.homeClubId)}{' '}
-              <span className="text-sm font-normal text-slate-400">({tag(next.homeClubId)})</span>
-              <span className="mx-2 text-slate-400">พบ</span>
-              {nameOf(next.awayClubId)}{' '}
-              <span className="text-sm font-normal text-slate-400">({tag(next.awayClubId)})</span>
-            </p>
-            <p className="text-sm text-slate-600">
-              แมตช์เดย์ {next.matchday} · {next.date}
-            </p>
-            <p className="text-sm text-slate-600">
-              วันเดียวกันมี <strong>{dayFixtures.length}</strong> นัด (นัดคุณบนสนาม + นัด AI
-              ในพื้นหลัง)
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <button
-                type="button"
-                onClick={enterLive}
-                className="rounded-md bg-slate-900 px-4 py-2.5 text-sm font-semibold text-lime-300 hover:bg-slate-800"
-              >
-                เข้าแมตช์ (สนาม + คำบรรยาย)
-              </button>
-              <button
-                type="button"
-                onClick={playNextMatchday}
-                className="rounded-md border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-50"
-              >
-                ผลทันที
-              </button>
+    <div className="space-y-5">
+      <PageHeader
+        title="ศูนย์แมตช์"
+        subtitle="เตรียมนัด · ผู้ตัดสิน · สถิติหลังเกม"
+      />
+
+      <div className="grid gap-5 lg:grid-cols-[1.2fr_1fr]">
+        <Panel tone="dark">
+          <p className="text-[11px] font-bold tracking-[0.18em] text-lime-300/80 uppercase">
+            นัดถัดไป
+          </p>
+          {next ? (
+            <div className="mt-3 space-y-4">
+              <p className="text-2xl font-bold tracking-tight md:text-3xl">
+                {nameOf(next.homeClubId)}{' '}
+                <span className="text-sm font-normal text-slate-400">({tag(next.homeClubId)})</span>
+                <span className="mx-2 text-slate-500">พบ</span>
+                {nameOf(next.awayClubId)}{' '}
+                <span className="text-sm font-normal text-slate-400">({tag(next.awayClubId)})</span>
+              </p>
+              <div className="grid gap-2 sm:grid-cols-3">
+                <StatTile label="แมตช์เดย์" value={next.matchday} />
+                <StatTile label="วันที่" value={next.date} />
+                <StatTile
+                  label="รายการ"
+                  value={
+                    next.competition === 'ucl'
+                      ? 'UCL'
+                      : next.competition === 'cup'
+                        ? 'ถ้วย'
+                        : 'ลีก'
+                  }
+                />
+              </div>
+              {nextRef ? (
+                <div className="rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-2.5 text-sm">
+                  <span className="text-slate-400">ผู้ตัดสิน · </span>
+                  <strong className="text-white">{nextRef.name}</strong>
+                  <span className="text-slate-400">
+                    {' '}
+                    · {reputationLabel(nextRef.reputation)} ·{' '}
+                    {strictnessLabel(nextRef.strictness)} ({nextRef.strictness}/20)
+                  </span>
+                </div>
+              ) : null}
+              <p className="text-sm text-slate-400">
+                วันเดียวกัน {dayFixtures.length} นัด · นัดคุณบนสนาม + AI พื้นหลัง
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <PrimaryButton onClick={enterLive}>เข้าแมตช์สด</PrimaryButton>
+                <GhostButton
+                  className="border-slate-600 bg-slate-800 text-slate-100 hover:bg-slate-700"
+                  onClick={playNextMatchday}
+                >
+                  ผลทันที
+                </GhostButton>
+                <GhostButton
+                  className="border-amber-600/50 bg-amber-950/40 text-amber-100 hover:bg-amber-900/50"
+                  disabled={alreadyWatchingNext}
+                  onClick={() => {
+                    if (!next || !oppId) return
+                    const targets = save.players
+                      .filter((p) => p.clubId === oppId)
+                      .sort((a, b) => b.overall - a.overall)
+                      .slice(0, 2)
+                      .map((p) => p.id)
+                    assignScoutWatch(next.id, targets)
+                  }}
+                >
+                  {alreadyWatchingNext
+                    ? 'สเกาต์ดูนัดนี้แล้ว'
+                    : `ดูฟอร์มคู่แข่ง · ${formatMoney(watchCost)}`}
+                </GhostButton>
+                <Link
+                  to="/scouting"
+                  className="rounded-md border border-slate-600 px-3 py-2 text-sm font-semibold text-slate-300 hover:bg-slate-800"
+                >
+                  ศูนย์สเกาต์
+                </Link>
+              </div>
             </div>
-          </div>
-        ) : (
-          <div className="mt-3 space-y-3">
-            <p className="text-sm text-slate-600">ไม่มีนัดเหลือสำหรับทีมคุณ</p>
-            {!save.seasonComplete ? (
-              <button
-                type="button"
-                onClick={playNextMatchday}
-                className="rounded-md bg-slate-900 px-4 py-2.5 text-sm font-semibold text-lime-300 hover:bg-slate-800"
-              >
-                จำลองแมตช์เดย์ AI ถัดไป
-              </button>
-            ) : null}
-          </div>
-        )}
-
-        {report ? (
-          <div className="mt-6 border-t border-slate-100 pt-4">
-            <h3 className="font-semibold">Opposition report</h3>
-            <p className="mt-1 text-sm text-slate-600">
-              รูป {report.formation} · ความแข็งแกร่ง XI ~{report.strength}
-            </p>
-            <p className="mt-2 text-sm">
-              <span className="font-medium">จุดอ่อน:</span> {report.weakness}
-            </p>
-            <p className="mt-1 text-sm">
-              <span className="font-medium">ภัยคุกคาม:</span> {report.threatPlayers.join(' · ')}
-            </p>
-            <p className="mt-2 text-sm text-slate-700">{report.advice}</p>
-          </div>
-        ) : null}
-
-        {last ? (
-          <div className="mt-6 border-t border-slate-100 pt-4">
-            <h3 className="font-semibold">ผลล่าสุด (คุณ)</h3>
-            <p className="mt-1 text-xl font-bold">
-              {last.homeGoals} – {last.awayGoals}
-            </p>
-            <ul className="mt-2 max-h-40 space-y-1 overflow-y-auto text-sm text-slate-600">
-              {last.events
-                .filter((e) => e.kind === 'goal' || e.kind === 'fulltime')
-                .map((e) => (
-                  <li key={e.id ?? `${e.minute}-${e.playerName}`}>
-                    {e.minute}&apos; {e.text ?? `${e.playerName ?? 'เหตุการณ์'}`}
-                  </li>
-                ))}
-            </ul>
-          </div>
-        ) : null}
-      </section>
-
-      <section className="rounded-xl border border-slate-200 bg-white/80 p-5">
-        <h2 className="text-lg font-semibold">ผลล่าสุดของทีมคุณ</h2>
-        <ul className="mt-3 space-y-2 text-sm">
-          {recent.length === 0 ? (
-            <li className="text-slate-500">ยังไม่เคยลงแข่ง</li>
           ) : (
-            recent.map((f) => (
-              <li
-                key={f.id}
-                className="flex items-center justify-between rounded-md bg-slate-50 px-3 py-2"
-              >
-                <span>
-                  {nameOf(f.homeClubId)} พบ {nameOf(f.awayClubId)}
-                </span>
-                <span className="font-semibold">
-                  {f.homeGoals}–{f.awayGoals}
-                </span>
-              </li>
-            ))
+            <div className="mt-3 space-y-3">
+              <p className="text-slate-300">ไม่มีนัดเหลือสำหรับทีมคุณ</p>
+              {!save.seasonComplete ? (
+                <PrimaryButton onClick={playNextMatchday}>จำลองแมตช์เดย์ AI</PrimaryButton>
+              ) : null}
+            </div>
           )}
-        </ul>
-      </section>
+
+          {report ? (
+            <div className="mt-6 border-t border-slate-700 pt-4">
+              <h3 className="font-semibold text-lime-300">Opposition report</h3>
+              <p className="mt-1 text-sm text-slate-300">
+                รูป {report.formation} · ความแข็งแกร่ง XI ~{report.strength}
+              </p>
+              <p className="mt-2 text-sm text-slate-200">
+                <span className="text-slate-400">จุดอ่อน:</span> {report.weakness}
+              </p>
+              <p className="mt-1 text-sm text-slate-200">
+                <span className="text-slate-400">ภัยคุกคาม:</span>{' '}
+                {report.threatPlayers.join(' · ')}
+              </p>
+              <p className="mt-2 text-sm text-lime-200/90">{report.advice}</p>
+            </div>
+          ) : null}
+        </Panel>
+
+        <div className="space-y-5">
+          {last && lastFx ? (
+            <MatchStatsPanel
+              result={last}
+              homeName={nameOf(lastFx.homeClubId)}
+              awayName={nameOf(lastFx.awayClubId)}
+            />
+          ) : (
+            <Panel>
+              <p className="text-sm text-slate-500">ยังไม่มีสถิติแมตช์ล่าสุด</p>
+            </Panel>
+          )}
+
+          <Panel>
+            <h3 className="text-sm font-bold text-slate-900">ผลล่าสุด</h3>
+            <ul className="mt-3 space-y-1.5 text-sm">
+              {recent.length === 0 ? (
+                <li className="text-slate-500">ยังไม่เคยลงแข่ง</li>
+              ) : (
+                recent.map((f) => (
+                  <li
+                    key={f.id}
+                    className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2"
+                  >
+                    <span className="truncate pr-2">
+                      {nameOf(f.homeClubId)} พบ {nameOf(f.awayClubId)}
+                    </span>
+                    <span className="shrink-0 font-bold tabular-nums">
+                      {f.homeGoals}–{f.awayGoals}
+                    </span>
+                  </li>
+                ))
+              )}
+            </ul>
+          </Panel>
+        </div>
+      </div>
     </div>
   )
 }

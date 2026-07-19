@@ -11,6 +11,8 @@ import {
 import { FIRST, LAST, mulberry32 } from './seed'
 import { REAL_NAME_OVERFLOW } from '@/data/world/realNameOverflow'
 import { REAL_NAME_BANKS } from '@/data/world/realNameBanks'
+import { ensureScouting } from './scouting'
+import { newsAfterYouth, pushNews } from './media'
 
 const YOUTH_NAME_POOL = [
   ...new Set([...Object.values(REAL_NAME_BANKS).flat(), ...REAL_NAME_OVERFLOW]),
@@ -81,19 +83,27 @@ export function maybePromoteYouth(save: GameSave): GameSave {
       morale: 14,
       happiness: 14,
       wage: 400 + overall * 20,
+      cash: Math.round((400 + overall * 20) * (3 + rng() * 6)),
       squadRole: 'prospect',
       injuryDays: 0,
       injuryType: null,
       treatment: null,
       injuryHistory: [],
+      seasonYellows: 0,
+      banMatches: 0,
+      contractYears: 3,
+      contractEndSeason: save.season + 3,
+      releaseClause: null,
       minutesPlayed: 0,
       isYouth: true,
       mentorId: null,
+      mediaHandling: 5 + Math.floor(rng() * 8),
     })
   }
 
   const names = newPlayers.map((p) => `${p.name} (${p.role})`).join(', ')
-  return {
+  const scouting = ensureScouting(save)
+  let next: GameSave = {
     ...save,
     players: [...save.players, ...newPlayers],
     youth: {
@@ -112,12 +122,14 @@ export function maybePromoteYouth(save: GameSave): GameSave {
       ...save.inbox,
     ].slice(0, 40),
     scouting: {
+      ...scouting,
       byPlayer: {
-        ...save.scouting.byPlayer,
+        ...scouting.byPlayer,
         ...Object.fromEntries(newPlayers.map((p) => [p.id, 85])),
       },
     },
   }
+  return pushNews(next, newsAfterYouth(next, names))
 }
 
 export function upgradeAcademy(save: GameSave): { save: GameSave; ok: boolean; message: string } {

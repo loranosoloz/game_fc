@@ -139,14 +139,21 @@ export function createPlayersForClubs(clubs: Club[], seed = 2026): Player[] {
           morale: 10 + Math.floor(rng() * 8),
           happiness: 10 + Math.floor(rng() * 8),
           wage: Math.round(800 + overall * 90 + club.reputation * 40),
+          cash: Math.round((800 + overall * 90 + club.reputation * 40) * (6 + rng() * 12)),
           squadRole: 'squad',
           injuryDays: 0,
           injuryType: null,
           treatment: null,
           injuryHistory: [],
+          seasonYellows: 0,
+          banMatches: 0,
+          contractYears: 2 + Math.floor(rng() * 3),
+          contractEndSeason: 2028 + Math.floor(rng() * 2),
+          releaseClause: null,
           minutesPlayed: 0,
           isYouth: false,
           mentorId: null,
+          mediaHandling: 6 + Math.floor(rng() * 12),
         })
       }
     }
@@ -167,7 +174,7 @@ export function autoPickTactics(
 ): Tactics {
   const slots = FORMATION_SLOTS[formation]
   const pool = players
-    .filter((p) => p.clubId === clubId && p.injuryDays <= 0)
+    .filter((p) => p.clubId === clubId && p.injuryDays <= 0 && (p.banMatches ?? 0) <= 0)
     .slice()
     .sort(
       (a, b) =>

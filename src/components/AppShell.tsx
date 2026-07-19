@@ -2,23 +2,41 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useGameStore } from '@/store/gameStore'
 import { cn } from '@/lib/cn'
 import { sortedTable } from '@/game/simulate'
+import { PrimaryButton } from '@/components/ui'
 
-const links = [
-  { to: '/portal', label: 'พอร์ทัล' },
-  { to: '/squad', label: 'สควอด' },
-  { to: '/tactics', label: 'แท็กติก' },
-  { to: '/training', label: 'ซ้อม' },
-  { to: '/medical', label: 'แพทย์' },
-  { to: '/youth', label: 'เยาวชน' },
-  { to: '/development', label: 'พัฒนา' },
-  { to: '/staff', label: 'สตาฟ' },
-  { to: '/data', label: 'Data' },
-  { to: '/match', label: 'แมตช์' },
-  { to: '/competitions', label: 'ถ้วย' },
-  { to: '/table', label: 'ตาราง' },
-  { to: '/transfers', label: 'ตลาด' },
-  { to: '/finance', label: 'การเงิน' },
-  { to: '/save', label: 'เซฟ' },
+const navGroups = [
+  {
+    label: 'ศูนย์กลาง',
+    links: [
+      { to: '/portal', label: 'พอร์ทัล' },
+      { to: '/media', label: 'สื่อ' },
+      { to: '/match', label: 'แมตช์' },
+      { to: '/competitions', label: 'ถ้วย' },
+      { to: '/table', label: 'ตาราง' },
+    ],
+  },
+  {
+    label: 'ทีม',
+    links: [
+      { to: '/squad', label: 'สควอด' },
+      { to: '/tactics', label: 'แท็กติก' },
+      { to: '/training', label: 'ซ้อม' },
+      { to: '/medical', label: 'แพทย์' },
+      { to: '/development', label: 'พัฒนา' },
+      { to: '/youth', label: 'เยาวชน' },
+    ],
+  },
+  {
+    label: 'สโมสร',
+    links: [
+      { to: '/staff', label: 'สตาฟ' },
+      { to: '/scouting', label: 'สเกาต์' },
+      { to: '/transfers', label: 'ตลาด' },
+      { to: '/finance', label: 'การเงิน' },
+      { to: '/data', label: 'Data' },
+      { to: '/save', label: 'เซฟ' },
+    ],
+  },
 ]
 
 export function AppShell() {
@@ -33,55 +51,89 @@ export function AppShell() {
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
   const rank =
     sortedTable(save.table).findIndex((r) => r.clubId === save.humanClubId) + 1
-  const aiCount = save.clubs.filter((c) => c.controlledBy === 'ai').length
+  const nextHuman = save.fixtures.find(
+    (f) =>
+      !f.played &&
+      (f.homeClubId === save.humanClubId || f.awayClubId === save.humanClubId),
+  )
+  const banned = save.players.filter(
+    (p) => p.clubId === save.humanClubId && (p.banMatches ?? 0) > 0,
+  ).length
+  const injured = save.players.filter(
+    (p) => p.clubId === save.humanClubId && p.injuryDays > 0,
+  ).length
 
   return (
-    <div className="mx-auto flex min-h-full max-w-6xl flex-col gap-4 px-4 py-4 md:py-6">
-      <header className="flex flex-col gap-3 border-b border-slate-300/70 pb-4 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="text-xs font-semibold tracking-[0.2em] text-slate-500 uppercase">
-            FC Manager
-          </p>
-          <h1 className="mt-1 text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-            {club.name}
-          </h1>
-          <p className="mt-1 text-sm text-slate-600">
-            {save.managerName} · {save.leagueName} · ฤดูกาล {save.season} · {save.currentDate} · อันดับ #
-            {rank || '—'} · <span className="text-sky-700">คุณ</span> + AI {aiCount} ทีม
-          </p>
+    <div className="mx-auto flex min-h-full max-w-7xl flex-col gap-4 px-4 py-4 md:py-6">
+      <header className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 text-slate-100 shadow-lg">
+        <div className="flex flex-col gap-4 p-5 md:flex-row md:items-center md:justify-between">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2">
+              <span
+                className="inline-block h-3 w-3 rounded-full ring-2 ring-lime-300/40"
+                style={{ backgroundColor: club.color }}
+              />
+              <p className="text-[11px] font-bold tracking-[0.22em] text-lime-300/90 uppercase">
+                FC Manager · {save.leagueName}
+              </p>
+            </div>
+            <h1 className="mt-1 truncate text-2xl font-bold tracking-tight md:text-3xl">
+              {club.name}
+            </h1>
+            <p className="mt-1 text-sm text-slate-400">
+              {save.managerName} · ฤดูกาล {save.season} · {save.currentDate} · อันดับ #
+              {rank || '—'}
+              {injured > 0 ? ` · เจ็บ ${injured}` : ''}
+              {banned > 0 ? ` · แบน ${banned}` : ''}
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            {nextHuman ? (
+              <span className="rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-xs text-slate-300">
+                นัดถัดไป MD{nextHuman.matchday}
+              </span>
+            ) : null}
+            <PrimaryButton
+              disabled={save.seasonComplete}
+              onClick={() => {
+                if (startLiveMatch()) navigate('/match/live')
+              }}
+            >
+              {save.seasonComplete ? 'จบฤดูกาลแล้ว' : 'เล่นนัดถัดไป'}
+            </PrimaryButton>
+          </div>
         </div>
-        <button
-          type="button"
-          onClick={() => {
-            if (startLiveMatch()) navigate('/match/live')
-          }}
-          disabled={save.seasonComplete}
-          className="rounded-md bg-slate-900 px-4 py-2.5 text-sm font-semibold text-lime-300 transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          {save.seasonComplete ? 'จบฤดูกาลแล้ว' : 'เล่นนัดถัดไป (สนาม)'}
-        </button>
       </header>
 
-      <nav className="flex flex-wrap gap-1" aria-label="เมนูหลัก">
-        {links.map((link) => (
-          <NavLink
-            key={link.to}
-            to={link.to}
-            className={({ isActive }) =>
-              cn(
-                'rounded-md px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-white/70 hover:text-slate-900',
-                isActive && 'bg-white text-slate-900 shadow-sm ring-1 ring-slate-200',
-              )
-            }
-          >
-            {link.label}
-          </NavLink>
+      <nav className="space-y-2" aria-label="เมนูหลัก">
+        {navGroups.map((group) => (
+          <div key={group.label} className="flex flex-wrap items-center gap-1">
+            <span className="mr-1 w-14 shrink-0 text-[10px] font-bold tracking-wider text-slate-400 uppercase">
+              {group.label}
+            </span>
+            {group.links.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                className={({ isActive }) =>
+                  cn(
+                    'rounded-md px-2.5 py-1.5 text-sm font-medium transition',
+                    isActive
+                      ? 'bg-slate-900 text-lime-300 shadow-sm'
+                      : 'bg-white/70 text-slate-600 ring-1 ring-slate-200/80 hover:bg-white hover:text-slate-900',
+                  )
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </div>
         ))}
       </nav>
 
       {status ? (
         <div
-          className="flex items-start justify-between gap-3 rounded-md border border-lime-300/60 bg-lime-50 px-3 py-2 text-sm text-slate-800"
+          className="flex items-start justify-between gap-3 rounded-xl border border-lime-400/50 bg-lime-50 px-4 py-2.5 text-sm text-slate-800 shadow-sm"
           role="status"
         >
           <p>{status}</p>
@@ -96,7 +148,7 @@ export function AppShell() {
         </div>
       ) : null}
 
-      <main className="flex-1 pb-8">
+      <main className="flex-1 pb-10">
         <Outlet />
       </main>
     </div>

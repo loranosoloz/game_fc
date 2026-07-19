@@ -170,14 +170,21 @@ export function createPlayersForClubDef(opts: {
       morale: 12 + Math.floor(rng() * 6),
       happiness: 12 + Math.floor(rng() * 6),
       wage: Math.round(1200 + star.ovr * 140 + club.reputation * 50),
+      cash: Math.round((1200 + star.ovr * 140 + club.reputation * 50) * (8 + rng() * 10)),
       squadRole: 'key',
       injuryDays: 0,
       injuryType: null,
       treatment: null,
       injuryHistory: [],
+      seasonYellows: 0,
+      banMatches: 0,
+      contractYears: 3,
+      contractEndSeason: 2029,
+      releaseClause: star.ovr >= 80 ? Math.round(star.ovr ** 2 * 1200) : null,
       minutesPlayed: 0,
       isYouth: false,
       mentorId: null,
+      mediaHandling: 6 + Math.floor(rng() * 12),
     })
   }
 
@@ -191,6 +198,7 @@ export function createPlayersForClubDef(opts: {
       const name = uniqueRealName(rng, leagueId, usedNames)
       const ca = caFromOverall(overall)
       const personality = pickPersonality(rng, age, overall)
+      const years = 1 + Math.floor(rng() * 4)
       clubPlayers.push({
         id: `${idPrefix}-${n}`,
         clubId: club.id,
@@ -211,14 +219,21 @@ export function createPlayersForClubDef(opts: {
         morale: 10 + Math.floor(rng() * 8),
         happiness: 10 + Math.floor(rng() * 8),
         wage: Math.round(800 + overall * 90 + club.reputation * 40),
+        cash: Math.round((800 + overall * 90 + club.reputation * 40) * (6 + rng() * 12)),
         squadRole: 'squad',
         injuryDays: 0,
         injuryType: null,
         treatment: null,
         injuryHistory: [],
+        seasonYellows: 0,
+        banMatches: 0,
+        contractYears: years,
+        contractEndSeason: 2026 + years,
+        releaseClause: overall >= 78 ? Math.round(overall ** 2 * 1000) : null,
         minutesPlayed: 0,
         isYouth: false,
         mentorId: null,
+        mediaHandling: 6 + Math.floor(rng() * 12),
       })
     }
   }

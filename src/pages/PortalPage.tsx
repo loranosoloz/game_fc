@@ -1,18 +1,31 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useGameStore } from '@/store/gameStore'
 import { sortedTable } from '@/game/simulate'
 import { formatMoney } from '@/lib/format'
 import { ensureFans, fanMoodLabel, fanTicketMultiplier } from '@/game/fans'
 import { boardLabel } from '@/game/board'
 import { ensurePhase5 } from '@/game/save'
-import { gossipLine } from '@/game/press'
+import { ensureMediaFeed, gossipLine, countTodaysNews } from '@/game/media'
+import { ensureScouting } from '@/game/scouting'
+import { latestSquadDay } from '@/game/dailyLife'
+import { cn } from '@/lib/cn'
 
 export function PortalPage() {
   const saveRaw = useGameStore((s) => s.save)!
   const save = ensurePhase5(ensureFans(saveRaw))
   const markInboxRead = useGameStore((s) => s.markInboxRead)
+  const answerPress = useGameStore((s) => s.answerPressConference)
+  const skipPress = useGameStore((s) => s.dismissPressConference)
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
   const fans = save.fans
   const board = save.board
+  const media = ensureMediaFeed(save)
+  const todayNews = countTodaysNews(save)
+  const socialPreview = media.social.slice(0, 2)
+  const newsPreview = media.news.slice(0, 3)
+  const conf = save.pressConference
+  const [pressPicks, setPressPicks] = useState<Record<string, string>>({})
   const nextFx = save.fixtures.find(
     (f) =>
       !f.played &&
@@ -29,6 +42,10 @@ export function PortalPage() {
   const top5 = table.slice(0, 5)
   const ticketBoost = Math.round((fanTicketMultiplier(fans) - 1) * 100)
   const rank = table.findIndex((r) => r.clubId === save.humanClubId) + 1
+  const dayLogs = latestSquadDay(save)
+  const missCount = dayLogs.filter((l) => l.missTraining).length
+  const scouting = ensureScouting(save)
+  const lastVisit = scouting.visits[0]
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
@@ -69,6 +86,39 @@ export function PortalPage() {
         </div>
 
         <div className="rounded-xl border border-slate-200 bg-white/80 p-5">
+          <h2 className="text-lg font-semibold">ชีวิตนักเตะวันนี้</h2>
+          <p className="mt-1 text-sm text-slate-600">
+            สุ่มจากฐานข้อมูล ~50 กิจกรรม · น้ำหนักตาม professionalism / ambition / personality
+            {dayLogs[0] ? ` · วันที่ ${dayLogs[0].date}` : ' · เล่นแมตช์เดย์เพื่อสร้างไดอารี่'}
+            {missCount > 0 ? ` · มาซ้อมไม่ทัน ${missCount} คน` : ''}
+          </p>
+          {dayLogs.length === 0 ? (
+            <p className="mt-3 text-sm text-slate-500">ยังไม่มีบันทึก — ผ่านแมตช์เดย์หนึ่งครั้ง</p>
+          ) : (
+            <ul className="mt-3 max-h-56 space-y-1 overflow-y-auto text-sm">
+              {dayLogs.slice(0, 24).map((l) => (
+                <li
+                  key={l.id}
+                  className={cn(
+                    'flex justify-between gap-2 rounded-md px-2 py-1.5',
+                    l.missTraining ? 'bg-rose-50 text-rose-950' : 'bg-slate-50',
+                    l.subject === 'staff' && !l.missTraining && 'bg-amber-50/80',
+                  )}
+                >
+                  <span className="truncate">
+                    <span className="font-medium">{l.playerName}</span>
+                    <span className="text-slate-500"> · {l.labelTh}</span>
+                  </span>
+                  <span className="shrink-0 text-[10px] font-bold tracking-wide text-slate-400 uppercase">
+                    {l.category}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        <div className="rounded-xl border border-slate-200 bg-white/80 p-5">
           <h2 className="text-lg font-semibold">Dynamics</h2>
           <p className="mt-1 text-sm text-slate-600">{save.dynamics.lastNote}</p>
           <dl className="mt-3 grid grid-cols-3 gap-2 text-center text-xs">
@@ -88,20 +138,134 @@ export function PortalPage() {
         </div>
 
         <div className="rounded-xl border border-slate-200 bg-white/80 p-5">
-          <h2 className="text-lg font-semibold">สื่อ / ซุบซิบ</h2>
-          <p className="mt-1 text-xs text-amber-800">{gossipLine(save)}</p>
-          <ul className="mt-3 space-y-2">
-            {save.press.length === 0 ? (
-              <li className="text-sm text-slate-500">ยังไม่มีข่าว</li>
-            ) : (
-              save.press.slice(0, 5).map((story) => (
-                <li key={story.id} className="rounded-md border border-slate-100 bg-slate-50 px-3 py-2">
-                  <p className="text-sm font-medium">{story.headline}</p>
-                  <p className="mt-1 text-xs text-slate-600">{story.body}</p>
+          <div className="flex items-center justify-between gap-2">
+            <h2 className="text-lg font-semibold">แขกสนาม / สเกาต์</h2>
+            <Link
+              to="/scouting"
+              className="text-xs font-semibold text-slate-600 underline underline-offset-2 hover:text-slate-900"
+            >
+              เปิดศูนย์ →
+            </Link>
+          </div>
+          <p className="mt-1 text-xs text-slate-600">
+            ความรู้ตลาดเริ่ม 0% · อดีตลูกทีม 50% · ดูฟอร์มทีละนัดได้ที่ศูนย์สเกาต์
+          </p>
+          {lastVisit ? (
+            <p className="mt-3 rounded-md bg-amber-50 px-3 py-2 text-sm text-amber-950">
+              <span className="font-semibold">{lastVisit.name}</span> · {lastVisit.report}
+            </p>
+          ) : (
+            <p className="mt-3 text-sm text-slate-500">ยังไม่มีแขก — เล่นนัดเหย้าเพื่อรับนักเตะ/โค้ช/คนดัง</p>
+          )}
+        </div>
+
+        {conf?.pending ? (
+          <div className="rounded-xl border border-amber-200 bg-amber-50/90 p-5">
+            <h2 className="text-lg font-semibold text-amber-950">แถลงข่าวหลังเกม</h2>
+            <p className="mt-1 text-sm text-amber-900">{conf.matchSummary}</p>
+            <ul className="mt-3 space-y-3">
+              {conf.questions.map((q) => (
+                <li key={q.id} className="rounded-md border border-amber-100 bg-white/80 p-3">
+                  <p className="text-sm font-medium text-slate-800">{q.prompt}</p>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {q.answers.map((a) => (
+                      <button
+                        key={a.id}
+                        type="button"
+                        onClick={() => setPressPicks((prev) => ({ ...prev, [q.id]: a.id }))}
+                        className={cn(
+                          'rounded border px-2 py-1 text-xs font-medium',
+                          pressPicks[q.id] === a.id
+                            ? 'border-slate-900 bg-slate-900 text-lime-300'
+                            : 'border-slate-300 bg-white hover:bg-slate-50',
+                        )}
+                      >
+                        {a.label}
+                      </button>
+                    ))}
+                  </div>
                 </li>
-              ))
-            )}
-          </ul>
+              ))}
+            </ul>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <button
+                type="button"
+                disabled={conf.questions.some((q) => !pressPicks[q.id])}
+                onClick={() => {
+                  const ids = conf.questions.map((q) => pressPicks[q.id])
+                  answerPress(ids)
+                  setPressPicks({})
+                }}
+                className="rounded-md bg-slate-900 px-3 py-2 text-sm font-semibold text-lime-300 disabled:opacity-40"
+              >
+                ส่งคำตอบ
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  skipPress()
+                  setPressPicks({})
+                }}
+                className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm"
+              >
+                ข้าม (−1 reputation)
+              </button>
+            </div>
+          </div>
+        ) : null}
+
+        <div className="rounded-xl border border-slate-200 bg-white/80 p-5">
+          <div className="flex items-center justify-between gap-2">
+            <h2 className="text-lg font-semibold">
+              สื่อ / ซุบซิบ
+              {todayNews > 0 ? (
+                <span className="ml-2 rounded-full bg-rose-100 px-2 py-0.5 text-xs font-bold text-rose-800">
+                  ใหม่ {todayNews}
+                </span>
+              ) : null}
+            </h2>
+            <Link
+              to="/media"
+              className="text-xs font-semibold text-slate-600 underline underline-offset-2 hover:text-slate-900"
+            >
+              เปิดฟีดเต็ม →
+            </Link>
+          </div>
+          <p className="mt-1 text-xs text-slate-500">
+            ความเชื่อถือผู้จัดการ {save.managerReputation ?? 50}/100
+          </p>
+          <div className="mt-2 rounded-md border border-amber-100 bg-amber-50/70 px-3 py-2">
+            <p className="text-[10px] font-bold tracking-wide text-amber-800 uppercase">ซุบซิบ</p>
+            <p className="text-xs text-amber-900">{gossipLine(save)}</p>
+          </div>
+          <div className="mt-3">
+            <p className="text-[10px] font-bold tracking-wide text-slate-500 uppercase">พาดหัว</p>
+            <ul className="mt-1 space-y-2">
+              {newsPreview.length === 0 ? (
+                <li className="text-sm text-slate-500">ยังไม่มีข่าว — เล่นแมตช์เดย์หรือดูหน้าสื่อ</li>
+              ) : (
+                newsPreview.map((story) => (
+                  <li key={story.id} className="rounded-md border border-slate-100 bg-slate-50 px-3 py-2">
+                    <p className="text-sm font-medium">{story.headline}</p>
+                    <p className="mt-1 text-xs text-slate-600">{story.body}</p>
+                  </li>
+                ))
+              )}
+            </ul>
+          </div>
+          {socialPreview.length > 0 ? (
+            <div className="mt-3">
+              <p className="text-[10px] font-bold tracking-wide text-slate-500 uppercase">โซเชียล</p>
+              <ul className="mt-1 space-y-1.5">
+                {socialPreview.map((s) => (
+                  <li key={s.id} className="rounded-md bg-sky-50/80 px-2 py-1.5 text-xs text-slate-700">
+                    <span className="font-semibold">{s.headline}</span>
+                    <span className="text-slate-500"> — {s.body}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
 
         <div className="rounded-xl border border-slate-200 bg-white/80 p-5">

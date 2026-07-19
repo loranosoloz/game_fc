@@ -6,9 +6,11 @@ import type {
   MatchResult,
   PitchSpot,
   Player,
+  Referee,
   Tactics,
 } from './types'
 import { applyInjury } from './medical'
+import { getReferee, refereeKickoffNote } from './referees'
 
 function mulberry32(seed: number) {
   return () => {
@@ -48,7 +50,7 @@ function xiStrength(players: Player[], tactics: Tactics): number {
     .filter(Boolean) as Player[]
   if (xi.length === 0) return 50
   const sum = xi.reduce((acc, p) => {
-    if (p.injuryDays > 0) return acc
+    if (p.injuryDays > 0 || (p.banMatches ?? 0) > 0) return acc
     const fitness =
       (p.condition / 100) *
       (0.7 + p.form / 40) *
@@ -122,6 +124,7 @@ export function simulateFixture(
   tacticsByClub: Record<string, Tactics>,
   seedExtra = 0,
   humanDynamicsBonus = 1,
+  referee?: Referee,
 ): MatchResult {
   const seed =
     fixture.matchday * 10_000 +
@@ -129,6 +132,13 @@ export function simulateFixture(
     fixture.awayClubId.charCodeAt(fixture.awayClubId.length - 1) * 13 +
     seedExtra
   const rng = mulberry32(seed)
+
+  const ref = referee ?? getReferee(fixture.refereeId) ?? getReferee('ref-01')!
+  // strictness 1–20 → foul/card bias
+  const strict = Math.max(1, Math.min(20, ref.strictness)) / 20
+  const foulChance = 0.08 + 0.1 * strict
+  const yellowChance = 0.04 + 0.1 * strict
+  const redChance = 0.004 + 0.028 * strict
 
   const homeClub = clubs.find((c) => c.id === fixture.homeClubId)!
   const awayClub = clubs.find((c) => c.id === fixture.awayClubId)!
@@ -195,7 +205,7 @@ export function simulateFixture(
   push(
     0,
     'kickoff',
-    `เสียงนกหวีด! ${homeClub.name} เปิดบ้านรับ ${awayClub.name} แฟนบอลพร้อมแล้ว`,
+    `เสียงนกหวีด! ${homeClub.name} เปิดบ้านรับ ${awayClub.name} — ${refereeKickoffNote(ref)}`,
     { x: 50, y: 50 },
   )
 
@@ -271,14 +281,14 @@ export function simulateFixture(
         'chance',
         `${isHome ? homeClub.shortName : awayClub.shortName} บุกขึ้นหน้า — ${scorer.name} มีพื้นที่!`,
         spot(rng, isHome ? 'away' : 'home'),
-        { clubId: isHome ? homeClub.id : awayClub.id, playerName: scorer.name },
+        { clubId: isHome ? homeClub.id : awayClub.id, playerName: scorer.name, playerId: scorer.id },
       )
       push(
         beat.minute,
         'shot',
         `${scorer.name} ยิง...`,
         s,
-        { clubId: isHome ? homeClub.id : awayClub.id, playerName: scorer.name },
+        { clubId: isHome ? homeClub.id : awayClub.id, playerName: scorer.name, playerId: scorer.id },
       )
       if (isHome) hg += 1
       else ag += 1
@@ -291,6 +301,7 @@ export function simulateFixture(
         {
           clubId: isHome ? homeClub.id : awayClub.id,
           playerName: scorer.name,
+          playerId: scorer.id,
         },
       )
       continue
@@ -346,22 +357,45 @@ export function simulateFixture(
         spot(rng, homeAttack ? 'awayBox' : 'homeBox'),
         { clubId: team.id, playerName: actor.name },
       )
-    } else if (roll < 0.74) {
+    } else if (roll < 0.7) {
       push(
         beat.minute,
         'foul',
-        `${defender.name} ฟาล์วใส่ ${actor.name} — ฟรีคิกของ ${team.shortName}`,
+        `${defender.name} ฟาล์วใส่ ${actor.name} — ${ref.name} ให้ฟรีคิก ${team.shortName}`,
         spot(rng, 'mid'),
-        { clubId: opp.id, playerName: defender.name },
+        { clubId: opp.id, playerName: defender.name, playerId: defender.id },
       )
-    } else if (roll < 0.84) {
-      push(
-        beat.minute,
-        'card',
-        `ใบเหลือง! ${defender.name} (${opp.shortName}) โดนจอง`,
-        spot(rng, 'mid'),
-        { clubId: opp.id, playerName: defender.name },
-      )
+    } else if (roll < 0.7 + foulChance * 0.35 + yellowChance + redChance) {
+      // กรรมการเข้ม → ใบบ่อยขึ้น / โอกาสแดงสูงขึ้น
+      const cardRoll = rng()
+      const redCut = redChance / Math.max(0.01, yellowChance + redChance)
+      if (cardRoll < redCut) {
+        push(
+          beat.minute,
+          'card',
+          `ใบแดง! ${ref.name} ไล่ ${defender.name} (${opp.shortName}) ออกจากสนาม`,
+          spot(rng, 'mid'),
+          {
+            clubId: opp.id,
+            playerName: defender.name,
+            playerId: defender.id,
+            cardColor: 'red',
+          },
+        )
+      } else {
+        push(
+          beat.minute,
+          'card',
+          `ใบเหลือง! ${ref.name} จอง ${defender.name} (${opp.shortName})`,
+          spot(rng, 'mid'),
+          {
+            clubId: opp.id,
+            playerName: defender.name,
+            playerId: defender.id,
+            cardColor: 'yellow',
+          },
+        )
+      }
     } else if (roll < 0.92) {
       push(
         beat.minute,
@@ -397,7 +431,36 @@ export function simulateFixture(
 
   events.sort((a, b) => a.minute - b.minute || a.id.localeCompare(b.id))
 
-  // Reconcile running score in events (already tracked via hg/ag at push time)
+  const blank = () => ({
+    shots: 0,
+    shotsOnTarget: 0,
+    corners: 0,
+    fouls: 0,
+    yellows: 0,
+    reds: 0,
+    possession: 50,
+  })
+  const homeStats = blank()
+  const awayStats = blank()
+  for (const ev of events) {
+    const side = ev.clubId === homeClub.id ? homeStats : ev.clubId === awayClub.id ? awayStats : null
+    if (!side) continue
+    if (ev.kind === 'shot' || ev.kind === 'goal') side.shots += 1
+    if (ev.kind === 'goal') side.shotsOnTarget += 1
+    if (ev.kind === 'corner') side.corners += 1
+    if (ev.kind === 'foul') side.fouls += 1
+    if (ev.kind === 'card' && ev.cardColor === 'yellow') side.yellows += 1
+    if (ev.kind === 'card' && ev.cardColor === 'red') side.reds += 1
+    if (ev.kind === 'save') {
+      // save = shot on target by the other side
+      if (ev.clubId === homeClub.id) awayStats.shotsOnTarget += 1
+      else if (ev.clubId === awayClub.id) homeStats.shotsOnTarget += 1
+    }
+  }
+  const totalAtk = homeRating + awayRating
+  homeStats.possession = Math.round((homeRating / totalAtk) * 100)
+  awayStats.possession = 100 - homeStats.possession
+
   return {
     fixtureId: fixture.id,
     homeGoals: hg,
@@ -405,6 +468,7 @@ export function simulateFixture(
     events,
     homeRating: Math.round(homeRating * 10) / 10,
     awayRating: Math.round(awayRating * 10) / 10,
+    stats: { home: homeStats, away: awayStats },
   }
 }
 
@@ -431,6 +495,7 @@ export function applyMatchFatigue(players: Player[], tactics: Tactics, played: b
     if (
       xi.has(p.id) &&
       p.injuryDays <= 0 &&
+      (p.banMatches ?? 0) <= 0 &&
       next.condition < 60 &&
       Math.random() < 0.02 + p.hidden.injuryProneness / 400
     ) {

@@ -9,17 +9,19 @@ import { createBoardState } from './board'
 import { defaultTraining } from './training'
 import { ensurePlayerV3Fields } from './attributes'
 import { createDynamics } from './dynamics'
-import { createStaff } from './staff'
+import { createStaff, ensureStaffState } from './staff'
 import { createYouthState } from './youth'
-import { createScouting } from './scouting'
-import { createPressFeed } from './press'
+import { createScouting, ensureScouting } from './scouting'
+import { createPressFeed, createMediaFeed, ensureMediaFeed } from './media'
 import { createCupState, generateCupFixtures } from './cup'
 import {
   createUclState,
   createUclInviteClubs,
   generateUclFixtures,
 } from './ucl'
+import { assignRefereesToFixtures } from './referees'
 import { createDevelopmentState } from './development'
+import { createClubFinance, ensureClubFinance } from './playerEconomy'
 import { roleGroup } from './positions'
 import type { RoleCode } from './types'
 
@@ -44,13 +46,14 @@ export function createNewGame(
   const seasonStart = leagueFx[0]?.date ?? startDate
   const cupFx = generateCupFixtures(domesticClubs, seasonStart)
   const uclFx = generateUclFixtures(domesticClubs, invite.clubs, humanClubId, seasonStart)
-  const fixtures = [...leagueFx, ...cupFx, ...uclFx]
+  const fixtures = assignRefereesToFixtures([...leagueFx, ...cupFx, ...uclFx])
   const human = domesticClubs.find((c) => c.id === humanClubId)!
 
   return {
     version: 6,
     createdAt: new Date().toISOString(),
     managerName: managerName.trim() || 'Manager',
+    managerReputation: Math.min(72, 48 + Math.round(human.reputation / 5)),
     humanClubId,
     leagueId,
     leagueName: league.name,
@@ -77,10 +80,14 @@ export function createNewGame(
     training: defaultTraining(),
     board: createBoardState(human.reputation),
     dynamics: createDynamics(),
-    staff: createStaff(human.reputation),
+    staff: createStaff(clubs, humanClubId),
+    dailyLogs: [],
+    clubFinance: createClubFinance(),
     youth: createYouthState(),
     scouting: createScouting(players, humanClubId),
     press: createPressFeed(),
+    media: createMediaFeed(),
+    pressConference: null,
     cup: createCupState(league.cupName),
     ucl: createUclState(),
     development: createDevelopmentState(),
@@ -96,9 +103,20 @@ export function ensurePhase5(save: GameSave): GameSave {
   }
   if (!next.board || !next.board.kpis) next = { ...next, board: createBoardState(human.reputation) }
   if (!next.dynamics) next = { ...next, dynamics: createDynamics() }
-  if (!next.staff) next = { ...next, staff: createStaff(human.reputation) }
+  if (!next.staff) next = { ...next, staff: createStaff(next.clubs, next.humanClubId) }
+  else next = { ...next, staff: ensureStaffState(next.staff, next.clubs, next.humanClubId) }
+  if (!next.dailyLogs) next = { ...next, dailyLogs: [] }
+  if (!next.clubFinance) next = { ...next, clubFinance: ensureClubFinance(next) }
   if (!next.youth) next = { ...next, youth: createYouthState() }
   if (!next.press) next = { ...next, press: [] }
+  if (!next.media) next = { ...next, media: ensureMediaFeed(next) }
+  if (next.pressConference === undefined) next = { ...next, pressConference: null }
+  if (typeof next.managerReputation !== 'number') {
+    next = {
+      ...next,
+      managerReputation: Math.min(72, 48 + Math.round(human.reputation / 5)),
+    }
+  }
   if (!next.cup) next = { ...next, cup: createCupState() }
   if (!next.ucl) next = { ...next, ucl: createUclState() }
   if (!next.development) next = { ...next, development: createDevelopmentState() }
@@ -108,6 +126,8 @@ export function ensurePhase5(save: GameSave): GameSave {
   const players = next.players.map((p) => ensurePlayerV3Fields(p))
   if (!next.scouting?.byPlayer) {
     next = { ...next, scouting: createScouting(players, next.humanClubId) }
+  } else {
+    next = { ...next, scouting: ensureScouting(next) }
   }
 
   const clubs = next.clubs.map((c) => ({
@@ -128,10 +148,12 @@ export function ensurePhase5(save: GameSave): GameSave {
     }
   }
 
-  const fixtures = next.fixtures.map((f) => ({
-    ...f,
-    competition: f.competition ?? ('league' as const),
-  }))
+  const fixtures = assignRefereesToFixtures(
+    next.fixtures.map((f) => ({
+      ...f,
+      competition: f.competition ?? ('league' as const),
+    })),
+  )
 
   return {
     ...next,
@@ -217,10 +239,26 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
       : defaultTraining(),
     board: (raw.board as GameSave['board']) ?? createBoardState(human.reputation),
     dynamics: (raw.dynamics as GameSave['dynamics']) ?? createDynamics(),
-    staff: (raw.staff as GameSave['staff']) ?? createStaff(human.reputation),
+    staff: ensureStaffState(
+      (raw.staff as GameSave['staff']) ?? createStaff(clubs, humanClubId),
+      clubs,
+      humanClubId,
+    ),
+    dailyLogs: (raw.dailyLogs as GameSave['dailyLogs']) ?? [],
+    clubFinance: (raw.clubFinance as GameSave['clubFinance']) ?? createClubFinance(),
     youth: (raw.youth as GameSave['youth']) ?? createYouthState(),
     scouting: (raw.scouting as GameSave['scouting']) ?? createScouting(players, humanClubId),
     press: (raw.press as GameSave['press']) ?? [],
+    media:
+      (raw.media as GameSave['media']) ??
+      ensureMediaFeed({
+        press: (raw.press as GameSave['press']) ?? [],
+      } as GameSave),
+    pressConference: (raw.pressConference as GameSave['pressConference']) ?? null,
+    managerReputation:
+      typeof raw.managerReputation === 'number'
+        ? (raw.managerReputation as number)
+        : Math.min(72, 48 + Math.round(human.reputation / 5)),
     cup: (raw.cup as GameSave['cup']) ?? createCupState(),
     ucl: (raw.ucl as GameSave['ucl']) ?? createUclState(),
     development: (raw.development as GameSave['development']) ?? createDevelopmentState(),
@@ -236,7 +274,7 @@ export function saveToStorage(save: GameSave) {
 export function loadFromStorage(): GameSave | null {
   const tryParse = (raw: string) => {
     const parsed = JSON.parse(raw) as Record<string, unknown>
-    if (parsed.version === 5 || parsed.version === 4 || parsed.version === 3) {
+    if (parsed.version === 6 || parsed.version === 5 || parsed.version === 4 || parsed.version === 3) {
       return ensurePhase5(parsed as unknown as GameSave)
     }
     if (parsed.version === 2 || parsed.version === 1) {

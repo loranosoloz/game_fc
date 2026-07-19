@@ -5,6 +5,8 @@ import { useGameStore } from '@/store/gameStore'
 import { cn } from '@/lib/cn'
 import type { MatchEventKind } from '@/game/types'
 import { buildPitchPlayers, withActionOffset } from '@/game/pitchLayout'
+import { getReferee, reputationLabel, strictnessLabel } from '@/game/referees'
+import { MatchStatsPanel } from '@/components/MatchStatsPanel'
 
 const SPEED_MS: Record<'slow' | 'normal' | 'fast', number> = {
   slow: 1400,
@@ -12,7 +14,7 @@ const SPEED_MS: Record<'slow' | 'normal' | 'fast', number> = {
   fast: 280,
 }
 
-function kindTone(kind: MatchEventKind) {
+function kindTone(kind: MatchEventKind, cardColor?: 'yellow' | 'red') {
   switch (kind) {
     case 'goal':
       return 'border-lime-400 bg-lime-100 text-lime-950'
@@ -22,6 +24,9 @@ function kindTone(kind: MatchEventKind) {
     case 'save':
       return 'border-sky-300 bg-sky-50 text-sky-950'
     case 'card':
+      return cardColor === 'red'
+        ? 'border-red-500 bg-red-100 text-red-950'
+        : 'border-yellow-400 bg-yellow-50 text-yellow-950'
     case 'foul':
       return 'border-orange-300 bg-orange-50 text-orange-950'
     case 'fulltime':
@@ -79,6 +84,8 @@ export function LiveMatchPage() {
     }
   }, [save, live])
 
+  const referee = live?.humanFixture ? getReferee(live.humanFixture.refereeId) : undefined
+
   const pitchPlayers = useMemo(() => {
     if (!save || !live?.humanFixture || !current) return []
     const fx = live.humanFixture
@@ -106,8 +113,10 @@ export function LiveMatchPage() {
             <span className="text-slate-400">พบ</span> {clubs.away.name}
           </h1>
           <p className="text-sm text-slate-600">
-            แมตช์เดย์ {live.matchday} · {live.date} · ผู้เล่น 22 คนบนสนาม · นัด AI
-            จะถูกบันทึกเมื่อจบเกม
+            แมตช์เดย์ {live.matchday} · {live.date}
+            {referee
+              ? ` · ผู้ตัดสิน ${referee.name} (${reputationLabel(referee.reputation)} · ${strictnessLabel(referee.strictness)})`
+              : ''}
           </p>
         </div>
         <div className="text-right">
@@ -202,7 +211,10 @@ export function LiveMatchPage() {
           {visible.map((ev) => (
             <div
               key={ev.id}
-              className={cn('rounded-md border px-3 py-2 text-sm leading-relaxed', kindTone(ev.kind))}
+              className={cn(
+                'rounded-md border px-3 py-2 text-sm leading-relaxed',
+                kindTone(ev.kind, ev.cardColor),
+              )}
             >
               <span className="mr-2 font-mono text-xs font-bold opacity-70">{ev.minute}&apos;</span>
               {ev.text}
@@ -210,6 +222,14 @@ export function LiveMatchPage() {
           ))}
         </div>
       </section>
+
+      {done && live.humanResult && clubs ? (
+        <MatchStatsPanel
+          result={live.humanResult}
+          homeName={clubs.home.name}
+          awayName={clubs.away.name}
+        />
+      ) : null}
     </div>
   )
 }

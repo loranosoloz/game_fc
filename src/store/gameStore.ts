@@ -15,7 +15,7 @@ import type { LeagueId } from '@/data/world'
 import {
   applyPreparedMatchday,
   nextUnplayedMatchday,
-  payWeeklyWages,
+  applyWeeklyWages,
   prepareMatchday,
   recoverSquad,
   simulateMatchday,
@@ -23,14 +23,20 @@ import {
 } from '@/game/simulate'
 import { autoPickTactics } from '@/game/seed'
 import { FORMATION_SLOTS } from '@/game/types'
-import { buyPlayerFromAi, sellPlayerToAi } from '@/game/transfer'
+import { buyPlayerFromAi, sellPlayerToAi, renewContract } from '@/game/transfer'
 import { applyTrainingWeek, recoverInjuriesOneDay } from '@/game/training'
 import { setPlayerTreatment } from '@/game/medical'
-import { upgradeStaff, staffUpgradeCost, staffLevel } from '@/game/staff'
+import { upgradeStaff, staffUpgradeCost, staffLevel, hireStaff, convertPlayerToStaff, promoteStaffToCoach } from '@/game/staff'
 import { upgradeAcademy } from '@/game/youth'
-import { scoutPlayer } from '@/game/scouting'
+import { scoutPlayer, assignFormWatch } from '@/game/scouting'
 import { recomputeDynamics } from '@/game/dynamics'
 import { assignMentor } from '@/game/development'
+import { plantRomanoStory } from '@/game/romanoPlant'
+import type { PlantOpts, RomanoPlantKind } from '@/game/romanoPlant'
+import {
+  answerPressConference as resolvePressConference,
+  dismissPressConference as skipPressConference,
+} from '@/game/pressConference'
 
 interface GameStore {
   save: GameSave | null
@@ -56,23 +62,31 @@ interface GameStore {
   advanceDay: () => void
   markInboxRead: (id: string) => void
   clearStatus: () => void
-  offerBuyPlayer: (playerId: string, fee: number, wage: number) => boolean
+  offerBuyPlayer: (playerId: string, fee: number, wage: number, contractYears?: number) => boolean
   offerSellPlayer: (playerId: string, fee: number) => boolean
+  renewPlayerContract: (playerId: string, wage: number, years: number) => boolean
   upgradeStaffRole: (role: 'coach' | 'scout' | 'physio') => void
+  hireStaffMember: (staffId: string, asRole?: 'coach' | 'scout' | 'physio') => boolean
+  promoteToCoach: (staffId: string) => boolean
+  retirePlayerToStaff: (playerId: string, role?: 'coach' | 'scout' | 'physio') => boolean
   upgradeYouthAcademy: () => void
   runScout: (playerId: string) => void
+  assignScoutWatch: (fixtureId: string, targetPlayerIds?: string[]) => boolean
   setIndividualFocus: (playerId: string, focus: IndividualFocus) => void
   setMentor: (menteeId: string, mentorId: string | null) => void
+  plantRomano: (kind: RomanoPlantKind, opts?: PlantOpts) => boolean
+  answerPressConference: (answerIds: string[]) => void
+  dismissPressConference: () => void
 }
 
 function finalizeApplied(save: GameSave, matchday: number, resultsCount: number) {
   const physio = staffLevel(save.staff, 'physio')
-  const withRecovery = {
+  let withRecovery: GameSave = {
     ...save,
     players: recoverSquad(save.players, physio),
-    clubs: payWeeklyWages(save.clubs, save.players),
-    dynamics: recomputeDynamics(save),
   }
+  withRecovery = applyWeeklyWages(withRecovery)
+  withRecovery = { ...withRecovery, dynamics: recomputeDynamics(withRecovery) }
   saveToStorage(withRecovery)
   return {
     save: withRecovery,
@@ -393,10 +407,10 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
   clearStatus: () => set({ status: null }),
 
-  offerBuyPlayer: (playerId, fee, wage) => {
+  offerBuyPlayer: (playerId, fee, wage, contractYears = 3) => {
     const { save } = get()
     if (!save) return false
-    const result = buyPlayerFromAi(save, playerId, fee, wage)
+    const result = buyPlayerFromAi(save, playerId, fee, wage, contractYears)
     set({ status: result.message })
     if (!result.ok) return false
     saveToStorage(result.save)
@@ -415,13 +429,24 @@ export const useGameStore = create<GameStore>((set, get) => ({
     return true
   },
 
+  renewPlayerContract: (playerId, wage, years) => {
+    const { save } = get()
+    if (!save) return false
+    const result = renewContract(save, playerId, wage, years)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
   upgradeStaffRole: (role) => {
     const { save } = get()
     if (!save) return
     const member = save.staff.members.find((m) => m.role === role)!
     const cost = staffUpgradeCost(member.level)
     const club = save.clubs.find((c) => c.id === save.humanClubId)!
-    const result = upgradeStaff(save.staff, role, club.balance >= cost)
+    const result = upgradeStaff(save.staff, role, save.humanClubId, club.balance >= cost)
     if (!result.ok) {
       set({ status: result.message })
       return
@@ -435,6 +460,39 @@ export const useGameStore = create<GameStore>((set, get) => ({
     }
     saveToStorage(next)
     set({ save: next, status: result.message })
+  },
+
+  hireStaffMember: (staffId, asRole = 'coach') => {
+    const { save } = get()
+    if (!save) return false
+    const result = hireStaff(save, staffId, asRole)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  promoteToCoach: (staffId) => {
+    const { save } = get()
+    if (!save) return false
+    const result = promoteStaffToCoach(save, staffId)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  retirePlayerToStaff: (playerId, role = 'coach') => {
+    const { save } = get()
+    if (!save) return false
+    const result = convertPlayerToStaff(save, playerId, role)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
   },
 
   upgradeYouthAcademy: () => {
@@ -453,5 +511,43 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const { save: next, message } = scoutPlayer(save, playerId)
     saveToStorage(next)
     set({ save: next, status: message })
+  },
+
+  assignScoutWatch: (fixtureId, targetPlayerIds = []) => {
+    const { save } = get()
+    if (!save) return false
+    const result = assignFormWatch(save, fixtureId, targetPlayerIds)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  plantRomano: (kind, opts = {}) => {
+    const { save } = get()
+    if (!save) return false
+    const result = plantRomanoStory(save, save.humanClubId, kind, opts)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  answerPressConference: (answerIds) => {
+    const { save } = get()
+    if (!save) return
+    const result = resolvePressConference(save, answerIds)
+    saveToStorage(result.save)
+    set({ save: result.save, status: result.note })
+  },
+
+  dismissPressConference: () => {
+    const { save } = get()
+    if (!save) return
+    const next = skipPressConference(save)
+    saveToStorage(next)
+    set({ save: next, status: 'ข้ามแถลงข่าว (−1 reputation)' })
   },
 }))

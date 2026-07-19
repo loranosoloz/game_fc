@@ -8,7 +8,8 @@ import type { PositionGroup } from '@/game/types'
 import { cn } from '@/lib/cn'
 import { TransferIntelPanel } from '@/components/TransferIntelPanel'
 import { ensureFans, fanMoodLabel } from '@/game/fans'
-import { knowledgeOf, revealPa } from '@/game/scouting'
+import { ensureScouting, knowledgeOf, recentFormForPlayer, revealOverall, revealPa } from '@/game/scouting'
+import { Link } from 'react-router-dom'
 
 type Tab = 'buy' | 'sell'
 
@@ -17,14 +18,19 @@ export function TransfersPage() {
   const save = ensureFans(saveRaw)
   const offerBuyPlayer = useGameStore((s) => s.offerBuyPlayer)
   const offerSellPlayer = useGameStore((s) => s.offerSellPlayer)
+  const renewPlayerContract = useGameStore((s) => s.renewPlayerContract)
   const runScout = useGameStore((s) => s.runScout)
 
   const [tab, setTab] = useState<Tab>('buy')
   const [pos, setPos] = useState<PositionGroup | 'ALL'>('ALL')
   const [q, setQ] = useState('')
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [fee, setFee] = useState(0)
+  const [wage, setWage] = useState(0)
+  const [years, setYears] = useState(3)
 
   const human = save.clubs.find((c) => c.id === save.humanClubId)!
+  const scouting = ensureScouting(save)
   const market = useMemo(() => listMarketPlayers(save), [save])
   const mySquad = useMemo(
     () =>
@@ -47,9 +53,6 @@ export function TransfersPage() {
     ? save.clubs.find((c) => c.id === selectedBuy.clubId)
     : null
 
-  const [fee, setFee] = useState(0)
-  const [wage, setWage] = useState(0)
-
   const intel = useMemo(() => {
     if (tab === 'buy' && selectedBuy) return analyzeBuy(save, selectedBuy, save.fans)
     if (tab === 'sell' && selectedSell) return analyzeSell(save, selectedSell, save.fans)
@@ -62,6 +65,7 @@ export function TransfersPage() {
     setSelectedId(id)
     setFee(report.suggestedFee)
     setWage(report.suggestedWage ?? Math.round(p.wage * 1.1))
+    setYears(3)
   }
 
   const pickSell = (id: string) => {
@@ -69,6 +73,8 @@ export function TransfersPage() {
     const report = analyzeSell(save, p, save.fans)
     setSelectedId(id)
     setFee(report.suggestedFee)
+    setWage(p.wage)
+    setYears(Math.max(1, p.contractYears ?? 2))
   }
 
   return (
@@ -146,8 +152,12 @@ export function TransfersPage() {
                       </span>
                     </span>
                     <span className="text-right">
-                      <span className="block font-bold">{p.overall}</span>
-                      <span className="text-xs text-slate-500">{formatMoney(p.value)}</span>
+                      <span className="block font-bold">
+                        {revealOverall(p.overall, knowledgeOf(scouting, p.id))}
+                      </span>
+                      <span className="text-xs text-slate-500">
+                        รู้ {knowledgeOf(scouting, p.id)}%
+                      </span>
                     </span>
                   </button>
                 </li>
@@ -192,25 +202,50 @@ export function TransfersPage() {
           <div className="mt-3 space-y-3 text-sm">
             <p>
               <strong>{selectedBuy.name}</strong> · {roleShort(selectedBuy.role)} · OVR{' '}
-              {selectedBuy.overall}
+              {revealOverall(selectedBuy.overall, knowledgeOf(scouting, selectedBuy.id))}
             </p>
             <p className="text-slate-600">
               สังกัด: {selectedBuy.clubName} (AI)
               <br />
-              Scout knowledge: {knowledgeOf(save.scouting, selectedBuy.id)}% · PA{' '}
-              {revealPa(selectedBuy.pa, knowledgeOf(save.scouting, selectedBuy.id))}
+              ความรู้สเกาต์: {knowledgeOf(scouting, selectedBuy.id)}%
+              {scouting.alumniIds.includes(selectedBuy.id) ? ' · อดีตลูกทีม (พื้น 50%)' : ' · เริ่มจาก 0%'}
+              <br />
+              PA {revealPa(selectedBuy.pa, knowledgeOf(scouting, selectedBuy.id))}
               <br />
               มูลค่าประเมิน: {formatMoney(selectedBuy.value)}
               <br />
               ค่าตัวขั้นต่ำโดยประมาณ: {formatMoney(minAcceptableFee(selectedBuy, sellerClub))}
             </p>
+            {recentFormForPlayer(scouting, selectedBuy.id, 3).length > 0 ? (
+              <p className="rounded-md bg-amber-50 px-3 py-2 text-xs text-amber-950">
+                ฟอร์มที่เห็น:{' '}
+                {recentFormForPlayer(scouting, selectedBuy.id, 3)
+                  .map((f) => `MD${f.matchday} ${f.form}/10`)
+                  .join(' · ')}{' '}
+                (แค่นัดต่อนัด)
+              </p>
+            ) : (
+              <p className="text-xs text-slate-500">
+                ยังไม่มีฟอร์มนัด —{' '}
+                <Link to="/scouting" className="font-semibold underline underline-offset-2">
+                  จ้างสเกาต์ดูนัด
+                </Link>{' '}
+                หรือรอแขกสนาม
+              </p>
+            )}
             <button
               type="button"
               className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 font-semibold hover:bg-slate-50"
               onClick={() => runScout(selectedBuy.id)}
             >
-              ส่งสเกาต์ (+ความรู้)
+              ส่งสเกาต์ (+ความรู้ทั่วไป)
             </button>
+            <Link
+              to="/scouting"
+              className="block w-full rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-center text-sm font-semibold text-amber-950 hover:bg-amber-100"
+            >
+              ดูฟอร์ม / แขกสนาม →
+            </Link>
             <label className="grid gap-1">
               <span>เสนอค่าตัว</span>
               <input
@@ -229,10 +264,21 @@ export function TransfersPage() {
                 onChange={(e) => setWage(Number(e.target.value))}
               />
             </label>
+            <label className="grid gap-1">
+              <span>ระยะสัญญา (ปี)</span>
+              <input
+                type="number"
+                min={1}
+                max={5}
+                className="rounded-md border border-slate-300 px-3 py-2"
+                value={years}
+                onChange={(e) => setYears(Number(e.target.value))}
+              />
+            </label>
             <button
               type="button"
               className="w-full rounded-md bg-slate-900 px-4 py-2.5 font-semibold text-lime-300 hover:bg-slate-800"
-              onClick={() => offerBuyPlayer(selectedBuy.id, fee, wage)}
+              onClick={() => offerBuyPlayer(selectedBuy.id, fee, wage, years)}
             >
               ส่งข้อเสนอซื้อ
             </button>
@@ -245,7 +291,16 @@ export function TransfersPage() {
               <strong>{selectedSell.name}</strong> · {roleShort(selectedSell.role)} · OVR{' '}
               {selectedSell.overall}
             </p>
-            <p className="text-slate-600">มูลค่าประเมิน: {formatMoney(selectedSell.value)}</p>
+            <p className="text-slate-600">
+              มูลค่าประเมิน: {formatMoney(selectedSell.value)}
+              <br />
+              สัญญาถึงฤดูกาล {selectedSell.contractEndSeason ?? '—'} · เหลือ ~
+              {selectedSell.contractYears ?? '—'} ปี · ค่าเหนื่อย{' '}
+              {formatMoney(selectedSell.wage)}
+              {selectedSell.releaseClause
+                ? ` · เงื่อนไขซื้อขาด ${formatMoney(selectedSell.releaseClause)}`
+                : ''}
+            </p>
             <label className="grid gap-1">
               <span>ตั้งราคาขาย</span>
               <input
@@ -262,6 +317,38 @@ export function TransfersPage() {
             >
               เสนอขายให้ AI
             </button>
+            <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+              <p className="font-semibold text-slate-800">ต่อสัญญา</p>
+              <div className="mt-2 grid grid-cols-2 gap-2">
+                <label className="grid gap-1">
+                  <span className="text-xs text-slate-500">ค่าเหนื่อย</span>
+                  <input
+                    type="number"
+                    className="rounded-md border border-slate-300 px-2 py-1.5"
+                    value={wage}
+                    onChange={(e) => setWage(Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-1">
+                  <span className="text-xs text-slate-500">ปี</span>
+                  <input
+                    type="number"
+                    min={1}
+                    max={5}
+                    className="rounded-md border border-slate-300 px-2 py-1.5"
+                    value={years}
+                    onChange={(e) => setYears(Number(e.target.value))}
+                  />
+                </label>
+              </div>
+              <button
+                type="button"
+                className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-2 font-semibold hover:bg-white"
+                onClick={() => renewPlayerContract(selectedSell.id, wage, years)}
+              >
+                ต่อสัญญา
+              </button>
+            </div>
           </div>
         ) : null}
 

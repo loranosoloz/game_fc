@@ -5,6 +5,12 @@
 | Phase 0–4 | ✅ |
 | Phase Final — 6 ลีกโลก + ไทย | ✅ |
 | Full real names + Champions League | ✅ |
+| Referees (50 + strictness) | ✅ |
+| Discipline + Medical + Contracts + Match stats + UI polish | ✅ |
+| Staff pool 200 + daily life + one head coach | ✅ |
+| Media: news + social + Romano | ✅ |
+| Scouting 0%/alumni 50% + stadium guests + form watch | ✅ |
+| Gate tickets/shirts + player wallets + spending DB | ✅ |
 
 Data packs: `src/data/` + `src/data/world/` · Save **v6**
 

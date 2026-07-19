@@ -8,8 +8,9 @@ import {
   fanInbox,
 } from './fans'
 import { canAffordTransfer } from './financeFfp'
-import { pressAfterTransfer } from './press'
+import { newsAfterTransfer, newsAfterContract, pushNews } from './media'
 import { injuryHistoryPenalty } from './medical'
+import { ensureScouting, markPlayerAsAlumni } from './scouting'
 
 export function estimatedValue(player: Player): number {
   const ageFactor = player.age <= 24 ? 1.25 : player.age <= 29 ? 1.0 : player.age <= 32 ? 0.7 : 0.45
@@ -56,6 +57,7 @@ export function buyPlayerFromAi(
   playerId: string,
   offerFee: number,
   offerWage: number,
+  contractYears = 3,
 ): OfferResult {
   save = ensureFans(save)
   const player = save.players.find((p) => p.id === playerId)
@@ -66,7 +68,6 @@ export function buyPlayerFromAi(
 
   const seller = save.clubs.find((c) => c.id === player.clubId)!
   const buyer = save.clubs.find((c) => c.id === save.humanClubId)!
-  const value = estimatedValue(player)
   const minFee = minAcceptableFee(player, seller)
 
   if (offerFee > buyer.balance) {
@@ -80,7 +81,9 @@ export function buyPlayerFromAi(
     (p) => p.clubId === seller.id && p.position === player.position,
   ).length
   const depthPenalty = sellerDepth <= 2 ? 1.25 : 1
-  const acceptFee = minFee * depthPenalty
+  const rep = save.managerReputation ?? 50
+  const repDiscount = 1 - (rep - 50) / 400
+  const acceptFee = minFee * depthPenalty * Math.max(0.9, Math.min(1.08, repDiscount))
 
   if (offerFee < acceptFee * 0.92) {
     return {
@@ -105,6 +108,12 @@ export function buyPlayerFromAi(
           wage: offerWage,
           morale: Math.min(20, p.morale + 2),
           happiness: Math.min(20, (p.happiness ?? p.morale) + 2),
+          contractYears: contractYears,
+          contractEndSeason: save.season + contractYears,
+          releaseClause:
+            offerFee > estimatedValue(p) * 1.4
+              ? Math.round(offerFee * 1.5)
+              : (p.releaseClause ?? Math.round(offerFee * 1.8)),
         }
       : p,
   )
@@ -134,35 +143,37 @@ export function buyPlayerFromAi(
     player.age,
   )
   const fanResult = applyTransferToFans(save.fans, kind, player.name)
-  const story = pressAfterTransfer(save, player.name, true)
 
   const inbox: InboxMessage[] = [
     {
       id: `msg-buy-${Date.now()}`,
       date: save.currentDate,
       title: `เซ็นสัญญา: ${player.name}`,
-      body: `ซื้อจาก ${seller.name} ด้วยค่าตัว ${formatMoney(offerFee)} และค่าเหนื่อย ${formatMoney(offerWage)}/สัปดาห์ (มูลค่าประเมิน ${formatMoney(value)})`,
+      body: `ซื้อจาก ${seller.name} ด้วยค่าตัว ${formatMoney(offerFee)} · ค่าเหนื่อย ${formatMoney(offerWage)}/สัปดาห์ · สัญญา ${contractYears} ปี (หมด ${save.season + contractYears})`,
       read: false,
     },
     fanInbox(save, 'เสียงจากอัฒจันทร์', fanResult.message),
     ...save.inbox,
   ]
 
+  let next: GameSave = {
+    ...save,
+    players,
+    clubs,
+    tacticsByClub,
+    fans: fanResult.fans,
+    scouting: {
+      ...ensureScouting(save),
+      byPlayer: { ...ensureScouting(save).byPlayer, [playerId]: 100 },
+    },
+    inbox: inbox.slice(0, 40),
+  }
+  next = pushNews(next, newsAfterTransfer(next, player.name, true))
+
   return {
     ok: true,
     message: `สำเร็จ! ${player.name} ย้ายมาแล้ว — ${fanResult.message}`,
-    save: {
-      ...save,
-      players,
-      clubs,
-      tacticsByClub,
-      fans: fanResult.fans,
-      press: [story, ...save.press].slice(0, 30),
-      scouting: {
-        byPlayer: { ...save.scouting.byPlayer, [playerId]: 100 },
-      },
-      inbox: inbox.slice(0, 40),
-    },
+    save: next,
   }
 }
 
@@ -254,7 +265,6 @@ export function sellPlayerToAi(save: GameSave, playerId: string, askFee: number)
     player.age,
   )
   const fanResult = applyTransferToFans(save.fans, kind, player.name)
-  const story = pressAfterTransfer(save, player.name, false)
 
   const inbox: InboxMessage[] = [
     {
@@ -268,18 +278,21 @@ export function sellPlayerToAi(save: GameSave, playerId: string, askFee: number)
     ...save.inbox,
   ]
 
+  let next: GameSave = {
+    ...save,
+    players,
+    clubs,
+    tacticsByClub,
+    fans: fanResult.fans,
+    inbox: inbox.slice(0, 40),
+    scouting: markPlayerAsAlumni(ensureScouting(save), playerId),
+  }
+  next = pushNews(next, newsAfterTransfer(next, player.name, false))
+
   return {
     ok: true,
     message: `ขายสำเร็จให้ ${buyer.name} — ${fanResult.message}`,
-    save: {
-      ...save,
-      players,
-      clubs,
-      tacticsByClub,
-      fans: fanResult.fans,
-      press: [story, ...save.press].slice(0, 30),
-      inbox: inbox.slice(0, 40),
-    },
+    save: next,
   }
 }
 
@@ -292,4 +305,75 @@ export function listMarketPlayers(save: GameSave): Array<Player & { clubName: st
       value: estimatedValue(p),
     }))
     .sort((a, b) => b.overall - a.overall)
+}
+
+/** ต่อสัญญา / ปรับค่าเหนื่อยนักเตะในทีม */
+export function renewContract(
+  save: GameSave,
+  playerId: string,
+  newWage: number,
+  years: number,
+): OfferResult {
+  const player = save.players.find((p) => p.id === playerId)
+  if (!player) return { ok: false, message: 'ไม่พบนักเตะ' }
+  if (player.clubId !== save.humanClubId) {
+    return { ok: false, message: 'ต่อสัญญาได้เฉพาะนักเตะในทีมคุณ' }
+  }
+  if (years < 1 || years > 5) return { ok: false, message: 'สัญญาระหว่าง 1–5 ปี' }
+
+  const floor = Math.round(player.wage * 0.95)
+  const ambitionBump = player.overall >= 78 ? 1.08 : 1
+  const want = Math.round(player.wage * ambitionBump)
+  if (newWage < floor) {
+    return { ok: false, message: `ค่าเหนื่อยต่ำเกินไป (อย่างน้อย ${formatMoney(floor)})` }
+  }
+  if (newWage < want * 0.92 && years < 3) {
+    return {
+      ok: false,
+      message: `${player.name} อยากได้ ~${formatMoney(want)}/สัปดาห์ หรือสัญญา ≥3 ปี`,
+    }
+  }
+
+  const club = save.clubs.find((c) => c.id === save.humanClubId)!
+  const otherWages = save.players
+    .filter((p) => p.clubId === club.id && p.id !== playerId)
+    .reduce((s, p) => s + p.wage, 0)
+  if (otherWages + newWage > club.wageBudgetWeekly * 1.15) {
+    return { ok: false, message: 'เกินงบค่าเหนื่อยรายสัปดาห์ของสโมสร' }
+  }
+
+  const players = save.players.map((p) =>
+    p.id === playerId
+      ? {
+          ...p,
+          wage: newWage,
+          contractYears: years,
+          contractEndSeason: save.season + years,
+          morale: Math.min(20, p.morale + 1),
+          happiness: Math.min(20, (p.happiness ?? p.morale) + 2),
+        }
+      : p,
+  )
+
+  return {
+    ok: true,
+    message: `ต่อสัญญา ${player.name} สำเร็จ · ${years} ปี · ${formatMoney(newWage)}/สัปดาห์`,
+    save: pushNews(
+      {
+        ...save,
+        players,
+        inbox: [
+          {
+            id: `msg-renew-${Date.now()}`,
+            date: save.currentDate,
+            title: `ต่อสัญญา: ${player.name}`,
+            body: `สัญญาใหม่ ${years} ปี หมดฤดูกาล ${save.season + years} · ค่าเหนื่อย ${formatMoney(newWage)}/สัปดาห์`,
+            read: false,
+          },
+          ...save.inbox,
+        ].slice(0, 40),
+      },
+      newsAfterContract(save, player.name, years),
+    ),
+  }
 }

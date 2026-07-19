@@ -4,7 +4,7 @@
   --pitch: #1a3d2e;
   --pitch-light: #24523c;
   --ink: #0f172a;
-  --paper: #f4f7f5;
+  --paper: #eef2ef;
   --accent: #c8f542;
   --muted: #64748b;
   --ai: #94a3b8;
@@ -19,9 +19,35 @@ body,
 
 body {
   margin: 0;
-  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+  font-family: "IBM Plex Sans Thai", "Segoe UI", "Trebuchet MS", sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, #d9f99d55, transparent),
-    linear-gradient(160deg, #f8faf9 0%, #e8f0eb 45%, #dfe8e3 100%);
+    radial-gradient(ellipse 90% 55% at 50% -18%, #bef26433, transparent),
+    radial-gradient(ellipse 50% 40% at 100% 0%, #94a3b822, transparent),
+    linear-gradient(165deg, #f7faf8 0%, #e7eee9 48%, #dce6e0 100%);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* denser tables */
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+table.data th {
+  text-align: left;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+table.data td {
+  padding: 0.55rem 0.6rem;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+table.data tr:hover td {
+  background: #f8fafc;
 }

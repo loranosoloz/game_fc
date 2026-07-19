@@ -1,18 +1,49 @@
 import type { Club, Fixture, GameSave, InboxMessage, MatchResult, Player, TableRow, Tactics } from './types'
 import { applyMatchFatigue, simulateFixture } from './matchEngine'
 import { autoPickTactics } from './seed'
-import { applyMatchToFans, ensureFans, fanTicketMultiplier } from './fans'
+import { applyMatchToFans, ensureFans } from './fans'
 import { applyMatchToBoard } from './board'
 import { applyTrainingWeek, updatePlayingTimeMorale } from './training'
 import { tickPlayerInjury } from './medical'
 import { applyDevelopmentForSave } from './development'
 import { recomputeDynamics, dynamicsMatchBonus } from './dynamics'
-import { pressAfterMatch } from './press'
+import {
+  newsAfterMatch,
+  newsAfterInjury,
+  newsAfterTitle,
+  newsRivalResult,
+  detectNewInjuries,
+  advanceMediaWeek,
+  ensureMediaFeed,
+  pushNews,
+} from './media'
+import { createPressConference } from './pressConference'
+import { maybeAiRomanoPlants } from './romanoPlant'
+import { resolveFormWatches, weeklyScoutPassive } from './scouting'
+import { generateStadiumVisits } from './stadiumVisits'
+import type { MediaItem } from './types'
 import { maybePromoteYouth } from './youth'
-import { weeklyScoutPassive } from './scouting'
 import { advanceCupAfterMatchday } from './cup'
 import { advanceUclAfterMatchday } from './ucl'
-import { staffLevel } from './staff'
+import { assignRefereesToFixtures, getReferee } from './referees'
+import {
+  applyDisciplineFromEvents,
+  stripBannedFromTactics,
+} from './discipline'
+import {
+  staffLevel,
+  refreshStaffMarket,
+  maybePlayersBecomeStaff,
+} from './staff'
+import { simulateDailyLife } from './dailyLife'
+import {
+  applyGateReceiptToClub,
+  calcGateReceipt,
+  ensureClubFinance,
+  payWeeklyWagesWithCash,
+  recordHumanGate,
+  simulatePlayerSpending,
+} from './playerEconomy'
 
 function applyResultToTable(table: TableRow[], fixture: Fixture, homeGoals: number, awayGoals: number): TableRow[] {
   if (fixture.competition === 'cup' || fixture.competition === 'ucl') return table
@@ -49,20 +80,6 @@ function applyResultToTable(table: TableRow[], fixture: Fixture, homeGoals: numb
   })
 }
 
-function ticketIncome(
-  club: Club,
-  isHome: boolean,
-  goalsFor: number,
-  goalsAgainst: number,
-  fanMult = 1,
-) {
-  if (!isHome) return 0
-  const fill = 0.55 + Math.min(0.35, club.reputation / 200)
-  const crowd = Math.round(club.stadiumCapacity * fill * fanMult)
-  const mood = goalsFor >= goalsAgainst ? 1.05 : 0.95
-  return Math.round(crowd * 18 * mood)
-}
-
 function bumpFamiliarity(tactics: Tactics, played: boolean): Tactics {
   if (!played) return tactics
   return {
@@ -81,7 +98,8 @@ export interface PreparedMatchday {
 }
 
 export function prepareMatchday(save: GameSave, matchday: number): PreparedMatchday | null {
-  const dayFixtures = save.fixtures.filter((f) => f.matchday === matchday && !f.played)
+  let fixtures = assignRefereesToFixtures(save.fixtures)
+  const dayFixtures = fixtures.filter((f) => f.matchday === matchday && !f.played)
   if (dayFixtures.length === 0) return null
 
   const players = save.players
@@ -116,6 +134,7 @@ export function prepareMatchday(save: GameSave, matchday: number): PreparedMatch
       fixture.homeClubId === save.humanClubId || fixture.awayClubId === save.humanClubId
         ? dynBonus
         : 1,
+      getReferee(fixture.refereeId),
     )
     results.push({ fixture, result })
     const involvesHuman =
@@ -138,23 +157,49 @@ export function prepareMatchday(save: GameSave, matchday: number): PreparedMatch
 
 export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday): GameSave {
   save = ensureFans(save)
-  let fixtures = save.fixtures.slice()
+  let fixtures = assignRefereesToFixtures(save.fixtures.slice())
   let table = save.table.slice()
   let players = save.players.slice()
   let clubs = save.clubs.map((c) => ({ ...c }))
   let fans = save.fans
   let board = save.board
-  let press = save.press.slice()
   let cup = save.cup
   let ucl = save.ucl
+  let pressConference = save.pressConference ?? null
+  let managerReputation = save.managerReputation ?? 50
+  let clubFinance = ensureClubFinance(save)
   const inbox: InboxMessage[] = [...save.inbox]
   let tacticsByClub = { ...prepared.tacticsByClub }
   let humanResult: MatchResult | null = null
+  const banAtStart = new Map(players.map((p) => [p.id, p.banMatches ?? 0]))
+  const playedClubs = new Set<string>()
+  let discRngSeed = prepared.matchday * 7919
+  const newsBatch: MediaItem[] = []
+  const injuryBefore = players.map((p) => ({ id: p.id, injuryDays: p.injuryDays }))
+
+  const sorted = table.slice().sort((a, b) => {
+    if (b.points !== a.points) return b.points - a.points
+    return b.gf - b.ga - (a.gf - a.ga)
+  })
+  const humanRank = sorted.findIndex((r) => r.clubId === save.humanClubId)
+  const rivalIds = new Set(
+    sorted
+      .filter((_, i) => humanRank >= 0 && Math.abs(i - humanRank) <= 2 && i !== humanRank)
+      .map((r) => r.clubId),
+  )
 
   for (const { fixture, result } of prepared.results) {
+    playedClubs.add(fixture.homeClubId)
+    playedClubs.add(fixture.awayClubId)
     fixtures = fixtures.map((f) =>
       f.id === fixture.id
-        ? { ...f, played: true, homeGoals: result.homeGoals, awayGoals: result.awayGoals }
+        ? {
+            ...f,
+            played: true,
+            homeGoals: result.homeGoals,
+            awayGoals: result.awayGoals,
+            refereeId: fixture.refereeId ?? f.refereeId,
+          }
         : f,
     )
     table = applyResultToTable(table, fixture, result.homeGoals, result.awayGoals)
@@ -162,14 +207,45 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     const home = clubs.find((c) => c.id === fixture.homeClubId)!
     const away = clubs.find((c) => c.id === fixture.awayClubId)!
     const isHumanHome = home.id === save.humanClubId
-    const fanMult = isHumanHome ? fanTicketMultiplier(fans) : 1
-    const homeIncome = ticketIncome(home, true, result.homeGoals, result.awayGoals, fanMult)
-    clubs = clubs.map((c) => (c.id === home.id ? { ...c, balance: c.balance + homeIncome } : c))
+    const receipt = calcGateReceipt(
+      home,
+      result.homeGoals,
+      result.awayGoals,
+      isHumanHome ? fans : undefined,
+    )
+    clubs = clubs.map((c) =>
+      c.id === home.id ? applyGateReceiptToClub(c, receipt) : c,
+    )
+    if (isHumanHome) {
+      clubFinance = recordHumanGate(clubFinance, fixture.date, receipt, home.shortName)
+    }
+    const homeIncome = receipt.total
 
     players = applyMatchFatigue(players, tacticsByClub[fixture.homeClubId], true)
     players = applyMatchFatigue(players, tacticsByClub[fixture.awayClubId], true)
     tacticsByClub[fixture.homeClubId] = bumpFamiliarity(tacticsByClub[fixture.homeClubId], true)
     tacticsByClub[fixture.awayClubId] = bumpFamiliarity(tacticsByClub[fixture.awayClubId], true)
+
+    discRngSeed += 17
+    const disc = applyDisciplineFromEvents(players, result.events, () => {
+      discRngSeed = (discRngSeed * 16807) % 2147483647
+      return discRngSeed / 2147483647
+    })
+    players = disc.players
+    for (const note of disc.notes) {
+      if (
+        fixture.homeClubId === save.humanClubId ||
+        fixture.awayClubId === save.humanClubId
+      ) {
+        inbox.unshift({
+          id: `msg-ban-${Date.now()}-${note.slice(0, 12)}`,
+          date: fixture.date,
+          title: 'วินัย',
+          body: note,
+          read: false,
+        })
+      }
+    }
 
     const involvesHuman =
       fixture.homeClubId === save.humanClubId || fixture.awayClubId === save.humanClubId
@@ -191,26 +267,76 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
         clubs,
         tacticsByClub,
         fixtures,
+        managerReputation,
       }
       board = applyMatchToBoard(midSave, usGoals, themGoals)
-      press = [pressAfterMatch({ ...midSave, board }, usGoals, themGoals, opp.name), ...press].slice(
+      newsBatch.push(newsAfterMatch({ ...midSave, board }, usGoals, themGoals, opp.name))
+      pressConference = createPressConference(
+        { ...midSave, board, currentDate: fixture.date },
+        usGoals,
+        themGoals,
+        opp.name,
+      )
+      managerReputation = Math.max(
         0,
-        30,
+        Math.min(100, managerReputation + (usGoals > themGoals ? 2 : usGoals === themGoals ? 0 : -2)),
       )
 
+      const st = usHome ? result.stats.home : result.stats.away
       const comp =
         fixture.competition === 'cup'
           ? `ถ้วย (${fixture.cupRound})`
           : fixture.competition === 'ucl'
             ? `UCL (${fixture.cupRound})`
             : 'ลีก'
+      const gateNote = usHome
+        ? ` · ตั๋ว ${receipt.tickets.toLocaleString('th-TH')} + เสื้อ ${receipt.shirts.toLocaleString('th-TH')} ฿ (ผู้ชม ~${receipt.crowd.toLocaleString('th-TH')})`
+        : ` · รายได้เจ้าบ้าน ${homeIncome.toLocaleString('th-TH')} ฿`
       inbox.unshift({
         id: `msg-${Date.now()}-${fixture.id}`,
         date: fixture.date,
         title: `${outcome} พบ ${opp.name} · ${comp}`,
-        body: `สกอร์ ${result.homeGoals}–${result.awayGoals} · ตั๋วเหย้า ${homeIncome.toLocaleString('th-TH')} บาท · แฟน: ${fans.lastVerdict}`,
+        body: `สกอร์ ${result.homeGoals}–${result.awayGoals} · ยิง ${st.shots} (เข้ากรอบ ${st.shotsOnTarget}) · ใบ ${st.yellows}Y/${st.reds}R${gateNote}`,
         read: false,
       })
+    } else if (
+      fixture.competition === 'league' &&
+      (rivalIds.has(fixture.homeClubId) || rivalIds.has(fixture.awayClubId)) &&
+      Math.random() < 0.38
+    ) {
+      const rivalIsHome = rivalIds.has(fixture.homeClubId)
+      const rival = rivalIsHome ? home : away
+      const opp = rivalIsHome ? away : home
+      const rg = rivalIsHome ? result.homeGoals : result.awayGoals
+      const og = rivalIsHome ? result.awayGoals : result.homeGoals
+      newsBatch.push(
+        newsRivalResult(
+          { ...save, currentDate: fixture.date, managerReputation },
+          rival.shortName,
+          opp.shortName,
+          rg,
+          og,
+        ),
+      )
+    }
+  }
+
+  // Serve bans for players who already sat out this matchday
+  players = players.map((p) => {
+    const prior = banAtStart.get(p.id) ?? 0
+    if (prior <= 0 || !playedClubs.has(p.clubId)) return p
+    return { ...p, banMatches: Math.max(0, (p.banMatches ?? 0) - 1) }
+  })
+  tacticsByClub = stripBannedFromTactics(tacticsByClub, players)
+  // Refill XIs missing banned/injured slots
+  for (const club of clubs) {
+    const t = tacticsByClub[club.id]
+    if (!t || t.startingXi.length >= 11) continue
+    tacticsByClub[club.id] = {
+      ...autoPickTactics(club.id, players, t.formation, t.formationOop),
+      instructions: t.instructions,
+      familiarity: t.familiarity,
+      setPieces: t.setPieces,
     }
   }
 
@@ -226,6 +352,17 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       body: `${champ?.name ?? cup.championClubId} คว้าแชมป์ ${cup.name}`,
       read: false,
     })
+    newsBatch.push(
+      newsAfterTitle(
+        { ...save, currentDate: prepared.date, managerReputation },
+        cup.name,
+        champ?.name ?? cup.championClubId,
+        cup.championClubId === save.humanClubId,
+      ),
+    )
+    if (cup.championClubId === save.humanClubId) {
+      managerReputation = Math.min(100, managerReputation + 5)
+    }
   }
 
   const uclAdv = advanceUclAfterMatchday(fixtures, ucl, prepared.matchday)
@@ -240,6 +377,17 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       body: `${champ?.name ?? ucl.championClubId} คว้าแชมป์ ${ucl.name}`,
       read: false,
     })
+    newsBatch.push(
+      newsAfterTitle(
+        { ...save, currentDate: prepared.date, managerReputation },
+        ucl.name,
+        champ?.name ?? ucl.championClubId,
+        ucl.championClubId === save.humanClubId,
+      ),
+    )
+    if (ucl.championClubId === save.humanClubId) {
+      managerReputation = Math.min(100, managerReputation + 8)
+    }
   }
 
   let next: GameSave = {
@@ -251,9 +399,11 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     tacticsByClub,
     fans,
     board,
-    press,
     cup,
     ucl,
+    managerReputation,
+    pressConference,
+    clubFinance,
     inbox: inbox.slice(0, 40),
     lastHumanResult: humanResult ?? save.lastHumanResult,
     matchday: prepared.matchday,
@@ -263,6 +413,16 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
 
   const trained = applyTrainingWeek(next.players, next.humanClubId, next.training)
   const coachBoost = staffLevel(next.staff, 'coach') / 40
+  const trainingInjuries = detectNewInjuries(injuryBefore, trained.players, next.humanClubId)
+  // Also catch match injuries (compare mid-state before training)
+  const matchInjuries = detectNewInjuries(injuryBefore, players, next.humanClubId)
+  const seenInj = new Set<string>()
+  for (const inj of [...matchInjuries, ...trainingInjuries]) {
+    if (seenInj.has(inj.name)) continue
+    seenInj.add(inj.name)
+    newsBatch.push(newsAfterInjury(next, inj.name, inj.injuryType, inj.days))
+  }
+
   next = {
     ...next,
     players: trained.players.map((p) =>
@@ -285,7 +445,32 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   next = { ...next, dynamics: recomputeDynamics(next) }
   next = applyDevelopmentForSave(next)
   next = maybePromoteYouth(next)
+  next = resolveFormWatches(
+    next,
+    prepared.results.map((r) => ({
+      fixtureId: r.fixture.id,
+      homeGoals: r.result.homeGoals,
+      awayGoals: r.result.awayGoals,
+    })),
+  )
   next = { ...next, scouting: weeklyScoutPassive(next, next.staff) }
+
+  // แขกเข้าสนามบ้าน (คนที่มีแข่งวันนั้นมาไม่ได้)
+  const humanHome = prepared.results.find(
+    (r) => r.fixture.homeClubId === save.humanClubId,
+  )
+  if (humanHome) {
+    next = generateStadiumVisits(next, humanHome.fixture.id)
+  }
+
+  next = refreshStaffMarket(next)
+  next = maybePlayersBecomeStaff(next)
+  next = simulateDailyLife(next, 7)
+  next = simulatePlayerSpending(next, 7)
+  next = { ...next, media: ensureMediaFeed(next) }
+  for (const n of newsBatch) next = pushNews(next, n)
+  next = advanceMediaWeek(next)
+  next = maybeAiRomanoPlants(next)
 
   return next
 }
@@ -302,11 +487,34 @@ export function simulateMatchday(save: GameSave, matchday: number) {
   }
 }
 
+/** @deprecated use payWeeklyWagesWithCash — หักคลับอย่างเดียว (ไม่มี cash) */
 export function payWeeklyWages(clubs: Club[], players: Player[]): Club[] {
-  return clubs.map((club) => {
-    const wages = players.filter((p) => p.clubId === club.id).reduce((s, p) => s + p.wage, 0)
-    return { ...club, balance: club.balance - wages }
-  })
+  return payWeeklyWagesWithCash(clubs, players).clubs
+}
+
+export function applyWeeklyWages(save: GameSave): GameSave {
+  const paid = payWeeklyWagesWithCash(save.clubs, save.players)
+  const humanWage = paid.wageTotalByClub[save.humanClubId] ?? 0
+  const finance = ensureClubFinance(save)
+  return {
+    ...save,
+    clubs: paid.clubs,
+    players: paid.players,
+    clubFinance: {
+      ...finance,
+      wageSeason: finance.wageSeason + humanWage,
+      ledger: [
+        {
+          id: `fin-wage-${Date.now()}`,
+          date: save.currentDate,
+          kind: 'wages' as const,
+          amount: -humanWage,
+          note: `ค่าเหนื่อยสควอดรายสัปดาห์`,
+        },
+        ...finance.ledger,
+      ].slice(0, 50),
+    },
+  }
 }
 
 export function recoverSquad(players: Player[], physioLevel = 8): Player[] {

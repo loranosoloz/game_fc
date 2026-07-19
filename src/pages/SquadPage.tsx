@@ -11,6 +11,8 @@ import {
   INJURY_TYPE_LABEL,
   TREATMENT_LABEL,
 } from '@/game/medical'
+import { getActivity } from '@/game/dailyLife'
+import { formatBanStatus } from '@/game/discipline'
 
 const ROLES: SquadRole[] = ['key', 'regular', 'squad', 'prospect']
 
@@ -143,6 +145,8 @@ function PlayerDetailPanel({
   const growth = revealGrowth(player.growth, knowledge)
   const hidden = revealHidden(player.hidden, knowledge)
   const history = player.injuryHistory ?? []
+  const lastAct = player.lastActivityId ? getActivity(player.lastActivityId) : null
+  const ban = formatBanStatus(player)
 
   return (
     <aside className="space-y-4 rounded-xl border border-slate-200 bg-white/80 p-5">
@@ -156,8 +160,22 @@ function PlayerDetailPanel({
         </p>
         <p className="text-xs text-slate-500">
           Scout {knowledge}% · {mentorName ? `mentor ${mentorName}` : 'no mentor'} ·{' '}
-          {formatMoney(player.wage)}/สัปดาห์
+          {formatMoney(player.wage)}/สัปดาห์ · กระเป๋า {formatMoney(player.cash ?? 0)}
         </p>
+        {lastAct ? (
+          <p className="mt-2 rounded-md border border-slate-100 bg-slate-50 px-2 py-1.5 text-xs text-slate-700">
+            วันนี้: <strong>{lastAct.labelTh}</strong>
+            <span className="text-slate-400"> · {lastAct.category}</span>
+            {lastAct.missTraining ? (
+              <span className="ml-1 font-semibold text-rose-700">· มาซ้อมไม่ทัน</span>
+            ) : null}
+          </p>
+        ) : null}
+        {ban ? (
+          <p className="mt-1 rounded bg-amber-50 px-2 py-1 text-xs font-semibold text-amber-900">
+            {ban} · เหลืองฤดูกาล {player.seasonYellows ?? 0}
+          </p>
+        ) : null}
       </div>
 
       <div>
@@ -168,6 +186,7 @@ function PlayerDetailPanel({
           <StatusBar label="Form" value={player.form} />
           <StatusBar label="Morale" value={player.morale} />
           <StatusBar label="Happiness" value={player.happiness ?? player.morale} />
+          <StatusBar label="Media" value={player.mediaHandling ?? 10} />
         </ul>
         {player.injuryDays > 0 ? (
           <p className="mt-2 rounded bg-rose-50 px-2 py-1.5 text-xs text-rose-900">

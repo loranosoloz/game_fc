@@ -14,6 +14,12 @@ export const TREATMENT_LABEL: Record<InjuryTreatment, string> = {
   injection: 'ฉีดยา',
 }
 
+export const TREATMENT_HINT: Record<InjuryTreatment, string> = {
+  rest: 'ฟื้นช้า แต่สภาพดีขึ้นชัด',
+  physio: 'สมดุล — แพทย์ช่วยเร่ง',
+  injection: 'หายเร็ว แต่เสี่ยงซ้ำ + สภาพไม่เต็ม',
+}
+
 const TYPE_WEIGHTS: { type: InjuryType; w: number }[] = [
   { type: 'muscle', w: 55 },
   { type: 'ligament', w: 30 },
@@ -30,23 +36,35 @@ function pickInjuryType(rng = Math.random): InjuryType {
   return 'muscle'
 }
 
-function daysForType(type: InjuryType, source: 'match' | 'training', rng = Math.random): number {
+function daysForType(
+  type: InjuryType,
+  source: 'match' | 'training',
+  age: number,
+  rng = Math.random,
+): number {
+  let base: number
   if (source === 'training') {
-    if (type === 'muscle') return 3 + Math.floor(rng() * 5)
-    if (type === 'ligament') return 6 + Math.floor(rng() * 6)
-    return 12 + Math.floor(rng() * 10)
-  }
-  if (type === 'muscle') return 4 + Math.floor(rng() * 5)
-  if (type === 'ligament') return 8 + Math.floor(rng() * 8)
-  return 16 + Math.floor(rng() * 12)
+    if (type === 'muscle') base = 3 + Math.floor(rng() * 5)
+    else if (type === 'ligament') base = 6 + Math.floor(rng() * 6)
+    else base = 12 + Math.floor(rng() * 10)
+  } else if (type === 'muscle') base = 4 + Math.floor(rng() * 5)
+  else if (type === 'ligament') base = 8 + Math.floor(rng() * 8)
+  else base = 16 + Math.floor(rng() * 12)
+
+  // Older players heal slower / longer absences
+  if (age >= 33) base = Math.round(base * 1.25)
+  else if (age >= 30) base = Math.round(base * 1.1)
+  else if (age <= 21) base = Math.max(2, Math.round(base * 0.9))
+  return base
 }
 
 export function rollInjury(
   source: 'match' | 'training',
   rng = Math.random,
+  age = 25,
 ): { type: InjuryType; days: number } {
   const type = pickInjuryType(rng)
-  return { type, days: daysForType(type, source, rng) }
+  return { type, days: daysForType(type, source, age, rng) }
 }
 
 export function applyInjury(
@@ -54,7 +72,7 @@ export function applyInjury(
   source: 'match' | 'training',
   rng = Math.random,
 ): Player {
-  const rolled = rollInjury(source, rng)
+  const rolled = rollInjury(source, rng, player.age)
   const record: InjuryRecord = { type: rolled.type, days: rolled.days, source }
   const history = [record, ...(player.injuryHistory ?? [])].slice(0, HISTORY_CAP)
   return {
@@ -78,18 +96,17 @@ export function clearInjuryFields(player: Player): Player {
 }
 
 /** Days healed this tick from treatment + physio staff + injury type. */
-export function recoveryTickAmount(
-  player: Player,
-  physioLevel: number,
-): number {
+export function recoveryTickAmount(player: Player, physioLevel: number): number {
   if (player.injuryDays <= 0) return 0
   const treatment = player.treatment ?? 'physio'
   let days = 1
-  if (treatment === 'injection') days = 2
+  if (treatment === 'injection') days = 2 + Math.floor(physioLevel / 12)
   if (treatment === 'physio') days += Math.floor(physioLevel / 8)
   if (treatment === 'physio' && player.injuryType === 'muscle') days += 1
+  if (player.injuryType === 'ligament' && treatment === 'physio') days += Math.floor(physioLevel / 15)
   if (player.injuryType === 'bone' && treatment !== 'injection') days = Math.min(days, 1)
   if (treatment === 'rest') days = 1
+  if (player.age >= 33) days = Math.max(1, days - 1)
   return Math.max(1, days)
 }
 
@@ -104,9 +121,23 @@ export function tickPlayerInjury(player: Player, physioLevel: number): Player {
   }
   const heal = recoveryTickAmount(player, physioLevel)
   const treatment = player.treatment ?? 'physio'
-  const condGain =
+  let condGain =
     treatment === 'rest' ? 5 + Math.floor(physioLevel / 8) : 2 + Math.floor(physioLevel / 8)
+  if (treatment === 'injection') condGain = Math.max(1, condGain - 1)
+
   const nextDays = Math.max(0, player.injuryDays - heal)
+
+  // Injection: small chance of setback while still injured
+  let setback = player
+  if (treatment === 'injection' && nextDays > 0 && Math.random() < 0.08) {
+    setback = {
+      ...player,
+      injuryDays: nextDays + 2,
+      condition: Math.max(30, player.condition - 4),
+    }
+    return setback
+  }
+
   return clearInjuryFields({
     ...player,
     condition: Math.min(100, player.condition + condGain),
@@ -134,4 +165,9 @@ export function formatInjuryStatus(player: Player): string {
   if (player.injuryDays <= 0) return `${player.condition}%`
   const type = player.injuryType ? INJURY_TYPE_LABEL[player.injuryType] : 'เจ็บ'
   return `${type} ${player.injuryDays}ว`
+}
+
+export function estimatedReturnMatchdays(player: Player): number {
+  if (player.injuryDays <= 0) return 0
+  return Math.max(1, Math.ceil(player.injuryDays / 7))
 }
