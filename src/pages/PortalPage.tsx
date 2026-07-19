@@ -1,11 +1,14 @@
 import { useGameStore } from '@/store/gameStore'
 import { sortedTable } from '@/game/simulate'
 import { formatMoney } from '@/lib/format'
+import { ensureFans, fanMoodLabel, fanTicketMultiplier } from '@/game/fans'
 
 export function PortalPage() {
-  const save = useGameStore((s) => s.save)!
+  const saveRaw = useGameStore((s) => s.save)!
+  const save = ensureFans(saveRaw)
   const markInboxRead = useGameStore((s) => s.markInboxRead)
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
+  const fans = save.fans
   const nextFx = save.fixtures.find(
     (f) =>
       !f.played &&
@@ -20,6 +23,7 @@ export function PortalPage() {
     : null
   const table = sortedTable(save.table)
   const top5 = table.slice(0, 5)
+  const ticketBoost = Math.round((fanTicketMultiplier(fans) - 1) * 100)
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
@@ -53,6 +57,46 @@ export function PortalPage() {
               <dd className="font-semibold">คุณ 1 · AI 19</dd>
             </div>
           </dl>
+        </div>
+
+        <div className="rounded-xl border border-slate-200 bg-white/80 p-5">
+          <h2 className="text-lg font-semibold">แฟนบอล</h2>
+          <p className="mt-1 text-sm text-slate-600">{fans.lastVerdict}</p>
+          <div className="mt-3">
+            <div className="mb-1 flex justify-between text-xs text-slate-500">
+              <span>
+                ความพอใจ · {fanMoodLabel(fans.mood)} ({fans.mood}/100)
+              </span>
+              <span>
+                ตั๋วเหย้า {ticketBoost >= 0 ? '+' : ''}
+                {ticketBoost}%
+              </span>
+            </div>
+            <div className="h-2 overflow-hidden rounded-full bg-slate-200">
+              <div
+                className="h-full rounded-full bg-sky-500 transition-all"
+                style={{ width: `${fans.mood}%` }}
+              />
+            </div>
+          </div>
+          <dl className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
+            <div className="rounded-md bg-slate-50 px-2 py-2">
+              <dt className="text-slate-500">Ultras</dt>
+              <dd className="text-lg font-bold">{fans.factions.ultras}</dd>
+            </div>
+            <div className="rounded-md bg-slate-50 px-2 py-2">
+              <dt className="text-slate-500">ทั่วไป</dt>
+              <dd className="text-lg font-bold">{fans.factions.casual}</dd>
+            </div>
+            <div className="rounded-md bg-slate-50 px-2 py-2">
+              <dt className="text-slate-500">องค์กร</dt>
+              <dd className="text-lg font-bold">{fans.factions.corporate}</dd>
+            </div>
+          </dl>
+          <p className="mt-3 text-xs text-slate-500">
+            ความคาดหวัง {fans.expectation}/100 · ความจงรัก {fans.loyalty}/100 ·
+            ขายดาวตอนแฟนโกรธอาจถูกบอร์ดบล็อก
+          </p>
         </div>
 
         <div className="rounded-xl border border-slate-200 bg-white/80 p-5">

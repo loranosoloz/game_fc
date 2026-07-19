@@ -117,6 +117,18 @@ export interface InboxMessage {
   read: boolean
 }
 
+export interface FanState {
+  mood: number
+  expectation: number
+  loyalty: number
+  factions: {
+    ultras: number
+    casual: number
+    corporate: number
+  }
+  lastVerdict: string
+}
+
 export interface GameSave {
   version: 1
   createdAt: string
@@ -133,6 +145,8 @@ export interface GameSave {
   inbox: InboxMessage[]
   lastHumanResult: MatchResult | null
   seasonComplete: boolean
+  /** ระบบแฟนบอลของสโมสรผู้เล่น */
+  fans: FanState
 }
 
 export const FORMATION_SLOTS: Record<FormationId, Position[]> = {

@@ -1,15 +1,19 @@
 import { useMemo, useState } from 'react'
 import { useGameStore } from '@/store/gameStore'
 import { estimatedValue, listMarketPlayers, minAcceptableFee } from '@/game/transfer'
+import { analyzeBuy, analyzeSell } from '@/game/transferIntel'
 import { positionLabel } from '@/game/seed'
 import { formatMoney } from '@/lib/format'
 import type { Position } from '@/game/types'
 import { cn } from '@/lib/cn'
+import { TransferIntelPanel } from '@/components/TransferIntelPanel'
+import { ensureFans, fanMoodLabel } from '@/game/fans'
 
 type Tab = 'buy' | 'sell'
 
 export function TransfersPage() {
-  const save = useGameStore((s) => s.save)!
+  const saveRaw = useGameStore((s) => s.save)!
+  const save = ensureFans(saveRaw)
   const offerBuyPlayer = useGameStore((s) => s.offerBuyPlayer)
   const offerSellPlayer = useGameStore((s) => s.offerSellPlayer)
 
@@ -44,21 +48,29 @@ export function TransfersPage() {
   const [fee, setFee] = useState(0)
   const [wage, setWage] = useState(0)
 
+  const intel = useMemo(() => {
+    if (tab === 'buy' && selectedBuy) return analyzeBuy(save, selectedBuy, save.fans)
+    if (tab === 'sell' && selectedSell) return analyzeSell(save, selectedSell, save.fans)
+    return null
+  }, [tab, selectedBuy, selectedSell, save])
+
   const pickBuy = (id: string) => {
     const p = market.find((x) => x.id === id)!
+    const report = analyzeBuy(save, p, save.fans)
     setSelectedId(id)
-    setFee(p.value)
-    setWage(Math.round(p.wage * 1.1))
+    setFee(report.suggestedFee)
+    setWage(report.suggestedWage ?? Math.round(p.wage * 1.1))
   }
 
   const pickSell = (id: string) => {
     const p = mySquad.find((x) => x.id === id)!
+    const report = analyzeSell(save, p, save.fans)
     setSelectedId(id)
-    setFee(p.value)
+    setFee(report.suggestedFee)
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
+    <div className="grid gap-6 lg:grid-cols-[1.15fr_1.15fr]">
       <section className="rounded-xl border border-slate-200 bg-white/80 p-5">
         <div className="flex flex-wrap items-center gap-2">
           <h2 className="mr-auto text-lg font-semibold">ตลาดซื้อขาย</h2>
@@ -82,7 +94,10 @@ export function TransfersPage() {
           ))}
         </div>
         <p className="mt-2 text-sm text-slate-600">
-          งบคุณ: <strong>{formatMoney(human.balance)}</strong> · คุยกับคลับ AI โดยตรง
+          งบคุณ: <strong>{formatMoney(human.balance)}</strong> · แฟน:{' '}
+          <strong>
+            {fanMoodLabel(save.fans.mood)} ({save.fans.mood}/100)
+          </strong>
         </p>
 
         {tab === 'buy' ? (
@@ -106,7 +121,7 @@ export function TransfersPage() {
                 <option value="FW">กองหน้า</option>
               </select>
             </div>
-            <ul className="mt-3 max-h-[28rem] space-y-1 overflow-y-auto text-sm">
+            <ul className="mt-3 max-h-[26rem] space-y-1 overflow-y-auto text-sm">
               {filteredBuy.slice(0, 80).map((p) => (
                 <li key={p.id}>
                   <button
@@ -135,7 +150,7 @@ export function TransfersPage() {
             </ul>
           </>
         ) : (
-          <ul className="mt-3 max-h-[28rem] space-y-1 overflow-y-auto text-sm">
+          <ul className="mt-3 max-h-[26rem] space-y-1 overflow-y-auto text-sm">
             {mySquad.map((p) => (
               <li key={p.id}>
                 <button
@@ -163,8 +178,8 @@ export function TransfersPage() {
         )}
       </section>
 
-      <aside className="rounded-xl border border-slate-200 bg-white/80 p-5">
-        <h3 className="text-lg font-semibold">ต่อรอง</h3>
+      <aside className="max-h-[42rem] overflow-y-auto rounded-xl border border-slate-200 bg-white/80 p-5">
+        <h3 className="text-lg font-semibold">ต่อรอง + เหตุผล AI</h3>
         {tab === 'buy' && selectedBuy && sellerClub ? (
           <div className="mt-3 space-y-3 text-sm">
             <p>
@@ -176,8 +191,7 @@ export function TransfersPage() {
               <br />
               มูลค่าประเมิน: {formatMoney(selectedBuy.value)}
               <br />
-              ค่าตัวขั้นต่ำโดยประมาณ:{' '}
-              {formatMoney(minAcceptableFee(selectedBuy, sellerClub))}
+              ค่าตัวขั้นต่ำโดยประมาณ: {formatMoney(minAcceptableFee(selectedBuy, sellerClub))}
             </p>
             <label className="grid gap-1">
               <span>เสนอค่าตัว</span>
@@ -234,7 +248,19 @@ export function TransfersPage() {
         ) : null}
 
         {!selectedId ? (
-          <p className="mt-3 text-sm text-slate-500">เลือกนักเตะจากรายการเพื่อต่อรอง</p>
+          <p className="mt-3 text-sm text-slate-500">
+            เลือกนักเตะเพื่อดูว่าทำไมควรซื้อ/ขาย — AI จะแตกเหตุผลหลายมุมให้
+          </p>
+        ) : null}
+
+        {intel ? (
+          <TransferIntelPanel
+            intel={intel}
+            onApplySuggestion={() => {
+              setFee(intel.suggestedFee)
+              if (intel.suggestedWage) setWage(intel.suggestedWage)
+            }}
+          />
         ) : null}
       </aside>
     </div>

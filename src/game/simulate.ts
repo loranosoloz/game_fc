@@ -1,6 +1,7 @@
 import type { Club, Fixture, GameSave, InboxMessage, MatchResult, Player, TableRow, Tactics } from './types'
 import { applyMatchFatigue, simulateFixture } from './matchEngine'
 import { autoPickTactics } from './seed'
+import { applyMatchToFans, ensureFans, fanTicketMultiplier } from './fans'
 
 function applyResultToTable(table: TableRow[], fixture: Fixture, homeGoals: number, awayGoals: number): TableRow[] {
   return table.map((row) => {
@@ -36,10 +37,16 @@ function applyResultToTable(table: TableRow[], fixture: Fixture, homeGoals: numb
   })
 }
 
-function ticketIncome(club: Club, isHome: boolean, goalsFor: number, goalsAgainst: number) {
+function ticketIncome(
+  club: Club,
+  isHome: boolean,
+  goalsFor: number,
+  goalsAgainst: number,
+  fanMult = 1,
+) {
   if (!isHome) return 0
   const fill = 0.55 + Math.min(0.35, club.reputation / 200)
-  const crowd = Math.round(club.stadiumCapacity * fill)
+  const crowd = Math.round(club.stadiumCapacity * fill * fanMult)
   const mood = goalsFor >= goalsAgainst ? 1.05 : 0.95
   return Math.round(crowd * 18 * mood)
 }
@@ -93,10 +100,12 @@ export function prepareMatchday(save: GameSave, matchday: number): PreparedMatch
 
 /** Apply a prepared matchday package to the save (after live watch or instant skip). */
 export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday): GameSave {
+  save = ensureFans(save)
   let fixtures = save.fixtures.slice()
   let table = save.table.slice()
   let players = save.players.slice()
   let clubs = save.clubs.map((c) => ({ ...c }))
+  let fans = save.fans
   const inbox: InboxMessage[] = [...save.inbox]
   const tacticsByClub = prepared.tacticsByClub
   let humanResult: MatchResult | null = null
@@ -111,7 +120,9 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
 
     const home = clubs.find((c) => c.id === fixture.homeClubId)!
     const away = clubs.find((c) => c.id === fixture.awayClubId)!
-    const homeIncome = ticketIncome(home, true, result.homeGoals, result.awayGoals)
+    const isHumanHome = home.id === save.humanClubId
+    const fanMult = isHumanHome ? fanTicketMultiplier(fans) : 1
+    const homeIncome = ticketIncome(home, true, result.homeGoals, result.awayGoals, fanMult)
     clubs = clubs.map((c) => (c.id === home.id ? { ...c, balance: c.balance + homeIncome } : c))
 
     players = applyMatchFatigue(players, tacticsByClub[fixture.homeClubId], true)
@@ -126,11 +137,12 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       const usGoals = usHome ? result.homeGoals : result.awayGoals
       const themGoals = usHome ? result.awayGoals : result.homeGoals
       const outcome = usGoals > themGoals ? 'ชนะ' : usGoals === themGoals ? 'เสมอ' : 'แพ้'
+      fans = applyMatchToFans(fans, usGoals, themGoals, usHome)
       inbox.unshift({
         id: `msg-${Date.now()}-${fixture.id}`,
         date: fixture.date,
         title: `${outcome} พบ ${opp.name}`,
-        body: `สกอร์สุดท้าย ${result.homeGoals}–${result.awayGoals} รายได้ตั๋วเหย้า: ${homeIncome.toLocaleString('th-TH')} บาท นัดอื่นของ AI ในแมตช์เดย์นี้จบครบ ${prepared.results.length - 1} นัด`,
+        body: `สกอร์ ${result.homeGoals}–${result.awayGoals} · ตั๋วเหย้า ${homeIncome.toLocaleString('th-TH')} บาท · แฟน: ${fans.lastVerdict}`,
         read: false,
       })
     }
@@ -143,6 +155,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     players,
     clubs,
     tacticsByClub,
+    fans,
     inbox: inbox.slice(0, 40),
     lastHumanResult: humanResult ?? save.lastHumanResult,
     matchday: prepared.matchday,

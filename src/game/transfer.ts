@@ -1,6 +1,12 @@
 import type { Club, GameSave, InboxMessage, Player, Tactics } from './types'
 import { autoPickTactics } from './seed'
 import { formatMoney } from '@/lib/format'
+import {
+  applyTransferToFans,
+  classifyTransferForFans,
+  ensureFans,
+  fanInbox,
+} from './fans'
 
 export function estimatedValue(player: Player): number {
   const ageFactor = player.age <= 24 ? 1.25 : player.age <= 29 ? 1.0 : player.age <= 32 ? 0.7 : 0.45
@@ -28,6 +34,12 @@ function ensureXiFilled(clubId: string, players: Player[], tactics: Tactics): Ta
   return autoPickTactics(clubId, players, tactics.formation)
 }
 
+function squadAvg(save: GameSave, clubId: string) {
+  const list = save.players.filter((p) => p.clubId === clubId)
+  if (!list.length) return 60
+  return list.reduce((s, p) => s + p.overall, 0) / list.length
+}
+
 /** ซื้อนักเตะจากคลับ AI */
 export function buyPlayerFromAi(
   save: GameSave,
@@ -35,6 +47,7 @@ export function buyPlayerFromAi(
   offerFee: number,
   offerWage: number,
 ): OfferResult {
+  save = ensureFans(save)
   const player = save.players.find((p) => p.id === playerId)
   if (!player) return { ok: false, message: 'ไม่พบนักเตะ' }
   if (player.clubId === save.humanClubId) {
@@ -50,7 +63,9 @@ export function buyPlayerFromAi(
     return { ok: false, message: `งบไม่พอ (มี ${formatMoney(buyer.balance)})` }
   }
 
-  const sellerDepth = save.players.filter((p) => p.clubId === seller.id && p.position === player.position).length
+  const sellerDepth = save.players.filter(
+    (p) => p.clubId === seller.id && p.position === player.position,
+  ).length
   const depthPenalty = sellerDepth <= 2 ? 1.25 : 1
   const acceptFee = minFee * depthPenalty
 
@@ -69,7 +84,6 @@ export function buyPlayerFromAi(
     }
   }
 
-  // สำเร็จ
   let players = save.players.map((p) =>
     p.id === playerId
       ? { ...p, clubId: buyer.id, wage: offerWage, morale: Math.min(20, p.morale + 2) }
@@ -93,6 +107,15 @@ export function buyPlayerFromAi(
     bench: [...tacticsByClub[buyer.id].bench, playerId].slice(0, 7),
   })
 
+  const kind = classifyTransferForFans(
+    player.overall,
+    squadAvg(save, buyer.id),
+    true,
+    false,
+    player.age,
+  )
+  const fanResult = applyTransferToFans(save.fans, kind, player.name)
+
   const inbox: InboxMessage[] = [
     {
       id: `msg-buy-${Date.now()}`,
@@ -101,17 +124,19 @@ export function buyPlayerFromAi(
       body: `ซื้อจาก ${seller.name} ด้วยค่าตัว ${formatMoney(offerFee)} และค่าเหนื่อย ${formatMoney(offerWage)}/สัปดาห์ (มูลค่าประเมิน ${formatMoney(value)})`,
       read: false,
     },
+    fanInbox(save, 'เสียงจากอัฒจันทร์', fanResult.message),
     ...save.inbox,
   ]
 
   return {
     ok: true,
-    message: `สำเร็จ! ${player.name} ย้ายมาอยู่กับคุณแล้ว`,
+    message: `สำเร็จ! ${player.name} ย้ายมาแล้ว — ${fanResult.message}`,
     save: {
       ...save,
       players,
       clubs,
       tacticsByClub,
+      fans: fanResult.fans,
       inbox: inbox.slice(0, 40),
     },
   }
@@ -119,6 +144,7 @@ export function buyPlayerFromAi(
 
 /** ขายนักเตะให้คลับ AI */
 export function sellPlayerToAi(save: GameSave, playerId: string, askFee: number): OfferResult {
+  save = ensureFans(save)
   const player = save.players.find((p) => p.id === playerId)
   if (!player) return { ok: false, message: 'ไม่พบนักเตะ' }
   if (player.clubId !== save.humanClubId) {
@@ -131,10 +157,18 @@ export function sellPlayerToAi(save: GameSave, playerId: string, askFee: number)
     (p) => p.clubId === human.id && p.position === player.position,
   ).length
   if (humanDepth <= 2) {
-    return { ok: false, message: `ตำแหน่ง ${player.position} เหลือคนน้อยเกินไป — ขายไม่ได้` }
+    return { ok: false, message: `ตำแหน่งนี้เหลือคนน้อยเกินไป — ขายไม่ได้` }
   }
 
-  // หาคลับ AI ที่สนใจ
+  // แฟนโกรธมาก + ขายตัวจริงคุณภาพสูง = เตือนแรง (ยังขายได้ แต่ข้อความชัด)
+  const inXi = save.tacticsByClub[human.id].startingXi.includes(playerId)
+  if (save.fans.mood < 28 && inXi) {
+    return {
+      ok: false,
+      message: `แฟนโกรธจัด (${save.fans.mood}/100) — บอร์ดบล็อกการขายตัวจริงชั่วคราวเพื่อกันวิกฤต`,
+    }
+  }
+
   const buyers = save.clubs
     .filter((c) => c.controlledBy === 'ai' && c.balance > askFee * 0.8)
     .sort((a, b) => b.reputation - a.reputation)
@@ -181,6 +215,15 @@ export function sellPlayerToAi(save: GameSave, playerId: string, askFee: number)
     bench: [...tacticsByClub[buyer.id].bench, playerId].slice(0, 7),
   })
 
+  const kind = classifyTransferForFans(
+    player.overall,
+    squadAvg(save, human.id),
+    false,
+    inXi,
+    player.age,
+  )
+  const fanResult = applyTransferToFans(save.fans, kind, player.name)
+
   const inbox: InboxMessage[] = [
     {
       id: `msg-sell-${Date.now()}`,
@@ -189,17 +232,19 @@ export function sellPlayerToAi(save: GameSave, playerId: string, askFee: number)
       body: `ขายให้ ${buyer.name} ได้ ${formatMoney(askFee)} (มูลค่าประเมิน ${formatMoney(value)})`,
       read: false,
     },
+    fanInbox(save, 'เสียงจากอัฒจันทร์', fanResult.message),
     ...save.inbox,
   ]
 
   return {
     ok: true,
-    message: `ขายสำเร็จให้ ${buyer.name} ได้ ${formatMoney(askFee)}`,
+    message: `ขายสำเร็จให้ ${buyer.name} — ${fanResult.message}`,
     save: {
       ...save,
       players,
       clubs,
       tacticsByClub,
+      fans: fanResult.fans,
       inbox: inbox.slice(0, 40),
     },
   }

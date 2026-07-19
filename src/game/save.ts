@@ -2,6 +2,7 @@ import type { GameSave } from './types'
 import { SAVE_KEY } from './types'
 import { createClubs, createPlayersForClubs, createTacticsForAll } from './seed'
 import { blankTable, generateSeasonFixtures } from './fixtures'
+import { createFanState, ensureFans } from './fans'
 
 export function createNewGame(managerName: string, humanClubId: string): GameSave {
   const clubs = createClubs(humanClubId)
@@ -29,12 +30,13 @@ export function createNewGame(managerName: string, humanClubId: string): GameSav
         id: 'welcome',
         date: fixtures[0]?.date ?? '2026-08-15',
         title: `ยินดีต้อนรับสู่ ${human.name}`,
-        body: `คุณคุม 1 ใน 20 สโมสร ที่เหลืออีก 19 เป็น AI ทุกแมตช์เดย์จะจำลองนัดทั้งหมดของคุณและของ AI แล้วอัปเดตตารางเดียวกัน`,
+        body: `คุณคุม 1 ใน 20 สโมสร ที่เหลืออีก 19 เป็น AI มีระบบแฟนบอลและ AI วิเคราะห์ตลาดซื้อขายพร้อมเหตุผลครบมุม`,
         read: false,
       },
     ],
     lastHumanResult: null,
     seasonComplete: false,
+    fans: createFanState(human.reputation),
   }
 }
 
@@ -48,7 +50,7 @@ export function loadFromStorage(): GameSave | null {
   try {
     const parsed = JSON.parse(raw) as GameSave
     if (parsed.version !== 1) return null
-    return parsed
+    return ensureFans(parsed)
   } catch {
     return null
   }
