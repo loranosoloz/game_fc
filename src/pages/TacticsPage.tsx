@@ -1,7 +1,6 @@
 import { useMemo } from 'react'
 import { useGameStore } from '@/store/gameStore'
 import type {
-  FormationId,
   Mentality,
   PlayStyle,
   Pressing,
@@ -9,12 +8,12 @@ import type {
   Tempo,
   Width,
 } from '@/game/types'
-import { FORMATION_SLOTS } from '@/game/types'
+import { FORMATION_SLOTS, ALL_FORMATIONS, FORMATION_LABEL_TH, formationLabel } from '@/game/types'
 import { roleLabel, roleShort } from '@/game/positions'
 import { isUnavailable } from '@/game/discipline'
 import { cn } from '@/lib/cn'
 
-const FORMATIONS: FormationId[] = ['4-3-3', '4-4-2', '4-2-3-1']
+const FORMATIONS = ALL_FORMATIONS
 
 const MENTALITY: Mentality[] = ['defensive', 'balanced', 'attacking']
 const PRESSING: Pressing[] = ['low', 'medium', 'high']
@@ -119,6 +118,7 @@ export function TacticsPage() {
                 key={`ip-${f}`}
                 type="button"
                 onClick={() => setFormation(f, 'ip')}
+                title={FORMATION_LABEL_TH[f]}
                 className={cn(
                   'rounded-md border px-3 py-1.5 text-sm font-medium',
                   tactics.formation === f
@@ -126,7 +126,7 @@ export function TacticsPage() {
                     : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-50',
                 )}
               >
-                {f}
+                {formationLabel(f, true)}
               </button>
             ))}
           </div>
@@ -140,6 +140,7 @@ export function TacticsPage() {
                 key={`oop-${f}`}
                 type="button"
                 onClick={() => setFormation(f, 'oop')}
+                title={FORMATION_LABEL_TH[f]}
                 className={cn(
                   'rounded-md border px-3 py-1.5 text-sm font-medium',
                   tactics.formationOop === f
@@ -147,7 +148,7 @@ export function TacticsPage() {
                     : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-50',
                 )}
               >
-                {f}
+                {formationLabel(f, true)}
               </button>
             ))}
           </div>
@@ -268,7 +269,8 @@ export function TacticsPage() {
           เลือก XI อัตโนมัติ
         </button>
         <p className="text-xs text-slate-500">
-          เลือกแล้ว {tactics.startingXi.length}/{slots.length} · ทีม AI เลือก XI เองก่อนทุกแมตช์เดย์
+          ตัวจริง {tactics.startingXi.length}/{slots.length} · สำรอง {tactics.bench.length}/7 · ทีม
+          AI เลือก XI+ม้านั่งเองก่อนทุกแมตช์เดย์
         </p>
         <ol className="space-y-1 text-sm">
           {tactics.startingXi.map((id, i) => {
@@ -284,6 +286,26 @@ export function TacticsPage() {
             )
           })}
         </ol>
+        <div className="mt-3">
+          <p className="mb-1 text-xs font-semibold text-slate-600">ม้านั่งสำรอง</p>
+          <ol className="space-y-1 text-sm">
+            {tactics.bench.length === 0 ? (
+              <li className="text-xs text-amber-700">ยังไม่มีตัวสำรอง — กดเลือก XI อัตโนมัติหรือเลือก XI ใหม่</li>
+            ) : (
+              tactics.bench.map((id, i) => {
+                const p = save.players.find((x) => x.id === id)
+                return (
+                  <li key={id} className="flex justify-between rounded bg-amber-50/80 px-2 py-1">
+                    <span>
+                      <span className="font-semibold text-amber-900">B{i + 1}</span> · {p?.name}
+                    </span>
+                    <span className="text-slate-500">{p?.overall}</span>
+                  </li>
+                )
+              })
+            )}
+          </ol>
+        </div>
       </section>
 
       <section className="rounded-xl border border-slate-200 bg-white/80 p-5">

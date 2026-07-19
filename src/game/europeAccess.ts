@@ -4,12 +4,28 @@ import { getLeague } from '@/data/world'
 import { createPlayersForClubDef } from './worldSeed'
 import { autoPickTactics } from './seed'
 import { createClubSocial } from './social'
+import { createClubFans } from './fans'
 import uclFormat from '@/data/uclFormat.json'
 
 export type EuroCupKind = 'ucl' | 'uel' | 'uecl'
 
 /** ลีกยุโรปที่แข่งถ้วยยุโรปได้ — ไทยไม่ร่วม */
-export const EUROPE_LEAGUE_IDS: LeagueId[] = ['eng', 'esp', 'ger', 'fra', 'ita']
+export const EUROPE_LEAGUE_IDS: LeagueId[] = [
+  'eng',
+  'esp',
+  'ger',
+  'fra',
+  'ita',
+  'tur',
+  'ned',
+  'prt',
+  'bel',
+  'sco',
+  'aut',
+  'sui',
+  'den',
+  'gre',
+]
 
 export function isEuropeLeague(id: LeagueId | string): boolean {
   return (EUROPE_LEAGUE_IDS as string[]).includes(id)
@@ -99,6 +115,7 @@ function buildInviteClub(
     originLeagueId: leagueId,
     division: 1,
     crestKey: def.key,
+    clubFans: createClubFans(def.rep),
     social: createClubSocial({
       id,
       name: def.name,
@@ -218,7 +235,7 @@ export function addDays(iso: string, days: number) {
   return d.toISOString().slice(0, 10)
 }
 
-/** League phase สำหรับ N ทีม (N คู่) */
+/** League phase สำหรับ N ทีม (N คู่) — นัดกลางสัปดาห์ */
 export function generateLeaguePhaseFixtures(
   field: Club[],
   competition: EuroCupKind,
@@ -243,12 +260,13 @@ export function generateLeaguePhaseFixtures(
       fixtures.push({
         id: `${competition}-league-${fxN++}`,
         matchday: md,
-        date: addDays(seasonStartDate, (md - 1) * 7),
+        date: addDays(seasonStartDate, (md - 1) * 7 - 3),
         homeClubId: rot[i],
         awayClubId: rot[n - 1 - i],
         played: false,
         competition,
         cupRound: 'league',
+        slot: 'midweek',
       })
     }
   }
@@ -257,7 +275,7 @@ export function generateLeaguePhaseFixtures(
 
 /**
  * Europa / Conference: 10 ทีม → play-in (7v10, 8v9) แล้ว QF 8 ทีม
- * เรียง seed ตามชื่อเสียง
+ * เรียง seed ตามชื่อเสียง — นัดกลางสัปดาห์
  */
 export function generateTenTeamEuroCupFixtures(
   field: Club[],
@@ -268,14 +286,13 @@ export function generateTenTeamEuroCupFixtures(
   if (field.length < 8) return []
   const seeded = field.slice().sort((a, b) => b.reputation - a.reputation).slice(0, 10)
   if (seeded.length < 10) {
-    // น้อยกว่า 10 → เข้า QF ตรงๆ คู่ตาม seed
     const fixtures: Fixture[] = []
     const qfMd = playinMd + 12
     for (let i = 0; i < Math.floor(seeded.length / 2); i++) {
       fixtures.push({
         id: `${competition}-qf-${i + 1}`,
         matchday: qfMd,
-        date: addDays(seasonStartDate, (qfMd - 1) * 7),
+        date: addDays(seasonStartDate, (qfMd - 1) * 7 - 3),
         homeClubId: seeded[i].id,
         awayClubId: seeded[seeded.length - 1 - i].id,
         played: false,
@@ -283,32 +300,34 @@ export function generateTenTeamEuroCupFixtures(
         cupRound: 'qf',
         leg: 1,
         tieId: `${competition}-tie-qf-${i + 1}`,
+        slot: 'midweek',
       })
     }
     return fixtures
   }
 
-  // play-in: seed7 vs seed10, seed8 vs seed9 (0-based: 6v9, 7v8)
   return [
     {
       id: `${competition}-playin-1`,
       matchday: playinMd,
-      date: addDays(seasonStartDate, (playinMd - 1) * 7),
+      date: addDays(seasonStartDate, (playinMd - 1) * 7 - 3),
       homeClubId: seeded[6].id,
       awayClubId: seeded[9].id,
       played: false,
       competition,
       cupRound: 'playin',
+      slot: 'midweek',
     },
     {
       id: `${competition}-playin-2`,
       matchday: playinMd,
-      date: addDays(seasonStartDate, (playinMd - 1) * 7),
+      date: addDays(seasonStartDate, (playinMd - 1) * 7 - 3),
       homeClubId: seeded[7].id,
       awayClubId: seeded[8].id,
       played: false,
       competition,
       cupRound: 'playin',
+      slot: 'midweek',
     },
   ]
 }

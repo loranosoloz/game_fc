@@ -1,0 +1,1970 @@
+{
+  "source": "fmtransferupdate.com + FMInside (personal display)",
+  "sourceUrl": "https://fmtransferupdate.com/",
+  "note": "Not for redistribution or commercial sale. K League 1 / kor pack.",
+  "clubs": {
+    "sel": [
+      {
+        "name": "Kang Hyeon-Mu",
+        "role": "GK",
+        "age": 31,
+        "ovr": 78,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Gu Sung-Yun",
+        "role": "GK",
+        "age": 32,
+        "ovr": 78,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Yun Ki-Wook",
+        "role": "GK",
+        "age": 19,
+        "ovr": 78,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Yazan Al-Arab",
+        "role": "CB",
+        "age": 30,
+        "ovr": 77,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kim Jin-Su",
+        "role": "LB",
+        "age": 34,
+        "ovr": 77,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Juan Antonio Ros",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 77,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Lee Han-Do",
+        "role": "CB",
+        "age": 32,
+        "ovr": 76,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Choi Jun",
+        "role": "RB",
+        "age": 27,
+        "ovr": 76,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Lee Sang-Min",
+        "role": "CB",
+        "age": 28,
+        "ovr": 76,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Park Soo-Il",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 75,
+        "fmPos": "D/WB/AM RL"
+      },
+      {
+        "name": "Park Seong-Hoon",
+        "role": "CB",
+        "age": 23,
+        "ovr": 75,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Hrvoje Babec",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 75,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Lee Seung-Mo",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 74,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Hwang Do-Yoon",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 74,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Park Janghangyeol",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 74,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Anderson Oliveira",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 73,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Song Min-Kyu",
+        "role": "ST",
+        "age": 26,
+        "ovr": 73,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Leonardo Ruiz",
+        "role": "ST",
+        "age": 30,
+        "ovr": 73,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Aleksandar Paločević",
+        "role": "CAM",
+        "age": 32,
+        "ovr": 70,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Moon Seon-Min",
+        "role": "RW",
+        "age": 34,
+        "ovr": 70,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Jeong Seung-Won",
+        "role": "RW",
+        "age": 29,
+        "ovr": 69,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Cho Young-Wook",
+        "role": "ST",
+        "age": 27,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Patryk Klimala",
+        "role": "ST",
+        "age": 27,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      }
+    ],
+    "uls": [
+      {
+        "name": "Jo Hyeon-Woo",
+        "role": "GK",
+        "age": 34,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Moon Jung-In",
+        "role": "GK",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ryu Seong-Min",
+        "role": "GK",
+        "age": 22,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Jung Seung-Hyeon",
+        "role": "CB",
+        "age": 32,
+        "ovr": 81,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kang Sang-Woo",
+        "role": "CAM",
+        "age": 32,
+        "ovr": 81,
+        "fmPos": "D/WB RL, AM RL"
+      },
+      {
+        "name": "Cho Hyun-Taek",
+        "role": "RB",
+        "age": 24,
+        "ovr": 81,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Kim Young-Gwon",
+        "role": "CB",
+        "age": 36,
+        "ovr": 80,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Miłosz Trojak",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 80,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Heo Yool",
+        "role": "ST",
+        "age": 25,
+        "ovr": 80,
+        "fmPos": "D C, ST"
+      },
+      {
+        "name": "Seo Myeong-Kwan",
+        "role": "CB",
+        "age": 23,
+        "ovr": 79,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Yoon Jong-Gyu",
+        "role": "RB",
+        "age": 28,
+        "ovr": 79,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Darijan Bojanić",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 79,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Lee Gyu-Sung",
+        "role": "CM",
+        "age": 32,
+        "ovr": 78,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Park Woo-Jin",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Lee Dong-Geong",
+        "role": "ST",
+        "age": 28,
+        "ovr": 78,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Marcão",
+        "role": "ST",
+        "age": 32,
+        "ovr": 77,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Erick Farias",
+        "role": "ST",
+        "age": 29,
+        "ovr": 77,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lee Min-Hyuk",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 77,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Lee Jin-Hyun",
+        "role": "RW",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Lee Hui-Gyun",
+        "role": "LW",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Pedrinho",
+        "role": "ST",
+        "age": 24,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yago Cariello",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "gwn": [
+      {
+        "name": "Park Cheong-Hyo",
+        "role": "GK",
+        "age": 36,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Cho Min-Gyu",
+        "role": "GK",
+        "age": 23,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kim Yu-Seong",
+        "role": "GK",
+        "age": 20,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Hong Chul",
+        "role": "LB",
+        "age": 35,
+        "ovr": 73,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Lee You-Hyeon",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 73,
+        "fmPos": "D R, DM"
+      },
+      {
+        "name": "Lee Gi-Hyeok",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 73,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Marko Tući",
+        "role": "CB",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Shin Min-Ha",
+        "role": "CB",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Song Jun-Seok",
+        "role": "LB",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Kang Jun-Hyuk",
+        "role": "RB",
+        "age": 26,
+        "ovr": 71,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Park Ho-Young",
+        "role": "ST",
+        "age": 27,
+        "ovr": 71,
+        "fmPos": "D C, ST"
+      },
+      {
+        "name": "Kim Dong-Hyun",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 71,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Seo Min-Woo",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 70,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Kim Kang-Kook",
+        "role": "CM",
+        "age": 29,
+        "ovr": 70,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Hwang Eun-Chong",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kim Tae-Hwan",
+        "role": "CM",
+        "age": 20,
+        "ovr": 69,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Kim Dae-Won",
+        "role": "ST",
+        "age": 29,
+        "ovr": 69,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Goh Young-Joon",
+        "role": "ST",
+        "age": 25,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mo Jae-Hyeon",
+        "role": "ST",
+        "age": 29,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kim Gunhee",
+        "role": "ST",
+        "age": 31,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lee Seung-Won",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 65,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Kang Yun-Gu",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 65,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Park Sang-Hyeok",
+        "role": "ST",
+        "age": 24,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lee Ji-Ho",
+        "role": "ST",
+        "age": 24,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      }
+    ],
+    "jbk": [
+      {
+        "name": "Song Bumkeun",
+        "role": "GK",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lee Ju-Hyun",
+        "role": "GK",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Gong Si-Hyeon",
+        "role": "GK",
+        "age": 21,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Park Ji-Soo",
+        "role": "CB",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kim Seung-Sub",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "WB RL, AM LC"
+      },
+      {
+        "name": "Kim Tae-Hyun",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D RL, DM, AM C"
+      },
+      {
+        "name": "Kim Yeong-Bin",
+        "role": "CB",
+        "age": 34,
+        "ovr": 82,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Kim Tae-Hwan",
+        "role": "RW",
+        "age": 36,
+        "ovr": 82,
+        "fmPos": "D/WB/AM R"
+      },
+      {
+        "name": "Yeon Je-Woon",
+        "role": "CB",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Maeng Seong-Ung",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 81,
+        "fmPos": "D/WB R, DM"
+      },
+      {
+        "name": "Cho Wi-Je",
+        "role": "CB",
+        "age": 24,
+        "ovr": 81,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Oberdan",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 81,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Kim Jin-Gyu",
+        "role": "CM",
+        "age": 29,
+        "ovr": 80,
+        "fmPos": "M LC"
+      },
+      {
+        "name": "Kang Sang-Yoon",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 80,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "João Gamboa",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 80,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Andrea Compagno",
+        "role": "ST",
+        "age": 30,
+        "ovr": 79,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lee Dong-jun",
+        "role": "ST",
+        "age": 29,
+        "ovr": 79,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tiago Orobó",
+        "role": "ST",
+        "age": 32,
+        "ovr": 79,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Patrick Twumasi",
+        "role": "ST",
+        "age": 32,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lee Yeong-Jae",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 72,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Lee Seung-Woo",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bruno Mota",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jin Tae-Ho",
+        "role": "CAM",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "AM C"
+      }
+    ],
+    "poh": [
+      {
+        "name": "Hwang In-Jae",
+        "role": "GK",
+        "age": 32,
+        "ovr": 77,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Hong Sung-Min",
+        "role": "GK",
+        "age": 19,
+        "ovr": 77,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Yun Pyeong-Gook",
+        "role": "GK",
+        "age": 34,
+        "ovr": 77,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Park Seung-Uk",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 76,
+        "fmPos": "D RC, DM"
+      },
+      {
+        "name": "Ki Sung-Yueng",
+        "role": "CDM",
+        "age": 37,
+        "ovr": 76,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Eo Jeong-Won",
+        "role": "CM",
+        "age": 27,
+        "ovr": 76,
+        "fmPos": "D RL, M C"
+      },
+      {
+        "name": "Jeon Min-Gwang",
+        "role": "CB",
+        "age": 33,
+        "ovr": 75,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Park Chan-Yong",
+        "role": "CB",
+        "age": 30,
+        "ovr": 75,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Wanderson",
+        "role": "LW",
+        "age": 37,
+        "ovr": 75,
+        "fmPos": "D/WB/AM L"
+      },
+      {
+        "name": "Shin Kwang-Hoon",
+        "role": "RB",
+        "age": 39,
+        "ovr": 74,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Jo Sung-Wook",
+        "role": "CB",
+        "age": 31,
+        "ovr": 74,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kim Dong-Jin",
+        "role": "CM",
+        "age": 23,
+        "ovr": 74,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Kim Joon-Ho",
+        "role": "CM",
+        "age": 23,
+        "ovr": 73,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Kento Nishiya",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 73,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kim Dong-Min",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 73,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Jorge Teixeira",
+        "role": "ST",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lee Ho-Jae",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Juninho Rocha",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "An Jae-Jun",
+        "role": "ST",
+        "age": 25,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kim In-Sung",
+        "role": "CAM",
+        "age": 36,
+        "ovr": 69,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Hwang Jae-Hwan",
+        "role": "RW",
+        "age": 25,
+        "ovr": 68,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Jakob Tranziska",
+        "role": "ST",
+        "age": 25,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kim Yong-Hak",
+        "role": "ST",
+        "age": 23,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      }
+    ],
+    "icn": [
+      {
+        "name": "Kim Dong-Heon",
+        "role": "GK",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lee Tae-Hui",
+        "role": "GK",
+        "age": 31,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lee Sang-Hyun",
+        "role": "GK",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Mun Ji-Hwan",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 71,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Kim Myung-Sun",
+        "role": "RW",
+        "age": 26,
+        "ovr": 71,
+        "fmPos": "D/WB/AM R"
+      },
+      {
+        "name": "Jeong Tae-Wook",
+        "role": "CB",
+        "age": 29,
+        "ovr": 71,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Lee Ju-Yong",
+        "role": "LB",
+        "age": 33,
+        "ovr": 70,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Kim Geon-Hee",
+        "role": "CB",
+        "age": 23,
+        "ovr": 70,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kim Yeon-Soo",
+        "role": "CB",
+        "age": 32,
+        "ovr": 70,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Lee Sang-Gi",
+        "role": "RB",
+        "age": 30,
+        "ovr": 69,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Kim Seong-Min",
+        "role": "CM",
+        "age": 26,
+        "ovr": 69,
+        "fmPos": "WB RL, AM R"
+      },
+      {
+        "name": "Iker Undabarrena",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 69,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Lee Myung-Joo",
+        "role": "CAM",
+        "age": 36,
+        "ovr": 68,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Jung Won-Jin",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 68,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Stefan Mugoša",
+        "role": "ST",
+        "age": 34,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Gerso Fernandes",
+        "role": "CAM",
+        "age": 35,
+        "ovr": 67,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Jeong Chi-In",
+        "role": "ST",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "AM LC, F C"
+      },
+      {
+        "name": "Morgan Ferrier",
+        "role": "ST",
+        "age": 31,
+        "ovr": 67,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Park Seung-Ho",
+        "role": "ST",
+        "age": 22,
+        "ovr": 64,
+        "fmPos": "AM RC, F C"
+      },
+      {
+        "name": "Oh Hu-Seong",
+        "role": "LW",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Lee Dong-Ryul",
+        "role": "RW",
+        "age": 26,
+        "ovr": 63,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Seo Jae-Min",
+        "role": "LW",
+        "age": 22,
+        "ovr": 63,
+        "fmPos": "AM LC"
+      }
+    ],
+    "any": [
+      {
+        "name": "Kim Jeong-Hoon",
+        "role": "GK",
+        "age": 25,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kim Da-Sol",
+        "role": "GK",
+        "age": 37,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kim Tae-Hoon",
+        "role": "GK",
+        "age": 29,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kwon Kyung Won",
+        "role": "CB",
+        "age": 34,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Lee Jin-Yong",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 67,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Lee Chang-Yong",
+        "role": "CB",
+        "age": 35,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Lee Tae-Hee",
+        "role": "RB",
+        "age": 34,
+        "ovr": 66,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Kim Young-Chan",
+        "role": "CB",
+        "age": 32,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Thomas Oude Kotte",
+        "role": "CB",
+        "age": 30,
+        "ovr": 66,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Hong Jae-Seok",
+        "role": "CB",
+        "age": 23,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "York Rafael",
+        "role": "LW",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "D/WB/AM L"
+      },
+      {
+        "name": "Kim Jeong-Hyeon",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 65,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Moon Seong-Woo",
+        "role": "CM",
+        "age": 23,
+        "ovr": 64,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Han Ka-Ram",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kim Rae-Woo",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 64,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Jang Jung-Woo",
+        "role": "CM",
+        "age": 21,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Matheus Oliveira",
+        "role": "ST",
+        "age": 28,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Choi Geon-Ju",
+        "role": "ST",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Breno Herculano",
+        "role": "ST",
+        "age": 27,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kim Bo-Kyung",
+        "role": "ST",
+        "age": 36,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ivan Jukić",
+        "role": "ST",
+        "age": 30,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yu Jeong-Wan",
+        "role": "ST",
+        "age": 30,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Hong Hyeon-Ho",
+        "role": "ST",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      }
+    ],
+    "jju": [
+      {
+        "name": "Kim Dong-Jun",
+        "role": "GK",
+        "age": 31,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "An Chan-Gi",
+        "role": "GK",
+        "age": 28,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Joo Seung-Min",
+        "role": "GK",
+        "age": 20,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Tobias Figueiredo",
+        "role": "CB",
+        "age": 32,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kim Geon-Woong",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 69,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Julien Célestine",
+        "role": "CB",
+        "age": 28,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Rim Chang-Woo",
+        "role": "CB",
+        "age": 34,
+        "ovr": 68,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Kim Jae-Woo",
+        "role": "CB",
+        "age": 28,
+        "ovr": 68,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Yu In-Soo",
+        "role": "LW",
+        "age": 31,
+        "ovr": 68,
+        "fmPos": "D/WB/AM L"
+      },
+      {
+        "name": "Chung Woon",
+        "role": "RB",
+        "age": 37,
+        "ovr": 67,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Kim Ryun-Sung",
+        "role": "LB",
+        "age": 24,
+        "ovr": 67,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Italo",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Lee Chang-Min",
+        "role": "CAM",
+        "age": 32,
+        "ovr": 66,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Oh Jae-Hyeok",
+        "role": "CM",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Kim Jae-Min",
+        "role": "CM",
+        "age": 23,
+        "ovr": 66,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Nam Tae-Hee",
+        "role": "ST",
+        "age": 35,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kwon Chang-Hoon",
+        "role": "ST",
+        "age": 32,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Gytis Paulauskas",
+        "role": "ST",
+        "age": 26,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Émerson Ramon",
+        "role": "ST",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kim Jun-Ha",
+        "role": "ST",
+        "age": 20,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Choi Byung-Wook",
+        "role": "ST",
+        "age": 21,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Shin Sang-Eun",
+        "role": "ST",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Kim Hyeon-U",
+        "role": "RW",
+        "age": 27,
+        "ovr": 60,
+        "fmPos": "AM R"
+      }
+    ],
+    "djc": [
+      {
+        "name": "Lee Chang-Geun",
+        "role": "GK",
+        "age": 32,
+        "ovr": 71,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lee Jun-Seo",
+        "role": "GK",
+        "age": 28,
+        "ovr": 71,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lee Kyung-Tae",
+        "role": "GK",
+        "age": 31,
+        "ovr": 71,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lee Myung-Jae",
+        "role": "LB",
+        "age": 32,
+        "ovr": 70,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Kim Moon-Hwan",
+        "role": "RB",
+        "age": 30,
+        "ovr": 70,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Oh Jae-Suk",
+        "role": "CB",
+        "age": 36,
+        "ovr": 70,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Lim Jong-Eun",
+        "role": "CB",
+        "age": 36,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Anton Krivotsyuk",
+        "role": "CB",
+        "age": 27,
+        "ovr": 69,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Ha Changrae",
+        "role": "CB",
+        "age": 31,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kim Min-Duk",
+        "role": "CB",
+        "age": 30,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Seo Young-Jae",
+        "role": "LB",
+        "age": 31,
+        "ovr": 68,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Victor Bobsin",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "DM, M LC"
+      },
+      {
+        "name": "Kim Jun-Beom",
+        "role": "CM",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Kim Bong-Soo",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Joo Min-Kyu",
+        "role": "ST",
+        "age": 36,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Gustav Ludwigson",
+        "role": "ST",
+        "age": 32,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Um Won-Sang",
+        "role": "RW",
+        "age": 27,
+        "ovr": 66,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Masatoshi Ishida",
+        "role": "ST",
+        "age": 31,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "João Victor",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Diogo Oliveira",
+        "role": "ST",
+        "age": 29,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kim Hyeon-Ug",
+        "role": "RW",
+        "age": 31,
+        "ovr": 62,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Yoo Kang-Hyun",
+        "role": "ST",
+        "age": 30,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      }
+    ],
+    "buc": [
+      {
+        "name": "Seol Hyeon-Bin",
+        "role": "GK",
+        "age": 24,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kim Hyeon-Yeop",
+        "role": "GK",
+        "age": 24,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kim Hyung-Geun",
+        "role": "GK",
+        "age": 32,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Patrick William",
+        "role": "CB",
+        "age": 29,
+        "ovr": 66,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Ahn Tae-Hyun",
+        "role": "CAM",
+        "age": 33,
+        "ovr": 66,
+        "fmPos": "D/WB/AM RL"
+      },
+      {
+        "name": "Shin Jae-Won",
+        "role": "RB",
+        "age": 27,
+        "ovr": 66,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Baek Dong-Gyu",
+        "role": "CB",
+        "age": 35,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Lee Jae-Won",
+        "role": "CB",
+        "age": 24,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Lee Ye-Chan",
+        "role": "CB",
+        "age": 21,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Lee Sang-Hyeok",
+        "role": "CB",
+        "age": 25,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Hong Sung-Wook",
+        "role": "CB",
+        "age": 23,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kim Sang-Jun",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 64,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Jeong Ho-Jin",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kazuki Takahashi",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 63,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Choi Won-Chul",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kang Jae-Woo",
+        "role": "CM",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Lee Dong-Geon",
+        "role": "CM",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Hong Ki-Wook",
+        "role": "CM",
+        "age": 22,
+        "ovr": 62,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Lee Hyun-Ki",
+        "role": "CM",
+        "age": 22,
+        "ovr": 59,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Vitor Gabriel",
+        "role": "ST",
+        "age": 26,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kim Seung-Bin",
+        "role": "ST",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yoon Bit-Garam",
+        "role": "CAM",
+        "age": 36,
+        "ovr": 58,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Galego",
+        "role": "ST",
+        "age": 29,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kim Gyu-Min",
+        "role": "ST",
+        "age": 23,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kim Jong-Woo",
+        "role": "ST",
+        "age": 32,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kim Min-Jun",
+        "role": "ST",
+        "age": 26,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bassani",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 55,
+        "fmPos": "AM C"
+      }
+    ],
+    "gms": [
+      {
+        "name": "Ahn Joon-Soo",
+        "role": "GK",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Baek Jong-Beom",
+        "role": "GK",
+        "age": 25,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Park Man-Ho",
+        "role": "GK",
+        "age": 22,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kim Tae-Hwan",
+        "role": "CM",
+        "age": 26,
+        "ovr": 65,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Park Cheol-Woo",
+        "role": "CB",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Kim In-Gyun",
+        "role": "LW",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "WB L, AM LC"
+      },
+      {
+        "name": "Byeon Jun-Soo",
+        "role": "CB",
+        "age": 24,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Yoon Jae-Seok",
+        "role": "RW",
+        "age": 22,
+        "ovr": 64,
+        "fmPos": "WB R, AM RC"
+      },
+      {
+        "name": "Park Min-Seo",
+        "role": "LB",
+        "age": 25,
+        "ovr": 64,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Kim Hyun-Woo",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Park Jin-Sung",
+        "role": "LB",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Lee Soo-Bin",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Lee Kang-Hyun",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Roh Kyung-Ho",
+        "role": "CM",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Kim Yi-Seok",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Hong Yun-Sang",
+        "role": "ST",
+        "age": 24,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Go Jae-Hyeon",
+        "role": "ST",
+        "age": 27,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jeon Byeong-Gwan",
+        "role": "ST",
+        "age": 23,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lee Sang-Heon",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Park Tae-Jun",
+        "role": "ST",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Park Sae-Jin",
+        "role": "ST",
+        "age": 22,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kim Joo-Chan",
+        "role": "ST",
+        "age": 22,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lee Kun-hee",
+        "role": "ST",
+        "age": 28,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      }
+    ],
+    "gwj": [
+      {
+        "name": "Kim Kyeong-Min",
+        "role": "GK",
+        "age": 34,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Roh Hee-Dong",
+        "role": "GK",
+        "age": 24,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kim Dong-Hwa",
+        "role": "GK",
+        "age": 23,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Teun van Grunsven",
+        "role": "CB",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Kim Jin-Ho",
+        "role": "RB",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Ahn Young-Kyu",
+        "role": "CB",
+        "age": 36,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Lee Min-Gi",
+        "role": "RB",
+        "age": 33,
+        "ovr": 67,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Min Sang-Gi",
+        "role": "CB",
+        "age": 34,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Shin Chang-Moo",
+        "role": "CAM",
+        "age": 33,
+        "ovr": 67,
+        "fmPos": "WB RL, AM RC"
+      },
+      {
+        "name": "Kim Han-Gil",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 66,
+        "fmPos": "WB L, AM RL"
+      },
+      {
+        "name": "Kwak Sung-Hoon",
+        "role": "CB",
+        "age": 20,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ju Se-Jong",
+        "role": "CDM",
+        "age": 35,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yu Je-Ho",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kang Hui-Su",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 65,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Hólmbert Aron Friðjónsson",
+        "role": "ST",
+        "age": 33,
+        "ovr": 65,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Choi Kyoung-Rok",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 64,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Moon Min-Seo",
+        "role": "LW",
+        "age": 22,
+        "ovr": 64,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Jung Ji-Hoon",
+        "role": "LW",
+        "age": 22,
+        "ovr": 64,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Park Jeong-In",
+        "role": "ST",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Ahn Hyeok-Ju",
+        "role": "LW",
+        "age": 21,
+        "ovr": 61,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Ha Seung-Un",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 60,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Gwon Seong-Yun",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 60,
+        "fmPos": "AM RLC"
+      }
+    ]
+  }
+}

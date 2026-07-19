@@ -13,9 +13,17 @@ import {
   predictedStartingXi,
   preMatchChecklist,
   TEAM_TALK_OPTIONS,
+  TOUCHLINE_SHOUT_OPTIONS,
 } from '@/game/preMatch'
 import { ensurePhase5 } from '@/game/save'
+import { formationLabel } from '@/game/types'
 import { cn } from '@/lib/cn'
+import {
+  isTransferDeadlineActive,
+  shouldEnterTransferDeadline,
+  transferDeadlineLabel,
+} from '@/game/transferDeadline'
+import { transferWindowLabel } from '@/game/transferWindow'
 
 function FormPills({ form }: { form: Array<'W' | 'D' | 'L'> }) {
   if (form.length === 0) return <span className="text-xs text-slate-500">ยังไม่มีผล</span>
@@ -44,8 +52,10 @@ export function MatchPage() {
   const save = ensurePhase5(saveRaw)
   const startLiveMatch = useGameStore((s) => s.startLiveMatch)
   const playNextMatchday = useGameStore((s) => s.playNextMatchday)
+  const advanceDay = useGameStore((s) => s.advanceDay)
   const confirmPreMatchLineup = useGameStore((s) => s.confirmPreMatchLineup)
   const choosePreMatchTalk = useGameStore((s) => s.choosePreMatchTalk)
+  const queueTouchlineShout = useGameStore((s) => s.queueTouchlineShout)
   const assignScoutWatch = useGameStore((s) => s.assignScoutWatch)
 
   const next = nextHumanFixture(save)
@@ -71,11 +81,14 @@ export function MatchPage() {
       : next.homeClubId
     : null
   const brief = oppId ? enrichOppositionBrief(save, oppId) : null
-  const ourXi = predictedStartingXi(save, save.humanClubId)
   const absentees = humanMatchAbsentees(save)
   const check = preMatchChecklist(save)
   const tactics = save.tacticsByClub[save.humanClubId]
   const setPieces = tactics?.setPieces
+  const ourXi = predictedStartingXi(save, save.humanClubId)
+  const ourBench = (tactics?.bench ?? [])
+    .map((id) => save.players.find((p) => p.id === id))
+    .filter(Boolean) as typeof ourXi
 
   const nextRef = next
     ? getReferee(next.refereeId ?? pickRefereeId(next.id, next.competition ?? 'league'))
@@ -105,8 +118,64 @@ export function MatchPage() {
     <div className="space-y-5">
       <PageHeader
         title="พรีแมตช์ · ศูนย์แมตช์"
-        subtitle="อ่านคู่แข่ง · ยืนยัน XI · ทีมทอล์ค — แล้วค่อยเตะ"
+        subtitle="เดิน 1 วัน = เหตุการณ์แม้ไม่มีนัด · เล่นแมตช์เดย์ = แข่งชุดนัดตามตาราง"
       />
+
+      {!isTransferDeadlineActive(save) && !shouldEnterTransferDeadline(save) && !save.seasonComplete ? (
+        <Panel>
+          <p className="text-xs text-slate-500">
+            วันนี้ในเกม <strong className="text-slate-800">{save.currentDate}</strong>
+            {' · '}ลีก/ถ้วยเตะคนละวันได้ — วันว่างก็มีฟื้นตัว·ไลฟ์สไตล์·ข่าว
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <PrimaryButton onClick={() => advanceDay()}>เดิน 1 วัน</PrimaryButton>
+            <GhostButton onClick={() => playNextMatchday({ force: true })}>
+              เล่นแมตช์เดย์ถัดไป
+            </GhostButton>
+          </div>
+        </Panel>
+      ) : null}
+
+      {isTransferDeadlineActive(save) || shouldEnterTransferDeadline(save) ? (
+        <Panel className="border-amber-300 bg-amber-50">
+          <p className="text-[11px] font-bold tracking-wider text-amber-800 uppercase">
+            โหมดปิดตลาด · นับชั่วโมง
+          </p>
+          <p className="mt-2 text-lg font-bold text-slate-900">
+            {isTransferDeadlineActive(save)
+              ? transferDeadlineLabel(save)
+              : 'ถึงช่วง 3 วันสุดท้าย — กดถัดไปเพื่อเริ่มนับ 72 ชม.'}
+          </p>
+          <p className="mt-1 text-sm text-slate-600">
+            {transferWindowLabel(save)} · กดถัดไป = เดินหน้า 1 ชั่วโมง · ตลาดชุกชุม มีข้อเสนอ/ข่าวถี่
+          </p>
+          {save.transferDeadline?.log?.[0] ? (
+            <p className="mt-2 rounded-md bg-white/80 px-3 py-2 text-xs text-slate-700">
+              ล่าสุด: {save.transferDeadline.log[0].title} — {save.transferDeadline.log[0].body}
+            </p>
+          ) : null}
+          <div className="mt-3 flex flex-wrap gap-2">
+            <PrimaryButton onClick={() => playNextMatchday({ force: true })}>
+              {isTransferDeadlineActive(save) ? '+1 ชั่วโมง' : 'เริ่มโหมดปิดตลาด'}
+            </PrimaryButton>
+            <Link
+              to="/transfers"
+              className="rounded-md border border-amber-400 bg-white px-3 py-2 text-sm font-semibold text-amber-950 hover:bg-amber-100"
+            >
+              ไปตลาดซื้อขาย
+            </Link>
+          </div>
+          {isTransferDeadlineActive(save) && (save.transferDeadline?.log?.length ?? 0) > 1 ? (
+            <ul className="mt-3 max-h-40 space-y-1 overflow-y-auto text-xs text-slate-600">
+              {save.transferDeadline!.log.slice(0, 8).map((l) => (
+                <li key={l.id}>
+                  <span className="font-semibold text-slate-800">{l.title}</span> · {l.body}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </Panel>
+      ) : null}
 
       {!next ? (
         <Panel tone="dark">
@@ -198,7 +267,7 @@ export function MatchPage() {
               {brief ? (
                 <div className="mt-3 space-y-2 text-sm">
                   <p>
-                    รูป {brief.formation} · ความแข็งแกร่ง XI ~{brief.strength}
+                    รูป {formationLabel(brief.formation, true)} · ความแข็งแกร่ง XI ~{brief.strength}
                   </p>
                   <p>
                     <span className="text-slate-500">จุดอ่อน:</span> {brief.weakness}
@@ -232,7 +301,7 @@ export function MatchPage() {
 
             <Panel>
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <h3 className="text-sm font-bold text-slate-900">XI ของคุณ</h3>
+                <h3 className="text-sm font-bold text-slate-900">XI + ตัวสำรอง</h3>
                 <Link to="/tactics" className="text-xs font-semibold text-sky-800 underline">
                   แก้แท็กติก
                 </Link>
@@ -247,6 +316,17 @@ export function MatchPage() {
                     <span className="tabular-nums text-slate-500">
                       {p.overall} · C{p.condition}
                     </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-3 text-xs font-semibold text-slate-500 uppercase">
+                ม้านั่ง ({ourBench.length})
+              </p>
+              <ul className="mt-1 grid grid-cols-1 gap-1 sm:grid-cols-2">
+                {ourBench.map((p) => (
+                  <li key={p.id} className="rounded bg-amber-50/80 px-2 py-1 text-xs">
+                    <span className="text-amber-800/80">{p.role}</span> {p.name}{' '}
+                    <span className="tabular-nums text-slate-500">{p.overall}</span>
                   </li>
                 ))}
               </ul>
@@ -268,7 +348,9 @@ export function MatchPage() {
                 </p>
               ) : null}
               <PrimaryButton className="mt-3" onClick={() => confirmPreMatchLineup()}>
-                {check.prep?.lineupConfirmed ? '✓ ยืนยัน XI แล้ว' : 'ยืนยัน XI นัดนี้'}
+                {check.prep?.lineupConfirmed
+                  ? '✓ ยืนยัน XI + สำรองแล้ว'
+                  : 'ยืนยัน XI + ตัวสำรองนัดนี้'}
               </PrimaryButton>
             </Panel>
           </div>
@@ -295,6 +377,33 @@ export function MatchPage() {
                     <p className={cn('mt-0.5 text-xs', active ? 'text-slate-300' : 'text-slate-500')}>
                       {opt.blurb}
                     </p>
+                  </button>
+                )
+              })}
+            </div>
+          </Panel>
+
+          <Panel>
+            <h3 className="text-sm font-bold text-slate-900">ตะโกนสั่งข้างสนาม</h3>
+            <p className="mt-1 text-xs text-slate-500">
+              ไม่ใช่บัฟพลังตรงๆ — ปรับขวัญ/โฟกัสตามบริบทสกอร์ (คิวได้สูงสุด 3)
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {TOUCHLINE_SHOUT_OPTIONS.map((opt) => {
+                const active = (check.prep?.touchlineShouts ?? []).includes(opt.id)
+                return (
+                  <button
+                    key={opt.id}
+                    type="button"
+                    onClick={() => queueTouchlineShout(opt.id)}
+                    className={cn(
+                      'rounded-md border px-2.5 py-1.5 text-xs font-semibold',
+                      active
+                        ? 'border-indigo-900 bg-indigo-900 text-white'
+                        : 'border-slate-300 bg-white text-slate-800 hover:bg-slate-50',
+                    )}
+                  >
+                    {opt.label}
                   </button>
                 )
               })}
@@ -349,11 +458,33 @@ export function MatchPage() {
 
       <div className="grid gap-5 lg:grid-cols-2">
         {last && lastFx ? (
-          <MatchStatsPanel
-            result={last}
-            homeName={nameOf(lastFx.homeClubId)}
-            awayName={nameOf(lastFx.awayClubId)}
-          />
+          <>
+            <MatchStatsPanel
+              result={last}
+              homeName={nameOf(lastFx.homeClubId)}
+              awayName={nameOf(lastFx.awayClubId)}
+            />
+            {last.breakdown ? (
+              <Panel>
+                <h3 className="text-sm font-bold text-slate-900">วิเคราะห์พื้นที่</h3>
+                <p className="mt-1 text-xs text-slate-500">
+                  {formationLabel(last.breakdown.homeFormation, true)} vs{' '}
+                  {formationLabel(last.breakdown.awayFormation, true)}
+                </p>
+                <ul className="mt-2 space-y-1 text-xs text-slate-700">
+                  {last.breakdown.lines.map((l, i) => (
+                    <li key={i}>{l}</li>
+                  ))}
+                  {last.breakdown.freePlayerNotes.slice(0, 2).map((l, i) => (
+                    <li key={`f${i}`}>· {l}</li>
+                  ))}
+                  {last.breakdown.overloadNotes.slice(0, 2).map((l, i) => (
+                    <li key={`o${i}`}>· {l}</li>
+                  ))}
+                </ul>
+              </Panel>
+            ) : null}
+          </>
         ) : (
           <Panel>
             <p className="text-sm text-slate-500">ยังไม่มีสถิติแมตช์ล่าสุด</p>

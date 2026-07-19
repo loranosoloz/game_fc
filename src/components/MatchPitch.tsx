@@ -9,6 +9,8 @@ export interface PitchPlayerMarker {
   side: 'home' | 'away'
   spot: PitchSpot
   active?: boolean
+  /** ไฮไลต์ทีมที่ผู้เล่นคุม (รางวัล) */
+  highlight?: boolean
 }
 
 interface MatchPitchProps {
@@ -20,6 +22,10 @@ interface MatchPitchProps {
   awayShort: string
   pulse?: boolean
   className?: string
+  /** ซ่อนลูกบอล (เช่น หน้าทีมยอดเยี่ยม) */
+  hideBall?: boolean
+  /** โหมดรางวัล — ไม่แสดงป้ายเหย้า/เยือน */
+  awardsMode?: boolean
 }
 
 export function MatchPitch({
@@ -31,6 +37,8 @@ export function MatchPitch({
   awayShort,
   pulse = false,
   className,
+  hideBall = false,
+  awardsMode = false,
 }: MatchPitchProps) {
   return (
     <div
@@ -54,31 +62,35 @@ export function MatchPitch({
         <rect x="94" y="24" width="5" height="16" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="0.45" />
         <rect x="0.2" y="27" width="0.8" height="10" fill="rgba(255,255,255,0.95)" />
         <rect x="99" y="27" width="0.8" height="10" fill="rgba(255,255,255,0.95)" />
-        <circle cx="4" cy="6" r="2.2" fill={homeColor} />
-        <text x="8" y="7.2" fontSize="3.2" fill="white" fontFamily="sans-serif">
-          {homeShort}
-        </text>
-        <circle cx="90" cy="6" r="2.2" fill={awayColor} />
-        <text x="78" y="7.2" fontSize="3.2" fill="white" fontFamily="sans-serif" textAnchor="end">
-          {awayShort}
-        </text>
+        {!awardsMode ? (
+          <>
+            <circle cx="4" cy="6" r="2.2" fill={homeColor} />
+            <text x="8" y="7.2" fontSize="3.2" fill="white" fontFamily="sans-serif">
+              {homeShort}
+            </text>
+            <circle cx="90" cy="6" r="2.2" fill={awayColor} />
+            <text x="78" y="7.2" fontSize="3.2" fill="white" fontFamily="sans-serif" textAnchor="end">
+              {awayShort}
+            </text>
+          </>
+        ) : null}
       </svg>
 
       {players.map((p) => {
-        const color = p.side === 'home' ? homeColor : awayColor
+        const color = p.highlight ? '#65a30d' : p.side === 'home' ? homeColor : awayColor
         return (
           <motion.div
             key={p.id}
             title={p.name}
             className={cn(
               'pointer-events-none absolute flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-[10px] font-bold text-white shadow-md ring-2',
-              p.active ? 'z-20 ring-lime-300' : 'z-10 ring-black/25',
+              p.highlight || p.active ? 'z-20 ring-lime-300' : 'z-10 ring-black/25',
             )}
             style={{ backgroundColor: color }}
             animate={{
               left: `${p.spot.x}%`,
               top: `${p.spot.y}%`,
-              scale: p.active ? 1.25 : 1,
+              scale: p.highlight || p.active ? 1.2 : 1,
             }}
             transition={{
               left: { type: 'spring', stiffness: 100, damping: 18 },
@@ -91,20 +103,22 @@ export function MatchPitch({
         )
       })}
 
-      <motion.div
-        className="pointer-events-none absolute z-30 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f8fafc] shadow-[0_0_14px_rgba(255,255,255,0.55)] ring-2 ring-slate-900/25"
-        animate={{
-          left: `${spot.x}%`,
-          top: `${spot.y}%`,
-          scale: pulse ? [1, 1.45, 1] : 1,
-        }}
-        transition={{
-          left: { type: 'spring', stiffness: 90, damping: 16 },
-          top: { type: 'spring', stiffness: 90, damping: 16 },
-          scale: { duration: 0.4 },
-        }}
-        aria-hidden
-      />
+      {!hideBall ? (
+        <motion.div
+          className="pointer-events-none absolute z-30 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f8fafc] shadow-[0_0_14px_rgba(255,255,255,0.55)] ring-2 ring-slate-900/25"
+          animate={{
+            left: `${spot.x}%`,
+            top: `${spot.y}%`,
+            scale: pulse ? [1, 1.45, 1] : 1,
+          }}
+          transition={{
+            left: { type: 'spring', stiffness: 90, damping: 16 },
+            top: { type: 'spring', stiffness: 90, damping: 16 },
+            scale: { duration: 0.4 },
+          }}
+          aria-hidden
+        />
+      ) : null}
     </div>
   )
 }

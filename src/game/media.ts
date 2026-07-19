@@ -1,4 +1,6 @@
 import type { GameSave, MediaFeed, MediaItem, MediaTone, PressStory } from './types'
+import { pickOutlet, pickTalkShow } from './mediaOutlets'
+import { formatPersonalityCredit, personalitySays, pickPersonality } from './mediaPersonalities'
 
 /** rough market value for rumor copy (avoid circular import with transfer.ts) */
 function roughValue(overall: number, age: number): number {
@@ -63,6 +65,11 @@ function item(
   }
 }
 
+function withOutlet(save: GameSave, salt: number, story: MediaItem): MediaItem {
+  const outlet = pickOutlet(save, salt)
+  return { ...story, outlet: outlet.name, headline: `${outlet.name} · ${story.headline}` }
+}
+
 /** Official / tabloid news after a match */
 export function newsAfterMatch(
   save: GameSave,
@@ -71,16 +78,42 @@ export function newsAfterMatch(
   oppName: string,
 ): MediaItem {
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
+  const outlet = pickOutlet(save, usGoals + themGoals * 3)
   const won = usGoals > themGoals
   const drawn = usGoals === themGoals
+  const pundit = pickPersonality(save, usGoals * 5 + themGoals)
+  const credit = formatPersonalityCredit(pundit)
+  const altBodies = won
+    ? [
+        `คอลัมน์ ${outlet.name} ชี้ว่าแผนของ ${save.managerName} เริ่มชัด — แฟนเชื่อฤดูกาลนี้ไปได้ไกล`,
+        personalitySays(pundit, `จังหวะเปลี่ยนตัวและความเข้มเกมรับของ ${club.shortName} น่าประทับใจ`),
+        `โซเชียลแตก — แฮชแท็ก ${club.shortName} พุ่งหลังสกอร์ ${usGoals}–${themGoals}`,
+      ]
+    : drawn
+      ? [
+          `${outlet.name} มองว่ายังขาดความคมในกรอบ — บอร์ดจับตา 3 นัดถัดไป`,
+          personalitySays(pundit, `แต้มนี้ “พอใช้” หรือ “เสียโอกาสทอง” ยังถกเถียงได้`),
+          `สถิติชี้ครองบอลดีแต่จบไม่คม — โจทย์ซ้อมสัปดาห์นี้ชัดเจน`,
+        ]
+      : [
+          `สกอร์ ${usGoals}–${themGoals} ถูกนำไปพาดหัว — ความมั่นใจบอร์ดถูกพูดถึงในทอล์คโชว์`,
+          `${outlet.name} เปิดสายแฟนโหวตอนาคต ${save.managerName} หลังเกมนี้ — ${credit} ร่วมวงสนทนา`,
+          personalitySays(pundit, `คู่แข่งกดดันได้สำเร็จ — ต้องแก้เกมรุก/รับทันที`),
+        ]
+  const body = altBodies[Math.abs(save.matchday + usGoals) % altBodies.length]!
+  const punditMeta = {
+    punditName: pundit.name,
+    punditRole: pundit.roleTh,
+    punditBio: pundit.bioTh,
+  }
   if (won) {
     return item(
       'news',
       save.currentDate,
       `${club.shortName} ทุบ ${oppName} ${usGoals}–${themGoals}`,
-      `สื่อใหญ่ยกนิ้วให้แผนของ ${save.managerName} — แฟนเริ่มเชื่อว่าฤดูกาลนี้ไปได้ไกล`,
+      body,
       'positive',
-      { tags: ['match', 'result'] },
+      { tags: ['match', 'result'], outlet: outlet.name, ...punditMeta },
     )
   }
   if (drawn) {
@@ -88,32 +121,36 @@ export function newsAfterMatch(
       'news',
       save.currentDate,
       `${club.shortName} แบ่งแต้ม ${oppName}`,
-      `นักวิเคราะห์ชี้ว่ายังขาดความคมในกรอบ — บอร์ดจับตา 3 นัดถัดไป`,
+      body,
       'neutral',
-      { tags: ['match', 'result'] },
+      { tags: ['match', 'result'], outlet: outlet.name, ...punditMeta },
     )
   }
   return item(
     'news',
     save.currentDate,
     `คำถามถึง ${save.managerName} หลังแพ้ ${oppName}`,
-    `สกอร์ ${usGoals}–${themGoals} ถูกนำไปพาดหัว — ความมั่นใจบอร์ดถูกพูดถึงในรายการทอล์คโชว์`,
+    body,
     'negative',
-    { tags: ['match', 'pressure'] },
+    { tags: ['match', 'result'], outlet: outlet.name, ...punditMeta },
   )
 }
 
 export function newsAfterTransfer(save: GameSave, playerName: string, isBuy: boolean): MediaItem {
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
-  return item(
-    'news',
-    save.currentDate,
-    isBuy ? `${club.shortName} ปิดดีลคว้า ${playerName}` : `${club.shortName} ปล่อย ${playerName}`,
-    isBuy
-      ? `สำนักข่าวรายงานว่าข้อตกลงผ่านเพราะสเกาต์และงบที่ยังพอหมุน`
-      : `ฝั่งการเงินมองว่าสมเหตุสมผล ขณะที่แฟนบางส่วนไม่พอใจ`,
-    isBuy ? 'positive' : 'neutral',
-    { tags: ['transfer'] },
+  return withOutlet(
+    save,
+    21,
+    item(
+      'news',
+      save.currentDate,
+      isBuy ? `${club.shortName} ปิดดีลคว้า ${playerName}` : `${club.shortName} ปล่อย ${playerName}`,
+      isBuy
+        ? `สำนักข่าวรายงานว่าข้อตกลงผ่านเพราะสเกาต์และงบที่ยังพอหมุน`
+        : `ฝั่งการเงินมองว่าสมเหตุสมผล ขณะที่แฟนบางส่วนไม่พอใจ`,
+      isBuy ? 'positive' : 'neutral',
+      { tags: ['transfer'] },
+    ),
   )
 }
 
@@ -226,6 +263,7 @@ export function newsRivalResult(
 ): MediaItem {
   const won = rivalGoals > oppGoals
   const drawn = rivalGoals === oppGoals
+  const pundit = pickPersonality(save, rivalGoals * 3 + oppGoals + 11)
   return item(
     'news',
     save.currentDate,
@@ -235,12 +273,17 @@ export function newsRivalResult(
         ? `${rivalShort} แบ่งแต้ม ${oppShort}`
         : `${rivalShort} สะดุด แพ้ ${oppShort}`,
     won
-      ? `ตารางตึงขึ้น — นักวิเคราะห์ชี้ว่า ${save.managerName} ต้องตอบด้วยผลงานนัดหน้า`
+      ? personalitySays(pundit, `${save.managerName} ต้องตอบด้วยผลงานนัดหน้า หลังตารางตึงขึ้น`)
       : drawn
         ? `โอกาสของ ${save.clubs.find((c) => c.id === save.humanClubId)?.shortName ?? 'คุณ'} ยังเปิดอยู่`
         : `ช่องว่างแต้มอาจขยับ — สื่อเริ่มคุยถึงจังหวะล่าแต้ม`,
     won ? 'negative' : drawn ? 'neutral' : 'positive',
-    { tags: ['rival', 'league'] },
+    {
+      tags: ['rival', 'league'],
+      punditName: pundit.name,
+      punditRole: pundit.roleTh,
+      punditBio: pundit.bioTh,
+    },
   )
 }
 
@@ -262,14 +305,16 @@ export function detectNewInjuries(
   return out
 }
 
-/** Fan / player social posts */
+/** Fan / player social posts — พูลใหญ่ขึ้น */
 export function generateSocialBurst(save: GameSave): MediaItem[] {
   const rng = mulberry32(save.season * 500 + save.matchday * 33)
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
   const squad = save.players.filter((p) => p.clubId === save.humanClubId)
   const posts: MediaItem[] = []
+  const talk = pickTalkShow(save, save.matchday)
+  const outlet = pickOutlet(save, 40)
 
-  const fanTakes = [
+  const generators: Array<() => MediaItem | null> = [
     () =>
       item(
         'social',
@@ -290,38 +335,151 @@ export function generateSocialBurst(save: GameSave): MediaItem[] {
       return item(
         'social',
         save.currentDate,
-        `${p.name.split(' ').slice(-1)[0]} ✨`,
+        p.social?.handle ?? `${p.name.split(' ').slice(-1)[0]} ✨`,
         act === 'pub_night' || act === 'club_party'
           ? `คืนที่แล้ว… 🤫 (สตอรี่หายไปแล้ว)`
           : act === 'dawn_gym' || act === 'extra_shooting'
             ? `งานไม่เคยโกหก 💪 กลับมาซ้อมต่อ`
             : `ขอบคุณทุกกำลังใจ — โฟกัสแมตช์หน้า`,
         'neutral',
-        { tags: ['player', p.id] },
+        { tags: ['player', p.id], subjectName: p.name },
+      )
+    },
+    () => {
+      const pundit = pickPersonality(save, 77)
+      return item(
+        'social',
+        save.currentDate,
+        talk,
+        save.board.confidence < 45
+          ? `${formatPersonalityCredit(pundit)} เปิดประเด็น: ${save.managerName} ยังปลอดภัยอยู่ไหม?`
+          : `${formatPersonalityCredit(pundit)} ชวนคุย — ใครคือ MVP ของ ${club.shortName} ซีซั่นนี้?`,
+        save.board.confidence < 45 ? 'negative' : 'positive',
+        {
+          tags: ['talk', 'pundit'],
+          outlet: talk,
+          punditName: pundit.name,
+          punditRole: pundit.roleTh,
+          punditBio: pundit.bioTh,
+        },
       )
     },
     () =>
       item(
         'social',
         save.currentDate,
-        `TalkSport Chat`,
-        save.board.confidence < 45
-          ? `ดราม่า: ${save.managerName} ยังปลอดภัยอยู่ไหม? โหวตในคอมเมนต์`
-          : `${club.shortName} กำลังฮอต — ใครคือ MVP ของซีซั่น?`,
-        save.board.confidence < 45 ? 'negative' : 'positive',
-        { tags: ['talk'] },
+        `@Family${club.shortName}`,
+        save.fans.factions.soft >= 60
+          ? `พาลูกมาสนามนัดหน้าได้ไหม? ขอโซนครอบครัวชัดๆ 🙏`
+          : `เชียร์แบบสงบก็มีความสุข — ขอแค่ทีมสู้`,
+        'neutral',
+        { tags: ['fans', 'soft'] },
       ),
+    () => {
+      const star = [...squad].sort((a, b) => b.overall - a.overall)[0]
+      if (!star) return null
+      return item(
+        'social',
+        save.currentDate,
+        `FanEdit Bot`,
+        `คลิปไฮไลต์ ${star.name} ทะลุล้านวิว — ใครเซฟไว้บ้าง?`,
+        'positive',
+        { tags: ['viral', star.id], subjectName: star.name },
+      )
+    },
+    () =>
+      item(
+        'social',
+        save.currentDate,
+        outlet.name,
+        `โพลด่วน: ${club.shortName} ควรเสริมตำแหน่งไหนก่อนหน้าต่างตลาด?`,
+        'rumor',
+        { tags: ['poll'], outlet: outlet.name },
+      ),
+    () => {
+      const young = squad.filter((p) => p.age <= 21 || p.isYouth)[0]
+      if (!young) return null
+      return item(
+        'social',
+        save.currentDate,
+        `@AcademyWatch`,
+        `${young.name} คืออนาคตไหม? อะคาเดมี่แฟนเพจเปิดโหวต`,
+        'positive',
+        { tags: ['youth', young.id], subjectName: young.name },
+      )
+    },
+    () =>
+      item(
+        'social',
+        save.currentDate,
+        `@AwayDays${club.shortName}`,
+        save.fans.mood >= 50
+          ? `นัดเยือนรอบหน้า — ใครไปบ้างทักในคอมเมนต์ 🚌`
+          : `ขายตั๋วเยือนช้า… บรรยากาศยังไม่คึก`,
+        save.fans.mood >= 50 ? 'positive' : 'negative',
+        { tags: ['fans', 'away'] },
+      ),
+    () => {
+      const rich = [...squad].sort((a, b) => (b.social?.followers ?? 0) - (a.social?.followers ?? 0))[0]
+      if (!rich?.social) return null
+      return item(
+        'social',
+        save.currentDate,
+        rich.social.handle,
+        rich.social.heat >= 60
+          ? `อินบ็อกซ์ระเบิด 😅 ขอบคุณทุกคน — พักก่อนแข่ง`
+          : `วันธรรมดา · กาแฟ · โฟกัสซ้อม`,
+        'neutral',
+        { tags: ['player', rich.id], subjectName: rich.name },
+      )
+    },
+    () =>
+      item(
+        'social',
+        save.currentDate,
+        `MemeFC`,
+        save.fans.mood < 35
+          ? `มีมใหม่ทุกชั่วโมงหลังเกมแย่… 😂💔`
+          : `มีมฉลองสกอร์ — ไทม์ไลน์เขียวหมด`,
+        save.fans.mood < 35 ? 'negative' : 'positive',
+        { tags: ['meme'] },
+      ),
+    () =>
+      item(
+        'social',
+        save.currentDate,
+        club.social?.handle ?? `@${club.shortName}`,
+        `อัปเดตทางการ: ตารางซ้อมสัปดาห์นี้ + ตั๋วนัดเหย้าเปิดขายตามรอบ`,
+        'neutral',
+        { tags: ['club'] },
+      ),
+    () => {
+      if (save.board.ultimatum && rng() < 0.7) {
+        return item(
+          'social',
+          save.currentDate,
+          talk,
+          `คำขาดบอร์ดเป็นข่าวใหญ่ — แฟนแบ่งเป็นสองขั้วทันที`,
+          'negative',
+          { tags: ['board', 'talk'] },
+        )
+      }
+      return null
+    },
   ]
 
-  for (const gen of fanTakes) {
-    if (rng() > 0.75) continue
-    const post = gen()
+  // ยิง 4–7 โพสต์ต่อสัปดาห์
+  const target = 4 + Math.floor(rng() * 4)
+  const order = generators.map((_, i) => i).sort(() => rng() - 0.5)
+  for (const idx of order) {
+    if (posts.length >= target) break
+    if (rng() > 0.82 && posts.length >= 3) continue
+    const post = generators[idx]!()
     if (post) posts.push(post)
   }
 
-  const low = squad.filter((p) => p.morale <= 7).slice(0, 1)
+  const low = squad.filter((p) => p.morale <= 7).slice(0, 2)
   for (const p of low) {
-    // Players who handle media well leak less often
     if ((p.mediaHandling ?? 10) >= 14 && rng() < 0.55) continue
     posts.push(
       item(
@@ -330,7 +488,7 @@ export function generateSocialBurst(save: GameSave): MediaItem[] {
         `LeakBot`,
         `วงใน: ${p.name} ไม่แฮปปี้กับเวลาลงเล่น — โซเชียลแตกเป็นสองฝ่าย`,
         'negative',
-        { tags: ['leak', p.id] },
+        { tags: ['leak', p.id], subjectName: p.name },
       ),
     )
   }
@@ -380,21 +538,37 @@ export function generateRomanoIntel(save: GameSave): MediaItem[] {
     )
   }
 
-  // Outgoing rumor
+  // Outgoing rumor — ธงอยากย้าย / ไม่แฮปปี้
   const outgoing = save.players
-    .filter((p) => p.clubId === save.humanClubId && (p.happiness ?? 12) < 9)
-    .sort((a, b) => (a.happiness ?? 12) - (b.happiness ?? 12))
-  if (outgoing[0] && rng() < 0.4) {
+    .filter(
+      (p) =>
+        p.clubId === save.humanClubId &&
+        (p.wantAway?.active || (p.happiness ?? 12) < 9),
+    )
+    .sort((a, b) => {
+      const wa = (x: typeof a) =>
+        (x.wantAway?.publicNews ? 30 : 0) +
+        (x.wantAway?.intensity ?? 0) -
+        (x.happiness ?? 12)
+      return wa(b) - wa(a)
+    })
+  if (outgoing[0] && rng() < (outgoing[0].wantAway?.active ? 0.65 : 0.4)) {
     const p = outgoing[0]
-    const reliability = Math.round(40 + rng() * 40)
+    const reliability = Math.round(
+      40 + rng() * 40 + (p.wantAway?.publicNews ? 15 : 0),
+    )
     items.push(
       item(
         'romano',
         save.currentDate,
-        `วงใน: ${p.name} อาจลา ${club.shortName}`,
-        `เอเยนต์เปิดรับฟังข้อเสนอ · ความเชื่อมั่น ${reliability}% · สโมสรยังไม่ยืนยัน`,
+        p.wantAway?.publicNews
+          ? `Here we go?: ${p.name} อาจลา ${club.shortName}`
+          : `วงใน: ${p.name} อาจลา ${club.shortName}`,
+        p.wantAway?.active
+          ? `ธงอยากย้ายทำงานอยู่ · ${p.wantAway.reasonTh ?? 'ไม่แฮปปี้'} · ความเชื่อมั่น ${reliability}%`
+          : `เอเยนต์เปิดรับฟังข้อเสนอ · ความเชื่อมั่น ${reliability}% · สโมสรยังไม่ยืนยัน`,
         'rumor',
-        { tags: ['outgoing', p.id], reliability, subjectName: p.name },
+        { tags: ['outgoing', 'want_away', p.id], reliability, subjectName: p.name },
       ),
     )
   }

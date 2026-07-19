@@ -1,26 +1,30 @@
 {
   "ageCurves": [
-    { "maxAge": 18, "growthMul": 1.45, "declineMul": 0 },
-    { "maxAge": 21, "growthMul": 1.25, "declineMul": 0 },
-    { "maxAge": 24, "growthMul": 1.0, "declineMul": 0 },
-    { "maxAge": 27, "growthMul": 0.55, "declineMul": 0 },
-    { "maxAge": 30, "growthMul": 0.2, "declineMul": 0.15 },
-    { "maxAge": 33, "growthMul": 0.05, "declineMul": 0.45 },
-    { "maxAge": 40, "growthMul": 0, "declineMul": 0.75 }
+    { "maxAge": 18, "growthMul": 2.1, "declineMul": 0 },
+    { "maxAge": 21, "growthMul": 1.85, "declineMul": 0 },
+    { "maxAge": 24, "growthMul": 1.45, "declineMul": 0 },
+    { "maxAge": 27, "growthMul": 0.85, "declineMul": 0 },
+    { "maxAge": 30, "growthMul": 0.35, "declineMul": 0.12 },
+    { "maxAge": 33, "growthMul": 0.12, "declineMul": 0.4 },
+    { "maxAge": 40, "growthMul": 0, "declineMul": 0.7 }
   ],
   "mentor": {
-    "maxAge": 23,
-    "minCaGap": 8,
-    "baseBonus": 0.35,
-    "determinationScale": 0.04
+    "maxAge": 24,
+    "minCaGap": 6,
+    "baseBonus": 0.55,
+    "determinationScale": 0.05
   },
   "playingTime": {
-    "minutesForFullBoost": 90,
-    "minBoost": 0.25
+    "minutesForFullBoost": 70,
+    "minBoost": 0.35
   },
   "caPa": {
     "caFromOverallScale": 1.5,
-    "paMinGap": 2,
-    "paMaxGap": 28
+    "paMinGap": 8,
+    "paMaxGap": 42
+  },
+  "skillUnlock": {
+    "baseChance": 0.14,
+    "maxSlots": 10
   }
 }

@@ -1,0 +1,3453 @@
+{
+  "version": 1,
+  "questionsPerConference": 6,
+  "note": "แม่แบบแถลงข่าวตามบริบท — ตัวแปร {outlet}{opp}{score}{manager}{club}{star}{injured}{young}{rank}{nextOpp} ฯลฯ",
+  "count": 109,
+  "templates": [
+    {
+      "id": "result_win_0",
+      "category": "result",
+      "when": [
+        "win"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: ชนะ {opp} {score} — คุณพอใจแค่ไหน?",
+      "answers": [
+        {
+          "id": "humble",
+          "label": "ชื่นชมทีม — โฟกัสนัดหน้า",
+          "moraleDelta": 1,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} ชื่นชมสควอดหลังชนะ",
+          "socialTone": "positive"
+        },
+        {
+          "id": "boast",
+          "label": "เรายังไปได้ไกลกว่านี้",
+          "boardDelta": 1,
+          "reputationDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} คุยโวหลังเกม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "tactical",
+          "label": "แผนใช้งานได้ — ปรับรายละเอียด",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "result_win_1",
+      "category": "result",
+      "when": [
+        "win"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: หลังชนะ {opp} มีอะไรอยากชมทีมเป็นพิเศษไหม?",
+      "answers": [
+        {
+          "id": "humble",
+          "label": "ชื่นชมทีม — โฟกัสนัดหน้า",
+          "moraleDelta": 1,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} ชื่นชมสควอดหลังชนะ",
+          "socialTone": "positive"
+        },
+        {
+          "id": "boast",
+          "label": "เรายังไปได้ไกลกว่านี้",
+          "boardDelta": 1,
+          "reputationDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} คุยโวหลังเกม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "tactical",
+          "label": "แผนใช้งานได้ — ปรับรายละเอียด",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "result_win_2",
+      "category": "result",
+      "when": [
+        "win"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: สกอร์ {score} เหนือ {opp} — นี่คือมาตรฐานใหม่ของ {club} ไหม?",
+      "answers": [
+        {
+          "id": "humble",
+          "label": "ชื่นชมทีม — โฟกัสนัดหน้า",
+          "moraleDelta": 1,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} ชื่นชมสควอดหลังชนะ",
+          "socialTone": "positive"
+        },
+        {
+          "id": "boast",
+          "label": "เรายังไปได้ไกลกว่านี้",
+          "boardDelta": 1,
+          "reputationDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} คุยโวหลังเกม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "tactical",
+          "label": "แผนใช้งานได้ — ปรับรายละเอียด",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "result_win_3",
+      "category": "result",
+      "when": [
+        "win"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: แฟนร้องเพลงทั้งเกม ชนะ {opp} แล้วส่งสารอะไรกลับไป?",
+      "answers": [
+        {
+          "id": "humble",
+          "label": "ชื่นชมทีม — โฟกัสนัดหน้า",
+          "moraleDelta": 1,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} ชื่นชมสควอดหลังชนะ",
+          "socialTone": "positive"
+        },
+        {
+          "id": "boast",
+          "label": "เรายังไปได้ไกลกว่านี้",
+          "boardDelta": 1,
+          "reputationDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} คุยโวหลังเกม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "tactical",
+          "label": "แผนใช้งานได้ — ปรับรายละเอียด",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "result_win_4",
+      "category": "result",
+      "when": [
+        "win"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: สามแต้มกับ {opp} สำคัญกับโมเมนตัมฤดูกาลแค่ไหน?",
+      "answers": [
+        {
+          "id": "humble",
+          "label": "ชื่นชมทีม — โฟกัสนัดหน้า",
+          "moraleDelta": 1,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} ชื่นชมสควอดหลังชนะ",
+          "socialTone": "positive"
+        },
+        {
+          "id": "boast",
+          "label": "เรายังไปได้ไกลกว่านี้",
+          "boardDelta": 1,
+          "reputationDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} คุยโวหลังเกม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "tactical",
+          "label": "แผนใช้งานได้ — ปรับรายละเอียด",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "result_win_5",
+      "category": "result",
+      "when": [
+        "win"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: คุณจัดอันดับเกมนี้กี่จากสิบ หลังชนะ {opp}?",
+      "answers": [
+        {
+          "id": "humble",
+          "label": "ชื่นชมทีม — โฟกัสนัดหน้า",
+          "moraleDelta": 1,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} ชื่นชมสควอดหลังชนะ",
+          "socialTone": "positive"
+        },
+        {
+          "id": "boast",
+          "label": "เรายังไปได้ไกลกว่านี้",
+          "boardDelta": 1,
+          "reputationDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} คุยโวหลังเกม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "tactical",
+          "label": "แผนใช้งานได้ — ปรับรายละเอียด",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "result_win_6",
+      "category": "result",
+      "when": [
+        "win"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: ช่วงครึ่งหลังเหนือ {opp} ชัดมาก — วางแผนมาแบบนี้หรือเปล่า?",
+      "answers": [
+        {
+          "id": "humble",
+          "label": "ชื่นชมทีม — โฟกัสนัดหน้า",
+          "moraleDelta": 1,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} ชื่นชมสควอดหลังชนะ",
+          "socialTone": "positive"
+        },
+        {
+          "id": "boast",
+          "label": "เรายังไปได้ไกลกว่านี้",
+          "boardDelta": 1,
+          "reputationDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} คุยโวหลังเกม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "tactical",
+          "label": "แผนใช้งานได้ — ปรับรายละเอียด",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "result_win_7",
+      "category": "result",
+      "when": [
+        "win"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: มีใครใน XI ที่ทำให้คุณยิ้มหลังชนะ {opp} ไหม?",
+      "answers": [
+        {
+          "id": "humble",
+          "label": "ชื่นชมทีม — โฟกัสนัดหน้า",
+          "moraleDelta": 1,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} ชื่นชมสควอดหลังชนะ",
+          "socialTone": "positive"
+        },
+        {
+          "id": "boast",
+          "label": "เรายังไปได้ไกลกว่านี้",
+          "boardDelta": 1,
+          "reputationDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} คุยโวหลังเกม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "tactical",
+          "label": "แผนใช้งานได้ — ปรับรายละเอียด",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "result_bigwin_0",
+      "category": "result",
+      "when": [
+        "big_win"
+      ],
+      "weight": 14,
+      "slot": "result",
+      "prompt": "{outlet}: ถล่ม {opp} {score} — กังวลว่าทีมจะชะล่าใจไหม?",
+      "answers": [
+        {
+          "id": "humble",
+          "label": "ชื่นชมทีม — โฟกัสนัดหน้า",
+          "moraleDelta": 1,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} ชื่นชมสควอดหลังชนะ",
+          "socialTone": "positive"
+        },
+        {
+          "id": "boast",
+          "label": "เรายังไปได้ไกลกว่านี้",
+          "boardDelta": 1,
+          "reputationDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} คุยโวหลังเกม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "tactical",
+          "label": "แผนใช้งานได้ — ปรับรายละเอียด",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "result_bigwin_1",
+      "category": "result",
+      "when": [
+        "big_win"
+      ],
+      "weight": 14,
+      "slot": "result",
+      "prompt": "{outlet}: ชัยชนะขาดลอยแบบนี้ สะท้อนคุณภาพสควอดหรือคู่แข่งอ่อน?",
+      "answers": [
+        {
+          "id": "humble",
+          "label": "ชื่นชมทีม — โฟกัสนัดหน้า",
+          "moraleDelta": 1,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} ชื่นชมสควอดหลังชนะ",
+          "socialTone": "positive"
+        },
+        {
+          "id": "boast",
+          "label": "เรายังไปได้ไกลกว่านี้",
+          "boardDelta": 1,
+          "reputationDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} คุยโวหลังเกม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "tactical",
+          "label": "แผนใช้งานได้ — ปรับรายละเอียด",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "result_bigwin_2",
+      "category": "result",
+      "when": [
+        "big_win"
+      ],
+      "weight": 14,
+      "slot": "result",
+      "prompt": "{outlet}: หลังยิง {usGoals} ลูก คุณยังเห็นจุดที่ต้องแก้ไหม?",
+      "answers": [
+        {
+          "id": "humble",
+          "label": "ชื่นชมทีม — โฟกัสนัดหน้า",
+          "moraleDelta": 1,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} ชื่นชมสควอดหลังชนะ",
+          "socialTone": "positive"
+        },
+        {
+          "id": "boast",
+          "label": "เรายังไปได้ไกลกว่านี้",
+          "boardDelta": 1,
+          "reputationDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} คุยโวหลังเกม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "tactical",
+          "label": "แผนใช้งานได้ — ปรับรายละเอียด",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "result_lose_0",
+      "category": "result",
+      "when": [
+        "lose"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: แพ้ {opp} — คุณรับผิดชอบอย่างไร?",
+      "answers": [
+        {
+          "id": "own",
+          "label": "รับผิดชอบเต็มๆ — จะแก้ทันที",
+          "boardDelta": 2,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} รับผิดชอบหลังแพ้",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "defend",
+          "label": "โชคไม่เข้าข้าง — ทีมเล่นได้",
+          "boardDelta": -2,
+          "fansDelta": -2,
+          "reputationDelta": -1,
+          "socialHeadline": "ดราม่า: {manager} โทษโชคหลังแพ้",
+          "socialTone": "negative"
+        },
+        {
+          "id": "squad",
+          "label": "บางคนต้องทำได้ดีกว่านี้",
+          "moraleDelta": -2,
+          "happinessDelta": -2,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} จวกนักเตะหลังเกม",
+          "socialTone": "negative"
+        }
+      ]
+    },
+    {
+      "id": "result_lose_1",
+      "category": "result",
+      "when": [
+        "lose"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: สกอร์ {score} วันนี้ จุดไหนพังก่อน?",
+      "answers": [
+        {
+          "id": "own",
+          "label": "รับผิดชอบเต็มๆ — จะแก้ทันที",
+          "boardDelta": 2,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} รับผิดชอบหลังแพ้",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "defend",
+          "label": "โชคไม่เข้าข้าง — ทีมเล่นได้",
+          "boardDelta": -2,
+          "fansDelta": -2,
+          "reputationDelta": -1,
+          "socialHeadline": "ดราม่า: {manager} โทษโชคหลังแพ้",
+          "socialTone": "negative"
+        },
+        {
+          "id": "squad",
+          "label": "บางคนต้องทำได้ดีกว่านี้",
+          "moraleDelta": -2,
+          "happinessDelta": -2,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} จวกนักเตะหลังเกม",
+          "socialTone": "negative"
+        }
+      ]
+    },
+    {
+      "id": "result_lose_2",
+      "category": "result",
+      "when": [
+        "lose"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: แฟนเงียบหลังแพ้ {opp} — คุณจะพูดอะไรกับพวกเขา?",
+      "answers": [
+        {
+          "id": "own",
+          "label": "รับผิดชอบเต็มๆ — จะแก้ทันที",
+          "boardDelta": 2,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} รับผิดชอบหลังแพ้",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "defend",
+          "label": "โชคไม่เข้าข้าง — ทีมเล่นได้",
+          "boardDelta": -2,
+          "fansDelta": -2,
+          "reputationDelta": -1,
+          "socialHeadline": "ดราม่า: {manager} โทษโชคหลังแพ้",
+          "socialTone": "negative"
+        },
+        {
+          "id": "squad",
+          "label": "บางคนต้องทำได้ดีกว่านี้",
+          "moraleDelta": -2,
+          "happinessDelta": -2,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} จวกนักเตะหลังเกม",
+          "socialTone": "negative"
+        }
+      ]
+    },
+    {
+      "id": "result_lose_3",
+      "category": "result",
+      "when": [
+        "lose"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: นี่คือสัญญาณเตือนหรือแค่เกมหนึ่งที่แย่?",
+      "answers": [
+        {
+          "id": "own",
+          "label": "รับผิดชอบเต็มๆ — จะแก้ทันที",
+          "boardDelta": 2,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} รับผิดชอบหลังแพ้",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "defend",
+          "label": "โชคไม่เข้าข้าง — ทีมเล่นได้",
+          "boardDelta": -2,
+          "fansDelta": -2,
+          "reputationDelta": -1,
+          "socialHeadline": "ดราม่า: {manager} โทษโชคหลังแพ้",
+          "socialTone": "negative"
+        },
+        {
+          "id": "squad",
+          "label": "บางคนต้องทำได้ดีกว่านี้",
+          "moraleDelta": -2,
+          "happinessDelta": -2,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} จวกนักเตะหลังเกม",
+          "socialTone": "negative"
+        }
+      ]
+    },
+    {
+      "id": "result_lose_4",
+      "category": "result",
+      "when": [
+        "lose"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: หลังแพ้ {opp} จะเปลี่ยน XI นัดหน้าทันทีไหม?",
+      "answers": [
+        {
+          "id": "own",
+          "label": "รับผิดชอบเต็มๆ — จะแก้ทันที",
+          "boardDelta": 2,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} รับผิดชอบหลังแพ้",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "defend",
+          "label": "โชคไม่เข้าข้าง — ทีมเล่นได้",
+          "boardDelta": -2,
+          "fansDelta": -2,
+          "reputationDelta": -1,
+          "socialHeadline": "ดราม่า: {manager} โทษโชคหลังแพ้",
+          "socialTone": "negative"
+        },
+        {
+          "id": "squad",
+          "label": "บางคนต้องทำได้ดีกว่านี้",
+          "moraleDelta": -2,
+          "happinessDelta": -2,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} จวกนักเตะหลังเกม",
+          "socialTone": "negative"
+        }
+      ]
+    },
+    {
+      "id": "result_lose_5",
+      "category": "result",
+      "when": [
+        "lose"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: ความกดดันบน {manager} เพิ่มขึ้นไหมหลังเกมนี้?",
+      "answers": [
+        {
+          "id": "own",
+          "label": "รับผิดชอบเต็มๆ — จะแก้ทันที",
+          "boardDelta": 2,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} รับผิดชอบหลังแพ้",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "defend",
+          "label": "โชคไม่เข้าข้าง — ทีมเล่นได้",
+          "boardDelta": -2,
+          "fansDelta": -2,
+          "reputationDelta": -1,
+          "socialHeadline": "ดราม่า: {manager} โทษโชคหลังแพ้",
+          "socialTone": "negative"
+        },
+        {
+          "id": "squad",
+          "label": "บางคนต้องทำได้ดีกว่านี้",
+          "moraleDelta": -2,
+          "happinessDelta": -2,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} จวกนักเตะหลังเกม",
+          "socialTone": "negative"
+        }
+      ]
+    },
+    {
+      "id": "result_lose_6",
+      "category": "result",
+      "when": [
+        "lose"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: ทีมดูขาดความมั่นใจเมื่อตามหลัง — เห็นด้วยไหม?",
+      "answers": [
+        {
+          "id": "own",
+          "label": "รับผิดชอบเต็มๆ — จะแก้ทันที",
+          "boardDelta": 2,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} รับผิดชอบหลังแพ้",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "defend",
+          "label": "โชคไม่เข้าข้าง — ทีมเล่นได้",
+          "boardDelta": -2,
+          "fansDelta": -2,
+          "reputationDelta": -1,
+          "socialHeadline": "ดราม่า: {manager} โทษโชคหลังแพ้",
+          "socialTone": "negative"
+        },
+        {
+          "id": "squad",
+          "label": "บางคนต้องทำได้ดีกว่านี้",
+          "moraleDelta": -2,
+          "happinessDelta": -2,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} จวกนักเตะหลังเกม",
+          "socialTone": "negative"
+        }
+      ]
+    },
+    {
+      "id": "result_lose_7",
+      "category": "result",
+      "when": [
+        "lose"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: สื่อเริ่มถามอนาคตผู้จัดการแล้ว คุณตอบอย่างไร?",
+      "answers": [
+        {
+          "id": "own",
+          "label": "รับผิดชอบเต็มๆ — จะแก้ทันที",
+          "boardDelta": 2,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} รับผิดชอบหลังแพ้",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "defend",
+          "label": "โชคไม่เข้าข้าง — ทีมเล่นได้",
+          "boardDelta": -2,
+          "fansDelta": -2,
+          "reputationDelta": -1,
+          "socialHeadline": "ดราม่า: {manager} โทษโชคหลังแพ้",
+          "socialTone": "negative"
+        },
+        {
+          "id": "squad",
+          "label": "บางคนต้องทำได้ดีกว่านี้",
+          "moraleDelta": -2,
+          "happinessDelta": -2,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} จวกนักเตะหลังเกม",
+          "socialTone": "negative"
+        }
+      ]
+    },
+    {
+      "id": "result_heavy_0",
+      "category": "result",
+      "when": [
+        "heavy_loss"
+      ],
+      "weight": 16,
+      "slot": "result",
+      "prompt": "{outlet}: แพ้ยับ {score} ต่อ {opp} — นี่ยอมรับได้ไหม?",
+      "answers": [
+        {
+          "id": "own",
+          "label": "รับผิดชอบเต็มๆ — จะแก้ทันที",
+          "boardDelta": 2,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} รับผิดชอบหลังแพ้",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "defend",
+          "label": "โชคไม่เข้าข้าง — ทีมเล่นได้",
+          "boardDelta": -2,
+          "fansDelta": -2,
+          "reputationDelta": -1,
+          "socialHeadline": "ดราม่า: {manager} โทษโชคหลังแพ้",
+          "socialTone": "negative"
+        },
+        {
+          "id": "squad",
+          "label": "บางคนต้องทำได้ดีกว่านี้",
+          "moraleDelta": -2,
+          "happinessDelta": -2,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} จวกนักเตะหลังเกม",
+          "socialTone": "negative"
+        }
+      ]
+    },
+    {
+      "id": "result_heavy_1",
+      "category": "result",
+      "when": [
+        "heavy_loss"
+      ],
+      "weight": 16,
+      "slot": "result",
+      "prompt": "{outlet}: หลังเกมแบบนี้ บอร์ดคุยกับคุณหรือยัง?",
+      "answers": [
+        {
+          "id": "own",
+          "label": "รับผิดชอบเต็มๆ — จะแก้ทันที",
+          "boardDelta": 2,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} รับผิดชอบหลังแพ้",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "defend",
+          "label": "โชคไม่เข้าข้าง — ทีมเล่นได้",
+          "boardDelta": -2,
+          "fansDelta": -2,
+          "reputationDelta": -1,
+          "socialHeadline": "ดราม่า: {manager} โทษโชคหลังแพ้",
+          "socialTone": "negative"
+        },
+        {
+          "id": "squad",
+          "label": "บางคนต้องทำได้ดีกว่านี้",
+          "moraleDelta": -2,
+          "happinessDelta": -2,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} จวกนักเตะหลังเกม",
+          "socialTone": "negative"
+        }
+      ]
+    },
+    {
+      "id": "result_heavy_2",
+      "category": "result",
+      "when": [
+        "heavy_loss"
+      ],
+      "weight": 16,
+      "slot": "result",
+      "prompt": "{outlet}: แฟนโบกมือลาตั้งแต่ก่อนจบ — รู้สึกอย่างไร?",
+      "answers": [
+        {
+          "id": "own",
+          "label": "รับผิดชอบเต็มๆ — จะแก้ทันที",
+          "boardDelta": 2,
+          "reputationDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} รับผิดชอบหลังแพ้",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "defend",
+          "label": "โชคไม่เข้าข้าง — ทีมเล่นได้",
+          "boardDelta": -2,
+          "fansDelta": -2,
+          "reputationDelta": -1,
+          "socialHeadline": "ดราม่า: {manager} โทษโชคหลังแพ้",
+          "socialTone": "negative"
+        },
+        {
+          "id": "squad",
+          "label": "บางคนต้องทำได้ดีกว่านี้",
+          "moraleDelta": -2,
+          "happinessDelta": -2,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} จวกนักเตะหลังเกม",
+          "socialTone": "negative"
+        }
+      ]
+    },
+    {
+      "id": "result_draw_0",
+      "category": "result",
+      "when": [
+        "draw"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: เสมอ {opp} {score} — พอใจกับแต้มนี้ไหม?",
+      "answers": [
+        {
+          "id": "ok",
+          "label": "แต้มสำคัญในเส้นทางยาว",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "want_more",
+          "label": "ควรได้มากกว่านี้",
+          "moraleDelta": -1,
+          "fansDelta": 1
+        },
+        {
+          "id": "rotate",
+          "label": "หมุนเวียนเพื่อเกมใหญ่",
+          "happinessDelta": -1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "result_draw_1",
+      "category": "result",
+      "when": [
+        "draw"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: ควรได้มากกว่าเสมอวันนี้หรือเปล่า?",
+      "answers": [
+        {
+          "id": "ok",
+          "label": "แต้มสำคัญในเส้นทางยาว",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "want_more",
+          "label": "ควรได้มากกว่านี้",
+          "moraleDelta": -1,
+          "fansDelta": 1
+        },
+        {
+          "id": "rotate",
+          "label": "หมุนเวียนเพื่อเกมใหญ่",
+          "happinessDelta": -1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "result_draw_2",
+      "category": "result",
+      "when": [
+        "draw"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: แบ่งแต้มกับ {opp} ช่วยหรือฉุดเป้าฤดูกาล?",
+      "answers": [
+        {
+          "id": "ok",
+          "label": "แต้มสำคัญในเส้นทางยาว",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "want_more",
+          "label": "ควรได้มากกว่านี้",
+          "moraleDelta": -1,
+          "fansDelta": 1
+        },
+        {
+          "id": "rotate",
+          "label": "หมุนเวียนเพื่อเกมใหญ่",
+          "happinessDelta": -1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "result_draw_3",
+      "category": "result",
+      "when": [
+        "draw"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: เกมเสมอที่คุมเกมได้ — ผิดหวังที่ยิงไม่เข้าไหม?",
+      "answers": [
+        {
+          "id": "ok",
+          "label": "แต้มสำคัญในเส้นทางยาว",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "want_more",
+          "label": "ควรได้มากกว่านี้",
+          "moraleDelta": -1,
+          "fansDelta": 1
+        },
+        {
+          "id": "rotate",
+          "label": "หมุนเวียนเพื่อเกมใหญ่",
+          "happinessDelta": -1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "result_draw_4",
+      "category": "result",
+      "when": [
+        "draw"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: สองแต้มหายไปหรือหนึ่งแต้มเก็บได้ สำหรับคุณ?",
+      "answers": [
+        {
+          "id": "ok",
+          "label": "แต้มสำคัญในเส้นทางยาว",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "want_more",
+          "label": "ควรได้มากกว่านี้",
+          "moraleDelta": -1,
+          "fansDelta": 1
+        },
+        {
+          "id": "rotate",
+          "label": "หมุนเวียนเพื่อเกมใหญ่",
+          "happinessDelta": -1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "result_draw_5",
+      "category": "result",
+      "when": [
+        "draw"
+      ],
+      "weight": 12,
+      "slot": "result",
+      "prompt": "{outlet}: หลังเสมอ {opp} จะเร่งแก้เกมจบอย่างไร?",
+      "answers": [
+        {
+          "id": "ok",
+          "label": "แต้มสำคัญในเส้นทางยาว",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "want_more",
+          "label": "ควรได้มากกว่านี้",
+          "moraleDelta": -1,
+          "fansDelta": 1
+        },
+        {
+          "id": "rotate",
+          "label": "หมุนเวียนเพื่อเกมใหญ่",
+          "happinessDelta": -1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "xi_0",
+      "category": "xi",
+      "when": [
+        "always"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: มีเสียงวิจารณ์เรื่ององค์ประกอบ XI — คุณตอบอย่างไร?",
+      "answers": [
+        {
+          "id": "trust",
+          "label": "เชื่อมั่นในทีมชุดนี้",
+          "moraleDelta": 1,
+          "happinessDelta": 1
+        },
+        {
+          "id": "change",
+          "label": "จะปรับเมื่อจำเป็น",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "youth",
+          "label": "เปิดโอกาสเด็กอะคาเดมี่",
+          "fansDelta": 1,
+          "happinessDelta": 1,
+          "socialHeadline": "{manager} ย้ำนโยบายเยาวชน",
+          "socialTone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "xi_1",
+      "category": "xi",
+      "when": [
+        "always"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: ทำไมเลือกชุดนี้พบ {opp} วันนี้?",
+      "answers": [
+        {
+          "id": "trust",
+          "label": "เชื่อมั่นในทีมชุดนี้",
+          "moraleDelta": 1,
+          "happinessDelta": 1
+        },
+        {
+          "id": "change",
+          "label": "จะปรับเมื่อจำเป็น",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "youth",
+          "label": "เปิดโอกาสเด็กอะคาเดมี่",
+          "fansDelta": 1,
+          "happinessDelta": 1,
+          "socialHeadline": "{manager} ย้ำนโยบายเยาวชน",
+          "socialTone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "xi_2",
+      "category": "xi",
+      "when": [
+        "always"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: มีม้านั่งสำรองที่คุณเสียดายไม่ได้ลงไหม?",
+      "answers": [
+        {
+          "id": "trust",
+          "label": "เชื่อมั่นในทีมชุดนี้",
+          "moraleDelta": 1,
+          "happinessDelta": 1
+        },
+        {
+          "id": "change",
+          "label": "จะปรับเมื่อจำเป็น",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "youth",
+          "label": "เปิดโอกาสเด็กอะคาเดมี่",
+          "fansDelta": 1,
+          "happinessDelta": 1,
+          "socialHeadline": "{manager} ย้ำนโยบายเยาวชน",
+          "socialTone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "xi_3",
+      "category": "xi",
+      "when": [
+        "win"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: XI วันนี้ดูเข้ากัน — จะยึดชุดนี้ต่อไปไหม?",
+      "answers": [
+        {
+          "id": "trust",
+          "label": "เชื่อมั่นในทีมชุดนี้",
+          "moraleDelta": 1,
+          "happinessDelta": 1
+        },
+        {
+          "id": "change",
+          "label": "จะปรับเมื่อจำเป็น",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "youth",
+          "label": "เปิดโอกาสเด็กอะคาเดมี่",
+          "fansDelta": 1,
+          "happinessDelta": 1,
+          "socialHeadline": "{manager} ย้ำนโยบายเยาวชน",
+          "socialTone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "xi_4",
+      "category": "xi",
+      "when": [
+        "lose"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: หลังแพ้ จะมีใครหลุดจาก XI ไหม?",
+      "answers": [
+        {
+          "id": "trust",
+          "label": "เชื่อมั่นในทีมชุดนี้",
+          "moraleDelta": 1,
+          "happinessDelta": 1
+        },
+        {
+          "id": "change",
+          "label": "จะปรับเมื่อจำเป็น",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "youth",
+          "label": "เปิดโอกาสเด็กอะคาเดมี่",
+          "fansDelta": 1,
+          "happinessDelta": 1,
+          "socialHeadline": "{manager} ย้ำนโยบายเยาวชน",
+          "socialTone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "xi_5",
+      "category": "xi",
+      "when": [
+        "talks_pending"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: มีนักเตะขอคุยเรื่องเวลาลงเล่น — มีผลต่อ XI ไหม?",
+      "answers": [
+        {
+          "id": "trust",
+          "label": "เชื่อมั่นในทีมชุดนี้",
+          "moraleDelta": 1,
+          "happinessDelta": 1
+        },
+        {
+          "id": "change",
+          "label": "จะปรับเมื่อจำเป็น",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "youth",
+          "label": "เปิดโอกาสเด็กอะคาเดมี่",
+          "fansDelta": 1,
+          "happinessDelta": 1,
+          "socialHeadline": "{manager} ย้ำนโยบายเยาวชน",
+          "socialTone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "market_0",
+      "category": "market",
+      "when": [
+        "always"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: ตลาดนักเตะ — สโมสรจะเสริมแกร่งไหม?",
+      "answers": [
+        {
+          "id": "quiet",
+          "label": "พอใจสควอด — ไม่รีบ",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "active",
+          "label": "พร้อมเสริมถ้ามีเป้าหมายใช่",
+          "fansDelta": 1,
+          "reputationDelta": 1,
+          "socialHeadline": "วงใน: {manager} เปิดไฟเขียวตลาด",
+          "socialTone": "rumor"
+        },
+        {
+          "id": "sell",
+          "label": "อาจปล่อยคนที่ไม่แฮปปี้",
+          "happinessDelta": -1,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ไม่ปิดโอกาสขายนักเตะ",
+          "socialTone": "rumor"
+        }
+      ]
+    },
+    {
+      "id": "market_1",
+      "category": "market",
+      "when": [
+        "transfer_window"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: หน้าต่างตลาดเปิดอยู่ — มีดีลใกล้ปิดไหม?",
+      "answers": [
+        {
+          "id": "quiet",
+          "label": "พอใจสควอด — ไม่รีบ",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "active",
+          "label": "พร้อมเสริมถ้ามีเป้าหมายใช่",
+          "fansDelta": 1,
+          "reputationDelta": 1,
+          "socialHeadline": "วงใน: {manager} เปิดไฟเขียวตลาด",
+          "socialTone": "rumor"
+        },
+        {
+          "id": "sell",
+          "label": "อาจปล่อยคนที่ไม่แฮปปี้",
+          "happinessDelta": -1,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ไม่ปิดโอกาสขายนักเตะ",
+          "socialTone": "rumor"
+        }
+      ]
+    },
+    {
+      "id": "market_2",
+      "category": "market",
+      "when": [
+        "transfer_window"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: แฟนอยากได้ดาวดัง คุณจะกดบอร์ดไหม?",
+      "answers": [
+        {
+          "id": "quiet",
+          "label": "พอใจสควอด — ไม่รีบ",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "active",
+          "label": "พร้อมเสริมถ้ามีเป้าหมายใช่",
+          "fansDelta": 1,
+          "reputationDelta": 1,
+          "socialHeadline": "วงใน: {manager} เปิดไฟเขียวตลาด",
+          "socialTone": "rumor"
+        },
+        {
+          "id": "sell",
+          "label": "อาจปล่อยคนที่ไม่แฮปปี้",
+          "happinessDelta": -1,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ไม่ปิดโอกาสขายนักเตะ",
+          "socialTone": "rumor"
+        }
+      ]
+    },
+    {
+      "id": "market_3",
+      "category": "market",
+      "when": [
+        "board_pressure"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: บอร์ดอยากเห็นการเสริม — คุณเห็นด้วยไหม?",
+      "answers": [
+        {
+          "id": "quiet",
+          "label": "พอใจสควอด — ไม่รีบ",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "active",
+          "label": "พร้อมเสริมถ้ามีเป้าหมายใช่",
+          "fansDelta": 1,
+          "reputationDelta": 1,
+          "socialHeadline": "วงใน: {manager} เปิดไฟเขียวตลาด",
+          "socialTone": "rumor"
+        },
+        {
+          "id": "sell",
+          "label": "อาจปล่อยคนที่ไม่แฮปปี้",
+          "happinessDelta": -1,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ไม่ปิดโอกาสขายนักเตะ",
+          "socialTone": "rumor"
+        }
+      ]
+    },
+    {
+      "id": "market_4",
+      "category": "market",
+      "when": [
+        "fans_low"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: แฟนกดดันให้ซื้อคน — งบยังไหวไหม?",
+      "answers": [
+        {
+          "id": "quiet",
+          "label": "พอใจสควอด — ไม่รีบ",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "active",
+          "label": "พร้อมเสริมถ้ามีเป้าหมายใช่",
+          "fansDelta": 1,
+          "reputationDelta": 1,
+          "socialHeadline": "วงใน: {manager} เปิดไฟเขียวตลาด",
+          "socialTone": "rumor"
+        },
+        {
+          "id": "sell",
+          "label": "อาจปล่อยคนที่ไม่แฮปปี้",
+          "happinessDelta": -1,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ไม่ปิดโอกาสขายนักเตะ",
+          "socialTone": "rumor"
+        }
+      ]
+    },
+    {
+      "id": "market_5",
+      "category": "market",
+      "when": [
+        "always"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: มีข่าวลือเรื่อง {star} — ยืนยันสถานะเขาหน่อย?",
+      "answers": [
+        {
+          "id": "quiet",
+          "label": "พอใจสควอด — ไม่รีบ",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "active",
+          "label": "พร้อมเสริมถ้ามีเป้าหมายใช่",
+          "fansDelta": 1,
+          "reputationDelta": 1,
+          "socialHeadline": "วงใน: {manager} เปิดไฟเขียวตลาด",
+          "socialTone": "rumor"
+        },
+        {
+          "id": "sell",
+          "label": "อาจปล่อยคนที่ไม่แฮปปี้",
+          "happinessDelta": -1,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ไม่ปิดโอกาสขายนักเตะ",
+          "socialTone": "rumor"
+        }
+      ]
+    },
+    {
+      "id": "market_6",
+      "category": "market",
+      "when": [
+        "lose"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: หลังแพ้ จะรีบเสริมตลาดทันทีไหม?",
+      "answers": [
+        {
+          "id": "quiet",
+          "label": "พอใจสควอด — ไม่รีบ",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "active",
+          "label": "พร้อมเสริมถ้ามีเป้าหมายใช่",
+          "fansDelta": 1,
+          "reputationDelta": 1,
+          "socialHeadline": "วงใน: {manager} เปิดไฟเขียวตลาด",
+          "socialTone": "rumor"
+        },
+        {
+          "id": "sell",
+          "label": "อาจปล่อยคนที่ไม่แฮปปี้",
+          "happinessDelta": -1,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ไม่ปิดโอกาสขายนักเตะ",
+          "socialTone": "rumor"
+        }
+      ]
+    },
+    {
+      "id": "rival_0",
+      "category": "rivalry",
+      "when": [
+        "always"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: นัดกับ {opp} มีความหมายพิเศษ — ส่งสารอะไรถึงแฟน?",
+      "answers": [
+        {
+          "id": "respect",
+          "label": "เคารพคู่แข่ง — โฟกัสเกมของเรา",
+          "reputationDelta": 1,
+          "fansDelta": 1
+        },
+        {
+          "id": "fire",
+          "label": "นี่คือเกมที่ต้องชนะเพื่อแฟน",
+          "fansDelta": 2,
+          "boardDelta": 1,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} จุดไฟก่อน/หลังดาร์บี้",
+          "socialTone": "positive"
+        },
+        {
+          "id": "calm",
+          "label": "ไม่สร้างความกดดันเกินจริง",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "rival_1",
+      "category": "rivalry",
+      "when": [
+        "always"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: {opp} เล่นแบบไหนที่ทำให้คุณปวดหัวที่สุดวันนี้?",
+      "answers": [
+        {
+          "id": "respect",
+          "label": "เคารพคู่แข่ง — โฟกัสเกมของเรา",
+          "reputationDelta": 1,
+          "fansDelta": 1
+        },
+        {
+          "id": "fire",
+          "label": "นี่คือเกมที่ต้องชนะเพื่อแฟน",
+          "fansDelta": 2,
+          "boardDelta": 1,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} จุดไฟก่อน/หลังดาร์บี้",
+          "socialTone": "positive"
+        },
+        {
+          "id": "calm",
+          "label": "ไม่สร้างความกดดันเกินจริง",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "rival_2",
+      "category": "rivalry",
+      "when": [
+        "win"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: ชนะ {opp} แล้ว ความสัมพันธ์กับสโมสรเขาเป็นอย่างไร?",
+      "answers": [
+        {
+          "id": "respect",
+          "label": "เคารพคู่แข่ง — โฟกัสเกมของเรา",
+          "reputationDelta": 1,
+          "fansDelta": 1
+        },
+        {
+          "id": "fire",
+          "label": "นี่คือเกมที่ต้องชนะเพื่อแฟน",
+          "fansDelta": 2,
+          "boardDelta": 1,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} จุดไฟก่อน/หลังดาร์บี้",
+          "socialTone": "positive"
+        },
+        {
+          "id": "calm",
+          "label": "ไม่สร้างความกดดันเกินจริง",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "rival_3",
+      "category": "rivalry",
+      "when": [
+        "lose"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: {opp} สมควรได้ชัยวันนี้จริงไหม?",
+      "answers": [
+        {
+          "id": "respect",
+          "label": "เคารพคู่แข่ง — โฟกัสเกมของเรา",
+          "reputationDelta": 1,
+          "fansDelta": 1
+        },
+        {
+          "id": "fire",
+          "label": "นี่คือเกมที่ต้องชนะเพื่อแฟน",
+          "fansDelta": 2,
+          "boardDelta": 1,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} จุดไฟก่อน/หลังดาร์บี้",
+          "socialTone": "positive"
+        },
+        {
+          "id": "calm",
+          "label": "ไม่สร้างความกดดันเกินจริง",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "rival_4",
+      "category": "rivalry",
+      "when": [
+        "always"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: มีจังหวะที่คุณรู้สึกว่า {opp} เหนือกว่าชัดเจนไหม?",
+      "answers": [
+        {
+          "id": "respect",
+          "label": "เคารพคู่แข่ง — โฟกัสเกมของเรา",
+          "reputationDelta": 1,
+          "fansDelta": 1
+        },
+        {
+          "id": "fire",
+          "label": "นี่คือเกมที่ต้องชนะเพื่อแฟน",
+          "fansDelta": 2,
+          "boardDelta": 1,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} จุดไฟก่อน/หลังดาร์บี้",
+          "socialTone": "positive"
+        },
+        {
+          "id": "calm",
+          "label": "ไม่สร้างความกดดันเกินจริง",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "inj_0",
+      "category": "injury",
+      "when": [
+        "injury"
+      ],
+      "weight": 9,
+      "prompt": "{outlet}: มี {injuryCount} คนเจ็บในสควอด — จะเร่งกลับไหม?",
+      "answers": [
+        {
+          "id": "careful",
+          "label": "สุขภาพมาก่อน — ไม่เร่ง",
+          "happinessDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "push",
+          "label": "ต้องสู้ให้ครบเกมสำคัญ",
+          "boardDelta": 1,
+          "moraleDelta": -1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "rotate",
+          "label": "หมุนเวียนชัดเจนสัปดาห์นี้",
+          "moraleDelta": 1,
+          "fansDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "inj_1",
+      "category": "injury",
+      "when": [
+        "injury"
+      ],
+      "weight": 9,
+      "prompt": "{outlet}: อัปเดตอาการ {injured} ให้แฟนหน่อยได้ไหม?",
+      "answers": [
+        {
+          "id": "careful",
+          "label": "สุขภาพมาก่อน — ไม่เร่ง",
+          "happinessDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "push",
+          "label": "ต้องสู้ให้ครบเกมสำคัญ",
+          "boardDelta": 1,
+          "moraleDelta": -1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "rotate",
+          "label": "หมุนเวียนชัดเจนสัปดาห์นี้",
+          "moraleDelta": 1,
+          "fansDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "inj_2",
+      "category": "injury",
+      "when": [
+        "injury"
+      ],
+      "weight": 9,
+      "prompt": "{outlet}: การขาด {injured} มีผลต่อแผนพบ {opp} แค่ไหน?",
+      "answers": [
+        {
+          "id": "careful",
+          "label": "สุขภาพมาก่อน — ไม่เร่ง",
+          "happinessDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "push",
+          "label": "ต้องสู้ให้ครบเกมสำคัญ",
+          "boardDelta": 1,
+          "moraleDelta": -1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "rotate",
+          "label": "หมุนเวียนชัดเจนสัปดาห์นี้",
+          "moraleDelta": 1,
+          "fansDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "inj_3",
+      "category": "injury",
+      "when": [
+        "always"
+      ],
+      "weight": 9,
+      "prompt": "{outlet}: ภาระงานแน่น — มีแผนพักนักเตะหลักไหม?",
+      "answers": [
+        {
+          "id": "careful",
+          "label": "สุขภาพมาก่อน — ไม่เร่ง",
+          "happinessDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "push",
+          "label": "ต้องสู้ให้ครบเกมสำคัญ",
+          "boardDelta": 1,
+          "moraleDelta": -1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "rotate",
+          "label": "หมุนเวียนชัดเจนสัปดาห์นี้",
+          "moraleDelta": 1,
+          "fansDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "inj_4",
+      "category": "injury",
+      "when": [
+        "late_season"
+      ],
+      "weight": 9,
+      "prompt": "{outlet}: ช่วงท้ายฤดูกาล ร่างกายทีมไหวไหม?",
+      "answers": [
+        {
+          "id": "careful",
+          "label": "สุขภาพมาก่อน — ไม่เร่ง",
+          "happinessDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "push",
+          "label": "ต้องสู้ให้ครบเกมสำคัญ",
+          "boardDelta": 1,
+          "moraleDelta": -1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "rotate",
+          "label": "หมุนเวียนชัดเจนสัปดาห์นี้",
+          "moraleDelta": 1,
+          "fansDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "inj_5",
+      "category": "injury",
+      "when": [
+        "early_season"
+      ],
+      "weight": 9,
+      "prompt": "{outlet}: ต้นฤดูกาลยังปรับฟิต — กังวลอาการเจ็บไหม?",
+      "answers": [
+        {
+          "id": "careful",
+          "label": "สุขภาพมาก่อน — ไม่เร่ง",
+          "happinessDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "push",
+          "label": "ต้องสู้ให้ครบเกมสำคัญ",
+          "boardDelta": 1,
+          "moraleDelta": -1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "rotate",
+          "label": "หมุนเวียนชัดเจนสัปดาห์นี้",
+          "moraleDelta": 1,
+          "fansDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "dress_0",
+      "category": "dressing",
+      "when": [
+        "always"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: ความสัมพันธ์ในห้องแต่งตัวตอนนี้เป็นอย่างไร?",
+      "answers": [
+        {
+          "id": "united",
+          "label": "สามัคคี — พร้อมลุยด้วยกัน",
+          "moraleDelta": 1,
+          "happinessDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "honest",
+          "label": "มีเรื่องต้องเคลียร์ แต่จัดการได้",
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ยอมรับมีประเด็นในทีม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "deny",
+          "label": "ไม่มีปัญหาอะไรทั้งสิ้น",
+          "reputationDelta": -1,
+          "fansDelta": -1
+        }
+      ]
+    },
+    {
+      "id": "dress_1",
+      "category": "dressing",
+      "when": [
+        "talks_pending"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: มีข่าวว่า {talksPending} คนขอคุยส่วนตัว — บรรยากาศเป็นอย่างไร?",
+      "answers": [
+        {
+          "id": "united",
+          "label": "สามัคคี — พร้อมลุยด้วยกัน",
+          "moraleDelta": 1,
+          "happinessDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "honest",
+          "label": "มีเรื่องต้องเคลียร์ แต่จัดการได้",
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ยอมรับมีประเด็นในทีม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "deny",
+          "label": "ไม่มีปัญหาอะไรทั้งสิ้น",
+          "reputationDelta": -1,
+          "fansDelta": -1
+        }
+      ]
+    },
+    {
+      "id": "dress_2",
+      "category": "dressing",
+      "when": [
+        "fans_low"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: แฟนโกรธ — ห้องแต่งตัวรับแรงกดดันไหวไหม?",
+      "answers": [
+        {
+          "id": "united",
+          "label": "สามัคคี — พร้อมลุยด้วยกัน",
+          "moraleDelta": 1,
+          "happinessDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "honest",
+          "label": "มีเรื่องต้องเคลียร์ แต่จัดการได้",
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ยอมรับมีประเด็นในทีม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "deny",
+          "label": "ไม่มีปัญหาอะไรทั้งสิ้น",
+          "reputationDelta": -1,
+          "fansDelta": -1
+        }
+      ]
+    },
+    {
+      "id": "dress_3",
+      "category": "dressing",
+      "when": [
+        "board_pressure"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: บอร์ดกดดัน — นักเตะยังเชื่อมั่นในคุณไหม?",
+      "answers": [
+        {
+          "id": "united",
+          "label": "สามัคคี — พร้อมลุยด้วยกัน",
+          "moraleDelta": 1,
+          "happinessDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "honest",
+          "label": "มีเรื่องต้องเคลียร์ แต่จัดการได้",
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ยอมรับมีประเด็นในทีม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "deny",
+          "label": "ไม่มีปัญหาอะไรทั้งสิ้น",
+          "reputationDelta": -1,
+          "fansDelta": -1
+        }
+      ]
+    },
+    {
+      "id": "dress_4",
+      "category": "dressing",
+      "when": [
+        "win"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: หลังชนะ ห้องแต่งตัวฉลองอย่างไร?",
+      "answers": [
+        {
+          "id": "united",
+          "label": "สามัคคี — พร้อมลุยด้วยกัน",
+          "moraleDelta": 1,
+          "happinessDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "honest",
+          "label": "มีเรื่องต้องเคลียร์ แต่จัดการได้",
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ยอมรับมีประเด็นในทีม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "deny",
+          "label": "ไม่มีปัญหาอะไรทั้งสิ้น",
+          "reputationDelta": -1,
+          "fansDelta": -1
+        }
+      ]
+    },
+    {
+      "id": "dress_5",
+      "category": "dressing",
+      "when": [
+        "lose"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: หลังแพ้ คุณพูดอะไรในห้องแต่งตัว?",
+      "answers": [
+        {
+          "id": "united",
+          "label": "สามัคคี — พร้อมลุยด้วยกัน",
+          "moraleDelta": 1,
+          "happinessDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "honest",
+          "label": "มีเรื่องต้องเคลียร์ แต่จัดการได้",
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ยอมรับมีประเด็นในทีม",
+          "socialTone": "neutral"
+        },
+        {
+          "id": "deny",
+          "label": "ไม่มีปัญหาอะไรทั้งสิ้น",
+          "reputationDelta": -1,
+          "fansDelta": -1
+        }
+      ]
+    },
+    {
+      "id": "fin_0",
+      "category": "finance",
+      "when": [
+        "always"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: บอร์ดกดดันเรื่องงบ — คุณจะคุมค่าเหนื่อยอย่างไร?",
+      "answers": [
+        {
+          "id": "prudent",
+          "label": "วินัยการเงินสำคัญเท่าผลงาน",
+          "boardDelta": 2,
+          "reputationDelta": 1
+        },
+        {
+          "id": "invest",
+          "label": "ต้องลงทุนเพื่อแข่งขัน",
+          "fansDelta": 1,
+          "boardDelta": -1
+        },
+        {
+          "id": "balance",
+          "label": "สมดุลระหว่างอนาคตกับปัจจุบัน",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "fin_1",
+      "category": "finance",
+      "when": [
+        "board_pressure"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: ความมั่นใจบอร์ดต่ำ — คุณยังได้เวลาพิสูจน์ไหม?",
+      "answers": [
+        {
+          "id": "prudent",
+          "label": "วินัยการเงินสำคัญเท่าผลงาน",
+          "boardDelta": 2,
+          "reputationDelta": 1
+        },
+        {
+          "id": "invest",
+          "label": "ต้องลงทุนเพื่อแข่งขัน",
+          "fansDelta": 1,
+          "boardDelta": -1
+        },
+        {
+          "id": "balance",
+          "label": "สมดุลระหว่างอนาคตกับปัจจุบัน",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "fin_2",
+      "category": "finance",
+      "when": [
+        "board_pressure"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: มีคำขาดจากบอร์ดจริงหรือแค่ข่าวลือ?",
+      "answers": [
+        {
+          "id": "prudent",
+          "label": "วินัยการเงินสำคัญเท่าผลงาน",
+          "boardDelta": 2,
+          "reputationDelta": 1
+        },
+        {
+          "id": "invest",
+          "label": "ต้องลงทุนเพื่อแข่งขัน",
+          "fansDelta": 1,
+          "boardDelta": -1
+        },
+        {
+          "id": "balance",
+          "label": "สมดุลระหว่างอนาคตกับปัจจุบัน",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "fin_3",
+      "category": "finance",
+      "when": [
+        "ffp"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: FFP / เพดานงบ — จำกัดแผนตลาดของคุณไหม?",
+      "answers": [
+        {
+          "id": "prudent",
+          "label": "วินัยการเงินสำคัญเท่าผลงาน",
+          "boardDelta": 2,
+          "reputationDelta": 1
+        },
+        {
+          "id": "invest",
+          "label": "ต้องลงทุนเพื่อแข่งขัน",
+          "fansDelta": 1,
+          "boardDelta": -1
+        },
+        {
+          "id": "balance",
+          "label": "สมดุลระหว่างอนาคตกับปัจจุบัน",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "fin_4",
+      "category": "finance",
+      "when": [
+        "always"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: สปอนเซอร์และรายได้ทีวี ปีนี้ตามเป้าไหม?",
+      "answers": [
+        {
+          "id": "prudent",
+          "label": "วินัยการเงินสำคัญเท่าผลงาน",
+          "boardDelta": 2,
+          "reputationDelta": 1
+        },
+        {
+          "id": "invest",
+          "label": "ต้องลงทุนเพื่อแข่งขัน",
+          "fansDelta": 1,
+          "boardDelta": -1
+        },
+        {
+          "id": "balance",
+          "label": "สมดุลระหว่างอนาคตกับปัจจุบัน",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "tac_0",
+      "category": "tactics",
+      "when": [
+        "always"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: แผนวันนี้ตั้งใจแบบนี้ตั้งแต่ต้นหรือปรับระหว่างเกม?",
+      "answers": [
+        {
+          "id": "prepared",
+          "label": "เตรียมมาชัด — นักเตะทำตามแผน",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "adapt",
+          "label": "ปรับตามจังหวะคู่แข่ง",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "players",
+          "label": "ให้อิสระนักเตะในพื้นที่",
+          "happinessDelta": 1,
+          "fansDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "tac_1",
+      "category": "tactics",
+      "when": [
+        "always"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: ทำไมเลือกเพรส/บล็อกต่ำแบบนี้พบ {opp}?",
+      "answers": [
+        {
+          "id": "prepared",
+          "label": "เตรียมมาชัด — นักเตะทำตามแผน",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "adapt",
+          "label": "ปรับตามจังหวะคู่แข่ง",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "players",
+          "label": "ให้อิสระนักเตะในพื้นที่",
+          "happinessDelta": 1,
+          "fansDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "tac_2",
+      "category": "tactics",
+      "when": [
+        "win"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: จังหวะเปลี่ยนตัววันนี้คือกุญแจชัยหรือเปล่า?",
+      "answers": [
+        {
+          "id": "prepared",
+          "label": "เตรียมมาชัด — นักเตะทำตามแผน",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "adapt",
+          "label": "ปรับตามจังหวะคู่แข่ง",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "players",
+          "label": "ให้อิสระนักเตะในพื้นที่",
+          "happinessDelta": 1,
+          "fansDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "tac_3",
+      "category": "tactics",
+      "when": [
+        "lose"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: แผนรับวันนี้หลวมเกินไปไหม?",
+      "answers": [
+        {
+          "id": "prepared",
+          "label": "เตรียมมาชัด — นักเตะทำตามแผน",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "adapt",
+          "label": "ปรับตามจังหวะคู่แข่ง",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "players",
+          "label": "ให้อิสระนักเตะในพื้นที่",
+          "happinessDelta": 1,
+          "fansDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "tac_4",
+      "category": "tactics",
+      "when": [
+        "always"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: การครองบอล {club} วันนี้ สะท้อนสไตล์ที่ต้องการไหม?",
+      "answers": [
+        {
+          "id": "prepared",
+          "label": "เตรียมมาชัด — นักเตะทำตามแผน",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "adapt",
+          "label": "ปรับตามจังหวะคู่แข่ง",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "players",
+          "label": "ให้อิสระนักเตะในพื้นที่",
+          "happinessDelta": 1,
+          "fansDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "tac_5",
+      "category": "tactics",
+      "when": [
+        "always"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: เซ็ตพีซวันนี้เตรียมมาพิเศษไหม?",
+      "answers": [
+        {
+          "id": "prepared",
+          "label": "เตรียมมาชัด — นักเตะทำตามแผน",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "adapt",
+          "label": "ปรับตามจังหวะคู่แข่ง",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "players",
+          "label": "ให้อิสระนักเตะในพื้นที่",
+          "happinessDelta": 1,
+          "fansDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "ref_0",
+      "category": "referee",
+      "when": [
+        "always"
+      ],
+      "weight": 5,
+      "prompt": "{outlet}: มีจังหวะตัดสินใจของกรรมการที่คุณอยากพูดถึงไหม?",
+      "answers": [
+        {
+          "id": "no_comment",
+          "label": "ไม่ขอพูดถึงกรรมการ",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "soft",
+          "label": "บางจังหวะน่าจะได้ดู VAR",
+          "fansDelta": 1,
+          "reputationDelta": -1,
+          "socialHeadline": "{manager} แซะมาตรฐานการตัดสิน",
+          "socialTone": "negative"
+        },
+        {
+          "id": "focus",
+          "label": "โฟกัสสิ่งที่เราคุมได้",
+          "moraleDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "ref_1",
+      "category": "referee",
+      "when": [
+        "lose"
+      ],
+      "weight": 5,
+      "prompt": "{outlet}: แฟนโวย VAR — คุณเห็นด้วยไหม?",
+      "answers": [
+        {
+          "id": "no_comment",
+          "label": "ไม่ขอพูดถึงกรรมการ",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "soft",
+          "label": "บางจังหวะน่าจะได้ดู VAR",
+          "fansDelta": 1,
+          "reputationDelta": -1,
+          "socialHeadline": "{manager} แซะมาตรฐานการตัดสิน",
+          "socialTone": "negative"
+        },
+        {
+          "id": "focus",
+          "label": "โฟกัสสิ่งที่เราคุมได้",
+          "moraleDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "ref_2",
+      "category": "referee",
+      "when": [
+        "win"
+      ],
+      "weight": 5,
+      "prompt": "{outlet}: บางคนบอกได้ใบช่วย — มองอย่างไร?",
+      "answers": [
+        {
+          "id": "no_comment",
+          "label": "ไม่ขอพูดถึงกรรมการ",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "soft",
+          "label": "บางจังหวะน่าจะได้ดู VAR",
+          "fansDelta": 1,
+          "reputationDelta": -1,
+          "socialHeadline": "{manager} แซะมาตรฐานการตัดสิน",
+          "socialTone": "negative"
+        },
+        {
+          "id": "focus",
+          "label": "โฟกัสสิ่งที่เราคุมได้",
+          "moraleDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "ref_3",
+      "category": "referee",
+      "when": [
+        "always"
+      ],
+      "weight": 5,
+      "prompt": "{outlet}: มาตรฐานใบเหลืองวันนี้สม่ำเสมอไหม?",
+      "answers": [
+        {
+          "id": "no_comment",
+          "label": "ไม่ขอพูดถึงกรรมการ",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "soft",
+          "label": "บางจังหวะน่าจะได้ดู VAR",
+          "fansDelta": 1,
+          "reputationDelta": -1,
+          "socialHeadline": "{manager} แซะมาตรฐานการตัดสิน",
+          "socialTone": "negative"
+        },
+        {
+          "id": "focus",
+          "label": "โฟกัสสิ่งที่เราคุมได้",
+          "moraleDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "table_0",
+      "category": "table",
+      "when": [
+        "always"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: มองตารางคะแนนตอนนี้แล้วเป้าฤดูกาลยังเหมือนเดิมไหม?",
+      "answers": [
+        {
+          "id": "same",
+          "label": "เป้าเดิม — ไม่เปลี่ยนเพราะนัดเดียว",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "raise",
+          "label": "เริ่มมองเป้าที่สูงขึ้น",
+          "fansDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} ยกระดับความคาดหวัง",
+          "socialTone": "positive"
+        },
+        {
+          "id": "humble",
+          "label": "ทีละเกม — ตารางพูดเอง",
+          "moraleDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "table_1",
+      "category": "table",
+      "when": [
+        "always"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: อันดับ #{rank} ตอนนี้ — พอใจไหม?",
+      "answers": [
+        {
+          "id": "same",
+          "label": "เป้าเดิม — ไม่เปลี่ยนเพราะนัดเดียว",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "raise",
+          "label": "เริ่มมองเป้าที่สูงขึ้น",
+          "fansDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} ยกระดับความคาดหวัง",
+          "socialTone": "positive"
+        },
+        {
+          "id": "humble",
+          "label": "ทีละเกม — ตารางพูดเอง",
+          "moraleDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "table_2",
+      "category": "table",
+      "when": [
+        "top_half"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: ใกล้โซนยุโรปแล้ว — กล้าพูดเป้าหมายชัดไหม?",
+      "answers": [
+        {
+          "id": "same",
+          "label": "เป้าเดิม — ไม่เปลี่ยนเพราะนัดเดียว",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "raise",
+          "label": "เริ่มมองเป้าที่สูงขึ้น",
+          "fansDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} ยกระดับความคาดหวัง",
+          "socialTone": "positive"
+        },
+        {
+          "id": "humble",
+          "label": "ทีละเกม — ตารางพูดเอง",
+          "moraleDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "table_3",
+      "category": "table",
+      "when": [
+        "bottom_half"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: โซนอันตรายใกล้เข้ามา — มีแพลนฉุกเฉินไหม?",
+      "answers": [
+        {
+          "id": "same",
+          "label": "เป้าเดิม — ไม่เปลี่ยนเพราะนัดเดียว",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "raise",
+          "label": "เริ่มมองเป้าที่สูงขึ้น",
+          "fansDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} ยกระดับความคาดหวัง",
+          "socialTone": "positive"
+        },
+        {
+          "id": "humble",
+          "label": "ทีละเกม — ตารางพูดเอง",
+          "moraleDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "table_4",
+      "category": "table",
+      "when": [
+        "late_season"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: นัดเหลือไม่มาก — อะไรคือเป้าสุดท้าย?",
+      "answers": [
+        {
+          "id": "same",
+          "label": "เป้าเดิม — ไม่เปลี่ยนเพราะนัดเดียว",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "raise",
+          "label": "เริ่มมองเป้าที่สูงขึ้น",
+          "fansDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} ยกระดับความคาดหวัง",
+          "socialTone": "positive"
+        },
+        {
+          "id": "humble",
+          "label": "ทีละเกม — ตารางพูดเอง",
+          "moraleDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "table_5",
+      "category": "table",
+      "when": [
+        "early_season"
+      ],
+      "weight": 8,
+      "prompt": "{outlet}: ยังต้นฤดูกาล — ห้ามด่วนสรุปตารางไหม?",
+      "answers": [
+        {
+          "id": "same",
+          "label": "เป้าเดิม — ไม่เปลี่ยนเพราะนัดเดียว",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "raise",
+          "label": "เริ่มมองเป้าที่สูงขึ้น",
+          "fansDelta": 2,
+          "happinessDelta": -1,
+          "socialHeadline": "{manager} ยกระดับความคาดหวัง",
+          "socialTone": "positive"
+        },
+        {
+          "id": "humble",
+          "label": "ทีละเกม — ตารางพูดเอง",
+          "moraleDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "soc_0",
+      "category": "social",
+      "when": [
+        "always"
+      ],
+      "weight": 6,
+      "prompt": "{outlet}: นักเตะโพสต์โซเชียลหลังเกม — คุณคุมสื่อในทีมอย่างไร?",
+      "answers": [
+        {
+          "id": "free",
+          "label": "ให้อิสระถ้าไม่ทำร้ายทีม",
+          "happinessDelta": 1
+        },
+        {
+          "id": "guide",
+          "label": "ฝ่ายสื่อมีแนวทางชัด",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "ban",
+          "label": "ช่วงแข่งใหญ่ขอเงียบโซเชียล",
+          "happinessDelta": -1,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ล็อกโซเชียลนักเตะชั่วคราว",
+          "socialTone": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "soc_1",
+      "category": "social",
+      "when": [
+        "always"
+      ],
+      "weight": 6,
+      "prompt": "{outlet}: มีมและความเห็นในโซเชียลกระทบห้องแต่งตัวไหม?",
+      "answers": [
+        {
+          "id": "free",
+          "label": "ให้อิสระถ้าไม่ทำร้ายทีม",
+          "happinessDelta": 1
+        },
+        {
+          "id": "guide",
+          "label": "ฝ่ายสื่อมีแนวทางชัด",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "ban",
+          "label": "ช่วงแข่งใหญ่ขอเงียบโซเชียล",
+          "happinessDelta": -1,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ล็อกโซเชียลนักเตะชั่วคราว",
+          "socialTone": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "soc_2",
+      "category": "social",
+      "when": [
+        "fans_low"
+      ],
+      "weight": 6,
+      "prompt": "{outlet}: แฮชแท็กวิจารณ์คุณเต็มฟีด — มองอย่างไร?",
+      "answers": [
+        {
+          "id": "free",
+          "label": "ให้อิสระถ้าไม่ทำร้ายทีม",
+          "happinessDelta": 1
+        },
+        {
+          "id": "guide",
+          "label": "ฝ่ายสื่อมีแนวทางชัด",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "ban",
+          "label": "ช่วงแข่งใหญ่ขอเงียบโซเชียล",
+          "happinessDelta": -1,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ล็อกโซเชียลนักเตะชั่วคราว",
+          "socialTone": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "soc_3",
+      "category": "social",
+      "when": [
+        "win"
+      ],
+      "weight": 6,
+      "prompt": "{outlet}: โซเชียลฉลองใหญ่ — เตือนทีมไม่ชะล่าใจไหม?",
+      "answers": [
+        {
+          "id": "free",
+          "label": "ให้อิสระถ้าไม่ทำร้ายทีม",
+          "happinessDelta": 1
+        },
+        {
+          "id": "guide",
+          "label": "ฝ่ายสื่อมีแนวทางชัด",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "ban",
+          "label": "ช่วงแข่งใหญ่ขอเงียบโซเชียล",
+          "happinessDelta": -1,
+          "boardDelta": 1,
+          "socialHeadline": "{manager} ล็อกโซเชียลนักเตะชั่วคราว",
+          "socialTone": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "gk_0",
+      "category": "gk",
+      "when": [
+        "always"
+      ],
+      "weight": 6,
+      "prompt": "{outlet}: การเล่นออกบอลของนายทวารวันนี้ คุณพอใจไหม?",
+      "answers": [
+        {
+          "id": "yes",
+          "label": "เป็นส่วนสำคัญของแผน",
+          "moraleDelta": 1
+        },
+        {
+          "id": "safer",
+          "label": "บางจังหวะควรเซฟกว่านี้",
+          "happinessDelta": -1,
+          "boardDelta": 1
+        },
+        {
+          "id": "train",
+          "label": "จะซ้อมสถานการณ์นี้เพิ่ม",
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "gk_1",
+      "category": "gk",
+      "when": [
+        "always"
+      ],
+      "weight": 6,
+      "prompt": "{outlet}: แนวรับวันนี้สื่อสารกันชัดไหม?",
+      "answers": [
+        {
+          "id": "yes",
+          "label": "เป็นส่วนสำคัญของแผน",
+          "moraleDelta": 1
+        },
+        {
+          "id": "safer",
+          "label": "บางจังหวะควรเซฟกว่านี้",
+          "happinessDelta": -1,
+          "boardDelta": 1
+        },
+        {
+          "id": "train",
+          "label": "จะซ้อมสถานการณ์นี้เพิ่ม",
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "gk_2",
+      "category": "gk",
+      "when": [
+        "lose"
+      ],
+      "weight": 6,
+      "prompt": "{outlet}: ประตูที่เสีย — ผิดพลาดรายบุคคลหรือระบบ?",
+      "answers": [
+        {
+          "id": "yes",
+          "label": "เป็นส่วนสำคัญของแผน",
+          "moraleDelta": 1
+        },
+        {
+          "id": "safer",
+          "label": "บางจังหวะควรเซฟกว่านี้",
+          "happinessDelta": -1,
+          "boardDelta": 1
+        },
+        {
+          "id": "train",
+          "label": "จะซ้อมสถานการณ์นี้เพิ่ม",
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "gk_3",
+      "category": "gk",
+      "when": [
+        "win"
+      ],
+      "weight": 6,
+      "prompt": "{outlet}: คลีนชีต/เกมรับแน่น สะท้อนงานซ้อมไหม?",
+      "answers": [
+        {
+          "id": "yes",
+          "label": "เป็นส่วนสำคัญของแผน",
+          "moraleDelta": 1
+        },
+        {
+          "id": "safer",
+          "label": "บางจังหวะควรเซฟกว่านี้",
+          "happinessDelta": -1,
+          "boardDelta": 1
+        },
+        {
+          "id": "train",
+          "label": "จะซ้อมสถานการณ์นี้เพิ่ม",
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "gk_4",
+      "category": "gk",
+      "when": [
+        "always"
+      ],
+      "weight": 6,
+      "prompt": "{outlet}: {star} ในเกมรับวันนี้ ทำหน้าที่ครบไหม?",
+      "answers": [
+        {
+          "id": "yes",
+          "label": "เป็นส่วนสำคัญของแผน",
+          "moraleDelta": 1
+        },
+        {
+          "id": "safer",
+          "label": "บางจังหวะควรเซฟกว่านี้",
+          "happinessDelta": -1,
+          "boardDelta": 1
+        },
+        {
+          "id": "train",
+          "label": "จะซ้อมสถานการณ์นี้เพิ่ม",
+          "reputationDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "star_0",
+      "category": "star",
+      "when": [
+        "always"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: พูดถึงฟอร์มของ {star} วันนี้หน่อยได้ไหม?",
+      "answers": [
+        {
+          "id": "praise",
+          "label": "{star} ทำได้ยอดเยี่ยมวันนี้",
+          "moraleDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} ชม {star} หลังเกม",
+          "socialTone": "positive"
+        },
+        {
+          "id": "team",
+          "label": "ทั้งทีมช่วยกัน — ไม่ใช่คนเดียว",
+          "moraleDelta": 1,
+          "happinessDelta": 1
+        },
+        {
+          "id": "more",
+          "label": "ยังอยากเห็นเขาสม่ำเสมอแบบนี้",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "star_1",
+      "category": "star",
+      "when": [
+        "win"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: {star} คือผู้เล่นแห่งเกมในสายคุณไหม?",
+      "answers": [
+        {
+          "id": "praise",
+          "label": "{star} ทำได้ยอดเยี่ยมวันนี้",
+          "moraleDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} ชม {star} หลังเกม",
+          "socialTone": "positive"
+        },
+        {
+          "id": "team",
+          "label": "ทั้งทีมช่วยกัน — ไม่ใช่คนเดียว",
+          "moraleDelta": 1,
+          "happinessDelta": 1
+        },
+        {
+          "id": "more",
+          "label": "ยังอยากเห็นเขาสม่ำเสมอแบบนี้",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "star_2",
+      "category": "star",
+      "when": [
+        "lose"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: {star} ดูไม่ใช่ตัวเอง — มีอะไรกังวลไหม?",
+      "answers": [
+        {
+          "id": "praise",
+          "label": "{star} ทำได้ยอดเยี่ยมวันนี้",
+          "moraleDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} ชม {star} หลังเกม",
+          "socialTone": "positive"
+        },
+        {
+          "id": "team",
+          "label": "ทั้งทีมช่วยกัน — ไม่ใช่คนเดียว",
+          "moraleDelta": 1,
+          "happinessDelta": 1
+        },
+        {
+          "id": "more",
+          "label": "ยังอยากเห็นเขาสม่ำเสมอแบบนี้",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "star_3",
+      "category": "star",
+      "when": [
+        "youth"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: เด็กอย่าง {young} ได้โอกาสแล้ว — โตพอไหม?",
+      "answers": [
+        {
+          "id": "praise",
+          "label": "{star} ทำได้ยอดเยี่ยมวันนี้",
+          "moraleDelta": 1,
+          "fansDelta": 1,
+          "socialHeadline": "{manager} ชม {star} หลังเกม",
+          "socialTone": "positive"
+        },
+        {
+          "id": "team",
+          "label": "ทั้งทีมช่วยกัน — ไม่ใช่คนเดียว",
+          "moraleDelta": 1,
+          "happinessDelta": 1
+        },
+        {
+          "id": "more",
+          "label": "ยังอยากเห็นเขาสม่ำเสมอแบบนี้",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "press_0",
+      "category": "pressure",
+      "when": [
+        "board_pressure"
+      ],
+      "weight": 9,
+      "prompt": "{outlet}: เก้าอี้ผู้จัดการเริ่มร้อน — นอนหลับได้ไหม?",
+      "answers": [
+        {
+          "id": "calm",
+          "label": "กดดันเป็นส่วนหนึ่งของงาน",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "fight",
+          "label": "จะพิสูจน์ด้วยผลงาน",
+          "fansDelta": 1,
+          "moraleDelta": 1
+        },
+        {
+          "id": "snap",
+          "label": "สื่อกดดันเกินไป",
+          "fansDelta": -1,
+          "reputationDelta": -1,
+          "socialHeadline": "{manager} ปะทะสื่อเรื่องความกดดัน",
+          "socialTone": "negative"
+        }
+      ]
+    },
+    {
+      "id": "press_1",
+      "category": "pressure",
+      "when": [
+        "fans_low"
+      ],
+      "weight": 9,
+      "prompt": "{outlet}: มีป้ายเชิญออกในอัฒจันทร์ — รับได้ไหม?",
+      "answers": [
+        {
+          "id": "calm",
+          "label": "กดดันเป็นส่วนหนึ่งของงาน",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "fight",
+          "label": "จะพิสูจน์ด้วยผลงาน",
+          "fansDelta": 1,
+          "moraleDelta": 1
+        },
+        {
+          "id": "snap",
+          "label": "สื่อกดดันเกินไป",
+          "fansDelta": -1,
+          "reputationDelta": -1,
+          "socialHeadline": "{manager} ปะทะสื่อเรื่องความกดดัน",
+          "socialTone": "negative"
+        }
+      ]
+    },
+    {
+      "id": "press_2",
+      "category": "pressure",
+      "when": [
+        "lose"
+      ],
+      "weight": 9,
+      "prompt": "{outlet}: กี่เกมที่คุณขอให้บอร์ดรออีก?",
+      "answers": [
+        {
+          "id": "calm",
+          "label": "กดดันเป็นส่วนหนึ่งของงาน",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "fight",
+          "label": "จะพิสูจน์ด้วยผลงาน",
+          "fansDelta": 1,
+          "moraleDelta": 1
+        },
+        {
+          "id": "snap",
+          "label": "สื่อกดดันเกินไป",
+          "fansDelta": -1,
+          "reputationDelta": -1,
+          "socialHeadline": "{manager} ปะทะสื่อเรื่องความกดดัน",
+          "socialTone": "negative"
+        }
+      ]
+    },
+    {
+      "id": "press_3",
+      "category": "pressure",
+      "when": [
+        "always"
+      ],
+      "weight": 9,
+      "prompt": "{outlet}: ความกดดันสื่อในลีกนี้หนักกว่าที่คิดไหม?",
+      "answers": [
+        {
+          "id": "calm",
+          "label": "กดดันเป็นส่วนหนึ่งของงาน",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "fight",
+          "label": "จะพิสูจน์ด้วยผลงาน",
+          "fansDelta": 1,
+          "moraleDelta": 1
+        },
+        {
+          "id": "snap",
+          "label": "สื่อกดดันเกินไป",
+          "fansDelta": -1,
+          "reputationDelta": -1,
+          "socialHeadline": "{manager} ปะทะสื่อเรื่องความกดดัน",
+          "socialTone": "negative"
+        }
+      ]
+    },
+    {
+      "id": "style_0",
+      "category": "style",
+      "when": [
+        "always"
+      ],
+      "weight": 6,
+      "prompt": "{outlet}: สไตล์ {club} ภายใต้คุณชัดเจนแล้วหรือยัง?",
+      "answers": [
+        {
+          "id": "identity",
+          "label": "เรายึดสไตล์ของตัวเอง",
+          "reputationDelta": 1,
+          "moraleDelta": 1
+        },
+        {
+          "id": "pragmatic",
+          "label": "ผลมาก่อน ความสวยงามทีหลัง",
+          "boardDelta": 1,
+          "fansDelta": -1
+        },
+        {
+          "id": "attack",
+          "label": "อยากให้แฟนได้ดูเกมรุก",
+          "fansDelta": 2,
+          "happinessDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "style_1",
+      "category": "style",
+      "when": [
+        "always"
+      ],
+      "weight": 6,
+      "prompt": "{outlet}: แฟนอยากเกมรุก คุณยอมแลกผลเสมอเพื่อความสวยไหม?",
+      "answers": [
+        {
+          "id": "identity",
+          "label": "เรายึดสไตล์ของตัวเอง",
+          "reputationDelta": 1,
+          "moraleDelta": 1
+        },
+        {
+          "id": "pragmatic",
+          "label": "ผลมาก่อน ความสวยงามทีหลัง",
+          "boardDelta": 1,
+          "fansDelta": -1
+        },
+        {
+          "id": "attack",
+          "label": "อยากให้แฟนได้ดูเกมรุก",
+          "fansDelta": 2,
+          "happinessDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "style_2",
+      "category": "style",
+      "when": [
+        "win"
+      ],
+      "weight": 6,
+      "prompt": "{outlet}: วันนี้เล่นสวยและได้ผล — นี่คือตัวตนทีมไหม?",
+      "answers": [
+        {
+          "id": "identity",
+          "label": "เรายึดสไตล์ของตัวเอง",
+          "reputationDelta": 1,
+          "moraleDelta": 1
+        },
+        {
+          "id": "pragmatic",
+          "label": "ผลมาก่อน ความสวยงามทีหลัง",
+          "boardDelta": 1,
+          "fansDelta": -1
+        },
+        {
+          "id": "attack",
+          "label": "อยากให้แฟนได้ดูเกมรุก",
+          "fansDelta": 2,
+          "happinessDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "style_3",
+      "category": "style",
+      "when": [
+        "lose"
+      ],
+      "weight": 6,
+      "prompt": "{outlet}: หลังแพ้ จะยึดปรัชญาเดิมหรือปรับเป็นแพรกแมติก?",
+      "answers": [
+        {
+          "id": "identity",
+          "label": "เรายึดสไตล์ของตัวเอง",
+          "reputationDelta": 1,
+          "moraleDelta": 1
+        },
+        {
+          "id": "pragmatic",
+          "label": "ผลมาก่อน ความสวยงามทีหลัง",
+          "boardDelta": 1,
+          "fansDelta": -1
+        },
+        {
+          "id": "attack",
+          "label": "อยากให้แฟนได้ดูเกมรุก",
+          "fansDelta": 2,
+          "happinessDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "next_0",
+      "category": "next",
+      "when": [
+        "always"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: นัดหน้าเจอ {nextOpp} — เตรียมอะไรเป็นพิเศษ?",
+      "answers": [
+        {
+          "id": "focus",
+          "label": "โฟกัสนัดหน้าทันที",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "recover",
+          "label": "พักฟื้นก่อน แล้วค่อยวางแผน",
+          "happinessDelta": 1
+        },
+        {
+          "id": "same",
+          "label": "ยึดมาตรฐานเดิมทุกเกม",
+          "boardDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "next_1",
+      "category": "next",
+      "when": [
+        "win"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: หลังชนะ จะหมุนเวียนพบ {nextOpp} ไหม?",
+      "answers": [
+        {
+          "id": "focus",
+          "label": "โฟกัสนัดหน้าทันที",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "recover",
+          "label": "พักฟื้นก่อน แล้วค่อยวางแผน",
+          "happinessDelta": 1
+        },
+        {
+          "id": "same",
+          "label": "ยึดมาตรฐานเดิมทุกเกม",
+          "boardDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "next_2",
+      "category": "next",
+      "when": [
+        "lose"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: นัดหน้าคือโอกาสแก้ตัวทันที — กดดันไหม?",
+      "answers": [
+        {
+          "id": "focus",
+          "label": "โฟกัสนัดหน้าทันที",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "recover",
+          "label": "พักฟื้นก่อน แล้วค่อยวางแผน",
+          "happinessDelta": 1
+        },
+        {
+          "id": "same",
+          "label": "ยึดมาตรฐานเดิมทุกเกม",
+          "boardDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "next_3",
+      "category": "next",
+      "when": [
+        "cup_week"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: สัปดาห์นี้มีถ้วยด้วย — จัดลำดับความสำคัญอย่างไร?",
+      "answers": [
+        {
+          "id": "focus",
+          "label": "โฟกัสนัดหน้าทันที",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "recover",
+          "label": "พักฟื้นก่อน แล้วค่อยวางแผน",
+          "happinessDelta": 1
+        },
+        {
+          "id": "same",
+          "label": "ยึดมาตรฐานเดิมทุกเกม",
+          "boardDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "youth_0",
+      "category": "youth",
+      "when": [
+        "youth"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: อะคาเดมี่ผลิตคนคุณภาพ — จะดันเด็กเพิ่มไหม?",
+      "answers": [
+        {
+          "id": "trust",
+          "label": "เชื่อมั่นในทีมชุดนี้",
+          "moraleDelta": 1,
+          "happinessDelta": 1
+        },
+        {
+          "id": "change",
+          "label": "จะปรับเมื่อจำเป็น",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "youth",
+          "label": "เปิดโอกาสเด็กอะคาเดมี่",
+          "fansDelta": 1,
+          "happinessDelta": 1,
+          "socialHeadline": "{manager} ย้ำนโยบายเยาวชน",
+          "socialTone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "youth_1",
+      "category": "youth",
+      "when": [
+        "always"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: นโยบายเยาวชนของ {club} ภายใต้คุณเป็นอย่างไร?",
+      "answers": [
+        {
+          "id": "trust",
+          "label": "เชื่อมั่นในทีมชุดนี้",
+          "moraleDelta": 1,
+          "happinessDelta": 1
+        },
+        {
+          "id": "change",
+          "label": "จะปรับเมื่อจำเป็น",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "youth",
+          "label": "เปิดโอกาสเด็กอะคาเดมี่",
+          "fansDelta": 1,
+          "happinessDelta": 1,
+          "socialHeadline": "{manager} ย้ำนโยบายเยาวชน",
+          "socialTone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "youth_2",
+      "category": "youth",
+      "when": [
+        "youth"
+      ],
+      "weight": 7,
+      "prompt": "{outlet}: {young} พร้อมเป็นตัวจริงสม่ำเสมอหรือยัง?",
+      "answers": [
+        {
+          "id": "trust",
+          "label": "เชื่อมั่นในทีมชุดนี้",
+          "moraleDelta": 1,
+          "happinessDelta": 1
+        },
+        {
+          "id": "change",
+          "label": "จะปรับเมื่อจำเป็น",
+          "reputationDelta": 1,
+          "boardDelta": 1
+        },
+        {
+          "id": "youth",
+          "label": "เปิดโอกาสเด็กอะคาเดมี่",
+          "fansDelta": 1,
+          "happinessDelta": 1,
+          "socialHeadline": "{manager} ย้ำนโยบายเยาวชน",
+          "socialTone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "logistics_0",
+      "category": "logistics",
+      "when": [
+        "always"
+      ],
+      "weight": 3,
+      "prompt": "{outlet}: สภาพอากาศวันนี้มีผลต่อแผนไหม?",
+      "answers": [
+        {
+          "id": "prepared",
+          "label": "เตรียมมาชัด — นักเตะทำตามแผน",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "adapt",
+          "label": "ปรับตามจังหวะคู่แข่ง",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "players",
+          "label": "ให้อิสระนักเตะในพื้นที่",
+          "happinessDelta": 1,
+          "fansDelta": 1
+        }
+      ]
+    },
+    {
+      "id": "logistics_1",
+      "category": "logistics",
+      "when": [
+        "always"
+      ],
+      "weight": 3,
+      "prompt": "{outlet}: การเดินทาง/ตารางแน่นกระทบฟอร์มไหม?",
+      "answers": [
+        {
+          "id": "prepared",
+          "label": "เตรียมมาชัด — นักเตะทำตามแผน",
+          "moraleDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "adapt",
+          "label": "ปรับตามจังหวะคู่แข่ง",
+          "boardDelta": 1,
+          "reputationDelta": 1
+        },
+        {
+          "id": "players",
+          "label": "ให้อิสระนักเตะในพื้นที่",
+          "happinessDelta": 1,
+          "fansDelta": 1
+        }
+      ]
+    }
+  ]
+}

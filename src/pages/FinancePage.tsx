@@ -2,7 +2,7 @@ import { useGameStore } from '@/store/gameStore'
 import { formatMoney } from '@/lib/format'
 import { ffpStatus } from '@/game/financeFfp'
 import { ensureClubFinance, PLAYER_SPENDINGS } from '@/game/playerEconomy'
-import { cashflowForecast, ensureClubIncome } from '@/game/clubIncome'
+import { cashflowForecast, ensureClubIncome, prizeAmountFor, prizeTable, domesticPrizeScale } from '@/game/clubIncome'
 import { DISCIPLINE_FINES } from '@/game/disciplineFines'
 import { ensurePhase5 } from '@/game/save'
 import {
@@ -16,16 +16,22 @@ import {
 } from '@/game/facilities'
 import type { FacilityKind } from '@/game/types'
 import { PageHeader, Panel, ProgressBar, StatTile, GhostButton } from '@/components/ui'
+import {
+  ensureInsolvency,
+  insolvencyLabelTh,
+} from '@/game/insolvency'
 
 export function FinancePage() {
   const saveRaw = useGameStore((s) => s.save)!
   const save = ensurePhase5(saveRaw)
   const proposeFacilityUpgrade = useGameStore((s) => s.proposeFacilityUpgrade)
+  const requestOwnerBailout = useGameStore((s) => s.requestOwnerBailout)
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
   const finance = ensureClubFinance(save)
   const income = ensureClubIncome(save)
   const facilities = ensureFacilities(save)
   const forecast = cashflowForecast(save)
+  const insolvency = ensureInsolvency(save)
   const squad = save.players.filter((p) => p.clubId === save.humanClubId)
   const weeklyWages = squad.reduce((s, p) => s + p.wage, 0)
   const squadCash = squad.reduce((s, p) => s + (p.cash ?? 0), 0)
@@ -36,13 +42,58 @@ export function FinancePage() {
   const richest = [...squad].sort((a, b) => (b.cash ?? 0) - (a.cash ?? 0)).slice(0, 6)
   const spendLogs = finance.spendLogs.slice(0, 12)
   const ledger = finance.ledger.slice(0, 10)
+  const fireSaleNames = insolvency.fireSalePlayerIds
+    .map((id) => squad.find((p) => p.id === id)?.name)
+    .filter(Boolean)
 
   return (
     <div className="space-y-5">
       <PageHeader
         title="การเงิน"
-        subtitle="ตั๋ว·เสื้อ·สปอนเซอร์·TV·รางวัลถ้วย · พยากรณ์กระแสเงิน · FFP"
+        subtitle="ตั๋ว·เสื้อ·สปอนเซอร์·TV·รางวัลถ้วย · พยากรณ์กระแสเงิน · FFP · วิกฤตสภาพคล่อง"
       />
+
+      {insolvency.stage !== 'ok' ? (
+        <Panel tone="warn">
+          <h3 className="text-sm font-bold text-slate-900">
+            {insolvencyLabelTh(insolvency.stage)}
+          </h3>
+          <p className="mt-1 text-xs text-slate-600">{insolvency.lastNote}</p>
+          <dl className="mt-3 grid gap-2 sm:grid-cols-3 text-sm">
+            <div className="rounded-lg bg-slate-50 px-3 py-2">
+              <dt className="text-xs text-slate-500">ค้างค่าเหนื่อย</dt>
+              <dd className="font-semibold text-rose-700">
+                {formatMoney(insolvency.unpaidWages)}
+              </dd>
+            </div>
+            <div className="rounded-lg bg-slate-50 px-3 py-2">
+              <dt className="text-xs text-slate-500">สตรีคติดลบ</dt>
+              <dd className="font-semibold">{insolvency.negativeStreak} MD</dd>
+            </div>
+            <div className="rounded-lg bg-slate-50 px-3 py-2">
+              <dt className="text-xs text-slate-500">หักแต้มฤดูกาลนี้</dt>
+              <dd className="font-semibold">
+                {insolvency.pointsDeductedThisSeason > 0
+                  ? `${insolvency.pointsDeductedThisSeason} ครั้ง`
+                  : '—'}
+              </dd>
+            </div>
+          </dl>
+          {fireSaleNames.length > 0 ? (
+            <p className="mt-2 text-xs text-rose-800">
+              Fire sale: {fireSaleNames.join(' · ')}
+            </p>
+          ) : null}
+          <p className="mt-2 text-xs text-slate-500">
+            ห้ามซื้อ · ขายเพื่อเคลียร์หนี้ · หรือขอเจ้าของฉีดเงิน / เปิดทางเทคโอเวอร์
+          </p>
+          <div className="mt-3">
+            <GhostButton type="button" onClick={() => requestOwnerBailout()}>
+              ขอเจ้าของฉีดเงินกู้วิกฤต
+            </GhostButton>
+          </div>
+        </Panel>
+      ) : null}
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <StatTile label="เงินในบัญชี" value={formatMoney(club.balance)} accent />
@@ -85,10 +136,125 @@ export function FinancePage() {
         />
         <StatTile
           label="FFP"
-          value={ffp.ok ? 'ผ่าน' : 'เสี่ยง'}
-          hint={ffp.warning ?? 'อยู่ในเกณฑ์'}
+          value={
+            'exempt' in ffp && ffp.exempt
+              ? 'ยกเว้น'
+              : ffp.ok
+                ? ffp.nearBreach
+                  ? 'ใกล้เพดาน'
+                  : 'ผ่าน'
+                : 'บล็อก'
+          }
+          hint={
+            'exempt' in ffp && ffp.exempt
+              ? ffp.exemptLabel
+              : (ffp.warning ?? 'อยู่ในเกณฑ์')
+          }
         />
       </div>
+
+      <Panel tone={ffp.ok ? undefined : 'warn'}>
+        <h3 className="text-sm font-bold text-slate-900">Financial Fair Play</h3>
+        <p className="mt-1 text-xs text-slate-500">
+          {'exempt' in ffp && ffp.exempt
+            ? 'ซาอุดี Pro League — บอร์ดไม่บังคับ FFP (เงินถุงเงินถัง) · ซื้อได้ตามเงินในบัญชี'
+            : 'บล็อกซื้อถ้าขาดทุนเกินเพดาน · ค่าเหนื่อยเกินงบ · หรือซื้อสุทธิเกินเพดานตลาด — ฝ่าเพดานหนักบอร์ดระงับตลาด 3 MD'}
+        </p>
+        {'exempt' in ffp && ffp.exempt ? null : (
+        <dl className="mt-3 grid gap-2 sm:grid-cols-3 text-sm">
+          <div className="rounded-lg bg-slate-50 px-3 py-2">
+            <dt className="text-xs text-slate-500">ขาดทุนฤดูกาล</dt>
+            <dd className={ffp.lossOk ? 'font-semibold' : 'font-semibold text-rose-700'}>
+              {formatMoney(ffp.loss)} / {formatMoney(ffp.maxLoss)}
+            </dd>
+          </div>
+          <div className="rounded-lg bg-slate-50 px-3 py-2">
+            <dt className="text-xs text-slate-500">ค่าเหนื่อย / งบสัปดาห์</dt>
+            <dd className={ffp.wageOk ? 'font-semibold' : 'font-semibold text-rose-700'}>
+              {formatMoney(ffp.wages)} / {formatMoney(ffp.wageBudget)}
+            </dd>
+          </div>
+          <div className="rounded-lg bg-slate-50 px-3 py-2">
+            <dt className="text-xs text-slate-500">ซื้อสุทธิ / เพดานตลาด</dt>
+            <dd className={ffp.transferOk ? 'font-semibold' : 'font-semibold text-rose-700'}>
+              {formatMoney(ffp.netSpend)} / {formatMoney(ffp.transferCap)}
+            </dd>
+            <dd className="text-[10px] text-slate-500">
+              จ่ายซื้อ {formatMoney(ffp.transferOut)} · รับขาย {formatMoney(ffp.transferIn)}
+            </dd>
+          </div>
+        </dl>
+        )}
+        {ffp.boardFrozen ? (
+          <p className="mt-2 rounded-md bg-rose-50 px-3 py-2 text-sm text-rose-900">
+            ตลาดถูกระงับชั่วคราว — {ffp.warning}
+          </p>
+        ) : null}
+      </Panel>
+
+      <Panel>
+        <h3 className="text-sm font-bold text-slate-900">ตารางเงินรางวัลถ้วย</h3>
+        <p className="mt-1 text-xs text-slate-500">
+          ถ้วยในประเทศสเกลตามลีก ×{domesticPrizeScale(save.leagueId).toFixed(2)} · ถ้วยทวีปยอดคงที่
+        </p>
+        <div className="mt-3 overflow-x-auto">
+          <table className="w-full min-w-[28rem] text-left text-xs">
+            <thead>
+              <tr className="border-b border-slate-200 text-slate-500">
+                <th className="py-1.5 pr-2 font-medium">ถ้วย</th>
+                <th className="py-1.5 pr-2 font-medium">แชมป์</th>
+                <th className="py-1.5 pr-2 font-medium">รองฯ</th>
+                <th className="py-1.5 pr-2 font-medium">QF</th>
+                <th className="py-1.5 font-medium">SF</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(
+                [
+                  ['ucl', 'UCL'],
+                  ['uel', 'Europa'],
+                  ['uecl', 'Conference'],
+                  ['acl', 'ACL'],
+                  ['asean_cup', 'ASEAN'],
+                  ['cup', 'ถ้วยชาติ'],
+                  ['league_cup', 'ลีกคัพ'],
+                  ['trophy', 'ถ้วยลีกล่าง'],
+                ] as const
+              ).map(([key, label]) => {
+                const prizes = prizeTable()
+                const progress =
+                  key === 'ucl' ||
+                  key === 'uel' ||
+                  key === 'uecl' ||
+                  key === 'acl' ||
+                  key === 'asean_cup'
+                    ? (prizes.progress as Record<string, { qf: number; sf: number }>)[key]
+                    : null
+                const champ = prizeAmountFor(save, key, 'champion')
+                const ru = prizeAmountFor(save, key, 'runnerUp')
+                return (
+                  <tr key={key} className="border-b border-slate-100">
+                    <td className="py-1.5 pr-2 font-medium text-slate-800">{label}</td>
+                    <td className="py-1.5 pr-2 tabular-nums">{formatMoney(champ)}</td>
+                    <td className="py-1.5 pr-2 tabular-nums">{formatMoney(ru)}</td>
+                    <td className="py-1.5 pr-2 tabular-nums text-slate-600">
+                      {progress ? formatMoney(progress.qf) : '—'}
+                    </td>
+                    <td className="py-1.5 tabular-nums text-slate-600">
+                      {progress ? formatMoney(progress.sf) : '—'}
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-2 text-xs text-slate-500">
+          รางวัลถ้วยฤดูกาลนี้สะสม {formatMoney(finance.prizeSeason ?? 0)} · เช่น ไทยลีกถ้วยชาติ ≈{' '}
+          {formatMoney(prizeAmountFor({ ...save, leagueId: 'tha' } as typeof save, 'cup', 'champion'))}{' '}
+          · พรีเมียร์ลีก ≈ {formatMoney(prizeAmountFor({ ...save, leagueId: 'eng' } as typeof save, 'cup', 'champion'))}
+        </p>
+      </Panel>
 
       <Panel>
         <h3 className="text-sm font-bold text-slate-900">พยากรณ์กระแสเงิน 6 แมตช์เดย์</h3>

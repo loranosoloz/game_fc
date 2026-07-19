@@ -1,0 +1,3372 @@
+{
+  "source": "fmtransferupdate.com + FMInside (personal display)",
+  "sourceUrl": "https://fmtransferupdate.com/",
+  "note": "Not for redistribution or commercial sale. J2 League / jpn2 pack.",
+  "clubs": {
+    "sap": [
+      {
+        "name": "Takanori Sugeno",
+        "role": "GK",
+        "age": 42,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Shun Takagi",
+        "role": "GK",
+        "age": 37,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kojiro Nakano",
+        "role": "GK",
+        "age": 27,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ryu Takao",
+        "role": "CB",
+        "age": 29,
+        "ovr": 67,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Tomoki Takamine",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Hiroki Miyazawa",
+        "role": "CDM",
+        "age": 37,
+        "ovr": 67,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Rei Ieizumi",
+        "role": "CB",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Daiki Miya",
+        "role": "CB",
+        "age": 30,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ryota Aoki",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 66,
+        "fmPos": "WB L, AM RLC"
+      },
+      {
+        "name": "Tomoki Kondo",
+        "role": "RB",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Toya Nakamura",
+        "role": "CM",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "D LC, M L"
+      },
+      {
+        "name": "Kazuki Fukai",
+        "role": "CM",
+        "age": 31,
+        "ovr": 65,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Takuma Arano",
+        "role": "CAM",
+        "age": 33,
+        "ovr": 64,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Hiromu Tanaka",
+        "role": "CM",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "M RL"
+      },
+      {
+        "name": "Supachok",
+        "role": "ST",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mario Sergio",
+        "role": "ST",
+        "age": 30,
+        "ovr": 63,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Amadou Bakayoko",
+        "role": "ST",
+        "age": 30,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tatsuya Hasegawa",
+        "role": "ST",
+        "age": 32,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Haruto Shirai",
+        "role": "ST",
+        "age": 26,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Katsuyuki Tanaka",
+        "role": "ST",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Shido Izuma",
+        "role": "ST",
+        "age": 21,
+        "ovr": 59,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Kinglord Safo",
+        "role": "ST",
+        "age": 24,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      }
+    ],
+    "vgs": [
+      {
+        "name": "Akihiro Hayashi",
+        "role": "GK",
+        "age": 39,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Daiki Hotta",
+        "role": "GK",
+        "age": 31,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Koki Matsuzawa",
+        "role": "GK",
+        "age": 34,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Yuta Goke",
+        "role": "ST",
+        "age": 27,
+        "ovr": 66,
+        "fmPos": "WB R, AM RL, ST"
+      },
+      {
+        "name": "Takumi Mase",
+        "role": "CM",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Shion Inoue",
+        "role": "CB",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Masahiro Sugata",
+        "role": "CB",
+        "age": 29,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Masayuki Okuyama",
+        "role": "RB",
+        "age": 32,
+        "ovr": 65,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Ryota Takada",
+        "role": "RB",
+        "age": 26,
+        "ovr": 65,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Rikuto Ishio",
+        "role": "CB",
+        "age": 24,
+        "ovr": 64,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Mateus Moraes",
+        "role": "CB",
+        "age": 25,
+        "ovr": 64,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Renji Matsui",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Hiromu Kamada",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "DM, M RLC"
+      },
+      {
+        "name": "Aoi Kudo",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Azuri Yutani",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Hidetoshi Takeda",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "DM, M RLC"
+      },
+      {
+        "name": "Sota Yokoyama",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 62,
+        "fmPos": "DM, M RLC"
+      },
+      {
+        "name": "Motohiko Nakajima",
+        "role": "ST",
+        "age": 27,
+        "ovr": 62,
+        "fmPos": "AM LC, F C"
+      },
+      {
+        "name": "Shunta Araki",
+        "role": "ST",
+        "age": 26,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kokoro Kobayashi",
+        "role": "ST",
+        "age": 25,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ko Miyazaki",
+        "role": "ST",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Hinata Yamauchi",
+        "role": "LW",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Ryunosuke Sagara",
+        "role": "LW",
+        "age": 23,
+        "ovr": 57,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Toya Myogan",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 57,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Takumi Yasuno",
+        "role": "ST",
+        "age": 20,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      }
+    ],
+    "bla": [
+      {
+        "name": "Genki Yamada",
+        "role": "GK",
+        "age": 31,
+        "ovr": 61,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Tomoki Horiuchi",
+        "role": "GK",
+        "age": 19,
+        "ovr": 61,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Soki Yatagai",
+        "role": "GK",
+        "age": 28,
+        "ovr": 61,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kota Muramatsu",
+        "role": "CM",
+        "age": 28,
+        "ovr": 60,
+        "fmPos": "D RC, M R"
+      },
+      {
+        "name": "Kazuma Nagai",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 60,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Yusei Ozaki",
+        "role": "CB",
+        "age": 22,
+        "ovr": 60,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Takumi Hasegawa",
+        "role": "RB",
+        "age": 27,
+        "ovr": 59,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Hiroki Hatahashi",
+        "role": "CB",
+        "age": 23,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ryuji Saito",
+        "role": "LB",
+        "age": 33,
+        "ovr": 59,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Ryoya Iizumi",
+        "role": "CB",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kyowaan Hoshi",
+        "role": "CB",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Hiroto Morooka",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Masakazu Yoshioka",
+        "role": "CM",
+        "age": 31,
+        "ovr": 58,
+        "fmPos": "M RL"
+      },
+      {
+        "name": "Tomofumi Fujiyama",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 58,
+        "fmPos": "DM, M RC"
+      },
+      {
+        "name": "Ryotaro Ishida",
+        "role": "CM",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "M RLC"
+      },
+      {
+        "name": "Koki Doi",
+        "role": "CM",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Hinase Suzuki",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "DM, M L"
+      },
+      {
+        "name": "Daiki Sato",
+        "role": "ST",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Shota Suzuki",
+        "role": "ST",
+        "age": 33,
+        "ovr": 53,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Yukihito Kajiya",
+        "role": "ST",
+        "age": 26,
+        "ovr": 53,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ryuhei Oishi",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 52,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Ryota Nakamura",
+        "role": "ST",
+        "age": 35,
+        "ovr": 52,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Kosuke Sagawa",
+        "role": "ST",
+        "age": 26,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tsubasa Umeki",
+        "role": "ST",
+        "age": 27,
+        "ovr": 52,
+        "fmPos": "AM RL, ST"
+      }
+    ],
+    "yam": [
+      {
+        "name": "Thomas Heward Belle",
+        "role": "GK",
+        "age": 29,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Tsubasa Shibuya",
+        "role": "GK",
+        "age": 31,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ko Hasegawa",
+        "role": "GK",
+        "age": 31,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Keisuke Nishimura",
+        "role": "CB",
+        "age": 28,
+        "ovr": 63,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Hayate Shirowa",
+        "role": "CB",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Takashi Abe",
+        "role": "CB",
+        "age": 29,
+        "ovr": 63,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Yuta Kumamoto",
+        "role": "CB",
+        "age": 31,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Takumi Yamada",
+        "role": "RB",
+        "age": 36,
+        "ovr": 62,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Ayumu Kawai",
+        "role": "RB",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Kazuma Okamoto",
+        "role": "RB",
+        "age": 22,
+        "ovr": 61,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Hiroya Nodake",
+        "role": "RB",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Ryotaro Nakamura",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Tsubasa Terayama",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 60,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Wataru Tanaka",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 60,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Shuto Minami",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 60,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Shoma Doi",
+        "role": "CAM",
+        "age": 34,
+        "ovr": 59,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Shintaro Kokubu",
+        "role": "LW",
+        "age": 31,
+        "ovr": 59,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Koki Sakamoto",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 59,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Beka Mikeltadze",
+        "role": "ST",
+        "age": 28,
+        "ovr": 56,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Akira Silvano Disaro'",
+        "role": "ST",
+        "age": 30,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Junya Takahashi",
+        "role": "ST",
+        "age": 29,
+        "ovr": 55,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Ryoma Kida",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 55,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Shunmei Horikane",
+        "role": "ST",
+        "age": 23,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      }
+    ],
+    "iwk": [
+      {
+        "name": "Masato Sasaki",
+        "role": "GK",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Yuki Hayasaka",
+        "role": "GK",
+        "age": 27,
+        "ovr": 62,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Joo Hyun Jin",
+        "role": "GK",
+        "age": 21,
+        "ovr": 62,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Atsuki Yamanaka",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "WB L, AM RL"
+      },
+      {
+        "name": "Ryo Endo",
+        "role": "CB",
+        "age": 28,
+        "ovr": 61,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Yusuke Ishida",
+        "role": "CB",
+        "age": 23,
+        "ovr": 61,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Haruki Shirai",
+        "role": "CB",
+        "age": 25,
+        "ovr": 60,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Jin Ikoma",
+        "role": "CB",
+        "age": 27,
+        "ovr": 60,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Shota Kofie",
+        "role": "ST",
+        "age": 19,
+        "ovr": 60,
+        "fmPos": "D C, DM, ST"
+      },
+      {
+        "name": "Sena Igarashi",
+        "role": "CM",
+        "age": 24,
+        "ovr": 59,
+        "fmPos": "D/WB R, M RL"
+      },
+      {
+        "name": "Naoki Kase",
+        "role": "CM",
+        "age": 26,
+        "ovr": 59,
+        "fmPos": "WB/M R"
+      },
+      {
+        "name": "Nelson Ishiwatari",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 59,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Fumiya Unoki",
+        "role": "CM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "M RLC"
+      },
+      {
+        "name": "Sosuke Shibata",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yusuke Onishi",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yuto Yamashita",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "DM, M LC"
+      },
+      {
+        "name": "Naoki Kumata",
+        "role": "ST",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Daiki Yamaguchi",
+        "role": "ST",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Haruto Murakami",
+        "role": "ST",
+        "age": 24,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Taisei Kato",
+        "role": "ST",
+        "age": 23,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Iori Sakamoto",
+        "role": "ST",
+        "age": 21,
+        "ovr": 53,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Keita Buwanika",
+        "role": "ST",
+        "age": 23,
+        "ovr": 53,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Yuma Kato",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 52,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Kim Hyun Woo",
+        "role": "ST",
+        "age": 24,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      }
+    ],
+    "omi": [
+      {
+        "name": "Takashi Kasahara",
+        "role": "GK",
+        "age": 37,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ko Shimura",
+        "role": "GK",
+        "age": 30,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Yuya Tsuboi",
+        "role": "GK",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Rikiya Motegi",
+        "role": "RB",
+        "age": 29,
+        "ovr": 65,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Wakaba Shimoguchi",
+        "role": "RB",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Gabriel",
+        "role": "CB",
+        "age": 31,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Yosuke Murakami",
+        "role": "CB",
+        "age": 24,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Shosaku Yasumitsu",
+        "role": "CB",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Takuya Wada",
+        "role": "CDM",
+        "age": 35,
+        "ovr": 64,
+        "fmPos": "D RL, DM"
+      },
+      {
+        "name": "Osamu Henry Iyoha",
+        "role": "CB",
+        "age": 28,
+        "ovr": 63,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Keita Fukui",
+        "role": "CB",
+        "age": 24,
+        "ovr": 63,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Masato Kojima",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 63,
+        "fmPos": "DM, AM RLC"
+      },
+      {
+        "name": "Arthur Silva",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kota Nakayama",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "DM, M RLC"
+      },
+      {
+        "name": "Suphanat Mueanta",
+        "role": "ST",
+        "age": 23,
+        "ovr": 62,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Ota Yamamoto",
+        "role": "ST",
+        "age": 22,
+        "ovr": 61,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Yuta Toyokawa",
+        "role": "ST",
+        "age": 31,
+        "ovr": 61,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Takumi Tsukui",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 61,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Caprini",
+        "role": "RW",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Toshiki Ishikawa",
+        "role": "CAM",
+        "age": 35,
+        "ovr": 58,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Kenyu Sugimoto",
+        "role": "ST",
+        "age": 33,
+        "ovr": 57,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Kazushi Fujii",
+        "role": "ST",
+        "age": 24,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      }
+    ],
+    "yfc": [
+      {
+        "name": "Akinori Ichikawa",
+        "role": "GK",
+        "age": 27,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Jakub Slowik",
+        "role": "GK",
+        "age": 34,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Phelipe Megiolaro",
+        "role": "GK",
+        "age": 27,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kaili Shimbo",
+        "role": "LB",
+        "age": 23,
+        "ovr": 69,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Boniface Nduka",
+        "role": "CB",
+        "age": 30,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Makito Ito",
+        "role": "CB",
+        "age": 33,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Akito Fukumori",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 68,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Kosuke Yamazaki",
+        "role": "CB",
+        "age": 30,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Junya Suzuki",
+        "role": "CM",
+        "age": 30,
+        "ovr": 68,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Yoshihiro Nakano",
+        "role": "CM",
+        "age": 33,
+        "ovr": 67,
+        "fmPos": "WB RL, M LC"
+      },
+      {
+        "name": "Hinata Ogura",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 67,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Yoshiaki Komai",
+        "role": "ST",
+        "age": 34,
+        "ovr": 67,
+        "fmPos": "DM, AM/F C"
+      },
+      {
+        "name": "Kota Yamada",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 66,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Leo Takae",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Koki Kumakura",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Lukian",
+        "role": "ST",
+        "age": 34,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Adailton",
+        "role": "LW",
+        "age": 35,
+        "ovr": 65,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Solomon Sakuragawa",
+        "role": "ST",
+        "age": 24,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Musashi Suzuki",
+        "role": "ST",
+        "age": 32,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ryo Kubota",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Sho Ito",
+        "role": "ST",
+        "age": 37,
+        "ovr": 61,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Keisuke Muroi",
+        "role": "ST",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Joao Paulo",
+        "role": "RW",
+        "age": 29,
+        "ovr": 60,
+        "fmPos": "AM RC"
+      }
+    ],
+    "sho": [
+      {
+        "name": "William Popp",
+        "role": "GK",
+        "age": 31,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Shun Yoshida",
+        "role": "GK",
+        "age": 29,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Tatsunari Nagai",
+        "role": "GK",
+        "age": 31,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Yuto Suzuki",
+        "role": "CM",
+        "age": 32,
+        "ovr": 68,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Kosuke Onose",
+        "role": "CM",
+        "age": 33,
+        "ovr": 68,
+        "fmPos": "WB L, M RLC"
+      },
+      {
+        "name": "Kazunari Ohno",
+        "role": "CB",
+        "age": 36,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Sere Matsumura",
+        "role": "CB",
+        "age": 22,
+        "ovr": 67,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Koki Tachi",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Kazuki Oiwa",
+        "role": "CB",
+        "age": 36,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Hiroya Matsumoto",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 66,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Kanaru Matsumoto",
+        "role": "CM",
+        "age": 19,
+        "ovr": 66,
+        "fmPos": "D RC, M R"
+      },
+      {
+        "name": "Hiroaki Okuno",
+        "role": "CDM",
+        "age": 36,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kohei Okuno",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 65,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Masaki Ikeda",
+        "role": "CM",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "M RC"
+      },
+      {
+        "name": "Akimi Barada",
+        "role": "CDM",
+        "age": 35,
+        "ovr": 65,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Akito Suzuki",
+        "role": "ST",
+        "age": 22,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Shusuke Ota",
+        "role": "RW",
+        "age": 30,
+        "ovr": 64,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Taiyo Hiraoka",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 64,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Tomoya Fujii",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 61,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Yutaro Oda",
+        "role": "RW",
+        "age": 24,
+        "ovr": 61,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Rio Nitta",
+        "role": "ST",
+        "age": 23,
+        "ovr": 60,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Soki Tamura",
+        "role": "ST",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Hisatsugu Ishii",
+        "role": "LW",
+        "age": 21,
+        "ovr": 59,
+        "fmPos": "AM LC"
+      }
+    ],
+    "kof": [
+      {
+        "name": "Kohei Kawata",
+        "role": "GK",
+        "age": 38,
+        "ovr": 63,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kei Ishikawa",
+        "role": "GK",
+        "age": 33,
+        "ovr": 63,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lee Min Ki",
+        "role": "GK",
+        "age": 23,
+        "ovr": 63,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Sho Araki",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 62,
+        "fmPos": "D/WB RL, DM, M L"
+      },
+      {
+        "name": "Renato Augusto",
+        "role": "CDM",
+        "age": 34,
+        "ovr": 62,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Takumi Tsuchiya",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 62,
+        "fmPos": "D RC, DM"
+      },
+      {
+        "name": "Yuta Koide",
+        "role": "CB",
+        "age": 31,
+        "ovr": 61,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Hideomi Yamamoto",
+        "role": "CDM",
+        "age": 46,
+        "ovr": 61,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Taiga Son",
+        "role": "CB",
+        "age": 27,
+        "ovr": 61,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Keisuke Sato",
+        "role": "CM",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Iwana Kobayashi",
+        "role": "CM",
+        "age": 29,
+        "ovr": 60,
+        "fmPos": "D/WB RL, M L"
+      },
+      {
+        "name": "Yudai Tanaka",
+        "role": "CM",
+        "age": 26,
+        "ovr": 60,
+        "fmPos": "M RLC"
+      },
+      {
+        "name": "Yuto Hiratsuka",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 59,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kazuhiro Sato",
+        "role": "CDM",
+        "age": 35,
+        "ovr": 59,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Tomoki Hosaka",
+        "role": "CAM",
+        "age": 20,
+        "ovr": 59,
+        "fmPos": "DM, AM RLC"
+      },
+      {
+        "name": "Kotatsu Kumakura",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Yoshiki Torikai",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Kazushi Mitsuhira",
+        "role": "ST",
+        "age": 38,
+        "ovr": 58,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Matheus Leiria",
+        "role": "ST",
+        "age": 31,
+        "ovr": 55,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Koki Oshima",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 55,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Yamato Naito",
+        "role": "ST",
+        "age": 22,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      }
+    ],
+    "nig": [
+      {
+        "name": "Daisuke Yoshimitsu",
+        "role": "GK",
+        "age": 33,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kazuki Fujita",
+        "role": "GK",
+        "age": 25,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ryuga Tashiro",
+        "role": "GK",
+        "age": 27,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Soya Fujiwara",
+        "role": "RB",
+        "age": 30,
+        "ovr": 67,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Yuji Hoshi",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 67,
+        "fmPos": "D/WB L, DM"
+      },
+      {
+        "name": "Yuto Horigome",
+        "role": "LB",
+        "age": 31,
+        "ovr": 67,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Kakeru Funaki",
+        "role": "CB",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Kento Hashimoto",
+        "role": "LB",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Hiroto Uemura",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "D R, DM"
+      },
+      {
+        "name": "Jason Geria",
+        "role": "CB",
+        "age": 33,
+        "ovr": 65,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Michael James",
+        "role": "CB",
+        "age": 37,
+        "ovr": 65,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Taiki Arai",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 65,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Eiji Shirai",
+        "role": "CM",
+        "age": 30,
+        "ovr": 64,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Yushin Otake",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 64,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Keisuke Kasai",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 64,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Motoki Hasegawa",
+        "role": "LW",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Danilo Gomes",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Matheus Moraes",
+        "role": "ST",
+        "age": 26,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jin Okumura",
+        "role": "ST",
+        "age": 25,
+        "ovr": 60,
+        "fmPos": "AM LC, F C"
+      },
+      {
+        "name": "Motoki Ohara",
+        "role": "LW",
+        "age": 26,
+        "ovr": 60,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Yuji Ono",
+        "role": "ST",
+        "age": 33,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Takuya Shimamura",
+        "role": "RW",
+        "age": 27,
+        "ovr": 59,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Yamato Wakatsuki",
+        "role": "ST",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      }
+    ],
+    "toy": [
+      {
+        "name": "Tomoki Tagawa",
+        "role": "GK",
+        "age": 23,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Takuo Okubo",
+        "role": "GK",
+        "age": 36,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Toshiki Hirao",
+        "role": "GK",
+        "age": 22,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Yuki Saneto",
+        "role": "CB",
+        "age": 37,
+        "ovr": 59,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Shimpei Nishiya",
+        "role": "RB",
+        "age": 24,
+        "ovr": 59,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Takumi Hama",
+        "role": "CB",
+        "age": 29,
+        "ovr": 59,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Junya Imase",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Kyosuke Kamiyama",
+        "role": "CB",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Yuki Kagawa",
+        "role": "CB",
+        "age": 34,
+        "ovr": 58,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Yosuke Kawai",
+        "role": "CDM",
+        "age": 36,
+        "ovr": 58,
+        "fmPos": "D RL, DM"
+      },
+      {
+        "name": "Yuki Kawakami",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Hiroya Sueki",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "DM, M RLC"
+      },
+      {
+        "name": "Genta Takenaka",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ayumu Kameda",
+        "role": "CM",
+        "age": 19,
+        "ovr": 58,
+        "fmPos": "M RLC"
+      },
+      {
+        "name": "Keita Ueda",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "DM, M RLC"
+      },
+      {
+        "name": "Shunta Sera",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "DM, M RLC"
+      },
+      {
+        "name": "Shun Mizoguchi",
+        "role": "CM",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "M RLC"
+      },
+      {
+        "name": "Tsubasa Yoshihira",
+        "role": "ST",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yoshiki Takahashi",
+        "role": "ST",
+        "age": 25,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Riki Matsuda",
+        "role": "ST",
+        "age": 34,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Takumi Ito",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 52,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Keijiro Ogawa",
+        "role": "CAM",
+        "age": 34,
+        "ovr": 52,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Daichi Matsuoka",
+        "role": "ST",
+        "age": 27,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Sho Fuseya",
+        "role": "ST",
+        "age": 25,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yoji Sasaki",
+        "role": "ST",
+        "age": 34,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      }
+    ],
+    "jub": [
+      {
+        "name": "Eiji Kawashima",
+        "role": "GK",
+        "age": 43,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Koto Abe",
+        "role": "GK",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ryuki Miura",
+        "role": "GK",
+        "age": 34,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Jan Van Den Bergh",
+        "role": "CB",
+        "age": 31,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ko Matsubara",
+        "role": "LB",
+        "age": 29,
+        "ovr": 65,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Takuro Ezaki",
+        "role": "CB",
+        "age": 26,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ricardo Graca",
+        "role": "CB",
+        "age": 29,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Riku Morioka",
+        "role": "CB",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Katsunori Ueebisu",
+        "role": "CB",
+        "age": 30,
+        "ovr": 64,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Naoki Kawaguchi",
+        "role": "LB",
+        "age": 32,
+        "ovr": 63,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Koshiro Sumi",
+        "role": "CM",
+        "age": 23,
+        "ovr": 63,
+        "fmPos": "D/WB RL, AM R"
+      },
+      {
+        "name": "Yuri Lara",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Shun Nakamura",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Daiki Kaneko",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Hirotaka Tameda",
+        "role": "CM",
+        "age": 32,
+        "ovr": 62,
+        "fmPos": "M RL"
+      },
+      {
+        "name": "Rikiya Uehara",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Shion Inoue",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yuki Aida",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Tokumo Kawai",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Gustavo Silva",
+        "role": "ST",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Poramet Arjvirai",
+        "role": "ST",
+        "age": 27,
+        "ovr": 57,
+        "fmPos": "AM RC, F C"
+      },
+      {
+        "name": "Matheus Peixoto",
+        "role": "ST",
+        "age": 30,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ryoga Sato",
+        "role": "ST",
+        "age": 27,
+        "ovr": 56,
+        "fmPos": "AM LC, F C"
+      },
+      {
+        "name": "Ryo Watanabe",
+        "role": "ST",
+        "age": 29,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "João Victor",
+        "role": "ST",
+        "age": 26,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Noah Kenshin Browne",
+        "role": "ST",
+        "age": 25,
+        "ovr": 55,
+        "fmPos": "AM/F C"
+      }
+    ],
+    "fuj": [
+      {
+        "name": "Kai Chidi Kitamura",
+        "role": "GK",
+        "age": 25,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Daishi Kurisu",
+        "role": "GK",
+        "age": 19,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Yuji Rokutan",
+        "role": "GK",
+        "age": 39,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ryosuke Hisadomi",
+        "role": "CB",
+        "age": 35,
+        "ovr": 59,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Takumi Kusumoto",
+        "role": "CB",
+        "age": 30,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kazuyoshi Shimabuku",
+        "role": "CM",
+        "age": 26,
+        "ovr": 59,
+        "fmPos": "WB RL, M LC"
+      },
+      {
+        "name": "Kota Osone",
+        "role": "CM",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "WB RL, M RC"
+      },
+      {
+        "name": "So Nakagawa",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Yuri Mori",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "D RC, DM"
+      },
+      {
+        "name": "Chie Edoojon Kawakami",
+        "role": "CM",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "WB R, M RL"
+      },
+      {
+        "name": "Shota Suzuki",
+        "role": "CB",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Kosei Okazawa",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ryota Kajikawa",
+        "role": "CM",
+        "age": 37,
+        "ovr": 58,
+        "fmPos": "M LC"
+      },
+      {
+        "name": "Hiroto Sese",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Masahiko Sugita",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yoshiki Matsushita",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ren Asakura",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Kanta Chiba",
+        "role": "ST",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Shunnosuke Matsuki",
+        "role": "ST",
+        "age": 29,
+        "ovr": 52,
+        "fmPos": "AM RC, F C"
+      },
+      {
+        "name": "Shota Kaneko",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 52,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Ken Yamura",
+        "role": "ST",
+        "age": 29,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Taiga Kawamoto",
+        "role": "CAM",
+        "age": 19,
+        "ovr": 52,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Kyota Sakakibara",
+        "role": "ST",
+        "age": 24,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Hayato Kanda",
+        "role": "ST",
+        "age": 23,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      }
+    ],
+    "tos": [
+      {
+        "name": "Hayate Tanaka",
+        "role": "GK",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Toru Hasegawa",
+        "role": "GK",
+        "age": 37,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kokoro Aoki",
+        "role": "GK",
+        "age": 26,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ryota Nagaki",
+        "role": "CDM",
+        "age": 38,
+        "ovr": 64,
+        "fmPos": "WB R, DM"
+      },
+      {
+        "name": "Ko Yanagisawa",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 64,
+        "fmPos": "D RLC, DM, M R"
+      },
+      {
+        "name": "Yuya Takagi",
+        "role": "LB",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Elsinho",
+        "role": "CM",
+        "age": 36,
+        "ovr": 63,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Nao Yamada",
+        "role": "CB",
+        "age": 23,
+        "ovr": 63,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kohei Yamakoshi",
+        "role": "CB",
+        "age": 33,
+        "ovr": 63,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Naoki Kanuma",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 62,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Hayato Aoki",
+        "role": "CB",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Ken Iwao",
+        "role": "CDM",
+        "age": 38,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Shunto Kodama",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Taro Sugimoto",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 61,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Takuya Shigehiro",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Rio Hyon",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 60,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yu Takada",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 60,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yudai Yamashita",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 60,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yusei Onoe",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 57,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Lucas Barcelos",
+        "role": "ST",
+        "age": 28,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Thonny Anderson",
+        "role": "ST",
+        "age": 28,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Daiki Watari",
+        "role": "ST",
+        "age": 33,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Soya Takada",
+        "role": "ST",
+        "age": 24,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jumma Miyazaki",
+        "role": "ST",
+        "age": 26,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Taiyo Nishino",
+        "role": "ST",
+        "age": 23,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kiyoshiro Tsuboi",
+        "role": "ST",
+        "age": 26,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lawrence David Izuchikwu",
+        "role": "RW",
+        "age": 20,
+        "ovr": 53,
+        "fmPos": "AM R"
+      }
+    ],
+    "ima": [
+      {
+        "name": "Kotaro Tachikawa",
+        "role": "GK",
+        "age": 29,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Toru Takagiwa",
+        "role": "GK",
+        "age": 31,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Shunsuke Ueda",
+        "role": "GK",
+        "age": 38,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Takafumi Yamada",
+        "role": "CDM",
+        "age": 34,
+        "ovr": 59,
+        "fmPos": "WB L, DM, M RLC"
+      },
+      {
+        "name": "Rio Omori",
+        "role": "CB",
+        "age": 23,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Danilo",
+        "role": "CB",
+        "age": 29,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Tetsuya Kato",
+        "role": "CB",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Kenshin Yuba",
+        "role": "CM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "WB RL, M RC"
+      },
+      {
+        "name": "Shuta Sasa",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Ryota Ichihara",
+        "role": "CB",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Rei Umeki",
+        "role": "CM",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Vinicius Diniz",
+        "role": "CM",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Hikaru Arai",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "DM, M RLC"
+      },
+      {
+        "name": "Takuya Yasui",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yuki Kajiura",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yuta Mikado",
+        "role": "CM",
+        "age": 39,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Marcus Vinicius",
+        "role": "ST",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "AM RC, F C"
+      },
+      {
+        "name": "Yumeki Yokoyama",
+        "role": "ST",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Wesley Tanque",
+        "role": "ST",
+        "age": 30,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kyota Mochii",
+        "role": "ST",
+        "age": 27,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Junya Kato",
+        "role": "ST",
+        "age": 31,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kosuke Fujioka",
+        "role": "ST",
+        "age": 31,
+        "ovr": 52,
+        "fmPos": "AM LC, F C"
+      },
+      {
+        "name": "Takatora Kondo",
+        "role": "LW",
+        "age": 28,
+        "ovr": 52,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Patrick Verhon",
+        "role": "ST",
+        "age": 21,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      }
+    ],
+    "sgt": [
+      {
+        "name": "Ryota Izumori",
+        "role": "GK",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kei Uchiyama",
+        "role": "GK",
+        "age": 33,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kenta Nishizawa",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 64,
+        "fmPos": "D L, AM RC"
+      },
+      {
+        "name": "Yasuki Kimoto",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 63,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Reiya Morishita",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Taisei Inoue",
+        "role": "CB",
+        "age": 23,
+        "ovr": 63,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Yuta Imazu",
+        "role": "CB",
+        "age": 31,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Manato Yoshida",
+        "role": "CM",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Sora Ogawa",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "D LC, DM"
+      },
+      {
+        "name": "Yoshiki Narahara",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 61,
+        "fmPos": "WB R, DM, AM RLC"
+      },
+      {
+        "name": "Tatsunori Sakurai",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nagi Matsumoto",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Jun Nishikawa",
+        "role": "ST",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Haruki Arai",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 60,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Vykintas Slivka",
+        "role": "ST",
+        "age": 31,
+        "ovr": 60,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Hiroto Yamada",
+        "role": "ST",
+        "age": 26,
+        "ovr": 59,
+        "fmPos": "AM LC, F C"
+      },
+      {
+        "name": "Noriyoshi Sakai",
+        "role": "ST",
+        "age": 33,
+        "ovr": 59,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Eitaro Matsuda",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 59,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Fuchi Honda",
+        "role": "ST",
+        "age": 25,
+        "ovr": 56,
+        "fmPos": "AM LC, F C"
+      },
+      {
+        "name": "Jo",
+        "role": "ST",
+        "age": 27,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      }
+    ],
+    "oit": [
+      {
+        "name": "Taro Hamada",
+        "role": "GK",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Mun Kyung Gun",
+        "role": "GK",
+        "age": 31,
+        "ovr": 62,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Hiroto Kono",
+        "role": "GK",
+        "age": 19,
+        "ovr": 62,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Pereira",
+        "role": "CB",
+        "age": 29,
+        "ovr": 61,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Yusuke Matsuo",
+        "role": "RW",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "WB/AM R"
+      },
+      {
+        "name": "Yuto Misao",
+        "role": "CB",
+        "age": 35,
+        "ovr": 61,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Yudai Fujiwara",
+        "role": "CB",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Atsuki Satsukawa",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 60,
+        "fmPos": "D/WB L, DM, M L"
+      },
+      {
+        "name": "Taira Shige",
+        "role": "CAM",
+        "age": 33,
+        "ovr": 60,
+        "fmPos": "D/WB L, AM RL"
+      },
+      {
+        "name": "Issei Tone",
+        "role": "CB",
+        "age": 30,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ayuki Miyakawa",
+        "role": "CB",
+        "age": 23,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Hiroshi Kiyotake",
+        "role": "CAM",
+        "age": 36,
+        "ovr": 59,
+        "fmPos": "DM, AM RLC"
+      },
+      {
+        "name": "Ren Ikeda",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Taiki Amagasa",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kenshin Yasuda",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Keigo Sakakibara",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Junya Nodake",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 58,
+        "fmPos": "DM, M RC"
+      },
+      {
+        "name": "Arata Kozakai",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Hayato Matsuoka",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 54,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kohei Isa",
+        "role": "ST",
+        "age": 34,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kotaro Arima",
+        "role": "ST",
+        "age": 25,
+        "ovr": 53,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Naoki Nomura",
+        "role": "CAM",
+        "age": 35,
+        "ovr": 53,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Shun Ayukawa",
+        "role": "ST",
+        "age": 24,
+        "ovr": 52,
+        "fmPos": "AM LC, F C"
+      },
+      {
+        "name": "Hiroto Nakagawa",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 52,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Shinya Utsumoto",
+        "role": "ST",
+        "age": 26,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yusei Yashiki",
+        "role": "RW",
+        "age": 22,
+        "ovr": 52,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Riku Ochiai",
+        "role": "ST",
+        "age": 27,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      }
+    ],
+    "vnh": [
+      {
+        "name": "Shogo Onishi",
+        "role": "GK",
+        "age": 35,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Yusuke Taniguchi",
+        "role": "GK",
+        "age": 30,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Naoki Goto",
+        "role": "GK",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Daisuke Inazumi",
+        "role": "CM",
+        "age": 29,
+        "ovr": 59,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Shoma Otoizumi",
+        "role": "RB",
+        "age": 30,
+        "ovr": 59,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Tatsuya Shirai",
+        "role": "CB",
+        "age": 29,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kodai Minoda",
+        "role": "CB",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Fumiya Sugiura",
+        "role": "RW",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "WB R, AM RC"
+      },
+      {
+        "name": "Hiroto Yukie",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "D C, DM, M RLC"
+      },
+      {
+        "name": "Naoto Ando",
+        "role": "CAM",
+        "age": 34,
+        "ovr": 58,
+        "fmPos": "WB L, AM RLC"
+      },
+      {
+        "name": "Shuhei Hayami",
+        "role": "CB",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kazuma Nagata",
+        "role": "CM",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "M RC"
+      },
+      {
+        "name": "Yuta Inami",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Gabriel Henrique",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Mizuki Kaburaki",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ryuji Sawakami",
+        "role": "ST",
+        "age": 32,
+        "ovr": 58,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Ryohei Wakizaka",
+        "role": "ST",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Kai Sasaki",
+        "role": "ST",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Aoi Sato",
+        "role": "ST",
+        "age": 28,
+        "ovr": 52,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Ryusei Takao",
+        "role": "ST",
+        "age": 22,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Naoya Senoo",
+        "role": "ST",
+        "age": 29,
+        "ovr": 52,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Seiya Nakano",
+        "role": "ST",
+        "age": 30,
+        "ovr": 52,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Jorn Pedersen",
+        "role": "ST",
+        "age": 28,
+        "ovr": 52,
+        "fmPos": "ST"
+      }
+    ],
+    "rnf": [
+      {
+        "name": "Junto Taguchi",
+        "role": "GK",
+        "age": 29,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Choi Hyeongchan",
+        "role": "GK",
+        "age": 25,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Masashi Kamekawa",
+        "role": "CB",
+        "age": 33,
+        "ovr": 60,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Shuto Okaniwa",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 59,
+        "fmPos": "D/WB RL, AM RC"
+      },
+      {
+        "name": "Keita Matsuda",
+        "role": "CB",
+        "age": 26,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ryusei Shimodo",
+        "role": "CB",
+        "age": 30,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Keita Yoshioka",
+        "role": "CB",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Kim Byeom Yong",
+        "role": "CB",
+        "age": 35,
+        "ovr": 58,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Shun Isotani",
+        "role": "CB",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Takeru Itakura",
+        "role": "CB",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Hikaru Naruoka",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "DM, M LC"
+      },
+      {
+        "name": "Kohei Tanabe",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "DM, M LC"
+      },
+      {
+        "name": "Rui Yokoyama",
+        "role": "CM",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "M RLC"
+      },
+      {
+        "name": "Yuji Wakasa",
+        "role": "CM",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Naoto Misawa",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kazuya Noyori",
+        "role": "CM",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "M RC"
+      },
+      {
+        "name": "Joji Ikegami",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 58,
+        "fmPos": "DM, M RLC"
+      },
+      {
+        "name": "Yohei Okuyama",
+        "role": "CM",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "M RL"
+      },
+      {
+        "name": "Takumi Miyayoshi",
+        "role": "ST",
+        "age": 33,
+        "ovr": 52,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Kota Kawano",
+        "role": "ST",
+        "age": 22,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Alef Firmino",
+        "role": "ST",
+        "age": 28,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ryo Arita",
+        "role": "ST",
+        "age": 26,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Toa Suenaga",
+        "role": "ST",
+        "age": 20,
+        "ovr": 52,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Daigo Furukawa",
+        "role": "ST",
+        "age": 26,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Seigo Kobayashi",
+        "role": "ST",
+        "age": 32,
+        "ovr": 52,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Hisatoshi Nishido",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 52,
+        "fmPos": "AM RL"
+      }
+    ],
+    "ehm": [
+      {
+        "name": "Fuma Shirasaka",
+        "role": "GK",
+        "age": 29,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Shugo Tsuji",
+        "role": "GK",
+        "age": 28,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kenta Tokushige",
+        "role": "GK",
+        "age": 42,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Koutaro Yamahara",
+        "role": "CB",
+        "age": 25,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Yuhi Murakami",
+        "role": "ST",
+        "age": 25,
+        "ovr": 59,
+        "fmPos": "D R, ST"
+      },
+      {
+        "name": "Ryoga Ishio",
+        "role": "CB",
+        "age": 26,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Hayato Fukushima",
+        "role": "CB",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Haruki Yoshida",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Kimiya Moriyama",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "D LC, DM"
+      },
+      {
+        "name": "Masashi Tanioka",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Takaya Kuroishi",
+        "role": "CB",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Ryosuke Maeda",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Shunsuke Tanimoto",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "DM, M L"
+      },
+      {
+        "name": "Yuta Fukazawa",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kohei Hosoya",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yuki Horigome",
+        "role": "RW",
+        "age": 33,
+        "ovr": 58,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Hidemasa Koda",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Yuya Taguchi",
+        "role": "ST",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ryo Sato",
+        "role": "ST",
+        "age": 28,
+        "ovr": 52,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Koki Sugimori",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 52,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Yoshiki Fujimoto",
+        "role": "ST",
+        "age": 32,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Reiju Tsuruno",
+        "role": "ST",
+        "age": 25,
+        "ovr": 52,
+        "fmPos": "AM LC, F C"
+      },
+      {
+        "name": "Yuta Fujihara",
+        "role": "ST",
+        "age": 27,
+        "ovr": 52,
+        "fmPos": "AM R, ST"
+      }
+    ]
+  }
+}

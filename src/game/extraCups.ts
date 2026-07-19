@@ -1,12 +1,7 @@
 import leagueCupFormat from '@/data/leagueCupFormat.json'
 import trophyFormat from '@/data/trophyFormat.json'
 import type { Club, CupState, Fixture, CompetitionKind } from './types'
-
-function addDays(iso: string, days: number) {
-  const d = new Date(iso + 'T12:00:00')
-  d.setDate(d.getDate() + days)
-  return d.toISOString().slice(0, 10)
-}
+import { midweekMatchDate, shiftMidweekDate } from './calendarDates'
 
 function advanceGenericCup(
   fixtures: Fixture[],
@@ -29,7 +24,12 @@ function advanceGenericCup(
   for (const f of playedThis) {
     const hg = f.homeGoals ?? 0
     const ag = f.awayGoals ?? 0
-    const winner = hg >= ag ? f.homeClubId : f.awayClubId
+    let winner: string
+    if (f.penaltiesHome != null && f.penaltiesAway != null && hg === ag) {
+      winner = f.penaltiesHome > f.penaltiesAway ? f.homeClubId : f.awayClubId
+    } else {
+      winner = hg >= ag ? f.homeClubId : f.awayClubId
+    }
     const loser = winner === f.homeClubId ? f.awayClubId : f.homeClubId
     winners.push(winner)
     if (!eliminated.includes(loser)) eliminated.push(loser)
@@ -57,19 +57,20 @@ function advanceGenericCup(
     newFx.push({
       id: `${competition}-${nextRound.id}-${i / 2 + 1}`,
       matchday: nextRound.matchdayOffset,
-      date: addDays(playedThis[0].date, (nextRound.matchdayOffset - matchday) * 7),
+      date: shiftMidweekDate(playedThis[0].date, nextRound.matchdayOffset - matchday),
       homeClubId: winners[i],
       awayClubId: winners[i + 1],
       played: false,
       competition,
       cupRound: nextRound.id,
+      slot: 'midweek',
     })
   }
 
   return { fixtures: [...fixtures, ...newFx], cup: { ...cup, eliminated } }
 }
 
-/** ลีกคัพ: 32 ทีมจากดิวิชัน 1+2 (เรียงชื่อเสียง) */
+/** ลีกคัพ: 32 ทีมจากดิวิชัน 1+2 — นัดกลางสัปดาห์ */
 export function generateLeagueCupFixtures(
   clubs: Club[],
   seasonStartDate: string,
@@ -86,12 +87,13 @@ export function generateLeagueCupFixtures(
     fixtures.push({
       id: `league_cup-${r0.id}-${i + 1}`,
       matchday: r0.matchdayOffset,
-      date: addDays(seasonStartDate, (r0.matchdayOffset - 1) * 7),
+      date: midweekMatchDate(seasonStartDate, r0.matchdayOffset),
       homeClubId: seeded[i].id,
       awayClubId: seeded[31 - i].id,
       played: false,
       competition: 'league_cup',
       cupRound: r0.id,
+      slot: 'midweek',
     })
   }
   return {
@@ -127,12 +129,13 @@ export function generateTrophyFixtures(
     fixtures.push({
       id: `trophy-${r0.id}-${i + 1}`,
       matchday: r0.matchdayOffset,
-      date: addDays(seasonStartDate, (r0.matchdayOffset - 1) * 7),
+      date: midweekMatchDate(seasonStartDate, r0.matchdayOffset),
       homeClubId: seeded[i].id,
       awayClubId: seeded[15 - i].id,
       played: false,
       competition: 'trophy',
       cupRound: r0.id,
+      slot: 'midweek',
     })
   }
   return {
@@ -167,7 +170,7 @@ export function advanceTrophyAfterMatchday(
   return advanceGenericCup(fixtures, cup, matchday, 'trophy', trophyFormat.rounds)
 }
 
-/** ขยายถ้วยใหญ่ให้มีดิวิชัน 2 ร่วม (top 16 จากทั้งสองดิวิชัน) */
+/** ขยายถ้วยใหญ่ให้มีดิวิชัน 2 ร่วม */
 export function generateNationalCupFixtures(
   clubs: Club[],
   seasonStartDate: string,
@@ -177,18 +180,18 @@ export function generateNationalCupFixtures(
     .slice()
     .sort((a, b) => b.reputation - a.reputation)
     .slice(0, 16)
-  // reuse cup.ts pattern — imported caller uses generateCupFixtures; this is optional alt
   const fixtures: Fixture[] = []
   for (let i = 0; i < 8; i++) {
     fixtures.push({
       id: `cup-r16-${i + 1}`,
       matchday: 4,
-      date: addDays(seasonStartDate, 3 * 7),
+      date: midweekMatchDate(seasonStartDate, 4),
       homeClubId: seeded[i].id,
       awayClubId: seeded[15 - i].id,
       played: false,
       competition: 'cup',
       cupRound: 'r16',
+      slot: 'midweek',
     })
   }
   return fixtures

@@ -1,0 +1,2263 @@
+{
+  "source": "fmtransferupdate.com + FMInside (personal display)",
+  "sourceUrl": "https://fmtransferupdate.com/",
+  "note": "Not for redistribution or commercial sale. Thai League 2 / tha2 pack.",
+  "clubs": {
+    "pte": [
+      {
+        "name": "Jirunpong Thammasiha",
+        "role": "GK",
+        "age": 30,
+        "ovr": 62,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Suriya Mahasarn",
+        "role": "GK",
+        "age": 19,
+        "ovr": 62,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Anipong Kitkham",
+        "role": "GK",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Issac Honey",
+        "role": "CB",
+        "age": 33,
+        "ovr": 61,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Songchai Thongcham",
+        "role": "CB",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Jakkrapong Sanmahung",
+        "role": "CB",
+        "age": 24,
+        "ovr": 61,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Sarayut Sompim",
+        "role": "CB",
+        "age": 29,
+        "ovr": 60,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Samphan Kesri",
+        "role": "LB",
+        "age": 27,
+        "ovr": 60,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Adisak Sosungnoen",
+        "role": "CB",
+        "age": 30,
+        "ovr": 60,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Saphon Noiwong",
+        "role": "CB",
+        "age": 20,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Nattayot Phonyiam",
+        "role": "CM",
+        "age": 29,
+        "ovr": 59,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Sittichok Tudsanai",
+        "role": "CDM",
+        "age": 35,
+        "ovr": 59,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Warawut Mothim",
+        "role": "CM",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Apichorn Kraiyawong",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Sattawat Leela",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Wellington Smith",
+        "role": "ST",
+        "age": 38,
+        "ovr": 58,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Valdo",
+        "role": "ST",
+        "age": 38,
+        "ovr": 58,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Pakorn Parmpak",
+        "role": "RW",
+        "age": 33,
+        "ovr": 58,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Chutipon Tongtae",
+        "role": "LW",
+        "age": 35,
+        "ovr": 54,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Pedro Henrique",
+        "role": "ST",
+        "age": 34,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Panudech Maiwong",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 53,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Abdulrahman Essadi",
+        "role": "ST",
+        "age": 23,
+        "ovr": 53,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Songkramsamut Namphueng",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 52,
+        "fmPos": "AM C"
+      }
+    ],
+    "kku": [
+      {
+        "name": "Piyawat Intarapim",
+        "role": "GK",
+        "age": 38,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Siriwat Ingkaew",
+        "role": "GK",
+        "age": 25,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Phongsanat Chamnaphon",
+        "role": "GK",
+        "age": 21,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Shunya Suganuma",
+        "role": "CB",
+        "age": 36,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Wasan Homsan",
+        "role": "RB",
+        "age": 34,
+        "ovr": 59,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Suwit Paipromrat",
+        "role": "CM",
+        "age": 29,
+        "ovr": 59,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Panupong Hansuri",
+        "role": "RB",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Netipong Sanmahung",
+        "role": "CB",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kittichai Yaidee",
+        "role": "CB",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Worarit Mungkhun",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Jiradet Taichankong",
+        "role": "LB",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Nopphon Phonkam",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yotsakorn Natthasit",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kittpat Inthawong",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Thanawin Inthumma",
+        "role": "CM",
+        "age": 19,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Sirisit Hochin",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Pongsaphak Tangsub",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Felipe Amorim",
+        "role": "CAM",
+        "age": 35,
+        "ovr": 58,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Amadou Ouattara",
+        "role": "CAM",
+        "age": 35,
+        "ovr": 52,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Kim Ji-Min",
+        "role": "ST",
+        "age": 33,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Arthit Boodjinda",
+        "role": "ST",
+        "age": 31,
+        "ovr": 52,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Phanuphong Phonsa",
+        "role": "CAM",
+        "age": 32,
+        "ovr": 52,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Chitsanuphong Choti",
+        "role": "ST",
+        "age": 24,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Phongsakon Sangkasopha",
+        "role": "ST",
+        "age": 19,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Parndecha Ngern-prasert",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 52,
+        "fmPos": "AM C"
+      }
+    ],
+    "nbp": [
+      {
+        "name": "Kittisak Moosawat",
+        "role": "GK",
+        "age": 37,
+        "ovr": 61,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Suchin Yen-arom",
+        "role": "GK",
+        "age": 35,
+        "ovr": 61,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Thanakit Auttharak",
+        "role": "GK",
+        "age": 19,
+        "ovr": 61,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Wutthichai Marom",
+        "role": "CB",
+        "age": 31,
+        "ovr": 60,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Apisit Saenseekhammuan",
+        "role": "LB",
+        "age": 23,
+        "ovr": 60,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Jakkrit Songma",
+        "role": "RB",
+        "age": 30,
+        "ovr": 60,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Miggy Clariño",
+        "role": "CB",
+        "age": 29,
+        "ovr": 59,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Pantakan Kasemkulwirai",
+        "role": "CB",
+        "age": 28,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Teerapong Parachom",
+        "role": "LB",
+        "age": 29,
+        "ovr": 59,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Pattaraburin Jannawan",
+        "role": "CB",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Adisak Waenlor",
+        "role": "RB",
+        "age": 31,
+        "ovr": 58,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Pakorn Seekaewnit",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Norraset Lakthong",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Alex Nandje",
+        "role": "ST",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kento Nagasaki",
+        "role": "CAM",
+        "age": 36,
+        "ovr": 58,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Jardel",
+        "role": "ST",
+        "age": 36,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Caio Rodrigues",
+        "role": "ST",
+        "age": 32,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Reungyos Janchaichit",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Jakkrawut Songma",
+        "role": "RW",
+        "age": 30,
+        "ovr": 53,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Panupong Phuakphralap",
+        "role": "ST",
+        "age": 23,
+        "ovr": 53,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Peeranan Baukhai",
+        "role": "RW",
+        "age": 21,
+        "ovr": 52,
+        "fmPos": "AM R"
+      }
+    ],
+    "npu": [
+      {
+        "name": "Kiadtisak Chaodon",
+        "role": "GK",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kawin Pitaksalee",
+        "role": "GK",
+        "age": 20,
+        "ovr": 63,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kittitad Khamkaew",
+        "role": "GK",
+        "age": 28,
+        "ovr": 63,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Amir Hossein Nemati",
+        "role": "CB",
+        "age": 30,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kazutaka Sato",
+        "role": "RB",
+        "age": 27,
+        "ovr": 62,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Parinya Autapol",
+        "role": "CB",
+        "age": 38,
+        "ovr": 62,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Phumipat Kanthanet",
+        "role": "CM",
+        "age": 31,
+        "ovr": 61,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Kridsada Limseeput",
+        "role": "LB",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Teeranat Ruengsamoot",
+        "role": "CB",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Auttapon Sangtong",
+        "role": "RB",
+        "age": 22,
+        "ovr": 60,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Thanakrit Phonthongtin",
+        "role": "CB",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Pakaphum Meekwan",
+        "role": "CM",
+        "age": 20,
+        "ovr": 60,
+        "fmPos": "M R"
+      },
+      {
+        "name": "Douglas Tardin",
+        "role": "ST",
+        "age": 34,
+        "ovr": 59,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Taiga Matsunaga",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 59,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Thitipat Ekarunpong",
+        "role": "ST",
+        "age": 21,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nopphakao Prachuabklang",
+        "role": "LW",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Thanathon Chanphet",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Kylian Dendoune",
+        "role": "ST",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Thirawat Khoonsom",
+        "role": "ST",
+        "age": 23,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jennarong Phupha",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 55,
+        "fmPos": "AM C"
+      }
+    ],
+    "spc": [],
+    "trt": [
+      {
+        "name": "Peerapong Ruennin",
+        "role": "GK",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Prasit Phadungchok",
+        "role": "GK",
+        "age": 43,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Tossaporn Srirueng",
+        "role": "GK",
+        "age": 36,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Chatchai Saengdao",
+        "role": "CB",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Chayapol Supma",
+        "role": "CM",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "D/WB RL, M R"
+      },
+      {
+        "name": "Suphot Wonghoi",
+        "role": "RB",
+        "age": 39,
+        "ovr": 58,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Stevia Egbus Mikuni",
+        "role": "CB",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Yodrak Namuangrak",
+        "role": "LB",
+        "age": 36,
+        "ovr": 58,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Saksit Jitwichan",
+        "role": "CB",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Natthawat Thobansong",
+        "role": "LB",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Sirisak Faidong",
+        "role": "CB",
+        "age": 33,
+        "ovr": 58,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Thanawat Ueathanaphaisarn",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Phakapon Boonchuay",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nattapong Hamontree",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Crislan",
+        "role": "ST",
+        "age": 34,
+        "ovr": 58,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Rodrigo Maranhão",
+        "role": "ST",
+        "age": 33,
+        "ovr": 58,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Phillerson",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Pornpreecha Jarunai",
+        "role": "LW",
+        "age": 40,
+        "ovr": 58,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Than Paing",
+        "role": "ST",
+        "age": 29,
+        "ovr": 52,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Seksit Srisai",
+        "role": "CAM",
+        "age": 33,
+        "ovr": 52,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Sirawut Kengnok",
+        "role": "ST",
+        "age": 26,
+        "ovr": 52,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Theppitak Pholjuang",
+        "role": "RW",
+        "age": 27,
+        "ovr": 52,
+        "fmPos": "AM RC"
+      }
+    ],
+    "cmu": [
+      {
+        "name": "Praphawin Sirithong-sopha",
+        "role": "GK",
+        "age": 33,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Phumniwat Tuha",
+        "role": "GK",
+        "age": 32,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Thanat Thammasut",
+        "role": "GK",
+        "age": 21,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Thiagão",
+        "role": "CB",
+        "age": 29,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Anuyut Mudlem",
+        "role": "CB",
+        "age": 26,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ronnapee Choikumdee",
+        "role": "CB",
+        "age": 34,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Suwijak Moonkeaw",
+        "role": "LB",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Chatchon Jairangsee",
+        "role": "RB",
+        "age": 31,
+        "ovr": 58,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Jakree Pankam",
+        "role": "RB",
+        "age": 34,
+        "ovr": 58,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Kiadtisak Nanthawichianrit",
+        "role": "RB",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Purinat Jorathet",
+        "role": "LB",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Tiwanon Sopajan",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Pooridet Clinton",
+        "role": "CM",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "M L"
+      },
+      {
+        "name": "Natdanai Sangta",
+        "role": "CM",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Wiset Monsikanphon",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Jeong Woo-Geun",
+        "role": "ST",
+        "age": 35,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Thanathorn Namchan",
+        "role": "ST",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Seo Min-Guk",
+        "role": "ST",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mouhoub Naït Merabet",
+        "role": "CAM",
+        "age": 33,
+        "ovr": 52,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Pattara Soimalai",
+        "role": "RW",
+        "age": 24,
+        "ovr": 52,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Suksan Kaewpanya",
+        "role": "ST",
+        "age": 25,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Chatchai Nakwichit",
+        "role": "ST",
+        "age": 37,
+        "ovr": 52,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Tanapat Waempracha",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 52,
+        "fmPos": "AM C"
+      }
+    ],
+    "cus": [
+      {
+        "name": "Issarapong Waewdee",
+        "role": "GK",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Anuphong Kanyalang",
+        "role": "GK",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Sitthikorn Klamsai",
+        "role": "GK",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Praweenwat Boonyong",
+        "role": "CDM",
+        "age": 36,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Antonio Verzura",
+        "role": "RB",
+        "age": 34,
+        "ovr": 58,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Anaphat Nakngam",
+        "role": "CB",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ratchanon Phangkaew",
+        "role": "CB",
+        "age": 37,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Anan Samaae",
+        "role": "RB",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Khatawut Poladao",
+        "role": "CB",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Sathit Sriuthai",
+        "role": "LB",
+        "age": 38,
+        "ovr": 58,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Poom Dhararag",
+        "role": "LB",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "WB L"
+      },
+      {
+        "name": "Peeranat Janwong",
+        "role": "CM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Apiwit Sapram",
+        "role": "CM",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Tatsuya Tanaka",
+        "role": "CAM",
+        "age": 34,
+        "ovr": 58,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Sompong Soleb",
+        "role": "ST",
+        "age": 39,
+        "ovr": 58,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Phanuwat Jinta",
+        "role": "CAM",
+        "age": 39,
+        "ovr": 58,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Naoki Uemoto",
+        "role": "ST",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Shunta Hasegawa",
+        "role": "ST",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Natthawut Srijan",
+        "role": "ST",
+        "age": 20,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Thanarin Thumsen",
+        "role": "RW",
+        "age": 24,
+        "ovr": 52,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Narin Channarong",
+        "role": "ST",
+        "age": 27,
+        "ovr": 52,
+        "fmPos": "AM R, ST"
+      }
+    ],
+    "spb": [
+      {
+        "name": "Kantaphat Manpati",
+        "role": "GK",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Thanongsak Phanphiphat",
+        "role": "GK",
+        "age": 46,
+        "ovr": 61,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Supawat Yokakul",
+        "role": "GK",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ronaldo Rivas",
+        "role": "CB",
+        "age": 26,
+        "ovr": 60,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Precious Uchenna",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Passakorn Soonthonchuen",
+        "role": "CB",
+        "age": 28,
+        "ovr": 60,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kang Yoon-Seok",
+        "role": "CB",
+        "age": 21,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Pittawat Jeenthai",
+        "role": "CM",
+        "age": 20,
+        "ovr": 59,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Thanakorn Pornrumdet",
+        "role": "LB",
+        "age": 27,
+        "ovr": 59,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Thanarat Srimanop",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Rapeephat Padthaisong",
+        "role": "CM",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Wongsathon Tamoputasiri",
+        "role": "RW",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "DM, AM RC"
+      },
+      {
+        "name": "Phunupong Rungsuree",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Sitthinan Rungrueang",
+        "role": "CM",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Naruebet Udsa",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yodsaphat Meekaew",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Jukkree U-ta",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Akarawit Techovongsakul",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Phitak Phimpae",
+        "role": "RW",
+        "age": 26,
+        "ovr": 53,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Nirut Jamroensri",
+        "role": "ST",
+        "age": 35,
+        "ovr": 53,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Peerapong Panyanumaporn",
+        "role": "ST",
+        "age": 30,
+        "ovr": 52,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Babatunde Onifade",
+        "role": "ST",
+        "age": 22,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Phanuwit Malalueang",
+        "role": "ST",
+        "age": 20,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Aisara Chomphuthat",
+        "role": "ST",
+        "age": 20,
+        "ovr": 52,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Nattanai Dajaroen",
+        "role": "ST",
+        "age": 20,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Saman Mohammadzadeh",
+        "role": "ST",
+        "age": 24,
+        "ovr": 52,
+        "fmPos": "ST"
+      }
+    ],
+    "lam": [],
+    "phr": [
+      {
+        "name": "Kiadtiphon Udom",
+        "role": "GK",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Panthakit Boonyachot",
+        "role": "GK",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Takdanai Klomklieng",
+        "role": "GK",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Zaw Min Tun",
+        "role": "CB",
+        "age": 34,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Weerawut Kayem",
+        "role": "LB",
+        "age": 33,
+        "ovr": 58,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Chattarin Pateetin",
+        "role": "CB",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Thanakorn Jaiphet",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Artit Promkun",
+        "role": "RB",
+        "age": 31,
+        "ovr": 58,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Anukun Fomthaisong",
+        "role": "CB",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Rachan Prasitthong",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Pongsil Tana",
+        "role": "LB",
+        "age": 33,
+        "ovr": 58,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Siwakorn Sangwong",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ekkalarp Hanpanichkit",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Amnart Pamornprasert",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nílson",
+        "role": "ST",
+        "age": 35,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Taku Ito",
+        "role": "ST",
+        "age": 32,
+        "ovr": 58,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Paim",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Judivan",
+        "role": "ST",
+        "age": 31,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Warut Boonsuk",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 52,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Thammayut Rakbun",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 52,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Panupong Wongpila",
+        "role": "ST",
+        "age": 23,
+        "ovr": 52,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Nethithorn Kaewcharoen",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 52,
+        "fmPos": "AM RL"
+      }
+    ],
+    "cnb": [
+      {
+        "name": "Thatpicha Auksonsri",
+        "role": "GK",
+        "age": 32,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Siraset Aekprathumchai",
+        "role": "GK",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kontee Sitthilersjanya",
+        "role": "GK",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ja-In Jeong",
+        "role": "CB",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Tanin Kiatlerttham",
+        "role": "LB",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Nawinmet Cheawchan",
+        "role": "CB",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Songkran Kareesor",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Rachata Somporn",
+        "role": "CB",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Bazil Samakgij",
+        "role": "LB",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "WB L"
+      },
+      {
+        "name": "Thammakai Jaidee",
+        "role": "LB",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Nawaphon Arunsaengtichai",
+        "role": "LB",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Krittapot Kongla",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Mongkonchai Kongjumpa",
+        "role": "CM",
+        "age": 38,
+        "ovr": 58,
+        "fmPos": "M LC"
+      },
+      {
+        "name": "Anuwat Matarat",
+        "role": "CM",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Patiparnchai Pothep",
+        "role": "CM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Pongpranod Kaewwichien",
+        "role": "CM",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Phongrarit Aimkamol",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Amarildo",
+        "role": "ST",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tatsuhide Shimizu",
+        "role": "ST",
+        "age": 30,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Warakorn Thongbai",
+        "role": "ST",
+        "age": 24,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jadson",
+        "role": "ST",
+        "age": 29,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Thanchot Sonsri",
+        "role": "RW",
+        "age": 24,
+        "ovr": 52,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Thitiwat Phranmaen",
+        "role": "ST",
+        "age": 27,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Sutthiphat Phoprom",
+        "role": "RW",
+        "age": 22,
+        "ovr": 52,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Piyarot Kwangkeaw",
+        "role": "ST",
+        "age": 25,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      }
+    ],
+    "msh": [
+      {
+        "name": "Pirot Eiammark",
+        "role": "GK",
+        "age": 34,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Sornnarai Jumrurai",
+        "role": "GK",
+        "age": 35,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Chutideth Maunchaingam",
+        "role": "GK",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nakin Wisetchat",
+        "role": "CM",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Noppanon Kotchpalayuk",
+        "role": "RB",
+        "age": 34,
+        "ovr": 58,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Suwannapat Kingkaew",
+        "role": "CB",
+        "age": 32,
+        "ovr": 58,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Nukulkit Krutyai",
+        "role": "CB",
+        "age": 33,
+        "ovr": 58,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Akito Saito",
+        "role": "CB",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Jetjin Sriprach",
+        "role": "LB",
+        "age": 34,
+        "ovr": 58,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Waradorn Unart",
+        "role": "RB",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Prasittichai Perm",
+        "role": "CB",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Teerapak Punboonchu",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Kantinan Chanmunti",
+        "role": "CM",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Wander Luiz",
+        "role": "ST",
+        "age": 34,
+        "ovr": 58,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Leandro Assumpção",
+        "role": "ST",
+        "age": 40,
+        "ovr": 58,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Chitchanok Xaysensourinthone",
+        "role": "ST",
+        "age": 31,
+        "ovr": 58,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Jakkit Palapon",
+        "role": "ST",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Lwin Moe Aung",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Kongpop Artserm",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 52,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Punnawat Chote-Jirachaithon",
+        "role": "RW",
+        "age": 24,
+        "ovr": 52,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Nattapol Piamplai",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 52,
+        "fmPos": "AM C"
+      }
+    ],
+    "pat": [
+      {
+        "name": "Chommaphat Boonloet",
+        "role": "GK",
+        "age": 23,
+        "ovr": 59,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Varuth Wongsomsak",
+        "role": "GK",
+        "age": 27,
+        "ovr": 59,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nattakitt Kanapornthawornpat",
+        "role": "GK",
+        "age": 24,
+        "ovr": 59,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kristófer Reyes",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Narongrit Boonsuk",
+        "role": "CB",
+        "age": 34,
+        "ovr": 58,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Singha Marasa",
+        "role": "CB",
+        "age": 19,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Thanapong Buntap",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Thaned Benyapad",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Gorawit Wongkrai",
+        "role": "LB",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "WB L"
+      },
+      {
+        "name": "Krithawut Sodachan",
+        "role": "CM",
+        "age": 19,
+        "ovr": 58,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Thodsaporn Ai-choi",
+        "role": "RB",
+        "age": 34,
+        "ovr": 58,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Pharanyu Upala",
+        "role": "CDM",
+        "age": 35,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kongphop Luadsong",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Aiyarat Duangmanee",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Rattapong Promla",
+        "role": "CM",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "M R"
+      },
+      {
+        "name": "Apisit Butsri",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Noto Boontawan",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Chitipat Kaeoyos",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Nawaphon Sonkham",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 52,
+        "fmPos": "DM, M RC"
+      },
+      {
+        "name": "Gustavo Apis",
+        "role": "ST",
+        "age": 27,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Gregory",
+        "role": "ST",
+        "age": 30,
+        "ovr": 52,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Kenta Hara",
+        "role": "ST",
+        "age": 30,
+        "ovr": 52,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Arnold Suew",
+        "role": "ST",
+        "age": 34,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Piyawat Petra",
+        "role": "LW",
+        "age": 21,
+        "ovr": 52,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Niphitpon Hadchan",
+        "role": "ST",
+        "age": 24,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Patipat Kamsat",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 52,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Nitithon Sripraman",
+        "role": "ST",
+        "age": 25,
+        "ovr": 52,
+        "fmPos": "AM RL, ST"
+      }
+    ],
+    "ssc": [
+      {
+        "name": "Surapat Wongpanich",
+        "role": "GK",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Chumpol Bua-ngam",
+        "role": "CB",
+        "age": 39,
+        "ovr": 58,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Chaiyapruek Chirachin",
+        "role": "CB",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Jakkrit Kemnak",
+        "role": "CDM",
+        "age": 39,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Apisit Khuankwai",
+        "role": "RB",
+        "age": 36,
+        "ovr": 58,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Sorrawit Sukbanterng",
+        "role": "CM",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Kittitach Pranithi",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Techaphob Pengpunpat",
+        "role": "LB",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "WB L"
+      },
+      {
+        "name": "Nattapong Kumnate",
+        "role": "RB",
+        "age": 37,
+        "ovr": 58,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Ratchapol Nawanno",
+        "role": "CM",
+        "age": 40,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Attawit Sukchuai",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Siwa Prommas",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Andrey",
+        "role": "CAM",
+        "age": 36,
+        "ovr": 58,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Diego Reis",
+        "role": "CAM",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Luis Fellipe",
+        "role": "LW",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Kongnateechai Boonma",
+        "role": "ST",
+        "age": 39,
+        "ovr": 58,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Warayut Klomnark",
+        "role": "ST",
+        "age": 38,
+        "ovr": 58,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Peeraphat Phasuk",
+        "role": "LW",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Techin Mooktarakosa",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 52,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Anon Prasongporn",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 52,
+        "fmPos": "AM C"
+      }
+    ],
+    "sis": [
+      {
+        "name": "Adisak Lambelsah",
+        "role": "GK",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Natthasan Pakkarano",
+        "role": "GK",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Sorasak Khampanja",
+        "role": "GK",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kwon Dae-Hee",
+        "role": "CB",
+        "age": 36,
+        "ovr": 58,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Dylan de Bruycker",
+        "role": "ST",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "D/WB R, AM R, ST"
+      },
+      {
+        "name": "Wanthayawut Nuchkasae",
+        "role": "CB",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Phattharaphon Gangsopa",
+        "role": "CB",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Pakornkiat Kaena",
+        "role": "CB",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Phattharaphon Phengchaem",
+        "role": "LB",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Phumin Boers",
+        "role": "CB",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Isariya Marom",
+        "role": "CM",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Suphaphon Sutthisak",
+        "role": "CM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Pansiri Sukunee",
+        "role": "CDM",
+        "age": 36,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Narongrit Kamnet",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Steeven Langil",
+        "role": "CAM",
+        "age": 38,
+        "ovr": 58,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Adolph Koudakpo",
+        "role": "ST",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Fellipe Veloso",
+        "role": "ST",
+        "age": 32,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kittipong Wongma",
+        "role": "ST",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Wongsakorn Saenruecha",
+        "role": "ST",
+        "age": 26,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nattapon Thaptanon",
+        "role": "RW",
+        "age": 28,
+        "ovr": 52,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Piphob Saengjan",
+        "role": "ST",
+        "age": 21,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Suttichai Pongson",
+        "role": "RW",
+        "age": 21,
+        "ovr": 52,
+        "fmPos": "AM RC"
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "AFC Champions League Elite",
+  "rounds": [
+    { "id": "r16", "label": "Round of 16", "matchdayOffset": 8, "twoLegged": true, "returnOffset": 10 },
+    { "id": "qf", "label": "Quarter-final", "matchdayOffset": 18, "twoLegged": true, "returnOffset": 20 },
+    { "id": "sf", "label": "Semi-final", "matchdayOffset": 26, "twoLegged": true, "returnOffset": 28 },
+    { "id": "final", "label": "Final", "matchdayOffset": 33, "twoLegged": false }
+  ]
+}

@@ -7,6 +7,8 @@ import type {
 import { roleShort } from './positions'
 import { createDynamics } from './dynamics'
 import { buildOppositionReport } from './opposition'
+import type { TouchlineShout } from './match/touchlineShouts'
+import { benchIssues, ensureClubMatchdaySquad, MATCH_BENCH_SIZE } from './match/matchdaySquad'
 
 function clamp(n: number, lo: number, hi: number) {
   return Math.max(lo, Math.min(hi, Math.round(n)))
@@ -58,6 +60,7 @@ export function createPreMatchState(fixtureId: string): PreMatchState {
     lineupConfirmed: false,
     talkKind: null,
     talkMatchBonus: 1,
+    touchlineShouts: [],
   }
 }
 
@@ -158,21 +161,27 @@ export function lineupIssues(save: GameSave): string[] {
     if ((p.leaveDays ?? 0) > 0) issues.push(`${p.name} ลา`)
     if ((p.illnessDays ?? 0) > 0) issues.push(`${p.name} ป่วย`)
   }
+  issues.push(...benchIssues(tactics, save.players))
   return issues
 }
 
 export function confirmLineup(save: GameSave): { ok: boolean; save: GameSave; message: string } {
   const fx = nextHumanFixture(save)
   if (!fx) return { ok: false, save, message: 'ไม่มีนัดถัดไป' }
-  const issues = lineupIssues(save)
-  if (issues.length > 0) {
-    return { ok: false, save, message: issues[0] }
+  const filled = ensureClubMatchdaySquad(save, save.humanClubId, save.tacticsByClub[save.humanClubId]!)
+  const nextSave: GameSave = {
+    ...save,
+    tacticsByClub: { ...save.tacticsByClub, [save.humanClubId]: filled },
   }
-  const prep = ensurePreMatch(save) ?? createPreMatchState(fx.id)
+  const issues = lineupIssues(nextSave)
+  if (issues.length > 0) {
+    return { ok: false, save: nextSave, message: issues[0] }
+  }
+  const prep = ensurePreMatch(nextSave) ?? createPreMatchState(fx.id)
   return {
     ok: true,
-    message: 'ยืนยัน XI แล้ว — พร้อมขึ้นสนาม',
-    save: withPreMatch(save, { ...prep, fixtureId: fx.id, lineupConfirmed: true }),
+    message: `ยืนยัน XI 11 + สำรอง ${filled.bench.length}/${MATCH_BENCH_SIZE} คน — พร้อมขึ้นสนาม`,
+    save: withPreMatch(nextSave, { ...prep, fixtureId: fx.id, lineupConfirmed: true }),
   }
 }
 
@@ -313,4 +322,28 @@ export function talkBonusFromSave(save: GameSave): number {
   const prep = save.preMatch
   if (!prep?.talkKind) return 1
   return prep.talkMatchBonus || 1
+}
+
+export const TOUCHLINE_SHOUT_OPTIONS: { id: TouchlineShout; label: string }[] = [
+  { id: 'demand_more', label: 'Demand More' },
+  { id: 'berate', label: 'Berate' },
+  { id: 'praise', label: 'Praise' },
+  { id: 'encourage', label: 'Encourage' },
+  { id: 'focus', label: 'Focus' },
+]
+
+export function queueTouchlineShout(
+  save: GameSave,
+  shout: TouchlineShout,
+): { ok: boolean; save: GameSave; message: string } {
+  const fx = nextHumanFixture(save)
+  if (!fx) return { ok: false, save, message: 'ไม่มีนัดถัดไป' }
+  const prep = ensurePreMatch(save) ?? createPreMatchState(fx.id)
+  const prev = prep.touchlineShouts ?? []
+  const nextShouts = [...prev.filter((s) => s !== shout), shout].slice(-3)
+  return {
+    ok: true,
+    save: withPreMatch(save, { ...prep, fixtureId: fx.id, touchlineShouts: nextShouts }),
+    message: `ตะโกน「${TOUCHLINE_SHOUT_OPTIONS.find((o) => o.id === shout)?.label ?? shout}」คิวแล้ว (${nextShouts.length})`,
+  }
 }

@@ -29,19 +29,21 @@ export function weatherMatchModifiers(weather: MatchWeather): {
   attack: number
   defend: number
   injury: number
+  /** สนามแฉะ/ร้อน — ใช้คู่กับ pitchPhysics */
+  fatigue: number
 } {
   switch (weather) {
     case 'rain':
-      return { attack: 0.96, defend: 0.98, injury: 1.35 }
+      return { attack: 0.96, defend: 0.98, injury: 1.35, fatigue: 1.1 }
     case 'wind':
-      return { attack: 0.94, defend: 1.02, injury: 1.05 }
+      return { attack: 0.94, defend: 1.02, injury: 1.05, fatigue: 1.05 }
     case 'cold':
-      return { attack: 0.97, defend: 0.97, injury: 1.25 }
+      return { attack: 0.97, defend: 0.97, injury: 1.25, fatigue: 1.08 }
     case 'hot':
-      return { attack: 0.95, defend: 0.96, injury: 1.3 }
+      return { attack: 0.95, defend: 0.96, injury: 1.3, fatigue: 1.35 }
     case 'clear':
     default:
-      return { attack: 1, defend: 1, injury: 1 }
+      return { attack: 1, defend: 1, injury: 1, fatigue: 1 }
   }
 }
 

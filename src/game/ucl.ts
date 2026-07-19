@@ -246,6 +246,7 @@ function advanceEuroKnockout(
         cupRound: nextRound.id,
         leg: 1,
         tieId,
+        slot: 'midweek',
       })
       const ret = nextRound.returnOffset ?? nextRound.matchdayOffset + 2
       newFx.push({
@@ -259,6 +260,7 @@ function advanceEuroKnockout(
         cupRound: nextRound.id,
         leg: 2,
         tieId,
+        slot: 'midweek',
       })
     } else {
       newFx.push({
@@ -270,6 +272,7 @@ function advanceEuroKnockout(
         played: false,
         competition,
         cupRound: nextRound.id,
+        slot: 'midweek',
       })
     }
   }

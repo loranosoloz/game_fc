@@ -11,6 +11,7 @@ import type {
 import { ensureBoard } from './board'
 import { ensureFanState } from './fans'
 import { ensureOwner, OWNER_PERSONALITY_LABEL, createOwnerState } from './owner'
+import { clearInsolvencyAfterTakeover } from './insolvency'
 
 const INVESTORS = investorsData as InvestorGroup[]
 
@@ -167,6 +168,15 @@ export function evaluateTakeoverOffer(
   if (owner.warChest < 3_000_000) {
     seller += 14
     sellerReasons.push('War chest ใกล้หมด — ขายอาจเป็นทางออก')
+  }
+
+  const inv = save.insolvency
+  if (inv?.stage === 'administration') {
+    seller += 22
+    sellerReasons.push('สโมสรอยู่ใน Administration — เจ้าของเปิดทางขายแรง')
+  } else if (inv?.stage === 'liquidity_crisis') {
+    seller += 12
+    sellerReasons.push('วิกฤตสภาพคล่อง — เจ้าของรับฟังดีลกู้คลับ')
   } else if (owner.warChest > 20_000_000) {
     seller -= 8
     sellerReasons.push('ยังมีเงินสำรอง — ไม่จำเป็นต้องขาย')
@@ -858,9 +868,8 @@ export function attemptTakeoverDeal(
 
   const note = `ขายคลับให้ ${investor.name} (${investor.styleLabel}) · บิด ฿${offer.bid.toLocaleString('th-TH')} · ฉีด ฿${offer.promisedInvestment.toLocaleString('th-TH')}`
 
-  return {
-    ok: true,
-    save: {
+  const closedSave = clearInsolvencyAfterTakeover(
+    {
       ...save,
       clubs,
       owner: newOwner,
@@ -908,6 +917,12 @@ export function attemptTakeoverDeal(
         Math.min(100, (save.managerReputation ?? 50) + (offer.keepManager ? 2 : -4)),
       ),
     },
+    offer.promisedInvestment,
+  )
+
+  return {
+    ok: true,
+    save: closedSave,
     message: note,
   }
 }

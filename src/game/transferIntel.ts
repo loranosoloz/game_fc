@@ -1,5 +1,5 @@
 import type { GameSave, Player, PositionGroup } from './types'
-import { estimatedValue } from './transfer'
+import { estimatedValue, marketSellPremium } from './transfer'
 import { groupLabel, roleLabel } from './positions'
 import { formatMoney } from '@/lib/format'
 import { fanMoodLabel } from './fans'
@@ -101,9 +101,22 @@ export function analyzeBuy(save: GameSave, player: Player, fans: FanState): Tran
   const depth = depthAt(mine, player.position)
   const best = bestAt(mine, player.position)
   const value = estimatedValue(player)
+  const winterPrem = marketSellPremium(save, player)
+  const askFloor = Math.round(value * winterPrem)
   const wageLoad = mine.reduce((s, p) => s + p.wage, 0)
   const points: IntelPoint[] = []
   let score = 50
+
+  if (winterPrem > 1) {
+    points.push({
+      lens: 'จังหวะตลาด',
+      tone: 'warning',
+      score: 40,
+      title: 'ตลาดวินเทอร์ — ราคาโหด',
+      why: `กลางฤดูกาลสโมสรไม่ยอมปล่อยง่าย ค่าตัวประเมินถูกคูณ ~${winterPrem.toFixed(2)} (คีย์/ตัวจริงแพงกว่า) — ต้องจ่ายเกินซัมเมอร์ชัดเจน`,
+    })
+    score -= 8
+  }
 
   if (depth <= 2) {
     points.push({
@@ -258,7 +271,9 @@ export function analyzeBuy(save: GameSave, player: Player, fans: FanState): Tran
   score = Math.max(0, Math.min(100, score))
   const verdict = verdictFromScore(score)
   const confidence = Math.round(58 + Math.abs(score - 50) * 0.7)
-  const suggestedFee = Math.round(value * (verdict === 'strongly_yes' ? 1.05 : verdict === 'yes' ? 1.0 : 0.95))
+  const suggestedFee = Math.round(
+    askFloor * (verdict === 'strongly_yes' ? 1.05 : verdict === 'yes' ? 1.0 : 0.95),
+  )
   const suggestedWage = Math.round(player.wage * 1.08)
 
   return {

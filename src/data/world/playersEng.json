@@ -1,0 +1,3270 @@
+{
+  "source": "sortitoutsi.net FM26 Premier League",
+  "sourceUrl": "https://sortitoutsi.net/football-manager-2026/competition/11/premier-league",
+  "clubs": {
+    "mun": [
+      {
+        "name": "Bruno Fernandes",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 87,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Casemiro",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 87,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Benjamin Šeško",
+        "role": "ST",
+        "age": 22,
+        "ovr": 85,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Matthijs de Ligt",
+        "role": "CB",
+        "age": 25,
+        "ovr": 85,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Matheus Cunha",
+        "role": "ST",
+        "age": 26,
+        "ovr": 85,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Luke Shaw",
+        "role": "CB",
+        "age": 30,
+        "ovr": 85,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Mason Mount",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 85,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Harry Maguire",
+        "role": "CB",
+        "age": 32,
+        "ovr": 85,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Bryan Mbeumo",
+        "role": "ST",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Manuel Ugarte",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Lisandro Martínez",
+        "role": "CB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Noussair Mazraoui",
+        "role": "CB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Leny Yoro",
+        "role": "CB",
+        "age": 19,
+        "ovr": 78,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Joshua Zirkzee",
+        "role": "ST",
+        "age": 24,
+        "ovr": 78,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Amad",
+        "role": "RW",
+        "age": 23,
+        "ovr": 78,
+        "fmPos": "WB R, AM RC"
+      },
+      {
+        "name": "Diogo Dalot",
+        "role": "RB",
+        "age": 26,
+        "ovr": 78,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Senne Lammens",
+        "role": "GK",
+        "age": 23,
+        "ovr": 76,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Tyrell Malacia",
+        "role": "LB",
+        "age": 25,
+        "ovr": 76,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Altay Bayındır",
+        "role": "GK",
+        "age": 27,
+        "ovr": 75,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Patrick Dorgu",
+        "role": "CAM",
+        "age": 20,
+        "ovr": 75,
+        "fmPos": "D/WB L, AM RL"
+      },
+      {
+        "name": "Chido Obi",
+        "role": "ST",
+        "age": 17,
+        "ovr": 74,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Tom Heaton",
+        "role": "GK",
+        "age": 39,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Diego León",
+        "role": "LB",
+        "age": 18,
+        "ovr": 73,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Kobbie Mainoo",
+        "role": "CAM",
+        "age": 20,
+        "ovr": 68,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Ayden Heaven",
+        "role": "CB",
+        "age": 18,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Dermot Mee",
+        "role": "GK",
+        "age": 22,
+        "ovr": 68,
+        "fmPos": "GK"
+      }
+    ],
+    "che": [
+      {
+        "name": "Reece James",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 87,
+        "fmPos": "D RC, DM"
+      },
+      {
+        "name": "Wesley Fofana",
+        "role": "CB",
+        "age": 24,
+        "ovr": 85,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Enzo Fernández",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 85,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Liam Delap",
+        "role": "ST",
+        "age": 22,
+        "ovr": 84,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Moisés Caicedo",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 83,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Cole Palmer",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 83,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Mykhaylo Mudryk",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Jamie Gittens",
+        "role": "CAM",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Marc Cucurella",
+        "role": "CM",
+        "age": 26,
+        "ovr": 81,
+        "fmPos": "D LC, M L"
+      },
+      {
+        "name": "Benoît Badiashile",
+        "role": "CB",
+        "age": 24,
+        "ovr": 81,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Trevoh Chalobah",
+        "role": "CB",
+        "age": 26,
+        "ovr": 80,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Jorrel Hato",
+        "role": "CB",
+        "age": 19,
+        "ovr": 80,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Alejandro Garnacho",
+        "role": "CAM",
+        "age": 21,
+        "ovr": 79,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Pedro Neto",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 79,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Malo Gusto",
+        "role": "RB",
+        "age": 22,
+        "ovr": 78,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "João Pedro",
+        "role": "ST",
+        "age": 23,
+        "ovr": 78,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Levi Colwill",
+        "role": "CB",
+        "age": 22,
+        "ovr": 78,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Tosin Adarabioyo",
+        "role": "CB",
+        "age": 27,
+        "ovr": 78,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Robert Sánchez",
+        "role": "GK",
+        "age": 27,
+        "ovr": 78,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Filip Jörgensen",
+        "role": "GK",
+        "age": 23,
+        "ovr": 78,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Roméo Lavia",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Estêvão",
+        "role": "CAM",
+        "age": 18,
+        "ovr": 78,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Andrey Santos",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 74,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Gabriel Słonina",
+        "role": "GK",
+        "age": 21,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Dário Essugo",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 74,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Mamadou Sarr",
+        "role": "CB",
+        "age": 19,
+        "ovr": 74,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Deivid Washington",
+        "role": "ST",
+        "age": 20,
+        "ovr": 74,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Marc Guiu",
+        "role": "ST",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "ST"
+      }
+    ],
+    "ars": [
+      {
+        "name": "Bukayo Saka",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 90,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Declan Rice",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 90,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Gabriel Martinelli",
+        "role": "ST",
+        "age": 24,
+        "ovr": 89,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Martin Ødegaard",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 89,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "William Saliba",
+        "role": "CB",
+        "age": 24,
+        "ovr": 88,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kai Havertz",
+        "role": "ST",
+        "age": 26,
+        "ovr": 88,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Viktor Gyökeres",
+        "role": "ST",
+        "age": 27,
+        "ovr": 87,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Gabriel",
+        "role": "CB",
+        "age": 27,
+        "ovr": 87,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ebere Eze",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 86,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "David Raya",
+        "role": "GK",
+        "age": 29,
+        "ovr": 86,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Leandro Trossard",
+        "role": "ST",
+        "age": 30,
+        "ovr": 85,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Mikel Merino",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 85,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Gabriel Jesus",
+        "role": "ST",
+        "age": 28,
+        "ovr": 84,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Jurriën Timber",
+        "role": "CB",
+        "age": 24,
+        "ovr": 84,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Benjamin White",
+        "role": "CB",
+        "age": 27,
+        "ovr": 83,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Noni Madueke",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 83,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Kepa Arrizabalaga",
+        "role": "GK",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Christian Nørgaard",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Piero Hincapié",
+        "role": "CB",
+        "age": 23,
+        "ovr": 81,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Martín Zubimendi",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 81,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Myles Lewis-Skelly",
+        "role": "CDM",
+        "age": 18,
+        "ovr": 80,
+        "fmPos": "D L, DM"
+      },
+      {
+        "name": "Riccardo Calafiori",
+        "role": "CB",
+        "age": 23,
+        "ovr": 80,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Cristhian Mosquera",
+        "role": "CB",
+        "age": 21,
+        "ovr": 79,
+        "fmPos": "D RC"
+      }
+    ],
+    "avl": [
+      {
+        "name": "Jadon Sancho",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 87,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Emiliano Martínez",
+        "role": "GK",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Youri Tielemans",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Boubacar Kamara",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Lucas Digne",
+        "role": "LB",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Pau Torres",
+        "role": "CB",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ollie Watkins",
+        "role": "ST",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Tammy Abraham",
+        "role": "ST",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Morgan Rogers",
+        "role": "ST",
+        "age": 22,
+        "ovr": 78,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "John McGinn",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 78,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Amadou Onana",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ezri Konsa",
+        "role": "CB",
+        "age": 27,
+        "ovr": 78,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Tyrone Mings",
+        "role": "CB",
+        "age": 32,
+        "ovr": 78,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Leon Bailey",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 78,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Ross Barkley",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 78,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Ian Maatsen",
+        "role": "LB",
+        "age": 23,
+        "ovr": 78,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Harvey Elliott",
+        "role": "RW",
+        "age": 22,
+        "ovr": 78,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Victor Lindelöf",
+        "role": "CB",
+        "age": 30,
+        "ovr": 78,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Matty Cash",
+        "role": "RB",
+        "age": 27,
+        "ovr": 78,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Emiliano Buendía",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 78,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Marco Bizot",
+        "role": "GK",
+        "age": 34,
+        "ovr": 72,
+        "fmPos": "GK"
+      }
+    ],
+    "bre": [
+      {
+        "name": "Reiss Nelson",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 78,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Dango Ouattara",
+        "role": "ST",
+        "age": 23,
+        "ovr": 78,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Thiago",
+        "role": "ST",
+        "age": 24,
+        "ovr": 78,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Mikkel Damsgaard",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 78,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Caoimhin Kelleher",
+        "role": "GK",
+        "age": 26,
+        "ovr": 76,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Jordan Henderson",
+        "role": "CDM",
+        "age": 35,
+        "ovr": 76,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Vitaly Janelt",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 75,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kristoffer Ajer",
+        "role": "CB",
+        "age": 27,
+        "ovr": 75,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Keane Lewis-Potter",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 74,
+        "fmPos": "D/WB L, AM RL"
+      },
+      {
+        "name": "Michael Kayode",
+        "role": "RB",
+        "age": 21,
+        "ovr": 74,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Aaron Hickey",
+        "role": "RB",
+        "age": 23,
+        "ovr": 74,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Fábio Carvalho",
+        "role": "ST",
+        "age": 22,
+        "ovr": 74,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Nathan Collins",
+        "role": "CB",
+        "age": 24,
+        "ovr": 74,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Rico Henry",
+        "role": "LB",
+        "age": 28,
+        "ovr": 74,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Mathias Jensen",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 74,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yehor Yarmoliuk",
+        "role": "CAM",
+        "age": 21,
+        "ovr": 74,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Antoni Milambo",
+        "role": "CAM",
+        "age": 20,
+        "ovr": 74,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Ethan Pinnock",
+        "role": "CB",
+        "age": 32,
+        "ovr": 74,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kevin Schade",
+        "role": "ST",
+        "age": 23,
+        "ovr": 70,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Sepp van den Berg",
+        "role": "CB",
+        "age": 23,
+        "ovr": 70,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Hákon Rafn Valdimarsson",
+        "role": "GK",
+        "age": 23,
+        "ovr": 68,
+        "fmPos": "GK"
+      }
+    ],
+    "eve": [
+      {
+        "name": "Jack Grealish",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 87,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Jordan Pickford",
+        "role": "GK",
+        "age": 31,
+        "ovr": 85,
+        "fmPos": "GK"
+      },
+      {
+        "name": "James Garner",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Idrissa Gueye",
+        "role": "CDM",
+        "age": 35,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Jarrad Branthwaite",
+        "role": "CB",
+        "age": 23,
+        "ovr": 82,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Kiernan Dewsbury-Hall",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 78,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "James Tarkowski",
+        "role": "CB",
+        "age": 32,
+        "ovr": 78,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Dwight McNeil",
+        "role": "ST",
+        "age": 25,
+        "ovr": 78,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Vitaliy Mykolenko",
+        "role": "LB",
+        "age": 26,
+        "ovr": 78,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Thierno Barry",
+        "role": "ST",
+        "age": 22,
+        "ovr": 74,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Iliman N'Diaye",
+        "role": "ST",
+        "age": 25,
+        "ovr": 74,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Carlos Alcaraz",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 74,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Jake O'Brien",
+        "role": "CB",
+        "age": 24,
+        "ovr": 74,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Beto",
+        "role": "ST",
+        "age": 27,
+        "ovr": 74,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Michael Keane",
+        "role": "CB",
+        "age": 32,
+        "ovr": 74,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Tyler Dibling",
+        "role": "RW",
+        "age": 19,
+        "ovr": 74,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Mark Travers",
+        "role": "GK",
+        "age": 26,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nathan Patterson",
+        "role": "RB",
+        "age": 23,
+        "ovr": 74,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Seamus Coleman",
+        "role": "CM",
+        "age": 36,
+        "ovr": 70,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Tim Iroegbunam",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Merlin Röhl",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 70,
+        "fmPos": "DM, AM C"
+      }
+    ],
+    "new": [
+      {
+        "name": "Bruno Guimarães",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 85,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Sandro Tonali",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 84,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nick Woltemade",
+        "role": "ST",
+        "age": 23,
+        "ovr": 83,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Anthony Gordon",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 83,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Sven Botman",
+        "role": "CB",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Nick Pope",
+        "role": "GK",
+        "age": 33,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Harvey Barnes",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Joelinton",
+        "role": "LW",
+        "age": 28,
+        "ovr": 81,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Kieran Trippier",
+        "role": "RB",
+        "age": 34,
+        "ovr": 80,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Jacob Ramsey",
+        "role": "LW",
+        "age": 24,
+        "ovr": 80,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Yoane Wissa",
+        "role": "ST",
+        "age": 28,
+        "ovr": 79,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Fabian Schär",
+        "role": "CB",
+        "age": 33,
+        "ovr": 79,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Anthony Elanga",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 78,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Joe Willock",
+        "role": "CM",
+        "age": 25,
+        "ovr": 78,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Malick Thiaw",
+        "role": "CB",
+        "age": 23,
+        "ovr": 78,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Tino Livramento",
+        "role": "RB",
+        "age": 22,
+        "ovr": 78,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Dan Burn",
+        "role": "CB",
+        "age": 33,
+        "ovr": 78,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Aaron Ramsdale",
+        "role": "GK",
+        "age": 27,
+        "ovr": 78,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lewis Hall",
+        "role": "LB",
+        "age": 20,
+        "ovr": 75,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Jacob Murphy",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 75,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Emil Krafth",
+        "role": "CB",
+        "age": 30,
+        "ovr": 74,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Lewis Miley",
+        "role": "CAM",
+        "age": 19,
+        "ovr": 74,
+        "fmPos": "D R, DM, AM C"
+      },
+      {
+        "name": "William Osula",
+        "role": "ST",
+        "age": 21,
+        "ovr": 73,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "John Ruddy",
+        "role": "GK",
+        "age": 38,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Vakhtang Salia",
+        "role": "ST",
+        "age": 17,
+        "ovr": 68,
+        "fmPos": "AM RC, F C"
+      },
+      {
+        "name": "Mark Gillespie",
+        "role": "GK",
+        "age": 33,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Alex Murphy",
+        "role": "CB",
+        "age": 21,
+        "ovr": 68,
+        "fmPos": "D LC"
+      }
+    ],
+    "liv": [
+      {
+        "name": "Mohamed Salah",
+        "role": "ST",
+        "age": 33,
+        "ovr": 91,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Virgil van Dijk",
+        "role": "CB",
+        "age": 34,
+        "ovr": 91,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Alexander Isak",
+        "role": "ST",
+        "age": 25,
+        "ovr": 90,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Hugo Ekitiké",
+        "role": "ST",
+        "age": 23,
+        "ovr": 90,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Alisson",
+        "role": "GK",
+        "age": 32,
+        "ovr": 89,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Florian Wirtz",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 89,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Ryan Gravenberch",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 88,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Jeremie Frimpong",
+        "role": "RW",
+        "age": 24,
+        "ovr": 88,
+        "fmPos": "D/WB/AM R"
+      },
+      {
+        "name": "Alexis Mac Allister",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 87,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Andrew Robertson",
+        "role": "LB",
+        "age": 31,
+        "ovr": 87,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Cody Gakpo",
+        "role": "ST",
+        "age": 26,
+        "ovr": 86,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Dominik Szoboszlai",
+        "role": "RW",
+        "age": 24,
+        "ovr": 86,
+        "fmPos": "DM, AM RC"
+      },
+      {
+        "name": "Ibrahima Konaté",
+        "role": "CB",
+        "age": 26,
+        "ovr": 85,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Miloš Kerkez",
+        "role": "CM",
+        "age": 21,
+        "ovr": 85,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Giorgi Mamardashvili",
+        "role": "GK",
+        "age": 24,
+        "ovr": 84,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Federico Chiesa",
+        "role": "ST",
+        "age": 27,
+        "ovr": 84,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Joe Gomez",
+        "role": "CB",
+        "age": 28,
+        "ovr": 83,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Conor Bradley",
+        "role": "RB",
+        "age": 22,
+        "ovr": 83,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Curtis Jones",
+        "role": "LW",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "DM, AM LC"
+      },
+      {
+        "name": "Wataru Endo",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Giovanni Leoni",
+        "role": "CB",
+        "age": 18,
+        "ovr": 81,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Freddie Woodman",
+        "role": "GK",
+        "age": 28,
+        "ovr": 81,
+        "fmPos": "GK"
+      }
+    ],
+    "mci": [
+      {
+        "name": "Erling Haaland",
+        "role": "ST",
+        "age": 24,
+        "ovr": 91,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Marc Guéhi",
+        "role": "CB",
+        "age": 25,
+        "ovr": 91,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Omar Marmoush",
+        "role": "ST",
+        "age": 26,
+        "ovr": 90,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Gianluigi Donnarumma",
+        "role": "GK",
+        "age": 26,
+        "ovr": 90,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Bernardo Silva",
+        "role": "RW",
+        "age": 30,
+        "ovr": 89,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Rúben Dias",
+        "role": "CB",
+        "age": 28,
+        "ovr": 89,
+        "fmPos": "D C"
+      },
+      {
+        "name": "John Stones",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 88,
+        "fmPos": "D RC, DM"
+      },
+      {
+        "name": "Joško Gvardiol",
+        "role": "CB",
+        "age": 23,
+        "ovr": 88,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Rodri",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 87,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Tijjani Reijnders",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 87,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Antoine Semenyo",
+        "role": "ST",
+        "age": 25,
+        "ovr": 86,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Nathan Aké",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 86,
+        "fmPos": "D LC, DM"
+      },
+      {
+        "name": "Mateo Kovačić",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 85,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nico González",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 85,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Phil Foden",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 84,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Matheus Nunes",
+        "role": "RW",
+        "age": 26,
+        "ovr": 84,
+        "fmPos": "D/WB R, AM RC"
+      },
+      {
+        "name": "Savinho",
+        "role": "CAM",
+        "age": 21,
+        "ovr": 83,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Rayan Cherki",
+        "role": "ST",
+        "age": 21,
+        "ovr": 83,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Rico Lewis",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "D/WB R, DM"
+      },
+      {
+        "name": "Abdukodir Khusanov",
+        "role": "CB",
+        "age": 21,
+        "ovr": 82,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Rayan Aït-Nouri",
+        "role": "LB",
+        "age": 24,
+        "ovr": 81,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "James Trafford",
+        "role": "GK",
+        "age": 22,
+        "ovr": 81,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nico O'Reilly",
+        "role": "CAM",
+        "age": 20,
+        "ovr": 80,
+        "fmPos": "D L, AM C"
+      },
+      {
+        "name": "Jérémy Doku",
+        "role": "ST",
+        "age": 23,
+        "ovr": 80,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Marcus Bettinelli",
+        "role": "GK",
+        "age": 33,
+        "ovr": 79,
+        "fmPos": "GK"
+      }
+    ],
+    "tot": [
+      {
+        "name": "Cristian Romero",
+        "role": "CB",
+        "age": 27,
+        "ovr": 85,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Xavi Simons",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 85,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "João Palhinha",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 85,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Randal Kolo Muani",
+        "role": "ST",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "James Maddison",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Dominic Solanke",
+        "role": "ST",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Richarlison",
+        "role": "ST",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Dejan Kulusevski",
+        "role": "RW",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Conor Gallagher",
+        "role": "LW",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "DM, AM LC"
+      },
+      {
+        "name": "Pedro Porro",
+        "role": "CM",
+        "age": 25,
+        "ovr": 79,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Rodrigo Bentancur",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Mohammed Kudus",
+        "role": "ST",
+        "age": 24,
+        "ovr": 78,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Mathys Tel",
+        "role": "ST",
+        "age": 20,
+        "ovr": 78,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Yves Bissouma",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Micky van de Ven",
+        "role": "CB",
+        "age": 24,
+        "ovr": 78,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Djed Spence",
+        "role": "RB",
+        "age": 24,
+        "ovr": 78,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Kevin Danso",
+        "role": "CB",
+        "age": 26,
+        "ovr": 78,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Archie Gray",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 78,
+        "fmPos": "D R, DM"
+      },
+      {
+        "name": "Wilson Odobert",
+        "role": "CAM",
+        "age": 20,
+        "ovr": 78,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Guglielmo Vicario",
+        "role": "GK",
+        "age": 28,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Destiny Udogie",
+        "role": "LB",
+        "age": 22,
+        "ovr": 74,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Pape Matar Sarr",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 74,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Antonín Kinský",
+        "role": "GK",
+        "age": 22,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lucas Bergvall",
+        "role": "CAM",
+        "age": 19,
+        "ovr": 74,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Radu Drăguşin",
+        "role": "CB",
+        "age": 23,
+        "ovr": 74,
+        "fmPos": "D RC"
+      }
+    ]
+  },
+  "youth": {
+    "ars": [
+      {
+        "name": "Ethan Nwaneri",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Jack Porter",
+        "role": "GK",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "GK",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Andre Harriman-Annous",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Marcell Washington",
+        "role": "LB",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "D/WB L",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Archie Stevens",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      }
+    ],
+    "avl": [
+      {
+        "name": "Johan Manzambi",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Kosta Nedeljković",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Alysson Edward",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Rory Wilson",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Jamal Jimoh-Aloba",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Kadan Young",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Sam Proctor",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Travis Patterson",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Omar Khedr",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Ben Broggio",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Aidan Borland",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Brian Madjo",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Fletcher Boyd",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Vinnie Hayward",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Bradley Burrowes",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Keilan Quinn",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Ewan Simpson",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Owen Asemota",
+        "role": "GK",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "GK",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Leon Routh",
+        "role": "CB",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "D C",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Jack McGrath",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Markie Meade",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Alfie Lynskey",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "George Hemmings",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Finlay Barnard",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Jahmi Kellyman",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Teddie Bloomfield",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      }
+    ],
+    "bre": [
+      {
+        "name": "Gustavo Nunes",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Yunus Emre Konak",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Romelle Donovan",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Kaye Furo",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Benjamin Arthur",
+        "role": "CB",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "D C",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Julian Eyestone",
+        "role": "GK",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "GK",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Jayden Meghoma",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Josh Stephenson",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Riley Owen",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      }
+    ],
+    "che": [
+      {
+        "name": "Geovany Quenda",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Josh Acheampong",
+        "role": "CB",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "D RC",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Mike Penders",
+        "role": "GK",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "GK",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Kendry Páez",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Dastan Sätpayev",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Omari Kellyman",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Reggie Walsh",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Shumaira Mheuka",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Ishé Samuels-Smith",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Ryan Kavuma-McQueen",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Jesse Derry",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Kiano Dyer",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Harrison Murray-Campbell",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Landon Emenalo",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Chizzy Ezenwata",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Ted Curd",
+        "role": "GK",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "GK",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Tayo Subuloye",
+        "role": "CB",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "D C",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Charlie Holland",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Ibrahim Rabbaj",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Freddy Bernal",
+        "role": "GK",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "GK",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Lewi Richards",
+        "role": "CB",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "D RC",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Calvin Diakite",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Joel Philbert",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Mathis Eboué",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Denner",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Jack Austin",
+        "role": "GK",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "GK",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Jeremiah Berkeley-Agyepong",
+        "role": "CM",
+        "age": 16,
+        "ovr": 59,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U16",
+        "isYouth": true
+      },
+      {
+        "name": "Joseph Wheeler-Henry",
+        "role": "CB",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "D RC",
+        "youthGroup": "U18",
+        "isYouth": true
+      }
+    ],
+    "eve": [
+      {
+        "name": "Harrison Armstrong",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Adam Aznou",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Tyrique George",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Martin Sherif",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Braiden Graham",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Justin Clarke",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "George Pickford",
+        "role": "GK",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "GK",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Freddie Murdock",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      }
+    ],
+    "liv": [
+      {
+        "name": "Rio Ngumoha",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Trey Nyoni",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Jayden Danns",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Kieran Morrison",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Wellity Lucky",
+        "role": "CB",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "D RC",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Ifeanyi Ndukwe",
+        "role": "CB",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "D C",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Keyrol Figueroa",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Noah Adekoya",
+        "role": "CB",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "D C",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Josh Sonni-Lambie",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Lucas Pitt",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Will Wright",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Joe Bradshaw",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "La'more Lee-Forrester",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Joe Upton",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Cam Williams",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Haydn Murray-Holme",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Lucas Clarke",
+        "role": "CB",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "D C",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Harvey Owen",
+        "role": "CB",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "D C",
+        "youthGroup": "U18",
+        "isYouth": true
+      }
+    ],
+    "mci": [
+      {
+        "name": "Max Alleyne",
+        "role": "CB",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "D C",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Vitor Reis",
+        "role": "CB",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "D C",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Claudio Echeverri",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Jeremy Monga",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Juma Bah",
+        "role": "CB",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "D C",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Sverre Nypan",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Divine Mukasa",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Pierce Charles",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Stephen Mfuni",
+        "role": "CB",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "D C",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Emilio Lawrence",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Ryan McAidoo",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Mathys Detourbet",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Christian McFarlane",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Lakyle Samuel",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Mahamadou Sangaré",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Kian Noble",
+        "role": "CB",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "D C",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Matthew Henderson-Hall",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Brooklyn Nfonkeu",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Spike Brits",
+        "role": "GK",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "GK",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Floyd Samba",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Ezra Carrington",
+        "role": "RB",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "D R",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Leke Drake",
+        "role": "CB",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "D C",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Teddie Lamb",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Timeo Whisker",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Tyrone Samba",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Harrison Miles",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Dante Headley",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Finley Grigg",
+        "role": "GK",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "GK",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Ben Vickery",
+        "role": "GK",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "GK",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Yohann Obin",
+        "role": "CB",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "D C",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Charlie Holt",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Max Hudson",
+        "role": "GK",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "GK",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Oliver Tevenan",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      }
+    ],
+    "mun": [
+      {
+        "name": "Harry Amass",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Shea Lacey",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Jack Fletcher",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Sékou Koné",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Jacob Devaney",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Enzo Kana-Biyik",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Jaydan Kamason",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Jayce Fitzgerald",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Jim Thwaites",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Bendito Mantato",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Cristian Orozco",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Amir Ibragimov",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Jayden Ngwashi",
+        "role": "CB",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "D C",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Jay McEvoy",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Yuel Helafu",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Jacob Watson",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Charlie Hardy",
+        "role": "GK",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "GK",
+        "youthGroup": "U18",
+        "isYouth": true
+      }
+    ],
+    "new": [
+      {
+        "name": "Bazoumana Touré",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Antoñito Cordero",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Sean Steur",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Ewen Jaouen",
+        "role": "GK",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "GK",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Trevan Sanusi",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Alfie Harrison",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Leo Shahar",
+        "role": "RB",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "D R",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Park Seung-Soo",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Rory Finneran",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Sam Alabi",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Michael Mills",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Mason Miley",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Isaac Moran",
+        "role": "CB",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "D C",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Kacey Wooster",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Alfie Hutchison",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      }
+    ],
+    "tot": [
+      {
+        "name": "Mikey Moore",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Souza",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Yang Min-Hyeok",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Damola Ajayi",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Luca Williams-Barnett",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Tyrese Hall",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Callum Olusesi",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Jun'ai Byfield",
+        "role": "CB",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "D C",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Roman Egan-Riley",
+        "role": "CB",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "D RC",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Herbie James",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U21",
+        "isYouth": true
+      },
+      {
+        "name": "Tynan Thompson",
+        "role": "CM",
+        "age": 18,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Oliver Boast",
+        "role": "CM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "Wonderkid",
+        "youthGroup": "U18",
+        "isYouth": true
+      },
+      {
+        "name": "Tyler Tingey",
+        "role": "CDM",
+        "age": 17,
+        "ovr": 62,
+        "fmPos": "D C, DM",
+        "youthGroup": "U18",
+        "isYouth": true
+      }
+    ]
+  },
+  "youthNote": "FMTU Wonderkids panel · age buckets U16/U18/U21/U23 · not a full academy roster"
+}

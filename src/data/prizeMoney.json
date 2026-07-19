@@ -1,0 +1,50 @@
+{
+  "champion": {
+    "ucl": 15000000,
+    "uel": 8000000,
+    "uecl": 4500000,
+    "acl": 11000000,
+    "acl_two": 4500000,
+    "asean_cup": 2500000,
+    "cwc": 18000000,
+    "super_cup": 1500000,
+    "cup": 4500000,
+    "league_cup": 2500000,
+    "trophy": 1200000
+  },
+  "runnerUp": {
+    "ucl": 7500000,
+    "uel": 3800000,
+    "uecl": 2200000,
+    "acl": 5200000,
+    "acl_two": 2000000,
+    "asean_cup": 1000000,
+    "cwc": 8000000,
+    "super_cup": 750000,
+    "cup": 1800000,
+    "league_cup": 900000,
+    "trophy": 400000
+  },
+  "progress": {
+    "ucl": { "qf": 2000000, "sf": 3500000 },
+    "uel": { "qf": 900000, "sf": 1500000 },
+    "uecl": { "qf": 450000, "sf": 800000 },
+    "acl": { "qf": 1500000, "sf": 2500000 },
+    "acl_two": { "qf": 500000, "sf": 900000 },
+    "asean_cup": { "qf": 300000, "sf": 550000 },
+    "cwc": { "qf": 2000000, "sf": 4000000 }
+  },
+  "labels": {
+    "ucl": "UCL",
+    "uel": "Europa League",
+    "uecl": "Conference League",
+    "acl": "ACL Elite",
+    "acl_two": "ACL Two",
+    "asean_cup": "ASEAN Club Championship",
+    "cwc": "FIFA Club World Cup",
+    "super_cup": "Community Shield / Super Cup",
+    "cup": "ถ้วยชาติ",
+    "league_cup": "ลีกคัพ",
+    "trophy": "ถ้วยลีกล่าง"
+  }
+}

@@ -5,6 +5,7 @@ import type {
   FanState,
   FinanceLedgerEntry,
   GameSave,
+  LoanDeal,
   Player,
   PlayerSpendDef,
   PlayerSpendLog,
@@ -22,6 +23,8 @@ export function createClubFinance(): ClubFinanceState {
     sponsorSeason: 0,
     tvSeason: 0,
     prizeSeason: 0,
+    transferOutSeason: 0,
+    transferInSeason: 0,
     lastMatchTickets: 0,
     lastMatchShirts: 0,
     lastMatchCrowd: 0,
@@ -41,6 +44,8 @@ export function ensureClubFinance(save: GameSave): ClubFinanceState {
     sponsorSeason: raw.sponsorSeason ?? 0,
     tvSeason: raw.tvSeason ?? 0,
     prizeSeason: raw.prizeSeason ?? 0,
+    transferOutSeason: raw.transferOutSeason ?? 0,
+    transferInSeason: raw.transferInSeason ?? 0,
     fineLogs: raw.fineLogs ?? [],
   }
 }
@@ -87,10 +92,15 @@ export function calcGateReceipt(
   fans?: FanState,
   matchday = 0,
   commercialMult = 1,
+  /** ผู้ชมที่ล็อกไว้ก่อนแมตช์ (ปิดลูปตั๋ว) */
+  attendanceOverride?: number,
 ): GateReceipt {
   const fanMult = fans ? fanTicketMultiplier(fans, matchday) : 1
   const fill = 0.55 + Math.min(0.35, club.reputation / 200)
-  const crowd = Math.round(club.stadiumCapacity * fill * fanMult)
+  const crowd =
+    attendanceOverride != null && attendanceOverride > 0
+      ? Math.min(club.stadiumCapacity, Math.round(attendanceOverride))
+      : Math.round(club.stadiumCapacity * fill * fanMult)
   const resultMood = goalsFor > goalsAgainst ? 1.08 : goalsFor === goalsAgainst ? 1 : 0.92
   const ticketPrice = 180 + club.reputation * 2.2
   const tickets = Math.round(crowd * ticketPrice * resultMood * commercialMult)
@@ -160,14 +170,27 @@ export function recordHumanGate(
   }
 }
 
-/** จ่ายค่าเหนื่อย: หักคลับ + เข้ากระเป๋านักเตะ */
+/** จ่ายค่าเหนื่อย: หักคลับ + เข้ากระเป๋านักเตะ (รองรับ wageShare จากสัญญายืม) */
 export function payWeeklyWagesWithCash(
   clubs: Club[],
   players: Player[],
+  loans?: LoanDeal[] | null,
 ): { clubs: Club[]; players: Player[]; wageTotalByClub: Record<string, number> } {
   const wageTotalByClub: Record<string, number> = {}
+  const loanByPlayer = new Map(
+    (loans ?? []).filter((d) => d.status === 'active').map((d) => [d.playerId, d]),
+  )
   for (const p of players) {
-    wageTotalByClub[p.clubId] = (wageTotalByClub[p.clubId] ?? 0) + p.wage
+    const deal = loanByPlayer.get(p.id)
+    if (deal) {
+      const parentShare = Math.max(0, Math.min(1, deal.wageShareParent ?? 0.5))
+      const parentPay = Math.round(p.wage * parentShare)
+      const hostPay = p.wage - parentPay
+      wageTotalByClub[deal.fromClubId] = (wageTotalByClub[deal.fromClubId] ?? 0) + parentPay
+      wageTotalByClub[deal.toClubId] = (wageTotalByClub[deal.toClubId] ?? 0) + hostPay
+    } else {
+      wageTotalByClub[p.clubId] = (wageTotalByClub[p.clubId] ?? 0) + p.wage
+    }
   }
   const clubsNext = clubs.map((c) => ({
     ...c,
@@ -178,6 +201,29 @@ export function payWeeklyWagesWithCash(
     cash: Math.max(0, (p.cash ?? 0) + p.wage),
   }))
   return { clubs: clubsNext, players: playersNext, wageTotalByClub }
+}
+
+/** ภาระค่าเหนื่อยรายสัปดาห์ของคลับ (รวมส่วนแบ่งจากยืม) */
+export function weeklyWageBillForClub(
+  players: Player[],
+  clubId: string,
+  loans?: LoanDeal[] | null,
+): number {
+  const loanByPlayer = new Map(
+    (loans ?? []).filter((d) => d.status === 'active').map((d) => [d.playerId, d]),
+  )
+  let total = 0
+  for (const p of players) {
+    const deal = loanByPlayer.get(p.id)
+    if (deal) {
+      const parentShare = Math.max(0, Math.min(1, deal.wageShareParent ?? 0.5))
+      if (deal.fromClubId === clubId) total += Math.round(p.wage * parentShare)
+      if (deal.toClubId === clubId) total += p.wage - Math.round(p.wage * parentShare)
+    } else if (p.clubId === clubId) {
+      total += p.wage
+    }
+  }
+  return total
 }
 
 function pickSpend(player: Player, rng: () => number): PlayerSpendDef | null {

@@ -1,0 +1,3456 @@
+{
+  "source": "fmtransferupdate.com + FMInside (personal display)",
+  "sourceUrl": "https://fmtransferupdate.com/",
+  "note": "Not for redistribution or commercial sale. Championship / eng2 pack.",
+  "clubs": {
+    "brr": [
+      {
+        "name": "Luke Southwood",
+        "role": "GK",
+        "age": 28,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Brad Young",
+        "role": "GK",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kofi Balmer",
+        "role": "CB",
+        "age": 25,
+        "ovr": 60,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Macauley Southam-Hales",
+        "role": "CM",
+        "age": 30,
+        "ovr": 59,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Tom James",
+        "role": "RB",
+        "age": 30,
+        "ovr": 59,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Alfie Kilgour",
+        "role": "CB",
+        "age": 28,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Clinton Mola",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "D LC, DM"
+      },
+      {
+        "name": "Jack Sparkes",
+        "role": "LW",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "D/WB/AM L"
+      },
+      {
+        "name": "Riley Harbottle",
+        "role": "CB",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ciarán Kelly",
+        "role": "CB",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Tommy Leigh",
+        "role": "CM",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ryan De Havilland",
+        "role": "CM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Josh McEachran",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Richie Smallwood",
+        "role": "CDM",
+        "age": 35,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ryan Howley",
+        "role": "CM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Charlie Moody",
+        "role": "CM",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Fabrizio Cavegn",
+        "role": "ST",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mees Rijks",
+        "role": "ST",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jack Aitchison",
+        "role": "ST",
+        "age": 26,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Promise Omochere",
+        "role": "ST",
+        "age": 25,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ellis Harrison",
+        "role": "ST",
+        "age": 32,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Shaq Forde",
+        "role": "ST",
+        "age": 22,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Isaac Hutchinson",
+        "role": "ST",
+        "age": 26,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bobby Kamwa",
+        "role": "ST",
+        "age": 26,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      }
+    ],
+    "ply": [
+      {
+        "name": "Murphy Cooper",
+        "role": "GK",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Jimmy Storer",
+        "role": "GK",
+        "age": 21,
+        "ovr": 62,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Wes Harding",
+        "role": "CB",
+        "age": 29,
+        "ovr": 62,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Brendan Wiredu",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Matthew Sorinola",
+        "role": "RB",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Mathias Ross",
+        "role": "CB",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Jack MacKenzie",
+        "role": "CB",
+        "age": 26,
+        "ovr": 60,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Julio Pleguezuelo",
+        "role": "CB",
+        "age": 29,
+        "ovr": 60,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Joe Edwards",
+        "role": "RB",
+        "age": 35,
+        "ovr": 60,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Alex Hartridge",
+        "role": "CB",
+        "age": 27,
+        "ovr": 59,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Michael Baidoo",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 59,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Harvey White",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 59,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Joe Ralls",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Bradley Ibrahim",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Malachi Boateng",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Caleb Roberts",
+        "role": "CAM",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Lorent Tolaj",
+        "role": "ST",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Xavier Amaechi",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Caleb Watts",
+        "role": "ST",
+        "age": 24,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ronan Curtis",
+        "role": "ST",
+        "age": 30,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Owen Oseni",
+        "role": "ST",
+        "age": 23,
+        "ovr": 53,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Aribim Pepple",
+        "role": "ST",
+        "age": 23,
+        "ovr": 53,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Freddie Issaka",
+        "role": "ST",
+        "age": 19,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tegan Finn",
+        "role": "ST",
+        "age": 18,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      }
+    ],
+    "der": [
+      {
+        "name": "Jacob Widell Zetterström",
+        "role": "GK",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Josh Vickers",
+        "role": "GK",
+        "age": 30,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Richard O'Donnell",
+        "role": "GK",
+        "age": 37,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Sondre Langås",
+        "role": "CB",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Matt Clarke",
+        "role": "CB",
+        "age": 29,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Derry Murkin",
+        "role": "CB",
+        "age": 26,
+        "ovr": 65,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Max Johnston",
+        "role": "CM",
+        "age": 22,
+        "ovr": 64,
+        "fmPos": "D/WB R, M RC"
+      },
+      {
+        "name": "Charlie Taylor",
+        "role": "CB",
+        "age": 32,
+        "ovr": 64,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Dion Sanderson",
+        "role": "CB",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Craig Forsyth",
+        "role": "CB",
+        "age": 37,
+        "ovr": 63,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Joe Ward",
+        "role": "CB",
+        "age": 30,
+        "ovr": 63,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Lewis Travis",
+        "role": "CM",
+        "age": 28,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Oscar Fraulo",
+        "role": "CM",
+        "age": 22,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Liam Thompson",
+        "role": "CM",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Kenzo Goudmijn",
+        "role": "CM",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Owen Eames",
+        "role": "CM",
+        "age": 19,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Marsel Tola",
+        "role": "CM",
+        "age": 19,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Patrick Agyemang",
+        "role": "ST",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Carlton Morris",
+        "role": "ST",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lars-Jørgen Salvesen",
+        "role": "ST",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bobby Clark",
+        "role": "ST",
+        "age": 21,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Rhian Brewster",
+        "role": "ST",
+        "age": 26,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Corey Blackett-Taylor",
+        "role": "ST",
+        "age": 28,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Dajaune Brown",
+        "role": "ST",
+        "age": 20,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Cruz Allen",
+        "role": "ST",
+        "age": 19,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      }
+    ],
+    "blb": [
+      {
+        "name": "Balázs Tóth",
+        "role": "GK",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Aynsley Pears",
+        "role": "GK",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nicholas Michalski",
+        "role": "GK",
+        "age": 19,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ryan Alebiosu",
+        "role": "RB",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Hayden Carter",
+        "role": "CB",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Scott Wharton",
+        "role": "CB",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Harry Pickering",
+        "role": "CB",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Sean McLoughlin",
+        "role": "CB",
+        "age": 29,
+        "ovr": 65,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Lewis Miller",
+        "role": "CB",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Yuri Ribeiro",
+        "role": "CB",
+        "age": 29,
+        "ovr": 64,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Connor O'Riordan",
+        "role": "CB",
+        "age": 22,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Moussa Baradji",
+        "role": "CM",
+        "age": 25,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Adam Forshaw",
+        "role": "CM",
+        "age": 34,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Sidnei Tavares",
+        "role": "CM",
+        "age": 24,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Axel Henriksson",
+        "role": "CM",
+        "age": 24,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Jake Garrett",
+        "role": "CM",
+        "age": 23,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "James Edmondson",
+        "role": "CM",
+        "age": 20,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Todd Cantwell",
+        "role": "ST",
+        "age": 28,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ryoya Morishita",
+        "role": "ST",
+        "age": 29,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Oladapo Afolayan",
+        "role": "ST",
+        "age": 28,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Andri Guðjohnsen",
+        "role": "ST",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mathias Jørgensen",
+        "role": "ST",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yuki Ohashi",
+        "role": "ST",
+        "age": 29,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Augustus Kargbo",
+        "role": "ST",
+        "age": 26,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Aodhan Doherty",
+        "role": "ST",
+        "age": 20,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      }
+    ],
+    "hud": [
+      {
+        "name": "Jak Alnwick",
+        "role": "GK",
+        "age": 33,
+        "ovr": 61,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Matthew Young",
+        "role": "GK",
+        "age": 19,
+        "ovr": 61,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nik Tzanev",
+        "role": "GK",
+        "age": 29,
+        "ovr": 61,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ilias Bronkhorst",
+        "role": "RB",
+        "age": 29,
+        "ovr": 60,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Radinio Balker",
+        "role": "CB",
+        "age": 27,
+        "ovr": 60,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Bali Mumba",
+        "role": "LW",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "D/WB/AM L"
+      },
+      {
+        "name": "Jack Whatmough",
+        "role": "CB",
+        "age": 29,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "David Kasumu",
+        "role": "CB",
+        "age": 26,
+        "ovr": 59,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Sean Roughan",
+        "role": "CB",
+        "age": 23,
+        "ovr": 59,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Joe Low",
+        "role": "CB",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Murray Wallace",
+        "role": "CB",
+        "age": 33,
+        "ovr": 58,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Marcus McGuane",
+        "role": "CM",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ryan Ledson",
+        "role": "CM",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Herbie Kane",
+        "role": "CM",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ethan Brierley",
+        "role": "CM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Jonathan Hogg",
+        "role": "CM",
+        "age": 37,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Tom Iorpenda",
+        "role": "CM",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Bojan Radulović",
+        "role": "ST",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Marcus Harness",
+        "role": "ST",
+        "age": 30,
+        "ovr": 53,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ashley Fletcher",
+        "role": "ST",
+        "age": 30,
+        "ovr": 53,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Rhys Healey",
+        "role": "ST",
+        "age": 31,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Joe Taylor",
+        "role": "ST",
+        "age": 23,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Antony Evans",
+        "role": "ST",
+        "age": 27,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Sahil Bashir",
+        "role": "ST",
+        "age": 20,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Cameron Ashia",
+        "role": "ST",
+        "age": 21,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      }
+    ],
+    "mlw": [
+      {
+        "name": "Max Crocombe",
+        "role": "GK",
+        "age": 32,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lukas Jensen",
+        "role": "GK",
+        "age": 27,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "George Evans",
+        "role": "GK",
+        "age": 21,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Alfie Doughty",
+        "role": "CB",
+        "age": 26,
+        "ovr": 67,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Tristan Crama",
+        "role": "CB",
+        "age": 24,
+        "ovr": 67,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Mark Sykes",
+        "role": "CB",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Ryan Leonard",
+        "role": "CDM",
+        "age": 34,
+        "ovr": 66,
+        "fmPos": "D RLC, DM"
+      },
+      {
+        "name": "Jake Cooper",
+        "role": "CB",
+        "age": 31,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Caleb Taylor",
+        "role": "CB",
+        "age": 23,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Zak Sturge",
+        "role": "LB",
+        "age": 22,
+        "ovr": 65,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Elkan Baggott",
+        "role": "CB",
+        "age": 23,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Casper De Norre",
+        "role": "CM",
+        "age": 29,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Billy Mitchell",
+        "role": "CM",
+        "age": 25,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Derek Mazou-Sacko",
+        "role": "CM",
+        "age": 21,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Daniel Kelly",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Jenson Metcalfe",
+        "role": "CM",
+        "age": 21,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Alfie Massey",
+        "role": "CM",
+        "age": 20,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Olly Whitby",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Femi Azeez",
+        "role": "ST",
+        "age": 25,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Camiel Neghli",
+        "role": "ST",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mihailo Ivanović",
+        "role": "ST",
+        "age": 21,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Josh Coburn",
+        "role": "ST",
+        "age": 23,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Luke Cundle",
+        "role": "ST",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mathis Servais",
+        "role": "ST",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ra'ees Bangura-Williams",
+        "role": "ST",
+        "age": 22,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Taïryk Arconte",
+        "role": "ST",
+        "age": 22,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      }
+    ],
+    "stk": [
+      {
+        "name": "Viktor Johansson",
+        "role": "GK",
+        "age": 27,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Josh Griffiths",
+        "role": "GK",
+        "age": 24,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Frank Fielding",
+        "role": "GK",
+        "age": 38,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ethan Galbraith",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 67,
+        "fmPos": "D R, DM, AM C"
+      },
+      {
+        "name": "Bosun Lawal",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 67,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Junior Tchamadeu",
+        "role": "CB",
+        "age": 22,
+        "ovr": 67,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Maksym Talovierov",
+        "role": "CB",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Aaron Cresswell",
+        "role": "CB",
+        "age": 36,
+        "ovr": 66,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Ben Wilmot",
+        "role": "CB",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Tatsuki Seko",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "D R, DM"
+      },
+      {
+        "name": "Ben Gibson",
+        "role": "CB",
+        "age": 33,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Djibril Soumaré",
+        "role": "CM",
+        "age": 23,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ben Pearson",
+        "role": "CM",
+        "age": 31,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Wiktor Gromek",
+        "role": "CM",
+        "age": 21,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Gabriel Kelly",
+        "role": "CM",
+        "age": 19,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Will Smith",
+        "role": "CM",
+        "age": 20,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Sorba Thomas",
+        "role": "ST",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tomáš Rigo",
+        "role": "ST",
+        "age": 24,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Million Manhoef",
+        "role": "ST",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Róbert Boženík",
+        "role": "ST",
+        "age": 26,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bae Jun-Ho",
+        "role": "ST",
+        "age": 22,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lamine Cissé",
+        "role": "ST",
+        "age": 23,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Milan Smit",
+        "role": "ST",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Sam Gallagher",
+        "role": "ST",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      }
+    ],
+    "swa": [
+      {
+        "name": "Lawrence Vigouroux",
+        "role": "GK",
+        "age": 32,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Andrew Fisher",
+        "role": "GK",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Paul Farman",
+        "role": "GK",
+        "age": 36,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Cameron Burgess",
+        "role": "CB",
+        "age": 30,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Stephen Welsh",
+        "role": "CB",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Josh Tymon",
+        "role": "LB",
+        "age": 27,
+        "ovr": 66,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Ben Cabango",
+        "role": "CB",
+        "age": 26,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Josh Key",
+        "role": "RB",
+        "age": 26,
+        "ovr": 65,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Joel Ward",
+        "role": "CB",
+        "age": 36,
+        "ovr": 65,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Filip Lissah",
+        "role": "CB",
+        "age": 21,
+        "ovr": 64,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Sam Parker",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Leo Walta",
+        "role": "CM",
+        "age": 23,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Gonçalo Franco",
+        "role": "CM",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Marko Stamenić",
+        "role": "CM",
+        "age": 24,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Jay Fulton",
+        "role": "CM",
+        "age": 32,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Joel Cotterill",
+        "role": "CM",
+        "age": 21,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Daniel Watts",
+        "role": "CM",
+        "age": 20,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Jacob Cook",
+        "role": "CM",
+        "age": 19,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Žan Vipotnik",
+        "role": "ST",
+        "age": 24,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ronald",
+        "role": "ST",
+        "age": 25,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Adam Idah",
+        "role": "ST",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Zeidane Inoussa",
+        "role": "ST",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Melker Widell",
+        "role": "ST",
+        "age": 24,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Moussa Yeo",
+        "role": "ST",
+        "age": 22,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Liam Cullen",
+        "role": "ST",
+        "age": 27,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Eom Ji-Sung",
+        "role": "ST",
+        "age": 24,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      }
+    ],
+    "cov": [
+      {
+        "name": "Oliver Dovin",
+        "role": "GK",
+        "age": 24,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ben Wilson",
+        "role": "GK",
+        "age": 33,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Oscar Varney",
+        "role": "GK",
+        "age": 19,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Bobby Thomas",
+        "role": "CB",
+        "age": 25,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Aurèle Amenda",
+        "role": "CB",
+        "age": 22,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Milan van Ewijk",
+        "role": "RW",
+        "age": 25,
+        "ovr": 69,
+        "fmPos": "D/WB/AM R"
+      },
+      {
+        "name": "Tatsuhiro Sakamoto",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 68,
+        "fmPos": "WB RL, AM RLC"
+      },
+      {
+        "name": "Luke Woolfenden",
+        "role": "CB",
+        "age": 27,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Liam Kitching",
+        "role": "CB",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Kaine Kesler Hayden",
+        "role": "RB",
+        "age": 23,
+        "ovr": 67,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Jay Dasilva",
+        "role": "CM",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Frank Onyeka",
+        "role": "CM",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Matt Grimes",
+        "role": "CM",
+        "age": 31,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Victor Torp",
+        "role": "CM",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Kai Andrews",
+        "role": "CM",
+        "age": 19,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Kenzie Stretton",
+        "role": "CM",
+        "age": 19,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Loum Tchaouna",
+        "role": "ST",
+        "age": 22,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jack Rudoni",
+        "role": "ST",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Haji Wright",
+        "role": "ST",
+        "age": 28,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ephron Mason-Clark",
+        "role": "ST",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ellis Simms",
+        "role": "ST",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Brandon Thomas-Asante",
+        "role": "ST",
+        "age": 27,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jahnoah Markelo",
+        "role": "ST",
+        "age": 23,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Norman Bassette",
+        "role": "ST",
+        "age": 21,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      }
+    ],
+    "mid": [
+      {
+        "name": "Sol Brynn",
+        "role": "GK",
+        "age": 25,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Seny Dieng",
+        "role": "GK",
+        "age": 31,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Thomas Glover",
+        "role": "GK",
+        "age": 28,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Callum Brittain",
+        "role": "RB",
+        "age": 28,
+        "ovr": 69,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Alfie Jones",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 69,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Luke Ayling",
+        "role": "CB",
+        "age": 34,
+        "ovr": 69,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Alex Bangura",
+        "role": "CB",
+        "age": 27,
+        "ovr": 68,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Adilson Malanda",
+        "role": "CB",
+        "age": 24,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Neto Borges",
+        "role": "CB",
+        "age": 29,
+        "ovr": 68,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "George Edmundson",
+        "role": "CB",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Finley Munroe",
+        "role": "CB",
+        "age": 21,
+        "ovr": 67,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Aidan Morris",
+        "role": "CM",
+        "age": 24,
+        "ovr": 67,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Abdoulaye Kanté",
+        "role": "CM",
+        "age": 21,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Law McCabe",
+        "role": "CM",
+        "age": 20,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Finlay Cartwright",
+        "role": "CM",
+        "age": 19,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Brayden Johnson",
+        "role": "CM",
+        "age": 20,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Daniel James",
+        "role": "CM",
+        "age": 19,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Dávid Strelec",
+        "role": "ST",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Riley McGree",
+        "role": "ST",
+        "age": 27,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jeremy Sarmiento",
+        "role": "ST",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Morgan Whittaker",
+        "role": "ST",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tommy Conway",
+        "role": "ST",
+        "age": 23,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Leo Castledine",
+        "role": "ST",
+        "age": 20,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Sontje Hansen",
+        "role": "ST",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Delano Burgzorg",
+        "role": "ST",
+        "age": 27,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      }
+    ],
+    "qpr": [
+      {
+        "name": "Calum Ward",
+        "role": "GK",
+        "age": 25,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Pierce Charles",
+        "role": "GK",
+        "age": 20,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Matteo Salamon",
+        "role": "GK",
+        "age": 22,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ronnie Edwards",
+        "role": "CB",
+        "age": 23,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Jimmy Dunne",
+        "role": "CB",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Harvey Vale",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 65,
+        "fmPos": "D L, AM RLC"
+      },
+      {
+        "name": "Jake Clarke-Salter",
+        "role": "CB",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Amadou Mbengue",
+        "role": "CB",
+        "age": 24,
+        "ovr": 64,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Liam Morrison",
+        "role": "CB",
+        "age": 23,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Boy Kemper",
+        "role": "CB",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Hevertton",
+        "role": "CB",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Nicolas Madsen",
+        "role": "CM",
+        "age": 26,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Jonathan Varane",
+        "role": "CM",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Kieran Morgan",
+        "role": "CM",
+        "age": 20,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Elijah Dixon-Bonner",
+        "role": "CM",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Kaleb Dyke",
+        "role": "CM",
+        "age": 19,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ilias Chair",
+        "role": "ST",
+        "age": 28,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Rumarn Burrell",
+        "role": "ST",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Richard Koné",
+        "role": "ST",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kwame Poku",
+        "role": "ST",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Koki Saito",
+        "role": "ST",
+        "age": 24,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kader Dembélé",
+        "role": "ST",
+        "age": 23,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Paul Smyth",
+        "role": "ST",
+        "age": 28,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Rayan Kolli",
+        "role": "ST",
+        "age": 21,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      }
+    ],
+    "shw": [
+      {
+        "name": "Joe Lumley",
+        "role": "GK",
+        "age": 31,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Logan Stretch",
+        "role": "GK",
+        "age": 19,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Jack Phillips",
+        "role": "GK",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Di'Shon Bernard",
+        "role": "CB",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Yan Valery",
+        "role": "CB",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Max Lowe",
+        "role": "LB",
+        "age": 29,
+        "ovr": 63,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Jordi Liongola",
+        "role": "RW",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "D/WB/AM R"
+      },
+      {
+        "name": "Ricardo Santos",
+        "role": "CB",
+        "age": 31,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Liam Palmer",
+        "role": "CDM",
+        "age": 34,
+        "ovr": 62,
+        "fmPos": "D RC, DM"
+      },
+      {
+        "name": "Liam Cooper",
+        "role": "CB",
+        "age": 34,
+        "ovr": 61,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Gabriel Otegbayo",
+        "role": "CB",
+        "age": 21,
+        "ovr": 61,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Barry Bannan",
+        "role": "CM",
+        "age": 36,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Callum Slattery",
+        "role": "CM",
+        "age": 27,
+        "ovr": 60,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Jarvis Thornton",
+        "role": "CM",
+        "age": 20,
+        "ovr": 60,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Denny Oliver",
+        "role": "CM",
+        "age": 19,
+        "ovr": 60,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Louie Barry",
+        "role": "ST",
+        "age": 23,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jamal Lowe",
+        "role": "ST",
+        "age": 31,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Charlie McNeill",
+        "role": "ST",
+        "age": 22,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Iké Ugbo",
+        "role": "ST",
+        "age": 27,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "George Brown",
+        "role": "ST",
+        "age": 20,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bruno Fernandes",
+        "role": "ST",
+        "age": 20,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Devlan Moses",
+        "role": "ST",
+        "age": 20,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      }
+    ],
+    "wat": [
+      {
+        "name": "Egil Selvik",
+        "role": "GK",
+        "age": 28,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Daniel Bachmann",
+        "role": "GK",
+        "age": 32,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Alfie Marriott",
+        "role": "GK",
+        "age": 22,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Omar Traoré",
+        "role": "CB",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Mattie Pollock",
+        "role": "CB",
+        "age": 24,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Marc Bola",
+        "role": "CB",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Jeremy Ngakia",
+        "role": "CB",
+        "age": 25,
+        "ovr": 66,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Jérémy Petris",
+        "role": "CB",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Kévin Keben",
+        "role": "CB",
+        "age": 22,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Michael Adu-Poku",
+        "role": "CB",
+        "age": 20,
+        "ovr": 65,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Travis Akomeah",
+        "role": "CB",
+        "age": 20,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Imrân Louza",
+        "role": "CM",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Hector Kyprianou",
+        "role": "CM",
+        "age": 25,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Edo Kayembe",
+        "role": "CM",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Tom Dele-Bashiru",
+        "role": "CM",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Amar Sanghrajka",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Leo Ramírez-Espain",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Kwadwo Baah",
+        "role": "ST",
+        "age": 23,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Othmane Maamma",
+        "role": "ST",
+        "age": 20,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Rocco Vata",
+        "role": "ST",
+        "age": 21,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nestory Irankunda",
+        "role": "ST",
+        "age": 20,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Luca Kjerrumgaard",
+        "role": "ST",
+        "age": 23,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mamadou Doumbia",
+        "role": "ST",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Pierre Dwomoh",
+        "role": "ST",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jorge Cabezas Hurtado",
+        "role": "ST",
+        "age": 22,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      }
+    ],
+    "nor": [
+      {
+        "name": "Vladan Kovačević",
+        "role": "GK",
+        "age": 28,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Daniel Grimshaw",
+        "role": "GK",
+        "age": 28,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Vicente Reyes",
+        "role": "GK",
+        "age": 22,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ali Ahmed",
+        "role": "CB",
+        "age": 25,
+        "ovr": 69,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Kellen Fisher",
+        "role": "CB",
+        "age": 22,
+        "ovr": 69,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "José Córdoba",
+        "role": "CB",
+        "age": 25,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Harry Darling",
+        "role": "CB",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ruairi McConville",
+        "role": "CB",
+        "age": 21,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Jack Stacey",
+        "role": "RB",
+        "age": 30,
+        "ovr": 68,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Ben Chrisene",
+        "role": "CB",
+        "age": 22,
+        "ovr": 67,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Lucien Mahovo",
+        "role": "CB",
+        "age": 21,
+        "ovr": 67,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Kenny McLean",
+        "role": "CM",
+        "age": 34,
+        "ovr": 67,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Pelle Mattsson",
+        "role": "CM",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Paris Maghoma",
+        "role": "CM",
+        "age": 25,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Sam Field",
+        "role": "CM",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Mirko Topić",
+        "role": "CM",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Jacob Wright",
+        "role": "CM",
+        "age": 20,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Liam Gibbs",
+        "role": "CM",
+        "age": 23,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Zach Baumann",
+        "role": "CM",
+        "age": 19,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Andre Brooks",
+        "role": "ST",
+        "age": 22,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jovon Makama",
+        "role": "ST",
+        "age": 22,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mathias Kvistgaarden",
+        "role": "ST",
+        "age": 24,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Papa Amadou Diallo",
+        "role": "ST",
+        "age": 22,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Anis Ben Slimane",
+        "role": "ST",
+        "age": 25,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Oscar Schwartau",
+        "role": "ST",
+        "age": 20,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ante Crnac",
+        "role": "ST",
+        "age": 22,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Amankwah Forson",
+        "role": "ST",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      }
+    ],
+    "hul": [
+      {
+        "name": "Jack Butland",
+        "role": "GK",
+        "age": 33,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Dillon Phillips",
+        "role": "GK",
+        "age": 31,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Thimothée Lo-Tutala",
+        "role": "GK",
+        "age": 23,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Charlie Hughes",
+        "role": "CB",
+        "age": 22,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Paddy McNair",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 64,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Ryan Giles",
+        "role": "CB",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Semi Ajayi",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 63,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "John Egan",
+        "role": "CB",
+        "age": 33,
+        "ovr": 63,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Lewie Coyle",
+        "role": "RB",
+        "age": 30,
+        "ovr": 63,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Cody Drameh",
+        "role": "RB",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Matty Jacob",
+        "role": "LB",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Eliot Matazo",
+        "role": "CM",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Matt Crooks",
+        "role": "CM",
+        "age": 32,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Regan Slater",
+        "role": "CM",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Darko Gyabi",
+        "role": "CM",
+        "age": 22,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Nathan Tinsdale",
+        "role": "CM",
+        "age": 20,
+        "ovr": 60,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Oli McBurnie",
+        "role": "ST",
+        "age": 30,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mohamed Belloumi",
+        "role": "ST",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Liam Millar",
+        "role": "ST",
+        "age": 26,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kieran Dowell",
+        "role": "ST",
+        "age": 28,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Abu Kamara",
+        "role": "ST",
+        "age": 22,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Abdülkadir Ömür",
+        "role": "ST",
+        "age": 27,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mason Burstow",
+        "role": "ST",
+        "age": 22,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Enis Destan",
+        "role": "ST",
+        "age": 24,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      }
+    ],
+    "pne": [
+      {
+        "name": "Daniel Iversen",
+        "role": "GK",
+        "age": 29,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lee Nicholls",
+        "role": "GK",
+        "age": 33,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "David Cornell",
+        "role": "GK",
+        "age": 35,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lewis Gibson",
+        "role": "CB",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Pol Valentín",
+        "role": "RW",
+        "age": 29,
+        "ovr": 64,
+        "fmPos": "D/WB/AM R"
+      },
+      {
+        "name": "Odel Offiah",
+        "role": "CB",
+        "age": 23,
+        "ovr": 64,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Jordan Storey",
+        "role": "CB",
+        "age": 28,
+        "ovr": 63,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Andrew Hughes",
+        "role": "CB",
+        "age": 34,
+        "ovr": 63,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Thierry Small",
+        "role": "CB",
+        "age": 21,
+        "ovr": 63,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Jamal Lewis",
+        "role": "CB",
+        "age": 28,
+        "ovr": 62,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Andrija Vukčević",
+        "role": "CB",
+        "age": 29,
+        "ovr": 62,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Ali McCann",
+        "role": "CM",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ben Whiteman",
+        "role": "CM",
+        "age": 30,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Alfie Devine",
+        "role": "CM",
+        "age": 21,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Noah Mawéné",
+        "role": "CM",
+        "age": 21,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Kaedyn Kamara",
+        "role": "CM",
+        "age": 20,
+        "ovr": 60,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Andrew Moran",
+        "role": "ST",
+        "age": 22,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Milutin Osmajić",
+        "role": "ST",
+        "age": 26,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jusef Erabi",
+        "role": "ST",
+        "age": 23,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Callum Lang",
+        "role": "ST",
+        "age": 27,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Cathal O'Sullivan",
+        "role": "ST",
+        "age": 19,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kitt Nelson",
+        "role": "ST",
+        "age": 21,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Theo Carroll",
+        "role": "ST",
+        "age": 19,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Max Wilson",
+        "role": "ST",
+        "age": 19,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      }
+    ],
+    "car": [
+      {
+        "name": "Nathan Trott",
+        "role": "GK",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Harry Tyrer",
+        "role": "GK",
+        "age": 24,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Matthew Turner",
+        "role": "GK",
+        "age": 24,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Gabriel Osho",
+        "role": "CB",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Calum Chambers",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 63,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Perry Ng",
+        "role": "CB",
+        "age": 30,
+        "ovr": 63,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Will Fish",
+        "role": "CB",
+        "age": 23,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Jesper Daland",
+        "role": "CB",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Joel Bagan",
+        "role": "CB",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Dylan Lawlor",
+        "role": "CB",
+        "age": 20,
+        "ovr": 61,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ronan Kpakio",
+        "role": "RB",
+        "age": 19,
+        "ovr": 61,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Eli King",
+        "role": "CM",
+        "age": 23,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Dakarai Mafico",
+        "role": "CM",
+        "age": 19,
+        "ovr": 60,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Matthew Apter",
+        "role": "CM",
+        "age": 20,
+        "ovr": 60,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Yousef Salech",
+        "role": "ST",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Alex Robertson",
+        "role": "ST",
+        "age": 23,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "David Turnbull",
+        "role": "ST",
+        "age": 27,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Rubin Colwill",
+        "role": "ST",
+        "age": 24,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Callum Robinson",
+        "role": "ST",
+        "age": 31,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Roko Šimić",
+        "role": "ST",
+        "age": 22,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Cian Ashford",
+        "role": "ST",
+        "age": 21,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ollie Tanner",
+        "role": "ST",
+        "age": 24,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      }
+    ],
+    "oxf": [
+      {
+        "name": "Jamie Cumming",
+        "role": "GK",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Simon Eastwood",
+        "role": "GK",
+        "age": 37,
+        "ovr": 62,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Monty Marriott",
+        "role": "GK",
+        "age": 19,
+        "ovr": 62,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Jack Currie",
+        "role": "LB",
+        "age": 24,
+        "ovr": 61,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Michał Helik",
+        "role": "CB",
+        "age": 30,
+        "ovr": 61,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Stanley Mills",
+        "role": "CB",
+        "age": 22,
+        "ovr": 61,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Brodie Spencer",
+        "role": "CB",
+        "age": 22,
+        "ovr": 60,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Ciaron Brown",
+        "role": "CB",
+        "age": 28,
+        "ovr": 60,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Sam Long",
+        "role": "CB",
+        "age": 31,
+        "ovr": 60,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Frankie Kent",
+        "role": "CB",
+        "age": 30,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Greg Leigh",
+        "role": "CB",
+        "age": 31,
+        "ovr": 59,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Brian De Keersmaecker",
+        "role": "CM",
+        "age": 26,
+        "ovr": 59,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Cameron Brannagan",
+        "role": "CM",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Will Vaulks",
+        "role": "CM",
+        "age": 32,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Jamie McDonnell",
+        "role": "CM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Zaide Took-Oxley",
+        "role": "CM",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Jeon Jin-Woo",
+        "role": "ST",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tyler Goodrham",
+        "role": "ST",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Aidomo Emakhu",
+        "role": "ST",
+        "age": 22,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Siriki Dembélé",
+        "role": "ST",
+        "age": 29,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mark Harris",
+        "role": "ST",
+        "age": 27,
+        "ovr": 53,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Marselino Ferdinan",
+        "role": "ST",
+        "age": 21,
+        "ovr": 53,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Gatlin O'Donkor",
+        "role": "ST",
+        "age": 21,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kasway Burton",
+        "role": "ST",
+        "age": 19,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      }
+    ],
+    "por": [
+      {
+        "name": "Nicolas Schmid",
+        "role": "GK",
+        "age": 29,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Joe Buršík",
+        "role": "GK",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ben Killip",
+        "role": "GK",
+        "age": 30,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Josh Murphy",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 65,
+        "fmPos": "WB L, AM RL"
+      },
+      {
+        "name": "Josh Knight",
+        "role": "CB",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Regan Poole",
+        "role": "CB",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Zak Swanson",
+        "role": "RB",
+        "age": 25,
+        "ovr": 64,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Conor Shaughnessy",
+        "role": "CB",
+        "age": 30,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Jordan Williams",
+        "role": "CB",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Terry Devlin",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 63,
+        "fmPos": "D/WB R, DM"
+      },
+      {
+        "name": "Connor Ogilvie",
+        "role": "CB",
+        "age": 30,
+        "ovr": 63,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "John Swift",
+        "role": "CM",
+        "age": 31,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ebou Adams",
+        "role": "CM",
+        "age": 30,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Márk Kosznovszky",
+        "role": "CM",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Rocco Robert Shein",
+        "role": "CM",
+        "age": 23,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Luke Le Roux",
+        "role": "CM",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Adrian Segecic",
+        "role": "ST",
+        "age": 22,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Harvey Blair",
+        "role": "ST",
+        "age": 22,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Colby Bishop",
+        "role": "ST",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Odin Bailey",
+        "role": "ST",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Keshi Anderson",
+        "role": "ST",
+        "age": 31,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Franco Umeh",
+        "role": "ST",
+        "age": 21,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Thomas Waddingham",
+        "role": "ST",
+        "age": 21,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Eoin Kenny",
+        "role": "ST",
+        "age": 20,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      }
+    ],
+    "lei": [
+      {
+        "name": "Jakub Stolarczyk",
+        "role": "GK",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Alex McCarthy",
+        "role": "GK",
+        "age": 36,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Asmir Begović",
+        "role": "GK",
+        "age": 39,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Wout Faes",
+        "role": "CB",
+        "age": 28,
+        "ovr": 71,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Woyo Coulibaly",
+        "role": "CB",
+        "age": 27,
+        "ovr": 71,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Ben Nelson",
+        "role": "CB",
+        "age": 22,
+        "ovr": 71,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Luke Thomas",
+        "role": "CB",
+        "age": 25,
+        "ovr": 70,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Hamza Choudhury",
+        "role": "CB",
+        "age": 28,
+        "ovr": 70,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Caleb Okoli",
+        "role": "CB",
+        "age": 25,
+        "ovr": 70,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Harry Souttar",
+        "role": "CB",
+        "age": 27,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Bade Aluko",
+        "role": "CB",
+        "age": 19,
+        "ovr": 69,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Oliver Skipp",
+        "role": "CM",
+        "age": 25,
+        "ovr": 69,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Sammy Braybrooke",
+        "role": "CM",
+        "age": 22,
+        "ovr": 68,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Tommy Neale",
+        "role": "CM",
+        "age": 20,
+        "ovr": 68,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Bless Akolbire",
+        "role": "CM",
+        "age": 19,
+        "ovr": 68,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Abdul Fatawu",
+        "role": "ST",
+        "age": 22,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Stephy Mavididi",
+        "role": "ST",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Conor Chaplin",
+        "role": "ST",
+        "age": 29,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bobby De Cordova-Reid",
+        "role": "ST",
+        "age": 33,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Will Alves",
+        "role": "ST",
+        "age": 21,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Michael Golding",
+        "role": "ST",
+        "age": 20,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nathan Opoku",
+        "role": "ST",
+        "age": 24,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kirsten Otchere",
+        "role": "ST",
+        "age": 19,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      }
+    ]
+  }
+}

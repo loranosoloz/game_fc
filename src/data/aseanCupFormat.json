@@ -1,0 +1,8 @@
+{
+  "name": "ASEAN Club Championship",
+  "rounds": [
+    { "id": "qf", "label": "Quarter-final", "matchdayOffset": 6, "twoLegged": true, "returnOffset": 8 },
+    { "id": "sf", "label": "Semi-final", "matchdayOffset": 20, "twoLegged": true, "returnOffset": 22 },
+    { "id": "final", "label": "Final", "matchdayOffset": 30, "twoLegged": false }
+  ]
+}

@@ -1,0 +1,383 @@
+{
+  "fifaTiers": [
+    {
+      "maxRank": 10,
+      "label": "elite",
+      "labelTh": "เข้มงวดสูง (ท็อป 10)",
+      "minCoachPower": 88,
+      "preferTiers": [
+        "elite",
+        "world"
+      ]
+    },
+    {
+      "maxRank": 20,
+      "label": "high",
+      "labelTh": "ค่อนข้างเข้ม (11–20)",
+      "minCoachPower": 82,
+      "preferTiers": [
+        "elite",
+        "world",
+        "top"
+      ]
+    },
+    {
+      "maxRank": 40,
+      "label": "medium",
+      "labelTh": "มาตรฐาน (21–40)",
+      "minCoachPower": 76,
+      "preferTiers": [
+        "world",
+        "top",
+        "solid"
+      ]
+    },
+    {
+      "maxRank": 70,
+      "label": "open",
+      "labelTh": "ยืดหยุ่น (41–70)",
+      "minCoachPower": 70,
+      "preferTiers": [
+        "top",
+        "solid",
+        "emerging"
+      ]
+    },
+    {
+      "maxRank": 999,
+      "label": "developing",
+      "labelTh": "กำลังพัฒนา (71+)",
+      "minCoachPower": 64,
+      "preferTiers": [
+        "solid",
+        "emerging"
+      ]
+    }
+  ],
+  "associations": {
+    "Argentina": {
+      "code": "ARG",
+      "name": "AFA",
+      "nameTh": "สมาคมฟุตบอลอาร์เจนตินา",
+      "fifaRank": 1,
+      "budget": 52000000,
+      "coachId": "lionel-scaloni",
+      "wageWeekly": 0
+    },
+    "France": {
+      "code": "FRA",
+      "name": "FFF",
+      "nameTh": "สหพันธ์ฟุตบอลฝรั่งเศส",
+      "fifaRank": 2,
+      "budget": 48000000,
+      "coachId": "didier-deschamps",
+      "wageWeekly": 0
+    },
+    "Spain": {
+      "code": "ESP",
+      "name": "RFEF",
+      "nameTh": "สหพันธ์ฟุตบอลสเปน",
+      "fifaRank": 3,
+      "budget": 45000000,
+      "coachId": "luis-de-la-fuente",
+      "wageWeekly": 0
+    },
+    "England": {
+      "code": "ENG",
+      "name": "The FA",
+      "nameTh": "สมาคมฟุตบอลอังกฤษ",
+      "fifaRank": 4,
+      "budget": 55000000,
+      "coachId": "thomas-tuchel",
+      "wageWeekly": 350000
+    },
+    "Brazil": {
+      "code": "BRA",
+      "name": "CBF",
+      "nameTh": "สมาพันธ์ฟุตบอลบราซิล",
+      "fifaRank": 5,
+      "budget": 50000000,
+      "coachId": "carlo-ancelotti",
+      "wageWeekly": 400000
+    },
+    "Belgium": {
+      "code": "BEL",
+      "name": "RBFA",
+      "nameTh": "สมาคมฟุตบอลเบลเยียม",
+      "fifaRank": 6,
+      "budget": 28000000,
+      "coachId": "rudi-garcia",
+      "wageWeekly": 120000
+    },
+    "Netherlands": {
+      "code": "NED",
+      "name": "KNVB",
+      "nameTh": "สมาคมฟุตบอลเนเธอร์แลนด์",
+      "fifaRank": 7,
+      "budget": 32000000,
+      "coachId": "ronald-koeman",
+      "wageWeekly": 0
+    },
+    "Portugal": {
+      "code": "POR",
+      "name": "FPF",
+      "nameTh": "สหพันธ์ฟุตบอลโปรตุเกส",
+      "fifaRank": 8,
+      "budget": 30000000,
+      "coachId": "roberto-martinez",
+      "wageWeekly": 0
+    },
+    "Italy": {
+      "code": "ITA",
+      "name": "FIGC",
+      "nameTh": "สหพันธ์ฟุตบอลอิตาลี",
+      "fifaRank": 9,
+      "budget": 35000000,
+      "coachId": "luciano-spalletti",
+      "wageWeekly": 220000
+    },
+    "Germany": {
+      "code": "GER",
+      "name": "DFB",
+      "nameTh": "สมาคมฟุตบอลเยอรมนี",
+      "fifaRank": 10,
+      "budget": 42000000,
+      "coachId": "julian-nagelsmann",
+      "wageWeekly": 300000
+    },
+    "Croatia": {
+      "code": "CRO",
+      "name": "HNS",
+      "nameTh": "สหพันธ์ฟุตบอลโครเอเชีย",
+      "fifaRank": 11,
+      "budget": 18000000,
+      "coachId": "zlatko-dalic",
+      "wageWeekly": 150000
+    },
+    "Uruguay": {
+      "code": "URU",
+      "name": "AUF",
+      "nameTh": "สมาคมฟุตบอลอุรุกวัย",
+      "fifaRank": 12,
+      "budget": 16000000,
+      "coachId": "marcelo-bielsa",
+      "wageWeekly": 180000
+    },
+    "USA": {
+      "code": "USA",
+      "name": "USSF",
+      "nameTh": "สหพันธ์ฟุตบอลสหรัฐฯ",
+      "fifaRank": 13,
+      "budget": 40000000,
+      "coachId": "mauricio-pochettino",
+      "wageWeekly": 250000
+    },
+    "Morocco": {
+      "code": "MAR",
+      "name": "FRMF",
+      "nameTh": "สหพันธ์ฟุตบอลโมร็อกโก",
+      "fifaRank": 14,
+      "budget": 20000000,
+      "coachId": "walid-regragui",
+      "wageWeekly": 0
+    },
+    "Colombia": {
+      "code": "COL",
+      "name": "FCF",
+      "nameTh": "สหพันธ์ฟุตบอลโคลอมเบีย",
+      "fifaRank": 15,
+      "budget": 17000000,
+      "coachId": "nestor-lorenzo",
+      "wageWeekly": 140000
+    },
+    "Mexico": {
+      "code": "MEX",
+      "name": "FMF",
+      "nameTh": "สหพันธ์ฟุตบอลเม็กซิโก",
+      "fifaRank": 16,
+      "budget": 25000000,
+      "coachId": "javier-aguirre",
+      "wageWeekly": 130000
+    },
+    "Japan": {
+      "code": "JPN",
+      "name": "JFA",
+      "nameTh": "สมาคมฟุตบอลญี่ปุ่น",
+      "fifaRank": 17,
+      "budget": 28000000,
+      "coachId": "hajime-moriyasu",
+      "wageWeekly": 0
+    },
+    "Switzerland": {
+      "code": "SUI",
+      "name": "SFV",
+      "nameTh": "สมาคมฟุตบอลสวิตเซอร์แลนด์",
+      "fifaRank": 18,
+      "budget": 16000000,
+      "coachId": "murat-yakin",
+      "wageWeekly": 110000
+    },
+    "Denmark": {
+      "code": "DEN",
+      "name": "DBU",
+      "nameTh": "สหพันธ์ฟุตบอลเดนมาร์ก",
+      "fifaRank": 19,
+      "budget": 15000000,
+      "coachId": "brian-riemer",
+      "wageWeekly": 100000
+    },
+    "Austria": {
+      "code": "AUT",
+      "name": "ÖFB",
+      "nameTh": "สมาคมฟุตบอลออสเตรีย",
+      "fifaRank": 22,
+      "budget": 14000000,
+      "coachId": "ralf-rangnick",
+      "wageWeekly": 160000
+    },
+    "Turkey": {
+      "code": "TUR",
+      "name": "TFF",
+      "nameTh": "สหพันธ์ฟุตบอลตุรกี",
+      "fifaRank": 26,
+      "budget": 18000000,
+      "coachId": "vincenzo-montella",
+      "wageWeekly": 140000
+    },
+    "Senegal": {
+      "code": "SEN",
+      "name": "FSF",
+      "nameTh": "สหพันธ์ฟุตบอลเซเนกัล",
+      "fifaRank": 20,
+      "budget": 12000000,
+      "coachId": "pape-thiaw",
+      "wageWeekly": 80000
+    },
+    "South Korea": {
+      "code": "KOR",
+      "name": "KFA",
+      "nameTh": "สมาคมฟุตบอลเกาหลีใต้",
+      "fifaRank": 23,
+      "budget": 20000000,
+      "coachId": "hong-myung-bo",
+      "wageWeekly": 120000
+    },
+    "Australia": {
+      "code": "AUS",
+      "name": "FA Australia",
+      "nameTh": "สมาคมฟุตบอลออสเตรเลีย",
+      "fifaRank": 24,
+      "budget": 15000000,
+      "coachId": "tony-popovic",
+      "wageWeekly": 0
+    },
+    "Scotland": {
+      "code": "SCO",
+      "name": "Scottish FA",
+      "nameTh": "สมาคมฟุตบอลสกอตแลนด์",
+      "fifaRank": 39,
+      "budget": 12000000,
+      "coachId": "steve-clarke",
+      "wageWeekly": 90000
+    },
+    "Wales": {
+      "code": "WAL",
+      "name": "FAW",
+      "nameTh": "สมาคมฟุตบอลเวลส์",
+      "fifaRank": 31,
+      "budget": 9000000,
+      "coachId": "craig-bellamy",
+      "wageWeekly": 70000
+    },
+    "Ireland": {
+      "code": "IRL",
+      "name": "FAI",
+      "nameTh": "สมาคมฟุตบอลไอร์แลนด์",
+      "fifaRank": 60,
+      "budget": 8000000,
+      "coachId": "heimir-hallgrimsson",
+      "wageWeekly": 65000
+    },
+    "Poland": {
+      "code": "POL",
+      "name": "PZPN",
+      "nameTh": "สมาคมฟุตบอลโปแลนด์",
+      "fifaRank": 28,
+      "budget": 13000000,
+      "coachId": "michal-probierz",
+      "wageWeekly": 95000
+    },
+    "Sweden": {
+      "code": "SWE",
+      "name": "SvFF",
+      "nameTh": "สหพันธ์ฟุตบอลสวีเดน",
+      "fifaRank": 27,
+      "budget": 12000000,
+      "coachId": "jon-dahl-tomasson",
+      "wageWeekly": 90000
+    },
+    "Norway": {
+      "code": "NOR",
+      "name": "NFF",
+      "nameTh": "สหพันธ์ฟุตบอลนอร์เวย์",
+      "fifaRank": 43,
+      "budget": 11000000,
+      "coachId": "stale-solbakken",
+      "wageWeekly": 85000
+    },
+    "Serbia": {
+      "code": "SRB",
+      "name": "FSS",
+      "nameTh": "สหพันธ์ฟุตบอลเซอร์เบีย",
+      "fifaRank": 33,
+      "budget": 10000000,
+      "coachId": "dragan-stojkovic",
+      "wageWeekly": 80000
+    },
+    "Nigeria": {
+      "code": "NGA",
+      "name": "NFF",
+      "nameTh": "สหพันธ์ฟุตบอลไนจีเรีย",
+      "fifaRank": 36,
+      "budget": 11000000,
+      "coachId": "eric-chelle",
+      "wageWeekly": 75000
+    },
+    "Egypt": {
+      "code": "EGY",
+      "name": "EFA",
+      "nameTh": "สมาคมฟุตบอลอียิปต์",
+      "fifaRank": 35,
+      "budget": 12000000,
+      "coachId": "hossam-hassan",
+      "wageWeekly": 80000
+    },
+    "Canada": {
+      "code": "CAN",
+      "name": "Canada Soccer",
+      "nameTh": "สมาคมฟุตบอลแคนาดา",
+      "fifaRank": 45,
+      "budget": 14000000,
+      "coachId": "jess-marsch",
+      "wageWeekly": 110000
+    },
+    "Thailand": {
+      "code": "THA",
+      "name": "FA Thailand",
+      "nameTh": "สมาคมกีฬาฟุตบอลแห่งประเทศไทย",
+      "fifaRank": 101,
+      "budget": 9000000,
+      "coachId": "masatada-ishii",
+      "wageWeekly": 70000
+    },
+    "Greece": {
+      "code": "GRE",
+      "name": "EPO",
+      "nameTh": "สหพันธ์ฟุตบอลกรีซ",
+      "fifaRank": 48,
+      "budget": 10000000,
+      "coachId": "ivan-jovanovic",
+      "wageWeekly": 90000
+    }
+  }
+}

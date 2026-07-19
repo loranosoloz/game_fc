@@ -10,7 +10,9 @@ const navGroups = [
     label: 'ศูนย์กลาง',
     links: [
       { to: '/portal', label: 'พอร์ทัล' },
+      { to: '/preseason', label: 'ปรีซีซั่น' },
       { to: '/media', label: 'สื่อ' },
+      { to: '/awards', label: 'รางวัล' },
       { to: '/match', label: 'แมตช์' },
       { to: '/competitions', label: 'ถ้วย' },
       { to: '/table', label: 'ตาราง' },
@@ -37,6 +39,7 @@ const navGroups = [
       { to: '/transfers', label: 'ตลาด' },
       { to: '/finance', label: 'การเงิน' },
       { to: '/data', label: 'Data' },
+      { to: '/database', label: 'DB นักเตะ' },
       { to: '/save', label: 'เซฟ' },
     ],
   },
@@ -91,8 +94,15 @@ export function AppShell() {
           <div className="flex flex-wrap items-center gap-2">
             {nextHuman ? (
               <span className="rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-xs text-slate-300">
-                นัดถัดไป MD{nextHuman.matchday}
+                นัดถัดไป MD{nextHuman.matchday} · {nextHuman.date}
               </span>
+            ) : null}
+            {!save.seasonComplete ? (
+              <PrimaryButton
+                onClick={() => useGameStore.getState().advanceDay()}
+              >
+                เดิน 1 วัน
+              </PrimaryButton>
             ) : null}
             <PrimaryButton
               disabled={save.seasonComplete}

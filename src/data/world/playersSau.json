@@ -1,0 +1,3137 @@
+{
+  "source": "fmtransferupdate.com + FMInside (personal display)",
+  "sourceUrl": "https://fmtransferupdate.com/",
+  "note": "Not for redistribution or commercial sale. Saudi Pro League / sau pack.",
+  "clubs": {
+    "hil": [
+      {
+        "name": "Yassine Bounou",
+        "role": "GK",
+        "age": 35,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Mathieu Patouillet",
+        "role": "GK",
+        "age": 22,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Mohammed Al-Yami",
+        "role": "GK",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "João Cancelo",
+        "role": "RB",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Kalidou Koulibaly",
+        "role": "CB",
+        "age": 35,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Théo Hernández",
+        "role": "LB",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Hassan Al-Tambakti",
+        "role": "CB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Pablo Marí",
+        "role": "CB",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Nasser Al-Dawsari",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D/WB L, DM"
+      },
+      {
+        "name": "Yusuf Akçiçek",
+        "role": "CB",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Moteb Al-Harbi",
+        "role": "LB",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Sergej Milinković-Savić",
+        "role": "CM",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Rúben Neves",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Mohamed Kanno",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Murad Al-Hawsawi",
+        "role": "CM",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Suhayb Al-Zaid",
+        "role": "CM",
+        "age": 21,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Abdulrahman Al-Dawsari",
+        "role": "CM",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ibrahim Al-Hamlan",
+        "role": "CM",
+        "age": 21,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Karim Benzema",
+        "role": "ST",
+        "age": 38,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Malcom",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Darwin Núñez",
+        "role": "ST",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Salem Al-Dawsari",
+        "role": "ST",
+        "age": 34,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Saïmon Bouabré",
+        "role": "ST",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Sultan Mandash",
+        "role": "ST",
+        "age": 31,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mohamed Meïté",
+        "role": "ST",
+        "age": 18,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Abdulkarim Darisi",
+        "role": "ST",
+        "age": 23,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "nas": [
+      {
+        "name": "Bento",
+        "role": "GK",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nawaf Al-Aqidi",
+        "role": "GK",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Raghid Najjar",
+        "role": "GK",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Íñigo Martínez",
+        "role": "CB",
+        "age": 35,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Mohamed Simakan",
+        "role": "CB",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Abdulelah Al-Amri",
+        "role": "CB",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Sultan Al-Ghannam",
+        "role": "RB",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Nawaf Bu Washl",
+        "role": "RB",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Saad Al-Nasser",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "D/WB L, DM"
+      },
+      {
+        "name": "Nader Al-Sharari",
+        "role": "CB",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Salem Al-Najdi",
+        "role": "LB",
+        "age": 23,
+        "ovr": 82,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Ângelo",
+        "role": "RW",
+        "age": 21,
+        "ovr": 82,
+        "fmPos": "DM, AM RC"
+      },
+      {
+        "name": "Abdullah Al-Khaibari",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ali Al-Hassan",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Abdulmajeed Al-Sulayhim",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Sami Al-Naji",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Hayder Abdulkareem",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Cristiano Ronaldo",
+        "role": "ST",
+        "age": 41,
+        "ovr": 82,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kingsley Coman",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "João Félix",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Sadio Mané",
+        "role": "ST",
+        "age": 34,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jhon Durán",
+        "role": "ST",
+        "age": 22,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Abdulrahman Ghareeb",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Aiman Yahya",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Wesley",
+        "role": "ST",
+        "age": 21,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "itt": [
+      {
+        "name": "Predrag Rajković",
+        "role": "GK",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Mohammed Al-Absi",
+        "role": "GK",
+        "age": 23,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Osama Al-Mermesh",
+        "role": "GK",
+        "age": 23,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Danilo Pereira",
+        "role": "CDM",
+        "age": 34,
+        "ovr": 82,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Mario Mitaj",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 82,
+        "fmPos": "D/WB L, DM"
+      },
+      {
+        "name": "Muhannad Al-Shanqiti",
+        "role": "RB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Hassan Kadish",
+        "role": "CB",
+        "age": 33,
+        "ovr": 82,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Ahmed Sharahili",
+        "role": "CB",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Jan-Carlo Simić",
+        "role": "CB",
+        "age": 21,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Fawaz Al-Soqoor",
+        "role": "CM",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Stephane Keller",
+        "role": "CB",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Mahamadou Doumbia",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Unai Hernández",
+        "role": "CM",
+        "age": 21,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Faisal Al-Ghamdi",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Awad Al-Nashri",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Abdulelah Hawsawi",
+        "role": "CM",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Mateo Borrell",
+        "role": "CM",
+        "age": 19,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Farhah Al-Shamrani",
+        "role": "CM",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Kassoum Koné",
+        "role": "CM",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Steven Bergwijn",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Moussa Diaby",
+        "role": "ST",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Houssem Aouar",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Youssef En-Nesyri",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Roger Fernandes",
+        "role": "ST",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "George Ilenikhena",
+        "role": "ST",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Abdulrahman Al-Obud",
+        "role": "ST",
+        "age": 31,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Marwan Al-Sahafi",
+        "role": "ST",
+        "age": 22,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "ahl": [
+      {
+        "name": "Édouard Mendy",
+        "role": "GK",
+        "age": 34,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Abdulrahman Al-Sanbi",
+        "role": "GK",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Abdullah Abdo",
+        "role": "GK",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Roger Ibañez",
+        "role": "CB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Merih Demiral",
+        "role": "CB",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Matteo Dams",
+        "role": "CB",
+        "age": 22,
+        "ovr": 82,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Ali Majrashi",
+        "role": "RB",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Abubacarr Sedi Kinteh",
+        "role": "CB",
+        "age": 19,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Abdulelah Al-Khaibari",
+        "role": "LB",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Saad Yaslam",
+        "role": "LB",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Rayan Hamed",
+        "role": "CB",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Enzo Millot",
+        "role": "RW",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "DM, AM RC"
+      },
+      {
+        "name": "Valentin Atangana",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ziyad Al-Johani",
+        "role": "CM",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Eid Al-Muwallad",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Abdullah Otayf",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ayman Fallatah",
+        "role": "CM",
+        "age": 22,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Feras Al-Ghamdi",
+        "role": "LW",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "DM, AM LC"
+      },
+      {
+        "name": "Ramez Al-Attar",
+        "role": "CM",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Francisco Trincão",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ivan Toney",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Galeno",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Eduard Spertsyan",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Matheus Gonçalves",
+        "role": "ST",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Feras Al-Brikan",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ricardo Mathias",
+        "role": "ST",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Saleh Abu Al-Shamat",
+        "role": "ST",
+        "age": 23,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "qad": [
+      {
+        "name": "Koen Casteels",
+        "role": "GK",
+        "age": 34,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ahmed Al-Kassar",
+        "role": "GK",
+        "age": 35,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Meshari Sunyur",
+        "role": "GK",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nacho",
+        "role": "CB",
+        "age": 36,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Nahitan Nández",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "WB R, DM, M RC"
+      },
+      {
+        "name": "Gastón Álvarez",
+        "role": "CB",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Mohammed Abu Al-Shamat",
+        "role": "RB",
+        "age": 23,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Turki Al-Ammar",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "WB L, AM RL"
+      },
+      {
+        "name": "Waleed Al-Ahmad",
+        "role": "CB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Yasser Al-Shahrani",
+        "role": "RB",
+        "age": 34,
+        "ovr": 82,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Jehad Thikri",
+        "role": "CB",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Otávio",
+        "role": "RW",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "DM, AM RC"
+      },
+      {
+        "name": "Julian Weigl",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Cameron Puertas",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Musab Al-Juwayr",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 82,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Ali Hazazi",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 81,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Aarón Martín",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 81,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ibrahim Mahnashi",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 81,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Geovanny Balanta",
+        "role": "CM",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Mateo Retegui",
+        "role": "ST",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Julián Quiñones",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Christopher Bonsu Baah",
+        "role": "ST",
+        "age": 21,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Iker Almena",
+        "role": "ST",
+        "age": 22,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Abdullah Al-Salem",
+        "role": "ST",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mohammed Al-Qahtani",
+        "role": "ST",
+        "age": 23,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Haitham Asiri",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Miguel Carvalho",
+        "role": "ST",
+        "age": 21,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "neo": [
+      {
+        "name": "Marcin Bułka",
+        "role": "GK",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Luís Maximiano",
+        "role": "GK",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Abdulrahman Dagriri",
+        "role": "GK",
+        "age": 36,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nathan Zézé",
+        "role": "CB",
+        "age": 21,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Faris Abdi",
+        "role": "LB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Khalifah Al-Dawsari",
+        "role": "CB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Mohammed Al-Burayk",
+        "role": "RB",
+        "age": 33,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Mohammed Al-Dossary",
+        "role": "CB",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Islam Hawsawi",
+        "role": "LB",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Abdulmalik Al-Oyayari",
+        "role": "RB",
+        "age": 22,
+        "ovr": 81,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Nawaf Al-Ghulaimish",
+        "role": "RB",
+        "age": 21,
+        "ovr": 81,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Amadou Koné",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 81,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ali Al-Asmari",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 80,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Riyadh Sharahili",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 80,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Abbas Al-Hassan",
+        "role": "RW",
+        "age": 22,
+        "ovr": 80,
+        "fmPos": "DM, AM RC"
+      },
+      {
+        "name": "Ala'a Al-Hajji",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 79,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Younes Al-Shanqeeti",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 79,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Alexandre Lacazette",
+        "role": "ST",
+        "age": 35,
+        "ovr": 79,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Saïd Benrahma",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Luciano Rodríguez",
+        "role": "ST",
+        "age": 23,
+        "ovr": 72,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Abdulaziz Noor",
+        "role": "ST",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Muhannad Al-Saad",
+        "role": "ST",
+        "age": 23,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Hassan Al-Ali",
+        "role": "ST",
+        "age": 24,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Thamer Al-Khaibri",
+        "role": "ST",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Meshari Al-Oufi",
+        "role": "ST",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "shb": [
+      {
+        "name": "Marcelo Grohe",
+        "role": "GK",
+        "age": 39,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Mohammed Al-Mahasnah",
+        "role": "GK",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Abdulaziz Al-Awardi",
+        "role": "GK",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Wesley Hoedt",
+        "role": "CB",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Mohammed Al-Thani",
+        "role": "RW",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D/WB/AM R"
+      },
+      {
+        "name": "Mohammed Al-Shwirekh",
+        "role": "CB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Hussain Al-Sibyani",
+        "role": "LB",
+        "age": 25,
+        "ovr": 81,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Mubarak Al-Rajeh",
+        "role": "CB",
+        "age": 22,
+        "ovr": 81,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Ali Makki",
+        "role": "CB",
+        "age": 27,
+        "ovr": 81,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Mohammed Hurbush",
+        "role": "RB",
+        "age": 23,
+        "ovr": 80,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Sultan Al-Anzi",
+        "role": "LB",
+        "age": 22,
+        "ovr": 80,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Yacine Adli",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 80,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Josh Brownhill",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 79,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Vincent Sierro",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 79,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Basil Al-Sayyali",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 79,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Faisal Al-Subiani",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yannick Carrasco",
+        "role": "LW",
+        "age": 32,
+        "ovr": 78,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Daniel Podence",
+        "role": "ST",
+        "age": 30,
+        "ovr": 78,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Abderrazak Hamdallah",
+        "role": "ST",
+        "age": 35,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Carlos Júnior",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Hammam Al-Hammami",
+        "role": "RW",
+        "age": 22,
+        "ovr": 72,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Abdullah Matuq",
+        "role": "LW",
+        "age": 23,
+        "ovr": 72,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Nawaf Al-Saadi",
+        "role": "RW",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Hisham Al-Dubais",
+        "role": "ST",
+        "age": 24,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "taa": [
+      {
+        "name": "Maílson",
+        "role": "GK",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Abdulquddus Atiah",
+        "role": "GK",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Abdulrahman Al-Ghamdi",
+        "role": "GK",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Andrei Girotto",
+        "role": "CDM",
+        "age": 34,
+        "ovr": 81,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Mohammed Mahzari",
+        "role": "RB",
+        "age": 24,
+        "ovr": 81,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Awn Al-Saluli",
+        "role": "CB",
+        "age": 27,
+        "ovr": 81,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Bassam Al-Hurayji",
+        "role": "RB",
+        "age": 26,
+        "ovr": 80,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Muteb Al-Mufarrij",
+        "role": "CB",
+        "age": 29,
+        "ovr": 80,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ibrahim Al-Shuail",
+        "role": "LB",
+        "age": 31,
+        "ovr": 80,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Adeeb Al-Hassan",
+        "role": "LB",
+        "age": 21,
+        "ovr": 79,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Ali Al-Sakakir",
+        "role": "CM",
+        "age": 20,
+        "ovr": 79,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Aschraf El Mahdioui",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 79,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Flávio",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ahmed Bahusayn",
+        "role": "LW",
+        "age": 25,
+        "ovr": 78,
+        "fmPos": "DM, AM LC"
+      },
+      {
+        "name": "Abdulmalik Al-Marwani",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ibrahim Al-Hazmi",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 77,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Marin Petkov",
+        "role": "RW",
+        "age": 22,
+        "ovr": 77,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Mohammed Al-Kuwaykibi",
+        "role": "RW",
+        "age": 31,
+        "ovr": 77,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Fahad Al-Rashidi",
+        "role": "RW",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Mohammed Al-Aqel",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Koshaim Al-Qahtani",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Saif Rashad",
+        "role": "LW",
+        "age": 21,
+        "ovr": 72,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Bassem Al-Arini",
+        "role": "ST",
+        "age": 22,
+        "ovr": 72,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Ibrahim Al-Zahrani",
+        "role": "ST",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "ST"
+      }
+    ],
+    "etf": [
+      {
+        "name": "Marek Rodák",
+        "role": "GK",
+        "age": 29,
+        "ovr": 80,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ahmad Al-Rehaili",
+        "role": "GK",
+        "age": 31,
+        "ovr": 80,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Abdulbasit Hawsawi",
+        "role": "GK",
+        "age": 25,
+        "ovr": 80,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Jack Hendry",
+        "role": "CB",
+        "age": 31,
+        "ovr": 79,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Abdulbasit Hindi",
+        "role": "CB",
+        "age": 29,
+        "ovr": 79,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Madallah Al-Olayan",
+        "role": "RB",
+        "age": 31,
+        "ovr": 79,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Abdullah Khateeb",
+        "role": "CB",
+        "age": 31,
+        "ovr": 78,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Abdullah Madu",
+        "role": "CB",
+        "age": 33,
+        "ovr": 78,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Radhi Al-Otaibi",
+        "role": "RB",
+        "age": 26,
+        "ovr": 78,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Meshal Sibyani",
+        "role": "CB",
+        "age": 25,
+        "ovr": 77,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Meshal Al-Alaeli",
+        "role": "LB",
+        "age": 22,
+        "ovr": 77,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Ondrej Duda",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 77,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Álvaro Medrán",
+        "role": "CAM",
+        "age": 32,
+        "ovr": 76,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Mukhtar Ali",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 76,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Faris Al-Ghamdi",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 76,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Hassan Al-Musallam",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 75,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Abdullah Al-Dossary",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 75,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Moussa Dembélé",
+        "role": "ST",
+        "age": 30,
+        "ovr": 75,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mohau Nkota",
+        "role": "RW",
+        "age": 21,
+        "ovr": 72,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Khalid Al-Ghannam",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ahmed Hassan",
+        "role": "ST",
+        "age": 33,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "João Costa",
+        "role": "ST",
+        "age": 21,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Matija Gluščević",
+        "role": "ST",
+        "age": 22,
+        "ovr": 70,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Majed Dawran",
+        "role": "ST",
+        "age": 22,
+        "ovr": 70,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jalal Al-Salem",
+        "role": "ST",
+        "age": 21,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      }
+    ],
+    "fat": [
+      {
+        "name": "Fernando Pacheco",
+        "role": "GK",
+        "age": 34,
+        "ovr": 78,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Amin Al-Bukhari",
+        "role": "GK",
+        "age": 29,
+        "ovr": 78,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Habib Al-Watyan",
+        "role": "GK",
+        "age": 29,
+        "ovr": 78,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Marwane Saâdane",
+        "role": "CDM",
+        "age": 34,
+        "ovr": 77,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Saeed Baattia",
+        "role": "RB",
+        "age": 25,
+        "ovr": 77,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Ziyad Al-Jari",
+        "role": "CB",
+        "age": 24,
+        "ovr": 77,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Hussain Qassem",
+        "role": "LB",
+        "age": 28,
+        "ovr": 76,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Sattam Al-Tumbukti",
+        "role": "RB",
+        "age": 24,
+        "ovr": 76,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Faisal Darisi",
+        "role": "CB",
+        "age": 29,
+        "ovr": 76,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Muntathir Al-Shaqaq",
+        "role": "LB",
+        "age": 21,
+        "ovr": 75,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Zaydou Youssouf",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 75,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Sofiane Bendebka",
+        "role": "CAM",
+        "age": 33,
+        "ovr": 75,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Naif Masoud",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 74,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Mohammed Al-Sahihi",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 74,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Mourad Batna",
+        "role": "RW",
+        "age": 36,
+        "ovr": 74,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Fahad Al-Zubaidi",
+        "role": "ST",
+        "age": 24,
+        "ovr": 73,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Matheus Machado",
+        "role": "ST",
+        "age": 23,
+        "ovr": 73,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Wesley Delgado",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 73,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Abdullah Al-Mogren",
+        "role": "ST",
+        "age": 29,
+        "ovr": 70,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Abdullah Al-Anazi",
+        "role": "LW",
+        "age": 23,
+        "ovr": 70,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Othman Al-Othman",
+        "role": "RW",
+        "age": 23,
+        "ovr": 69,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Saad Al-Sharfa",
+        "role": "ST",
+        "age": 21,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      }
+    ],
+    "fay": [
+      {
+        "name": "Orlando Mosquera",
+        "role": "GK",
+        "age": 31,
+        "ovr": 76,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Abdulraouf Al-Duqayl",
+        "role": "GK",
+        "age": 30,
+        "ovr": 76,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Osama Al-Thumayri",
+        "role": "GK",
+        "age": 20,
+        "ovr": 76,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ahmed Bamasud",
+        "role": "LB",
+        "age": 30,
+        "ovr": 75,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Mohammed Al-Baqawi",
+        "role": "RB",
+        "age": 31,
+        "ovr": 75,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Makhir Al-Rashidi",
+        "role": "CB",
+        "age": 27,
+        "ovr": 75,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Ziyad Al-Sahafi",
+        "role": "CB",
+        "age": 31,
+        "ovr": 74,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Abdulrahman Al-Anazi",
+        "role": "CM",
+        "age": 28,
+        "ovr": 74,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Mohammed Al-Dowaish",
+        "role": "RB",
+        "age": 22,
+        "ovr": 74,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Abdullah Aman",
+        "role": "CB",
+        "age": 22,
+        "ovr": 73,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Jérémie Kanon",
+        "role": "CB",
+        "age": 22,
+        "ovr": 73,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Hugo Moura",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 73,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Alfa Semedo",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Mansor Al-Beshe",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nawaf Al-Harthi",
+        "role": "LW",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "DM, AM LC"
+      },
+      {
+        "name": "Rakan Kaabi",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 71,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Jason",
+        "role": "CAM",
+        "age": 32,
+        "ovr": 71,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Fashion Sakala",
+        "role": "ST",
+        "age": 29,
+        "ovr": 71,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Silvère Ganvoula",
+        "role": "ST",
+        "age": 30,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Rayyan Enad",
+        "role": "RW",
+        "age": 25,
+        "ovr": 68,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Abdulhadi Al-Harajin",
+        "role": "RW",
+        "age": 31,
+        "ovr": 67,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Abdullah Al-Joui",
+        "role": "ST",
+        "age": 31,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Sattam Al-Ruqi",
+        "role": "ST",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Malek Al-Abadalmanam",
+        "role": "ST",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      }
+    ],
+    "khj": [
+      {
+        "name": "Anthony Moris",
+        "role": "GK",
+        "age": 36,
+        "ovr": 75,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Marwan Al-Haidari",
+        "role": "GK",
+        "age": 30,
+        "ovr": 75,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Eyad Al-Nasser",
+        "role": "GK",
+        "age": 23,
+        "ovr": 75,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kiki Kouyaté",
+        "role": "CB",
+        "age": 29,
+        "ovr": 74,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Pedro Rebocho",
+        "role": "LB",
+        "age": 31,
+        "ovr": 74,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Bart Schenkeveld",
+        "role": "CB",
+        "age": 34,
+        "ovr": 74,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Mohammed Al-Khabrani",
+        "role": "CB",
+        "age": 32,
+        "ovr": 73,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Saeed Al-Hamsal",
+        "role": "RB",
+        "age": 30,
+        "ovr": 73,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Abdullah Al-Hafith",
+        "role": "CB",
+        "age": 33,
+        "ovr": 73,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ahmed Asiri",
+        "role": "CB",
+        "age": 34,
+        "ovr": 72,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Hamad Al-Jayzani",
+        "role": "RB",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Omar Mascarell",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Miguel Crespo",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 71,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Mansour Hamzi",
+        "role": "ST",
+        "age": 34,
+        "ovr": 71,
+        "fmPos": "DM, AM RLC, ST"
+      },
+      {
+        "name": "Majed Kanabah",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 71,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Bader Munshi",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Mohammed Al-Abdullah",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ali Abdoulraouf Al-Abdrabalnabi",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Faisal Al-Bakr",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Joshua King",
+        "role": "ST",
+        "age": 34,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Angelo Fulgini",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 66,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Saleh Al-Amri",
+        "role": "ST",
+        "age": 32,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Hussain Al-Eissa",
+        "role": "ST",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Hussain Al-Sultan",
+        "role": "ST",
+        "age": 22,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Theyab Absa",
+        "role": "ST",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Rakan Al-Kaabi",
+        "role": "ST",
+        "age": 21,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      }
+    ],
+    "dam": [
+      {
+        "name": "Kewin",
+        "role": "GK",
+        "age": 31,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Moataz Al-Baqawi",
+        "role": "GK",
+        "age": 28,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Naser Al-Ghamdi",
+        "role": "GK",
+        "age": 25,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Abdelkader Bedrane",
+        "role": "CB",
+        "age": 34,
+        "ovr": 73,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Jamal Harkass",
+        "role": "CB",
+        "age": 30,
+        "ovr": 73,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Dhari Al-Anazi",
+        "role": "LB",
+        "age": 26,
+        "ovr": 73,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Tariq Abdullah",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "D/WB R, DM"
+      },
+      {
+        "name": "Sanousi Al-Hawsawi",
+        "role": "RB",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Abdulrahman Al-Obaid",
+        "role": "CB",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Hassan Rabea",
+        "role": "CB",
+        "age": 23,
+        "ovr": 71,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Noor Al-Rashidi",
+        "role": "CB",
+        "age": 31,
+        "ovr": 71,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Morlaye Sylla",
+        "role": "LW",
+        "age": 27,
+        "ovr": 71,
+        "fmPos": "DM, AM LC"
+      },
+      {
+        "name": "Valentín Vada",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 70,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Khaled Al-Sumairi",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Amidou Traoré",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nabil Alioui",
+        "role": "ST",
+        "age": 27,
+        "ovr": 69,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Yakou Meïté",
+        "role": "ST",
+        "age": 30,
+        "ovr": 69,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Mohammad Alsalkhadi",
+        "role": "ST",
+        "age": 24,
+        "ovr": 69,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Hazzaa Al-Ghamdi",
+        "role": "ST",
+        "age": 25,
+        "ovr": 66,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "David Kaiki",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 66,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Abdullah Al-Qahtani",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 65,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Yahya Naji",
+        "role": "ST",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Thamer Al-Shahrani",
+        "role": "ST",
+        "age": 23,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      }
+    ],
+    "haz": [
+      {
+        "name": "Bruno Varela",
+        "role": "GK",
+        "age": 31,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ibrahim Zaied",
+        "role": "GK",
+        "age": 36,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Majed Al-Ghamdi",
+        "role": "GK",
+        "age": 28,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Abdelmounaim Boutouil",
+        "role": "CB",
+        "age": 28,
+        "ovr": 73,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Sultan Tanker",
+        "role": "CB",
+        "age": 27,
+        "ovr": 73,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Abdullah Al-Ammar",
+        "role": "LB",
+        "age": 32,
+        "ovr": 73,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Ahmed Al-Nakhli",
+        "role": "LB",
+        "age": 24,
+        "ovr": 72,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Abdulrahman Al-Dakheel",
+        "role": "CB",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Khalid Al-Subaie",
+        "role": "LB",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Saud Al-Rashed",
+        "role": "RB",
+        "age": 28,
+        "ovr": 71,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Abdullah Al-Shanqiti",
+        "role": "CB",
+        "age": 27,
+        "ovr": 71,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Loreintz Rosier",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 71,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Aboubacar Bah",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Mohammed Al-Yami",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Abdulrahman Al-Khaibary",
+        "role": "CDM",
+        "age": 38,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Hassan Idris",
+        "role": "CM",
+        "age": 21,
+        "ovr": 69,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Mohammed Al-Saedi",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 69,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Omar Al-Somah",
+        "role": "ST",
+        "age": 37,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Fábio Martins",
+        "role": "LW",
+        "age": 32,
+        "ovr": 66,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Amir Sayoud",
+        "role": "ST",
+        "age": 35,
+        "ovr": 66,
+        "fmPos": "AM RC, F C"
+      },
+      {
+        "name": "Youssouf Oumarou",
+        "role": "CAM",
+        "age": 33,
+        "ovr": 65,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Nawaf Al-Habashi",
+        "role": "LW",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Yousef Al-Shammari",
+        "role": "ST",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Abdulaziz Al-Dhuwayhi",
+        "role": "ST",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ahmed Al-Shamrani",
+        "role": "ST",
+        "age": 24,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      }
+    ],
+    "kho": [
+      {
+        "name": "Muhannad Al-Yayha",
+        "role": "GK",
+        "age": 21,
+        "ovr": 73,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Shaquille Pinas",
+        "role": "CB",
+        "age": 28,
+        "ovr": 73,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Edgaras Utkus",
+        "role": "CB",
+        "age": 26,
+        "ovr": 73,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ramzi Solan",
+        "role": "RB",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Sultan Al-Shehri",
+        "role": "LB",
+        "age": 31,
+        "ovr": 72,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Hassan Al-Asmari",
+        "role": "RB",
+        "age": 23,
+        "ovr": 72,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Jamaan Al-Dosari",
+        "role": "CB",
+        "age": 32,
+        "ovr": 71,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Rashid Al-Mutairi",
+        "role": "LB",
+        "age": 23,
+        "ovr": 71,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "John Buckley",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 71,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Seydouba Cissé",
+        "role": "CM",
+        "age": 25,
+        "ovr": 70,
+        "fmPos": "M RC"
+      },
+      {
+        "name": "Abdulrahman Al-Dosari",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Rakan Jaman",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ibrahem Barabaa",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 69,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ramiro Enrique",
+        "role": "ST",
+        "age": 25,
+        "ovr": 69,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Myziane Maolida",
+        "role": "ST",
+        "age": 27,
+        "ovr": 69,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Iker Kortajarena",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Hatan Bahbri",
+        "role": "CAM",
+        "age": 34,
+        "ovr": 68,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Abdulaziz Al-Elewai",
+        "role": "RW",
+        "age": 22,
+        "ovr": 68,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Muhammad Sawaan",
+        "role": "LW",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Majed Khalifah",
+        "role": "ST",
+        "age": 22,
+        "ovr": 65,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Adam Berry",
+        "role": "LW",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "AM LC"
+      }
+    ],
+    "riy": [
+      {
+        "name": "Milan Borjan",
+        "role": "GK",
+        "age": 38,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Jan Petek",
+        "role": "GK",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Adulrahman Al-Shammari",
+        "role": "GK",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Yoann Barbet",
+        "role": "CB",
+        "age": 33,
+        "ovr": 71,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Sergio González",
+        "role": "CB",
+        "age": 34,
+        "ovr": 71,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Sulaiman Hazazi",
+        "role": "LB",
+        "age": 23,
+        "ovr": 71,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Osama Al-Bawardi",
+        "role": "RB",
+        "age": 27,
+        "ovr": 70,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Mohammed Al-Khaibari",
+        "role": "CB",
+        "age": 24,
+        "ovr": 70,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Abdullah Hassoun",
+        "role": "RB",
+        "age": 29,
+        "ovr": 70,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Marzouq Tambakti",
+        "role": "CB",
+        "age": 23,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Suwailem Al-Manhali",
+        "role": "CB",
+        "age": 22,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Victor Lekhal",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 69,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Fahad Al-Jayzani",
+        "role": "CM",
+        "age": 22,
+        "ovr": 68,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Saud Zaydan",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nasser Al-Bishi",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 68,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Faisal Al-Sobhi",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Talal Al-Shubili",
+        "role": "CM",
+        "age": 21,
+        "ovr": 67,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Majed Al-Qahtani",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Samuel Sackey",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 64,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Mamadou Sylla",
+        "role": "ST",
+        "age": 32,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tozé",
+        "role": "ST",
+        "age": 33,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Leandro Antunes",
+        "role": "ST",
+        "age": 28,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Teddy Okou",
+        "role": "ST",
+        "age": 28,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Khalil Al-Absi",
+        "role": "ST",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yahia Al-Shehri",
+        "role": "ST",
+        "age": 36,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mohammed Suhluli",
+        "role": "ST",
+        "age": 21,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Hussain Al-Raqwani",
+        "role": "ST",
+        "age": 20,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      }
+    ],
+    "okh": [
+      {
+        "name": "Rakan Najjar",
+        "role": "GK",
+        "age": 31,
+        "ovr": 71,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Hatem Al-Juhani",
+        "role": "GK",
+        "age": 29,
+        "ovr": 71,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Saad Al-Qarni",
+        "role": "GK",
+        "age": 24,
+        "ovr": 71,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Koray Günter",
+        "role": "CB",
+        "age": 31,
+        "ovr": 70,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Saeed Al-Rubaie",
+        "role": "CB",
+        "age": 32,
+        "ovr": 70,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Naif Asiri",
+        "role": "CB",
+        "age": 25,
+        "ovr": 70,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Muhannad Al-Qaydhi",
+        "role": "CB",
+        "age": 28,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Mohammed Abu Abd",
+        "role": "RB",
+        "age": 24,
+        "ovr": 69,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Hussain Al-Zabdani",
+        "role": "RB",
+        "age": 31,
+        "ovr": 69,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Ghassan Hawsawi",
+        "role": "CB",
+        "age": 24,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Saleh Al-Harthi",
+        "role": "LW",
+        "age": 30,
+        "ovr": 68,
+        "fmPos": "D/WB L, AM LC"
+      },
+      {
+        "name": "Sebastián Pedroza",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 68,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Gökhan Gül",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Christian Bassogog",
+        "role": "ST",
+        "age": 30,
+        "ovr": 67,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Khaled Narey",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 67,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Burak İnce",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 66,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Abdulaziz Al-Hatila",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Saleh Al-Abbas",
+        "role": "ST",
+        "age": 31,
+        "ovr": 66,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Mohamed Nayef",
+        "role": "LW",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Khaled Al-Lazam",
+        "role": "ST",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Saud Salem",
+        "role": "CAM",
+        "age": 20,
+        "ovr": 62,
+        "fmPos": "AM C"
+      }
+    ],
+    "njm": [
+      {
+        "name": "Victor Braga",
+        "role": "GK",
+        "age": 34,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Waleed Al-Anzi",
+        "role": "GK",
+        "age": 30,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Khaled Al-Muqaitib",
+        "role": "GK",
+        "age": 34,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Samir",
+        "role": "CB",
+        "age": 31,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Khaled Al-Shammari",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 69,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Nasser Al-Haleel",
+        "role": "CB",
+        "age": 26,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Abdullah Al-Hawsawi",
+        "role": "RB",
+        "age": 30,
+        "ovr": 68,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Mohammed Al-Kunaydiri",
+        "role": "LB",
+        "age": 25,
+        "ovr": 68,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Mohammed Al-Fatil",
+        "role": "CB",
+        "age": 34,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Fahad Al-Abdulrazzaq",
+        "role": "RB",
+        "age": 26,
+        "ovr": 67,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Marin Prekodravac",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 67,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Nabil Dunga",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Rakan Al-Tulayhi",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 66,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Abdulaziz Al-Harabi",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Abdulwahid Al-Nakhli",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Abdullah Al-Sagheer",
+        "role": "CM",
+        "age": 21,
+        "ovr": 65,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Felippe Cardoso",
+        "role": "ST",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Lázaro",
+        "role": "ST",
+        "age": 24,
+        "ovr": 65,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "David Tijanić",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 62,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Bilal Boutobba",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 62,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Abdulelah Al-Shammry",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 61,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Ammar Al-Najjar",
+        "role": "ST",
+        "age": 29,
+        "ovr": 61,
+        "fmPos": "AM RC, F C"
+      },
+      {
+        "name": "Mohammed Mile",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 60,
+        "fmPos": "AM RL"
+      }
+    ]
+  }
+}

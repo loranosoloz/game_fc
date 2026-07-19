@@ -61,18 +61,65 @@ export function MatchStatsPanel({
       </div>
       <PossBar home={h.possession} away={a.possession} />
       <div className="mt-1">
+        <StatRow label="xG" home={(h.xg ?? 0).toFixed(2)} away={(a.xg ?? 0).toFixed(2)} />
         <StatRow label="ยิง" home={h.shots} away={a.shots} />
         <StatRow label="เข้ากรอบ" home={h.shotsOnTarget} away={a.shotsOnTarget} />
         <StatRow label="มุม" home={h.corners} away={a.corners} />
         <StatRow label="ฟาล์ว" home={h.fouls} away={a.fouls} />
         <StatRow label="ใบเหลือง" home={h.yellows} away={a.yellows} />
         <StatRow label="ใบแดง" home={h.reds} away={a.reds} />
+        {result.penalties ? (
+          <StatRow
+            label="จุดโทษ"
+            home={result.penalties.home}
+            away={result.penalties.away}
+          />
+        ) : null}
+        {result.wentToExtraTime ? (
+          <p className="mt-2 text-center text-[11px] font-semibold text-rose-800">
+            ไปต่อเวลา{result.wentToPens ? ' + ยิงจุดโทษ' : ''}
+          </p>
+        ) : null}
         <StatRow
-          label="เรตติ้ง"
+          label="เรตติ้งทีม"
           home={result.homeRating.toFixed(1)}
           away={result.awayRating.toFixed(1)}
         />
       </div>
+      {result.manOfTheMatchName ? (
+        <p className="mt-3 rounded-md bg-amber-50 px-3 py-2 text-center text-sm font-semibold text-amber-950">
+          MOM · {result.manOfTheMatchName}
+          {result.attendance != null
+            ? ` · ผู้ชม ${result.attendance.toLocaleString('th-TH')}`
+            : ''}
+        </p>
+      ) : result.attendance != null ? (
+        <p className="mt-3 text-center text-xs font-medium text-slate-600">
+          ผู้ชม {result.attendance.toLocaleString('th-TH')}
+        </p>
+      ) : null}
+      {result.playerRatings && result.playerRatings.length > 0 ? (
+        <div className="mt-3 border-t border-slate-100 pt-3">
+          <SectionLabel>เรตติ้งรายคน</SectionLabel>
+          <ul className="mt-2 max-h-48 space-y-1 overflow-y-auto text-xs">
+            {result.playerRatings.slice(0, 22).map((r) => (
+              <li
+                key={r.playerId}
+                className="grid grid-cols-[1fr_auto_auto] gap-2 border-b border-slate-50 py-1 last:border-0"
+              >
+                <span className="truncate font-medium text-slate-800">
+                  {r.team === 'home' ? 'H' : 'A'} · {r.name}
+                </span>
+                <span className="tabular-nums text-slate-500">
+                  {r.goals > 0 ? `${r.goals}G ` : ''}
+                  {r.xg > 0 ? `${r.xg.toFixed(2)}xG` : ''}
+                </span>
+                <span className="font-bold tabular-nums text-slate-900">{r.rating.toFixed(1)}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
     </Panel>
   )
 }
@@ -86,5 +133,6 @@ function emptyStats(): TeamMatchStats {
     yellows: 0,
     reds: 0,
     possession: 50,
+    xg: 0,
   }
 }

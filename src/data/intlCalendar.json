@@ -1,0 +1,99 @@
+{
+  "note": "ทัวร์นาเมนต์นานาชาติ — ฤดูร้อนระหว่างฤดูกาลคลับ (ปี = ปีเริ่มฤดูกาลใหม่ เช่น 2026 = ก่อนเปิดลีก ส.ค. 2026)",
+  "tournaments": [
+    {
+      "id": "world_cup",
+      "label": "FIFA World Cup",
+      "labelTh": "ฟุตบอลโลก",
+      "periodYears": 4,
+      "phaseOffset": 2,
+      "weeks": 5,
+      "kind": "world_cup",
+      "blurb": "คัดเลือก ~2 ปีก่อนชิง (กลุ่มทวีป เหย้า-เยือน) → 32 ทีม · 8 กลุ่ม + น็อกเอาต์ (เช่น 2030 หลังคัด 2028–29)"
+    },
+    {
+      "id": "euro",
+      "label": "UEFA Euro",
+      "labelTh": "ยูโร",
+      "periodYears": 4,
+      "phaseOffset": 0,
+      "weeks": 4,
+      "kind": "continental",
+      "confederation": "UEFA",
+      "blurb": "ทุก 4 ปี สลับกับฟุตบอลโลกทุก 2 ปี (เช่น 2028 · 2032)"
+    },
+    {
+      "id": "copa_america",
+      "label": "Copa América",
+      "labelTh": "โกปา อเมริกา",
+      "periodYears": 4,
+      "phaseOffset": 0,
+      "weeks": 4,
+      "kind": "continental",
+      "confederation": "CONMEBOL",
+      "blurb": "มักคู่ปีเดียวกับยูโร"
+    },
+    {
+      "id": "asian_cup",
+      "label": "AFC Asian Cup",
+      "labelTh": "เอเชียน คัพ",
+      "periodYears": 4,
+      "phaseOffset": 3,
+      "weeks": 4,
+      "kind": "continental",
+      "confederation": "AFC",
+      "blurb": "ทุก 4 ปี (เช่น 2027 · 2031)"
+    },
+    {
+      "id": "afcon",
+      "label": "AFCON",
+      "labelTh": "แอฟริกา คัพ ออฟ เนชันส์",
+      "periodYears": 2,
+      "phaseOffset": 1,
+      "weeks": 3,
+      "kind": "continental",
+      "confederation": "CAF",
+      "blurb": "ประมาณทุก 2 ปี"
+    },
+    {
+      "id": "gold_cup",
+      "label": "Concacaf Gold Cup",
+      "labelTh": "โกลด์ คัพ",
+      "periodYears": 2,
+      "phaseOffset": 1,
+      "weeks": 3,
+      "kind": "continental",
+      "confederation": "CONCACAF",
+      "blurb": "ทุก 2 ปี"
+    },
+    {
+      "id": "nations_league",
+      "label": "UEFA Nations League",
+      "labelTh": "เนชันส์ลีก (ยุโรป)",
+      "periodYears": 2,
+      "phaseOffset": 1,
+      "weeks": 2,
+      "kind": "nations_league",
+      "confederation": "UEFA",
+      "summerOnly": false,
+      "blurb": "ช่วง FIFA window — ไม่ใช่ทัวร์นาเมนต์ฤดูร้อนเต็มรูป"
+    },
+    {
+      "id": "friendlies_summer",
+      "label": "International friendlies",
+      "labelTh": "อุ่นเครื่องทีมชาติ",
+      "periodYears": 1,
+      "phaseOffset": 0,
+      "weeks": 1,
+      "kind": "friendly",
+      "blurb": "ทุกฤดูร้อนเมื่อไม่มีทัวร์นาเมนต์ใหญ่"
+    }
+  ],
+  "fifaWindows": [
+    { "afterLeagueMdRatio": 0.14, "weeks": 1, "labelTh": "FIFA window · กันยายน" },
+    { "afterLeagueMdRatio": 0.28, "weeks": 1, "labelTh": "FIFA window · ตุลาคม" },
+    { "afterLeagueMdRatio": 0.4, "weeks": 2, "labelTh": "FIFA window · พฤศจิกายน" },
+    { "afterLeagueMdRatio": 0.55, "weeks": 2, "labelTh": "พักคริสต์มาส / วินเทอร์", "kind": "winter_break" },
+    { "afterLeagueMdRatio": 0.72, "weeks": 1, "labelTh": "FIFA window · มีนาคม" }
+  ]
+}

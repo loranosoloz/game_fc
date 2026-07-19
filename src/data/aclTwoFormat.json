@@ -1,0 +1,9 @@
+{
+  "name": "AFC Champions League Two",
+  "rounds": [
+    { "id": "r16", "label": "Round of 16", "matchdayOffset": 7, "twoLegged": true, "returnOffset": 9 },
+    { "id": "qf", "label": "Quarter-final", "matchdayOffset": 16, "twoLegged": true, "returnOffset": 18 },
+    { "id": "sf", "label": "Semi-final", "matchdayOffset": 24, "twoLegged": true, "returnOffset": 26 },
+    { "id": "final", "label": "Final", "matchdayOffset": 31, "twoLegged": false }
+  ]
+}

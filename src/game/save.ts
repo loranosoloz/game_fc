@@ -1,23 +1,26 @@
 import type { GameSave, TeamInstructions, TrainingState } from './types'
 import { SAVE_KEY, DEFAULT_INSTRUCTIONS, DEFAULT_SET_PIECES } from './types'
-import { createTacticsForAll } from './seed'
+import { autoPickTactics, createTacticsForAll } from './seed'
 import { createClubsFromLeague, createPlayersFromLeague } from './worldSeed'
-import { getLeague, type LeagueId } from '@/data/world'
+import { getLeague, type LeagueId, isValidLeagueSize } from '@/data/world'
 import { crestKeyForShortName } from '@/lib/crests'
 import { bioForPlayerName } from '@/data/world/playerBios'
 import { fmInsideForPlayerName } from '@/data/world/fmInsidePlayers'
 import { playerAttrsFromFmInside } from '@/game/fmInside'
 import { blankTable, generateSeasonFixtures } from './fixtures'
+import { normalizeFormationId } from './types'
 import { createFanState, ensureFans } from './fans'
 import { createBoardState, ensureBoard } from './board'
 import { createOwnerState, ensureOwner } from './owner'
 import { defaultTraining } from './training'
 import { ensurePlayerV3Fields } from './attributes'
+import { ensurePlayerSkills } from './playerSkills'
 import { createDynamics } from './dynamics'
 import { createStaff, ensureStaffState } from './staff'
 import { createYouthState } from './youth'
 import { createScouting, ensureScouting } from './scouting'
 import { createPressFeed, createMediaFeed, ensureMediaFeed } from './media'
+import { emptyAwardsState, monthKeyFromDate } from './awards'
 import { createCupState, generateCupFixtures } from './cup'
 import {
   generateLeagueCupFixtures,
@@ -33,21 +36,69 @@ import {
   createEuropeCupsPack,
 } from './ucl'
 import { createEuroAccess } from './europeAccess'
+import {
+  createAclState,
+  createAclTwoState,
+  createAseanCupState,
+  createAsiaAccess,
+  createAsiaCupsPack,
+  generateAsiaKnockoutFixtures,
+} from './asiaAccess'
+import {
+  createCwcAccess,
+  createCwcState,
+  createCwcPack,
+  generateCwcFixtures,
+  snapshotCwcSeeds,
+  ensureCwcAccess,
+} from './clubWorldCup'
+import {
+  createSuperCupState,
+  createDomesticTitles,
+  generateSuperCupFixture,
+  ensureDomesticTitles,
+} from './superCup'
+import { ensurePreSeason, openPreSeasonWindow } from './preSeason'
 import { DIV2_LEAGUE_NAME, EXTRA_CUP_NAMES } from '@/data/world'
 import { assignRefereesToFixtures } from './referees'
 import { createDevelopmentState } from './development'
 import { createClubFinance, ensureClubFinance } from './playerEconomy'
 import { createTalksState, ensureTalks } from './playerTalks'
+import {
+  buildManagerProfile,
+  defaultManagerBuild,
+  ensureManagerProfile,
+  instructionsFromManager,
+  startingReputationFromProfile,
+  type ManagerBuildInput,
+} from './managerProfile'
+import { runSummerIntlTournaments } from './intlTournaments'
+import { ensureSquadLanguages } from './languages'
+import {
+  createManagerProgress,
+  ensureClubQuests,
+  ensureManagerProgress,
+} from './managerProgress'
+import {
+  buildSeasonCalendar,
+  ensureSeasonCalendar,
+} from './seasonCalendar'
+import { assignWorldCoaches, displaceClubCoachOnTakeover, ensureClubCoaches } from './worldCoaches'
+import { createAssociationsState, ensureAssociations } from './associations'
 import { createLoansState, ensureLoans } from './loans'
 import { createShortlist, ensureShortlist } from './shortlist'
 import { createTransferDesk, ensureTransferDesk } from './transferDesk'
+import { seedLeagueRivalries } from './rivalries'
 import { createClubIncome, ensureClubIncome } from './clubIncome'
 import { createTakeoverState, ensureTakeover } from './takeover'
+import { createInsolvencyState, ensureInsolvency } from './insolvency'
+import { createPlayerMoveLog } from './playerWorldDb'
 import { createCareerState, ensureCareer } from './jobs'
 import { createFacilitiesState, ensureFacilities } from './facilities'
 import { createAffiliates, ensureAffiliates } from './affiliates'
 import { createContractTalks, ensureContractTalks } from './transfer'
 import { createWorldPulse, ensureWorldPulse } from './worldPulse'
+import { ensureWorldCup } from './worldCup'
 import { ensureAllSocial } from './social'
 import { persistSaveSync, loadSaveRawAsync, clearAllSaves } from './idbSave'
 import { roleGroup } from './positions'
@@ -85,9 +136,13 @@ export function createNewGame(
   managerName: string,
   humanClubId: string,
   leagueId: LeagueId = 'eng',
+  build?: ManagerBuildInput,
 ): GameSave {
   const league = getLeague(leagueId)
-  const domesticClubs = createClubsFromLeague(leagueId, humanClubId)
+  const associations = createAssociationsState()
+  const managerProfile = buildManagerProfile(build ?? defaultManagerBuild())
+  let domesticClubs = createClubsFromLeague(leagueId, humanClubId)
+  domesticClubs = assignWorldCoaches(domesticClubs, 2026, associations)
   const domesticPlayers = createPlayersFromLeague(leagueId, domesticClubs)
   const euroAccess = createEuroAccess()
   const pack = createEuropeCupsPack(
@@ -95,17 +150,67 @@ export function createNewGame(
     domesticClubs.filter((c) => c.division === 1),
     euroAccess,
   )
-  const clubs = [...domesticClubs, ...pack.clubs]
-  const players = [...domesticPlayers, ...pack.players]
+  const asiaAccess = createAsiaAccess()
+  const asiaPack = createAsiaCupsPack(
+    leagueId,
+    domesticClubs.filter((c) => c.division === 1),
+    asiaAccess,
+  )
+  let clubs = [...domesticClubs, ...pack.clubs, ...asiaPack.clubs]
+  clubs = assignWorldCoaches(clubs, 2026, associations)
+
+  // คุณรับงานผู้จัดการ → โค้ชเดิมของคลับว่าง แล้วคลับ AI อื่นจ้างต่อ
+  const takeover = displaceClubCoachOnTakeover(clubs, humanClubId, associations)
+  clubs = takeover.clubs
+
+  const cwcAccess = createCwcAccess()
+  const cwcPack = createCwcPack(
+    leagueId,
+    domesticClubs.filter((c) => c.division === 1),
+    cwcAccess,
+    clubs,
+  )
+  clubs = [...clubs, ...cwcPack.clubs]
+
+  const players = [...domesticPlayers, ...pack.players, ...asiaPack.players, ...cwcPack.players]
   const tacticsByClub = {
-    ...createTacticsForAll(domesticClubs, domesticPlayers),
+    ...createTacticsForAll(clubs, players),
     ...pack.tactics,
+    ...asiaPack.tactics,
+    ...cwcPack.tactics,
+  }
+  // แผนเริ่มต้นตามสไตล์ผู้จัดการ
+  const humanTactics = tacticsByClub[humanClubId]
+  if (humanTactics) {
+    tacticsByClub[humanClubId] = {
+      ...autoPickTactics(
+        humanClubId,
+        players,
+        managerProfile.preferredFormation,
+        managerProfile.formationOop,
+      ),
+      instructions: instructionsFromManager(managerProfile),
+      familiarity: Math.min(72, 48 + Math.round(managerProfile.power / 5)),
+      setPieces: humanTactics.setPieces,
+      opposition: humanTactics.opposition,
+    }
   }
   const clubIds = domesticClubs.filter((c) => c.division === 1).map((c) => c.id)
   const d2Ids = domesticClubs.filter((c) => c.division === 2).map((c) => c.id)
   const startDate = '2026-08-15'
-  const leagueFx = generateSeasonFixtures(clubIds, startDate, 1)
-  const leagueFx2 = generateSeasonFixtures(d2Ids, startDate, 2)
+  const seasonCalendar = buildSeasonCalendar(2026, leagueId, startDate)
+  const leagueFx = generateSeasonFixtures(
+    clubIds,
+    startDate,
+    1,
+    seasonCalendar.dateByLeagueMd,
+  )
+  const leagueFx2 = generateSeasonFixtures(
+    d2Ids,
+    startDate,
+    2,
+    seasonCalendar.dateByLeagueMd,
+  )
   const seasonStart = leagueFx[0]?.date ?? startDate
   const cupFx = generateCupFixtures(domesticClubs, seasonStart)
   const lc = generateLeagueCupFixtures(
@@ -121,7 +226,18 @@ export function createNewGame(
   const uclFx = generateUclFixtures(pack.uclField, seasonStart, leagueId)
   const uelGen = generateUelFixtures(pack.uelField, seasonStart, leagueId)
   const ueclGen = generateUeclFixtures(pack.ueclField, seasonStart, leagueId)
+  const aclFx = generateAsiaKnockoutFixtures('acl', asiaPack.aclField, 2026)
+  const aclTwoFx = generateAsiaKnockoutFixtures('acl_two', asiaPack.aclTwoField, 2026)
+  const aseanFx = generateAsiaKnockoutFixtures('asean_cup', asiaPack.aseanField, 2026)
+  const cwcFx = generateCwcFixtures(cwcPack.field, 2026)
+  const superCupFx = generateSuperCupFixture(
+    leagueId,
+    domesticClubs.filter((c) => c.division === 1),
+    createDomesticTitles(),
+    2026,
+  )
   const fixtures = assignRefereesToFixtures([
+    ...(superCupFx ? [superCupFx] : []),
     ...leagueFx,
     ...leagueFx2,
     ...cupFx,
@@ -130,14 +246,29 @@ export function createNewGame(
     ...uclFx,
     ...uelGen.fixtures,
     ...ueclGen.fixtures,
+    ...aclFx,
+    ...aclTwoFx,
+    ...aseanFx,
+    ...cwcFx,
   ])
-  const human = domesticClubs.find((c) => c.id === humanClubId)!
+  const human = clubs.find((c) => c.id === humanClubId)!
+  const coachMoveNote = takeover.displaced
+    ? takeover.hiredAt
+      ? `${takeover.displaced.name} ว่างจากเก้าอี้หลังคุณรับงาน · ${takeover.hiredAt.name} จ้างต่อทันที${
+          takeover.bumped ? ` (แทน ${takeover.bumped.name} ที่ไปตลาดว่าง)` : ''
+        }`
+      : `${takeover.displaced.name} ว่างงานหลังคุณรับงาน — รอคลับอื่นจ้าง`
+    : null
 
-  return {
+  const baseSave: GameSave = {
     version: 6,
     createdAt: new Date().toISOString(),
     managerName: managerName.trim() || 'Manager',
-    managerReputation: Math.min(72, 48 + Math.round(human.reputation / 5)),
+    managerReputation: startingReputationFromProfile(human.reputation, managerProfile),
+    managerProfile,
+    managerProgress: createManagerProgress(managerProfile),
+    clubQuests: [],
+    seasonCalendar,
     humanClubId,
     leagueId,
     leagueName: league.name,
@@ -155,9 +286,29 @@ export function createNewGame(
         id: 'welcome',
         date: seasonStart,
         title: `Welcome to ${human.name}`,
-        body: `คุณคุม ${human.name} ใน ${league.name} · มี${DIV2_LEAGUE_NAME[leagueId].nameTh} · ถ้วยชาติ + ${EXTRA_CUP_NAMES[leagueId].leagueCup} + ${EXTRA_CUP_NAMES[leagueId].trophy} · ตกชั้น/เลื่อนชั้นท้ายฤดูกาล · ยุโรป: 1–4 UCL / 5–6 Europa / 7–8 Conference`,
+        body: `คุณรับงานผู้จัดการที่ ${human.name} ใน ${league.name} · สไตล์「${managerProfile.styleLabelTh}」· แผน ${managerProfile.preferredFormation} · มี${DIV2_LEAGUE_NAME[leagueId].nameTh} · ถ้วยชาติ + ${EXTRA_CUP_NAMES[leagueId].leagueCup} + ${EXTRA_CUP_NAMES[leagueId].trophy} · ยุโรป: 1–4 UCL / 5–6 Europa / 7–8 Conference${coachMoveNote ? ` · ${coachMoveNote}` : ''}`,
         read: false,
       },
+      {
+        id: 'calendar-summer',
+        date: seasonStart,
+        title: 'ปฏิทินนานาชาติ · ฤดูร้อน',
+        body: seasonCalendar.summerEvents.length
+          ? `ก่อนเปิดฤดูกาล: ${seasonCalendar.summerEvents.map((e) => `${e.labelTh} (${e.weeks} สัปดาห์)`).join(' · ')} · ลีกมีช่องพัก FIFA/วินเทอร์ คั่น ไม่แข่งติดกันทุกอาทิตย์`
+          : 'ฤดูร้อน: อุ่นเครื่องทีมชาติ · ลีกมีช่องพักตามปฏิทิน',
+        read: false,
+      },
+      ...(coachMoveNote
+        ? [
+            {
+              id: 'coach-displace',
+              date: seasonStart,
+              title: 'โค้ชเดิมย้ายงาน',
+              body: coachMoveNote,
+              read: false,
+            },
+          ]
+        : []),
     ],
     lastHumanResult: null,
     seasonComplete: false,
@@ -174,20 +325,35 @@ export function createNewGame(
     press: createPressFeed(),
     media: createMediaFeed(),
     pressConference: null,
+    playerInterview: null,
+    internationalBreak: null,
+    associations,
     cup: createCupState(league.cupName),
     leagueCup: lc.state,
     trophy: tr.state,
     ucl: createUclState(),
     uel: { ...createUelState(), playinByes: uelGen.byes },
     uecl: { ...createUeclState(), playinByes: ueclGen.byes },
+    acl: createAclState(),
+    aclTwo: createAclTwoState(),
+    aseanCup: createAseanCupState(),
+    cwc: createCwcState(),
+    cwcAccess,
+    superCup: createSuperCupState(leagueId),
+    domesticTitles: createDomesticTitles(),
+    preSeason: null, // เติมหลังสร้างเซฟครบ
     euroAccess,
+    asiaAccess,
     development: createDevelopmentState(),
     talks: createTalksState(),
     loans: createLoansState(),
     shortlist: createShortlist(),
     transferDesk: createTransferDesk(),
+    rivalries: [],
     clubIncome: createClubIncome(human.reputation),
     takeover: createTakeoverState(2026),
+    insolvency: createInsolvencyState(),
+    playerMoveLog: createPlayerMoveLog(),
     career: createCareerState(humanClubId),
     facilities: createFacilitiesState(
       human.stadiumCapacity,
@@ -199,7 +365,18 @@ export function createNewGame(
     contractTalks: createContractTalks(),
     worldPulse: createWorldPulse(leagueId),
     preMatch: null,
+    lastMatchdayReport: null,
+    matchdayChronicle: [],
+    lastIntlTournamentReports: [],
+    ntCamp: null,
+    worldCup: null,
   }
+
+  // ทัวร์นาเมนต์ฤดูร้อน + ภาษา + เควส + คู่อริ
+  const withWc = ensureWorldCup(baseSave)
+  const summer = runSummerIntlTournaments(withWc)
+  const withPs = openPreSeasonWindow(summer.save, seasonStart)
+  return ensureClubQuests(seedLeagueRivalries(ensureSquadLanguages(withPs)))
 }
 
 export function ensurePhase5(save: GameSave): GameSave {
@@ -221,25 +398,65 @@ export function ensurePhase5(save: GameSave): GameSave {
   if (!next.press) next = { ...next, press: [] }
   if (!next.media) next = { ...next, media: ensureMediaFeed(next) }
   if (next.pressConference === undefined) next = { ...next, pressConference: null }
+  if (next.playerInterview === undefined) next = { ...next, playerInterview: null }
+  if (next.internationalBreak === undefined) next = { ...next, internationalBreak: null }
+  next = ensureAssociations(next)
   if (typeof next.managerReputation !== 'number') {
     next = {
       ...next,
       managerReputation: Math.min(72, 48 + Math.round(human.reputation / 5)),
     }
   }
+  if (!next.managerProfile) {
+    next = { ...next, managerProfile: ensureManagerProfile(null) }
+  } else {
+    next = { ...next, managerProfile: ensureManagerProfile(next.managerProfile) }
+  }
+  if (!next.managerProgress) {
+    next = { ...next, managerProgress: ensureManagerProgress(next) }
+  } else {
+    next = { ...next, managerProgress: ensureManagerProgress(next) }
+  }
+  next = ensureClubQuests(next)
+  next = ensureSeasonCalendar(next)
+  next = ensureSquadLanguages(next)
+  if (next.lastMatchdayReport === undefined) next = { ...next, lastMatchdayReport: null }
+  if (!next.matchdayChronicle) next = { ...next, matchdayChronicle: [] }
+  if (next.lastIntlTournamentReports === undefined) {
+    next = { ...next, lastIntlTournamentReports: [] }
+  }
+  if (next.ntCamp === undefined) next = { ...next, ntCamp: null }
+  next = ensureWorldCup(next)
   if (!next.cup) next = { ...next, cup: createCupState() }
   if (!next.ucl) next = { ...next, ucl: createUclState() }
   if (!next.uel) next = { ...next, uel: createUelState() }
   if (!next.uecl) next = { ...next, uecl: createUeclState() }
+  if (!next.acl) next = { ...next, acl: createAclState() }
+  if (!next.aclTwo) next = { ...next, aclTwo: createAclTwoState() }
+  if (!next.aseanCup) next = { ...next, aseanCup: createAseanCupState() }
+  if (!next.cwc) next = { ...next, cwc: createCwcState() }
+  if (!next.cwcAccess) next = { ...next, cwcAccess: ensureCwcAccess(next) }
+  if (!next.superCup) {
+    next = { ...next, superCup: createSuperCupState(next.leagueId || 'eng') }
+  }
+  if (!next.domesticTitles) next = { ...next, domesticTitles: ensureDomesticTitles(next) }
+  next = ensurePreSeason(next)
   if (!next.euroAccess) next = { ...next, euroAccess: createEuroAccess() }
+  if (!next.asiaAccess) next = { ...next, asiaAccess: createAsiaAccess() }
   if (!next.development) next = { ...next, development: createDevelopmentState() }
   if (!next.talks) next = { ...next, talks: ensureTalks(next) }
   if (!next.loans) next = { ...next, loans: ensureLoans(next) }
   if (!next.shortlist) next = { ...next, shortlist: ensureShortlist(next) }
   if (!next.transferDesk) next = { ...next, transferDesk: ensureTransferDesk(next) }
+  if (next.transferDeadline === undefined) next = { ...next, transferDeadline: null }
+  if (!next.rivalries) next = seedLeagueRivalries({ ...next, rivalries: [] })
+  else if (next.rivalries.length === 0) next = seedLeagueRivalries(next)
   if (!next.clubIncome) next = { ...next, clubIncome: ensureClubIncome(next) }
   if (!next.takeover) next = { ...next, takeover: ensureTakeover(next) }
   else next = { ...next, takeover: ensureTakeover(next) }
+  if (!next.insolvency) next = { ...next, insolvency: createInsolvencyState() }
+  else next = { ...next, insolvency: ensureInsolvency(next) }
+  if (!next.playerMoveLog) next = { ...next, playerMoveLog: createPlayerMoveLog() }
   if (!next.career) next = { ...next, career: ensureCareer(next) }
   else next = { ...next, career: ensureCareer(next) }
   if (!next.facilities) {
@@ -264,6 +481,9 @@ export function ensurePhase5(save: GameSave): GameSave {
   if (!next.worldPulse) next = { ...next, worldPulse: createWorldPulse(next.leagueId || 'eng') }
   else next = { ...next, worldPulse: ensureWorldPulse(next) }
   if (next.preMatch === undefined) next = { ...next, preMatch: null }
+  if (!next.awards) {
+    next = { ...next, awards: emptyAwardsState(monthKeyFromDate(next.currentDate)) }
+  }
 
   next = {
     ...next,
@@ -322,7 +542,7 @@ export function ensurePhase5(save: GameSave): GameSave {
     let trophy = next.trophy
     let injected = false
 
-    if (d2Ids.length === 20 && !fixtures.some((f) => f.competition === 'league' && (f.division === 2 || String(f.id).startsWith('fx2')))) {
+    if (isValidLeagueSize(d2Ids.length) && !fixtures.some((f) => f.competition === 'league' && (f.division === 2 || String(f.id).startsWith('fx2')))) {
       const fx2 = generateSeasonFixtures(d2Ids, seasonStart, 2)
       const md = next.matchday ?? 0
       let seed = (next.season ?? 2026) * 97 + md * 13
@@ -389,13 +609,15 @@ export function ensurePhase5(save: GameSave): GameSave {
     const fmInside = base.fmInside ?? fmInsideForPlayerName(base.name)
     let nextP = base
     if (!base.bio && bio) nextP = { ...nextP, bio }
-    if (!base.fmInside && fmInside) {
+    if (fmInside) {
       nextP = {
         ...nextP,
         fmInside,
         attrs: playerAttrsFromFmInside(fmInside),
       }
     }
+    // เติม/ฝังพลังแฝงตามความสามารถ + แอตทริบิวต์ล่าสุด
+    nextP = { ...nextP, skills: ensurePlayerSkills(nextP) }
     return nextP
   })
   if (!next.scouting?.byPlayer) {
@@ -404,10 +626,14 @@ export function ensurePhase5(save: GameSave): GameSave {
     next = { ...next, scouting: ensureScouting(next) }
   }
 
-  const clubs = next.clubs.map((c) => ({
-    ...c,
-    seasonStartBalance: c.seasonStartBalance ?? c.balance,
-  }))
+  next = ensureAssociations(next)
+  const clubs = ensureClubCoaches(
+    next.clubs.map((c) => ({
+      ...c,
+      seasonStartBalance: c.seasonStartBalance ?? c.balance,
+    })),
+    next.associations,
+  )
 
   const tacticsByClub = { ...next.tacticsByClub }
   for (const club of clubs) {
@@ -415,7 +641,8 @@ export function ensurePhase5(save: GameSave): GameSave {
     if (!t) continue
     tacticsByClub[club.id] = {
       ...t,
-      formationOop: t.formationOop ?? t.formation,
+      formation: normalizeFormationId(t.formation),
+      formationOop: normalizeFormationId(t.formationOop ?? t.formation),
       instructions: t.instructions ?? { ...DEFAULT_INSTRUCTIONS },
       familiarity: typeof t.familiarity === 'number' ? t.familiarity : 55,
       setPieces: t.setPieces ?? { ...DEFAULT_SET_PIECES },
@@ -479,8 +706,8 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
   for (const club of clubs) {
     const t = rawTactics[club.id]
     tacticsByClub[club.id] = {
-      formation: t?.formation ?? '4-3-3',
-      formationOop: t?.formationOop ?? t?.formation ?? '4-3-3',
+      formation: normalizeFormationId(t?.formation as string),
+      formationOop: normalizeFormationId((t?.formationOop ?? t?.formation) as string),
       instructions: {
         ...DEFAULT_INSTRUCTIONS,
         ...(t?.instructions as TeamInstructions | undefined),
@@ -532,6 +759,8 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
         press: (raw.press as GameSave['press']) ?? [],
       } as GameSave),
     pressConference: (raw.pressConference as GameSave['pressConference']) ?? null,
+    playerInterview: (raw.playerInterview as GameSave['playerInterview']) ?? null,
+    internationalBreak: (raw.internationalBreak as GameSave['internationalBreak']) ?? null,
     managerReputation:
       typeof raw.managerReputation === 'number'
         ? (raw.managerReputation as number)
@@ -543,18 +772,35 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
     ucl: (raw.ucl as GameSave['ucl']) ?? createUclState(),
     uel: (raw.uel as GameSave['uel']) ?? createUelState(),
     uecl: (raw.uecl as GameSave['uecl']) ?? createUeclState(),
+    acl: (raw.acl as GameSave['acl']) ?? createAclState(),
+    aclTwo: (raw.aclTwo as GameSave['aclTwo']) ?? createAclTwoState(),
+    aseanCup: (raw.aseanCup as GameSave['aseanCup']) ?? createAseanCupState(),
+    cwc: (raw.cwc as GameSave['cwc']) ?? createCwcState(),
+    cwcAccess: (raw.cwcAccess as GameSave['cwcAccess']) ?? createCwcAccess(),
+    superCup:
+      (raw.superCup as GameSave['superCup']) ??
+      createSuperCupState((raw.leagueId as string) ?? 'eng'),
+    domesticTitles:
+      (raw.domesticTitles as GameSave['domesticTitles']) ?? createDomesticTitles(),
+    preSeason: (raw.preSeason as GameSave['preSeason']) ?? null,
     euroAccess: (raw.euroAccess as GameSave['euroAccess']) ?? createEuroAccess(),
+    asiaAccess: (raw.asiaAccess as GameSave['asiaAccess']) ?? createAsiaAccess(),
     development: (raw.development as GameSave['development']) ?? createDevelopmentState(),
     talks: (raw.talks as GameSave['talks']) ?? createTalksState(),
     loans: (raw.loans as GameSave['loans']) ?? createLoansState(),
     shortlist: (raw.shortlist as GameSave['shortlist']) ?? createShortlist(),
     transferDesk: (raw.transferDesk as GameSave['transferDesk']) ?? createTransferDesk(),
+    rivalries: (raw.rivalries as GameSave['rivalries']) ?? [],
     clubIncome:
       (raw.clubIncome as GameSave['clubIncome']) ??
       createClubIncome(human.reputation),
     takeover: (raw.takeover as GameSave['takeover']) ?? createTakeoverState(
       typeof raw.season === 'number' ? (raw.season as number) : 2026,
     ),
+    insolvency:
+      (raw.insolvency as GameSave['insolvency']) ?? createInsolvencyState(),
+    playerMoveLog:
+      (raw.playerMoveLog as GameSave['playerMoveLog']) ?? createPlayerMoveLog(),
     career:
       (raw.career as GameSave['career']) ??
       createCareerState((raw.humanClubId as string) ?? humanClubId),
@@ -575,6 +821,13 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
       (raw.worldPulse as GameSave['worldPulse']) ??
       createWorldPulse((raw.leagueId as string) ?? 'eng'),
     preMatch: (raw.preMatch as GameSave['preMatch']) ?? null,
+    lastMatchdayReport: (raw.lastMatchdayReport as GameSave['lastMatchdayReport']) ?? null,
+    matchdayChronicle:
+      (raw.matchdayChronicle as GameSave['matchdayChronicle']) ?? [],
+    lastIntlTournamentReports:
+      (raw.lastIntlTournamentReports as GameSave['lastIntlTournamentReports']) ?? [],
+    ntCamp: (raw.ntCamp as GameSave['ntCamp']) ?? null,
+    worldCup: (raw.worldCup as GameSave['worldCup']) ?? null,
   } as GameSave
 
   return ensurePhase5(ensureFans(base))

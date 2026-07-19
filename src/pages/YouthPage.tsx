@@ -19,10 +19,15 @@ import {
   StatTile,
 } from '@/components/ui'
 
+function youthReady(p: { age: number; minutesPlayed: number; overall: number }) {
+  return p.age >= 17 && (p.minutesPlayed >= 180 || p.age >= 19 || p.overall >= 68)
+}
+
 export function YouthPage() {
   const save = useGameStore((s) => s.save)!
   const proposeFacilityUpgradeStore = useGameStore((s) => s.proposeFacilityUpgrade)
   const boostAffiliates = useGameStore((s) => s.boostAffiliateRelations)
+  const graduateYouth = useGameStore((s) => s.graduateYouthPlayer)
   const fac = ensureFacilities(save)
   const affiliates = ensureAffiliates(save)
   const youthTier = facilityCurrentTier(fac, 'youth')
@@ -39,7 +44,7 @@ export function YouthPage() {
     <div className="space-y-5">
       <PageHeader
         title="อะคาเดมี่เยาวชน"
-        subtitle="ผลิตนักเตะรุ่นใหม่เข้าชุดใหญ่ตามรอบ intake · อัปเกรดผ่านข้อเสนอเจ้าของ"
+        subtitle="เด็กจาก FMTU Wonderkids (U16/U18/U21/U23) ในลีกชั้นนำ + intake สุ่มตามรอบ · อัปเกรดผ่านข้อเสนอเจ้าของ"
       />
 
       <div className="grid gap-3 sm:grid-cols-3">
@@ -78,32 +83,64 @@ export function YouthPage() {
         </Panel>
 
         <Panel>
-          <h3 className="text-sm font-bold text-slate-900">นักเตะเยาวชนในชุดใหญ่</h3>
+          <h3 className="text-sm font-bold text-slate-900">นักเตะเยาวชนในคลับ</h3>
           {youth.length === 0 ? (
-            <p className="mt-3 text-sm text-slate-500">ยังไม่มี — รอ intake</p>
+            <p className="mt-3 text-sm text-slate-500">ยังไม่มี — รอ intake หรือเริ่มอาชีพใหม่หลังอัปเดต pack</p>
           ) : (
             <table className="data mt-3">
               <thead>
                 <tr>
                   <th>ชื่อ</th>
+                  <th>กลุ่ม</th>
                   <th>อายุ</th>
                   <th>OVR</th>
                   <th>PA</th>
+                  <th>นาที</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
-                {youth.map((p) => (
-                  <tr key={p.id}>
-                    <td>
-                      <span className="text-slate-400">{roleShort(p.role)}</span> {p.name}
-                    </td>
-                    <td>{p.age}</td>
-                    <td className="font-semibold">{p.overall}</td>
-                    <td>{p.pa}</td>
-                  </tr>
-                ))}
+                {youth.map((p) => {
+                  const ready = youthReady(p)
+                  return (
+                    <tr key={p.id}>
+                      <td>
+                        <span className="text-slate-400">{roleShort(p.role)}</span> {p.name}
+                      </td>
+                      <td className="text-xs text-slate-500">
+                        {p.age <= 16 ? 'U16' : p.age <= 18 ? 'U18' : p.age <= 21 ? 'U21' : 'U23'}
+                      </td>
+                      <td>{p.age}</td>
+                      <td className="font-semibold">{p.overall}</td>
+                      <td>{p.pa}</td>
+                      <td className="tabular-nums text-xs">{p.minutesPlayed}</td>
+                      <td>
+                        <button
+                          type="button"
+                          disabled={!ready}
+                          onClick={() => graduateYouth(p.id)}
+                          className={
+                            ready
+                              ? 'rounded bg-slate-900 px-2 py-1 text-[10px] font-semibold text-lime-300'
+                              : 'cursor-not-allowed rounded bg-slate-100 px-2 py-1 text-[10px] text-slate-400'
+                          }
+                          title={
+                            ready
+                              ? 'ขึ้นชุดใหญ่'
+                              : 'ต้องการอายุ≥17 และ (นาที≥180 หรือ อายุ≥19 หรือ OVR≥68)'
+                          }
+                        >
+                          {ready ? 'ขึ้นชุดใหญ่' : 'ยังไม่พร้อม'}
+                        </button>
+                      </td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
+            <p className="mt-2 text-[11px] text-slate-500">
+              ขึ้นชุดใหญ่: อายุ ≥ 17 และ (นาที ≥ 180 หรือ อายุ ≥ 19 หรือ OVR ≥ 68)
+            </p>
           )}
         </Panel>
       </div>

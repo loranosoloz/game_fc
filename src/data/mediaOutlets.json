@@ -1,0 +1,121 @@
+{
+  "byLeague": {
+    "eng": [
+      { "id": "sky_sports", "name": "Sky Sports", "style": "broadcast" },
+      { "id": "the_athletic", "name": "The Athletic", "style": "longform" }
+    ],
+    "esp": [
+      { "id": "marca", "name": "Marca", "style": "tabloid" },
+      { "id": "as_es", "name": "AS", "style": "daily" }
+    ],
+    "ger": [
+      { "id": "kicker", "name": "kicker", "style": "daily" },
+      { "id": "sport1", "name": "SPORT1", "style": "broadcast" }
+    ],
+    "fra": [
+      { "id": "lequipe", "name": "L'Équipe", "style": "daily" },
+      { "id": "rmc", "name": "RMC Sport", "style": "broadcast" }
+    ],
+    "ita": [
+      { "id": "gazzetta", "name": "La Gazzetta", "style": "daily" },
+      { "id": "sky_ita", "name": "Sky Sport Italia", "style": "broadcast" }
+    ],
+    "tha": [
+      { "id": "siamsport", "name": "Siamsport", "style": "daily" },
+      { "id": "thairath_sport", "name": "ไทยรัฐสปอร์ต", "style": "tabloid" }
+    ],
+    "jpn": [
+      { "id": "nikkan_sports", "name": "Nikkan Sports", "style": "daily" },
+      { "id": "soccer_king", "name": "Soccer King", "style": "web" }
+    ],
+    "kor": [
+      { "id": "interfootball", "name": "InterFootball", "style": "daily" },
+      { "id": "goal_kr", "name": "Goal Korea", "style": "web" }
+    ],
+    "bra": [
+      { "id": "ge_globo", "name": "ge", "style": "daily" },
+      { "id": "lance", "name": "Lance!", "style": "tabloid" }
+    ],
+    "tur": [
+      { "id": "trt_spor", "name": "TRT Spor", "style": "broadcast" },
+      { "id": "fanatik", "name": "Fanatik", "style": "tabloid" }
+    ],
+    "ned": [
+      { "id": "voetbal_international", "name": "Voetbal International", "style": "daily" },
+      { "id": "nos_sport", "name": "NOS Sport", "style": "broadcast" }
+    ],
+    "prt": [
+      { "id": "a_bola", "name": "A Bola", "style": "daily" },
+      { "id": "record_pt", "name": "Record", "style": "tabloid" }
+    ],
+    "bel": [
+      { "id": "hln_sport", "name": "HLN Sport", "style": "daily" },
+      { "id": "sporza", "name": "Sporza", "style": "broadcast" }
+    ],
+    "sco": [
+      { "id": "bbc_scotland", "name": "BBC Sport Scotland", "style": "broadcast" },
+      { "id": "daily_record", "name": "Daily Record", "style": "tabloid" }
+    ],
+    "aut": [
+      { "id": "kronen_sport", "name": "Kronen Zeitung Sport", "style": "daily" },
+      { "id": "orf_sport", "name": "ORF Sport", "style": "broadcast" }
+    ],
+    "sui": [
+      { "id": "blick_sport", "name": "Blick Sport", "style": "daily" },
+      { "id": "srf_sport", "name": "SRF Sport", "style": "broadcast" }
+    ],
+    "den": [
+      { "id": "tipsbladet", "name": "Tipsbladet", "style": "daily" },
+      { "id": "tv2_sport", "name": "TV 2 Sport", "style": "broadcast" }
+    ],
+    "gre": [
+      { "id": "gazzetta_gr", "name": "Gazzetta.gr", "style": "daily" },
+      { "id": "sport24", "name": "Sport24", "style": "web" }
+    ],
+    "vie": [
+      { "id": "bongda_plus", "name": "Bóng Đá Plus", "style": "daily" },
+      { "id": "vtv_sport", "name": "VTV Sport", "style": "broadcast" }
+    ],
+    "idn": [
+      { "id": "bola_com", "name": "Bola.com", "style": "web" },
+      { "id": "indosiar_sport", "name": "Indosiar Sport", "style": "broadcast" }
+    ],
+    "mys": [
+      { "id": "stadium_astro", "name": "Stadium Astro", "style": "broadcast" },
+      { "id": "fox_sports_my", "name": "Harian Metro Sport", "style": "daily" }
+    ],
+    "sgp": [
+      { "id": "today_sport", "name": "TODAY Sport", "style": "daily" },
+      { "id": "cna_sport", "name": "CNA Sport", "style": "broadcast" }
+    ],
+    "sau": [
+      { "id": "arriyadiyah", "name": "Arriyadiyah", "style": "daily" },
+      { "id": "ssc_sport", "name": "SSC Sport", "style": "broadcast" }
+    ]
+  },
+  "talkShows": {
+    "eng": ["TalkSport", "BBC 5 Live"],
+    "esp": ["El Larguero", "Carrusel"],
+    "ger": ["Doppelpass", "Transfermarkt TV"],
+    "fra": ["After Foot", "Canal Foot"],
+    "ita": ["La Domenica Sportiva", "Sky Calcio"],
+    "tha": ["บอลไทยวันนี้", "คุยบอลค่ำ"],
+    "jpn": ["Football Channel", "J League Time"],
+    "kor": ["Kick Off", "Football Tonight"],
+    "bra": ["Seleção SporTV", "Bem, Amigos!"],
+    "tur": ["Futbol Zamanı", "Derin Futbol"],
+    "ned": ["Studio Voetbal", "VI Oranje"],
+    "prt": ["Tempo Extra", "Prolongamento"],
+    "bel": ["Extra Time", "Stadion"],
+    "sco": ["Sportsound", "Scottish Football Extra"],
+    "aut": ["Sport und Talk", "Bundesliga pur"],
+    "sui": ["Sportpanorama", "Matchcenter"],
+    "den": ["Onside", "Fodbold Extra"],
+    "gre": ["Metasport", "Rivaldo Show"],
+    "vie": ["Bóng Đá 24h", "V.League Talk"],
+    "idn": ["Kick Off Indonesia", "Liga 1 Extra"],
+    "mys": ["FourFourTwo Malaysia", "Super League Live"],
+    "sgp": ["Pitchside SG", "SPL Extra"],
+    "sau": ["Al-Riyadiya Talk", "SPL Studio"]
+  }
+}

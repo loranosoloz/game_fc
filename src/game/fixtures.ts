@@ -1,13 +1,15 @@
 import type { Fixture } from './types'
+import { isValidLeagueSize } from '@/data/world/leagueSize'
 
-/** Round-robin home & away for 20 clubs → 38 matchdays, 10 games each. */
+/** Round-robin home & away — วันที่มาจากปฏิทิน (มีช่องพัก) ไม่ใช่ทุก 7 วันติด */
 export function generateSeasonFixtures(
   clubIds: string[],
   seasonStart = '2026-08-15',
   division: 1 | 2 = 1,
+  dateByMatchday?: Record<number, string>,
 ): Fixture[] {
-  if (clubIds.length !== 20) {
-    throw new Error('ลีกต้องมี 20 สโมสร')
+  if (!isValidLeagueSize(clubIds.length)) {
+    throw new Error(`ลีกต้องมีจำนวนสโมสรคู่ (>=4) ได้ ${clubIds.length}`)
   }
 
   const n = clubIds.length
@@ -24,9 +26,12 @@ export function generateSeasonFixtures(
     return d.toISOString().slice(0, 10)
   }
 
+  const dateFor = (matchday: number) =>
+    dateByMatchday?.[matchday] ?? addDays(seasonStart, (matchday - 1) * 7)
+
   for (let round = 0; round < rounds; round++) {
     const matchday = round + 1
-    const date = addDays(seasonStart, round * 7)
+    const date = dateFor(matchday)
     for (let i = 0; i < half; i++) {
       const home = rotation[i]
       const away = rotation[n - 1 - i]
@@ -39,6 +44,7 @@ export function generateSeasonFixtures(
         played: false,
         competition: 'league',
         division,
+        slot: 'weekend',
       })
     }
     const fixed = rotation[0]
@@ -49,15 +55,17 @@ export function generateSeasonFixtures(
 
   const firstHalf = fixtures.slice()
   for (const fx of firstHalf) {
+    const matchday = fx.matchday + rounds
     fixtures.push({
       id: `${prefix}-${id++}`,
-      matchday: fx.matchday + rounds,
-      date: addDays(seasonStart, (fx.matchday + rounds - 1) * 7),
+      matchday,
+      date: dateFor(matchday),
       homeClubId: fx.awayClubId,
       awayClubId: fx.homeClubId,
       played: false,
       competition: 'league',
       division,
+      slot: 'weekend',
     })
   }
 

@@ -16,6 +16,15 @@ import type {
 } from './types'
 import { recomputeDynamics } from './dynamics'
 import { ensureClubFinance } from './playerEconomy'
+import { applyTransferDesireResponse, isTransferDesireKind } from './wantAway'
+import {
+  communicationTier,
+  commTierLabelTh,
+  managerLanguages,
+  playerLanguages,
+  talkCommMultiplier,
+} from './languages'
+import { bumpPlayerRapport, markReleaseClauseKnown, bumpAgentRapport } from './releaseClauseIntel'
 
 export const TALK_KINDS: TalkKindMeta[] = (talkDb.kinds ?? []) as TalkKindMeta[]
 export const TALK_DIALOGS: TalkDialogDef[] = talkDb.dialogs as TalkDialogDef[]
@@ -154,6 +163,13 @@ function applyEffectsToPlayer(p: Player, e: TalkEffectBundle): Player {
   return next
 }
 
+function scaleTalkDelta(n: number | undefined, mult: number): number | undefined {
+  if (n == null || n === 0) return n
+  const scaled = Math.round(n * mult)
+  if (scaled === 0) return n < 0 ? -1 : 1
+  return scaled
+}
+
 function applyTalkEffects(
   save: GameSave,
   playerId: string,
@@ -162,7 +178,14 @@ function applyTalkEffects(
   note: string,
 ): { save: GameSave; players: Player[]; promises: TalkPromise[] } {
   const talks = ensureTalks(save)
-  let players = patchPlayer(save.players, playerId, (p) => applyEffectsToPlayer(p, effects))
+  const player = save.players.find((p) => p.id === playerId)
+  const mult = player ? talkCommMultiplier(save, player) : 1
+  const scaled: TalkEffectBundle = {
+    ...effects,
+    morale: scaleTalkDelta(effects.morale, mult),
+    happiness: scaleTalkDelta(effects.happiness, mult),
+  }
+  let players = patchPlayer(save.players, playerId, (p) => applyEffectsToPlayer(p, scaled))
   let promises = [...talks.promises]
   let clubs = save.clubs
   let finance = ensureClubFinance(save)
@@ -595,6 +618,15 @@ export function managerTalk(
       break
   }
 
+  const mult = talkCommMultiplier(save, player)
+  const { tier } = communicationTier(managerLanguages(save.managerProfile), playerLanguages(player, save))
+  morale = scaleTalkDelta(morale, mult) ?? 0
+  happiness = scaleTalkDelta(happiness, mult) ?? 0
+  if (tier === 'poor') outcome += ` · (${commTierLabelTh(tier)})`
+  else if (tier === 'native' && Math.abs(morale) + Math.abs(happiness) > 0) {
+    outcome += ' · สื่อสารคล่อง'
+  }
+
   const players = patchPlayer(save.players, playerId, (p) => ({
     ...p,
     morale: clamp(p.morale + morale, 1, 20),
@@ -617,6 +649,7 @@ export function managerTalk(
 
   let next: GameSave = { ...save, players, talks: nextTalks }
   next = { ...next, dynamics: recomputeDynamics(next) }
+  next = bumpPlayerRapport(next, playerId, 7)
   return { ok: true, save: next, message: outcome }
 }
 
@@ -670,8 +703,34 @@ export function respondToPlayerRequest(
     talks: nextTalks,
     players: applied.players,
   }
+  if (isTransferDesireKind(req.kind)) {
+    next = applyTransferDesireResponse(
+      next,
+      req.playerId,
+      req.kind,
+      response,
+      req.labelTh || dialog.labelTh,
+    )
+  }
   if (clubId === save.humanClubId) {
     next = { ...next, dynamics: recomputeDynamics(next) }
+  }
+  // สนิทนักเตะขึ้น · คุยเรื่องค่าฉีกแล้วเปิดเผยได้
+  const kind = String(req.kind)
+  const rapportGain =
+    response === 'agree' || response === 'promise' ? 10 : response === 'listen_only' ? 5 : 2
+  next = bumpPlayerRapport(next, req.playerId, rapportGain)
+  if (
+    kind.includes('release_clause') ||
+    kind.includes('contract') ||
+    kind.includes('wage')
+  ) {
+    if (response === 'agree' || response === 'promise') {
+      next = markReleaseClauseKnown(next, req.playerId)
+      next = bumpAgentRapport(next, req.playerId, 8)
+    } else {
+      next = bumpAgentRapport(next, req.playerId, 3)
+    }
   }
   return { ok: true, save: next, message: outcome }
 }
@@ -701,7 +760,7 @@ function promiseKept(
       return (p.happiness ?? 10) >= 11
     case 'transfer_list':
     case 'loan':
-      return (p.happiness ?? 10) >= 9
+      return Boolean(p.wantAway?.active) || (p.happiness ?? 10) >= 9
     default:
       return (p.happiness ?? 10) >= 10
   }

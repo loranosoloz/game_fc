@@ -1,0 +1,2233 @@
+{
+  "source": "fmtransferupdate.com + FMInside (personal display)",
+  "sourceUrl": "https://fmtransferupdate.com/",
+  "note": "Not for redistribution or commercial sale. Super League Greece / gre pack.",
+  "clubs": {
+    "oly": [
+      {
+        "name": "Kostantis Tzolakis",
+        "role": "GK",
+        "age": 23,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Balša Popović",
+        "role": "GK",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Dimitris Stournaras",
+        "role": "GK",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Pablo Maffeo",
+        "role": "RB",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "David Carmo",
+        "role": "CB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Panagiotis Retsos",
+        "role": "CB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Lorenzo Pirola",
+        "role": "CB",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Rodinei",
+        "role": "CB",
+        "age": 34,
+        "ovr": 82,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Bruno Onyemaechi",
+        "role": "CB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Francisco Ortega",
+        "role": "CB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Rúben Vezo",
+        "role": "CB",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Chiquinho",
+        "role": "CM",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Santiago Hezze",
+        "role": "CM",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Christos Mouzakitis",
+        "role": "CM",
+        "age": 19,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Lorenzo Scipioni",
+        "role": "CM",
+        "age": 21,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Dani García",
+        "role": "CM",
+        "age": 36,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Fanis Bakoulas",
+        "role": "CM",
+        "age": 21,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Argyris Liatsikouras",
+        "role": "CM",
+        "age": 19,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Konstantin Plish",
+        "role": "CM",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ayoub El Kaabi",
+        "role": "ST",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kostas Fortounis",
+        "role": "ST",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mehdi Taremi",
+        "role": "ST",
+        "age": 34,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jota Silva",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Gelson Martins",
+        "role": "ST",
+        "age": 31,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Clayton",
+        "role": "ST",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Roman Yaremchuk",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "André Luiz",
+        "role": "ST",
+        "age": 24,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "pao": [
+      {
+        "name": "Jiří Pavlenka",
+        "role": "GK",
+        "age": 34,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Antonis Tsiftsis",
+        "role": "GK",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Luka Gugeshashvili",
+        "role": "GK",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Aritz Elustondo",
+        "role": "CB",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Baba Rahman",
+        "role": "LB",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Jonjoe Kenny",
+        "role": "RB",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Greg Taylor",
+        "role": "LB",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Giannis Michailidis",
+        "role": "CB",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Pantelis Hatzidiakos",
+        "role": "CB",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Jonathan Gómez",
+        "role": "LB",
+        "age": 22,
+        "ovr": 81,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Lefteris Lyratzis",
+        "role": "CB",
+        "age": 26,
+        "ovr": 81,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Christos Zafeiris",
+        "role": "CM",
+        "age": 23,
+        "ovr": 81,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Baptiste Santamaria",
+        "role": "CM",
+        "age": 31,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Soualiho Meïté",
+        "role": "CM",
+        "age": 32,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Mady Camara",
+        "role": "CM",
+        "age": 29,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Nasos Leonidopoulos",
+        "role": "CM",
+        "age": 30,
+        "ovr": 79,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Pedro Biasotto",
+        "role": "CM",
+        "age": 20,
+        "ovr": 79,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Abasiekeme Ikobong",
+        "role": "CM",
+        "age": 19,
+        "ovr": 79,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Giannis Sarris",
+        "role": "CM",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Giannis Konstantelias",
+        "role": "ST",
+        "age": 23,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Andrija Živković",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Taison",
+        "role": "ST",
+        "age": 38,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kiril Despodov",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Taha Ali",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Fedor Chalov",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Dimitris Pelkas",
+        "role": "ST",
+        "age": 32,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Alexander Jeremejeff",
+        "role": "ST",
+        "age": 32,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "pan": [
+      {
+        "name": "Iñaki Peña",
+        "role": "GK",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lucas Chaves",
+        "role": "GK",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kostas Kotsaris",
+        "role": "GK",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Stefan de Vrij",
+        "role": "CB",
+        "age": 34,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Davide Calabria",
+        "role": "RB",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Giorgos Kyriakopoulos",
+        "role": "CM",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Erik Palmer-Brown",
+        "role": "CB",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Victor Kristiansen",
+        "role": "CB",
+        "age": 23,
+        "ovr": 82,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Sverrir Ingi Ingason",
+        "role": "CB",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Triantafyllos Tsapras",
+        "role": "CB",
+        "age": 24,
+        "ovr": 81,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Tin Jedvaj",
+        "role": "CB",
+        "age": 30,
+        "ovr": 81,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Pedro Chirivella",
+        "role": "CM",
+        "age": 29,
+        "ovr": 81,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Moussa Sissoko",
+        "role": "RW",
+        "age": 36,
+        "ovr": 80,
+        "fmPos": "DM, AM RC"
+      },
+      {
+        "name": "Manolis Siopis",
+        "role": "CM",
+        "age": 32,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Adam Gnezda Čerin",
+        "role": "CM",
+        "age": 27,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Étienne Camara",
+        "role": "CM",
+        "age": 23,
+        "ovr": 79,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Tonny Vilhena",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 79,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Sotiris Kontouris",
+        "role": "CM",
+        "age": 21,
+        "ovr": 79,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Rushit Zeka",
+        "role": "CM",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Facundo Pellistri",
+        "role": "ST",
+        "age": 24,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Andrews Tetteh",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Cyriel Dessers",
+        "role": "ST",
+        "age": 31,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tasos Bakasetas",
+        "role": "ST",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Anass Zaroury",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Vicente Taborda",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Adriano Jagušić",
+        "role": "ST",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Elmin Rastoder",
+        "role": "ST",
+        "age": 24,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "aek": [
+      {
+        "name": "Thomas Strakosha",
+        "role": "GK",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Alberto Brignoli",
+        "role": "GK",
+        "age": 34,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Angelos Angelopoulos",
+        "role": "GK",
+        "age": 23,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Harold Moukoudi",
+        "role": "CB",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Lazaros Rota",
+        "role": "RB",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Filipe Relvas",
+        "role": "CB",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Domagoj Vida",
+        "role": "CB",
+        "age": 37,
+        "ovr": 81,
+        "fmPos": "D C"
+      },
+      {
+        "name": "James Penrice",
+        "role": "LB",
+        "age": 27,
+        "ovr": 81,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Stavros Pilios",
+        "role": "CM",
+        "age": 25,
+        "ovr": 81,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Martin Georgiev",
+        "role": "CB",
+        "age": 20,
+        "ovr": 80,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Christos Alexiou",
+        "role": "CB",
+        "age": 21,
+        "ovr": 80,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kaan Kairinen",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 80,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Răzvan Marin",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 79,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Petros Mantalos",
+        "role": "LW",
+        "age": 34,
+        "ovr": 79,
+        "fmPos": "DM, AM LC"
+      },
+      {
+        "name": "Robert Ljubičić",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 79,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Hakim Sahabo",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Hamed Fofana",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Christoforos Kolimatsis",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Isaac Ayuba",
+        "role": "CM",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Luka Jović",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Oleksandr Zubkov",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Niclas Eliasson",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Barnabás Varga",
+        "role": "ST",
+        "age": 31,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Aboubakary Koita",
+        "role": "ST",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Paolo Fernandes",
+        "role": "ST",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Dereck Kutesa",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mijat Gaćinović",
+        "role": "ST",
+        "age": 31,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      }
+    ],
+    "ari": [
+      {
+        "name": "Sokratis Dioudis",
+        "role": "GK",
+        "age": 33,
+        "ovr": 77,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lovro Majkić",
+        "role": "GK",
+        "age": 26,
+        "ovr": 77,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Emiliano Karaj",
+        "role": "GK",
+        "age": 20,
+        "ovr": 77,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Martin Hongla",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 76,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Fabiano",
+        "role": "CB",
+        "age": 34,
+        "ovr": 76,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Noah Fadiga",
+        "role": "RW",
+        "age": 26,
+        "ovr": 76,
+        "fmPos": "D/WB/AM R"
+      },
+      {
+        "name": "Marko Kerkez",
+        "role": "CB",
+        "age": 26,
+        "ovr": 75,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Uroš Račić",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 75,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kostas Galanopoulos",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 75,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Michalis Voriazidis",
+        "role": "CAM",
+        "age": 21,
+        "ovr": 74,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Christian Kouamé",
+        "role": "ST",
+        "age": 28,
+        "ovr": 74,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Fredrik Jensen",
+        "role": "RW",
+        "age": 28,
+        "ovr": 74,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Othmane Boussaid",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 73,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Loren Morón",
+        "role": "ST",
+        "age": 32,
+        "ovr": 73,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Benjamín Garré",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 73,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Tino Kadewere",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "AM RC, F C"
+      },
+      {
+        "name": "Migouel Alfarela",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "AM LC, F C"
+      },
+      {
+        "name": "Giannis Gianniotas",
+        "role": "RW",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "AM R"
+      }
+    ],
+    "ofi": [
+      {
+        "name": "Nikos Christogeorgos",
+        "role": "GK",
+        "age": 26,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Klidman Lilo",
+        "role": "GK",
+        "age": 23,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Panagiotis Katsikas",
+        "role": "GK",
+        "age": 27,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nikos Athanasiou",
+        "role": "LB",
+        "age": 25,
+        "ovr": 69,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Krešimir Krizmanić",
+        "role": "CB",
+        "age": 26,
+        "ovr": 69,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Borja González",
+        "role": "RB",
+        "age": 30,
+        "ovr": 69,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Thanasis Androutsos",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 68,
+        "fmPos": "D/WB R, DM"
+      },
+      {
+        "name": "Kostas Kostoulas",
+        "role": "CB",
+        "age": 21,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Christos Sielis",
+        "role": "CB",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Nikos Marinakis",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 67,
+        "fmPos": "D RC, DM"
+      },
+      {
+        "name": "Achilleas Poungouras",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 67,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Andreas Bouchalakis",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Giannis Apostolakis",
+        "role": "RW",
+        "age": 21,
+        "ovr": 66,
+        "fmPos": "DM, AM RC"
+      },
+      {
+        "name": "Zisis Karachalios",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ilija Vukotić",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Giorgos Kanellopoulos",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 65,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Thiago Nuss",
+        "role": "ST",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Giannis Theodosoulakis",
+        "role": "ST",
+        "age": 21,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Taxiarchis Fountas",
+        "role": "ST",
+        "age": 30,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Marko Rakonjac",
+        "role": "ST",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Aaron Leya Iseka",
+        "role": "ST",
+        "age": 28,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Thiago Romano",
+        "role": "ST",
+        "age": 20,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Manos Faitakis",
+        "role": "RW",
+        "age": 20,
+        "ovr": 60,
+        "fmPos": "AM RC"
+      }
+    ],
+    "atr": [
+      {
+        "name": "Lefteris Choutesiotis",
+        "role": "GK",
+        "age": 31,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Vasilis Athanasiou",
+        "role": "GK",
+        "age": 26,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Hörður Magnússon",
+        "role": "CB",
+        "age": 33,
+        "ovr": 69,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Simos Mitoglou",
+        "role": "CB",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Dimitris Stavropoulos",
+        "role": "CB",
+        "age": 29,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Jere Uronen",
+        "role": "LB",
+        "age": 32,
+        "ovr": 68,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Giorgos Tzovaras",
+        "role": "LW",
+        "age": 26,
+        "ovr": 67,
+        "fmPos": "D/WB/AM L"
+      },
+      {
+        "name": "Dimitris Tsakmakis",
+        "role": "CB",
+        "age": 26,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Matthaios Mountes",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 67,
+        "fmPos": "D/WB R, DM"
+      },
+      {
+        "name": "Giorgos Papadopoulos",
+        "role": "LB",
+        "age": 23,
+        "ovr": 66,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Samuel Moutoussamy",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Charis Tsingaras",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Thanasis Karamanis",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 65,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Steven Zuber",
+        "role": "ST",
+        "age": 34,
+        "ovr": 65,
+        "fmPos": "AM LC, F C"
+      },
+      {
+        "name": "Sotiris Tsiloulis",
+        "role": "ST",
+        "age": 31,
+        "ovr": 65,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Stavros Pnevmonidis",
+        "role": "CAM",
+        "age": 19,
+        "ovr": 64,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Panagiotis Tsantilas",
+        "role": "ST",
+        "age": 22,
+        "ovr": 64,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Spyros Abartzidis",
+        "role": "CAM",
+        "age": 21,
+        "ovr": 64,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Kostas Batos",
+        "role": "CAM",
+        "age": 20,
+        "ovr": 61,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Elton Hoxha",
+        "role": "ST",
+        "age": 20,
+        "ovr": 61,
+        "fmPos": "AM LC, F C"
+      }
+    ],
+    "ast": [
+      {
+        "name": "Nikos Papadopoulos",
+        "role": "GK",
+        "age": 36,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Giannis Nikopolidis",
+        "role": "GK",
+        "age": 25,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Spyros Angelidis",
+        "role": "GK",
+        "age": 21,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Dimitris Kourbelis",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 68,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Nikola Šipčić",
+        "role": "CB",
+        "age": 31,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Issiaga Sylla",
+        "role": "LB",
+        "age": 32,
+        "ovr": 68,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Giannis Kotsiras",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 67,
+        "fmPos": "D/WB R, DM, M RC"
+      },
+      {
+        "name": "Robert Ivanov",
+        "role": "CB",
+        "age": 31,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Jordan Silva",
+        "role": "CB",
+        "age": 31,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Panagiotis Deligiannidis",
+        "role": "RB",
+        "age": 29,
+        "ovr": 66,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Álex Méndez",
+        "role": "LB",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Julián Chicco",
+        "role": "CM",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Evgeniy Yablonskiy",
+        "role": "CM",
+        "age": 31,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Giannis Bouzoukis",
+        "role": "CM",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Christos Almyras",
+        "role": "CM",
+        "age": 21,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Denis Kala",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Franco Orozco",
+        "role": "ST",
+        "age": 24,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Julián Bartolo",
+        "role": "ST",
+        "age": 30,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ricardinho",
+        "role": "ST",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nikos Kaltsas",
+        "role": "ST",
+        "age": 36,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Adrián Riera",
+        "role": "ST",
+        "age": 30,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Federico Macheda",
+        "role": "ST",
+        "age": 34,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bruno Pérez",
+        "role": "ST",
+        "age": 24,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Alberto Simoni",
+        "role": "ST",
+        "age": 29,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      }
+    ],
+    "lvd": [
+      {
+        "name": "Lucas",
+        "role": "GK",
+        "age": 29,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Stelios Vallindras",
+        "role": "GK",
+        "age": 21,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Marios Vichos",
+        "role": "LB",
+        "age": 26,
+        "ovr": 67,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Panagiotis Liagas",
+        "role": "CB",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Alexandru Pantea",
+        "role": "RB",
+        "age": 22,
+        "ovr": 66,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Giorgos Kornezos",
+        "role": "CB",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Giorgos Manthatis",
+        "role": "RW",
+        "age": 29,
+        "ovr": 65,
+        "fmPos": "D/WB/AM R"
+      },
+      {
+        "name": "Giannis Tsivelekidis",
+        "role": "CB",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Taxiarchis Filon",
+        "role": "CB",
+        "age": 21,
+        "ovr": 65,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Giannis Kosti",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Giorgos Nikas",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Lamarana Jallow",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 64,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Agustín Urzi",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 63,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Ognjen Ožegović",
+        "role": "ST",
+        "age": 32,
+        "ovr": 63,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Dimitris Emmanouilidis",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Panagiotis Symelidis",
+        "role": "ST",
+        "age": 33,
+        "ovr": 62,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Kostas Goumas",
+        "role": "LW",
+        "age": 21,
+        "ovr": 62,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Giorgos Vrakas",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Christos Papadopoulos",
+        "role": "CAM",
+        "age": 21,
+        "ovr": 59,
+        "fmPos": "AM C"
+      }
+    ],
+    "vlo": [
+      {
+        "name": "Marios Siabanis",
+        "role": "GK",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Alexei Koșelev",
+        "role": "GK",
+        "age": 32,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nikos Grammatikakis",
+        "role": "GK",
+        "age": 23,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Hamza Mendyl",
+        "role": "LB",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Hatim Es-Saouabi",
+        "role": "CB",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Giorgos Mygas",
+        "role": "CM",
+        "age": 32,
+        "ovr": 65,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Giannis Kargas",
+        "role": "CB",
+        "age": 31,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Derek Agyakwa",
+        "role": "CB",
+        "age": 24,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Lefteris Tasiouras",
+        "role": "RB",
+        "age": 22,
+        "ovr": 64,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Stefanos Katsikas",
+        "role": "CM",
+        "age": 24,
+        "ovr": 63,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Kostas Lykourinos",
+        "role": "LB",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Maximiliano Comba",
+        "role": "RW",
+        "age": 32,
+        "ovr": 63,
+        "fmPos": "DM, AM RC"
+      },
+      {
+        "name": "Tasos Tsokanis",
+        "role": "CDM",
+        "age": 35,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Klearchos Vainopoulos",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Gustavo Santos",
+        "role": "ST",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Lazaros Lamprou",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 61,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Matías González",
+        "role": "RW",
+        "age": 24,
+        "ovr": 61,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Jan Hurtado",
+        "role": "ST",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Joca",
+        "role": "ST",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Nabil Makni",
+        "role": "ST",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "AM L, ST"
+      }
+    ],
+    "ptk": [
+      {
+        "name": "Yevhenii Kucherenko",
+        "role": "GK",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Vasilis Xenopoulos",
+        "role": "GK",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Michalis Pardalos",
+        "role": "GK",
+        "age": 25,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Charis Mavrias",
+        "role": "RW",
+        "age": 32,
+        "ovr": 65,
+        "fmPos": "D/WB/AM R"
+      },
+      {
+        "name": "Nikola Stajić",
+        "role": "CB",
+        "age": 24,
+        "ovr": 65,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Christian Manrique",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "D/WB L, DM"
+      },
+      {
+        "name": "Elias Olsson",
+        "role": "CB",
+        "age": 23,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Apostolos Apostolopoulos",
+        "role": "LB",
+        "age": 23,
+        "ovr": 64,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Gustav Granath",
+        "role": "CB",
+        "age": 29,
+        "ovr": 64,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Thanos Prodromitis",
+        "role": "CB",
+        "age": 22,
+        "ovr": 63,
+        "fmPos": "D C"
+      },
+      {
+        "name": "David Galiatsos",
+        "role": "RB",
+        "age": 20,
+        "ovr": 63,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Lazar Kojić",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Amine Bassi",
+        "role": "RW",
+        "age": 28,
+        "ovr": 62,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Kwadwo Opoku",
+        "role": "ST",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Lenny Lobato",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Diego Esteban",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Kosta Aleksić",
+        "role": "ST",
+        "age": 28,
+        "ovr": 61,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Giannis Satsias",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 61,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Labros Smyrlis",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Adriano Bregu",
+        "role": "CAM",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "AM C"
+      }
+    ],
+    "psr": [
+      {
+        "name": "Francisco Tinaglini",
+        "role": "GK",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Stefanos Souloukos",
+        "role": "GK",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Viktor Sakalidis",
+        "role": "GK",
+        "age": 23,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Vernon de Marco",
+        "role": "CB",
+        "age": 33,
+        "ovr": 64,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Maximiliano Moreira",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 64,
+        "fmPos": "D/WB L, DM, M L"
+      },
+      {
+        "name": "Nontas Pantelakis",
+        "role": "CB",
+        "age": 31,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Yoël Armougom",
+        "role": "CM",
+        "age": 28,
+        "ovr": 63,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Iva Gelashvili",
+        "role": "CB",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Marios Tsaousis",
+        "role": "CM",
+        "age": 26,
+        "ovr": 63,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Charis Iliadis",
+        "role": "CB",
+        "age": 29,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Stathis Tachatos",
+        "role": "RB",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Ethan Brooks",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Giannis Doiranlis",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Samir Ben Sallam",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Angelos Oikonomou",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Viktor Rumyantsev",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 60,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Alex Teixeira",
+        "role": "ST",
+        "age": 36,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Giannis Pasas",
+        "role": "ST",
+        "age": 35,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ilias Tselios",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 57,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Kostas Kotsopoulos",
+        "role": "ST",
+        "age": 29,
+        "ovr": 57,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Thodoris Vernardos",
+        "role": "ST",
+        "age": 28,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jean-Baptiste Léo",
+        "role": "ST",
+        "age": 30,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Alexandros Maskanakis",
+        "role": "ST",
+        "age": 21,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Darnell Bile",
+        "role": "ST",
+        "age": 20,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      }
+    ],
+    "ael": [
+      {
+        "name": "Nikos Melissas",
+        "role": "GK",
+        "age": 33,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Thodoros Venetikidis",
+        "role": "GK",
+        "age": 25,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Dylan Batubinsika",
+        "role": "CB",
+        "age": 30,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Yvann Maçon",
+        "role": "CM",
+        "age": 27,
+        "ovr": 67,
+        "fmPos": "D/WB RL, M R"
+      },
+      {
+        "name": "Erick Ferigra",
+        "role": "CB",
+        "age": 27,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ahmed Kossonou",
+        "role": "LW",
+        "age": 22,
+        "ovr": 67,
+        "fmPos": "D/WB/AM L"
+      },
+      {
+        "name": "Thanasis Papageorgiou",
+        "role": "CDM",
+        "age": 39,
+        "ovr": 66,
+        "fmPos": "D RC, DM"
+      },
+      {
+        "name": "Kostas Grozos",
+        "role": "LB",
+        "age": 19,
+        "ovr": 66,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Jani Atanasov",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Paschalis Staikos",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 65,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Luca Andrada",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Pione Sisto",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 65,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Angelo Sagal",
+        "role": "ST",
+        "age": 33,
+        "ovr": 64,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Julien Ngoy",
+        "role": "ST",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Thierry Moutinho",
+        "role": "CAM",
+        "age": 35,
+        "ovr": 64,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "King Faisal Owusu",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 63,
+        "fmPos": "AM RL"
+      }
+    ],
+    "kif": [
+      {
+        "name": "Moisés Ramírez",
+        "role": "GK",
+        "age": 25,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Alexandros Anagnostopoulos",
+        "role": "GK",
+        "age": 31,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Tiago Manso",
+        "role": "CM",
+        "age": 26,
+        "ovr": 67,
+        "fmPos": "D/WB RL, M R"
+      },
+      {
+        "name": "Aleks Petkov",
+        "role": "CB",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Jon De Luis",
+        "role": "CB",
+        "age": 22,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Konstantinos Apostolakis",
+        "role": "RB",
+        "age": 27,
+        "ovr": 66,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Kostas Polykratis",
+        "role": "CM",
+        "age": 20,
+        "ovr": 65,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Nektarios Kaloskamis",
+        "role": "CB",
+        "age": 19,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Thodoris Faitakis",
+        "role": "CB",
+        "age": 19,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Fotis Chachoulis",
+        "role": "CB",
+        "age": 22,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Johnson Eboh",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 64,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kostas Roukounakis",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 64,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Pavlos Mavroudis",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Alexandros Pothas",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Jorge Pombo",
+        "role": "LW",
+        "age": 32,
+        "ovr": 63,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Benny",
+        "role": "LW",
+        "age": 28,
+        "ovr": 62,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Jeremy Antonisse",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Jordi Mboula",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 62,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Imam Jagne",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 59,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Gerson Sousa",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 59,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Dimitris Theodoridis",
+        "role": "ST",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Apostolis Christopoulos",
+        "role": "ST",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "ST"
+      }
+    ]
+  }
+}

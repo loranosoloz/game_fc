@@ -10,23 +10,61 @@ import {
   createEuropeCupsPack,
 } from './ucl'
 import { snapshotEuroRanks } from './europeAccess'
+import {
+  createAclState,
+  createAclTwoState,
+  createAseanCupState,
+  createAsiaCupsPack,
+  generateAsiaKnockoutFixtures,
+  snapshotAsiaRanks,
+} from './asiaAccess'
+import {
+  createCwcState,
+  createCwcPack,
+  generateCwcFixtures,
+  snapshotCwcSeeds,
+} from './clubWorldCup'
+import {
+  createSuperCupState,
+  generateSuperCupFixture,
+  snapshotDomesticTitles,
+} from './superCup'
+import { openPreSeasonWindow } from './preSeason'
 import { assignRefereesToFixtures } from './referees'
-import { getLeague, type LeagueId, EXTRA_CUP_NAMES, DIV2_LEAGUE_NAME } from '@/data/world'
+import { getLeague, type LeagueId, EXTRA_CUP_NAMES, DIV2_LEAGUE_NAME, promoRelegCount, isValidLeagueSize } from '@/data/world'
 import { ensureBoard } from './board'
 import { ensureOwner } from './owner'
 import { ensureTakeover } from './takeover'
+import { rollInsolvencyForNewSeason } from './insolvency'
+import { createClubQuests } from './managerProgress'
+import { buildSeasonCalendar } from './seasonCalendar'
 import { createClubFinance } from './playerEconomy'
 import { createYouthState } from './youth'
-import { ensureFans } from './fans'
+import { ensureFans, recordHatredAfterLeave } from './fans'
+import { areRivals } from './rivalries'
 import { autoPickTactics } from './seed'
 import { createTransferDesk } from './transferDesk'
+import { domesticPrizeScale } from './clubIncome'
+import { applyTitleClubReputation } from './reputation'
+import { resetAwardsForNewSeason } from './awards'
 import { tickPromotionClauses } from './transferClauses'
+import { tickFeeInstallments } from './transferPayments'
+import {
+  applyAnnualWageRises,
+  applyEuropeWageBumps,
+  applyPreContractsOnSeasonStart,
+  applyRelegationReleaseClauses,
+} from './transferAdvanced'
+import { processLoanObligationsOnSeasonEnd } from './loans'
 import { createWorldPulse } from './worldPulse'
 import {
   generateLeagueCupFixtures,
   generateTrophyFixtures,
 } from './extraCups'
 import { createCupState, generateCupFixtures } from './cup'
+import { runSummerIntlTournaments } from './intlTournaments'
+import { ensureSquadLanguages } from './languages'
+import { formatMoney } from '@/lib/format'
 
 function uid(prefix: string) {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 5)}`
@@ -50,15 +88,17 @@ function sortedTable(save: GameSave) {
   return sortedRows(save.table)
 }
 
-/** ตกชั้น 3 ทีมท้ายดิวิชัน 1 ↔ เลื่อนชั้น 3 ทีมนำดิวิชัน 2 */
+/** ตกชั้น ↔ เลื่อนชั้น — อังกฤษฯ 3 ทีม · เยอรมัน/ฝรั่งเศส 2 ทีม */
 function applyPromotionRelegation(
   clubs: GameSave['clubs'],
   tableDiv1: GameSave['table'],
   tableDiv2: GameSave['table'],
+  leagueId: string,
 ): { clubs: GameSave['clubs']; notes: string[] } {
+  const slots = promoRelegCount(leagueId)
   const d1 = sortedRows(tableDiv1)
   const d2 = sortedRows(tableDiv2 ?? [])
-  if (d1.length < 3 || d2.length < 3) {
+  if (d1.length < slots || d2.length < slots) {
     return {
       clubs: clubs.map((c) => ({
         ...c,
@@ -67,8 +107,8 @@ function applyPromotionRelegation(
       notes: [],
     }
   }
-  const relegated = new Set(d1.slice(-3).map((r) => r.clubId))
-  const promoted = new Set(d2.slice(0, 3).map((r) => r.clubId))
+  const relegated = new Set(d1.slice(-slots).map((r) => r.clubId))
+  const promoted = new Set(d2.slice(0, slots).map((r) => r.clubId))
   const notes: string[] = []
   const next = clubs.map((c) => {
     if (c.id.startsWith('ucl-')) return { ...c, division: 1 as const }
@@ -96,12 +136,22 @@ function applyPromotionRelegation(
   return { clubs: next, notes }
 }
 
-/** อายุ +1 · รีเซ็ตสถิติฤดูกาล · สัญญาหมดต่ออัตโนมัติ 1 ปี (หรือปลดวัยเก๋าคุณภาพต่ำ) */
-function rollPlayersForNewSeason(players: Player[], newSeason: number): {
+/** อายุ +1 · รีเซ็ตสถิติฤดูกาล · สัญญาหมด: ย้ายฟรีถ้าไม่ยอมต่อ/อยากย้าย · หรือต่ออัตโนมัติ */
+function rollPlayersForNewSeason(
+  players: Player[],
+  newSeason: number,
+  clubs: GameSave['clubs'],
+  save: GameSave,
+): {
   players: Player[]
   notes: string[]
+  fans: GameSave['fans']
+  clubsWithFans: GameSave['clubs']
 } {
   const notes: string[] = []
+  let fansSave: GameSave = ensureFans(save)
+  const aiClubs = clubs.filter((c) => c.controlledBy === 'ai' && !c.id.startsWith('ucl-'))
+
   const next = players.map((p) => {
     let aged: Player = {
       ...p,
@@ -118,10 +168,48 @@ function rollPlayersForNewSeason(players: Player[], newSeason: number): {
     const expired = aged.contractEndSeason > 0 && aged.contractEndSeason < newSeason
     if (!expired) return aged
 
-    // ปลดนักเตะแก่คุณภาพไม่ถึง — ไม่มีคลับ (ว่างงานในตลาด)
     if (aged.age >= 34 && aged.overall < 72) {
       notes.push(`${aged.name} หมดสัญญาและเลิกเล่นอาชีพ`)
       return null
+    }
+
+    const walkFree =
+      aged.refuseContractRenewal ||
+      (aged.wantAway?.active &&
+        ((aged.wantAway.intensity ?? 0) >= 10 || aged.wantAway.publicNews))
+
+    if (walkFree && aiClubs.length && aged.clubId) {
+      const fromId = aged.clubId
+      const rivals = aiClubs.filter(
+        (c) => c.id !== fromId && areRivals(fansSave, fromId, c.id),
+      )
+      const poolBase = aiClubs.filter((c) => c.id !== fromId)
+      const pool = rivals.length && Math.random() < 0.55 ? rivals : poolBase
+      if (pool.length) {
+        const dest = pool.sort((a, b) => b.reputation - a.reputation)[
+          Math.floor(Math.random() * Math.min(5, pool.length))
+        ]!
+        fansSave = recordHatredAfterLeave(fansSave, fromId, aged, dest.id, {
+          freeTransfer: true,
+          wasKey: aged.squadRole === 'key' || aged.overall >= 78,
+        })
+        notes.push(
+          `${aged.name} ย้ายฟรี ${fansSave.clubs.find((c) => c.id === fromId)?.shortName ?? ''}→${dest.shortName}${
+            areRivals(fansSave, fromId, dest.id) ? ' (คู่อริ!)' : ''
+          } — แฟนเกลียด`,
+        )
+        return {
+          ...aged,
+          clubId: dest.id,
+          contractYears: 2,
+          contractEndSeason: newSeason + 2,
+          wage: Math.round(aged.wage * 1.05),
+          refuseContractRenewal: false,
+          wantAway: null,
+          happiness: Math.min(20, (aged.happiness ?? 10) + 3),
+          morale: Math.min(20, aged.morale + 2),
+        }
+      }
     }
 
     aged = {
@@ -137,6 +225,8 @@ function rollPlayersForNewSeason(players: Player[], newSeason: number): {
   return {
     players: next.filter((p): p is Player => p != null),
     notes,
+    fans: fansSave.fans,
+    clubsWithFans: fansSave.clubs,
   }
 }
 
@@ -169,7 +259,12 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
     humanClub?.division === 2 ? sortedRows(save.tableDiv2 ?? []) : tableSorted
   const humanRank = humanTable.findIndex((r) => r.clubId === save.humanClubId) + 1
 
-  const promo = applyPromotionRelegation(domesticClubs, save.table, save.tableDiv2 ?? [])
+  const promo = applyPromotionRelegation(
+    domesticClubs,
+    save.table,
+    save.tableDiv2 ?? [],
+    leagueId,
+  )
   domesticClubs = promo.clubs.filter((c) => !c.id.startsWith('ucl-')) as typeof domesticClubs
   const promotedIds = sortedRows(save.tableDiv2 ?? [])
     .slice(0, 3)
@@ -184,16 +279,33 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
     })
     .filter((p): p is Player => p != null)
 
-  // คืนยืม: ย้ายกลับ fromClub
+  // คืนยืม: ย้ายกลับ fromClub · ซื้อ+ยืมกลับ = เข้าทีมเจ้าของใหม่ถาวร
+  const loanJoinNotes: string[] = []
   for (const loan of save.loans ?? []) {
     if (loan.status !== 'active') continue
-    players = players.map((p) =>
-      p.id === loan.playerId ? { ...p, clubId: loan.fromClubId } : p,
+    const p = players.find((x) => x.id === loan.playerId)
+    players = players.map((pl) =>
+      pl.id === loan.playerId
+        ? { ...pl, clubId: loan.fromClubId, loanParentClubId: null }
+        : pl,
     )
+    if (loan.kind === 'buy_loan_back' && p) {
+      loanJoinNotes.push(
+        `${p.name} เข้าทีมถาวรหลังยืมกลับจนจบฤดูกาล (ซื้อไว้ ${loan.purchaseFee ? formatMoney(loan.purchaseFee) : 'ก่อนหน้า'})`,
+      )
+    }
   }
 
-  const rolled = rollPlayersForNewSeason(players, newSeason)
+  const rolled = rollPlayersForNewSeason(players, newSeason, domesticClubs, save)
   players = rolled.players
+  const rolledFans = rolled.fans
+  const freeExitNotes = rolled.notes.filter((n) => n.includes('ย้ายฟรี'))
+  // merge clubFans จาก free exits เข้า domesticClubs
+  const fanById = new Map(rolled.clubsWithFans.map((c) => [c.id, c.clubFans]))
+  domesticClubs = domesticClubs.map((c) => ({
+    ...c,
+    clubFans: fanById.get(c.id) ?? c.clubFans,
+  }))
 
   const euroAccess = snapshotEuroRanks(save)
   const pack = createEuropeCupsPack(
@@ -201,7 +313,15 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
     domesticClubs.filter((c) => c.division === 1),
     euroAccess,
   )
-  players = [...players, ...pack.players]
+  const asiaAccess = snapshotAsiaRanks(save)
+  const asiaPack = createAsiaCupsPack(
+    leagueId,
+    domesticClubs.filter((c) => c.division === 1),
+    asiaAccess,
+  )
+  const cwcAccess = snapshotCwcSeeds(save)
+  const domesticTitles = snapshotDomesticTitles(save)
+  players = [...players, ...pack.players, ...asiaPack.players]
 
   let clubs = [
     ...domesticClubs.map((c) => ({
@@ -211,25 +331,34 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
       shirtRevenueSeason: 0,
     })),
     ...pack.clubs,
+    ...asiaPack.clubs,
   ]
 
-  if (championId === save.humanClubId) {
-    clubs = clubs.map((c) =>
-      c.id === save.humanClubId
-        ? {
-            ...c,
-            balance: c.balance + 5_000_000,
-            reputation: Math.min(99, c.reputation + 2),
-          }
-        : c,
-    )
+  const cwcPack = createCwcPack(
+    leagueId,
+    domesticClubs.filter((c) => c.division === 1),
+    cwcAccess,
+    clubs,
+  )
+  clubs = [...clubs, ...cwcPack.clubs]
+  players = [...players, ...cwcPack.players]
+
+  if (championId) {
+    clubs = applyTitleClubReputation(clubs, 'league', championId, null)
+    if (championId === save.humanClubId) {
+      const leagueBonus = Math.max(400_000, Math.round(5_000_000 * domesticPrizeScale(leagueId)))
+      clubs = clubs.map((c) =>
+        c.id === save.humanClubId ? { ...c, balance: c.balance + leagueBonus } : c,
+      )
+    }
   }
 
   const tacticsByClub = { ...save.tacticsByClub }
   for (const id of Object.keys(tacticsByClub)) {
-    if (id.startsWith('ucl-')) delete tacticsByClub[id]
+    if (id.startsWith('ucl-') || id.startsWith('uel-') || id.startsWith('uecl-') || id.startsWith('acl-') || id.startsWith('acl_two-') || id.startsWith('asean_cup-') || id.startsWith('cwc-'))
+      delete tacticsByClub[id]
   }
-  Object.assign(tacticsByClub, pack.tactics)
+  Object.assign(tacticsByClub, pack.tactics, asiaPack.tactics, cwcPack.tactics)
 
   for (const club of domesticClubs) {
     const t = tacticsByClub[club.id]
@@ -260,9 +389,16 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
 
   const d1Ids = domesticClubs.filter((c) => c.division === 1).map((c) => c.id)
   const d2Ids = domesticClubs.filter((c) => c.division === 2).map((c) => c.id)
-  const leagueFx = generateSeasonFixtures(d1Ids, startDate, 1)
-  const leagueFx2 =
-    d2Ids.length === 20 ? generateSeasonFixtures(d2Ids, startDate, 2) : []
+  const seasonCalendar = buildSeasonCalendar(newSeason, leagueId, startDate)
+  const leagueFx = generateSeasonFixtures(
+    d1Ids,
+    startDate,
+    1,
+    seasonCalendar.dateByLeagueMd,
+  )
+  const leagueFx2 = isValidLeagueSize(d2Ids.length)
+    ? generateSeasonFixtures(d2Ids, startDate, 2, seasonCalendar.dateByLeagueMd)
+    : []
   const cupFx = generateCupFixtures(domesticClubs, startDate)
   const lc = generateLeagueCupFixtures(
     domesticClubs,
@@ -277,7 +413,19 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
   const uclFx = generateUclFixtures(pack.uclField, startDate, leagueId)
   const uelGen = generateUelFixtures(pack.uelField, startDate, leagueId)
   const ueclGen = generateUeclFixtures(pack.ueclField, startDate, leagueId)
+  const aclFx = generateAsiaKnockoutFixtures('acl', asiaPack.aclField, newSeason, startDate)
+  const aclTwoFx = generateAsiaKnockoutFixtures('acl_two', asiaPack.aclTwoField, newSeason, startDate)
+  const aseanFx = generateAsiaKnockoutFixtures('asean_cup', asiaPack.aseanField, newSeason, startDate)
+  const cwcFx = generateCwcFixtures(cwcPack.field, newSeason, startDate)
+  const superCupFx = generateSuperCupFixture(
+    leagueId,
+    domesticClubs.filter((c) => c.division === 1),
+    domesticTitles,
+    newSeason,
+    startDate,
+  )
   const fixtures = assignRefereesToFixtures([
+    ...(superCupFx ? [superCupFx] : []),
     ...leagueFx,
     ...leagueFx2,
     ...cupFx,
@@ -286,6 +434,10 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
     ...uclFx,
     ...uelGen.fixtures,
     ...ueclGen.fixtures,
+    ...aclFx,
+    ...aclTwoFx,
+    ...aseanFx,
+    ...cwcFx,
   ])
 
   const board = ensureBoard(save)
@@ -297,7 +449,11 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
   }
 
   const youthBase = save.youth ?? createYouthState()
-  const fans = ensureFans(save).fans
+  const fans = {
+    ...rolledFans,
+    protestActive: false,
+    boycottUntilMatchday: -1,
+  }
   const humanAfter = clubs.find((c) => c.id === save.humanClubId)
   const inbox: InboxMessage[] = [
     {
@@ -311,12 +467,38 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
           ? `แข่งใน${DIV2_LEAGUE_NAME[leagueId].nameTh}`
           : 'แข่งดิวิชันบน',
         promo.notes.length ? promo.notes.join(' · ') : 'ไม่มีสลับชั้น',
+        freeExitNotes.length ? freeExitNotes.join(' · ') : null,
+        loanJoinNotes.length ? loanJoinNotes.join(' · ') : null,
         'ออฟซีซัน: อายุ +1 · ตารางใหม่ · ถ้วยครบ',
-      ].join(' · '),
+      ]
+        .filter(Boolean)
+        .join(' · '),
       read: false,
     },
+    ...(freeExitNotes.length
+      ? [
+          {
+            id: uid('msg-free'),
+            date: startDate,
+            title: 'ย้ายฟรี — แฟนเกลียด',
+            body: freeExitNotes.join(' · '),
+            read: false,
+          } satisfies InboxMessage,
+        ]
+      : []),
+    ...(loanJoinNotes.length
+      ? [
+          {
+            id: uid('msg-loanback'),
+            date: startDate,
+            title: 'เข้าทีมถาวรหลังยืมกลับ',
+            body: loanJoinNotes.join(' · '),
+            read: false,
+          } satisfies InboxMessage,
+        ]
+      : []),
     ...save.inbox,
-  ].slice(0, 40)
+  ].slice(0, 45)
 
   const next: GameSave = {
     ...save,
@@ -336,9 +518,20 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
     ucl: createUclState(),
     uel: { ...createUelState(), playinByes: uelGen.byes },
     uecl: { ...createUeclState(), playinByes: ueclGen.byes },
+    acl: createAclState(),
+    aclTwo: createAclTwoState(),
+    aseanCup: createAseanCupState(),
+    cwc: createCwcState(),
+    cwcAccess,
+    superCup: createSuperCupState(leagueId),
+    domesticTitles,
+    preSeason: null as GameSave['preSeason'],
     euroAccess,
+    asiaAccess,
     lastHumanResult: null,
     pressConference: null,
+    playerInterview: null,
+    internationalBreak: null,
     clubFinance: {
       ...createClubFinance(),
       ledger: (save.clubFinance?.ledger ?? []).slice(0, 15),
@@ -391,21 +584,64 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
       protestActive: false,
       boycottUntilMatchday: -1,
     },
-    inbox,
+    inbox: [
+      {
+        id: uid('msg-cal'),
+        date: startDate,
+        title: `ปฏิทินฤดูกาล ${newSeason}`,
+        body: seasonCalendar.summerEvents.length
+          ? `ฤดูร้อน: ${seasonCalendar.summerEvents.map((e) => e.labelTh).join(' · ')} · ลีกมีช่องพัก FIFA/วินเทอร์คั่น · สุ่มตารางใหม่แล้ว`
+          : `อุ่นเครื่องทีมชาติ · ลีกมีช่องพักตามปฏิทิน · สุ่มตารางใหม่แล้ว`,
+        read: false,
+      },
+      ...inbox,
+    ].slice(0, 45),
     loans: [],
     transferDesk: {
       ...createTransferDesk(),
       clauses: (save.transferDesk?.clauses ?? []).filter((c) => c.status === 'active'),
+      feeInstallments: (save.transferDesk?.feeInstallments ?? []).filter(
+        (i) => i.status === 'pending' || i.status === 'overdue',
+      ),
     },
     worldPulse: createWorldPulse(leagueId),
+    seasonCalendar,
+    clubQuests: humanAfter
+      ? createClubQuests(
+          humanAfter,
+          newSeason,
+          (humanAfter.division === 2 ? 'balanced' : board.preferredStyle) as typeof board.preferredStyle,
+        )
+      : [],
+    lastMatchdayReport: null,
+    matchdayChronicle: [],
+    lastIntlTournamentReports: [],
+    ntCamp: null,
+    // คัดเลือกบอลโลกข้ามฤดูกาล — ไม่รีเซ็ต
+    worldCup: save.worldCup ?? null,
+    awards: resetAwardsForNewSeason(save),
+    insolvency: rollInsolvencyForNewSeason(save),
   }
 
-  const withPromo = tickPromotionClauses(next, promotedIds)
+  const summer = runSummerIntlTournaments(next)
+  let advanced = applyPreContractsOnSeasonStart(summer.save, newSeason)
+  advanced = applyAnnualWageRises(advanced)
+  const europeIds = sortedRows(save.table)
+    .slice(0, 4)
+    .map((r) => r.clubId)
+  advanced = applyEuropeWageBumps(advanced, europeIds)
+  const relegatedIds = sortedRows(save.table).slice(-promoRelegCount(leagueId)).map((r) => r.clubId)
+  advanced = applyRelegationReleaseClauses(advanced, relegatedIds)
+  advanced = processLoanObligationsOnSeasonEnd(advanced, relegatedIds)
+  const withFees = tickFeeInstallments(advanced)
+  const withPromo = tickPromotionClauses(ensureSquadLanguages(withFees), promotedIds)
+  // ท้ายสุดทุกปี — เปิดปรีซีซั่นใหม่ + เลื่อนวันที่ไปต้นหน้าต่างทัวร์ (ไม่ทับ Shield/ลีก)
+  const ready = openPreSeasonWindow(ensureFans(withPromo), startDate)
 
   return {
     ok: true,
-    save: withPromo,
-    message: `เริ่มฤดูกาล ${newSeason} · ปีที่แล้วอันดับ #${humanRank}${
+    save: ready,
+    message: `เริ่มฤดูกาล ${newSeason} · ปรีซีซั่นเปิดแล้ว · ปีที่แล้วอันดับ #${humanRank}${
       promo.notes.length ? ` · ${promo.notes.join(', ')}` : ''
     }`,
   }

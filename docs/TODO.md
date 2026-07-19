@@ -13,7 +13,16 @@
 | พรีแมตช์ hub (briefing · XI · ทีมทอล์ค) | ✅ | ✅ on master |
 | Player Depth Pack (clauses · agent · lifestyle) | ✅ | ✅ on master |
 | ถ้วยยุโรปโควตาตามอันดับ (UCL/UEL/UECL) | ✅ | ✅ on master |
-| DB / Data Hub | ⏸ | ข้าม — ผู้ใช้กำลังรวบรวมข้อมูล |
+| เงินรางวัลถ้วย + FFP (ขาดทุน·ค่าเหนื่อย·ซื้อสุทธิ) | ✅ | รอ commit |
+| Live world DB (เซฟอาชีพ) | ✅ | `/database` แท็บ Live · `GameSave.players` + `playerMoveLog` ใน IndexedDB |
+| Pack catalog browser | ✅ | `/database` แท็บ Pack · แม่แบบ JSON |
+| Pack editor ในเกม (เขียนไฟล์) | ⏸ | ยังแก้ผ่าน JSON/สคริปต์ · ดู [DATA_IMPORT.md](./DATA_IMPORT.md#นักเตะกับ-db-ตอนนี้ทำยังไง) |
+| Data Hub (วิเคราะห์แมตช์) | ✅ | หน้า `/data` — ไม่ใช่ DB นักเตะ |
+| ทัวร์นาเมนต์ชาติฤดูร้อน (sim) | ✅ | รอ commit |
+| นัดกลางสัปดาห์ถ้วย/ยุโรป | ✅ | รอ commit |
+| ภาษาโค้ช↔นักเตะ | ✅ | รอ commit |
+| สรุปแมตช์เดย์ + แคมป์ชาติเบา | ✅ | รอ commit |
+| Layered Match Engine + ฟอเมชั่น 3-5-2/3-4-3/5-3-2 | ✅ | รอ commit |
 
 Data packs: `src/data/` + `src/data/world/` · Save **v6**
 
@@ -22,4 +31,4 @@ Data packs: `src/data/` + `src/data/world/` · Save **v6**
 ## Git
 
 - สาขา: `master`
-- ออปชันระบบหลักทำครบแล้ว (ยกเว้น DB ที่ข้ามชั่วคราว)
+- ออปชันระบบหลักทำครบแล้ว (Live DB นักเตะในเซฟพร้อม · pack editor ในเกมยัง⏸)

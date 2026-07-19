@@ -10,6 +10,7 @@ import { MedicalPage } from '@/pages/MedicalPage'
 import { YouthPage } from '@/pages/YouthPage'
 import { StaffPage } from '@/pages/StaffPage'
 import { DataHubPage } from '@/pages/DataHubPage'
+import { PlayerDatabasePage } from '@/pages/PlayerDatabasePage'
 import { DevelopmentPage } from '@/pages/DevelopmentPage'
 import { CompetitionsPage } from '@/pages/CompetitionsPage'
 import { MatchPage } from '@/pages/MatchPage'
@@ -19,9 +20,11 @@ import { ScoutingPage } from '@/pages/ScoutingPage'
 import { TransfersPage } from '@/pages/TransfersPage'
 import { FinancePage } from '@/pages/FinancePage'
 import { MediaPage } from '@/pages/MediaPage'
+import { AwardsPage } from '@/pages/AwardsPage'
 import { MeetingsPage } from '@/pages/MeetingsPage'
 import { ClubVisionPage } from '@/pages/ClubVisionPage'
 import { SavePage } from '@/pages/SavePage'
+import { PreSeasonPage } from '@/pages/PreSeasonPage'
 import { useGameStore } from '@/store/gameStore'
 
 function RequireSave({ children }: { children: ReactNode }) {
@@ -34,6 +37,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="/database" element={<PlayerDatabasePage />} />
       <Route
         path="/match/live"
         element={
@@ -50,7 +54,9 @@ export default function App() {
         }
       >
         <Route path="/portal" element={<PortalPage />} />
+        <Route path="/preseason" element={<PreSeasonPage />} />
         <Route path="/media" element={<MediaPage />} />
+        <Route path="/awards" element={<AwardsPage />} />
         <Route path="/squad" element={<SquadPage />} />
         <Route path="/meetings" element={<MeetingsPage />} />
         <Route path="/club-vision" element={<ClubVisionPage />} />

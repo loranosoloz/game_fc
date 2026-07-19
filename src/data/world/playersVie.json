@@ -1,0 +1,2415 @@
+{
+  "source": "fmtransferupdate.com + FMInside (personal display)",
+  "sourceUrl": "https://fmtransferupdate.com/",
+  "note": "Not for redistribution or commercial sale. V.League 1 / vie pack.",
+  "clubs": {
+    "cah": [
+      {
+        "name": "Nguyen Filip",
+        "role": "GK",
+        "age": 33,
+        "ovr": 78,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Tran Dinh Minh Hoang",
+        "role": "GK",
+        "age": 33,
+        "ovr": 78,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Vu Tuyen Quang",
+        "role": "GK",
+        "age": 31,
+        "ovr": 78,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Cao Quang Vinh",
+        "role": "CB",
+        "age": 29,
+        "ovr": 77,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Vu Van Thanh",
+        "role": "CB",
+        "age": 30,
+        "ovr": 77,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Bui Hoang Viet Anh",
+        "role": "CB",
+        "age": 27,
+        "ovr": 77,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Leygley Adou",
+        "role": "CB",
+        "age": 28,
+        "ovr": 76,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Doan Van Hau",
+        "role": "CB",
+        "age": 27,
+        "ovr": 76,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Nguyen Van Duc",
+        "role": "RB",
+        "age": 30,
+        "ovr": 76,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Brandon Ly",
+        "role": "CB",
+        "age": 20,
+        "ovr": 75,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Giap Tuan Duong",
+        "role": "CB",
+        "age": 23,
+        "ovr": 75,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Vitão",
+        "role": "CM",
+        "age": 31,
+        "ovr": 75,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Hoang Van Toan",
+        "role": "CM",
+        "age": 25,
+        "ovr": 74,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Bui Xuan Thinh",
+        "role": "CM",
+        "age": 24,
+        "ovr": 74,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Pham Minh Phuc",
+        "role": "CM",
+        "age": 22,
+        "ovr": 74,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Nguyen Hoang Dung",
+        "role": "CM",
+        "age": 23,
+        "ovr": 73,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Tran Hong Minh",
+        "role": "CM",
+        "age": 20,
+        "ovr": 73,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Hoang Tung Duong",
+        "role": "CM",
+        "age": 19,
+        "ovr": 73,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Hoang Manh Hung",
+        "role": "CM",
+        "age": 20,
+        "ovr": 70,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Léo Artur",
+        "role": "ST",
+        "age": 31,
+        "ovr": 70,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Alan Grafite",
+        "role": "ST",
+        "age": 28,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Stefan Mauk",
+        "role": "ST",
+        "age": 30,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "China",
+        "role": "ST",
+        "age": 29,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Quang Hai",
+        "role": "ST",
+        "age": 29,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Phan Van Duc",
+        "role": "ST",
+        "age": 30,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Le Pham Thanh Long",
+        "role": "ST",
+        "age": 30,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Dinh Bac",
+        "role": "ST",
+        "age": 21,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      }
+    ],
+    "hno": [
+      {
+        "name": "Nguyen Van Hoang",
+        "role": "GK",
+        "age": 31,
+        "ovr": 76,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Quan Van Chuan",
+        "role": "GK",
+        "age": 25,
+        "ovr": 76,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nguyen Duy Dung",
+        "role": "GK",
+        "age": 24,
+        "ovr": 76,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Adriel",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 75,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Nguyen Thanh Chung",
+        "role": "CB",
+        "age": 28,
+        "ovr": 75,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Pham Xuan Manh",
+        "role": "CB",
+        "age": 30,
+        "ovr": 75,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Do Duy Manh",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 74,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Le Van Xuan",
+        "role": "CB",
+        "age": 27,
+        "ovr": 74,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Dau Van Toan",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 74,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Nguyen Cong Nhat",
+        "role": "CB",
+        "age": 33,
+        "ovr": 73,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Vu Tien Long",
+        "role": "CB",
+        "age": 24,
+        "ovr": 73,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Do Hung Dung",
+        "role": "CM",
+        "age": 32,
+        "ovr": 73,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ngo Duc Hoang",
+        "role": "CM",
+        "age": 23,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Dang Tuan Minh",
+        "role": "CM",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Do Dinh Son",
+        "role": "CM",
+        "age": 22,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Luong Ngoc Cuong",
+        "role": "CM",
+        "age": 21,
+        "ovr": 71,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Le Tuan Kiet",
+        "role": "CM",
+        "age": 19,
+        "ovr": 71,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Nguyen Van Nam",
+        "role": "CM",
+        "age": 21,
+        "ovr": 71,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Daniel Passira",
+        "role": "ST",
+        "age": 30,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Luiz Fernando",
+        "role": "ST",
+        "age": 29,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Pham Tuan Hai",
+        "role": "ST",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Do Hoang Hen",
+        "role": "ST",
+        "age": 32,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Van Quyet",
+        "role": "ST",
+        "age": 35,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "David Fisher",
+        "role": "ST",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Hai Long",
+        "role": "ST",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Van Truong",
+        "role": "ST",
+        "age": 22,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      }
+    ],
+    "ndf": [
+      {
+        "name": "Tran Nguyen Manh",
+        "role": "GK",
+        "age": 34,
+        "ovr": 77,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Tran Liem Dieu",
+        "role": "GK",
+        "age": 25,
+        "ovr": 77,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Le Vu Phong",
+        "role": "GK",
+        "age": 24,
+        "ovr": 77,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Mitchell Dijks",
+        "role": "LB",
+        "age": 33,
+        "ovr": 76,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Lucão",
+        "role": "CB",
+        "age": 33,
+        "ovr": 76,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kévin Pham Ba",
+        "role": "RB",
+        "age": 32,
+        "ovr": 76,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Nguyen Phong Hong Duy",
+        "role": "LB",
+        "age": 30,
+        "ovr": 75,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Nguyen Van Vi",
+        "role": "LB",
+        "age": 28,
+        "ovr": 75,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Tran Van Kien",
+        "role": "RB",
+        "age": 30,
+        "ovr": 75,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Dang Van Toi",
+        "role": "CB",
+        "age": 27,
+        "ovr": 74,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Duong Thanh Hao",
+        "role": "CB",
+        "age": 35,
+        "ovr": 74,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Rômulo",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 74,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Arnaud Lusamba",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 73,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Caio César",
+        "role": "ST",
+        "age": 30,
+        "ovr": 73,
+        "fmPos": "DM, AM RL, ST"
+      },
+      {
+        "name": "Nguyen Tuan Anh",
+        "role": "CM",
+        "age": 31,
+        "ovr": 73,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Tran Van Cong",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nguyen Dinh Son",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Doan Van Nam",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 72,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Brenner",
+        "role": "ST",
+        "age": 32,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Xuan Son",
+        "role": "ST",
+        "age": 29,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mahmoud Eid",
+        "role": "ST",
+        "age": 33,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Van Toan",
+        "role": "ST",
+        "age": 30,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ly Cong Hoang Anh",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 67,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "To Van Vu",
+        "role": "ST",
+        "age": 32,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "A Mit",
+        "role": "ST",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lam Ti Phong",
+        "role": "ST",
+        "age": 30,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      }
+    ],
+    "vtt": [
+      {
+        "name": "Nguyen Van Viet",
+        "role": "GK",
+        "age": 24,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Pham Van Phong",
+        "role": "GK",
+        "age": 33,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ngo Xuan Son",
+        "role": "GK",
+        "age": 29,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Bui Tien Dung",
+        "role": "CB",
+        "age": 30,
+        "ovr": 73,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kyle Colonna",
+        "role": "CB",
+        "age": 26,
+        "ovr": 73,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Nguyen Thanh Binh",
+        "role": "CB",
+        "age": 25,
+        "ovr": 73,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Phan Tuan Tai",
+        "role": "LB",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Nguyen Minh Tung",
+        "role": "CB",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Dinh Viet Tu",
+        "role": "RB",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Bui Van Duc",
+        "role": "CM",
+        "age": 29,
+        "ovr": 71,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Dao Van Nam",
+        "role": "CB",
+        "age": 30,
+        "ovr": 71,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Wesley Natã",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 71,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Paulinho Curuá",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Vu Thanh An",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nguyen Van Tu",
+        "role": "CM",
+        "age": 23,
+        "ovr": 70,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Nguyen Duc Hoang Minh",
+        "role": "CM",
+        "age": 28,
+        "ovr": 69,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Le Quoc Nhat Nam",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 69,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ho Van An",
+        "role": "CM",
+        "age": 22,
+        "ovr": 69,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Do Van Chi",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Lucão do Break",
+        "role": "ST",
+        "age": 34,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Pedro Henrique",
+        "role": "ST",
+        "age": 29,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Khuat Van Khang",
+        "role": "ST",
+        "age": 23,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Dinh Xuan Tien",
+        "role": "ST",
+        "age": 23,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nham Manh Dung",
+        "role": "ST",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Huu Thang",
+        "role": "ST",
+        "age": 26,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tran Danh Trung",
+        "role": "ST",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Cong Phuong",
+        "role": "ST",
+        "age": 20,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      }
+    ],
+    "cat": [
+      {
+        "name": "Patrik Le Giang",
+        "role": "GK",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nguyen Manh Cuong",
+        "role": "GK",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Tran Van Tien",
+        "role": "GK",
+        "age": 32,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Vo Minh Trong",
+        "role": "RB",
+        "age": 24,
+        "ovr": 71,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Tran Hoang Phuc",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 71,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Tran Manh Cuong",
+        "role": "CB",
+        "age": 33,
+        "ovr": 71,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Le Quang Hung",
+        "role": "RB",
+        "age": 33,
+        "ovr": 70,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Khong Minh Gia Bao",
+        "role": "CB",
+        "age": 25,
+        "ovr": 70,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Vo Huu Viet Hoang",
+        "role": "CB",
+        "age": 24,
+        "ovr": 70,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Nguyen Huu Truong",
+        "role": "RB",
+        "age": 24,
+        "ovr": 69,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Peter Makrillos",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 69,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Pham Van Luan",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 69,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Pham Duc Huy",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 68,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nguyen Duc Phu",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 68,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Mach Ngoc Ha",
+        "role": "CM",
+        "age": 25,
+        "ovr": 68,
+        "fmPos": "M RC"
+      },
+      {
+        "name": "Dang Van Lam",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Raphael Utzig",
+        "role": "ST",
+        "age": 29,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Endrick",
+        "role": "LW",
+        "age": 31,
+        "ovr": 67,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Nguyen Tien Linh",
+        "role": "ST",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Dinh Thanh Binh",
+        "role": "ST",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Bui Ngoc Long",
+        "role": "ST",
+        "age": 24,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Dao Quoc Gia",
+        "role": "ST",
+        "age": 29,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Duong Van Hao",
+        "role": "ST",
+        "age": 29,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Vo Huy Toan",
+        "role": "ST",
+        "age": 33,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      }
+    ],
+    "bxh": [
+      {
+        "name": "Tran Minh Toan",
+        "role": "GK",
+        "age": 30,
+        "ovr": 71,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nguyen Van Cong",
+        "role": "GK",
+        "age": 33,
+        "ovr": 71,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Tran Nhat Ha",
+        "role": "GK",
+        "age": 26,
+        "ovr": 71,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Miloš Zlatković",
+        "role": "CB",
+        "age": 29,
+        "ovr": 70,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Ho Tan Tai",
+        "role": "CB",
+        "age": 28,
+        "ovr": 70,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Adriano Schmidt",
+        "role": "CB",
+        "age": 32,
+        "ovr": 70,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ngo Tung Quoc",
+        "role": "RB",
+        "age": 28,
+        "ovr": 69,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Tran Dinh Khuong",
+        "role": "CB",
+        "age": 30,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Tran Hoang Hung",
+        "role": "RB",
+        "age": 29,
+        "ovr": 69,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Nguyen Khac Vu",
+        "role": "CB",
+        "age": 29,
+        "ovr": 68,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Nguyen Thanh Kien",
+        "role": "CB",
+        "age": 23,
+        "ovr": 68,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Hugo Alves",
+        "role": "CM",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Vo Hoang Minh Khoa",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Doan Tuan Canh",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nguyen Trong Phu",
+        "role": "CM",
+        "age": 27,
+        "ovr": 67,
+        "fmPos": "M RL"
+      },
+      {
+        "name": "Ugochukwu Oduenyi",
+        "role": "ST",
+        "age": 30,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tran Trung Hieu",
+        "role": "CAM",
+        "age": 33,
+        "ovr": 66,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Elisha Sam",
+        "role": "ST",
+        "age": 29,
+        "ovr": 66,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Ismaila Origbaajo",
+        "role": "ST",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bui Vi Hao",
+        "role": "ST",
+        "age": 23,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Tran Viet Cuong",
+        "role": "ST",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Thanh Nhan",
+        "role": "ST",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Phan Thanh Hau",
+        "role": "RW",
+        "age": 29,
+        "ovr": 61,
+        "fmPos": "AM RC"
+      }
+    ],
+    "hpf": [
+      {
+        "name": "Nguyen Dinh Trieu",
+        "role": "GK",
+        "age": 34,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nguyen Van Toan",
+        "role": "GK",
+        "age": 27,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Pham Van Luan",
+        "role": "GK",
+        "age": 32,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Bui Tien Dung",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 69,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Pham Trung Hieu",
+        "role": "RB",
+        "age": 27,
+        "ovr": 69,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Nguyen Nhat Minh",
+        "role": "CB",
+        "age": 22,
+        "ovr": 69,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Dam Tien Dung",
+        "role": "LB",
+        "age": 30,
+        "ovr": 68,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Nguyen Van Minh",
+        "role": "CM",
+        "age": 27,
+        "ovr": 68,
+        "fmPos": "D/WB R, M C"
+      },
+      {
+        "name": "Pham Hoai Duong",
+        "role": "CB",
+        "age": 32,
+        "ovr": 68,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Nguyen Trong Hieu",
+        "role": "RB",
+        "age": 25,
+        "ovr": 67,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Nguyen Thai Hoc",
+        "role": "RB",
+        "age": 24,
+        "ovr": 67,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Luiz Antônio",
+        "role": "CDM",
+        "age": 35,
+        "ovr": 67,
+        "fmPos": "DM, M RC"
+      },
+      {
+        "name": "Bicou Bissainthe",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Moses Oloya",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Trieu Viet Hung",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Le Manh Dung",
+        "role": "CM",
+        "age": 32,
+        "ovr": 65,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Nguyen Thanh Dong",
+        "role": "CM",
+        "age": 31,
+        "ovr": 65,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Joël Tagueu",
+        "role": "ST",
+        "age": 32,
+        "ovr": 65,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Fred Friday",
+        "role": "ST",
+        "age": 31,
+        "ovr": 62,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Lupeta",
+        "role": "ST",
+        "age": 33,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jourdain Fletcher",
+        "role": "ST",
+        "age": 27,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Huu Son",
+        "role": "ST",
+        "age": 29,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Luong Hoang Nam",
+        "role": "ST",
+        "age": 29,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Camilo Vasconcelos",
+        "role": "ST",
+        "age": 21,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Xuan Nam",
+        "role": "ST",
+        "age": 32,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      }
+    ],
+    "nbh": [
+      {
+        "name": "Dang Van Lam",
+        "role": "GK",
+        "age": 32,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Quang The Tai",
+        "role": "GK",
+        "age": 29,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nguyen Minh Duc",
+        "role": "GK",
+        "age": 24,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Patrick",
+        "role": "CB",
+        "age": 32,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Janclésio",
+        "role": "CB",
+        "age": 33,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Nguyen Duc Chien",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 68,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Truong Tien Anh",
+        "role": "CM",
+        "age": 27,
+        "ovr": 67,
+        "fmPos": "D/WB RL, M L"
+      },
+      {
+        "name": "Hoang Thai Binh",
+        "role": "CB",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Dung Quang Nho",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 67,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Do Thanh Thinh",
+        "role": "LB",
+        "age": 27,
+        "ovr": 66,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Le Ngoc Bao",
+        "role": "CB",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Chung Do",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nguyen Thai Son",
+        "role": "CM",
+        "age": 23,
+        "ovr": 65,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Nguyen Trong Long",
+        "role": "CM",
+        "age": 26,
+        "ovr": 65,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Le Van Thuan",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 65,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Gustavo Henrique",
+        "role": "ST",
+        "age": 30,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Hoang Duc",
+        "role": "RW",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Geovane Magno",
+        "role": "ST",
+        "age": 32,
+        "ovr": 64,
+        "fmPos": "AM RC, F C"
+      },
+      {
+        "name": "Chau Ngoc Quang",
+        "role": "ST",
+        "age": 30,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tran Bao Toan",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Nguyen Quoc Viet",
+        "role": "ST",
+        "age": 23,
+        "ovr": 60,
+        "fmPos": "AM RC, F C"
+      },
+      {
+        "name": "Pham Gia Hung",
+        "role": "ST",
+        "age": 26,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Le Phat",
+        "role": "ST",
+        "age": 19,
+        "ovr": 59,
+        "fmPos": "AM LC, F C"
+      }
+    ],
+    "sln": [
+      {
+        "name": "Cao Van Binh",
+        "role": "GK",
+        "age": 21,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nguyen Huu Hau",
+        "role": "GK",
+        "age": 22,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Chu Van Tan",
+        "role": "GK",
+        "age": 23,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Justin Garcia",
+        "role": "CB",
+        "age": 30,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ho Van Cuong",
+        "role": "RB",
+        "age": 23,
+        "ovr": 67,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Vuong Van Huy",
+        "role": "CB",
+        "age": 24,
+        "ovr": 67,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Hoang Van Khanh",
+        "role": "CB",
+        "age": 31,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Phan Ba Quyen",
+        "role": "CM",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "D LC, M C"
+      },
+      {
+        "name": "Le Van Thanh",
+        "role": "CB",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ho Khac Luong",
+        "role": "CB",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Le Nguyen Hoang",
+        "role": "CB",
+        "age": 21,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Nguyen Quang Vinh",
+        "role": "CM",
+        "age": 21,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Dang Quang Tu",
+        "role": "CM",
+        "age": 25,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Nguyen Xuan Binh",
+        "role": "CM",
+        "age": 25,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Nguyen Trong Tuan",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Pham Nguyen Quoc Trung",
+        "role": "CM",
+        "age": 20,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Nguyen Van Hien",
+        "role": "CM",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Dau Quang Tu",
+        "role": "CM",
+        "age": 24,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Tran Van Dat",
+        "role": "CM",
+        "age": 23,
+        "ovr": 60,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Carlos Fortes",
+        "role": "ST",
+        "age": 31,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Reon Moore",
+        "role": "ST",
+        "age": 29,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Michael Olaha",
+        "role": "ST",
+        "age": 29,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tran Nam Hai",
+        "role": "ST",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Le Dinh Long Vu",
+        "role": "ST",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tran Manh Quynh",
+        "role": "ST",
+        "age": 25,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ngo Van Luong",
+        "role": "ST",
+        "age": 25,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Phi-Long Tran",
+        "role": "ST",
+        "age": 22,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      }
+    ],
+    "tho": [
+      {
+        "name": "Trinh Xuan Hoang",
+        "role": "GK",
+        "age": 25,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Y Eli Nie",
+        "role": "GK",
+        "age": 25,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Le Anh Tuan",
+        "role": "GK",
+        "age": 21,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Amar Catic",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 66,
+        "fmPos": "D/WB R, AM RL"
+      },
+      {
+        "name": "Trinh Van Loi",
+        "role": "CB",
+        "age": 31,
+        "ovr": 66,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Luc Xuan Hung",
+        "role": "CB",
+        "age": 31,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Truong Thanh Nam",
+        "role": "CB",
+        "age": 22,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Huynh Minh Doan",
+        "role": "RB",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Nguyen Dinh Huyen",
+        "role": "RB",
+        "age": 24,
+        "ovr": 65,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Nguyen Ba Tien",
+        "role": "CM",
+        "age": 25,
+        "ovr": 64,
+        "fmPos": "WB/M R"
+      },
+      {
+        "name": "Nguyen Ngoc Cuong",
+        "role": "RB",
+        "age": 21,
+        "ovr": 64,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Odiljon Abdurahmonov",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 64,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Doan Ngoc Tan",
+        "role": "CM",
+        "age": 31,
+        "ovr": 63,
+        "fmPos": "M RL"
+      },
+      {
+        "name": "Nguyen Huu Dung",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Tran Ngoc Quy",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Damoth Thongkhamsavath",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nguyen Cong Son",
+        "role": "CM",
+        "age": 21,
+        "ovr": 62,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Trinh Van San",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Rimario",
+        "role": "ST",
+        "age": 32,
+        "ovr": 59,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Matias Belli Moldskred",
+        "role": "ST",
+        "age": 28,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Le Van Thang",
+        "role": "ST",
+        "age": 36,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Doan Ngoc Ha",
+        "role": "ST",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Pham Trum Tinh",
+        "role": "RW",
+        "age": 31,
+        "ovr": 57,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Le Quoc Phuong",
+        "role": "LW",
+        "age": 35,
+        "ovr": 57,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Nguyen Ngoc My",
+        "role": "LW",
+        "age": 22,
+        "ovr": 56,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Nguyen Van Tung",
+        "role": "ST",
+        "age": 24,
+        "ovr": 56,
+        "fmPos": "AM L, ST"
+      }
+    ],
+    "dna": [
+      {
+        "name": "Bui Tien Dung",
+        "role": "GK",
+        "age": 29,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Phan Van Bieu",
+        "role": "GK",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Dang Tuan Hung",
+        "role": "GK",
+        "age": 25,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Do Phi Long",
+        "role": "CB",
+        "age": 31,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Que Ngoc Hai",
+        "role": "CB",
+        "age": 33,
+        "ovr": 65,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Luong Duy Cuong",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 65,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Nguyen Duy Duong",
+        "role": "CB",
+        "age": 30,
+        "ovr": 64,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Tran Ngoc Son",
+        "role": "CB",
+        "age": 22,
+        "ovr": 64,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Nguyen Duc Anh",
+        "role": "CB",
+        "age": 23,
+        "ovr": 64,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Tran Ngoc Hiep",
+        "role": "CB",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Nguyen Duy Thang",
+        "role": "LB",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Dang Anh Tuan",
+        "role": "CM",
+        "age": 31,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Pham Van Huu",
+        "role": "CM",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Tran Van Hoa",
+        "role": "CM",
+        "age": 28,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Vo Ngoc Toan",
+        "role": "CM",
+        "age": 31,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Vadim Nguyen",
+        "role": "CM",
+        "age": 21,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Nguyen Kim Quang",
+        "role": "CM",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Tran Van Quang Huy",
+        "role": "CM",
+        "age": 22,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Le Nguyen Van Tho",
+        "role": "CM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Lucas Ribamar",
+        "role": "ST",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Joel López Pissano",
+        "role": "ST",
+        "age": 29,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "David Henen",
+        "role": "ST",
+        "age": 30,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Milan Makarić",
+        "role": "ST",
+        "age": 30,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Pierre Lamothe",
+        "role": "ST",
+        "age": 28,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Phan Van Long",
+        "role": "ST",
+        "age": 30,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Pham Dinh Duy",
+        "role": "ST",
+        "age": 24,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ngo Hong Phuoc",
+        "role": "ST",
+        "age": 28,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      }
+    ],
+    "hlt": [
+      {
+        "name": "Vo Ngoc Cuong",
+        "role": "GK",
+        "age": 32,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nguyen Thanh Tung",
+        "role": "GK",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Duong Tung Lam",
+        "role": "GK",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Helerson",
+        "role": "CB",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Bui Duy Thuong",
+        "role": "CM",
+        "age": 30,
+        "ovr": 64,
+        "fmPos": "D/WB R, M C"
+      },
+      {
+        "name": "Mai Sy Hoang",
+        "role": "RB",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Pham Van Long",
+        "role": "RB",
+        "age": 29,
+        "ovr": 63,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Vu Viet Trieu",
+        "role": "RB",
+        "age": 29,
+        "ovr": 63,
+        "fmPos": "D RL"
+      },
+      {
+        "name": "Nguyen Trong Hoang",
+        "role": "RW",
+        "age": 37,
+        "ovr": 63,
+        "fmPos": "WB R, AM RC"
+      },
+      {
+        "name": "Nguyen Van Hanh",
+        "role": "CB",
+        "age": 28,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Doan Cong Thanh",
+        "role": "CB",
+        "age": 29,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Joseph Onoja",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Tran Van Buu",
+        "role": "CM",
+        "age": 28,
+        "ovr": 61,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Dinh Tuan Tai",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nguyen The Hung",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nguyen Van Huy",
+        "role": "CM",
+        "age": 28,
+        "ovr": 60,
+        "fmPos": "M R"
+      },
+      {
+        "name": "Trinh Minh Khoi",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 60,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Welder",
+        "role": "ST",
+        "age": 31,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Balotelli",
+        "role": "ST",
+        "age": 29,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Charles Atshimene",
+        "role": "ST",
+        "age": 25,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Viktor Le",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 56,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Vu Quang Nam",
+        "role": "ST",
+        "age": 33,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Van Hiep",
+        "role": "ST",
+        "age": 32,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Huynh Tan Tai",
+        "role": "ST",
+        "age": 31,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Huynh Tien Dat",
+        "role": "ST",
+        "age": 26,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      }
+    ],
+    "hag": [
+      {
+        "name": "Tran Trung Kien",
+        "role": "GK",
+        "age": 23,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Huynh Tran Bao Duy",
+        "role": "GK",
+        "age": 22,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nguyen Vu Khang",
+        "role": "GK",
+        "age": 21,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Marciel",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 63,
+        "fmPos": "D L, DM"
+      },
+      {
+        "name": "Jairo",
+        "role": "CB",
+        "age": 33,
+        "ovr": 63,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Nguyen Thanh Nhan",
+        "role": "LB",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Phan Du Hoc",
+        "role": "LB",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Nguyen Van Trieu",
+        "role": "CB",
+        "age": 23,
+        "ovr": 62,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Nguyen Huu Anh Tai",
+        "role": "CB",
+        "age": 30,
+        "ovr": 62,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Ho Minh Quyen",
+        "role": "CM",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "D C, M C"
+      },
+      {
+        "name": "Dinh Quang Kiet",
+        "role": "CB",
+        "age": 19,
+        "ovr": 61,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Khevin",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Tran Thanh Son",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 60,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Hoang Vinh Nguyen",
+        "role": "CM",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "M RC"
+      },
+      {
+        "name": "Cao Hoang Minh",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 60,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Moi Se",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 59,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Gabriel Conceição",
+        "role": "ST",
+        "age": 25,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Luong Thanh Ngoc Lam",
+        "role": "ST",
+        "age": 27,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ryan Ha",
+        "role": "ST",
+        "age": 28,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nguyen Duy Tam",
+        "role": "ST",
+        "age": 23,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Le Huy Kiet",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 55,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Nguyen Minh Tam",
+        "role": "ST",
+        "age": 20,
+        "ovr": 55,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Tran Huu Dang",
+        "role": "ST",
+        "age": 23,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      }
+    ],
+    "pvc": [
+      {
+        "name": "Nguyen Minh Kha",
+        "role": "GK",
+        "age": 21,
+        "ovr": 63,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Pham Huy Hoang",
+        "role": "GK",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Bui Viet Thang",
+        "role": "GK",
+        "age": 23,
+        "ovr": 63,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Bui Anh Quan",
+        "role": "CB",
+        "age": 23,
+        "ovr": 62,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Le Nguyen Quoc Trung",
+        "role": "CB",
+        "age": 20,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Le Nguyen Quoc Kien",
+        "role": "CB",
+        "age": 20,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Luong Van Phuong",
+        "role": "CB",
+        "age": 19,
+        "ovr": 61,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Tran Vu Ngoc Tai",
+        "role": "ST",
+        "age": 22,
+        "ovr": 61,
+        "fmPos": "AM LC, F C"
+      },
+      {
+        "name": "Nguyen Hoang Chien",
+        "role": "ST",
+        "age": 21,
+        "ovr": 61,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Phung Quang Tu",
+        "role": "LW",
+        "age": 19,
+        "ovr": 60,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Le Ngoc Hung",
+        "role": "CAM",
+        "age": 20,
+        "ovr": 60,
+        "fmPos": "AM RL"
+      }
+    ]
+  }
+}

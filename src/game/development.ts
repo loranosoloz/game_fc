@@ -8,9 +8,10 @@ import type {
   PlayerAttributes,
   Tactics,
 } from './types'
-import { overallFromCa } from './attributes'
+import { ATTR_BUMP, ATTR_MAX, ATTR_MIN, overallFromCa } from './attributes'
 import { FOCUS_ATTRS, focusMatchesRole } from './focusAttrs'
 import { trainingFacilityBonus } from './facilities'
+import { tryUnlockPlayerSkill, skillLabel } from './playerSkills'
 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.round(n)))
@@ -121,38 +122,58 @@ export function applyDevelopmentTick(
     }
 
     let caDelta = 0
-    if (curve.growth > 0 && learn > 0.15) {
+    if (curve.growth > 0 && learn > 0.12) {
       const chance =
-        0.12 * curve.growth * learn * (0.5 + playFactor) * (0.6 + det) * focusMul *
+        0.28 * curve.growth * learn * (0.55 + playFactor) * (0.65 + det) * focusMul *
           (1 + facilityBonus) +
-        ment * 0.1
+        ment * 0.14
       if (Math.random() < chance && p.ca < p.pa) {
         caDelta = 1
-        if (Math.random() < learn * 0.25 && p.ca + 1 < p.pa) caDelta = 2
+        if (Math.random() < learn * 0.4 && p.ca + 1 < p.pa) caDelta = 2
+        if (Math.random() < learn * 0.18 * curve.growth && p.ca + 2 < p.pa) caDelta = 3
       }
     }
     if (curve.decline > 0) {
-      const declineChance = 0.08 * curve.decline * (1.2 - pro)
+      const declineChance = 0.06 * curve.decline * (1.2 - pro)
       if (Math.random() < declineChance) caDelta -= 1
     }
 
-    if (p.growth.learningRate <= 5 && caDelta > 0 && Math.random() > 0.15) caDelta = 0
+    if (p.growth.learningRate <= 4 && caDelta > 0 && Math.random() > 0.25) caDelta = 0
 
     const focusKeys = FOCUS_ATTRS[focus]
     let attrs = { ...p.attrs }
+    let skills = p.skills
 
     // Individual training nudge even without CA change
-    const focusChance = 0.18 * learn * focusMul * (1 + facilityBonus * 0.5)
+    const focusChance = 0.32 * learn * focusMul * (1 + facilityBonus * 0.5)
     if (focusKeys.length && Math.random() < focusChance) {
       const k = focusKeys[Math.floor(Math.random() * focusKeys.length)]
-      attrs[k] = clamp(attrs[k] + 1, 1, 20)
+      attrs[k] = clamp(attrs[k] + ATTR_BUMP, ATTR_MIN, ATTR_MAX)
       if (!clubFilter || p.clubId === clubFilter) {
         notes.push(`${p.name} ซ้อมเฉพาะทาง ${focus}: ${k}↑`)
       }
     }
 
+    // พลังแฝง: ปลดล็อกสล็อตว่าง (สูงสุด 10)
+    const unlockCfg = (developmentDb as { skillUnlock?: { baseChance: number } }).skillUnlock
+    const unlockChance =
+      (unlockCfg?.baseChance ?? 0.14) *
+      curve.growth *
+      learn *
+      (0.5 + playFactor) *
+      (1 + facilityBonus * 0.4)
+    if (Math.random() < unlockChance) {
+      const unlocked = tryUnlockPlayerSkill(p)
+      if (unlocked) {
+        skills = unlocked.skills
+        if (!clubFilter || p.clubId === clubFilter) {
+          notes.push(`${p.name} ปลดล็อกพลังแฝง: ${skillLabel(unlocked.unlockedId)}`)
+        }
+      }
+    }
+
     if (caDelta === 0) {
-      return { ...p, attrs, growth, personalityId }
+      return { ...p, attrs, skills, growth, personalityId }
     }
 
     const ca = clamp(p.ca + caDelta, 40, Math.max(p.pa, p.ca))
@@ -167,13 +188,14 @@ export function applyDevelopmentTick(
       focusKeys.length > 0
         ? focusKeys
         : (Object.keys(attrs) as (keyof PlayerAttributes)[])
-    const bump = caDelta > 0 ? 1 : -1
-    for (let i = 0; i < 2; i++) {
+    const bump = caDelta > 0 ? ATTR_BUMP : -ATTR_BUMP
+    const bumps = caDelta > 0 ? Math.min(4, 1 + caDelta) : 2
+    for (let i = 0; i < bumps; i++) {
       const k = keys[Math.floor(Math.random() * keys.length)]
-      attrs[k] = clamp(attrs[k] + bump, 1, 20)
+      attrs[k] = clamp(attrs[k] + bump, ATTR_MIN, ATTR_MAX)
     }
 
-    return { ...p, ca, overall, attrs, growth, personalityId }
+    return { ...p, ca, overall, attrs, skills, growth, personalityId }
   })
 
   return {

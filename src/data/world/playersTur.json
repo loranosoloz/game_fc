@@ -1,0 +1,2990 @@
+{
+  "source": "fmtransferupdate.com + FMInside (personal display)",
+  "sourceUrl": "https://fmtransferupdate.com/",
+  "note": "Not for redistribution or commercial sale. Süper Lig / tur pack.",
+  "clubs": {
+    "gal": [
+      {
+        "name": "Uğurcan Çakır",
+        "role": "GK",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Günay Güvenç",
+        "role": "GK",
+        "age": 35,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Enes Büyük",
+        "role": "GK",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Davinson Sánchez",
+        "role": "CB",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Wilfried Singo",
+        "role": "CB",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Roland Sallai",
+        "role": "RW",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D/WB/AM R"
+      },
+      {
+        "name": "Abdülkerim Bardakcı",
+        "role": "CB",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Victor Nelsson",
+        "role": "CB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Eren Elmalı",
+        "role": "CM",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Ismail Jakobs",
+        "role": "CM",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Kaan Ayhan",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "D RC, DM"
+      },
+      {
+        "name": "Lucas Torreira",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "İlkay Gündoğan",
+        "role": "CAM",
+        "age": 35,
+        "ovr": 82,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Gabriel Sara",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Mario Lemina",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Lesley Ugochukwu",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Renato Nhaga",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Gökdeniz Gürpüz",
+        "role": "CAM",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Ege Araç",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Victor Osimhen",
+        "role": "ST",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Leroy Sané",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Barış Alper Yılmaz",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yunus Akgün",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ahmed Kutucu",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Can Armando Güner",
+        "role": "ST",
+        "age": 18,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yalın Dilek",
+        "role": "ST",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "fen": [
+      {
+        "name": "Ederson",
+        "role": "GK",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Mert Günok",
+        "role": "GK",
+        "age": 37,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Tarık Çetin",
+        "role": "GK",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Milan Škriniar",
+        "role": "CB",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Nathan Aké",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "D LC, DM"
+      },
+      {
+        "name": "Nélson Semedo",
+        "role": "RB",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Jayden Oosterwolde",
+        "role": "CB",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Diego Carlos",
+        "role": "CB",
+        "age": 33,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Archie Brown",
+        "role": "CM",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Çağlar Söyüncü",
+        "role": "CB",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Mert Müldür",
+        "role": "CB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "N'Golo Kanté",
+        "role": "CDM",
+        "age": 35,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Mattéo Guendouzi",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Sofyan Amrabat",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Fred",
+        "role": "CAM",
+        "age": 33,
+        "ovr": 82,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "İsmail Yüksek",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Abdou Fall",
+        "role": "CM",
+        "age": 19,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Mason Greenwood",
+        "role": "ST",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Marco Asensio",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Vedat Muriqi",
+        "role": "ST",
+        "age": 32,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kerem Aktürkoğlu",
+        "role": "ST",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Talisca",
+        "role": "ST",
+        "age": 32,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Anthony Musaba",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Dorgéles Néné",
+        "role": "ST",
+        "age": 23,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Sidiki Chérif",
+        "role": "ST",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "trb": [
+      {
+        "name": "André Onana",
+        "role": "GK",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Onuralp Çevikkan",
+        "role": "GK",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ahmet Doğan Yıldırım",
+        "role": "GK",
+        "age": 19,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Arsenii Batahov",
+        "role": "CB",
+        "age": 24,
+        "ovr": 81,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Sidny Lopes Cabral",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 81,
+        "fmPos": "D/WB/AM RL"
+      },
+      {
+        "name": "Mustafa Eskihellaç",
+        "role": "RB",
+        "age": 29,
+        "ovr": 81,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Wagner Pina",
+        "role": "RB",
+        "age": 23,
+        "ovr": 80,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Stefan Savić",
+        "role": "CB",
+        "age": 35,
+        "ovr": 80,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ozan Tufan",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 80,
+        "fmPos": "D R, DM, AM C"
+      },
+      {
+        "name": "Chibuike Nwaiwu",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 79,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Samet Akaydin",
+        "role": "CB",
+        "age": 32,
+        "ovr": 79,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Batista Mendy",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 79,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Tim Jabol-Folcarelli",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Christ Inao Oulaï",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Benjamin Bouchouari",
+        "role": "CM",
+        "age": 24,
+        "ovr": 78,
+        "fmPos": "M C"
+      },
+      {
+        "name": "John Lundstram",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 77,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Boran Başkan",
+        "role": "CM",
+        "age": 20,
+        "ovr": 77,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Paul Onuachu",
+        "role": "ST",
+        "age": 32,
+        "ovr": 77,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ernest Muçi",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ruslan Malinovskyi",
+        "role": "ST",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Aral Şimşir",
+        "role": "ST",
+        "age": 24,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Umut Nayir",
+        "role": "ST",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Edin Višća",
+        "role": "ST",
+        "age": 36,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Noah Saviolo",
+        "role": "ST",
+        "age": 22,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tony Nwakaeme",
+        "role": "ST",
+        "age": 37,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      }
+    ],
+    "bjk": [
+      {
+        "name": "Alexander Nübel",
+        "role": "GK",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ersin Destanoğlu",
+        "role": "GK",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Emre Bilgin",
+        "role": "GK",
+        "age": 22,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Emmanuel Agbadou",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D RC, DM"
+      },
+      {
+        "name": "Amir Murillo",
+        "role": "CB",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Felix Uduokhai",
+        "role": "CB",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Tiago Djaló",
+        "role": "CB",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Emirhan Topçu",
+        "role": "CB",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Rıdvan Yılmaz",
+        "role": "CM",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Kassoum Ouattara",
+        "role": "LB",
+        "age": 21,
+        "ovr": 81,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Taylan Bulut",
+        "role": "CB",
+        "age": 20,
+        "ovr": 81,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Orkun Kökçü",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 81,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Salih Özcan",
+        "role": "CM",
+        "age": 28,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ali Al Musrati",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 80,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Wilfred Ndidi",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 80,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kartal Kayra Yılmaz",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 79,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Junior Onana",
+        "role": "CM",
+        "age": 26,
+        "ovr": 79,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Amir Hadžiahmetović",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 79,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Salih Uçan",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 72,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Leandro Trossard",
+        "role": "ST",
+        "age": 31,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Václav Černý",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Milot Rashica",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Cengiz Ünder",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Semih Kılıçsoy",
+        "role": "ST",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "João Mário",
+        "role": "ST",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Oh Hyeon-Gyu",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Junior Olaitan",
+        "role": "ST",
+        "age": 24,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "ibs": [
+      {
+        "name": "Muhammed Şengezer",
+        "role": "GK",
+        "age": 29,
+        "ovr": 76,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Doğan Alemdar",
+        "role": "GK",
+        "age": 23,
+        "ovr": 76,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Volkan Babacan",
+        "role": "GK",
+        "age": 37,
+        "ovr": 76,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Christopher Opéri",
+        "role": "LB",
+        "age": 29,
+        "ovr": 75,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Festy Ebosele",
+        "role": "CM",
+        "age": 23,
+        "ovr": 75,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Jerome Opoku",
+        "role": "CB",
+        "age": 27,
+        "ovr": 75,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Michał Karbownik",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 74,
+        "fmPos": "D/WB RL, DM"
+      },
+      {
+        "name": "Ousseynou Ba",
+        "role": "CB",
+        "age": 30,
+        "ovr": 74,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Onur Bulut",
+        "role": "RW",
+        "age": 32,
+        "ovr": 74,
+        "fmPos": "D/WB/AM R"
+      },
+      {
+        "name": "Ömer Ali Şahiner",
+        "role": "CM",
+        "age": 34,
+        "ovr": 73,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Kazımcan Karataş",
+        "role": "LB",
+        "age": 23,
+        "ovr": 73,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Olivier Kemen",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 73,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Umut Güneş",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Jakub Kałuziński",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 72,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Berat Özdemir",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Onur Ergün",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 71,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Eldor Shomurodov",
+        "role": "ST",
+        "age": 31,
+        "ovr": 71,
+        "fmPos": "AM LC, F C"
+      },
+      {
+        "name": "Abbosbek Fayzullayev",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 71,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Nuno Da Costa",
+        "role": "ST",
+        "age": 35,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yusuf Sarı",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 68,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Davie Selke",
+        "role": "ST",
+        "age": 31,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bertuğ Yıldırım",
+        "role": "ST",
+        "age": 24,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ivan Brnić",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Tugra Turhan",
+        "role": "ST",
+        "age": 18,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      }
+    ],
+    "goz": [
+      {
+        "name": "Ekrem Kılıçarslan",
+        "role": "GK",
+        "age": 28,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Şamil Öztürk",
+        "role": "GK",
+        "age": 21,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nevzat Üzel",
+        "role": "GK",
+        "age": 19,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Arda Okan Kurtulan",
+        "role": "RW",
+        "age": 23,
+        "ovr": 73,
+        "fmPos": "D/WB/AM R"
+      },
+      {
+        "name": "Malcom Bokélé",
+        "role": "CB",
+        "age": 26,
+        "ovr": 73,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Taha Altıkardeş",
+        "role": "CB",
+        "age": 22,
+        "ovr": 73,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Allan Godói",
+        "role": "CB",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Amin Cherni",
+        "role": "LB",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Furkan Bayır",
+        "role": "CB",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ogün Bayrak",
+        "role": "RB",
+        "age": 27,
+        "ovr": 71,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Noah Sonko Sundberg",
+        "role": "CB",
+        "age": 30,
+        "ovr": 71,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Anthony Dennis",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 71,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Rhaldney",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Alex Matos",
+        "role": "CAM",
+        "age": 21,
+        "ovr": 70,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Musah Mohammed",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Juan Santos",
+        "role": "ST",
+        "age": 24,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Janderson",
+        "role": "ST",
+        "age": 27,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Alexis Antunes",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 69,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "André Henrique",
+        "role": "ST",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Efkan Bekiroğlu",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 66,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Sinclair Armstrong",
+        "role": "ST",
+        "age": 23,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jeh",
+        "role": "ST",
+        "age": 26,
+        "ovr": 65,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Guilherme Luiz",
+        "role": "ST",
+        "age": 21,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      }
+    ],
+    "sms": [
+      {
+        "name": "Okan Kocuk",
+        "role": "GK",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "İrfan Can Eğribayat",
+        "role": "GK",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Efe Töruz",
+        "role": "GK",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Rick van Drongelen",
+        "role": "CB",
+        "age": 27,
+        "ovr": 71,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Joe Mendes",
+        "role": "CM",
+        "age": 23,
+        "ovr": 71,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Logi Tómasson",
+        "role": "CM",
+        "age": 25,
+        "ovr": 71,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Toni Borevković",
+        "role": "CB",
+        "age": 29,
+        "ovr": 70,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Zeki Yavru",
+        "role": "RB",
+        "age": 34,
+        "ovr": 70,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Ľubomír Šatka",
+        "role": "CB",
+        "age": 30,
+        "ovr": 70,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Yunus Emre Çift",
+        "role": "CB",
+        "age": 22,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Soner Gönül",
+        "role": "LB",
+        "age": 29,
+        "ovr": 69,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Antoine Makoumbou",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 69,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Elliot Watt",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Celil Yüksel",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 68,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yalçın Kayan",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 68,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Eyüp Değirmenci",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Carlo Holse",
+        "role": "ST",
+        "age": 27,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Chérif N'Diaye",
+        "role": "ST",
+        "age": 30,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Emre Kılınç",
+        "role": "ST",
+        "age": 31,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Afonso Sousa",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Tanguy Coulibaly",
+        "role": "ST",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Marius Mouandilmadji",
+        "role": "ST",
+        "age": 28,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Elayis Tavşan",
+        "role": "ST",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Arbnor Muja",
+        "role": "ST",
+        "age": 27,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      }
+    ],
+    "riz": [
+      {
+        "name": "Yahia Fofana",
+        "role": "GK",
+        "age": 25,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Erdem Canpolat",
+        "role": "GK",
+        "age": 25,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Efe Doğan",
+        "role": "GK",
+        "age": 21,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Husniddin Aliqulov",
+        "role": "CB",
+        "age": 27,
+        "ovr": 69,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Casper Højer",
+        "role": "LB",
+        "age": 31,
+        "ovr": 69,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Attila Mocsi",
+        "role": "CB",
+        "age": 26,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Taha Şahin",
+        "role": "RB",
+        "age": 25,
+        "ovr": 68,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Mithat Pala",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 68,
+        "fmPos": "D/WB RL, DM"
+      },
+      {
+        "name": "Emir Ortakaya",
+        "role": "CB",
+        "age": 22,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Zakaria Ariss",
+        "role": "LB",
+        "age": 22,
+        "ovr": 67,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Siaka Bakayoko",
+        "role": "CB",
+        "age": 21,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Qazim Laci",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 67,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Muhamed Buljubašić",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Taylan Antalyalı",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Giannis Papanikolaou",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ibrahim Olawoyin",
+        "role": "ST",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ali Sowe",
+        "role": "ST",
+        "age": 32,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Valentin Mihăilă",
+        "role": "LW",
+        "age": 26,
+        "ovr": 65,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Altin Zeqiri",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Loide Augusto",
+        "role": "ST",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Adedire Mebude",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 61,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Emrecan Bulut",
+        "role": "LW",
+        "age": 23,
+        "ovr": 61,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Halil Dervişoğlu",
+        "role": "ST",
+        "age": 26,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      }
+    ],
+    "kon": [
+      {
+        "name": "Deniz Ertaş",
+        "role": "GK",
+        "age": 21,
+        "ovr": 73,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Bahadır Güngördü",
+        "role": "GK",
+        "age": 30,
+        "ovr": 73,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Egemen Aydın",
+        "role": "GK",
+        "age": 19,
+        "ovr": 73,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Guilherme",
+        "role": "CM",
+        "age": 36,
+        "ovr": 72,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Riechedly Bazoer",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Adil Demirbağ",
+        "role": "CB",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Berkan Kutlu",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 71,
+        "fmPos": "D/WB L, DM"
+      },
+      {
+        "name": "Yhoan Andzouana",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 71,
+        "fmPos": "D/WB RL, AM RL"
+      },
+      {
+        "name": "Rayyan Baniya",
+        "role": "CB",
+        "age": 27,
+        "ovr": 71,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Uğurcan Yazğılı",
+        "role": "CB",
+        "age": 27,
+        "ovr": 70,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Arif Boşluk",
+        "role": "LB",
+        "age": 23,
+        "ovr": 70,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Marko Jevtović",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Jo Jin-Ho",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 69,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ufuk Akyol",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 69,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "İsmail Buğa",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 69,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Diogo Gonçalves",
+        "role": "ST",
+        "age": 29,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Enis Bardhi",
+        "role": "ST",
+        "age": 31,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jackson Muleka",
+        "role": "ST",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Deniz Türüç",
+        "role": "RW",
+        "age": 33,
+        "ovr": 65,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Sander Svendsen",
+        "role": "ST",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Marius Ştefănescu",
+        "role": "ST",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Melih İbrahimoğlu",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Pedrinho",
+        "role": "ST",
+        "age": 29,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      }
+    ],
+    "aly": [
+      {
+        "name": "Ertuğrul Taşkıran",
+        "role": "GK",
+        "age": 36,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Paulo Victor",
+        "role": "GK",
+        "age": 39,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ruan",
+        "role": "CAM",
+        "age": 21,
+        "ovr": 69,
+        "fmPos": "WB/AM RL"
+      },
+      {
+        "name": "Yusuf Özdemir",
+        "role": "LW",
+        "age": 25,
+        "ovr": 68,
+        "fmPos": "D/WB/AM L"
+      },
+      {
+        "name": "Florent Hadergjonaj",
+        "role": "RB",
+        "age": 31,
+        "ovr": 68,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Ümit Akdağ",
+        "role": "CB",
+        "age": 22,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Fidan Aliti",
+        "role": "CB",
+        "age": 32,
+        "ovr": 67,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Nuno Lima",
+        "role": "CB",
+        "age": 25,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Bruno Viana",
+        "role": "CB",
+        "age": 31,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Fatih Aksoy",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "D RC, DM"
+      },
+      {
+        "name": "Gaïus Makouta",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Maestro",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nicolas Janvier",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Enes Keskin",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Buluthan Bulut",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 65,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Souleymane Keita",
+        "role": "CM",
+        "age": 19,
+        "ovr": 64,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Ianis Hagi",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Hwang Ui-Jo",
+        "role": "ST",
+        "age": 33,
+        "ovr": 64,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "İbrahim Kaya",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Güven Yalçın",
+        "role": "ST",
+        "age": 27,
+        "ovr": 61,
+        "fmPos": "AM LC, F C"
+      },
+      {
+        "name": "Meschack Elia",
+        "role": "ST",
+        "age": 28,
+        "ovr": 60,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Efecan Karaca",
+        "role": "CAM",
+        "age": 36,
+        "ovr": 60,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "İzzet Çelik",
+        "role": "LW",
+        "age": 22,
+        "ovr": 59,
+        "fmPos": "AM LC"
+      }
+    ],
+    "gaz": [
+      {
+        "name": "Zafer Görgen",
+        "role": "GK",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Yusuf Nacar",
+        "role": "GK",
+        "age": 19,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Luis Pérez",
+        "role": "RB",
+        "age": 31,
+        "ovr": 68,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Kévin Rodrigues",
+        "role": "CM",
+        "age": 32,
+        "ovr": 67,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Arda Kızıldağ",
+        "role": "CB",
+        "age": 27,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Deian Sorescu",
+        "role": "RW",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "D/WB/AM R"
+      },
+      {
+        "name": "Nihad Mujakić",
+        "role": "CB",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Myenty Abena",
+        "role": "CB",
+        "age": 31,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Tayyip Talha Sanuç",
+        "role": "CB",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Nazım Sangaré",
+        "role": "CB",
+        "age": 32,
+        "ovr": 65,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Drissa Camara",
+        "role": "LW",
+        "age": 24,
+        "ovr": 65,
+        "fmPos": "DM, AM LC"
+      },
+      {
+        "name": "Ogün Özçiçek",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Denis Drăguş",
+        "role": "ST",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Alexandru Maxim",
+        "role": "CAM",
+        "age": 36,
+        "ovr": 64,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Juninho Bacuna",
+        "role": "RW",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Christopher Lungoyi",
+        "role": "ST",
+        "age": 26,
+        "ovr": 63,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Kacper Kozłowski",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 63,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Victor Gidado",
+        "role": "CAM",
+        "age": 22,
+        "ovr": 63,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Karamba Gassama",
+        "role": "CAM",
+        "age": 21,
+        "ovr": 60,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Mevran Ablak",
+        "role": "ST",
+        "age": 22,
+        "ovr": 60,
+        "fmPos": "AM RL, ST"
+      }
+    ],
+    "ksp": [
+      {
+        "name": "Andreas Gianniotis",
+        "role": "GK",
+        "age": 33,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ali Emre Yanar",
+        "role": "GK",
+        "age": 28,
+        "ovr": 70,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Mortadha Ben Ouannes",
+        "role": "CAM",
+        "age": 32,
+        "ovr": 70,
+        "fmPos": "D/WB L, AM RL"
+      },
+      {
+        "name": "Nicholas Opoku",
+        "role": "CB",
+        "age": 28,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Cláudio Winck",
+        "role": "RB",
+        "age": 32,
+        "ovr": 69,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Godfried Frimpong",
+        "role": "LB",
+        "age": 27,
+        "ovr": 69,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Rodrigo Becão",
+        "role": "CB",
+        "age": 30,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Matei Ilie",
+        "role": "CB",
+        "age": 23,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Adem Arous",
+        "role": "CB",
+        "age": 22,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kamil Ahmet Çörekçi",
+        "role": "RB",
+        "age": 34,
+        "ovr": 67,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Kerem Demirbay",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Andri Fannar Baldursson",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Cafú",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Eyüp Aydın",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Burak Gültekin",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "İrfan Can Kahveci",
+        "role": "ST",
+        "age": 31,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Haris Hajradinović",
+        "role": "ST",
+        "age": 32,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Cenk Tosun",
+        "role": "ST",
+        "age": 35,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Fousseni Diabaté",
+        "role": "ST",
+        "age": 30,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Pape Habib Guèye",
+        "role": "ST",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ali Yavuz Kol",
+        "role": "ST",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kubilay Kanatsızkuş",
+        "role": "ST",
+        "age": 29,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yusuf Barasi",
+        "role": "ST",
+        "age": 23,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      }
+    ],
+    "gnc": [
+      {
+        "name": "Erhan Erentürk",
+        "role": "GK",
+        "age": 31,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ebrar Aydın",
+        "role": "GK",
+        "age": 25,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Dimitris Goutas",
+        "role": "CB",
+        "age": 32,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Pedro Pereira",
+        "role": "CM",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "D/WB RL, M R"
+      },
+      {
+        "name": "Matěj Hanousek",
+        "role": "LB",
+        "age": 33,
+        "ovr": 65,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Thalisson Kelven",
+        "role": "CB",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Žan Žužek",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 64,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Fıratcan Üzüm",
+        "role": "CM",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Abdurrahim Dursun",
+        "role": "LB",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Abdullah Şahindere",
+        "role": "CB",
+        "age": 23,
+        "ovr": 63,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Oğulcan Ülgün",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Peter Etebo",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Moussa Kyabou",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Samed Onur",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "DM, AM RLC"
+      },
+      {
+        "name": "Franco Tongya",
+        "role": "ST",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Adama Traoré",
+        "role": "ST",
+        "age": 31,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Metehan Mimaroğlu",
+        "role": "ST",
+        "age": 32,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Göktan Gürpüz",
+        "role": "RW",
+        "age": 23,
+        "ovr": 61,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Sékou Koïta",
+        "role": "ST",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "AM R, ST"
+      },
+      {
+        "name": "Henry Onyekuru",
+        "role": "LW",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Dal Varešanović",
+        "role": "ST",
+        "age": 25,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "M’Baye Niang",
+        "role": "ST",
+        "age": 31,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      }
+    ],
+    "koc": [
+      {
+        "name": "Aleksandar Jovanović",
+        "role": "GK",
+        "age": 33,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Gökhan Değirmenci",
+        "role": "GK",
+        "age": 37,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Serhat Öztaşdelen",
+        "role": "GK",
+        "age": 21,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Anfernee Dijksteel",
+        "role": "CB",
+        "age": 29,
+        "ovr": 64,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Massadio Haïdara",
+        "role": "CB",
+        "age": 33,
+        "ovr": 64,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Ahmet Oğuz",
+        "role": "RB",
+        "age": 33,
+        "ovr": 64,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Tayfur Bingöl",
+        "role": "CAM",
+        "age": 33,
+        "ovr": 63,
+        "fmPos": "D R, AM LC"
+      },
+      {
+        "name": "Rigoberto Rivas",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "WB R, AM RL"
+      },
+      {
+        "name": "Muharrem Cinan",
+        "role": "LB",
+        "age": 28,
+        "ovr": 63,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Karol Linetty",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Habib Keïta",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Joseph Nonge",
+        "role": "CAM",
+        "age": 21,
+        "ovr": 62,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Samet Yalçın",
+        "role": "CM",
+        "age": 32,
+        "ovr": 61,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Mahamadou Susoho",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Bruno Petković",
+        "role": "ST",
+        "age": 31,
+        "ovr": 61,
+        "fmPos": "AM/F C"
+      },
+      {
+        "name": "Dan Agyei",
+        "role": "ST",
+        "age": 29,
+        "ovr": 60,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Darko Churlinov",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 60,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Can Keleş",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Makana Baku",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 57,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Serdar Dursun",
+        "role": "ST",
+        "age": 34,
+        "ovr": 57,
+        "fmPos": "ST"
+      },
+      {
+        "name": "Furkan Gedik",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 56,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Ahmet Sağat",
+        "role": "ST",
+        "age": 30,
+        "ovr": 56,
+        "fmPos": "ST"
+      }
+    ],
+    "aty": [
+      {
+        "name": "Julián Cuesta",
+        "role": "GK",
+        "age": 35,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Abdullah Yiğiter",
+        "role": "GK",
+        "age": 26,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kağan Arıcan",
+        "role": "GK",
+        "age": 20,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lautaro Giannetti",
+        "role": "CB",
+        "age": 32,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kenneth Paal",
+        "role": "CM",
+        "age": 29,
+        "ovr": 68,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Bünyamin Balcı",
+        "role": "CM",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Veysel Sarı",
+        "role": "CB",
+        "age": 37,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Georgy Djikia",
+        "role": "CB",
+        "age": 32,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Erdoğan Yeşilyurt",
+        "role": "CAM",
+        "age": 32,
+        "ovr": 67,
+        "fmPos": "D/WB R, AM RL"
+      },
+      {
+        "name": "Hüseyin Türkmen",
+        "role": "CB",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Samet Karakoç",
+        "role": "CB",
+        "age": 23,
+        "ovr": 66,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Dario Šarić",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 66,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Soner Dikmen",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 65,
+        "fmPos": "DM, M RC"
+      },
+      {
+        "name": "Jesper Ceesay",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 65,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yannick Nkurunziza",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 65,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Ismaël Taieb",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Shanazar Muhammetnazarov",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Nikola Storm",
+        "role": "LW",
+        "age": 31,
+        "ovr": 64,
+        "fmPos": "AM L"
+      },
+      {
+        "name": "Sander van de Streek",
+        "role": "ST",
+        "age": 33,
+        "ovr": 61,
+        "fmPos": "AM RLC, F C"
+      },
+      {
+        "name": "Samuel Ballet",
+        "role": "ST",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "AM RL, ST"
+      },
+      {
+        "name": "Ramzi Safouri",
+        "role": "CAM",
+        "age": 30,
+        "ovr": 60,
+        "fmPos": "AM RLC"
+      },
+      {
+        "name": "Doğukan Sinik",
+        "role": "ST",
+        "age": 27,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yohan Boli",
+        "role": "ST",
+        "age": 32,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mouhamed Gueye",
+        "role": "ST",
+        "age": 23,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kerem Kayaarası",
+        "role": "ST",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      }
+    ],
+    "eyu": [
+      {
+        "name": "Horaţiu Moldovan",
+        "role": "GK",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Jankat Yılmaz",
+        "role": "GK",
+        "age": 21,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Umut Keseci",
+        "role": "GK",
+        "age": 22,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lucas Calegari",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 63,
+        "fmPos": "D/WB R, DM"
+      },
+      {
+        "name": "Luccas Claro",
+        "role": "CB",
+        "age": 34,
+        "ovr": 63,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Umut Meraş",
+        "role": "LB",
+        "age": 30,
+        "ovr": 63,
+        "fmPos": "D L"
+      },
+      {
+        "name": "Jérôme Onguéné",
+        "role": "CB",
+        "age": 28,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Denis Radu",
+        "role": "CM",
+        "age": 23,
+        "ovr": 62,
+        "fmPos": "D/WB RL, AM R"
+      },
+      {
+        "name": "Talha Ülvan",
+        "role": "RW",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "D/AM R"
+      },
+      {
+        "name": "Anıl Yaşar",
+        "role": "CB",
+        "age": 24,
+        "ovr": 61,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Gilbert Mendy",
+        "role": "LB",
+        "age": 21,
+        "ovr": 61,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Taşkın İlter",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Baran Gezek",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 60,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Umut Bozok",
+        "role": "ST",
+        "age": 29,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Emre Akbaba",
+        "role": "CAM",
+        "age": 33,
+        "ovr": 60,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Konrad Michalak",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 59,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Dorin Rotariu",
+        "role": "RW",
+        "age": 30,
+        "ovr": 59,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Ángel Torres",
+        "role": "CAM",
+        "age": 26,
+        "ovr": 59,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "David Costa",
+        "role": "RW",
+        "age": 22,
+        "ovr": 56,
+        "fmPos": "AM RC"
+      },
+      {
+        "name": "Lenny Pintor",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 56,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Charles-André Raux-Yao",
+        "role": "CAM",
+        "age": 24,
+        "ovr": 55,
+        "fmPos": "AM C"
+      }
+    ],
+    "kay": [
+      {
+        "name": "Bilal Bayazıt",
+        "role": "GK",
+        "age": 27,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Onurcan Piri",
+        "role": "GK",
+        "age": 31,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Stefano Denswil",
+        "role": "CB",
+        "age": 33,
+        "ovr": 66,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Joshua Brenet",
+        "role": "RB",
+        "age": 32,
+        "ovr": 65,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Semih Güler",
+        "role": "CB",
+        "age": 31,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Lionel Carole",
+        "role": "CB",
+        "age": 35,
+        "ovr": 65,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Burak Kapacak",
+        "role": "RW",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "D/AM R"
+      },
+      {
+        "name": "Majid Hosseini",
+        "role": "CB",
+        "age": 30,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Jadel Katongo",
+        "role": "CB",
+        "age": 21,
+        "ovr": 64,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Abdulsamet Burak",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 63,
+        "fmPos": "D LC, DM"
+      },
+      {
+        "name": "Youssef Aït Bennasser",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Görkem Sağlam",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 63,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Dorukhan Toköz",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Berat Eskin",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Necip Özer",
+        "role": "CM",
+        "age": 19,
+        "ovr": 62,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Miguel Cardoso",
+        "role": "LW",
+        "age": 32,
+        "ovr": 61,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Denis Makarov",
+        "role": "RW",
+        "age": 28,
+        "ovr": 61,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "German Onugkha",
+        "role": "ST",
+        "age": 30,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "João Mendes",
+        "role": "LW",
+        "age": 31,
+        "ovr": 58,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Carlos Mané",
+        "role": "ST",
+        "age": 32,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Indrit Tuci",
+        "role": "ST",
+        "age": 25,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Furkan Soyalp",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 57,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Ramazan Civelek",
+        "role": "ST",
+        "age": 30,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      }
+    ],
+    "fkg": [
+      {
+        "name": "Batuhan Şen",
+        "role": "GK",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Furkan Bekleviç",
+        "role": "GK",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kerem Yandal",
+        "role": "GK",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Igor Lichnovsky",
+        "role": "CB",
+        "age": 32,
+        "ovr": 63,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Davide Biraschi",
+        "role": "CB",
+        "age": 32,
+        "ovr": 63,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Çağtay Kurukalıp",
+        "role": "LB",
+        "age": 24,
+        "ovr": 63,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Anıl Yiğit Çınar",
+        "role": "CB",
+        "age": 23,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Fatih Kuruçuk",
+        "role": "CB",
+        "age": 28,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Muhammed Kadıoğlu",
+        "role": "CB",
+        "age": 19,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Burhan Ersoy",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 61,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Berkay Özcan",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 61,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Matías Kranevitter",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Bartuğ Elmaz",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 60,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Tuğbey Akgün",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 60,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Shavy Babicka",
+        "role": "RW",
+        "age": 26,
+        "ovr": 60,
+        "fmPos": "AM R"
+      },
+      {
+        "name": "Daniele Verde",
+        "role": "ST",
+        "age": 30,
+        "ovr": 59,
+        "fmPos": "AM RC, F C"
+      },
+      {
+        "name": "Daniel Johnson",
+        "role": "CAM",
+        "age": 33,
+        "ovr": 59,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "João Camacho",
+        "role": "CAM",
+        "age": 32,
+        "ovr": 59,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Serginho",
+        "role": "CAM",
+        "age": 31,
+        "ovr": 56,
+        "fmPos": "AM RL"
+      },
+      {
+        "name": "Sam Larsson",
+        "role": "LW",
+        "age": 33,
+        "ovr": 56,
+        "fmPos": "AM LC"
+      },
+      {
+        "name": "Tiago Çukur",
+        "role": "ST",
+        "age": 23,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bariş Kalaycı",
+        "role": "ST",
+        "age": 20,
+        "ovr": 55,
+        "fmPos": "AM LC, F C"
+      }
+    ]
+  }
+}

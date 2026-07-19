@@ -1,4 +1,5 @@
 import type { FormationId, PitchSpot, Player, Tactics } from './types'
+import { FORMATION_ANCHORS } from './match/formationAnchors'
 
 export interface PitchPlayer {
   id: string
@@ -8,51 +9,24 @@ export interface PitchPlayer {
   base: PitchSpot
 }
 
-/** Relative lane coords: x along attack direction (0=own goal, 1=opp half), y 0..1 top→bottom. */
-const FORMATION_LANES: Record<FormationId, Array<{ x: number; y: number }>> = {
-  '4-3-3': [
-    { x: 0.06, y: 0.5 }, // GK
-    { x: 0.2, y: 0.16 },
-    { x: 0.2, y: 0.36 },
-    { x: 0.2, y: 0.64 },
-    { x: 0.2, y: 0.84 },
-    { x: 0.4, y: 0.28 },
-    { x: 0.38, y: 0.5 },
-    { x: 0.4, y: 0.72 },
-    { x: 0.62, y: 0.2 },
-    { x: 0.66, y: 0.5 },
-    { x: 0.62, y: 0.8 },
-  ],
-  '4-4-2': [
-    { x: 0.06, y: 0.5 },
-    { x: 0.2, y: 0.16 },
-    { x: 0.2, y: 0.36 },
-    { x: 0.2, y: 0.64 },
-    { x: 0.2, y: 0.84 },
-    { x: 0.42, y: 0.16 },
-    { x: 0.4, y: 0.38 },
-    { x: 0.4, y: 0.62 },
-    { x: 0.42, y: 0.84 },
-    { x: 0.64, y: 0.38 },
-    { x: 0.64, y: 0.62 },
-  ],
-  '4-2-3-1': [
-    { x: 0.06, y: 0.5 },
-    { x: 0.2, y: 0.16 },
-    { x: 0.2, y: 0.36 },
-    { x: 0.2, y: 0.64 },
-    { x: 0.2, y: 0.84 },
-    { x: 0.36, y: 0.38 },
-    { x: 0.36, y: 0.62 },
-    { x: 0.52, y: 0.2 },
-    { x: 0.52, y: 0.5 },
-    { x: 0.52, y: 0.8 },
-    { x: 0.68, y: 0.5 },
-  ],
+/** Convert formationAnchors (x width, y depth) → pitch lanes (x attack, y width) */
+function lanesFromAnchors(
+  anchors: Array<{ x: number; y: number }>,
+): Array<{ x: number; y: number }> {
+  return anchors.map((p) => ({
+    x: p.y / 100,
+    y: p.x / 100,
+  }))
 }
 
+const FORMATION_LANES: Record<FormationId, Array<{ x: number; y: number }>> = Object.fromEntries(
+  (Object.keys(FORMATION_ANCHORS) as FormationId[]).map((id) => [
+    id,
+    lanesFromAnchors(FORMATION_ANCHORS[id]),
+  ]),
+) as Record<FormationId, Array<{ x: number; y: number }>>
+
 function laneToHomeSpot(lane: { x: number; y: number }): PitchSpot {
-  // Home attacks to the right
   return {
     x: 4 + lane.x * 46,
     y: 8 + lane.y * 84,
@@ -60,7 +34,6 @@ function laneToHomeSpot(lane: { x: number; y: number }): PitchSpot {
 }
 
 function laneToAwaySpot(lane: { x: number; y: number }): PitchSpot {
-  // Away attacks to the left (mirror)
   return {
     x: 96 - lane.x * 46,
     y: 8 + lane.y * 84,
@@ -78,7 +51,7 @@ export function buildPitchPlayers(
   roster: Player[],
   side: 'home' | 'away',
 ): PitchPlayer[] {
-  const lanes = FORMATION_LANES[tactics.formation]
+  const lanes = FORMATION_LANES[tactics.formation] ?? FORMATION_LANES['4-3-3']
   const toSpot = side === 'home' ? laneToHomeSpot : laneToAwaySpot
 
   return tactics.startingXi.slice(0, lanes.length).map((id, i) => {
@@ -89,12 +62,33 @@ export function buildPitchPlayers(
       name,
       label: initials(name),
       side,
-      base: toSpot(lanes[i]),
+      base: toSpot(lanes[i]!),
     }
   })
 }
 
-/** Nudge the active player toward the ball so the action reads on the pitch. */
+/** Convert formationAnchors → full-pitch spots (โจมตีขึ้นบน) สำหรับรางวัล XI */
+export function buildAwardsPitchPlayers(
+  formation: FormationId,
+  xi: Array<{ playerId: string; name: string; isHumanClub?: boolean }>,
+): Array<PitchPlayer & { highlight: boolean }> {
+  const anchors = FORMATION_ANCHORS[formation] ?? FORMATION_ANCHORS['4-3-3']
+  return xi.slice(0, anchors.length).map((slot, i) => {
+    const a = anchors[i]!
+    const name = slot.name
+    return {
+      id: slot.playerId,
+      name,
+      label: initials(name),
+      side: 'home' as const,
+      base: {
+        x: 8 + (a.x / 100) * 84,
+        y: 10 + ((100 - a.y) / 100) * 80,
+      },
+      highlight: !!slot.isHumanClub,
+    }
+  })
+}
 export function withActionOffset(
   players: PitchPlayer[],
   activeName: string | undefined,

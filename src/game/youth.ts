@@ -71,6 +71,8 @@ export function maybePromoteYouth(save: GameSave): GameSave {
     const ca = caFromOverall(overall)
     const personality = pickPersonality(rng, age, overall)
     const name = pickYouthName(rng, usedNames)
+    const attrs = makeAttrs(rng, overall, role)
+    const ovr = overallFromCa(ca)
     newPlayers.push({
       id: `p-${maxId}`,
       clubId: human.id,
@@ -78,13 +80,13 @@ export function maybePromoteYouth(save: GameSave): GameSave {
       age,
       role,
       position: roleGroup(role),
-      overall: overallFromCa(ca),
+      overall: ovr,
       ca,
       pa:
         makePa(rng, ca, age) +
         Math.round(save.youth.academyLevel * 0.8) +
         Math.round(affiliateBoost * 0.55),
-      attrs: makeAttrs(rng, overall, role),
+      attrs,
       hidden: makeHidden(rng),
       growth: { ...personality.growth, learningRate: Math.min(20, personality.growth.learningRate + 2) },
       personalityId: personality.personalityId,
@@ -114,7 +116,11 @@ export function maybePromoteYouth(save: GameSave): GameSave {
       isYouth: true,
       mentorId: null,
       mediaHandling: 5 + Math.floor(rng() * 8),
-      skills: rollPlayerSkills(roleGroup(role), overallFromCa(ca), rng),
+      skills: rollPlayerSkills(roleGroup(role), ovr, rng, {
+        role,
+        attrs,
+        id: `p-${maxId}`,
+      }),
       social: createPlayerSocial(
         {
           id: `p-${maxId}`,
@@ -163,4 +169,61 @@ export function maybePromoteYouth(save: GameSave): GameSave {
 /** @deprecated ใช้ proposeFacilityUpgrade('youth') — คงไว้เป็น thin wrapper */
 export function upgradeAcademy(save: GameSave): { save: GameSave; ok: boolean; message: string } {
   return proposeFacilityUpgrade(save, 'youth')
+}
+
+/**
+ * จบเส้นทางเยาวชน → ขึ้นชุดใหญ่ถาวร
+ * เงื่อนไข: อายุ ≥ 17 และ (นาที ≥ 180 หรือ อายุ ≥ 19 หรือ OVR ≥ 68)
+ */
+export function graduateYouthPlayer(
+  save: GameSave,
+  playerId: string,
+): { ok: boolean; save: GameSave; message: string } {
+  const p = save.players.find((x) => x.id === playerId)
+  if (!p || p.clubId !== save.humanClubId) {
+    return { ok: false, save, message: 'ไม่พบนักเตะในคลับคุณ' }
+  }
+  if (!p.isYouth) {
+    return { ok: false, save, message: `${p.name} ไม่ได้อยู่สถานะเยาวชนแล้ว` }
+  }
+  const ready =
+    p.age >= 17 && (p.minutesPlayed >= 180 || p.age >= 19 || p.overall >= 68)
+  if (!ready) {
+    return {
+      ok: false,
+      save,
+      message: `${p.name} ยังไม่พร้อม — ต้องการอายุ≥17 และ (นาที≥180 หรือ อายุ≥19 หรือ OVR≥68)`,
+    }
+  }
+  const wageBump = Math.round(p.wage * 1.35 + 400)
+  const players = save.players.map((x) =>
+    x.id === playerId
+      ? {
+          ...x,
+          isYouth: false,
+          wage: wageBump,
+          squadRole: x.squadRole === 'youth' ? 'squad' : x.squadRole,
+          morale: Math.min(20, x.morale + 2),
+          happiness: Math.min(20, (x.happiness ?? x.morale) + 2),
+        }
+      : x,
+  )
+  return {
+    ok: true,
+    save: {
+      ...save,
+      players,
+      inbox: [
+        {
+          id: `msg-grad-${Date.now()}`,
+          date: save.currentDate,
+          title: 'ขึ้นชุดใหญ่',
+          body: `${p.name} จบสถานะเยาวชน · ค่าเหนื่อย ${wageBump.toLocaleString('th-TH')}/สัปดาห์`,
+          read: false,
+        },
+        ...save.inbox,
+      ].slice(0, 40),
+    },
+    message: `${p.name} ขึ้นชุดใหญ่แล้ว`,
+  }
 }

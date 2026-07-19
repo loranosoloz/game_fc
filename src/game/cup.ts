@@ -1,5 +1,6 @@
 import cupFormat from '@/data/cupFormat.json'
 import type { Club, CupState, Fixture } from './types'
+import { midweekMatchDate, shiftMidweekDate } from './calendarDates'
 
 export function createCupState(name = cupFormat.name): CupState {
   return {
@@ -9,13 +10,12 @@ export function createCupState(name = cupFormat.name): CupState {
   }
 }
 
-/** Seed cup R16 from top 16 by reputation; schedule on cup matchdays. */
+/** Seed cup R16 from top 16 by reputation; schedule midweek. */
 export function generateCupFixtures(clubs: Club[], seasonStartDate: string): Fixture[] {
   const seeded = clubs.slice().sort((a, b) => b.reputation - a.reputation).slice(0, 16)
   const fixtures: Fixture[] = []
   const rounds = cupFormat.rounds
 
-  // Only generate first round; later rounds added when previous completes
   const r16 = rounds[0]
   for (let i = 0; i < 8; i++) {
     const home = seeded[i]
@@ -23,21 +23,16 @@ export function generateCupFixtures(clubs: Club[], seasonStartDate: string): Fix
     fixtures.push({
       id: `cup-${r16.id}-${i + 1}`,
       matchday: r16.matchdayOffset,
-      date: addDays(seasonStartDate, (r16.matchdayOffset - 1) * 7),
+      date: midweekMatchDate(seasonStartDate, r16.matchdayOffset),
       homeClubId: home.id,
       awayClubId: away.id,
       played: false,
       competition: 'cup',
       cupRound: r16.id,
+      slot: 'midweek',
     })
   }
   return fixtures
-}
-
-function addDays(iso: string, days: number) {
-  const d = new Date(iso + 'T12:00:00')
-  d.setDate(d.getDate() + days)
-  return d.toISOString().slice(0, 10)
 }
 
 export function advanceCupAfterMatchday(
@@ -59,8 +54,12 @@ export function advanceCupAfterMatchday(
   for (const f of playedThis) {
     const hg = f.homeGoals ?? 0
     const ag = f.awayGoals ?? 0
-    // cup: no draws — away wins on equal (simple)
-    const winner = hg >= ag ? f.homeClubId : f.awayClubId
+    let winner: string
+    if (f.penaltiesHome != null && f.penaltiesAway != null && hg === ag) {
+      winner = f.penaltiesHome > f.penaltiesAway ? f.homeClubId : f.awayClubId
+    } else {
+      winner = hg >= ag ? f.homeClubId : f.awayClubId
+    }
     const loser = winner === f.homeClubId ? f.awayClubId : f.homeClubId
     winners.push(winner)
     if (!eliminated.includes(loser)) eliminated.push(loser)
@@ -86,12 +85,13 @@ export function advanceCupAfterMatchday(
     newFx.push({
       id: `cup-${nextRound.id}-${i / 2 + 1}`,
       matchday: nextRound.matchdayOffset,
-      date: addDays(playedThis[0].date, (nextRound.matchdayOffset - matchday) * 7),
+      date: shiftMidweekDate(playedThis[0].date, nextRound.matchdayOffset - matchday),
       homeClubId: winners[i],
       awayClubId: winners[i + 1],
       played: false,
       competition: 'cup',
       cupRound: nextRound.id,
+      slot: 'midweek',
     })
   }
 

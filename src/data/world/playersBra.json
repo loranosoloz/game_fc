@@ -1,0 +1,3673 @@
+{
+  "source": "fmtransferupdate.com + FMInside (personal display)",
+  "sourceUrl": "https://fmtransferupdate.com/",
+  "note": "Not for redistribution or commercial sale. Brasileirão Série A / bra pack.",
+  "clubs": {
+    "fla": [
+      {
+        "name": "Agustín Rossi",
+        "role": "GK",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Andrew",
+        "role": "GK",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Dyogo Alves",
+        "role": "GK",
+        "age": 22,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Léo Ortiz",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Léo Pereira",
+        "role": "CB",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Alex Sandro",
+        "role": "CB",
+        "age": 35,
+        "ovr": 82,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Danilo",
+        "role": "CB",
+        "age": 35,
+        "ovr": 82,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Vitão",
+        "role": "CB",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Emerson Royal",
+        "role": "RB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Ayrton Lucas",
+        "role": "LB",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Guillermo Varela",
+        "role": "RB",
+        "age": 33,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Jorginho",
+        "role": "CDM",
+        "age": 34,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Lucas Paquetá",
+        "role": "LW",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "DM, AM LC"
+      },
+      {
+        "name": "Saúl",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Erick Pulgar",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Evertton Araújo",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Rayan Lucas",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 82,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Pablo Lúcio",
+        "role": "CM",
+        "age": 19,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Kaio Júnior",
+        "role": "CM",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Giorgian De Arrascaeta",
+        "role": "ST",
+        "age": 32,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Pedro",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Samuel Lino",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nicolás de la Cruz",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jorge Carrascal",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Luiz Araújo",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Gonzalo Plata",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Everton Cebolinha",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "plm": [
+      {
+        "name": "Carlos Miguel",
+        "role": "GK",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kaique",
+        "role": "GK",
+        "age": 23,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Marcelo Lomba",
+        "role": "GK",
+        "age": 39,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Gustavo Gómez",
+        "role": "CB",
+        "age": 33,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Alexander Barboza",
+        "role": "CB",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Joaquín Piquerez",
+        "role": "LB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Murilo",
+        "role": "CB",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Bruno Fuchs",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Naves",
+        "role": "CB",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Khellven",
+        "role": "RB",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Agustín Giay",
+        "role": "RB",
+        "age": 22,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Marlon Freitas",
+        "role": "CM",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Lucas Evangelista",
+        "role": "CM",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Emiliano Martínez",
+        "role": "CM",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Larson",
+        "role": "CM",
+        "age": 21,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Rafael Coutinho",
+        "role": "CM",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Figueiredo",
+        "role": "CM",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Michel Cavalcante",
+        "role": "CM",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Vitor André",
+        "role": "CM",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Andreas Pereira",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jhon Arias",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Vitor Roque",
+        "role": "ST",
+        "age": 21,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Paulinho",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "José Manuel López",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ramón Sosa",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Felipe Anderson",
+        "role": "ST",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Maurício",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "flu": [
+      {
+        "name": "Fábio",
+        "role": "GK",
+        "age": 45,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Vitor Eudes",
+        "role": "GK",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Marcelo Pitaluga",
+        "role": "GK",
+        "age": 23,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Thiago Silva",
+        "role": "CB",
+        "age": 41,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Guilherme Arana",
+        "role": "CB",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Jemmes",
+        "role": "CB",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Juan Pablo Freytes",
+        "role": "CB",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Julián Millán",
+        "role": "CB",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ignacio",
+        "role": "CB",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Samuel Xavier",
+        "role": "CM",
+        "age": 36,
+        "ovr": 81,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Renê",
+        "role": "LB",
+        "age": 33,
+        "ovr": 81,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Martinelli",
+        "role": "CM",
+        "age": 24,
+        "ovr": 81,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Hércules",
+        "role": "CM",
+        "age": 25,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Alisson",
+        "role": "CM",
+        "age": 33,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Otávio",
+        "role": "CM",
+        "age": 32,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Riquelmy",
+        "role": "CM",
+        "age": 19,
+        "ovr": 79,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Oliver",
+        "role": "CM",
+        "age": 19,
+        "ovr": 79,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Luciano Acosta",
+        "role": "ST",
+        "age": 32,
+        "ovr": 79,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Hulk",
+        "role": "ST",
+        "age": 39,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jefferson Savarino",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Agustín Canobbio",
+        "role": "ST",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kevin Serna",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yeferson Soteldo",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Rodrigo Castillo",
+        "role": "ST",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ganso",
+        "role": "ST",
+        "age": 36,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "sao": [
+      {
+        "name": "Rafael",
+        "role": "GK",
+        "age": 37,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Carlos Coronel",
+        "role": "GK",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Young",
+        "role": "GK",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Robert Arboleda",
+        "role": "CB",
+        "age": 34,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Enzo Díaz",
+        "role": "CB",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Sabino",
+        "role": "CB",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Alan Franco",
+        "role": "CB",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Wendell",
+        "role": "CB",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Rafael Toloi",
+        "role": "CB",
+        "age": 35,
+        "ovr": 82,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Lucas Ramon",
+        "role": "RB",
+        "age": 32,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Cédric Soares",
+        "role": "CB",
+        "age": 34,
+        "ovr": 82,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Marcos Antonio",
+        "role": "CM",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Damián Bobadilla",
+        "role": "CM",
+        "age": 25,
+        "ovr": 81,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Danielzinho",
+        "role": "CM",
+        "age": 31,
+        "ovr": 81,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Pablo Maia",
+        "role": "CM",
+        "age": 24,
+        "ovr": 81,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Luan",
+        "role": "CM",
+        "age": 27,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Negrucci",
+        "role": "CM",
+        "age": 22,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Hugo Leonardo",
+        "role": "CM",
+        "age": 22,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Matheus Ferreira",
+        "role": "CM",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Lucas Moura",
+        "role": "ST",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jonathan Calleri",
+        "role": "ST",
+        "age": 32,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Artur",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Luciano",
+        "role": "ST",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Victor Sá",
+        "role": "ST",
+        "age": 32,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ferreirinha",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Cauly",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "André Silva",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "bah": [
+      {
+        "name": "João Paulo",
+        "role": "GK",
+        "age": 31,
+        "ovr": 80,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Guido Herrera",
+        "role": "GK",
+        "age": 34,
+        "ovr": 80,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ronaldo",
+        "role": "GK",
+        "age": 29,
+        "ovr": 80,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Luciano Juba",
+        "role": "LW",
+        "age": 26,
+        "ovr": 79,
+        "fmPos": "D/WB L, AM LC"
+      },
+      {
+        "name": "Santiago Ramos Mingo",
+        "role": "CB",
+        "age": 24,
+        "ovr": 79,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kanu",
+        "role": "CB",
+        "age": 29,
+        "ovr": 79,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Gabriel Xavier",
+        "role": "CB",
+        "age": 25,
+        "ovr": 78,
+        "fmPos": "D C"
+      },
+      {
+        "name": "David Duarte",
+        "role": "CB",
+        "age": 32,
+        "ovr": 78,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Marcos Victor",
+        "role": "CB",
+        "age": 24,
+        "ovr": 78,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Iago Borduchi",
+        "role": "LB",
+        "age": 29,
+        "ovr": 77,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Román Gómez",
+        "role": "RB",
+        "age": 22,
+        "ovr": 77,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Jean Lucas",
+        "role": "CM",
+        "age": 28,
+        "ovr": 77,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Caio Alexandre",
+        "role": "CM",
+        "age": 27,
+        "ovr": 76,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Erick",
+        "role": "CM",
+        "age": 28,
+        "ovr": 76,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Nicolás Acevedo",
+        "role": "CM",
+        "age": 27,
+        "ovr": 76,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Sidney",
+        "role": "CM",
+        "age": 19,
+        "ovr": 75,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Victor Hugo",
+        "role": "CM",
+        "age": 19,
+        "ovr": 75,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Saymon",
+        "role": "CM",
+        "age": 19,
+        "ovr": 75,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Everton Ribeiro",
+        "role": "ST",
+        "age": 37,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Erick Pulga",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Alejo Veliz",
+        "role": "ST",
+        "age": 22,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ademir",
+        "role": "ST",
+        "age": 31,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Willian José",
+        "role": "ST",
+        "age": 34,
+        "ovr": 70,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Rodrigo Nestor",
+        "role": "ST",
+        "age": 25,
+        "ovr": 70,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Cristian Olivera",
+        "role": "ST",
+        "age": 24,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Michel Araújo",
+        "role": "ST",
+        "age": 29,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      }
+    ],
+    "cap": [
+      {
+        "name": "Santos",
+        "role": "GK",
+        "age": 36,
+        "ovr": 78,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Mycael",
+        "role": "GK",
+        "age": 22,
+        "ovr": 78,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Matheus Soares",
+        "role": "GK",
+        "age": 21,
+        "ovr": 78,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Gilberto",
+        "role": "RB",
+        "age": 33,
+        "ovr": 77,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Luiz Gustavo",
+        "role": "CDM",
+        "age": 38,
+        "ovr": 77,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Lucas Esquivel",
+        "role": "CM",
+        "age": 24,
+        "ovr": 77,
+        "fmPos": "D LC, M L"
+      },
+      {
+        "name": "Léo",
+        "role": "CB",
+        "age": 30,
+        "ovr": 76,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Gastón Benavídez",
+        "role": "RB",
+        "age": 30,
+        "ovr": 76,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Carlos Terán",
+        "role": "CB",
+        "age": 25,
+        "ovr": 76,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Felipe Aguirre",
+        "role": "CB",
+        "age": 29,
+        "ovr": 75,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Dudu Marques",
+        "role": "CB",
+        "age": 29,
+        "ovr": 75,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Juan Camilo Portilla",
+        "role": "CM",
+        "age": 27,
+        "ovr": 75,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Jádson",
+        "role": "CM",
+        "age": 32,
+        "ovr": 74,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Felipinho",
+        "role": "CM",
+        "age": 24,
+        "ovr": 74,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Diogo Riquelme",
+        "role": "CM",
+        "age": 21,
+        "ovr": 74,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Kauan Stabelini",
+        "role": "CM",
+        "age": 19,
+        "ovr": 73,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Gael",
+        "role": "CM",
+        "age": 19,
+        "ovr": 73,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Gabriel Feitosa",
+        "role": "CM",
+        "age": 19,
+        "ovr": 73,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Bruno Zapelli",
+        "role": "ST",
+        "age": 24,
+        "ovr": 70,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Stiven Mendoza",
+        "role": "ST",
+        "age": 34,
+        "ovr": 70,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kevin Viveros",
+        "role": "ST",
+        "age": 26,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Alejandro García",
+        "role": "ST",
+        "age": 25,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Julimar",
+        "role": "ST",
+        "age": 25,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Renan Peixoto",
+        "role": "ST",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "João Cruz",
+        "role": "ST",
+        "age": 20,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jorge Rivaldo",
+        "role": "ST",
+        "age": 22,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      }
+    ],
+    "cfc": [
+      {
+        "name": "Pedro Morisco",
+        "role": "GK",
+        "age": 22,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Keiller",
+        "role": "GK",
+        "age": 29,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Pedro Rangel",
+        "role": "GK",
+        "age": 26,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Tinga",
+        "role": "CB",
+        "age": 32,
+        "ovr": 73,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Thiago Santos",
+        "role": "CDM",
+        "age": 36,
+        "ovr": 73,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Jacy Maranhão",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 73,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Bruno Melo",
+        "role": "CB",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Maicon",
+        "role": "CB",
+        "age": 37,
+        "ovr": 72,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Felipe Jonatan",
+        "role": "LB",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Tiago Cóser",
+        "role": "CB",
+        "age": 22,
+        "ovr": 71,
+        "fmPos": "D C"
+      },
+      {
+        "name": "JP Chermont",
+        "role": "RB",
+        "age": 20,
+        "ovr": 71,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Sebastián Gómez",
+        "role": "CM",
+        "age": 30,
+        "ovr": 71,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Fernando Sobral",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Willian Oliveira",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Walisson",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Vini Paulista",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 69,
+        "fmPos": "DM, AM RLC"
+      },
+      {
+        "name": "Alejandro Ararat",
+        "role": "CM",
+        "age": 19,
+        "ovr": 69,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Daniel Gruber",
+        "role": "CM",
+        "age": 19,
+        "ovr": 69,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Vitor Tissi",
+        "role": "CM",
+        "age": 19,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Breno Lopes",
+        "role": "ST",
+        "age": 30,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Keno",
+        "role": "ST",
+        "age": 36,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Josué",
+        "role": "ST",
+        "age": 35,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lucas Ronier",
+        "role": "ST",
+        "age": 21,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Pedro Rocha",
+        "role": "ST",
+        "age": 31,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Brian Ocampo",
+        "role": "ST",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Joaquín Lavega",
+        "role": "ST",
+        "age": 21,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Renato Marques",
+        "role": "ST",
+        "age": 22,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      }
+    ],
+    "cam": [
+      {
+        "name": "Everson",
+        "role": "GK",
+        "age": 35,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Gabriel Delfim",
+        "role": "GK",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Pedro Cobra",
+        "role": "GK",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Renan Lodi",
+        "role": "CB",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Lyanco",
+        "role": "CB",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ángelo Preciado",
+        "role": "CM",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Alexsander",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 82,
+        "fmPos": "D L, DM"
+      },
+      {
+        "name": "Natanael",
+        "role": "RB",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Vitor Hugo",
+        "role": "CB",
+        "age": 35,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Léo Duarte",
+        "role": "CB",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Iván Román",
+        "role": "CB",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Alan Franco",
+        "role": "CM",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Maycon",
+        "role": "CM",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Tomás Pérez",
+        "role": "CM",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Patrick",
+        "role": "CM",
+        "age": 22,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Mamady Cissé",
+        "role": "CM",
+        "age": 19,
+        "ovr": 81,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Zé Phelipe",
+        "role": "CM",
+        "age": 21,
+        "ovr": 81,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Eric",
+        "role": "CM",
+        "age": 20,
+        "ovr": 81,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Gustavo Scarpa",
+        "role": "ST",
+        "age": 32,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mateo Cassierra",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Dudu",
+        "role": "ST",
+        "age": 34,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tomás Cuello",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Igor Gomes",
+        "role": "ST",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bernard",
+        "role": "ST",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Reinier",
+        "role": "ST",
+        "age": 24,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Victor Hugo",
+        "role": "ST",
+        "age": 22,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "rbb": [
+      {
+        "name": "Tiago Volpi",
+        "role": "GK",
+        "age": 35,
+        "ovr": 79,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Cleiton",
+        "role": "GK",
+        "age": 28,
+        "ovr": 79,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Fabrício",
+        "role": "GK",
+        "age": 26,
+        "ovr": 79,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Juninho Capixaba",
+        "role": "LB",
+        "age": 29,
+        "ovr": 78,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Pedro Henrique",
+        "role": "CB",
+        "age": 30,
+        "ovr": 78,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Guzmán Rodríguez",
+        "role": "CB",
+        "age": 26,
+        "ovr": 78,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Gustavo Marques",
+        "role": "CB",
+        "age": 24,
+        "ovr": 77,
+        "fmPos": "D C"
+      },
+      {
+        "name": "José Hurtado",
+        "role": "CM",
+        "age": 24,
+        "ovr": 77,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Eduardo",
+        "role": "CB",
+        "age": 28,
+        "ovr": 77,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Agustín Sant'Anna",
+        "role": "CM",
+        "age": 28,
+        "ovr": 76,
+        "fmPos": "D/WB RL, M R"
+      },
+      {
+        "name": "Alix Vinicius",
+        "role": "CB",
+        "age": 26,
+        "ovr": 76,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Matheus Fernandes",
+        "role": "CM",
+        "age": 28,
+        "ovr": 76,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Gabriel",
+        "role": "CDM",
+        "age": 34,
+        "ovr": 75,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Fabinho",
+        "role": "CM",
+        "age": 24,
+        "ovr": 75,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ignacio Sosa",
+        "role": "CM",
+        "age": 22,
+        "ovr": 75,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Riquelme",
+        "role": "CM",
+        "age": 20,
+        "ovr": 74,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Rafael Lima",
+        "role": "CM",
+        "age": 20,
+        "ovr": 74,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Eduardo Sasha",
+        "role": "ST",
+        "age": 34,
+        "ovr": 74,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Isidro Pitta",
+        "role": "ST",
+        "age": 26,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Eric Ramires",
+        "role": "ST",
+        "age": 25,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Vinicinho",
+        "role": "ST",
+        "age": 22,
+        "ovr": 70,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Henry Mosquera",
+        "role": "ST",
+        "age": 24,
+        "ovr": 70,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Thiago Borbas",
+        "role": "ST",
+        "age": 24,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Gustavo Neves",
+        "role": "ST",
+        "age": 22,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lucas Barbosa",
+        "role": "ST",
+        "age": 25,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      }
+    ],
+    "vit": [
+      {
+        "name": "Gabriel Vasconcelos",
+        "role": "GK",
+        "age": 33,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lucas Arcanjo",
+        "role": "GK",
+        "age": 27,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Fintelman",
+        "role": "GK",
+        "age": 24,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Emanuel Brítez",
+        "role": "CB",
+        "age": 34,
+        "ovr": 73,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Cacá",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 73,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Jamerson",
+        "role": "CB",
+        "age": 27,
+        "ovr": 73,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Riccieli",
+        "role": "CB",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Caíque Gonçalves",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "D R, DM"
+      },
+      {
+        "name": "Diego Tarzia",
+        "role": "CB",
+        "age": 23,
+        "ovr": 72,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Luan Cândido",
+        "role": "CB",
+        "age": 25,
+        "ovr": 71,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Camutanga",
+        "role": "CB",
+        "age": 32,
+        "ovr": 71,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Baralhas",
+        "role": "CM",
+        "age": 27,
+        "ovr": 71,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ronald",
+        "role": "CM",
+        "age": 29,
+        "ovr": 70,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Dudu",
+        "role": "CM",
+        "age": 27,
+        "ovr": 70,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Rúben Ismael",
+        "role": "CM",
+        "age": 27,
+        "ovr": 70,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Edenílson",
+        "role": "CM",
+        "age": 21,
+        "ovr": 69,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Lucas Lohan",
+        "role": "CM",
+        "age": 20,
+        "ovr": 69,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Zé Breno",
+        "role": "CM",
+        "age": 22,
+        "ovr": 69,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Luís Aucélio",
+        "role": "CM",
+        "age": 20,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Matheuzinho",
+        "role": "ST",
+        "age": 28,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Marinho",
+        "role": "ST",
+        "age": 36,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tomás Pochettino",
+        "role": "ST",
+        "age": 30,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Emmanuel Martínez",
+        "role": "ST",
+        "age": 32,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Renato Kayser",
+        "role": "ST",
+        "age": 30,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Erick",
+        "role": "ST",
+        "age": 28,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Aitor Cantalapiedra",
+        "role": "ST",
+        "age": 30,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Osvaldo",
+        "role": "ST",
+        "age": 39,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      }
+    ],
+    "bot": [
+      {
+        "name": "Neto",
+        "role": "GK",
+        "age": 37,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Léo Linck",
+        "role": "GK",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Raul Steffens",
+        "role": "GK",
+        "age": 28,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Alex Telles",
+        "role": "LB",
+        "age": 33,
+        "ovr": 82,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Vitinho",
+        "role": "CB",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Nahuel Ferraresi",
+        "role": "CB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Bastos",
+        "role": "CB",
+        "age": 35,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kaio Pantaleão",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Edenílson",
+        "role": "CDM",
+        "age": 36,
+        "ovr": 82,
+        "fmPos": "D/WB R, DM, M RC"
+      },
+      {
+        "name": "Marçal",
+        "role": "LB",
+        "age": 37,
+        "ovr": 82,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Mateo Ponte",
+        "role": "RB",
+        "age": 23,
+        "ovr": 82,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Danilo",
+        "role": "CM",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Allan",
+        "role": "CM",
+        "age": 35,
+        "ovr": 81,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Newton",
+        "role": "CM",
+        "age": 26,
+        "ovr": 81,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Patrick de Paula",
+        "role": "CM",
+        "age": 26,
+        "ovr": 81,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Huguinho",
+        "role": "CM",
+        "age": 19,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Lucas Camilo",
+        "role": "CM",
+        "age": 20,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Joaquín Correa",
+        "role": "ST",
+        "age": 31,
+        "ovr": 80,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Arthur Cabral",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Cristian Medina",
+        "role": "ST",
+        "age": 24,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Santiago Rodríguez",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Júnior Santos",
+        "role": "ST",
+        "age": 31,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lucas Villalba",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Álvaro Montoro",
+        "role": "ST",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Matheus Martins",
+        "role": "ST",
+        "age": 23,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "gfb": [
+      {
+        "name": "Weverton",
+        "role": "GK",
+        "age": 38,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Gabriel Grando",
+        "role": "GK",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Thiago Beltrame",
+        "role": "GK",
+        "age": 23,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Marlon",
+        "role": "LB",
+        "age": 29,
+        "ovr": 81,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Erick Noriega",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 81,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Gustavo Martins",
+        "role": "CB",
+        "age": 23,
+        "ovr": 81,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Wagner Leonardo",
+        "role": "CB",
+        "age": 26,
+        "ovr": 80,
+        "fmPos": "D C"
+      },
+      {
+        "name": "João Pedro",
+        "role": "RW",
+        "age": 29,
+        "ovr": 80,
+        "fmPos": "D/WB/AM R"
+      },
+      {
+        "name": "Caio Paulista",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 80,
+        "fmPos": "D/WB L, AM RL"
+      },
+      {
+        "name": "Walter Kannemann",
+        "role": "CB",
+        "age": 35,
+        "ovr": 79,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Fabián Balbuena",
+        "role": "CB",
+        "age": 34,
+        "ovr": 79,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Mathías Villasanti",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 79,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Juan Ignacio Nardoni",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Felipe Carballo",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Dodi",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Leonel Pérez",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 77,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Zortea",
+        "role": "CM",
+        "age": 19,
+        "ovr": 77,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Artur Júnior",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 77,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Carlos Vinícius",
+        "role": "ST",
+        "age": 31,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Martin Braithwaite",
+        "role": "ST",
+        "age": 35,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Francis Amuzu",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tetê",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Willian",
+        "role": "ST",
+        "age": 37,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Cristian Pavón",
+        "role": "ST",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Miguel Monsalve",
+        "role": "ST",
+        "age": 22,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "José Enamorado",
+        "role": "ST",
+        "age": 27,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      }
+    ],
+    "vas": [
+      {
+        "name": "Léo Jardim",
+        "role": "GK",
+        "age": 31,
+        "ovr": 80,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Daniel Fuzato",
+        "role": "GK",
+        "age": 29,
+        "ovr": 80,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Phillipe Gabriel",
+        "role": "GK",
+        "age": 20,
+        "ovr": 80,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Paulo Henrique",
+        "role": "RB",
+        "age": 29,
+        "ovr": 79,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Lucas Piton",
+        "role": "CM",
+        "age": 25,
+        "ovr": 79,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Cuiabano",
+        "role": "LW",
+        "age": 23,
+        "ovr": 79,
+        "fmPos": "D/WB/AM L"
+      },
+      {
+        "name": "Carlos Cuesta",
+        "role": "CB",
+        "age": 27,
+        "ovr": 78,
+        "fmPos": "D C"
+      },
+      {
+        "name": "José Luis Rodríguez",
+        "role": "CM",
+        "age": 29,
+        "ovr": 78,
+        "fmPos": "D/WB RL, M R"
+      },
+      {
+        "name": "Robert Renan",
+        "role": "CB",
+        "age": 22,
+        "ovr": 78,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Lucas Freitas",
+        "role": "CB",
+        "age": 25,
+        "ovr": 77,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Alan Saldivia",
+        "role": "CB",
+        "age": 24,
+        "ovr": 77,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Thiago Mendes",
+        "role": "CM",
+        "age": 34,
+        "ovr": 77,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Cauan Barros",
+        "role": "CM",
+        "age": 22,
+        "ovr": 76,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Tchê Tchê",
+        "role": "CM",
+        "age": 33,
+        "ovr": 76,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Jair",
+        "role": "CM",
+        "age": 31,
+        "ovr": 76,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Mateus Carvalho",
+        "role": "CM",
+        "age": 24,
+        "ovr": 75,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Lucas Eduardo",
+        "role": "CM",
+        "age": 22,
+        "ovr": 75,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Euder",
+        "role": "CM",
+        "age": 21,
+        "ovr": 75,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Gustavo",
+        "role": "CM",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Andrés Gómez",
+        "role": "ST",
+        "age": 23,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nuno Moreira",
+        "role": "ST",
+        "age": 27,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Claudio Spinelli",
+        "role": "ST",
+        "age": 29,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Adson",
+        "role": "ST",
+        "age": 25,
+        "ovr": 70,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Marino Hinestroza",
+        "role": "ST",
+        "age": 24,
+        "ovr": 70,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Brenner",
+        "role": "ST",
+        "age": 26,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "David",
+        "role": "ST",
+        "age": 30,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Johan Rojas",
+        "role": "ST",
+        "age": 23,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      }
+    ],
+    "sci": [
+      {
+        "name": "Sergio Rochet",
+        "role": "GK",
+        "age": 33,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Matheus Cunha",
+        "role": "GK",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Anthoni",
+        "role": "GK",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Alexandro Bernabei",
+        "role": "CB",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Braian Aguirre",
+        "role": "CM",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "D RL, M R"
+      },
+      {
+        "name": "Gabriel Mercado",
+        "role": "CB",
+        "age": 39,
+        "ovr": 82,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Bruno Gomes",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 81,
+        "fmPos": "D R, DM"
+      },
+      {
+        "name": "Félix Torres",
+        "role": "CB",
+        "age": 29,
+        "ovr": 81,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Juninho",
+        "role": "CB",
+        "age": 31,
+        "ovr": 81,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Clayton Sampaio",
+        "role": "CB",
+        "age": 26,
+        "ovr": 80,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Matheus Bahia",
+        "role": "CB",
+        "age": 26,
+        "ovr": 80,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Alan Rodríguez",
+        "role": "CM",
+        "age": 26,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Thiago Maia",
+        "role": "CM",
+        "age": 29,
+        "ovr": 79,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Bruno Henrique",
+        "role": "CM",
+        "age": 36,
+        "ovr": 79,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Rodrigo Villagra",
+        "role": "CM",
+        "age": 25,
+        "ovr": 79,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Richard",
+        "role": "CM",
+        "age": 32,
+        "ovr": 78,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ronaldo",
+        "role": "CM",
+        "age": 29,
+        "ovr": 78,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Benjamin",
+        "role": "CM",
+        "age": 20,
+        "ovr": 78,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Diego Ahmed",
+        "role": "CM",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Alan Patrick",
+        "role": "ST",
+        "age": 35,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bruno Tabata",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Johan Carbonero",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Vitinho",
+        "role": "ST",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Paulinho",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Alerrandro",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kayky",
+        "role": "ST",
+        "age": 23,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Gustavo Prado",
+        "role": "ST",
+        "age": 21,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      }
+    ],
+    "sts": [
+      {
+        "name": "Gabriel Brazão",
+        "role": "GK",
+        "age": 25,
+        "ovr": 81,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Diogenes",
+        "role": "GK",
+        "age": 25,
+        "ovr": 81,
+        "fmPos": "GK"
+      },
+      {
+        "name": "João Pedro",
+        "role": "GK",
+        "age": 18,
+        "ovr": 81,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Lucas Veríssimo",
+        "role": "CB",
+        "age": 31,
+        "ovr": 80,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Álvaro Barreal",
+        "role": "CB",
+        "age": 25,
+        "ovr": 80,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Willian Arão",
+        "role": "CDM",
+        "age": 34,
+        "ovr": 80,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Adonis Frías",
+        "role": "CB",
+        "age": 28,
+        "ovr": 79,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Zé Ivaldo",
+        "role": "CB",
+        "age": 29,
+        "ovr": 79,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Luan Peres",
+        "role": "CB",
+        "age": 32,
+        "ovr": 79,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Igor Vinicius",
+        "role": "RB",
+        "age": 29,
+        "ovr": 78,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Mayke",
+        "role": "CB",
+        "age": 33,
+        "ovr": 78,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Zé Rafael",
+        "role": "CM",
+        "age": 33,
+        "ovr": 78,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Gabriel Menino",
+        "role": "CM",
+        "age": 25,
+        "ovr": 77,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "João Schmidt",
+        "role": "CM",
+        "age": 33,
+        "ovr": 77,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Tomás Rincón",
+        "role": "CM",
+        "age": 38,
+        "ovr": 77,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Christian Oliva",
+        "role": "CM",
+        "age": 30,
+        "ovr": 76,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Nicola Profeta",
+        "role": "CM",
+        "age": 20,
+        "ovr": 76,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Caio Araújo",
+        "role": "CM",
+        "age": 21,
+        "ovr": 76,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Antonny",
+        "role": "CM",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Neymar",
+        "role": "ST",
+        "age": 34,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Gabriel Barbosa",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Benjamín Rollheiser",
+        "role": "ST",
+        "age": 26,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Rony",
+        "role": "ST",
+        "age": 31,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Thaciano",
+        "role": "ST",
+        "age": 31,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lautaro Díaz",
+        "role": "ST",
+        "age": 28,
+        "ovr": 70,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Moisés",
+        "role": "ST",
+        "age": 29,
+        "ovr": 70,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Gabriel Bontempo",
+        "role": "ST",
+        "age": 21,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      }
+    ],
+    "scc": [
+      {
+        "name": "Hugo Souza",
+        "role": "GK",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Matheus Donelli",
+        "role": "GK",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Felipe Longo",
+        "role": "GK",
+        "age": 21,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Gabriel Paulista",
+        "role": "CB",
+        "age": 35,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Matheuzinho",
+        "role": "RB",
+        "age": 25,
+        "ovr": 82,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Raniele",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 82,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Gustavo Henrique",
+        "role": "CB",
+        "age": 33,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Matheus Bidu",
+        "role": "CB",
+        "age": 27,
+        "ovr": 82,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "André Ramalho",
+        "role": "CDM",
+        "age": 34,
+        "ovr": 82,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Fabrizio Angileri",
+        "role": "CB",
+        "age": 32,
+        "ovr": 81,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Hugo",
+        "role": "LB",
+        "age": 28,
+        "ovr": 81,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Matheus Pereira",
+        "role": "CM",
+        "age": 28,
+        "ovr": 81,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Breno Bidon",
+        "role": "CM",
+        "age": 21,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Allan",
+        "role": "CM",
+        "age": 29,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Charles",
+        "role": "CM",
+        "age": 30,
+        "ovr": 80,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Alex Santana",
+        "role": "CM",
+        "age": 31,
+        "ovr": 79,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "André",
+        "role": "CM",
+        "age": 20,
+        "ovr": 79,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Bahia",
+        "role": "CM",
+        "age": 20,
+        "ovr": 79,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Yago",
+        "role": "CM",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Memphis Depay",
+        "role": "ST",
+        "age": 32,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yuri Alberto",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Rodrigo Garro",
+        "role": "ST",
+        "age": 28,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "André Carrillo",
+        "role": "ST",
+        "age": 35,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jesse Lingard",
+        "role": "ST",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kaio César",
+        "role": "ST",
+        "age": 22,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Vitinho",
+        "role": "ST",
+        "age": 32,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Pedro Raul",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "cru": [
+      {
+        "name": "Cássio",
+        "role": "GK",
+        "age": 39,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Léo Aragão",
+        "role": "GK",
+        "age": 24,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Otávio",
+        "role": "GK",
+        "age": 20,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Fabrício Bruno",
+        "role": "CB",
+        "age": 30,
+        "ovr": 82,
+        "fmPos": "D C"
+      },
+      {
+        "name": "William",
+        "role": "RB",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Lucas Villalba",
+        "role": "CB",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Kaiki",
+        "role": "LB",
+        "age": 23,
+        "ovr": 81,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Gabriel Rojas",
+        "role": "LB",
+        "age": 29,
+        "ovr": 81,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "João Marcelo",
+        "role": "CB",
+        "age": 26,
+        "ovr": 81,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Fágner",
+        "role": "RB",
+        "age": 37,
+        "ovr": 80,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Kauã Moraes",
+        "role": "RB",
+        "age": 19,
+        "ovr": 80,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Lucas Romero",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 80,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Matheus Henrique",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 79,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Lucas Silva",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 79,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Walace",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 79,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Murilo",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 78,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Matheus Pereira",
+        "role": "ST",
+        "age": 30,
+        "ovr": 78,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Luis Sinisterra",
+        "role": "ST",
+        "age": 27,
+        "ovr": 78,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Gérson",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kaio Jorge",
+        "role": "ST",
+        "age": 24,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Wanderson",
+        "role": "ST",
+        "age": 31,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Gabriel Pec",
+        "role": "ST",
+        "age": 25,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Chico da Costa",
+        "role": "ST",
+        "age": 31,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bruno Rodrigues",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      }
+    ],
+    "rem": [
+      {
+        "name": "Ivan",
+        "role": "GK",
+        "age": 29,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Marcelo Rangel",
+        "role": "GK",
+        "age": 38,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ygor Vinhas",
+        "role": "GK",
+        "age": 32,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Yago Pikachu",
+        "role": "CAM",
+        "age": 34,
+        "ovr": 65,
+        "fmPos": "D/WB R, AM RL"
+      },
+      {
+        "name": "Marllon",
+        "role": "CB",
+        "age": 34,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "João Lucas",
+        "role": "RB",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Braian Cufré",
+        "role": "LB",
+        "age": 29,
+        "ovr": 64,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Matheus Alexandre",
+        "role": "RB",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Matheus Felipe",
+        "role": "CB",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Duplexe Tchamba",
+        "role": "CB",
+        "age": 28,
+        "ovr": 63,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Mayk",
+        "role": "LB",
+        "age": 26,
+        "ovr": 63,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Leonel Picco",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Zé Welison",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Panagiotis Tachtsidis",
+        "role": "CAM",
+        "age": 35,
+        "ovr": 62,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Giovanni Pavani",
+        "role": "CAM",
+        "age": 29,
+        "ovr": 62,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Franco Catarozzi",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Freitas",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 61,
+        "fmPos": "DM, M RLC"
+      },
+      {
+        "name": "Ze Ricardo",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 61,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Gabriel Taliari",
+        "role": "ST",
+        "age": 29,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Rafael Monti",
+        "role": "ST",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nicolás Ferreira",
+        "role": "ST",
+        "age": 24,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Alef Manga",
+        "role": "ST",
+        "age": 31,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Patrick",
+        "role": "ST",
+        "age": 33,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Gabriel Poveda",
+        "role": "ST",
+        "age": 28,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "David Braga",
+        "role": "ST",
+        "age": 24,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Carlinhos",
+        "role": "ST",
+        "age": 29,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      }
+    ],
+    "chp": [
+      {
+        "name": "Anderson",
+        "role": "GK",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Rafael Santos",
+        "role": "GK",
+        "age": 37,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kainã",
+        "role": "GK",
+        "age": 21,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Bruno Pacheco",
+        "role": "LB",
+        "age": 34,
+        "ovr": 66,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Rafael Thyere",
+        "role": "CB",
+        "age": 33,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Eduardo Doma",
+        "role": "CB",
+        "age": 27,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Marcos Vinícius",
+        "role": "RB",
+        "age": 29,
+        "ovr": 65,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "João Paulo",
+        "role": "CB",
+        "age": 29,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Victor Caetano",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "João Vitor",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "D R, DM"
+      },
+      {
+        "name": "Bruno Leonardo",
+        "role": "CB",
+        "age": 30,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Camilo",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Bruno Matias",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Vinicius Balieiro",
+        "role": "CDM",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Miguel Stoco",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yannick Bolasie",
+        "role": "ST",
+        "age": 37,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ênio",
+        "role": "ST",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Rafael Carvalheira",
+        "role": "ST",
+        "age": 27,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Garcez",
+        "role": "ST",
+        "age": 29,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jean Carlos",
+        "role": "ST",
+        "age": 34,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Neto Pessoa",
+        "role": "ST",
+        "age": 32,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Giovanni Augusto",
+        "role": "ST",
+        "age": 36,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Marcinho",
+        "role": "ST",
+        "age": 31,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      }
+    ],
+    "mrs": [
+      {
+        "name": "Walter",
+        "role": "GK",
+        "age": 38,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Alex Muralha",
+        "role": "GK",
+        "age": 36,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Georgemy",
+        "role": "GK",
+        "age": 30,
+        "ovr": 72,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Reinaldo",
+        "role": "LB",
+        "age": 36,
+        "ovr": 71,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Willian Machado",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 71,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "João Victor",
+        "role": "CB",
+        "age": 28,
+        "ovr": 71,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Igor Cariús",
+        "role": "RB",
+        "age": 33,
+        "ovr": 70,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Lucas Oliveira",
+        "role": "CB",
+        "age": 30,
+        "ovr": 70,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Victor Luís",
+        "role": "LB",
+        "age": 33,
+        "ovr": 70,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Igor Formiga",
+        "role": "RW",
+        "age": 27,
+        "ovr": 69,
+        "fmPos": "D/WB/AM R"
+      },
+      {
+        "name": "Daniel Borges",
+        "role": "RB",
+        "age": 33,
+        "ovr": 69,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Neto Moura",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 69,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Gabriel Pires",
+        "role": "CAM",
+        "age": 32,
+        "ovr": 68,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "José Aldo",
+        "role": "RW",
+        "age": 27,
+        "ovr": 68,
+        "fmPos": "DM, AM RC"
+      },
+      {
+        "name": "Gabriel Faggioni",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 68,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Negueba",
+        "role": "ST",
+        "age": 26,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Eduardo",
+        "role": "CAM",
+        "age": 36,
+        "ovr": 67,
+        "fmPos": "AM C"
+      },
+      {
+        "name": "Alesson",
+        "role": "ST",
+        "age": 27,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Antonio Galeano",
+        "role": "ST",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Shaylon",
+        "role": "ST",
+        "age": 29,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nathan Fogaça",
+        "role": "ST",
+        "age": 27,
+        "ovr": 63,
+        "fmPos": "AM L, ST"
+      },
+      {
+        "name": "Tiquinho Soares",
+        "role": "ST",
+        "age": 35,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Edson Carioca",
+        "role": "LW",
+        "age": 29,
+        "ovr": 62,
+        "fmPos": "AM LC"
+      }
+    ]
+  }
+}

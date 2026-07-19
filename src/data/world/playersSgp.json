@@ -1,0 +1,1339 @@
+{
+  "source": "fmtransferupdate.com + FMInside (personal display)",
+  "sourceUrl": "https://fmtransferupdate.com/",
+  "note": "Not for redistribution or commercial sale. Singapore Premier League / sgp pack.",
+  "clubs": {
+    "lcs": [
+      {
+        "name": "Ivan Sušak",
+        "role": "GK",
+        "age": 28,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Adib Hakim",
+        "role": "GK",
+        "age": 28,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Benjamin Žerak",
+        "role": "GK",
+        "age": 19,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Toni Datković",
+        "role": "CB",
+        "age": 32,
+        "ovr": 73,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Bailey Wright",
+        "role": "CB",
+        "age": 33,
+        "ovr": 73,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Diogo Costa",
+        "role": "LB",
+        "age": 22,
+        "ovr": 73,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Hariss Harun",
+        "role": "CDM",
+        "age": 35,
+        "ovr": 72,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Lionel Tan",
+        "role": "CB",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Hafiz Nor",
+        "role": "RW",
+        "age": 37,
+        "ovr": 72,
+        "fmPos": "WB/AM R"
+      },
+      {
+        "name": "Christopher van Huizen",
+        "role": "CAM",
+        "age": 33,
+        "ovr": 71,
+        "fmPos": "D/WB RL, AM RL"
+      },
+      {
+        "name": "Nur Adam Abdullah",
+        "role": "LB",
+        "age": 25,
+        "ovr": 71,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Tsiy-William Ndenge",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 71,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Kyoga Nakamura",
+        "role": "CDM",
+        "age": 30,
+        "ovr": 70,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Lucas Agueiro",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 70,
+        "fmPos": "DM, M RC"
+      },
+      {
+        "name": "Hami Syahin",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 70,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Yasir Nizamudin",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 69,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Lennart Thy",
+        "role": "ST",
+        "age": 34,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bart Ramselaar",
+        "role": "ST",
+        "age": 30,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Luka Adžić",
+        "role": "ST",
+        "age": 27,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Song Ui-Young",
+        "role": "ST",
+        "age": 32,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Shawal Anuar",
+        "role": "ST",
+        "age": 35,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Khairin Nadim Rahim",
+        "role": "ST",
+        "age": 22,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Harry Spence",
+        "role": "ST",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jonan Tan",
+        "role": "ST",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      }
+    ],
+    "tmp": [
+      {
+        "name": "Syazwan Buhari",
+        "role": "GK",
+        "age": 33,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Danial Iliya",
+        "role": "GK",
+        "age": 23,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nor Aqmar Shamil Norsham",
+        "role": "GK",
+        "age": 19,
+        "ovr": 68,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Dylan Fox",
+        "role": "CB",
+        "age": 32,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Shuya Yamashita",
+        "role": "CB",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Irfan Najeeb",
+        "role": "CB",
+        "age": 26,
+        "ovr": 67,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Jacob Mahler",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Seiga Sumi",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "D RLC, DM"
+      },
+      {
+        "name": "Amirul Haikal",
+        "role": "LW",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "D/WB/AM L"
+      },
+      {
+        "name": "Raoul Suhaimi",
+        "role": "RB",
+        "age": 20,
+        "ovr": 65,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Kegan Phang",
+        "role": "CB",
+        "age": 20,
+        "ovr": 65,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Shah Shahiran",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 65,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Taras Goh",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 64,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yusril Hanapi",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Rasul Ramli",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 64,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Naufal Mohamad",
+        "role": "CM",
+        "age": 20,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Sky Yeo",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Zeeshan Iskandar",
+        "role": "CM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Trent Buhagiar",
+        "role": "ST",
+        "age": 28,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Koya Kazama",
+        "role": "ST",
+        "age": 33,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Talla Ndao",
+        "role": "ST",
+        "age": 27,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Faris Ramli",
+        "role": "ST",
+        "age": 33,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Glenn Kweh",
+        "role": "ST",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Shota Saito",
+        "role": "ST",
+        "age": 34,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Taufik Suparno",
+        "role": "ST",
+        "age": 30,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Joel Chew",
+        "role": "ST",
+        "age": 26,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      }
+    ],
+    "gey": [
+      {
+        "name": "Rudy Khairullah",
+        "role": "GK",
+        "age": 32,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Shogo Kanai",
+        "role": "GK",
+        "age": 23,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Aniq Matin Zulfadli",
+        "role": "GK",
+        "age": 19,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nikola Ignjatović",
+        "role": "CB",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kim Tae-Ho",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 65,
+        "fmPos": "D LC, DM"
+      },
+      {
+        "name": "Nazrul Nazari",
+        "role": "CM",
+        "age": 35,
+        "ovr": 65,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Ko Jae-Hyun",
+        "role": "CB",
+        "age": 24,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Shakir Hamzah",
+        "role": "CB",
+        "age": 33,
+        "ovr": 64,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Joshua Pereira",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "D RC, DM"
+      },
+      {
+        "name": "Faisal Shahril",
+        "role": "RB",
+        "age": 29,
+        "ovr": 63,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Hud Ismail",
+        "role": "CAM",
+        "age": 21,
+        "ovr": 63,
+        "fmPos": "D/WB L, AM RL"
+      },
+      {
+        "name": "Kaisei Ogawa",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Shahdan Sulaiman",
+        "role": "CDM",
+        "age": 37,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Gareth Low",
+        "role": "CM",
+        "age": 29,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Raiyan Noor",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Nur Ikhsanuddin",
+        "role": "CM",
+        "age": 20,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Vincent Bezecourt",
+        "role": "ST",
+        "age": 33,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ryoya Taniguchi",
+        "role": "ST",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Shuhei Hoshino",
+        "role": "ST",
+        "age": 30,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Riku Fukashiro",
+        "role": "ST",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Shodai Yokoyama",
+        "role": "ST",
+        "age": 25,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Amy Recha",
+        "role": "ST",
+        "age": 34,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ethan Pinto",
+        "role": "ST",
+        "age": 22,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Danie Hafiy Hanafi",
+        "role": "ST",
+        "age": 22,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      }
+    ],
+    "hgu": [
+      {
+        "name": "Zharfan Rohaizad",
+        "role": "GK",
+        "age": 29,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ridhuan Barudin",
+        "role": "GK",
+        "age": 39,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Rauf Erwan",
+        "role": "GK",
+        "age": 21,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nabilai Kibunguchy",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Washington Jaramillo",
+        "role": "CB",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Sam Strong",
+        "role": "CDM",
+        "age": 29,
+        "ovr": 64,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Saharat Pongsuwan",
+        "role": "CB",
+        "age": 30,
+        "ovr": 63,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Yang He",
+        "role": "CAM",
+        "age": 36,
+        "ovr": 63,
+        "fmPos": "D/WB L, AM RL"
+      },
+      {
+        "name": "Farhan Zulkifli",
+        "role": "LW",
+        "age": 23,
+        "ovr": 63,
+        "fmPos": "D/WB/AM L"
+      },
+      {
+        "name": "Ryaan Sanizal",
+        "role": "CB",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Parinya Nusong",
+        "role": "CB",
+        "age": 21,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Huzaifah Aziz",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Yuta Kikuchi",
+        "role": "CM",
+        "age": 32,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Saharat Panmatchaya",
+        "role": "CM",
+        "age": 27,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Woo Chun Wei",
+        "role": "CM",
+        "age": 21,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Khilfi Aniq",
+        "role": "CM",
+        "age": 19,
+        "ovr": 60,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Gloire Amanda",
+        "role": "ST",
+        "age": 27,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yuma Suwa",
+        "role": "ST",
+        "age": 25,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Josh Sotirio",
+        "role": "ST",
+        "age": 30,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ayman Kassimi",
+        "role": "ST",
+        "age": 24,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Víctor Blasco",
+        "role": "ST",
+        "age": 32,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Settawut Wongsai",
+        "role": "ST",
+        "age": 29,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Saifullah Akbar",
+        "role": "ST",
+        "age": 27,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Haiqal Pashia Anugrah",
+        "role": "ST",
+        "age": 27,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      }
+    ],
+    "blk": [
+      {
+        "name": "Mario Mustapić",
+        "role": "GK",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Hafiz Ahmad",
+        "role": "GK",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Martyn Mun",
+        "role": "GK",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Mario Šubarić",
+        "role": "CM",
+        "age": 26,
+        "ovr": 63,
+        "fmPos": "D LC, M L"
+      },
+      {
+        "name": "Darren Teh",
+        "role": "CM",
+        "age": 29,
+        "ovr": 63,
+        "fmPos": "D/WB RL, M R"
+      },
+      {
+        "name": "Madhu Mohana",
+        "role": "CB",
+        "age": 35,
+        "ovr": 63,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Tajeli Salamat",
+        "role": "RW",
+        "age": 32,
+        "ovr": 62,
+        "fmPos": "D RC, AM R"
+      },
+      {
+        "name": "Fudhil I'yadh",
+        "role": "CM",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Harith Kanadi",
+        "role": "LW",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "D/WB/AM L"
+      },
+      {
+        "name": "Aniq Raushan",
+        "role": "RB",
+        "age": 22,
+        "ovr": 61,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Syabil Hisham",
+        "role": "CB",
+        "age": 23,
+        "ovr": 61,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Ben Marshall",
+        "role": "CM",
+        "age": 20,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Lin Ze Hao",
+        "role": "CM",
+        "age": 19,
+        "ovr": 60,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Tin Matić",
+        "role": "ST",
+        "age": 28,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lazar Vujanić",
+        "role": "ST",
+        "age": 26,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jakov Katuša",
+        "role": "ST",
+        "age": 25,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bogdan Mandić",
+        "role": "ST",
+        "age": 27,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Masahiro Sugita",
+        "role": "ST",
+        "age": 26,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Daniel Goh",
+        "role": "ST",
+        "age": 26,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ignatius Ang",
+        "role": "ST",
+        "age": 33,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tiago Martins",
+        "role": "ST",
+        "age": 21,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      }
+    ],
+    "tpu": [
+      {
+        "name": "Matt Silva",
+        "role": "GK",
+        "age": 35,
+        "ovr": 63,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Zaiful Nizam",
+        "role": "GK",
+        "age": 38,
+        "ovr": 63,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kenji Rusydi",
+        "role": "GK",
+        "age": 28,
+        "ovr": 63,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Aaron Evans",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 62,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Lee Chan-Woo",
+        "role": "CM",
+        "age": 21,
+        "ovr": 62,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Faizal Roslan",
+        "role": "CB",
+        "age": 31,
+        "ovr": 62,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Aymeric Ngankam",
+        "role": "CB",
+        "age": 21,
+        "ovr": 61,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Syed Akmal",
+        "role": "CB",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Syahrul Sazali",
+        "role": "LB",
+        "age": 28,
+        "ovr": 61,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Raihan Abdul Rahman",
+        "role": "CDM",
+        "age": 35,
+        "ovr": 60,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Shahrin Saberin",
+        "role": "CB",
+        "age": 31,
+        "ovr": 60,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Jesse Daley",
+        "role": "CM",
+        "age": 28,
+        "ovr": 60,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Kim Ri-Kwan",
+        "role": "CM",
+        "age": 23,
+        "ovr": 59,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Azim Akbar",
+        "role": "CM",
+        "age": 24,
+        "ovr": 59,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Fathullah Rahmat",
+        "role": "CM",
+        "age": 23,
+        "ovr": 59,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Daniel Elfian Faizal",
+        "role": "CM",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ahmad Danial Roslan",
+        "role": "CM",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Aloysius Pang",
+        "role": "CM",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Bruno Dybal",
+        "role": "ST",
+        "age": 32,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Shodai Nishikawa",
+        "role": "ST",
+        "age": 32,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Emilio Estevez",
+        "role": "ST",
+        "age": 27,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Junior Djilé Lougah",
+        "role": "ST",
+        "age": 24,
+        "ovr": 54,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Guilherme",
+        "role": "ST",
+        "age": 31,
+        "ovr": 53,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Naqiuddin Eunos",
+        "role": "ST",
+        "age": 28,
+        "ovr": 53,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Zenivio Mota",
+        "role": "ST",
+        "age": 21,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Sahil Suhaimi",
+        "role": "ST",
+        "age": 34,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      }
+    ],
+    "axs": [
+      {
+        "name": "Hassan Sunny",
+        "role": "GK",
+        "age": 42,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Takahiro Koga",
+        "role": "GK",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Dylan Pereira Singh",
+        "role": "GK",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Cho Eun-Su",
+        "role": "CB",
+        "age": 22,
+        "ovr": 64,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Kim Tae-Uk",
+        "role": "CB",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Zulqarnaen Suzliman",
+        "role": "RB",
+        "age": 28,
+        "ovr": 64,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Ren Nishimura",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 63,
+        "fmPos": "D LC, DM"
+      },
+      {
+        "name": "Komei Iida",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 63,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Katsuyuki Ishibashi",
+        "role": "CM",
+        "age": 24,
+        "ovr": 63,
+        "fmPos": "WB R, M RLC"
+      },
+      {
+        "name": "Delwinder Singh",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 62,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Sachin Kabilan Chandra",
+        "role": "CB",
+        "age": 19,
+        "ovr": 62,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Syed Firdaus Syed Hassan",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 62,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Naoki Yoshioka",
+        "role": "CM",
+        "age": 24,
+        "ovr": 61,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Soshi Kadowaki",
+        "role": "CM",
+        "age": 24,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Takumi Yokohata",
+        "role": "ST",
+        "age": 23,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Abdul Rasaq Akeem",
+        "role": "ST",
+        "age": 25,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kum-Chol Ri",
+        "role": "ST",
+        "age": 28,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nicky Melvin Singh",
+        "role": "ST",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Syukri Bashir",
+        "role": "ST",
+        "age": 28,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Haziq Kamarudin",
+        "role": "ST",
+        "age": 25,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Danish Qayyum Azhar",
+        "role": "ST",
+        "age": 24,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Liska Haaziq Iskandar",
+        "role": "ST",
+        "age": 19,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      }
+    ],
+    "yln": [
+      {
+        "name": "Izwan Mahbud",
+        "role": "GK",
+        "age": 36,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Aizil Yazid",
+        "role": "GK",
+        "age": 21,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Travis Ang",
+        "role": "GK",
+        "age": 21,
+        "ovr": 60,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Joilson",
+        "role": "CB",
+        "age": 23,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Andrew Aw",
+        "role": "RB",
+        "age": 23,
+        "ovr": 59,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Abdil Qaiyyim",
+        "role": "CB",
+        "age": 37,
+        "ovr": 59,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Enrico Walmrath",
+        "role": "CB",
+        "age": 20,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Fairuz Fazli Koh",
+        "role": "CM",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "D/WB RL, AM R"
+      },
+      {
+        "name": "Aqil Yazid",
+        "role": "CB",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Kieran Teo",
+        "role": "CB",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Adam Reefdy",
+        "role": "RB",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "D R"
+      },
+      {
+        "name": "Ryu Hardy Yussri",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Loo Kai Sheng",
+        "role": "CM",
+        "age": 19,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Kai Whitmore",
+        "role": "ST",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Sérgio Mendonça",
+        "role": "ST",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Abner",
+        "role": "ST",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Junki Yoshimura",
+        "role": "ST",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Amir Syafiz Abdul Rashid",
+        "role": "ST",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Louka Tan",
+        "role": "ST",
+        "age": 21,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lim Zheng Wu",
+        "role": "ST",
+        "age": 20,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Sahoo Garv",
+        "role": "ST",
+        "age": 20,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      }
+    ]
+  }
+}

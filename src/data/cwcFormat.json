@@ -1,0 +1,8 @@
+{
+  "name": "FIFA Club World Cup",
+  "rounds": [
+    { "id": "qf", "label": "Quarter-final", "matchdayOffset": 20, "twoLegged": false },
+    { "id": "sf", "label": "Semi-final", "matchdayOffset": 22, "twoLegged": false },
+    { "id": "final", "label": "Final", "matchdayOffset": 24, "twoLegged": false }
+  ]
+}

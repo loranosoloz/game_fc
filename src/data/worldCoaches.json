@@ -1,0 +1,3854 @@
+{
+  "styles": {
+    "possession": {
+      "labelTh": "ครองบอล",
+      "beats": [
+        "press",
+        "direct"
+      ],
+      "losesTo": [
+        "low_block",
+        "counter"
+      ]
+    },
+    "balanced": {
+      "labelTh": "สมดุล",
+      "beats": [
+        "direct"
+      ],
+      "losesTo": [
+        "press"
+      ]
+    },
+    "counter": {
+      "labelTh": "โต้กลับ",
+      "beats": [
+        "possession",
+        "press"
+      ],
+      "losesTo": [
+        "low_block",
+        "direct"
+      ]
+    },
+    "press": {
+      "labelTh": "เพรสสูง",
+      "beats": [
+        "balanced",
+        "direct"
+      ],
+      "losesTo": [
+        "counter",
+        "possession"
+      ]
+    },
+    "direct": {
+      "labelTh": "ตรง ๆ / ยาว",
+      "beats": [
+        "low_block",
+        "counter"
+      ],
+      "losesTo": [
+        "possession",
+        "press"
+      ]
+    },
+    "low_block": {
+      "labelTh": "ตั้งรับต่ำ",
+      "beats": [
+        "possession",
+        "press"
+      ],
+      "losesTo": [
+        "direct",
+        "set_pieces"
+      ]
+    }
+  },
+  "solveLabels": {
+    "positional": "ครองตำแหน่ง · สร้างโอเวอร์โหลด",
+    "gegenpress": "แย่งคืนทันทีหลังเสียบอล",
+    "transitions": "เปลี่ยนเกมเร็ว · โต้กลับคม",
+    "set_pieces": "เน้นสต็อปพิซ / ลูกตั้งเตะ",
+    "man_management": "จัดการคนเก่ง · ห้องแต่งตัว",
+    "direct": "เล่นตรง · ยาว · ฟิสิกส์",
+    "wing_play": "เปิดปีก · ครอสหนัก",
+    "low_block": "ตั้งรับแน่น · รอจังหวะ",
+    "man_mark": "มาร์กตัว · กดดาวคู่แข่ง",
+    "build_up": "สร้างเกมจากหลังอย่างใจเย็น",
+    "vertical": "ผ่านแนวตั้ง · เจาะช่องกลาง",
+    "chaos": "สร้างความวุ่นวาย · ฟิสิกส์",
+    "control": "คุมจังหวะ · ลดความเสี่ยง",
+    "overloads": "กองกำลังด้านใดด้านหนึ่ง"
+  },
+  "coaches": [
+    {
+      "id": "pep-guardiola",
+      "name": "Pep Guardiola",
+      "nation": "Spain",
+      "nationTh": "สเปน",
+      "power": 97,
+      "attackingIQ": 98,
+      "defendingIQ": 90,
+      "manManagement": 82,
+      "adaptability": 72,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "possession",
+      "styleLabelTh": "ครองบอลเชิงตำแหน่ง",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "positional",
+        "build_up",
+        "overloads"
+      ],
+      "strongVs": [
+        "press",
+        "direct"
+      ],
+      "weakVs": [
+        "low_block",
+        "counter"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 480000,
+      "hireFee": 28000000,
+      "tier": "elite"
+    },
+    {
+      "id": "carlo-ancelotti",
+      "name": "Carlo Ancelotti",
+      "nation": "Italy",
+      "nationTh": "อิตาลี",
+      "power": 95,
+      "attackingIQ": 88,
+      "defendingIQ": 90,
+      "manManagement": 98,
+      "adaptability": 94,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-4-2",
+      "style": "balanced",
+      "styleLabelTh": "ยืดหยุ่น · จัดการคนเก่ง",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "transitions",
+        "man_management"
+      ],
+      "strongVs": [
+        "direct",
+        "press"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 420000,
+      "hireFee": 22000000,
+      "tier": "elite"
+    },
+    {
+      "id": "jose-mourinho",
+      "name": "José Mourinho",
+      "nation": "Portugal",
+      "nationTh": "โปรตุเกส",
+      "power": 90,
+      "attackingIQ": 78,
+      "defendingIQ": 96,
+      "manManagement": 88,
+      "adaptability": 70,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "low_block",
+      "styleLabelTh": "ตั้งรับแน่น · โต้คม",
+      "mentality": "defensive",
+      "pressing": "low",
+      "tempo": "slow",
+      "width": "narrow",
+      "solveGame": [
+        "low_block",
+        "set_pieces",
+        "man_mark"
+      ],
+      "strongVs": [
+        "possession",
+        "press"
+      ],
+      "weakVs": [
+        "direct",
+        "chaos"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "park_bus",
+      "wageWeekly": 350000,
+      "hireFee": 18000000,
+      "tier": "elite"
+    },
+    {
+      "id": "diego-simeone",
+      "name": "Diego Simeone",
+      "nation": "Argentina",
+      "nationTh": "อาร์เจนตินา",
+      "power": 92,
+      "attackingIQ": 80,
+      "defendingIQ": 97,
+      "manManagement": 94,
+      "adaptability": 68,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-4-2",
+      "style": "low_block",
+      "styleLabelTh": "เข้ม · สองแนวรับ",
+      "mentality": "defensive",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "narrow",
+      "solveGame": [
+        "low_block",
+        "man_mark",
+        "chaos"
+      ],
+      "strongVs": [
+        "possession",
+        "press"
+      ],
+      "weakVs": [
+        "wing_play",
+        "direct"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "park_bus",
+      "wageWeekly": 320000,
+      "hireFee": 16000000,
+      "tier": "elite"
+    },
+    {
+      "id": "antonio-conte",
+      "name": "Antonio Conte",
+      "nation": "Italy",
+      "nationTh": "อิตาลี",
+      "power": 91,
+      "attackingIQ": 86,
+      "defendingIQ": 92,
+      "manManagement": 90,
+      "adaptability": 65,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "press",
+      "styleLabelTh": "เข้มข้น · วินัยสูง",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "normal",
+      "solveGame": [
+        "gegenpress",
+        "vertical",
+        "man_mark"
+      ],
+      "strongVs": [
+        "balanced",
+        "direct"
+      ],
+      "weakVs": [
+        "possession",
+        "counter"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 300000,
+      "hireFee": 15000000,
+      "tier": "elite"
+    },
+    {
+      "id": "jurgen-klopp",
+      "name": "Jürgen Klopp",
+      "nation": "Germany",
+      "nationTh": "เยอรมนี",
+      "power": 94,
+      "attackingIQ": 92,
+      "defendingIQ": 88,
+      "manManagement": 96,
+      "adaptability": 75,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "press",
+      "styleLabelTh": "เกเกนเพรส · พลังงาน",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "transitions",
+        "chaos"
+      ],
+      "strongVs": [
+        "balanced",
+        "possession"
+      ],
+      "weakVs": [
+        "low_block",
+        "counter"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 400000,
+      "hireFee": 20000000,
+      "tier": "elite"
+    },
+    {
+      "id": "mikel-arteta",
+      "name": "Mikel Arteta",
+      "nation": "Spain",
+      "nationTh": "สเปน",
+      "power": 90,
+      "attackingIQ": 91,
+      "defendingIQ": 89,
+      "manManagement": 86,
+      "adaptability": 80,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "possession",
+      "styleLabelTh": "โครงสร้าง · กดสูง",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "positional",
+        "build_up",
+        "set_pieces"
+      ],
+      "strongVs": [
+        "press",
+        "direct"
+      ],
+      "weakVs": [
+        "low_block",
+        "counter"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 280000,
+      "hireFee": 14000000,
+      "tier": "world"
+    },
+    {
+      "id": "arne-slot",
+      "name": "Arne Slot",
+      "nation": "Netherlands",
+      "nationTh": "เนเธอร์แลนด์",
+      "power": 88,
+      "attackingIQ": 90,
+      "defendingIQ": 84,
+      "manManagement": 82,
+      "adaptability": 78,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "possession",
+      "styleLabelTh": "ครองเกม · เพรสมีระบบ",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "positional",
+        "gegenpress",
+        "vertical"
+      ],
+      "strongVs": [
+        "direct",
+        "balanced"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 260000,
+      "hireFee": 12000000,
+      "tier": "world"
+    },
+    {
+      "id": "xabi-alonso",
+      "name": "Xabi Alonso",
+      "nation": "Spain",
+      "nationTh": "สเปน",
+      "power": 91,
+      "attackingIQ": 93,
+      "defendingIQ": 88,
+      "manManagement": 84,
+      "adaptability": 82,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "ครองกลาง · ยืดหยุ่นรูป",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "positional",
+        "build_up",
+        "overloads"
+      ],
+      "strongVs": [
+        "press",
+        "direct"
+      ],
+      "weakVs": [
+        "counter",
+        "low_block"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 300000,
+      "hireFee": 16000000,
+      "tier": "elite"
+    },
+    {
+      "id": "hansi-flick",
+      "name": "Hansi Flick",
+      "nation": "Germany",
+      "nationTh": "เยอรมนี",
+      "power": 90,
+      "attackingIQ": 92,
+      "defendingIQ": 82,
+      "manManagement": 80,
+      "adaptability": 74,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "press",
+      "styleLabelTh": "กดสูง · โจมตีรวด",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "wing_play",
+        "vertical"
+      ],
+      "strongVs": [
+        "balanced",
+        "direct"
+      ],
+      "weakVs": [
+        "low_block",
+        "counter"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 290000,
+      "hireFee": 15000000,
+      "tier": "world"
+    },
+    {
+      "id": "thomas-tuchel",
+      "name": "Thomas Tuchel",
+      "nation": "Germany",
+      "nationTh": "เยอรมนี",
+      "power": 91,
+      "attackingIQ": 90,
+      "defendingIQ": 93,
+      "manManagement": 72,
+      "adaptability": 86,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "press",
+      "styleLabelTh": "โครงสร้างแน่น · กดสูง",
+      "mentality": "balanced",
+      "pressing": "high",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "positional",
+        "man_mark",
+        "control"
+      ],
+      "strongVs": [
+        "direct",
+        "balanced"
+      ],
+      "weakVs": [
+        "counter"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 310000,
+      "hireFee": 16000000,
+      "tier": "elite"
+    },
+    {
+      "id": "julian-nagelsmann",
+      "name": "Julian Nagelsmann",
+      "nation": "Germany",
+      "nationTh": "เยอรมนี",
+      "power": 88,
+      "attackingIQ": 91,
+      "defendingIQ": 84,
+      "manManagement": 78,
+      "adaptability": 92,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "press",
+      "styleLabelTh": "ยืดหยุ่นรูป · เพรส",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "positional",
+        "gegenpress",
+        "overloads"
+      ],
+      "strongVs": [
+        "direct",
+        "balanced"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 270000,
+      "hireFee": 13000000,
+      "tier": "world"
+    },
+    {
+      "id": "luis-enrique",
+      "name": "Luis Enrique",
+      "nation": "Spain",
+      "nationTh": "สเปน",
+      "power": 89,
+      "attackingIQ": 90,
+      "defendingIQ": 82,
+      "manManagement": 80,
+      "adaptability": 76,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "press",
+      "styleLabelTh": "เพรส · ครองเกม",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "positional",
+        "wing_play"
+      ],
+      "strongVs": [
+        "balanced",
+        "direct"
+      ],
+      "weakVs": [
+        "low_block",
+        "counter"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 280000,
+      "hireFee": 14000000,
+      "tier": "world"
+    },
+    {
+      "id": "unai-emery",
+      "name": "Unai Emery",
+      "nation": "Spain",
+      "nationTh": "สเปน",
+      "power": 87,
+      "attackingIQ": 84,
+      "defendingIQ": 90,
+      "manManagement": 86,
+      "adaptability": 88,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-2-3-1",
+      "style": "balanced",
+      "styleLabelTh": "จัดระเบียบ · ถ้วยเก่ง",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "set_pieces",
+        "man_mark"
+      ],
+      "strongVs": [
+        "press",
+        "direct"
+      ],
+      "weakVs": [
+        "possession"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "park_bus",
+      "wageWeekly": 220000,
+      "hireFee": 10000000,
+      "tier": "world"
+    },
+    {
+      "id": "ange-postecoglou",
+      "name": "Ange Postecoglou",
+      "nation": "Australia",
+      "nationTh": "ออสเตรเลีย",
+      "power": 84,
+      "attackingIQ": 88,
+      "defendingIQ": 72,
+      "manManagement": 85,
+      "adaptability": 60,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "possession",
+      "styleLabelTh": "โจมตีไม่ลด · Angeball",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "positional",
+        "build_up",
+        "wing_play"
+      ],
+      "strongVs": [
+        "press"
+      ],
+      "weakVs": [
+        "counter",
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "push_higher",
+      "wageWeekly": 200000,
+      "hireFee": 9000000,
+      "tier": "top"
+    },
+    {
+      "id": "ruben-amorim",
+      "name": "Rúben Amorim",
+      "nation": "Portugal",
+      "nationTh": "โปรตุเกส",
+      "power": 86,
+      "attackingIQ": 85,
+      "defendingIQ": 86,
+      "manManagement": 82,
+      "adaptability": 70,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "press",
+      "styleLabelTh": "เพรส · วิงแบ็กสูง",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "wing_play",
+        "vertical"
+      ],
+      "strongVs": [
+        "balanced",
+        "direct"
+      ],
+      "weakVs": [
+        "low_block",
+        "counter"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 240000,
+      "hireFee": 11000000,
+      "tier": "world"
+    },
+    {
+      "id": "enzo-maresca",
+      "name": "Enzo Maresca",
+      "nation": "Italy",
+      "nationTh": "อิตาลี",
+      "power": 84,
+      "attackingIQ": 87,
+      "defendingIQ": 80,
+      "manManagement": 78,
+      "adaptability": 76,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "ครองบอล · สร้างจากหลัง",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "build_up",
+        "positional",
+        "overloads"
+      ],
+      "strongVs": [
+        "direct",
+        "press"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 200000,
+      "hireFee": 9000000,
+      "tier": "top"
+    },
+    {
+      "id": "vincent-kompany",
+      "name": "Vincent Kompany",
+      "nation": "Belgium",
+      "nationTh": "เบลเยียม",
+      "power": 83,
+      "attackingIQ": 84,
+      "defendingIQ": 82,
+      "manManagement": 80,
+      "adaptability": 74,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "ครองเกม · กดสูง",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "positional",
+        "gegenpress",
+        "build_up"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "counter",
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 190000,
+      "hireFee": 8500000,
+      "tier": "top"
+    },
+    {
+      "id": "roberto-de-zerbi",
+      "name": "Roberto De Zerbi",
+      "nation": "Italy",
+      "nationTh": "อิตาลี",
+      "power": 85,
+      "attackingIQ": 92,
+      "defendingIQ": 74,
+      "manManagement": 76,
+      "adaptability": 68,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "สร้างเกมเสี่ยง · เทคนิค",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "build_up",
+        "positional",
+        "vertical"
+      ],
+      "strongVs": [
+        "press"
+      ],
+      "weakVs": [
+        "counter",
+        "direct"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 210000,
+      "hireFee": 9500000,
+      "tier": "top"
+    },
+    {
+      "id": "erik-ten-hag",
+      "name": "Erik ten Hag",
+      "nation": "Netherlands",
+      "nationTh": "เนเธอร์แลนด์",
+      "power": 82,
+      "attackingIQ": 84,
+      "defendingIQ": 80,
+      "manManagement": 74,
+      "adaptability": 72,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "ครองเกม · กดมีจังหวะ",
+      "mentality": "balanced",
+      "pressing": "high",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "positional",
+        "build_up",
+        "control"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "counter",
+        "low_block"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 230000,
+      "hireFee": 10000000,
+      "tier": "top"
+    },
+    {
+      "id": "massimiliano-allegri",
+      "name": "Massimiliano Allegri",
+      "nation": "Italy",
+      "nationTh": "อิตาลี",
+      "power": 86,
+      "attackingIQ": 78,
+      "defendingIQ": 92,
+      "manManagement": 90,
+      "adaptability": 80,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-4-2",
+      "style": "low_block",
+      "styleLabelTh": "ผลก่อนสวย · ตั้งรับ",
+      "mentality": "defensive",
+      "pressing": "low",
+      "tempo": "slow",
+      "width": "narrow",
+      "solveGame": [
+        "low_block",
+        "control",
+        "set_pieces"
+      ],
+      "strongVs": [
+        "possession",
+        "press"
+      ],
+      "weakVs": [
+        "direct",
+        "wing_play"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "park_bus",
+      "wageWeekly": 250000,
+      "hireFee": 11000000,
+      "tier": "world"
+    },
+    {
+      "id": "simone-inzaghi",
+      "name": "Simone Inzaghi",
+      "nation": "Italy",
+      "nationTh": "อิตาลี",
+      "power": 87,
+      "attackingIQ": 88,
+      "defendingIQ": 86,
+      "manManagement": 84,
+      "adaptability": 75,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "balanced",
+      "styleLabelTh": "วิงแบ็ก · สต็อปพิซ",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "wing_play",
+        "set_pieces",
+        "transitions"
+      ],
+      "strongVs": [
+        "press",
+        "balanced"
+      ],
+      "weakVs": [
+        "possession"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 240000,
+      "hireFee": 11000000,
+      "tier": "world"
+    },
+    {
+      "id": "luciano-spalletti",
+      "name": "Luciano Spalletti",
+      "nation": "Italy",
+      "nationTh": "อิตาลี",
+      "power": 85,
+      "attackingIQ": 86,
+      "defendingIQ": 84,
+      "manManagement": 82,
+      "adaptability": 78,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "possession",
+      "styleLabelTh": "ครองเกม · จัดระเบียบ",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "positional",
+        "build_up",
+        "control"
+      ],
+      "strongVs": [
+        "direct",
+        "press"
+      ],
+      "weakVs": [
+        "counter"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 220000,
+      "hireFee": 10000000,
+      "tier": "top"
+    },
+    {
+      "id": "maurizio-sarri",
+      "name": "Maurizio Sarri",
+      "nation": "Italy",
+      "nationTh": "อิตาลี",
+      "power": 83,
+      "attackingIQ": 88,
+      "defendingIQ": 78,
+      "manManagement": 70,
+      "adaptability": 55,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "Sarrismo · ผ่านสั้น",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "positional",
+        "build_up",
+        "vertical"
+      ],
+      "strongVs": [
+        "press"
+      ],
+      "weakVs": [
+        "counter",
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 180000,
+      "hireFee": 8000000,
+      "tier": "top"
+    },
+    {
+      "id": "gian-piero-gasperini",
+      "name": "Gian Piero Gasperini",
+      "nation": "Italy",
+      "nationTh": "อิตาลี",
+      "power": 86,
+      "attackingIQ": 89,
+      "defendingIQ": 84,
+      "manManagement": 80,
+      "adaptability": 62,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-4-2",
+      "style": "press",
+      "styleLabelTh": "แมนมาร์ก · กดทั้งสนาม",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "man_mark",
+        "gegenpress",
+        "chaos"
+      ],
+      "strongVs": [
+        "possession",
+        "balanced"
+      ],
+      "weakVs": [
+        "counter",
+        "direct"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 200000,
+      "hireFee": 9000000,
+      "tier": "world"
+    },
+    {
+      "id": "stefano-pioli",
+      "name": "Stefano Pioli",
+      "nation": "Italy",
+      "nationTh": "อิตาลี",
+      "power": 80,
+      "attackingIQ": 80,
+      "defendingIQ": 80,
+      "manManagement": 84,
+      "adaptability": 78,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "balanced",
+      "styleLabelTh": "สมดุล · ปรับตามคู่แข่ง",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "transitions",
+        "wing_play"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 160000,
+      "hireFee": 7000000,
+      "tier": "solid"
+    },
+    {
+      "id": "rafael-benitez",
+      "name": "Rafael Benítez",
+      "nation": "Spain",
+      "nationTh": "สเปน",
+      "power": 82,
+      "attackingIQ": 76,
+      "defendingIQ": 90,
+      "manManagement": 78,
+      "adaptability": 80,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "low_block",
+      "styleLabelTh": "จัดระบบ · ถ้วยยุโรป",
+      "mentality": "defensive",
+      "pressing": "medium",
+      "tempo": "slow",
+      "width": "narrow",
+      "solveGame": [
+        "low_block",
+        "set_pieces",
+        "control"
+      ],
+      "strongVs": [
+        "possession",
+        "press"
+      ],
+      "weakVs": [
+        "direct"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "park_bus",
+      "wageWeekly": 170000,
+      "hireFee": 7500000,
+      "tier": "top"
+    },
+    {
+      "id": "manuel-pellegrini",
+      "name": "Manuel Pellegrini",
+      "nation": "Chile",
+      "nationTh": "ชิลี",
+      "power": 81,
+      "attackingIQ": 84,
+      "defendingIQ": 78,
+      "manManagement": 86,
+      "adaptability": 82,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "ครองเกมใจเย็น",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "build_up",
+        "control",
+        "wing_play"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 160000,
+      "hireFee": 7000000,
+      "tier": "solid"
+    },
+    {
+      "id": "marcelo-bielsa",
+      "name": "Marcelo Bielsa",
+      "nation": "Argentina",
+      "nationTh": "อาร์เจนตินา",
+      "power": 88,
+      "attackingIQ": 90,
+      "defendingIQ": 80,
+      "manManagement": 70,
+      "adaptability": 50,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "press",
+      "styleLabelTh": "เพรสไม่หยุด · แมนมาร์ก",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "man_mark",
+        "chaos"
+      ],
+      "strongVs": [
+        "possession",
+        "balanced"
+      ],
+      "weakVs": [
+        "counter",
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 150000,
+      "hireFee": 6000000,
+      "tier": "world"
+    },
+    {
+      "id": "fernando-diniz",
+      "name": "Fernando Diniz",
+      "nation": "Brazil",
+      "nationTh": "บราซิล",
+      "power": 78,
+      "attackingIQ": 90,
+      "defendingIQ": 62,
+      "manManagement": 72,
+      "adaptability": 58,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "สัมพันธ์ตำแหน่ง · บราซิล",
+      "mentality": "attacking",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "positional",
+        "build_up",
+        "overloads"
+      ],
+      "strongVs": [
+        "press"
+      ],
+      "weakVs": [
+        "counter",
+        "direct"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 120000,
+      "hireFee": 5000000,
+      "tier": "solid"
+    },
+    {
+      "id": "tite",
+      "name": "Tite",
+      "nation": "Brazil",
+      "nationTh": "บราซิล",
+      "power": 84,
+      "attackingIQ": 82,
+      "defendingIQ": 86,
+      "manManagement": 90,
+      "adaptability": 80,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "balanced",
+      "styleLabelTh": "สมดุล · จิตใจทีม",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "transitions",
+        "man_mark"
+      ],
+      "strongVs": [
+        "direct",
+        "press"
+      ],
+      "weakVs": [
+        "possession"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 180000,
+      "hireFee": 8000000,
+      "tier": "top"
+    },
+    {
+      "id": "abel-ferreira",
+      "name": "Abel Ferreira",
+      "nation": "Portugal",
+      "nationTh": "โปรตุเกส",
+      "power": 83,
+      "attackingIQ": 82,
+      "defendingIQ": 86,
+      "manManagement": 84,
+      "adaptability": 78,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "balanced",
+      "styleLabelTh": "เข้ม · โต้กลับมีระบบ",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "fast",
+      "width": "normal",
+      "solveGame": [
+        "transitions",
+        "control",
+        "set_pieces"
+      ],
+      "strongVs": [
+        "possession",
+        "press"
+      ],
+      "weakVs": [
+        "direct"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "park_bus",
+      "wageWeekly": 150000,
+      "hireFee": 6500000,
+      "tier": "top"
+    },
+    {
+      "id": "jorge-jesus",
+      "name": "Jorge Jesus",
+      "nation": "Portugal",
+      "nationTh": "โปรตุเกส",
+      "power": 82,
+      "attackingIQ": 88,
+      "defendingIQ": 74,
+      "manManagement": 80,
+      "adaptability": 70,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "press",
+      "styleLabelTh": "โจมตีจัด · ปีกคม",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "wing_play",
+        "gegenpress",
+        "vertical"
+      ],
+      "strongVs": [
+        "balanced",
+        "direct"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 170000,
+      "hireFee": 7500000,
+      "tier": "top"
+    },
+    {
+      "id": "leonardo-jardim",
+      "name": "Leonardo Jardim",
+      "nation": "Portugal",
+      "nationTh": "โปรตุเกส",
+      "power": 79,
+      "attackingIQ": 80,
+      "defendingIQ": 80,
+      "manManagement": 82,
+      "adaptability": 80,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-2-3-1",
+      "style": "balanced",
+      "styleLabelTh": "สมดุล · จัดระบบ",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "transitions",
+        "wing_play"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 130000,
+      "hireFee": 5500000,
+      "tier": "solid"
+    },
+    {
+      "id": "zinedine-zidane",
+      "name": "Zinedine Zidane",
+      "nation": "France",
+      "nationTh": "ฝรั่งเศส",
+      "power": 89,
+      "attackingIQ": 86,
+      "defendingIQ": 84,
+      "manManagement": 96,
+      "adaptability": 88,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-4-2",
+      "style": "balanced",
+      "styleLabelTh": "จัดการดาว · จังหวะใหญ่",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "control",
+        "transitions",
+        "man_management"
+      ],
+      "strongVs": [
+        "press",
+        "direct"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 350000,
+      "hireFee": 18000000,
+      "tier": "elite"
+    },
+    {
+      "id": "didier-deschamps",
+      "name": "Didier Deschamps",
+      "nation": "France",
+      "nationTh": "ฝรั่งเศส",
+      "power": 88,
+      "attackingIQ": 78,
+      "defendingIQ": 92,
+      "manManagement": 94,
+      "adaptability": 85,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "balanced",
+      "styleLabelTh": "ผลก่อน · กลุ่มแน่น",
+      "mentality": "defensive",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "narrow",
+      "solveGame": [
+        "control",
+        "low_block",
+        "man_mark"
+      ],
+      "strongVs": [
+        "possession",
+        "press"
+      ],
+      "weakVs": [
+        "direct"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "park_bus",
+      "wageWeekly": 0,
+      "hireFee": 0,
+      "tier": "national",
+      "nationalOnly": true
+    },
+    {
+      "id": "franck-haise",
+      "name": "Franck Haise",
+      "nation": "France",
+      "nationTh": "ฝรั่งเศส",
+      "power": 80,
+      "attackingIQ": 82,
+      "defendingIQ": 80,
+      "manManagement": 82,
+      "adaptability": 78,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "balanced",
+      "styleLabelTh": "จัดระบบ · พัฒนาทีม",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "transitions",
+        "build_up"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 120000,
+      "hireFee": 5000000,
+      "tier": "solid"
+    },
+    {
+      "id": "luis-de-la-fuente",
+      "name": "Luis de la Fuente",
+      "nation": "Spain",
+      "nationTh": "สเปน",
+      "power": 86,
+      "attackingIQ": 88,
+      "defendingIQ": 82,
+      "manManagement": 84,
+      "adaptability": 80,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "possession",
+      "styleLabelTh": "ครองบอล · เทคนิค",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "positional",
+        "build_up",
+        "overloads"
+      ],
+      "strongVs": [
+        "press",
+        "direct"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 0,
+      "hireFee": 0,
+      "tier": "national",
+      "nationalOnly": true
+    },
+    {
+      "id": "lionel-scaloni",
+      "name": "Lionel Scaloni",
+      "nation": "Argentina",
+      "nationTh": "อาร์เจนตินา",
+      "power": 90,
+      "attackingIQ": 86,
+      "defendingIQ": 88,
+      "manManagement": 96,
+      "adaptability": 90,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-4-2",
+      "style": "balanced",
+      "styleLabelTh": "กลุ่มแน่น · จิตใจแกร่ง",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "transitions",
+        "man_mark"
+      ],
+      "strongVs": [
+        "press",
+        "possession"
+      ],
+      "weakVs": [
+        "direct"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 0,
+      "hireFee": 0,
+      "tier": "national",
+      "nationalOnly": true
+    },
+    {
+      "id": "ralf-rangnick",
+      "name": "Ralf Rangnick",
+      "nation": "Germany",
+      "nationTh": "เยอรมนี",
+      "power": 84,
+      "attackingIQ": 86,
+      "defendingIQ": 84,
+      "manManagement": 70,
+      "adaptability": 65,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "press",
+      "styleLabelTh": "เพรสระบบ · Gegenpress DNA",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "vertical",
+        "man_mark"
+      ],
+      "strongVs": [
+        "possession",
+        "balanced"
+      ],
+      "weakVs": [
+        "low_block",
+        "counter"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 180000,
+      "hireFee": 8000000,
+      "tier": "top"
+    },
+    {
+      "id": "nuno-espirito-santo",
+      "name": "Nuno Espírito Santo",
+      "nation": "Portugal",
+      "nationTh": "โปรตุเกส",
+      "power": 81,
+      "attackingIQ": 78,
+      "defendingIQ": 86,
+      "manManagement": 82,
+      "adaptability": 76,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "counter",
+      "styleLabelTh": "ตั้งรับ · โต้คม",
+      "mentality": "defensive",
+      "pressing": "medium",
+      "tempo": "fast",
+      "width": "narrow",
+      "solveGame": [
+        "transitions",
+        "low_block",
+        "set_pieces"
+      ],
+      "strongVs": [
+        "possession",
+        "press"
+      ],
+      "weakVs": [
+        "direct"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "park_bus",
+      "wageWeekly": 160000,
+      "hireFee": 7000000,
+      "tier": "solid"
+    },
+    {
+      "id": "david-moyes",
+      "name": "David Moyes",
+      "nation": "Scotland",
+      "nationTh": "สกอตแลนด์",
+      "power": 80,
+      "attackingIQ": 74,
+      "defendingIQ": 86,
+      "manManagement": 86,
+      "adaptability": 78,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-2-3-1",
+      "style": "direct",
+      "styleLabelTh": "ตรง · ฟิสิกส์ · สต็อปพิซ",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "set_pieces",
+        "direct",
+        "control"
+      ],
+      "strongVs": [
+        "possession",
+        "low_block"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "park_bus",
+      "wageWeekly": 140000,
+      "hireFee": 6000000,
+      "tier": "solid"
+    },
+    {
+      "id": "sean-dyche",
+      "name": "Sean Dyche",
+      "nation": "England",
+      "nationTh": "อังกฤษ",
+      "power": 78,
+      "attackingIQ": 68,
+      "defendingIQ": 88,
+      "manManagement": 86,
+      "adaptability": 60,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-4-2",
+      "style": "direct",
+      "styleLabelTh": "ยาว · ฟิสิกส์ · ใจสู้",
+      "mentality": "defensive",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "narrow",
+      "solveGame": [
+        "direct",
+        "set_pieces",
+        "chaos"
+      ],
+      "strongVs": [
+        "possession",
+        "low_block"
+      ],
+      "weakVs": [
+        "press",
+        "wing_play"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "park_bus",
+      "wageWeekly": 110000,
+      "hireFee": 4500000,
+      "tier": "solid"
+    },
+    {
+      "id": "eddie-howe",
+      "name": "Eddie Howe",
+      "nation": "England",
+      "nationTh": "อังกฤษ",
+      "power": 84,
+      "attackingIQ": 86,
+      "defendingIQ": 80,
+      "manManagement": 88,
+      "adaptability": 80,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "press",
+      "styleLabelTh": "เพรส · พัฒนานักเตะ",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "wing_play",
+        "transitions"
+      ],
+      "strongVs": [
+        "balanced",
+        "direct"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 200000,
+      "hireFee": 9000000,
+      "tier": "top"
+    },
+    {
+      "id": "andoni-iraola",
+      "name": "Andoni Iraola",
+      "nation": "Spain",
+      "nationTh": "สเปน",
+      "power": 83,
+      "attackingIQ": 86,
+      "defendingIQ": 80,
+      "manManagement": 80,
+      "adaptability": 78,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "press",
+      "styleLabelTh": "กดสูง · วิงแบ็กดุ",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "wing_play",
+        "transitions"
+      ],
+      "strongVs": [
+        "possession",
+        "balanced"
+      ],
+      "weakVs": [
+        "counter"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 150000,
+      "hireFee": 6500000,
+      "tier": "top"
+    },
+    {
+      "id": "graham-potter",
+      "name": "Graham Potter",
+      "nation": "England",
+      "nationTh": "อังกฤษ",
+      "power": 79,
+      "attackingIQ": 82,
+      "defendingIQ": 78,
+      "manManagement": 80,
+      "adaptability": 88,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "ยืดหยุ่นรูป · สร้างเกม",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "positional",
+        "build_up",
+        "control"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press",
+        "counter"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 140000,
+      "hireFee": 6000000,
+      "tier": "solid"
+    },
+    {
+      "id": "marco-silva",
+      "name": "Marco Silva",
+      "nation": "Portugal",
+      "nationTh": "โปรตุเกส",
+      "power": 81,
+      "attackingIQ": 84,
+      "defendingIQ": 78,
+      "manManagement": 80,
+      "adaptability": 76,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "press",
+      "styleLabelTh": "กดสูง · ปีกเร็ว",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "wing_play",
+        "transitions"
+      ],
+      "strongVs": [
+        "balanced",
+        "direct"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 150000,
+      "hireFee": 6500000,
+      "tier": "solid"
+    },
+    {
+      "id": "oliver-glasner",
+      "name": "Oliver Glasner",
+      "nation": "Austria",
+      "nationTh": "ออสเตรีย",
+      "power": 84,
+      "attackingIQ": 86,
+      "defendingIQ": 84,
+      "manManagement": 82,
+      "adaptability": 80,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "press",
+      "styleLabelTh": "เพรส · สองแนวรุก",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "transitions",
+        "overloads"
+      ],
+      "strongVs": [
+        "balanced",
+        "possession"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 180000,
+      "hireFee": 8000000,
+      "tier": "top"
+    },
+    {
+      "id": "thomas-frank",
+      "name": "Thomas Frank",
+      "nation": "Denmark",
+      "nationTh": "เดนมาร์ก",
+      "power": 82,
+      "attackingIQ": 80,
+      "defendingIQ": 84,
+      "manManagement": 88,
+      "adaptability": 84,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "balanced",
+      "styleLabelTh": "จัดระบบ · ทีมเวิร์ค",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "set_pieces",
+        "transitions"
+      ],
+      "strongVs": [
+        "press",
+        "direct"
+      ],
+      "weakVs": [
+        "possession"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 160000,
+      "hireFee": 7000000,
+      "tier": "top"
+    },
+    {
+      "id": "fabian-hurzeler",
+      "name": "Fabian Hürzeler",
+      "nation": "Germany",
+      "nationTh": "เยอรมนี",
+      "power": 80,
+      "attackingIQ": 84,
+      "defendingIQ": 78,
+      "manManagement": 76,
+      "adaptability": 82,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "press",
+      "styleLabelTh": "กดสูง · รุ่นใหม่",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "positional",
+        "vertical"
+      ],
+      "strongVs": [
+        "balanced",
+        "direct"
+      ],
+      "weakVs": [
+        "low_block",
+        "counter"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 130000,
+      "hireFee": 5500000,
+      "tier": "solid"
+    },
+    {
+      "id": "kieran-mckenna",
+      "name": "Kieran McKenna",
+      "nation": "Northern Ireland",
+      "nationTh": "ไอร์แลนด์เหนือ",
+      "power": 81,
+      "attackingIQ": 84,
+      "defendingIQ": 80,
+      "manManagement": 84,
+      "adaptability": 80,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "ครองเกม · พัฒนารุ่นเล็ก",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "positional",
+        "build_up",
+        "gegenpress"
+      ],
+      "strongVs": [
+        "direct",
+        "balanced"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 140000,
+      "hireFee": 6000000,
+      "tier": "solid"
+    },
+    {
+      "id": "roberto-martinez",
+      "name": "Roberto Martínez",
+      "nation": "Spain",
+      "nationTh": "สเปน",
+      "power": 82,
+      "attackingIQ": 84,
+      "defendingIQ": 78,
+      "manManagement": 86,
+      "adaptability": 82,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "possession",
+      "styleLabelTh": "ครองเกม · สร้างสรรค์",
+      "mentality": "attacking",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "build_up",
+        "positional",
+        "control"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press",
+        "counter"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 0,
+      "hireFee": 0,
+      "tier": "national",
+      "nationalOnly": true
+    },
+    {
+      "id": "ronald-koeman",
+      "name": "Ronald Koeman",
+      "nation": "Netherlands",
+      "nationTh": "เนเธอร์แลนด์",
+      "power": 81,
+      "attackingIQ": 82,
+      "defendingIQ": 80,
+      "manManagement": 78,
+      "adaptability": 72,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "possession",
+      "styleLabelTh": "โททัลฟุตบอลเบา ๆ",
+      "mentality": "attacking",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "build_up",
+        "wing_play",
+        "control"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 0,
+      "hireFee": 0,
+      "tier": "national",
+      "nationalOnly": true
+    },
+    {
+      "id": "hajime-moriyasu",
+      "name": "Hajime Moriyasu",
+      "nation": "Japan",
+      "nationTh": "ญี่ปุ่น",
+      "power": 80,
+      "attackingIQ": 78,
+      "defendingIQ": 82,
+      "manManagement": 86,
+      "adaptability": 78,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "press",
+      "styleLabelTh": "กดสูง · วิ่งไม่หยุด",
+      "mentality": "balanced",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "normal",
+      "solveGame": [
+        "gegenpress",
+        "control",
+        "transitions"
+      ],
+      "strongVs": [
+        "possession",
+        "balanced"
+      ],
+      "weakVs": [
+        "direct"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 0,
+      "hireFee": 0,
+      "tier": "national",
+      "nationalOnly": true
+    },
+    {
+      "id": "masatada-ishii",
+      "name": "Masatada Ishii",
+      "nation": "Japan",
+      "nationTh": "ญี่ปุ่น",
+      "power": 76,
+      "attackingIQ": 74,
+      "defendingIQ": 78,
+      "manManagement": 82,
+      "adaptability": 80,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "press",
+      "styleLabelTh": "กดสูง · พลังงาน",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "transitions",
+        "wing_play"
+      ],
+      "strongVs": [
+        "balanced",
+        "direct"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 80000,
+      "hireFee": 2500000,
+      "tier": "solid"
+    },
+    {
+      "id": "alexandre-gesteira",
+      "name": "Mano Menezes",
+      "nation": "Brazil",
+      "nationTh": "บราซิล",
+      "power": 77,
+      "attackingIQ": 76,
+      "defendingIQ": 78,
+      "manManagement": 80,
+      "adaptability": 78,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "balanced",
+      "styleLabelTh": "สมดุล · ประสบการณ์",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "transitions",
+        "build_up"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 100000,
+      "hireFee": 4000000,
+      "tier": "solid"
+    },
+    {
+      "id": "mauricio-pochettino",
+      "name": "Mauricio Pochettino",
+      "nation": "Argentina",
+      "nationTh": "อาร์เจนตินา",
+      "power": 85,
+      "attackingIQ": 86,
+      "defendingIQ": 84,
+      "manManagement": 88,
+      "adaptability": 80,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "press",
+      "styleLabelTh": "เพรส · พัฒนานักเตะ",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "positional",
+        "transitions"
+      ],
+      "strongVs": [
+        "balanced",
+        "direct"
+      ],
+      "weakVs": [
+        "low_block",
+        "counter"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 220000,
+      "hireFee": 10000000,
+      "tier": "world"
+    },
+    {
+      "id": "antonio-conte-2",
+      "name": "Thiago Motta",
+      "nation": "Italy",
+      "nationTh": "อิตาลี",
+      "power": 82,
+      "attackingIQ": 88,
+      "defendingIQ": 78,
+      "manManagement": 76,
+      "adaptability": 74,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "ครองบอล · สร้างจากหลัง",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "build_up",
+        "positional",
+        "overloads"
+      ],
+      "strongVs": [
+        "press",
+        "direct"
+      ],
+      "weakVs": [
+        "counter",
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 180000,
+      "hireFee": 8000000,
+      "tier": "top"
+    },
+    {
+      "id": "sergio-conceicao",
+      "name": "Sérgio Conceição",
+      "nation": "Portugal",
+      "nationTh": "โปรตุเกส",
+      "power": 83,
+      "attackingIQ": 86,
+      "defendingIQ": 80,
+      "manManagement": 84,
+      "adaptability": 72,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-2-3-1",
+      "style": "press",
+      "styleLabelTh": "เข้ม · ปีกดุ",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "wing_play",
+        "gegenpress",
+        "chaos"
+      ],
+      "strongVs": [
+        "balanced",
+        "possession"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 190000,
+      "hireFee": 8500000,
+      "tier": "top"
+    },
+    {
+      "id": "paulo-fonseca",
+      "name": "Paulo Fonseca",
+      "nation": "Portugal",
+      "nationTh": "โปรตุเกส",
+      "power": 80,
+      "attackingIQ": 84,
+      "defendingIQ": 76,
+      "manManagement": 78,
+      "adaptability": 76,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "ครองเกม · โจมตีสวย",
+      "mentality": "attacking",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "build_up",
+        "wing_play",
+        "positional"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press",
+        "counter"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 140000,
+      "hireFee": 6000000,
+      "tier": "solid"
+    },
+    {
+      "id": "ivan-juric",
+      "name": "Ivan Jurić",
+      "nation": "Croatia",
+      "nationTh": "โครเอเชีย",
+      "power": 79,
+      "attackingIQ": 76,
+      "defendingIQ": 86,
+      "manManagement": 78,
+      "adaptability": 70,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-4-2",
+      "style": "press",
+      "styleLabelTh": "เพรสดุ · ฟิสิกส์",
+      "mentality": "balanced",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "narrow",
+      "solveGame": [
+        "gegenpress",
+        "man_mark",
+        "chaos"
+      ],
+      "strongVs": [
+        "possession",
+        "balanced"
+      ],
+      "weakVs": [
+        "counter",
+        "wing_play"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "high_press",
+      "wageWeekly": 120000,
+      "hireFee": 5000000,
+      "tier": "solid"
+    },
+    {
+      "id": "claudio-ranieri",
+      "name": "Claudio Ranieri",
+      "nation": "Italy",
+      "nationTh": "อิตาลี",
+      "power": 82,
+      "attackingIQ": 76,
+      "defendingIQ": 84,
+      "manManagement": 94,
+      "adaptability": 90,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-2-3-1",
+      "style": "balanced",
+      "styleLabelTh": "ใจสู้ · ปรับตามทีม",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "set_pieces",
+        "man_mark"
+      ],
+      "strongVs": [
+        "press"
+      ],
+      "weakVs": [
+        "possession"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "park_bus",
+      "wageWeekly": 130000,
+      "hireFee": 5500000,
+      "tier": "solid"
+    },
+    {
+      "id": "carlo-ancelotti-assist",
+      "name": "Francesco Farioli",
+      "nation": "Italy",
+      "nationTh": "อิตาลี",
+      "power": 80,
+      "attackingIQ": 84,
+      "defendingIQ": 78,
+      "manManagement": 76,
+      "adaptability": 80,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "possession",
+      "styleLabelTh": "ครองบอลรุ่นใหม่",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "build_up",
+        "positional",
+        "gegenpress"
+      ],
+      "strongVs": [
+        "direct",
+        "press"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 140000,
+      "hireFee": 6000000,
+      "tier": "solid"
+    },
+    {
+      "id": "arner-slot-rival",
+      "name": "Peter Bosz",
+      "nation": "Netherlands",
+      "nationTh": "เนเธอร์แลนด์",
+      "power": 78,
+      "attackingIQ": 84,
+      "defendingIQ": 70,
+      "manManagement": 74,
+      "adaptability": 68,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-3-3",
+      "style": "press",
+      "styleLabelTh": "กดสูงตลอด · โจมตีจัด",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "positional",
+        "wing_play"
+      ],
+      "strongVs": [
+        "balanced"
+      ],
+      "weakVs": [
+        "counter",
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 120000,
+      "hireFee": 5000000,
+      "tier": "solid"
+    },
+    {
+      "id": "bruno-lage",
+      "name": "Bruno Lage",
+      "nation": "Portugal",
+      "nationTh": "โปรตุเกส",
+      "power": 77,
+      "attackingIQ": 80,
+      "defendingIQ": 76,
+      "manManagement": 78,
+      "adaptability": 74,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-2-3-1",
+      "style": "balanced",
+      "styleLabelTh": "สองสไตรเกอร์ · สมดุล",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "transitions",
+        "wing_play"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 110000,
+      "hireFee": 4500000,
+      "tier": "solid"
+    },
+    {
+      "id": "vitor-pereira",
+      "name": "Vítor Pereira",
+      "nation": "Portugal",
+      "nationTh": "โปรตุเกส",
+      "power": 79,
+      "attackingIQ": 80,
+      "defendingIQ": 80,
+      "manManagement": 80,
+      "adaptability": 82,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "balanced",
+      "styleLabelTh": "จัดระบบ · ปรับเก่ง",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "build_up",
+        "man_mark"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 130000,
+      "hireFee": 5500000,
+      "tier": "solid"
+    },
+    {
+      "id": "jess-marsch",
+      "name": "Jesse Marsch",
+      "nation": "USA",
+      "nationTh": "สหรัฐฯ",
+      "power": 76,
+      "attackingIQ": 78,
+      "defendingIQ": 74,
+      "manManagement": 80,
+      "adaptability": 72,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "press",
+      "styleLabelTh": "เพรส · พลังงานล้น",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "chaos",
+        "transitions"
+      ],
+      "strongVs": [
+        "possession",
+        "balanced"
+      ],
+      "weakVs": [
+        "low_block",
+        "counter"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 100000,
+      "hireFee": 4000000,
+      "tier": "solid"
+    },
+    {
+      "id": "gerardo-martino",
+      "name": "Gerardo Martino",
+      "nation": "Argentina",
+      "nationTh": "อาร์เจนตินา",
+      "power": 78,
+      "attackingIQ": 80,
+      "defendingIQ": 76,
+      "manManagement": 82,
+      "adaptability": 80,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "possession",
+      "styleLabelTh": "ครองเกม · สายเป๊ปเบา ๆ",
+      "mentality": "attacking",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "build_up",
+        "positional",
+        "control"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press",
+        "counter"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 120000,
+      "hireFee": 5000000,
+      "tier": "solid"
+    },
+    {
+      "id": "marcelo-gallardo",
+      "name": "Marcelo Gallardo",
+      "nation": "Argentina",
+      "nationTh": "อาร์เจนตินา",
+      "power": 86,
+      "attackingIQ": 88,
+      "defendingIQ": 82,
+      "manManagement": 90,
+      "adaptability": 78,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "press",
+      "styleLabelTh": "กดสูง · จิตใจแกร่ง",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "transitions",
+        "wing_play"
+      ],
+      "strongVs": [
+        "balanced",
+        "possession"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 200000,
+      "hireFee": 9000000,
+      "tier": "world"
+    },
+    {
+      "id": "fernando-santos",
+      "name": "Fernando Santos",
+      "nation": "Portugal",
+      "nationTh": "โปรตุเกส",
+      "power": 80,
+      "attackingIQ": 70,
+      "defendingIQ": 90,
+      "manManagement": 86,
+      "adaptability": 70,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-2-3-1",
+      "style": "low_block",
+      "styleLabelTh": "ตั้งรับแน่น · ผลก่อน",
+      "mentality": "defensive",
+      "pressing": "low",
+      "tempo": "slow",
+      "width": "narrow",
+      "solveGame": [
+        "low_block",
+        "set_pieces",
+        "control"
+      ],
+      "strongVs": [
+        "possession",
+        "press"
+      ],
+      "weakVs": [
+        "direct",
+        "wing_play"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "park_bus",
+      "wageWeekly": 110000,
+      "hireFee": 4500000,
+      "tier": "solid"
+    },
+    {
+      "id": "carlo-anselotti-asia",
+      "name": "Kim Pan-gon",
+      "nation": "South Korea",
+      "nationTh": "เกาหลีใต้",
+      "power": 74,
+      "attackingIQ": 72,
+      "defendingIQ": 76,
+      "manManagement": 80,
+      "adaptability": 78,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "balanced",
+      "styleLabelTh": "จัดระบบ · เอเชีย",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "transitions",
+        "man_mark"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "possession"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 70000,
+      "hireFee": 2000000,
+      "tier": "emerging"
+    },
+    {
+      "id": "tony-popovic",
+      "name": "Tony Popovic",
+      "nation": "Australia",
+      "nationTh": "ออสเตรเลีย",
+      "power": 74,
+      "attackingIQ": 70,
+      "defendingIQ": 78,
+      "manManagement": 80,
+      "adaptability": 74,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-2-3-1",
+      "style": "direct",
+      "styleLabelTh": "ฟิสิกส์ · ตั้งรับ",
+      "mentality": "defensive",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "narrow",
+      "solveGame": [
+        "direct",
+        "set_pieces",
+        "low_block"
+      ],
+      "strongVs": [
+        "possession"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "park_bus",
+      "wageWeekly": 0,
+      "hireFee": 0,
+      "tier": "national",
+      "nationalOnly": true
+    },
+    {
+      "id": "walid-regragui",
+      "name": "Walid Regragui",
+      "nation": "Morocco",
+      "nationTh": "โมร็อกโก",
+      "power": 82,
+      "attackingIQ": 78,
+      "defendingIQ": 90,
+      "manManagement": 88,
+      "adaptability": 80,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-4-2",
+      "style": "counter",
+      "styleLabelTh": "ตั้งรับแน่น · โต้คม",
+      "mentality": "defensive",
+      "pressing": "medium",
+      "tempo": "fast",
+      "width": "narrow",
+      "solveGame": [
+        "low_block",
+        "transitions",
+        "man_mark"
+      ],
+      "strongVs": [
+        "possession",
+        "press"
+      ],
+      "weakVs": [
+        "direct"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "park_bus",
+      "wageWeekly": 0,
+      "hireFee": 0,
+      "tier": "national",
+      "nationalOnly": true
+    },
+    {
+      "id": "steve-cooper",
+      "name": "Steve Cooper",
+      "nation": "Wales",
+      "nationTh": "เวลส์",
+      "power": 77,
+      "attackingIQ": 76,
+      "defendingIQ": 78,
+      "manManagement": 84,
+      "adaptability": 78,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "balanced",
+      "styleLabelTh": "พัฒนาทีม · สมดุล",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "build_up",
+        "transitions"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 110000,
+      "hireFee": 4500000,
+      "tier": "solid"
+    },
+    {
+      "id": "gary-oneil",
+      "name": "Gary O'Neil",
+      "nation": "England",
+      "nationTh": "อังกฤษ",
+      "power": 76,
+      "attackingIQ": 74,
+      "defendingIQ": 78,
+      "manManagement": 80,
+      "adaptability": 82,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "counter",
+      "styleLabelTh": "จัดระบบ · โต้กลับ",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "fast",
+      "width": "normal",
+      "solveGame": [
+        "transitions",
+        "control",
+        "set_pieces"
+      ],
+      "strongVs": [
+        "possession"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "park_bus",
+      "wageWeekly": 100000,
+      "hireFee": 4000000,
+      "tier": "solid"
+    },
+    {
+      "id": "iraola-twin",
+      "name": "Michel",
+      "nation": "Spain",
+      "nationTh": "สเปน",
+      "power": 81,
+      "attackingIQ": 84,
+      "defendingIQ": 78,
+      "manManagement": 80,
+      "adaptability": 76,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "ครองเกม · ปีกคม",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "wing_play",
+        "build_up",
+        "gegenpress"
+      ],
+      "strongVs": [
+        "direct",
+        "balanced"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 140000,
+      "hireFee": 6000000,
+      "tier": "solid"
+    },
+    {
+      "id": "carlo-anselotti-ligue",
+      "name": "Will Still",
+      "nation": "Belgium",
+      "nationTh": "เบลเยียม",
+      "power": 77,
+      "attackingIQ": 80,
+      "defendingIQ": 74,
+      "manManagement": 82,
+      "adaptability": 84,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "press",
+      "styleLabelTh": "กดสูง · รุ่นใหม่",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "transitions",
+        "vertical"
+      ],
+      "strongVs": [
+        "balanced",
+        "direct"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "high_press",
+      "wageWeekly": 110000,
+      "hireFee": 4500000,
+      "tier": "emerging"
+    },
+    {
+      "id": "adrien-rabiot-coach",
+      "name": "Patrick Vieira",
+      "nation": "France",
+      "nationTh": "ฝรั่งเศส",
+      "power": 76,
+      "attackingIQ": 74,
+      "defendingIQ": 78,
+      "manManagement": 84,
+      "adaptability": 72,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "balanced",
+      "styleLabelTh": "สมดุล · พัฒนานักเตะ",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "build_up",
+        "transitions"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 120000,
+      "hireFee": 5000000,
+      "tier": "solid"
+    },
+    {
+      "id": "albert-stuvoy",
+      "name": "Albert Stuivenberg",
+      "nation": "Netherlands",
+      "nationTh": "เนเธอร์แลนด์",
+      "power": 75,
+      "attackingIQ": 78,
+      "defendingIQ": 76,
+      "manManagement": 74,
+      "adaptability": 80,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "possession",
+      "styleLabelTh": "โครงสร้าง · ผู้ช่วยสายเป๊ป",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "positional",
+        "build_up",
+        "control"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "counter"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 90000,
+      "hireFee": 3500000,
+      "tier": "emerging"
+    },
+    {
+      "id": "chris-wilder",
+      "name": "Chris Wilder",
+      "nation": "England",
+      "nationTh": "อังกฤษ",
+      "power": 75,
+      "attackingIQ": 72,
+      "defendingIQ": 80,
+      "manManagement": 82,
+      "adaptability": 68,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-4-2",
+      "style": "direct",
+      "styleLabelTh": "โอเวอร์แลป · ตรง ๆ",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "direct",
+        "wing_play",
+        "set_pieces"
+      ],
+      "strongVs": [
+        "possession",
+        "low_block"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "park_bus",
+      "wageWeekly": 90000,
+      "hireFee": 3500000,
+      "tier": "emerging"
+    },
+    {
+      "id": "russell-martin",
+      "name": "Russell Martin",
+      "nation": "Scotland",
+      "nationTh": "สกอตแลนด์",
+      "power": 74,
+      "attackingIQ": 80,
+      "defendingIQ": 68,
+      "manManagement": 76,
+      "adaptability": 70,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "possession",
+      "styleLabelTh": "ครองบอลเสี่ยง · จากหลัง",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "build_up",
+        "positional",
+        "overloads"
+      ],
+      "strongVs": [
+        "press"
+      ],
+      "weakVs": [
+        "counter",
+        "direct"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 90000,
+      "hireFee": 3500000,
+      "tier": "emerging"
+    },
+    {
+      "id": "daniel-farke",
+      "name": "Daniel Farke",
+      "nation": "Germany",
+      "nationTh": "เยอรมนี",
+      "power": 79,
+      "attackingIQ": 82,
+      "defendingIQ": 76,
+      "manManagement": 82,
+      "adaptability": 76,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "ครองเกม · พัฒนารุ่นเล็ก",
+      "mentality": "attacking",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "build_up",
+        "positional",
+        "control"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press",
+        "counter"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 130000,
+      "hireFee": 5500000,
+      "tier": "solid"
+    },
+    {
+      "id": "julen-lopetegui",
+      "name": "Julen Lopetegui",
+      "nation": "Spain",
+      "nationTh": "สเปน",
+      "power": 80,
+      "attackingIQ": 80,
+      "defendingIQ": 82,
+      "manManagement": 78,
+      "adaptability": 74,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "ครองเกม · จัดระเบียบ",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "build_up",
+        "control",
+        "positional"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press",
+        "counter"
+      ],
+      "inGameLosing": "switch_wing",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 160000,
+      "hireFee": 7000000,
+      "tier": "solid"
+    },
+    {
+      "id": "quique-setien",
+      "name": "Quique Setién",
+      "nation": "Spain",
+      "nationTh": "สเปน",
+      "power": 74,
+      "attackingIQ": 82,
+      "defendingIQ": 68,
+      "manManagement": 70,
+      "adaptability": 55,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "ครองบอลสุดโต่ง",
+      "mentality": "attacking",
+      "pressing": "medium",
+      "tempo": "slow",
+      "width": "wide",
+      "solveGame": [
+        "positional",
+        "build_up",
+        "control"
+      ],
+      "strongVs": [
+        "press"
+      ],
+      "weakVs": [
+        "counter",
+        "direct"
+      ],
+      "inGameLosing": "push_higher",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 90000,
+      "hireFee": 3000000,
+      "tier": "emerging"
+    },
+    {
+      "id": "marcelino",
+      "name": "Marcelino",
+      "nation": "Spain",
+      "nationTh": "สเปน",
+      "power": 80,
+      "attackingIQ": 82,
+      "defendingIQ": 82,
+      "manManagement": 80,
+      "adaptability": 76,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-4-2",
+      "style": "balanced",
+      "styleLabelTh": "สองแนว · โต้คม",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "fast",
+      "width": "normal",
+      "solveGame": [
+        "transitions",
+        "control",
+        "wing_play"
+      ],
+      "strongVs": [
+        "possession",
+        "press"
+      ],
+      "weakVs": [
+        "direct"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 130000,
+      "hireFee": 5500000,
+      "tier": "solid"
+    },
+    {
+      "id": "steve-clarke",
+      "name": "Steve Clarke",
+      "nation": "Scotland",
+      "nationTh": "สกอตแลนด์",
+      "power": 78,
+      "attackingIQ": 76,
+      "defendingIQ": 78,
+      "manManagement": 80,
+      "adaptability": 74,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-2-3-1",
+      "style": "direct",
+      "styleLabelTh": "ดุดัน · ฟิสิกส์",
+      "mentality": "defensive",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "narrow",
+      "solveGame": [
+        "direct",
+        "set_pieces",
+        "control"
+      ],
+      "strongVs": [
+        "possession",
+        "low_block"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 102400,
+      "hireFee": 3920000,
+      "tier": "solid",
+      "nationalOnly": true
+    },
+    {
+      "id": "craig-bellamy",
+      "name": "Craig Bellamy",
+      "nation": "Wales",
+      "nationTh": "เวลส์",
+      "power": 74,
+      "attackingIQ": 72,
+      "defendingIQ": 74,
+      "manManagement": 76,
+      "adaptability": 70,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "press",
+      "styleLabelTh": "เข้ม · พลังงาน",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "transitions",
+        "wing_play"
+      ],
+      "strongVs": [
+        "balanced",
+        "direct"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 99200,
+      "hireFee": 3760000,
+      "tier": "emerging",
+      "nationalOnly": true
+    },
+    {
+      "id": "heimir-hallgrimsson",
+      "name": "Heimir Hallgrímsson",
+      "nation": "Iceland",
+      "nationTh": "ไอซ์แลนด์",
+      "power": 75,
+      "attackingIQ": 73,
+      "defendingIQ": 75,
+      "manManagement": 77,
+      "adaptability": 71,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-4-2",
+      "style": "direct",
+      "styleLabelTh": "ตั้งรับ · ตรง",
+      "mentality": "defensive",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "narrow",
+      "solveGame": [
+        "low_block",
+        "set_pieces",
+        "direct"
+      ],
+      "strongVs": [
+        "possession",
+        "press"
+      ],
+      "weakVs": [
+        "wing_play"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 100000,
+      "hireFee": 3800000,
+      "tier": "solid",
+      "nationalOnly": true
+    },
+    {
+      "id": "rudi-garcia",
+      "name": "Rudi Garcia",
+      "nation": "France",
+      "nationTh": "ฝรั่งเศส",
+      "power": 79,
+      "attackingIQ": 77,
+      "defendingIQ": 79,
+      "manManagement": 81,
+      "adaptability": 75,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "balanced",
+      "styleLabelTh": "สมดุล · ประสบการณ์",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "build_up",
+        "transitions"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 103200,
+      "hireFee": 3960000,
+      "tier": "solid",
+      "nationalOnly": true
+    },
+    {
+      "id": "nestor-lorenzo",
+      "name": "Néstor Lorenzo",
+      "nation": "Argentina",
+      "nationTh": "อาร์เจนตินา",
+      "power": 80,
+      "attackingIQ": 78,
+      "defendingIQ": 80,
+      "manManagement": 82,
+      "adaptability": 76,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "counter",
+      "styleLabelTh": "โต้กลับ · จัดระบบ",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "fast",
+      "width": "normal",
+      "solveGame": [
+        "transitions",
+        "control",
+        "wing_play"
+      ],
+      "strongVs": [
+        "possession",
+        "press"
+      ],
+      "weakVs": [
+        "direct"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 104000,
+      "hireFee": 4000000,
+      "tier": "solid",
+      "nationalOnly": true
+    },
+    {
+      "id": "javier-aguirre",
+      "name": "Javier Aguirre",
+      "nation": "Mexico",
+      "nationTh": "เม็กซิโก",
+      "power": 78,
+      "attackingIQ": 76,
+      "defendingIQ": 78,
+      "manManagement": 80,
+      "adaptability": 74,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "balanced",
+      "styleLabelTh": "เข้ม · ประสบการณ์",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "man_mark",
+        "transitions"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "possession"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 102400,
+      "hireFee": 3920000,
+      "tier": "solid",
+      "nationalOnly": true
+    },
+    {
+      "id": "hong-myung-bo",
+      "name": "Hong Myung-bo",
+      "nation": "South Korea",
+      "nationTh": "เกาหลีใต้",
+      "power": 77,
+      "attackingIQ": 75,
+      "defendingIQ": 77,
+      "manManagement": 79,
+      "adaptability": 73,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "press",
+      "styleLabelTh": "เข้มข้น · วินัย",
+      "mentality": "balanced",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "normal",
+      "solveGame": [
+        "gegenpress",
+        "control",
+        "transitions"
+      ],
+      "strongVs": [
+        "possession",
+        "balanced"
+      ],
+      "weakVs": [
+        "direct"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 101600,
+      "hireFee": 3880000,
+      "tier": "solid",
+      "nationalOnly": true
+    },
+    {
+      "id": "eric-chelle",
+      "name": "Eric Chelle",
+      "nation": "France",
+      "nationTh": "ฝรั่งเศส",
+      "power": 74,
+      "attackingIQ": 72,
+      "defendingIQ": 74,
+      "manManagement": 76,
+      "adaptability": 70,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "direct",
+      "styleLabelTh": "พลัง · ความเร็ว",
+      "mentality": "attacking",
+      "pressing": "medium",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "direct",
+        "transitions",
+        "wing_play"
+      ],
+      "strongVs": [
+        "low_block"
+      ],
+      "weakVs": [
+        "possession"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 99200,
+      "hireFee": 3760000,
+      "tier": "emerging",
+      "nationalOnly": true
+    },
+    {
+      "id": "pape-thiaw",
+      "name": "Pape Thiaw",
+      "nation": "Senegal",
+      "nationTh": "เซเนกัล",
+      "power": 74,
+      "attackingIQ": 72,
+      "defendingIQ": 74,
+      "manManagement": 76,
+      "adaptability": 70,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "direct",
+      "styleLabelTh": "กายภาพ · ดุดัน",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "fast",
+      "width": "normal",
+      "solveGame": [
+        "direct",
+        "transitions",
+        "man_mark"
+      ],
+      "strongVs": [
+        "possession"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 99200,
+      "hireFee": 3760000,
+      "tier": "emerging",
+      "nationalOnly": true
+    },
+    {
+      "id": "hossam-hassan",
+      "name": "Hossam Hassan",
+      "nation": "Egypt",
+      "nationTh": "อียิปต์",
+      "power": 75,
+      "attackingIQ": 73,
+      "defendingIQ": 75,
+      "manManagement": 77,
+      "adaptability": 71,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "balanced",
+      "styleLabelTh": "พึ่งดาว · จัดระเบียบ",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "transitions",
+        "build_up"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 100000,
+      "hireFee": 3800000,
+      "tier": "solid",
+      "nationalOnly": true
+    },
+    {
+      "id": "zlatko-dalic",
+      "name": "Zlatko Dalić",
+      "nation": "Croatia",
+      "nationTh": "โครเอเชีย",
+      "power": 84,
+      "attackingIQ": 82,
+      "defendingIQ": 84,
+      "manManagement": 86,
+      "adaptability": 80,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "possession",
+      "styleLabelTh": "ครองกลาง · ประสบการณ์",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "build_up",
+        "control",
+        "positional"
+      ],
+      "strongVs": [
+        "press",
+        "direct"
+      ],
+      "weakVs": [
+        "counter"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 107200,
+      "hireFee": 4160000,
+      "tier": "top",
+      "nationalOnly": true
+    },
+    {
+      "id": "brian-riemer",
+      "name": "Brian Riemer",
+      "nation": "Denmark",
+      "nationTh": "เดนมาร์ก",
+      "power": 78,
+      "attackingIQ": 76,
+      "defendingIQ": 78,
+      "manManagement": 80,
+      "adaptability": 74,
+      "preferredFormation": "4-3-3",
+      "formationOop": "4-2-3-1",
+      "style": "press",
+      "styleLabelTh": "กดสูง · ทีมเวิร์ค",
+      "mentality": "attacking",
+      "pressing": "high",
+      "tempo": "fast",
+      "width": "wide",
+      "solveGame": [
+        "gegenpress",
+        "positional",
+        "control"
+      ],
+      "strongVs": [
+        "balanced",
+        "direct"
+      ],
+      "weakVs": [
+        "low_block"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 102400,
+      "hireFee": 3920000,
+      "tier": "solid",
+      "nationalOnly": true
+    },
+    {
+      "id": "jon-dahl-tomasson",
+      "name": "Jon Dahl Tomasson",
+      "nation": "Denmark",
+      "nationTh": "เดนมาร์ก",
+      "power": 76,
+      "attackingIQ": 74,
+      "defendingIQ": 76,
+      "manManagement": 78,
+      "adaptability": 72,
+      "preferredFormation": "4-4-2",
+      "formationOop": "4-2-3-1",
+      "style": "direct",
+      "styleLabelTh": "ตรง · ฟิสิกส์",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "direct",
+        "set_pieces",
+        "control"
+      ],
+      "strongVs": [
+        "possession",
+        "low_block"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 100800,
+      "hireFee": 3840000,
+      "tier": "solid",
+      "nationalOnly": true
+    },
+    {
+      "id": "stale-solbakken",
+      "name": "Ståle Solbakken",
+      "nation": "Norway",
+      "nationTh": "นอร์เวย์",
+      "power": 77,
+      "attackingIQ": 75,
+      "defendingIQ": 77,
+      "manManagement": 79,
+      "adaptability": 73,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "direct",
+      "styleLabelTh": "ตรงเป้า · พลัง",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "fast",
+      "width": "normal",
+      "solveGame": [
+        "direct",
+        "transitions",
+        "set_pieces"
+      ],
+      "strongVs": [
+        "low_block",
+        "possession"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 101600,
+      "hireFee": 3880000,
+      "tier": "solid",
+      "nationalOnly": true
+    },
+    {
+      "id": "murat-yakin",
+      "name": "Murat Yakin",
+      "nation": "Switzerland",
+      "nationTh": "สวิตเซอร์แลนด์",
+      "power": 79,
+      "attackingIQ": 77,
+      "defendingIQ": 79,
+      "manManagement": 81,
+      "adaptability": 75,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "balanced",
+      "styleLabelTh": "สมดุล · วินัย",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "man_mark",
+        "transitions"
+      ],
+      "strongVs": [
+        "direct",
+        "press"
+      ],
+      "weakVs": [
+        "possession"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 103200,
+      "hireFee": 3960000,
+      "tier": "solid",
+      "nationalOnly": true
+    },
+    {
+      "id": "michal-probierz",
+      "name": "Michał Probierz",
+      "nation": "Poland",
+      "nationTh": "โปแลนด์",
+      "power": 76,
+      "attackingIQ": 74,
+      "defendingIQ": 76,
+      "manManagement": 78,
+      "adaptability": 72,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "direct",
+      "styleLabelTh": "ตรง · พลังโจมตี",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "fast",
+      "width": "normal",
+      "solveGame": [
+        "direct",
+        "set_pieces",
+        "transitions"
+      ],
+      "strongVs": [
+        "low_block"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 100800,
+      "hireFee": 3840000,
+      "tier": "solid",
+      "nationalOnly": true
+    },
+    {
+      "id": "vincenzo-montella",
+      "name": "Vincenzo Montella",
+      "nation": "Italy",
+      "nationTh": "อิตาลี",
+      "power": 78,
+      "attackingIQ": 76,
+      "defendingIQ": 78,
+      "manManagement": 80,
+      "adaptability": 74,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "balanced",
+      "styleLabelTh": "จัดระเบียบ · เทคนิค",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "wide",
+      "solveGame": [
+        "build_up",
+        "control",
+        "wing_play"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 102400,
+      "hireFee": 3920000,
+      "tier": "solid",
+      "nationalOnly": true
+    },
+    {
+      "id": "dragan-stojkovic",
+      "name": "Dragan Stojković",
+      "nation": "Serbia",
+      "nationTh": "เซอร์เบีย",
+      "power": 77,
+      "attackingIQ": 75,
+      "defendingIQ": 77,
+      "manManagement": 79,
+      "adaptability": 73,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-4-2",
+      "style": "direct",
+      "styleLabelTh": "กายภาพ · จิตใจ",
+      "mentality": "attacking",
+      "pressing": "medium",
+      "tempo": "fast",
+      "width": "normal",
+      "solveGame": [
+        "direct",
+        "transitions",
+        "set_pieces"
+      ],
+      "strongVs": [
+        "possession"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 101600,
+      "hireFee": 3880000,
+      "tier": "solid",
+      "nationalOnly": true
+    },
+    {
+      "id": "ivan-jovanovic",
+      "name": "Ivan Jovanović",
+      "nation": "Serbia",
+      "nationTh": "เซอร์เบีย",
+      "power": 76,
+      "attackingIQ": 74,
+      "defendingIQ": 76,
+      "manManagement": 78,
+      "adaptability": 72,
+      "preferredFormation": "4-2-3-1",
+      "formationOop": "4-3-3",
+      "style": "balanced",
+      "styleLabelTh": "สมดุล · ประสบการณ์กรีก",
+      "mentality": "balanced",
+      "pressing": "medium",
+      "tempo": "normal",
+      "width": "normal",
+      "solveGame": [
+        "control",
+        "build_up",
+        "transitions"
+      ],
+      "strongVs": [
+        "direct"
+      ],
+      "weakVs": [
+        "press"
+      ],
+      "inGameLosing": "more_direct",
+      "inGameWinning": "control_tempo",
+      "wageWeekly": 100800,
+      "hireFee": 3840000,
+      "tier": "solid",
+      "nationalOnly": true
+    }
+  ]
+}

@@ -1,0 +1,4980 @@
+{
+  "version": 1,
+  "byId": {
+    "pep-guardiola": {
+      "summaryTh": "เป๊ปสร้างทีมบาร์เซโลนาและแมนเชสเตอร์ ซิตี้ให้เป็นมหาอำนาจด้วยฟุตบอลครองบอลเชิงตำแหน่ง คว้าแชมป์ลีกและยุโรปจำนวนมาก.",
+      "timeline": [
+        {
+          "from": 2007,
+          "to": 2008,
+          "team": "Barcelona B",
+          "teamTh": "บาร์เซโลนา เบ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2008,
+          "to": 2012,
+          "team": "Barcelona",
+          "teamTh": "บาร์เซโลนา",
+          "role": "manager",
+          "honours": [
+            "La Liga ×3",
+            "UCL ×2",
+            "Copa del Rey ×2",
+            "Club World Cup ×2"
+          ]
+        },
+        {
+          "from": 2013,
+          "to": 2016,
+          "team": "Bayern Munich",
+          "teamTh": "บาเยิร์น มิวนิก",
+          "role": "manager",
+          "honours": [
+            "Bundesliga ×3",
+            "DFB-Pokal ×2",
+            "Club World Cup"
+          ]
+        },
+        {
+          "from": 2016,
+          "to": null,
+          "team": "Manchester City",
+          "teamTh": "แมนเชสเตอร์ ซิตี้",
+          "role": "manager",
+          "honours": [
+            "Premier League ×6",
+            "UCL",
+            "FA Cup ×2",
+            "Club World Cup"
+          ]
+        }
+      ]
+    },
+    "carlo-ancelotti": {
+      "summaryTh": "อันเชล็อตติเป็นกุนซือผู้ชนะยูฟ่าแชมเปียนส์ลีกมากที่สุด และคว้าแชมป์ลีกครบห้าลีกใหญ่ของยุโรป.",
+      "timeline": [
+        {
+          "from": 1995,
+          "to": 1996,
+          "team": "Reggiana",
+          "teamTh": "เรจเจียนา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 1996,
+          "to": 1998,
+          "team": "Parma",
+          "teamTh": "ปาร์มา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 1999,
+          "to": 2001,
+          "team": "Juventus",
+          "teamTh": "ยูเวนตุส",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2001,
+          "to": 2009,
+          "team": "AC Milan",
+          "teamTh": "เอซี มิลาน",
+          "role": "manager",
+          "honours": [
+            "Serie A",
+            "UCL ×2",
+            "Club World Cup"
+          ]
+        },
+        {
+          "from": 2009,
+          "to": 2011,
+          "team": "Chelsea",
+          "teamTh": "เชลซี",
+          "role": "manager",
+          "honours": [
+            "Premier League",
+            "FA Cup"
+          ]
+        },
+        {
+          "from": 2011,
+          "to": 2013,
+          "team": "Paris Saint-Germain",
+          "teamTh": "ปารีส แซงต์-แชร์กแมง",
+          "role": "manager",
+          "honours": [
+            "Ligue 1"
+          ]
+        },
+        {
+          "from": 2013,
+          "to": 2015,
+          "team": "Real Madrid",
+          "teamTh": "เรอัล มาดริด",
+          "role": "manager",
+          "honours": [
+            "UCL",
+            "Copa del Rey",
+            "Club World Cup"
+          ]
+        },
+        {
+          "from": 2015,
+          "to": 2017,
+          "team": "Bayern Munich",
+          "teamTh": "บาเยิร์น มิวนิก",
+          "role": "manager",
+          "honours": [
+            "Bundesliga"
+          ]
+        },
+        {
+          "from": 2018,
+          "to": 2019,
+          "team": "Napoli",
+          "teamTh": "นาโปลี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "Everton",
+          "teamTh": "เอฟเวอร์ตัน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2025,
+          "team": "Real Madrid",
+          "teamTh": "เรอัล มาดริด",
+          "role": "manager",
+          "honours": [
+            "La Liga ×2",
+            "UCL ×2",
+            "Copa del Rey",
+            "Club World Cup"
+          ]
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Brazil",
+          "teamTh": "บราซิล",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "jose-mourinho": {
+      "summaryTh": "มูรินโญ่สร้างชื่อจากการพาปอร์โตคว้าแชมเปียนส์ลีก ก่อนคว้าแชมป์ใหญ่ในอังกฤษ อิตาลี และสเปน.",
+      "timeline": [
+        {
+          "from": 2000,
+          "to": 2001,
+          "team": "Benfica",
+          "teamTh": "เบนฟิกา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2001,
+          "to": 2002,
+          "team": "União de Leiria",
+          "teamTh": "อูเนียว เด เลเรีย",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2002,
+          "to": 2004,
+          "team": "Porto",
+          "teamTh": "ปอร์โต",
+          "role": "manager",
+          "honours": [
+            "Primeira Liga ×2",
+            "UEFA Cup",
+            "UCL"
+          ]
+        },
+        {
+          "from": 2004,
+          "to": 2007,
+          "team": "Chelsea",
+          "teamTh": "เชลซี",
+          "role": "manager",
+          "honours": [
+            "Premier League ×2",
+            "FA Cup"
+          ]
+        },
+        {
+          "from": 2008,
+          "to": 2010,
+          "team": "Inter Milan",
+          "teamTh": "อินเตอร์ มิลาน",
+          "role": "manager",
+          "honours": [
+            "Serie A ×2",
+            "UCL",
+            "Coppa Italia"
+          ]
+        },
+        {
+          "from": 2010,
+          "to": 2013,
+          "team": "Real Madrid",
+          "teamTh": "เรอัล มาดริด",
+          "role": "manager",
+          "honours": [
+            "La Liga",
+            "Copa del Rey"
+          ]
+        },
+        {
+          "from": 2013,
+          "to": 2015,
+          "team": "Chelsea",
+          "teamTh": "เชลซี",
+          "role": "manager",
+          "honours": [
+            "Premier League",
+            "League Cup"
+          ]
+        },
+        {
+          "from": 2016,
+          "to": 2018,
+          "team": "Manchester United",
+          "teamTh": "แมนเชสเตอร์ ยูไนเต็ด",
+          "role": "manager",
+          "honours": [
+            "UEL",
+            "League Cup"
+          ]
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "Tottenham Hotspur",
+          "teamTh": "ท็อตแนม ฮ็อตสเปอร์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2024,
+          "team": "Roma",
+          "teamTh": "โรมา",
+          "role": "manager",
+          "honours": [
+            "UECL"
+          ]
+        },
+        {
+          "from": 2024,
+          "to": 2025,
+          "team": "Fenerbahçe",
+          "teamTh": "เฟเนร์บาห์เช",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Benfica",
+          "teamTh": "เบนฟิกา",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "diego-simeone": {
+      "summaryTh": "ซิเมโอเนคุมแอตเลติโก มาดริดอย่างยาวนาน พาทีมคว้าแชมป์ลาลีกาสองสมัยและถ้วยยุโรป.",
+      "timeline": [
+        {
+          "from": 2006,
+          "to": 2007,
+          "team": "Racing Club",
+          "teamTh": "ราซิง คลับ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2007,
+          "to": 2007,
+          "team": "Estudiantes",
+          "teamTh": "เอสตูเดียนเตส",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2008,
+          "to": 2009,
+          "team": "River Plate",
+          "teamTh": "ริเวอร์ เพลต",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2009,
+          "to": 2010,
+          "team": "San Lorenzo",
+          "teamTh": "ซาน โลเรนโซ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2011,
+          "to": null,
+          "team": "Atlético Madrid",
+          "teamTh": "แอตเลติโก มาดริด",
+          "role": "manager",
+          "honours": [
+            "La Liga ×2",
+            "UEL ×2",
+            "Copa del Rey",
+            "UEFA Super Cup ×2"
+          ]
+        }
+      ]
+    },
+    "antonio-conte": {
+      "summaryTh": "คอนเต้พาทีมคว้าแชมป์ลีกในอิตาลีและอังกฤษ โดดเด่นกับระบบหลังสามและวินัยเข้มข้น.",
+      "timeline": [
+        {
+          "from": 2006,
+          "to": 2007,
+          "team": "Arezzo",
+          "teamTh": "อาเรซโซ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2007,
+          "to": 2009,
+          "team": "Bari",
+          "teamTh": "บารี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2009,
+          "to": 2010,
+          "team": "Atalanta",
+          "teamTh": "อตาลันตา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2011,
+          "to": 2014,
+          "team": "Juventus",
+          "teamTh": "ยูเวนตุส",
+          "role": "manager",
+          "honours": [
+            "Serie A ×3"
+          ]
+        },
+        {
+          "from": 2014,
+          "to": 2016,
+          "team": "Italy",
+          "teamTh": "อิตาลี",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2016,
+          "to": 2018,
+          "team": "Chelsea",
+          "teamTh": "เชลซี",
+          "role": "manager",
+          "honours": [
+            "Premier League",
+            "FA Cup"
+          ]
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "Inter Milan",
+          "teamTh": "อินเตอร์ มิลาน",
+          "role": "manager",
+          "honours": [
+            "Serie A"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": 2023,
+          "team": "Tottenham Hotspur",
+          "teamTh": "ท็อตแนม ฮ็อตสเปอร์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Napoli",
+          "teamTh": "นาโปลี",
+          "role": "manager",
+          "honours": [
+            "Serie A"
+          ]
+        }
+      ]
+    },
+    "jurgen-klopp": {
+      "summaryTh": "คล็อปป์ยกระดับดอร์ทมุนด์และลิเวอร์พูลด้วยเกเกนเพรสซิง พาลิเวอร์พูลกลับสู่แชมป์ลีกและยุโรป.",
+      "timeline": [
+        {
+          "from": 2001,
+          "to": 2008,
+          "team": "Mainz 05",
+          "teamTh": "ไมนซ์ 05",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2008,
+          "to": 2015,
+          "team": "Borussia Dortmund",
+          "teamTh": "โบรุสเซีย ดอร์ทมุนด์",
+          "role": "manager",
+          "honours": [
+            "Bundesliga ×2",
+            "DFB-Pokal"
+          ]
+        },
+        {
+          "from": 2015,
+          "to": 2024,
+          "team": "Liverpool",
+          "teamTh": "ลิเวอร์พูล",
+          "role": "manager",
+          "honours": [
+            "Premier League",
+            "UCL",
+            "FA Cup",
+            "League Cup ×2",
+            "Club World Cup"
+          ]
+        }
+      ]
+    },
+    "mikel-arteta": {
+      "summaryTh": "อาร์เตตาเริ่มงานโค้ชกับแมนฯ ซิตี้ ก่อนสร้างอาร์เซนอลเป็นทีมลุ้นแชมป์พรีเมียร์ลีกด้วยเกมครองบอลและเพรสซิง.",
+      "timeline": [
+        {
+          "from": 2016,
+          "to": 2019,
+          "team": "Manchester City",
+          "teamTh": "แมนเชสเตอร์ ซิตี้",
+          "role": "assistant",
+          "honours": [
+            "Premier League ×2",
+            "FA Cup"
+          ]
+        },
+        {
+          "from": 2019,
+          "to": null,
+          "team": "Arsenal",
+          "teamTh": "อาร์เซนอล",
+          "role": "manager",
+          "honours": [
+            "FA Cup"
+          ]
+        }
+      ]
+    },
+    "arne-slot": {
+      "summaryTh": "สล็อตพาเฟเยนูร์ดคืนสู่แชมป์เอเรดิวิซี ก่อนคว้าแชมป์พรีเมียร์ลีกกับลิเวอร์พูลในฤดูกาลแรก.",
+      "timeline": [
+        {
+          "from": 2017,
+          "to": 2019,
+          "team": "Cambuur",
+          "teamTh": "คัมบูร์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "AZ Alkmaar",
+          "teamTh": "อาแซด อัลค์มาร์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2024,
+          "team": "Feyenoord",
+          "teamTh": "เฟเยนูร์ด",
+          "role": "manager",
+          "honours": [
+            "Eredivisie",
+            "KNVB Cup"
+          ]
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Liverpool",
+          "teamTh": "ลิเวอร์พูล",
+          "role": "manager",
+          "honours": [
+            "Premier League"
+          ]
+        }
+      ]
+    },
+    "xabi-alonso": {
+      "summaryTh": "อลอนโซสร้างผลงานประวัติศาสตร์พาเลเวอร์คูเซนคว้าดับเบิลในประเทศแบบไร้พ่าย ก่อนย้ายสู่เรอัล มาดริด.",
+      "timeline": [
+        {
+          "from": 2018,
+          "to": 2019,
+          "team": "Real Madrid U14",
+          "teamTh": "เรอัล มาดริด ยู14",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2022,
+          "team": "Real Sociedad B",
+          "teamTh": "เรอัล โซเซียดัด เบ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": 2025,
+          "team": "Bayer Leverkusen",
+          "teamTh": "ไบเออร์ เลเวอร์คูเซน",
+          "role": "manager",
+          "honours": [
+            "Bundesliga",
+            "DFB-Pokal"
+          ]
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Real Madrid",
+          "teamTh": "เรอัล มาดริด",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "hansi-flick": {
+      "summaryTh": "ฟลิคคุมบาเยิร์นคว้าหกแชมป์ในปี 2020 ก่อนคุมเยอรมนีและบาร์เซโลนา.",
+      "timeline": [
+        {
+          "from": 2000,
+          "to": 2005,
+          "team": "Hoffenheim",
+          "teamTh": "ฮอฟเฟนไฮม์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2006,
+          "to": 2014,
+          "team": "Germany",
+          "teamTh": "เยอรมนี",
+          "role": "assistant",
+          "honours": [
+            "World Cup"
+          ]
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "Bayern Munich",
+          "teamTh": "บาเยิร์น มิวนิก",
+          "role": "manager",
+          "honours": [
+            "Bundesliga ×2",
+            "UCL",
+            "DFB-Pokal",
+            "Club World Cup"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": 2023,
+          "team": "Germany",
+          "teamTh": "เยอรมนี",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Barcelona",
+          "teamTh": "บาร์เซโลนา",
+          "role": "manager",
+          "honours": [
+            "La Liga",
+            "Copa del Rey"
+          ]
+        }
+      ]
+    },
+    "thomas-tuchel": {
+      "summaryTh": "ทูเคิลคว้าแชมเปียนส์ลีกกับเชลซี และมีแชมป์ลีกกับปารีส แซงต์-แชร์กแมง तथाบาเยิร์น มิวนิก.",
+      "timeline": [
+        {
+          "from": 2009,
+          "to": 2014,
+          "team": "Mainz 05",
+          "teamTh": "ไมนซ์ 05",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2015,
+          "to": 2017,
+          "team": "Borussia Dortmund",
+          "teamTh": "โบรุสเซีย ดอร์ทมุนด์",
+          "role": "manager",
+          "honours": [
+            "DFB-Pokal"
+          ]
+        },
+        {
+          "from": 2018,
+          "to": 2020,
+          "team": "Paris Saint-Germain",
+          "teamTh": "ปารีส แซงต์-แชร์กแมง",
+          "role": "manager",
+          "honours": [
+            "Ligue 1 ×2",
+            "Coupe de France"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": 2022,
+          "team": "Chelsea",
+          "teamTh": "เชลซี",
+          "role": "manager",
+          "honours": [
+            "UCL",
+            "Club World Cup"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": 2024,
+          "team": "Bayern Munich",
+          "teamTh": "บาเยิร์น มิวนิก",
+          "role": "manager",
+          "honours": [
+            "Bundesliga"
+          ]
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "England",
+          "teamTh": "อังกฤษ",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "julian-nagelsmann": {
+      "summaryTh": "นาเกิลส์มันน์เป็นกุนซือรุ่นใหม่ที่พาฮอฟเฟนไฮม์และไลป์ซิกเติบโต ก่อนคุมบาเยิร์นและทีมชาติเยอรมนี.",
+      "timeline": [
+        {
+          "from": 2016,
+          "to": 2019,
+          "team": "Hoffenheim",
+          "teamTh": "ฮอฟเฟนไฮม์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "RB Leipzig",
+          "teamTh": "แอร์เบ ไลป์ซิก",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2023,
+          "team": "Bayern Munich",
+          "teamTh": "บาเยิร์น มิวนิก",
+          "role": "manager",
+          "honours": [
+            "Bundesliga"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": null,
+          "team": "Germany",
+          "teamTh": "เยอรมนี",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "luis-enrique": {
+      "summaryTh": "หลุยส์ เอ็นรีเก้พาบาร์เซโลนาคว้าทริปเปิลแชมป์ และพาสเปนเข้ารอบลึกในรายการใหญ่ ก่อนคุมเปแอสเช.",
+      "timeline": [
+        {
+          "from": 2008,
+          "to": 2011,
+          "team": "Barcelona B",
+          "teamTh": "บาร์เซโลนา เบ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2011,
+          "to": 2012,
+          "team": "Roma",
+          "teamTh": "โรมา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2013,
+          "to": 2014,
+          "team": "Celta Vigo",
+          "teamTh": "เซลตา บีโก",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2014,
+          "to": 2017,
+          "team": "Barcelona",
+          "teamTh": "บาร์เซโลนา",
+          "role": "manager",
+          "honours": [
+            "La Liga ×2",
+            "UCL",
+            "Copa del Rey ×3",
+            "Club World Cup"
+          ]
+        },
+        {
+          "from": 2018,
+          "to": 2022,
+          "team": "Spain",
+          "teamTh": "สเปน",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2023,
+          "to": null,
+          "team": "Paris Saint-Germain",
+          "teamTh": "ปารีส แซงต์-แชร์กแมง",
+          "role": "manager",
+          "honours": [
+            "Ligue 1 ×2",
+            "UCL"
+          ]
+        }
+      ]
+    },
+    "unai-emery": {
+      "summaryTh": "เอเมรีคือผู้เชี่ยวชาญยูโรปาลีก คว้าถ้วยนี้สี่สมัยและพาแอสตัน วิลลาแข่งขันในยุโรป.",
+      "timeline": [
+        {
+          "from": 2006,
+          "to": 2008,
+          "team": "Almería",
+          "teamTh": "อัลเมเรีย",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2008,
+          "to": 2012,
+          "team": "Valencia",
+          "teamTh": "บาเลนเซีย",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2012,
+          "to": 2013,
+          "team": "Spartak Moscow",
+          "teamTh": "สปาร์ตัก มอสโก",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2013,
+          "to": 2016,
+          "team": "Sevilla",
+          "teamTh": "เซบียา",
+          "role": "manager",
+          "honours": [
+            "UEL ×3"
+          ]
+        },
+        {
+          "from": 2016,
+          "to": 2018,
+          "team": "Paris Saint-Germain",
+          "teamTh": "ปารีส แซงต์-แชร์กแมง",
+          "role": "manager",
+          "honours": [
+            "Ligue 1",
+            "Coupe de France ×2"
+          ]
+        },
+        {
+          "from": 2018,
+          "to": 2019,
+          "team": "Arsenal",
+          "teamTh": "อาร์เซนอล",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2020,
+          "to": 2022,
+          "team": "Villarreal",
+          "teamTh": "บียาร์เรอัล",
+          "role": "manager",
+          "honours": [
+            "UEL"
+          ]
+        },
+        {
+          "from": 2022,
+          "to": null,
+          "team": "Aston Villa",
+          "teamTh": "แอสตัน วิลลา",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "ange-postecoglou": {
+      "summaryTh": "โปสเตโคกลูคว้าแชมป์ในออสเตรเลีย ญี่ปุ่น และสกอตแลนด์ ก่อนพาสเปอร์สคว้าแชมป์ยูโรปาลีก.",
+      "timeline": [
+        {
+          "from": 1996,
+          "to": 2000,
+          "team": "South Melbourne",
+          "teamTh": "เซาท์ เมลเบิร์น",
+          "role": "manager",
+          "honours": [
+            "National Soccer League ×2"
+          ]
+        },
+        {
+          "from": 2009,
+          "to": 2013,
+          "team": "Brisbane Roar",
+          "teamTh": "บริสเบน รอร์",
+          "role": "manager",
+          "honours": [
+            "A-League ×2"
+          ]
+        },
+        {
+          "from": 2013,
+          "to": 2017,
+          "team": "Australia",
+          "teamTh": "ออสเตรเลีย",
+          "role": "national",
+          "honours": [
+            "Asian Cup"
+          ]
+        },
+        {
+          "from": 2018,
+          "to": 2021,
+          "team": "Yokohama F. Marinos",
+          "teamTh": "โยโกฮามา เอฟ มารินอส",
+          "role": "manager",
+          "honours": [
+            "J1 League"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": 2023,
+          "team": "Celtic",
+          "teamTh": "เซลติก",
+          "role": "manager",
+          "honours": [
+            "Scottish Premiership ×2",
+            "Scottish Cup"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": 2025,
+          "team": "Tottenham Hotspur",
+          "teamTh": "ท็อตแนม ฮ็อตสเปอร์",
+          "role": "manager",
+          "honours": [
+            "UEL"
+          ]
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Nottingham Forest",
+          "teamTh": "น็อตติงแฮม ฟอเรสต์",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "ruben-amorim": {
+      "summaryTh": "อโมริมพาสปอร์ติ้งคว้าแชมป์โปรตุเกสสองสมัย ก่อนรับงานคุมแมนเชสเตอร์ ยูไนเต็ด.",
+      "timeline": [
+        {
+          "from": 2018,
+          "to": 2020,
+          "team": "Braga",
+          "teamTh": "บรากา",
+          "role": "manager",
+          "honours": [
+            "Taça da Liga"
+          ]
+        },
+        {
+          "from": 2020,
+          "to": 2024,
+          "team": "Sporting CP",
+          "teamTh": "สปอร์ติ้ง ลิสบอน",
+          "role": "manager",
+          "honours": [
+            "Primeira Liga ×2",
+            "Taça da Liga ×2"
+          ]
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Manchester United",
+          "teamTh": "แมนเชสเตอร์ ยูไนเต็ด",
+          "role": "manager",
+          "honours": [
+            "UEL"
+          ]
+        }
+      ]
+    },
+    "enzo-maresca": {
+      "summaryTh": "มาเรสก้าทำงานเป็นผู้ช่วยของกวาร์ดิโอลา ก่อนพาเลสเตอร์เลื่อนชั้นและคุมเชลซีคว้าแชมป์ยุโรป.",
+      "timeline": [
+        {
+          "from": 2017,
+          "to": 2018,
+          "team": "Ascoli",
+          "teamTh": "อัสโคลี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2020,
+          "to": 2021,
+          "team": "Manchester City U23",
+          "teamTh": "แมนเชสเตอร์ ซิตี้ ยู23",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2022,
+          "team": "Parma",
+          "teamTh": "ปาร์มา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": 2023,
+          "team": "Manchester City",
+          "teamTh": "แมนเชสเตอร์ ซิตี้",
+          "role": "assistant",
+          "honours": [
+            "Premier League",
+            "UCL"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": 2024,
+          "team": "Leicester City",
+          "teamTh": "เลสเตอร์ ซิตี้",
+          "role": "manager",
+          "honours": [
+            "EFL Championship"
+          ]
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Chelsea",
+          "teamTh": "เชลซี",
+          "role": "manager",
+          "honours": [
+            "UECL"
+          ]
+        }
+      ]
+    },
+    "vincent-kompany": {
+      "summaryTh": "กอมปานีพาเบิร์นลีย์คว้าแชมป์แชมเปียนชิพ ก่อนก้าวสู่บาเยิร์น มิวนิก.",
+      "timeline": [
+        {
+          "from": 2020,
+          "to": 2022,
+          "team": "Anderlecht",
+          "teamTh": "อันเดอร์เลชท์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": 2024,
+          "team": "Burnley",
+          "teamTh": "เบิร์นลีย์",
+          "role": "manager",
+          "honours": [
+            "EFL Championship"
+          ]
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Bayern Munich",
+          "teamTh": "บาเยิร์น มิวนิก",
+          "role": "manager",
+          "honours": [
+            "Bundesliga"
+          ]
+        }
+      ]
+    },
+    "roberto-de-zerbi": {
+      "summaryTh": "เด แซร์บีมีชื่อจากฟุตบอลสร้างเกมของซาสซูโอโล ไบรท์ตัน และมาร์กเซย.",
+      "timeline": [
+        {
+          "from": 2013,
+          "to": 2016,
+          "team": "Foggia",
+          "teamTh": "ฟอจจา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2016,
+          "to": 2017,
+          "team": "Palermo",
+          "teamTh": "ปาแลร์โม",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2017,
+          "to": 2018,
+          "team": "Benevento",
+          "teamTh": "เบเนเวนโต",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2018,
+          "to": 2021,
+          "team": "Sassuolo",
+          "teamTh": "ซาสซูโอโล",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2022,
+          "team": "Shakhtar Donetsk",
+          "teamTh": "ชัคตาร์ โดเนตส์ก",
+          "role": "manager",
+          "honours": [
+            "Ukrainian Super Cup"
+          ]
+        },
+        {
+          "from": 2022,
+          "to": 2024,
+          "team": "Brighton & Hove Albion",
+          "teamTh": "ไบรท์ตัน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Marseille",
+          "teamTh": "มาร์กเซย",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "erik-ten-hag": {
+      "summaryTh": "เทน ฮากพาอาแจ็กซ์คว้าแชมป์ลีกสามสมัย ก่อนคุมแมนเชสเตอร์ ยูไนเต็ดและไบเออร์ เลเวอร์คูเซน.",
+      "timeline": [
+        {
+          "from": 2012,
+          "to": 2013,
+          "team": "Go Ahead Eagles",
+          "teamTh": "โก อเฮด อีเกิลส์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2013,
+          "to": 2015,
+          "team": "Bayern Munich II",
+          "teamTh": "บาเยิร์น มิวนิก เบ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2015,
+          "to": 2017,
+          "team": "Utrecht",
+          "teamTh": "อูเทรคต์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2017,
+          "to": 2022,
+          "team": "Ajax",
+          "teamTh": "อาแจ็กซ์",
+          "role": "manager",
+          "honours": [
+            "Eredivisie ×3",
+            "KNVB Cup ×2"
+          ]
+        },
+        {
+          "from": 2022,
+          "to": 2024,
+          "team": "Manchester United",
+          "teamTh": "แมนเชสเตอร์ ยูไนเต็ด",
+          "role": "manager",
+          "honours": [
+            "FA Cup",
+            "League Cup"
+          ]
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Bayer Leverkusen",
+          "teamTh": "ไบเออร์ เลเวอร์คูเซน",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "massimiliano-allegri": {
+      "summaryTh": "อัลเลกรีคว้าแชมป์เซเรียอาหกครั้งกับเอซี มิลานและยูเวนตุส และพาทีมเข้าชิงแชมเปียนส์ลีกสองหน.",
+      "timeline": [
+        {
+          "from": 2007,
+          "to": 2008,
+          "team": "Sassuolo",
+          "teamTh": "ซาสซูโอโล",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2008,
+          "to": 2010,
+          "team": "Cagliari",
+          "teamTh": "กายารี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2010,
+          "to": 2014,
+          "team": "AC Milan",
+          "teamTh": "เอซี มิลาน",
+          "role": "manager",
+          "honours": [
+            "Serie A"
+          ]
+        },
+        {
+          "from": 2014,
+          "to": 2019,
+          "team": "Juventus",
+          "teamTh": "ยูเวนตุส",
+          "role": "manager",
+          "honours": [
+            "Serie A ×5",
+            "Coppa Italia ×4"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": 2024,
+          "team": "Juventus",
+          "teamTh": "ยูเวนตุส",
+          "role": "manager",
+          "honours": [
+            "Coppa Italia"
+          ]
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "AC Milan",
+          "teamTh": "เอซี มิลาน",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "simone-inzaghi": {
+      "summaryTh": "อินซากีพาลาซิโอและอินเตอร์ประสบความสำเร็จในบอลถ้วย ก่อนพาอินเตอร์คว้าแชมป์เซเรียอา.",
+      "timeline": [
+        {
+          "from": 2016,
+          "to": 2021,
+          "team": "Lazio",
+          "teamTh": "ลาซิโอ",
+          "role": "manager",
+          "honours": [
+            "Coppa Italia",
+            "Supercoppa Italiana ×2"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": 2025,
+          "team": "Inter Milan",
+          "teamTh": "อินเตอร์ มิลาน",
+          "role": "manager",
+          "honours": [
+            "Serie A",
+            "Coppa Italia ×2",
+            "Supercoppa Italiana ×3"
+          ]
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Al-Hilal",
+          "teamTh": "อัล ฮิลาล",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "luciano-spalletti": {
+      "summaryTh": "สปัลเล็ตติเป็นกุนซือผู้พานาโปลีคว้าเซเรียอาครั้งประวัติศาสตร์ ก่อนคุมทีมชาติอิตาลี.",
+      "timeline": [
+        {
+          "from": 1995,
+          "to": 1998,
+          "team": "Empoli",
+          "teamTh": "เอ็มโปลี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 1998,
+          "to": 2005,
+          "team": "Udinese",
+          "teamTh": "อูดิเนเซ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2005,
+          "to": 2009,
+          "team": "Roma",
+          "teamTh": "โรมา",
+          "role": "manager",
+          "honours": [
+            "Coppa Italia ×2"
+          ]
+        },
+        {
+          "from": 2009,
+          "to": 2014,
+          "team": "Zenit Saint Petersburg",
+          "teamTh": "เซนิต เซนต์ปีเตอร์สเบิร์ก",
+          "role": "manager",
+          "honours": [
+            "Russian Premier League ×2"
+          ]
+        },
+        {
+          "from": 2016,
+          "to": 2017,
+          "team": "Roma",
+          "teamTh": "โรมา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2017,
+          "to": 2019,
+          "team": "Inter Milan",
+          "teamTh": "อินเตอร์ มิลาน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2023,
+          "team": "Napoli",
+          "teamTh": "นาโปลี",
+          "role": "manager",
+          "honours": [
+            "Serie A"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": 2025,
+          "team": "Italy",
+          "teamTh": "อิตาลี",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "maurizio-sarri": {
+      "summaryTh": "ซาร์รีพานาโปลีเล่นฟุตบอลครองบอลโดดเด่น ก่อนคว้ายูโรปาลีกกับเชลซีและเซเรียอากับยูเวนตุส.",
+      "timeline": [
+        {
+          "from": 2012,
+          "to": 2015,
+          "team": "Empoli",
+          "teamTh": "เอ็มโปลี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2015,
+          "to": 2018,
+          "team": "Napoli",
+          "teamTh": "นาโปลี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2018,
+          "to": 2019,
+          "team": "Chelsea",
+          "teamTh": "เชลซี",
+          "role": "manager",
+          "honours": [
+            "UEL"
+          ]
+        },
+        {
+          "from": 2019,
+          "to": 2020,
+          "team": "Juventus",
+          "teamTh": "ยูเวนตุส",
+          "role": "manager",
+          "honours": [
+            "Serie A"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": 2024,
+          "team": "Lazio",
+          "teamTh": "ลาซิโอ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Lazio",
+          "teamTh": "ลาซิโอ",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "gian-piero-gasperini": {
+      "summaryTh": "กัสเปรินีสร้างอตาลันตาเป็นทีมแชมเปียนส์ลีกและพาทีมคว้าแชมป์ยูโรปาลีก 2024.",
+      "timeline": [
+        {
+          "from": 2003,
+          "to": 2006,
+          "team": "Crotone",
+          "teamTh": "โครโตเน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2006,
+          "to": 2010,
+          "team": "Genoa",
+          "teamTh": "เจนัว",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2011,
+          "to": 2011,
+          "team": "Inter Milan",
+          "teamTh": "อินเตอร์ มิลาน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2016,
+          "to": 2025,
+          "team": "Atalanta",
+          "teamTh": "อตาลันตา",
+          "role": "manager",
+          "honours": [
+            "UEL"
+          ]
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Roma",
+          "teamTh": "โรมา",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "stefano-pioli": {
+      "summaryTh": "ปิโอลีพาเอซี มิลานคว้าเซเรียอา 2022 และต่อมาคุมอัล นาสเซอร์.",
+      "timeline": [
+        {
+          "from": 2007,
+          "to": 2009,
+          "team": "Piacenza",
+          "teamTh": "ปิอาเชนซา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2011,
+          "to": 2014,
+          "team": "Bologna",
+          "teamTh": "โบโลญญา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2014,
+          "to": 2016,
+          "team": "Lazio",
+          "teamTh": "ลาซิโอ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2017,
+          "to": 2019,
+          "team": "Fiorentina",
+          "teamTh": "ฟิออเรนตินา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2024,
+          "team": "AC Milan",
+          "teamTh": "เอซี มิลาน",
+          "role": "manager",
+          "honours": [
+            "Serie A"
+          ]
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Al-Nassr",
+          "teamTh": "อัล นาสเซอร์",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "rafael-benitez": {
+      "summaryTh": "เบนิเตซคว้าแชมเปียนส์ลีกกับลิเวอร์พูลและยูโรปาลีกสองสมัย มีประสบการณ์คุมทีมทั่วยุโรป.",
+      "timeline": [
+        {
+          "from": 2001,
+          "to": 2004,
+          "team": "Valencia",
+          "teamTh": "บาเลนเซีย",
+          "role": "manager",
+          "honours": [
+            "La Liga ×2",
+            "UEFA Cup"
+          ]
+        },
+        {
+          "from": 2004,
+          "to": 2010,
+          "team": "Liverpool",
+          "teamTh": "ลิเวอร์พูล",
+          "role": "manager",
+          "honours": [
+            "UCL",
+            "FA Cup"
+          ]
+        },
+        {
+          "from": 2010,
+          "to": 2012,
+          "team": "Inter Milan",
+          "teamTh": "อินเตอร์ มิลาน",
+          "role": "manager",
+          "honours": [
+            "Club World Cup"
+          ]
+        },
+        {
+          "from": 2012,
+          "to": 2013,
+          "team": "Chelsea",
+          "teamTh": "เชลซี",
+          "role": "interim",
+          "honours": [
+            "UEL"
+          ]
+        },
+        {
+          "from": 2013,
+          "to": 2015,
+          "team": "Napoli",
+          "teamTh": "นาโปลี",
+          "role": "manager",
+          "honours": [
+            "Coppa Italia"
+          ]
+        },
+        {
+          "from": 2015,
+          "to": 2016,
+          "team": "Real Madrid",
+          "teamTh": "เรอัล มาดริด",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2016,
+          "to": 2019,
+          "team": "Newcastle United",
+          "teamTh": "นิวคาสเซิล ยูไนเต็ด",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "Dalian Professional",
+          "teamTh": "ต้าเหลียน โปรเฟสชันแนล",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2022,
+          "team": "Everton",
+          "teamTh": "เอฟเวอร์ตัน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2023,
+          "to": 2024,
+          "team": "Celta Vigo",
+          "teamTh": "เซลตา บีโก",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "manuel-pellegrini": {
+      "summaryTh": "เปเยกรินีพาแมนเชสเตอร์ ซิตี้คว้าแชมป์พรีเมียร์ลีก และคุมเรอัล เบติสคว้าโกปา เดล เรย์.",
+      "timeline": [
+        {
+          "from": 2004,
+          "to": 2009,
+          "team": "Villarreal",
+          "teamTh": "บียาร์เรอัล",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2009,
+          "to": 2010,
+          "team": "Real Madrid",
+          "teamTh": "เรอัล มาดริด",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2010,
+          "to": 2013,
+          "team": "Málaga",
+          "teamTh": "มาลากา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2013,
+          "to": 2016,
+          "team": "Manchester City",
+          "teamTh": "แมนเชสเตอร์ ซิตี้",
+          "role": "manager",
+          "honours": [
+            "Premier League",
+            "League Cup ×2"
+          ]
+        },
+        {
+          "from": 2016,
+          "to": 2018,
+          "team": "Hebei China Fortune",
+          "teamTh": "เหอเป่ย ไชน่า ฟอร์จูน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2018,
+          "to": 2019,
+          "team": "West Ham United",
+          "teamTh": "เวสต์แฮม ยูไนเต็ด",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2020,
+          "to": null,
+          "team": "Real Betis",
+          "teamTh": "เรอัล เบติส",
+          "role": "manager",
+          "honours": [
+            "Copa del Rey"
+          ]
+        }
+      ]
+    },
+    "marcelo-bielsa": {
+      "summaryTh": "บิเอลซาคือกุนซือผู้ทรงอิทธิพลด้านการเพรสซิง เคยคุมอาร์เจนตินา ชิลี และพาลีดส์เลื่อนชั้น.",
+      "timeline": [
+        {
+          "from": 1990,
+          "to": 1998,
+          "team": "Newell's Old Boys",
+          "teamTh": "นีเวลล์ส โอลด์บอยส์",
+          "role": "manager",
+          "honours": [
+            "Argentine Primera División ×2"
+          ]
+        },
+        {
+          "from": 1998,
+          "to": 2004,
+          "team": "Argentina",
+          "teamTh": "อาร์เจนตินา",
+          "role": "national",
+          "honours": [
+            "Olympic Gold"
+          ]
+        },
+        {
+          "from": 2007,
+          "to": 2011,
+          "team": "Chile",
+          "teamTh": "ชิลี",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2011,
+          "to": 2013,
+          "team": "Athletic Club",
+          "teamTh": "แอธเลติก บิลเบา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2014,
+          "to": 2015,
+          "team": "Marseille",
+          "teamTh": "มาร์กเซย",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2018,
+          "to": 2022,
+          "team": "Leeds United",
+          "teamTh": "ลีดส์ ยูไนเต็ด",
+          "role": "manager",
+          "honours": [
+            "EFL Championship"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": null,
+          "team": "Uruguay",
+          "teamTh": "อุรุกวัย",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "fernando-diniz": {
+      "summaryTh": "ดินิซโดดเด่นด้วยฟุตบอลครองบอลแบบสัมพันธ์ตำแหน่ง และพาฟลูมิเนนเซคว้าโคปา ลิเบอร์ตาดอเรส.",
+      "timeline": [
+        {
+          "from": 2016,
+          "to": 2018,
+          "team": "Audax",
+          "teamTh": "อูแด็กซ์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2018,
+          "to": 2019,
+          "team": "Fluminense",
+          "teamTh": "ฟลูมิเนนเซ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "São Paulo",
+          "teamTh": "เซาเปาโล",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": 2024,
+          "team": "Fluminense",
+          "teamTh": "ฟลูมิเนนเซ",
+          "role": "manager",
+          "honours": [
+            "Copa Libertadores",
+            "Recopa Sudamericana"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": 2024,
+          "team": "Brazil",
+          "teamTh": "บราซิล",
+          "role": "interim",
+          "honours": []
+        }
+      ]
+    },
+    "tite": {
+      "summaryTh": "ตีเต้พาโครินเธียนส์คว้าลิเบอร์ตาดอเรสและสโมสรโลก ก่อนพาบราซิลคว้าโคปา อเมริกา.",
+      "timeline": [
+        {
+          "from": 2004,
+          "to": 2005,
+          "team": "Grêmio",
+          "teamTh": "เกรมิโอ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2008,
+          "to": 2010,
+          "team": "Internacional",
+          "teamTh": "อินเตอร์นาซิอองนาล",
+          "role": "manager",
+          "honours": [
+            "Copa Sudamericana"
+          ]
+        },
+        {
+          "from": 2010,
+          "to": 2013,
+          "team": "Corinthians",
+          "teamTh": "โครินเธียนส์",
+          "role": "manager",
+          "honours": [
+            "Copa Libertadores",
+            "Club World Cup"
+          ]
+        },
+        {
+          "from": 2016,
+          "to": 2022,
+          "team": "Brazil",
+          "teamTh": "บราซิล",
+          "role": "national",
+          "honours": [
+            "Copa América"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": 2024,
+          "team": "Flamengo",
+          "teamTh": "ฟลาเมงโก",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "abel-ferreira": {
+      "summaryTh": "อาเบล เฟร์เรย์ราพาพัลไมรัสคว้าโคปา ลิเบอร์ตาดอเรสสองสมัยและแชมป์บราซิล.",
+      "timeline": [
+        {
+          "from": 2017,
+          "to": 2019,
+          "team": "Braga",
+          "teamTh": "บรากา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2020,
+          "team": "PAOK",
+          "teamTh": "พีเอโอเค",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2020,
+          "to": null,
+          "team": "Palmeiras",
+          "teamTh": "พัลไมรัส",
+          "role": "manager",
+          "honours": [
+            "Copa Libertadores ×2",
+            "Brasileirão Série A ×2",
+            "Recopa Sudamericana"
+          ]
+        }
+      ]
+    },
+    "jorge-jesus": {
+      "summaryTh": "จอร์จ เชซุสคว้าแชมป์กับเบนฟิกาและฟลาเมงโก รวมถึงลิเบอร์ตาดอเรส 2019.",
+      "timeline": [
+        {
+          "from": 2009,
+          "to": 2015,
+          "team": "Benfica",
+          "teamTh": "เบนฟิกา",
+          "role": "manager",
+          "honours": [
+            "Primeira Liga ×3",
+            "Taça de Portugal",
+            "UEL"
+          ]
+        },
+        {
+          "from": 2015,
+          "to": 2018,
+          "team": "Sporting CP",
+          "teamTh": "สปอร์ติ้ง ลิสบอน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2020,
+          "team": "Flamengo",
+          "teamTh": "ฟลาเมงโก",
+          "role": "manager",
+          "honours": [
+            "Brasileirão Série A",
+            "Copa Libertadores"
+          ]
+        },
+        {
+          "from": 2020,
+          "to": 2021,
+          "team": "Benfica",
+          "teamTh": "เบนฟิกา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": 2023,
+          "team": "Fenerbahçe",
+          "teamTh": "เฟเนร์บาห์เช",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2023,
+          "to": 2025,
+          "team": "Al-Hilal",
+          "teamTh": "อัล ฮิลาล",
+          "role": "manager",
+          "honours": [
+            "Saudi Pro League"
+          ]
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Al-Nassr",
+          "teamTh": "อัล นาสเซอร์",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "leonardo-jardim": {
+      "summaryTh": "ชาร์ดิมพาโมนาโกคว้าแชมป์ลีกเอิง 2017 และทำงานในหลายลีกยุโรปกับตะวันออกกลาง.",
+      "timeline": [
+        {
+          "from": 2011,
+          "to": 2012,
+          "team": "Braga",
+          "teamTh": "บรากา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2012,
+          "to": 2013,
+          "team": "Olympiacos",
+          "teamTh": "โอลิมเปียกอส",
+          "role": "manager",
+          "honours": [
+            "Greek Super League"
+          ]
+        },
+        {
+          "from": 2013,
+          "to": 2014,
+          "team": "Sporting CP",
+          "teamTh": "สปอร์ติ้ง ลิสบอน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2014,
+          "to": 2018,
+          "team": "Monaco",
+          "teamTh": "โมนาโก",
+          "role": "manager",
+          "honours": [
+            "Ligue 1"
+          ]
+        },
+        {
+          "from": 2018,
+          "to": 2020,
+          "team": "Monaco",
+          "teamTh": "โมนาโก",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2020,
+          "to": 2021,
+          "team": "Al-Hilal",
+          "teamTh": "อัล ฮิลาล",
+          "role": "manager",
+          "honours": [
+            "AFC Champions League"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": 2022,
+          "team": "Al-Ahli",
+          "teamTh": "อัล อาห์ลี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2023,
+          "to": 2024,
+          "team": "Al-Rayyan",
+          "teamTh": "อัล รายยาน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Cruzeiro",
+          "teamTh": "ครูไซโร",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "zinedine-zidane": {
+      "summaryTh": "ซีดานคุมเรอัล มาดริดคว้าแชมเปียนส์ลีกสามสมัยติดต่อกัน และแชมป์ลาลีกาสองครั้ง.",
+      "timeline": [
+        {
+          "from": 2014,
+          "to": 2016,
+          "team": "Real Madrid Castilla",
+          "teamTh": "เรอัล มาดริด กัสติยา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2016,
+          "to": 2018,
+          "team": "Real Madrid",
+          "teamTh": "เรอัล มาดริด",
+          "role": "manager",
+          "honours": [
+            "UCL ×3",
+            "La Liga",
+            "Club World Cup ×2"
+          ]
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "Real Madrid",
+          "teamTh": "เรอัล มาดริด",
+          "role": "manager",
+          "honours": [
+            "La Liga"
+          ]
+        }
+      ]
+    },
+    "didier-deschamps": {
+      "summaryTh": "เดชองส์พาฝรั่งเศสคว้าแชมป์ฟุตบอลโลก 2018 และเนชันส์ลีก 2021.",
+      "timeline": [
+        {
+          "from": 2001,
+          "to": 2005,
+          "team": "Monaco",
+          "teamTh": "โมนาโก",
+          "role": "manager",
+          "honours": [
+            "Coupe de la Ligue"
+          ]
+        },
+        {
+          "from": 2006,
+          "to": 2009,
+          "team": "Juventus",
+          "teamTh": "ยูเวนตุส",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2009,
+          "to": 2012,
+          "team": "Marseille",
+          "teamTh": "มาร์กเซย",
+          "role": "manager",
+          "honours": [
+            "Ligue 1",
+            "Coupe de la Ligue ×3"
+          ]
+        },
+        {
+          "from": 2012,
+          "to": null,
+          "team": "France",
+          "teamTh": "ฝรั่งเศส",
+          "role": "national",
+          "honours": [
+            "World Cup",
+            "Nations League"
+          ]
+        }
+      ]
+    },
+    "franck-haise": {
+      "summaryTh": "แอสพาเลนส์กลับสู่ลีกเอิงและพาทีมไปแชมเปียนส์ลีก ก่อนย้ายไปคุมนีซ.",
+      "timeline": [
+        {
+          "from": 2020,
+          "to": 2024,
+          "team": "Lens",
+          "teamTh": "ล็องส์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Nice",
+          "teamTh": "นีซ",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "luis-de-la-fuente": {
+      "summaryTh": "เด ลา ฟวนเต้พาสเปนคว้าแชมป์ยูโร 2024 หลังประสบความสำเร็จกับทีมเยาวชนชาติสเปน.",
+      "timeline": [
+        {
+          "from": 2013,
+          "to": 2018,
+          "team": "Spain U19/U21",
+          "teamTh": "สเปน ยู19/ยู21",
+          "role": "national",
+          "honours": [
+            "UEFA U19 Championship",
+            "UEFA U21 Championship"
+          ]
+        },
+        {
+          "from": 2022,
+          "to": null,
+          "team": "Spain",
+          "teamTh": "สเปน",
+          "role": "national",
+          "honours": [
+            "Euros",
+            "Nations League"
+          ]
+        }
+      ]
+    },
+    "lionel-scaloni": {
+      "summaryTh": "สกาโลนีพาอาร์เจนตินาคว้าโคปา อเมริกาสองครั้ง ฟุตบอลโลก 2022 และฟินาลิสซิมา.",
+      "timeline": [
+        {
+          "from": 2017,
+          "to": 2018,
+          "team": "Argentina",
+          "teamTh": "อาร์เจนตินา",
+          "role": "assistant",
+          "honours": []
+        },
+        {
+          "from": 2018,
+          "to": null,
+          "team": "Argentina",
+          "teamTh": "อาร์เจนตินา",
+          "role": "national",
+          "honours": [
+            "Copa América ×2",
+            "World Cup",
+            "Finalissima"
+          ]
+        }
+      ]
+    },
+    "ralf-rangnick": {
+      "summaryTh": "รังนิคเป็นผู้วางรากฐานฟุตบอลเพรสซิงเยอรมัน เคยคุมชาลเก้ แมนฯ ยูไนเต็ดชั่วคราว และออสเตรีย.",
+      "timeline": [
+        {
+          "from": 1995,
+          "to": 1999,
+          "team": "Ulm",
+          "teamTh": "อูล์ม",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 1999,
+          "to": 2001,
+          "team": "VfB Stuttgart",
+          "teamTh": "สตุตการ์ต",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2004,
+          "to": 2005,
+          "team": "Schalke 04",
+          "teamTh": "ชาลเก้ 04",
+          "role": "manager",
+          "honours": [
+            "DFB-Pokal"
+          ]
+        },
+        {
+          "from": 2006,
+          "to": 2011,
+          "team": "Hoffenheim",
+          "teamTh": "ฮอฟเฟนไฮม์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2011,
+          "to": 2011,
+          "team": "Schalke 04",
+          "teamTh": "ชาลเก้ 04",
+          "role": "manager",
+          "honours": [
+            "DFB-Pokal"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": 2022,
+          "team": "Manchester United",
+          "teamTh": "แมนเชสเตอร์ ยูไนเต็ด",
+          "role": "interim",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": null,
+          "team": "Austria",
+          "teamTh": "ออสเตรีย",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "nuno-espirito-santo": {
+      "summaryTh": "นูโน่พาวูล์ฟส์เลื่อนชั้นและไปเล่นยุโรป ก่อนคุมฟอเรสต์และคว้าแชมป์เอเอฟซีแชมเปียนส์ลีกกับอัล อิตติฮัด.",
+      "timeline": [
+        {
+          "from": 2014,
+          "to": 2016,
+          "team": "Valencia",
+          "teamTh": "บาเลนเซีย",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2016,
+          "to": 2017,
+          "team": "Porto",
+          "teamTh": "ปอร์โต",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2017,
+          "to": 2021,
+          "team": "Wolverhampton Wanderers",
+          "teamTh": "วูล์ฟแฮมป์ตัน",
+          "role": "manager",
+          "honours": [
+            "EFL Championship"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": 2021,
+          "team": "Tottenham Hotspur",
+          "teamTh": "ท็อตแนม ฮ็อตสเปอร์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": 2023,
+          "team": "Al-Ittihad",
+          "teamTh": "อัล อิตติฮัด",
+          "role": "manager",
+          "honours": [
+            "Saudi Pro League"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": null,
+          "team": "Nottingham Forest",
+          "teamTh": "น็อตติงแฮม ฟอเรสต์",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "david-moyes": {
+      "summaryTh": "มอยส์สร้างเอฟเวอร์ตันให้เป็นทีมยุโรป และพาเวสต์แฮมคว้าแชมป์คอนเฟอเรนซ์ลีก.",
+      "timeline": [
+        {
+          "from": 1998,
+          "to": 2002,
+          "team": "Preston North End",
+          "teamTh": "เพรสตัน นอร์ท เอนด์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2002,
+          "to": 2013,
+          "team": "Everton",
+          "teamTh": "เอฟเวอร์ตัน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2013,
+          "to": 2014,
+          "team": "Manchester United",
+          "teamTh": "แมนเชสเตอร์ ยูไนเต็ด",
+          "role": "manager",
+          "honours": [
+            "Community Shield"
+          ]
+        },
+        {
+          "from": 2014,
+          "to": 2016,
+          "team": "Real Sociedad",
+          "teamTh": "เรอัล โซเซียดัด",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2017,
+          "to": 2018,
+          "team": "West Ham United",
+          "teamTh": "เวสต์แฮม ยูไนเต็ด",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2024,
+          "team": "West Ham United",
+          "teamTh": "เวสต์แฮม ยูไนเต็ด",
+          "role": "manager",
+          "honours": [
+            "UECL"
+          ]
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Everton",
+          "teamTh": "เอฟเวอร์ตัน",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "sean-dyche": {
+      "summaryTh": "ไดช์พาเบิร์นลีย์เลื่อนชั้นและอยู่พรีเมียร์ลีกยาวนาน ก่อนคุมเอฟเวอร์ตัน.",
+      "timeline": [
+        {
+          "from": 2011,
+          "to": 2012,
+          "team": "Watford",
+          "teamTh": "วัตฟอร์ด",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2012,
+          "to": 2022,
+          "team": "Burnley",
+          "teamTh": "เบิร์นลีย์",
+          "role": "manager",
+          "honours": [
+            "EFL Championship ×2"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": 2025,
+          "team": "Everton",
+          "teamTh": "เอฟเวอร์ตัน",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "eddie-howe": {
+      "summaryTh": "ฮาวพาบอร์นมัธจากลีกล่างสู่พรีเมียร์ลีก ก่อนพานิวคาสเซิลคว้าแชมป์ลีกคัพ.",
+      "timeline": [
+        {
+          "from": 2008,
+          "to": 2011,
+          "team": "Bournemouth",
+          "teamTh": "บอร์นมัธ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2011,
+          "to": 2012,
+          "team": "Burnley",
+          "teamTh": "เบิร์นลีย์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2012,
+          "to": 2020,
+          "team": "Bournemouth",
+          "teamTh": "บอร์นมัธ",
+          "role": "manager",
+          "honours": [
+            "EFL Championship"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": null,
+          "team": "Newcastle United",
+          "teamTh": "นิวคาสเซิล ยูไนเต็ด",
+          "role": "manager",
+          "honours": [
+            "League Cup"
+          ]
+        }
+      ]
+    },
+    "andoni-iraola": {
+      "summaryTh": "อิราโอลาพาราโย บาเยกาโนขึ้นลาลีกา ก่อนสร้างบอร์นมัธเป็นทีมเพรสซิงที่แข็งแกร่ง.",
+      "timeline": [
+        {
+          "from": 2018,
+          "to": 2020,
+          "team": "Mirandés",
+          "teamTh": "มิรันเดส",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2020,
+          "to": 2023,
+          "team": "Rayo Vallecano",
+          "teamTh": "ราโย บาเยกาโน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2023,
+          "to": null,
+          "team": "Bournemouth",
+          "teamTh": "บอร์นมัธ",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "graham-potter": {
+      "summaryTh": "พอตเตอร์สร้างชื่อกับเอิสเตอร์ซุนด์และไบรท์ตัน ก่อนคุมเชลซีและเวสต์แฮม.",
+      "timeline": [
+        {
+          "from": 2011,
+          "to": 2018,
+          "team": "Östersund",
+          "teamTh": "เอิสเตอร์ซุนด์",
+          "role": "manager",
+          "honours": [
+            "Svenska Cupen"
+          ]
+        },
+        {
+          "from": 2018,
+          "to": 2022,
+          "team": "Brighton & Hove Albion",
+          "teamTh": "ไบรท์ตัน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": 2023,
+          "team": "Chelsea",
+          "teamTh": "เชลซี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "West Ham United",
+          "teamTh": "เวสต์แฮม ยูไนเต็ด",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "marco-silva": {
+      "summaryTh": "มาร์โก ซิลวาคว้าแชมป์กรีซกับโอลิมเปียกอส ก่อนคุมสโมสรพรีเมียร์ลีกหลายแห่งและฟูแล่ม.",
+      "timeline": [
+        {
+          "from": 2011,
+          "to": 2014,
+          "team": "Estoril",
+          "teamTh": "เอสโตริล",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2014,
+          "to": 2015,
+          "team": "Sporting CP",
+          "teamTh": "สปอร์ติ้ง ลิสบอน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2015,
+          "to": 2016,
+          "team": "Olympiacos",
+          "teamTh": "โอลิมเปียกอส",
+          "role": "manager",
+          "honours": [
+            "Greek Super League"
+          ]
+        },
+        {
+          "from": 2017,
+          "to": 2017,
+          "team": "Hull City",
+          "teamTh": "ฮัลล์ ซิตี้",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2017,
+          "to": 2018,
+          "team": "Watford",
+          "teamTh": "วัตฟอร์ด",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2018,
+          "to": 2019,
+          "team": "Everton",
+          "teamTh": "เอฟเวอร์ตัน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": null,
+          "team": "Fulham",
+          "teamTh": "ฟูแล่ม",
+          "role": "manager",
+          "honours": [
+            "EFL Championship"
+          ]
+        }
+      ]
+    },
+    "oliver-glasner": {
+      "summaryTh": "กลาสเนอร์พาแฟรงก์เฟิร์ตคว้ายูโรปาลีก และพาคริสตัล พาเลซคว้าเอฟเอคัพ.",
+      "timeline": [
+        {
+          "from": 2015,
+          "to": 2019,
+          "team": "LASK",
+          "teamTh": "แอลเอเอสเค",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "Wolfsburg",
+          "teamTh": "โวล์ฟสบวร์ก",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2023,
+          "team": "Eintracht Frankfurt",
+          "teamTh": "ไอน์ทรัคท์ แฟรงก์เฟิร์ต",
+          "role": "manager",
+          "honours": [
+            "UEL"
+          ]
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Crystal Palace",
+          "teamTh": "คริสตัล พาเลซ",
+          "role": "manager",
+          "honours": [
+            "FA Cup"
+          ]
+        }
+      ]
+    },
+    "thomas-frank": {
+      "summaryTh": "แฟรงก์พาเบรนท์ฟอร์ดเลื่อนชั้นสู่พรีเมียร์ลีก และสร้างทีมที่วิเคราะห์คู่แข่งกับลูกตั้งเตะเด่น.",
+      "timeline": [
+        {
+          "from": 2013,
+          "to": 2016,
+          "team": "Denmark U16/U17",
+          "teamTh": "เดนมาร์ก ยู16/ยู17",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2018,
+          "to": 2025,
+          "team": "Brentford",
+          "teamTh": "เบรนท์ฟอร์ด",
+          "role": "manager",
+          "honours": [
+            "EFL Championship"
+          ]
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Tottenham Hotspur",
+          "teamTh": "ท็อตแนม ฮ็อตสเปอร์",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "fabian-hurzeler": {
+      "summaryTh": "เฮอร์เซเลอร์พาแซงต์ เพาลีเลื่อนชั้นสู่บุนเดสลีกา ก่อนเป็นกุนซือพรีเมียร์ลีกอายุน้อยที่สุดกับไบรท์ตัน.",
+      "timeline": [
+        {
+          "from": 2023,
+          "to": 2024,
+          "team": "St. Pauli",
+          "teamTh": "ซังต์ เพาลี",
+          "role": "manager",
+          "honours": [
+            "2. Bundesliga"
+          ]
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Brighton & Hove Albion",
+          "teamTh": "ไบรท์ตัน",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "kieran-mckenna": {
+      "summaryTh": "แม็คเคนนาพาอิปสวิชเลื่อนชั้นติดต่อกันจากลีกวันสู่พรีเมียร์ลีก.",
+      "timeline": [
+        {
+          "from": 2016,
+          "to": 2021,
+          "team": "Manchester United",
+          "teamTh": "แมนเชสเตอร์ ยูไนเต็ด",
+          "role": "assistant",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": null,
+          "team": "Ipswich Town",
+          "teamTh": "อิปสวิช ทาวน์",
+          "role": "manager",
+          "honours": [
+            "League One",
+            "EFL Championship"
+          ]
+        }
+      ]
+    },
+    "roberto-martinez": {
+      "summaryTh": "มาร์ติเนซคุมวีแกนคว้าเอฟเอคัพ และพาเบลเยียมจบอันดับสามฟุตบอลโลก ก่อนคุมโปรตุเกส.",
+      "timeline": [
+        {
+          "from": 2007,
+          "to": 2009,
+          "team": "Swansea City",
+          "teamTh": "สวอนซี ซิตี้",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2009,
+          "to": 2013,
+          "team": "Wigan Athletic",
+          "teamTh": "วีแกน แอธเลติก",
+          "role": "manager",
+          "honours": [
+            "FA Cup"
+          ]
+        },
+        {
+          "from": 2013,
+          "to": 2016,
+          "team": "Everton",
+          "teamTh": "เอฟเวอร์ตัน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2016,
+          "to": 2022,
+          "team": "Belgium",
+          "teamTh": "เบลเยียม",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2023,
+          "to": null,
+          "team": "Portugal",
+          "teamTh": "โปรตุเกส",
+          "role": "national",
+          "honours": [
+            "Nations League"
+          ]
+        }
+      ]
+    },
+    "ronald-koeman": {
+      "summaryTh": "คูมันคว้าแชมป์ลีกกับอาแจ็กซ์ พีเอสวี และบาร์เซโลนา ก่อนกลับมาคุมทีมชาติเนเธอร์แลนด์.",
+      "timeline": [
+        {
+          "from": 2001,
+          "to": 2005,
+          "team": "Ajax",
+          "teamTh": "อาแจ็กซ์",
+          "role": "manager",
+          "honours": [
+            "Eredivisie ×2",
+            "KNVB Cup"
+          ]
+        },
+        {
+          "from": 2006,
+          "to": 2007,
+          "team": "PSV",
+          "teamTh": "พีเอสวี",
+          "role": "manager",
+          "honours": [
+            "Eredivisie"
+          ]
+        },
+        {
+          "from": 2007,
+          "to": 2009,
+          "team": "Valencia",
+          "teamTh": "บาเลนเซีย",
+          "role": "manager",
+          "honours": [
+            "Copa del Rey"
+          ]
+        },
+        {
+          "from": 2014,
+          "to": 2016,
+          "team": "Southampton",
+          "teamTh": "เซาแธมป์ตัน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2016,
+          "to": 2018,
+          "team": "Everton",
+          "teamTh": "เอฟเวอร์ตัน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2018,
+          "to": 2020,
+          "team": "Netherlands",
+          "teamTh": "เนเธอร์แลนด์",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2020,
+          "to": 2021,
+          "team": "Barcelona",
+          "teamTh": "บาร์เซโลนา",
+          "role": "manager",
+          "honours": [
+            "Copa del Rey"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": null,
+          "team": "Netherlands",
+          "teamTh": "เนเธอร์แลนด์",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "hajime-moriyasu": {
+      "summaryTh": "โมริยาสุพาซานเฟรชเชคว้าเจลีก ก่อนพาญี่ปุ่นไปฟุตบอลโลกรอบน็อกเอาต์สองครั้ง.",
+      "timeline": [
+        {
+          "from": 2012,
+          "to": 2017,
+          "team": "Sanfrecce Hiroshima",
+          "teamTh": "ซานเฟรชเช ฮิโรชิมา",
+          "role": "manager",
+          "honours": [
+            "J1 League ×3"
+          ]
+        },
+        {
+          "from": 2018,
+          "to": null,
+          "team": "Japan",
+          "teamTh": "ญี่ปุ่น",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "masatada-ishii": {
+      "summaryTh": "อิชอิพาคาชิมา แอนต์เลอร์สคว้าเจลีก ก่อนคุมทีมชาติไทยและบุรีรัมย์ ยูไนเต็ด.",
+      "timeline": [
+        {
+          "from": 2015,
+          "to": 2017,
+          "team": "Kashima Antlers",
+          "teamTh": "คาชิมา แอนต์เลอร์ส",
+          "role": "manager",
+          "honours": [
+            "J1 League",
+            "Emperor's Cup"
+          ]
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "Samut Prakan City",
+          "teamTh": "สมุทรปราการ ซิตี้",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2023,
+          "team": "Buriram United",
+          "teamTh": "บุรีรัมย์ ยูไนเต็ด",
+          "role": "manager",
+          "honours": [
+            "Thai League 1 ×2",
+            "Thai FA Cup ×2"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": null,
+          "team": "Thailand",
+          "teamTh": "ไทย",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "alexandre-gesteira": {
+      "summaryTh": "มาโน เมเนเซสพาโครินเธียนส์คว้าแชมป์โคปา เดล เรย์บราซิล และเคยคุมทีมชาติบราซิล.",
+      "timeline": [
+        {
+          "from": 2005,
+          "to": 2007,
+          "team": "Guarani",
+          "teamTh": "กวารานี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2008,
+          "to": 2010,
+          "team": "Corinthians",
+          "teamTh": "โครินเธียนส์",
+          "role": "manager",
+          "honours": [
+            "Copa do Brasil",
+            "Série B"
+          ]
+        },
+        {
+          "from": 2010,
+          "to": 2012,
+          "team": "Brazil",
+          "teamTh": "บราซิล",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2013,
+          "to": 2014,
+          "team": "Corinthians",
+          "teamTh": "โครินเธียนส์",
+          "role": "manager",
+          "honours": [
+            "Recopa Sudamericana"
+          ]
+        },
+        {
+          "from": 2015,
+          "to": 2016,
+          "team": "Cruzeiro",
+          "teamTh": "ครูไซโร",
+          "role": "manager",
+          "honours": [
+            "Copa do Brasil"
+          ]
+        },
+        {
+          "from": 2017,
+          "to": 2019,
+          "team": "Cruzeiro",
+          "teamTh": "ครูไซโร",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": 2025,
+          "team": "Fluminense",
+          "teamTh": "ฟลูมิเนนเซ",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "mauricio-pochettino": {
+      "summaryTh": "โปเช็ตติโนพาสเปอร์สเข้าชิงแชมเปียนส์ลีก ก่อนคุมเปแอสเช เชลซี และทีมชาติสหรัฐฯ.",
+      "timeline": [
+        {
+          "from": 2009,
+          "to": 2012,
+          "team": "Espanyol",
+          "teamTh": "เอสปันญอล",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2013,
+          "to": 2014,
+          "team": "Southampton",
+          "teamTh": "เซาแธมป์ตัน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2014,
+          "to": 2019,
+          "team": "Tottenham Hotspur",
+          "teamTh": "ท็อตแนม ฮ็อตสเปอร์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2022,
+          "team": "Paris Saint-Germain",
+          "teamTh": "ปารีส แซงต์-แชร์กแมง",
+          "role": "manager",
+          "honours": [
+            "Ligue 1",
+            "Coupe de France"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": 2024,
+          "team": "Chelsea",
+          "teamTh": "เชลซี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "United States",
+          "teamTh": "สหรัฐอเมริกา",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "antonio-conte-2": {
+      "summaryTh": "ติอาโก ม็อตต้าพาโบโลญญาไปแชมเปียนส์ลีก ก่อนรับงานคุมยูเวนตุส.",
+      "timeline": [
+        {
+          "from": 2018,
+          "to": 2019,
+          "team": "PSG U19",
+          "teamTh": "เปแอสเช ยู19",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2019,
+          "team": "Genoa",
+          "teamTh": "เจนัว",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2022,
+          "team": "Spezia",
+          "teamTh": "สเปเซีย",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": 2024,
+          "team": "Bologna",
+          "teamTh": "โบโลญญา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": 2025,
+          "team": "Juventus",
+          "teamTh": "ยูเวนตุส",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "sergio-conceicao": {
+      "summaryTh": "คอนไซเซาพาปอร์โตคว้าแชมป์ลีกสามครั้งและบอลถ้วยหลายรายการ ก่อนคุมเอซี มิลาน.",
+      "timeline": [
+        {
+          "from": 2012,
+          "to": 2013,
+          "team": "Olhanense",
+          "teamTh": "โอลญาเนนเซ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2014,
+          "to": 2016,
+          "team": "Braga",
+          "teamTh": "บรากา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2016,
+          "to": 2017,
+          "team": "Nantes",
+          "teamTh": "น็องต์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2017,
+          "to": 2024,
+          "team": "Porto",
+          "teamTh": "ปอร์โต",
+          "role": "manager",
+          "honours": [
+            "Primeira Liga ×3",
+            "Taça de Portugal ×4"
+          ]
+        },
+        {
+          "from": 2024,
+          "to": 2025,
+          "team": "AC Milan",
+          "teamTh": "เอซี มิลาน",
+          "role": "manager",
+          "honours": [
+            "Supercoppa Italiana"
+          ]
+        }
+      ]
+    },
+    "paulo-fonseca": {
+      "summaryTh": "ฟอนเซก้าคว้าแชมป์ยูเครนกับชัคตาร์ ก่อนคุมโรมา ลีลล์ เอซี มิลาน และลียง.",
+      "timeline": [
+        {
+          "from": 2012,
+          "to": 2013,
+          "team": "Paços de Ferreira",
+          "teamTh": "ปาซอส เด แฟร์เรรา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2013,
+          "to": 2015,
+          "team": "Porto",
+          "teamTh": "ปอร์โต",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2016,
+          "to": 2019,
+          "team": "Shakhtar Donetsk",
+          "teamTh": "ชัคตาร์ โดเนตส์ก",
+          "role": "manager",
+          "honours": [
+            "Ukrainian Premier League ×3",
+            "Ukrainian Cup ×3"
+          ]
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "Roma",
+          "teamTh": "โรมา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": 2024,
+          "team": "Lille",
+          "teamTh": "ลีลล์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": 2025,
+          "team": "AC Milan",
+          "teamTh": "เอซี มิลาน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Lyon",
+          "teamTh": "ลียง",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "ivan-juric": {
+      "summaryTh": "ยูริชยึดแนวทางเพรสซิงแบบกัสเปรินี และคุมเวโรนา โตริโน โรมา เซาแธมป์ตัน และอตาลันตา.",
+      "timeline": [
+        {
+          "from": 2016,
+          "to": 2018,
+          "team": "Genoa",
+          "teamTh": "เจนัว",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2018,
+          "to": 2019,
+          "team": "Verona",
+          "teamTh": "เวโรนา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2024,
+          "team": "Torino",
+          "teamTh": "โตริโน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": 2024,
+          "team": "Roma",
+          "teamTh": "โรมา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": 2025,
+          "team": "Southampton",
+          "teamTh": "เซาแธมป์ตัน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Atalanta",
+          "teamTh": "อตาลันตา",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "claudio-ranieri": {
+      "summaryTh": "ราเนียรีมีอาชีพยาวนานทั่วยุโรป และสร้างปาฏิหาริย์พาเลสเตอร์คว้าแชมป์พรีเมียร์ลีก 2016.",
+      "timeline": [
+        {
+          "from": 1993,
+          "to": 1997,
+          "team": "Fiorentina",
+          "teamTh": "ฟิออเรนตินา",
+          "role": "manager",
+          "honours": [
+            "Coppa Italia"
+          ]
+        },
+        {
+          "from": 1997,
+          "to": 1999,
+          "team": "Valencia",
+          "teamTh": "บาเลนเซีย",
+          "role": "manager",
+          "honours": [
+            "Copa del Rey"
+          ]
+        },
+        {
+          "from": 2000,
+          "to": 2004,
+          "team": "Chelsea",
+          "teamTh": "เชลซี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2007,
+          "to": 2009,
+          "team": "Juventus",
+          "teamTh": "ยูเวนตุส",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2009,
+          "to": 2011,
+          "team": "Roma",
+          "teamTh": "โรมา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2015,
+          "to": 2017,
+          "team": "Leicester City",
+          "teamTh": "เลสเตอร์ ซิตี้",
+          "role": "manager",
+          "honours": [
+            "Premier League"
+          ]
+        },
+        {
+          "from": 2017,
+          "to": 2018,
+          "team": "Nantes",
+          "teamTh": "น็องต์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2018,
+          "to": 2019,
+          "team": "Fulham",
+          "teamTh": "ฟูแล่ม",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "Sampdoria",
+          "teamTh": "ซามพ์โดเรีย",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Roma",
+          "teamTh": "โรมา",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "carlo-ancelotti-assist": {
+      "summaryTh": "ฟาริโอลีเป็นกุนซืออิตาลีรุ่นใหม่ที่เริ่มจากตุรกี ก่อนคุมนีซและอาแจ็กซ์.",
+      "timeline": [
+        {
+          "from": 2021,
+          "to": 2023,
+          "team": "Fatih Karagümrük",
+          "teamTh": "ฟาติห์ คารากุมรุก",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2023,
+          "to": 2024,
+          "team": "Nice",
+          "teamTh": "นีซ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Ajax",
+          "teamTh": "อาแจ็กซ์",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "arner-slot-rival": {
+      "summaryTh": "บอสซ์เป็นกุนซือเกมรุกที่คุมอาแจ็กซ์ ดอร์ทมุนด์ ลียง และพาพีเอสวีคว้าแชมป์เอเรดิวิซี.",
+      "timeline": [
+        {
+          "from": 2013,
+          "to": 2016,
+          "team": "Vitesse",
+          "teamTh": "วิเทสส์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2016,
+          "to": 2017,
+          "team": "Ajax",
+          "teamTh": "อาแจ็กซ์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2017,
+          "to": 2017,
+          "team": "Borussia Dortmund",
+          "teamTh": "โบรุสเซีย ดอร์ทมุนด์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "Bayer Leverkusen",
+          "teamTh": "ไบเออร์ เลเวอร์คูเซน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2023,
+          "team": "Lyon",
+          "teamTh": "ลียง",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2023,
+          "to": null,
+          "team": "PSV",
+          "teamTh": "พีเอสวี",
+          "role": "manager",
+          "honours": [
+            "Eredivisie"
+          ]
+        }
+      ]
+    },
+    "bruno-lage": {
+      "summaryTh": "ลาจพาเบนฟิกาคว้าแชมป์โปรตุเกส ก่อนคุมวูล์ฟส์และกลับมาคุมเบนฟิกา.",
+      "timeline": [
+        {
+          "from": 2019,
+          "to": 2020,
+          "team": "Benfica",
+          "teamTh": "เบนฟิกา",
+          "role": "manager",
+          "honours": [
+            "Primeira Liga"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": 2022,
+          "team": "Wolverhampton Wanderers",
+          "teamTh": "วูล์ฟแฮมป์ตัน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2023,
+          "to": 2024,
+          "team": "Botafogo",
+          "teamTh": "โบตาโฟโก",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Benfica",
+          "teamTh": "เบนฟิกา",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "vitor-pereira": {
+      "summaryTh": "วิตอร์ เปเรย์ราคว้าแชมป์ลีกโปรตุเกสกับปอร์โต และทำงานในกรีซ จีน ตุรกี และบราซิล.",
+      "timeline": [
+        {
+          "from": 2011,
+          "to": 2013,
+          "team": "Porto",
+          "teamTh": "ปอร์โต",
+          "role": "manager",
+          "honours": [
+            "Primeira Liga ×2"
+          ]
+        },
+        {
+          "from": 2013,
+          "to": 2015,
+          "team": "Al-Ahli",
+          "teamTh": "อัล อาห์ลี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2015,
+          "to": 2016,
+          "team": "Olympiacos",
+          "teamTh": "โอลิมเปียกอส",
+          "role": "manager",
+          "honours": [
+            "Greek Super League"
+          ]
+        },
+        {
+          "from": 2017,
+          "to": 2020,
+          "team": "Shanghai SIPG",
+          "teamTh": "เซี่ยงไฮ้ เอสไอพีจี",
+          "role": "manager",
+          "honours": [
+            "Chinese Super League"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": 2021,
+          "team": "Fenerbahçe",
+          "teamTh": "เฟเนร์บาห์เช",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": 2023,
+          "team": "Flamengo",
+          "teamTh": "ฟลาเมงโก",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Wolverhampton Wanderers",
+          "teamTh": "วูล์ฟแฮมป์ตัน",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "jess-marsch": {
+      "summaryTh": "เจสซี มาร์ชคว้าแชมป์ออสเตรียกับซัลซ์บวร์ก ก่อนคุมไลป์ซิก ลีดส์ และทีมชาติแคนาดา.",
+      "timeline": [
+        {
+          "from": 2015,
+          "to": 2018,
+          "team": "New York Red Bulls",
+          "teamTh": "นิวยอร์ก เรดบูลส์",
+          "role": "manager",
+          "honours": [
+            "Supporters' Shield"
+          ]
+        },
+        {
+          "from": 2018,
+          "to": 2021,
+          "team": "Red Bull Salzburg",
+          "teamTh": "เรดบูล ซัลซ์บวร์ก",
+          "role": "manager",
+          "honours": [
+            "Austrian Bundesliga ×2"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": 2021,
+          "team": "RB Leipzig",
+          "teamTh": "แอร์เบ ไลป์ซิก",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": 2023,
+          "team": "Leeds United",
+          "teamTh": "ลีดส์ ยูไนเต็ด",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Canada",
+          "teamTh": "แคนาดา",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "gerardo-martino": {
+      "summaryTh": "ตาตา มาร์ติโนคว้าแชมป์กับนีเวลล์ส แอตแลนตา และอินเตอร์ ไมอามี รวมถึงเคยคุมบาร์เซโลนาและอาร์เจนตินา.",
+      "timeline": [
+        {
+          "from": 2011,
+          "to": 2012,
+          "team": "Newell's Old Boys",
+          "teamTh": "นีเวลล์ส โอลด์บอยส์",
+          "role": "manager",
+          "honours": [
+            "Argentine Primera División"
+          ]
+        },
+        {
+          "from": 2012,
+          "to": 2013,
+          "team": "Paraguay",
+          "teamTh": "ปารากวัย",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2013,
+          "to": 2014,
+          "team": "Barcelona",
+          "teamTh": "บาร์เซโลนา",
+          "role": "manager",
+          "honours": [
+            "Supercopa de España"
+          ]
+        },
+        {
+          "from": 2014,
+          "to": 2016,
+          "team": "Argentina",
+          "teamTh": "อาร์เจนตินา",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2017,
+          "to": 2018,
+          "team": "Atlanta United",
+          "teamTh": "แอตแลนตา ยูไนเต็ด",
+          "role": "manager",
+          "honours": [
+            "MLS Cup"
+          ]
+        },
+        {
+          "from": 2019,
+          "to": 2022,
+          "team": "Mexico",
+          "teamTh": "เม็กซิโก",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2023,
+          "to": 2025,
+          "team": "Inter Miami",
+          "teamTh": "อินเตอร์ ไมอามี",
+          "role": "manager",
+          "honours": [
+            "Leagues Cup",
+            "Supporters' Shield"
+          ]
+        }
+      ]
+    },
+    "marcelo-gallardo": {
+      "summaryTh": "กายาร์โดพาริเวอร์ เพลตคว้าลิเบอร์ตาดอเรสสองสมัย ก่อนทำงานกับอัล อิตติฮัดและกลับสู่ริเวอร์.",
+      "timeline": [
+        {
+          "from": 2011,
+          "to": 2012,
+          "team": "Nacional",
+          "teamTh": "นาซิอองนาล",
+          "role": "manager",
+          "honours": [
+            "Uruguayan Primera División"
+          ]
+        },
+        {
+          "from": 2014,
+          "to": 2022,
+          "team": "River Plate",
+          "teamTh": "ริเวอร์ เพลต",
+          "role": "manager",
+          "honours": [
+            "Copa Libertadores ×2",
+            "Copa Sudamericana"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": 2024,
+          "team": "Al-Ittihad",
+          "teamTh": "อัล อิตติฮัด",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "River Plate",
+          "teamTh": "ริเวอร์ เพลต",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "fernando-santos": {
+      "summaryTh": "ซานโตสพาโปรตุเกสคว้าแชมป์ยูโร 2016 และเนชันส์ลีก 2019.",
+      "timeline": [
+        {
+          "from": 1998,
+          "to": 2001,
+          "team": "Porto",
+          "teamTh": "ปอร์โต",
+          "role": "manager",
+          "honours": [
+            "Taça de Portugal"
+          ]
+        },
+        {
+          "from": 2001,
+          "to": 2002,
+          "team": "AEK Athens",
+          "teamTh": "เออีเค เอเธนส์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2002,
+          "to": 2004,
+          "team": "Panathinaikos",
+          "teamTh": "พานาธิไนกอส",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2010,
+          "to": 2014,
+          "team": "Greece",
+          "teamTh": "กรีซ",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2014,
+          "to": 2022,
+          "team": "Portugal",
+          "teamTh": "โปรตุเกส",
+          "role": "national",
+          "honours": [
+            "Euros",
+            "Nations League"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": 2023,
+          "team": "Poland",
+          "teamTh": "โปแลนด์",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": 2025,
+          "team": "Azerbaijan",
+          "teamTh": "อาเซอร์ไบจาน",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "carlo-anselotti-asia": {
+      "summaryTh": "คิม พัน-กอนพามาเลเซียพัฒนาผลงานระดับนานาชาติ ก่อนรับงานคุมอุลซาน ฮุนได.",
+      "timeline": [
+        {
+          "from": 2009,
+          "to": 2014,
+          "team": "Hong Kong",
+          "teamTh": "ฮ่องกง",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": 2024,
+          "team": "Malaysia",
+          "teamTh": "มาเลเซีย",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Ulsan HD",
+          "teamTh": "อุลซาน เอชดี",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "tony-popovic": {
+      "summaryTh": "โปโปวิชพาเวสเทิร์น ซิดนีย์ วันเดอเรอร์สคว้าเอเอฟซีแชมเปียนส์ลีก และคุมทีมชาติออสเตรเลีย.",
+      "timeline": [
+        {
+          "from": 2012,
+          "to": 2017,
+          "team": "Western Sydney Wanderers",
+          "teamTh": "เวสเทิร์น ซิดนีย์ วันเดอเรอร์ส",
+          "role": "manager",
+          "honours": [
+            "AFC Champions League"
+          ]
+        },
+        {
+          "from": 2018,
+          "to": 2020,
+          "team": "Perth Glory",
+          "teamTh": "เพิร์ท กลอรี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2024,
+          "team": "Melbourne Victory",
+          "teamTh": "เมลเบิร์น วิคตอรี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Australia",
+          "teamTh": "ออสเตรเลีย",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "walid-regragui": {
+      "summaryTh": "เรกรากีพาวีดัดคว้าแชมเปียนส์ลีกแอฟริกา และพาโมร็อกโกถึงรอบรองฟุตบอลโลก 2022.",
+      "timeline": [
+        {
+          "from": 2014,
+          "to": 2019,
+          "team": "FUS Rabat",
+          "teamTh": "เอฟยูเอส ราบัต",
+          "role": "manager",
+          "honours": [
+            "Moroccan Throne Cup"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": 2022,
+          "team": "Wydad AC",
+          "teamTh": "วีดัด เอซี",
+          "role": "manager",
+          "honours": [
+            "CAF Champions League"
+          ]
+        },
+        {
+          "from": 2022,
+          "to": null,
+          "team": "Morocco",
+          "teamTh": "โมร็อกโก",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "steve-cooper": {
+      "summaryTh": "คูเปอร์พาอังกฤษรุ่นอายุไม่เกิน 17 ปีคว้าแชมป์โลก ก่อนพาฟอเรสต์กลับสู่พรีเมียร์ลีก.",
+      "timeline": [
+        {
+          "from": 2015,
+          "to": 2019,
+          "team": "England U17",
+          "teamTh": "อังกฤษ ยู17",
+          "role": "national",
+          "honours": [
+            "FIFA U-17 World Cup"
+          ]
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "Swansea City",
+          "teamTh": "สวอนซี ซิตี้",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2023,
+          "team": "Nottingham Forest",
+          "teamTh": "น็อตติงแฮม ฟอเรสต์",
+          "role": "manager",
+          "honours": [
+            "EFL Championship"
+          ]
+        },
+        {
+          "from": 2024,
+          "to": 2025,
+          "team": "Leicester City",
+          "teamTh": "เลสเตอร์ ซิตี้",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "gary-oneil": {
+      "summaryTh": "โอ'นีลเริ่มคุมทีมเต็มตัวกับบอร์นมัธ ก่อนสร้างผลงานแข็งแกร่งกับวูล์ฟส์.",
+      "timeline": [
+        {
+          "from": 2022,
+          "to": 2023,
+          "team": "Bournemouth",
+          "teamTh": "บอร์นมัธ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2023,
+          "to": 2025,
+          "team": "Wolverhampton Wanderers",
+          "teamTh": "วูล์ฟแฮมป์ตัน",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "iraola-twin": {
+      "summaryTh": "มิเชล ซานเชซพาคิโรนาเลื่อนชั้นและสร้างผลงานท็อปโฟร์ลาลีกา ก่อนคุมเซบียา.",
+      "timeline": [
+        {
+          "from": 2017,
+          "to": 2018,
+          "team": "Rayo Vallecano",
+          "teamTh": "ราโย บาเยกาโน",
+          "role": "manager",
+          "honours": [
+            "Segunda División"
+          ]
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "Huesca",
+          "teamTh": "อูเอสกา",
+          "role": "manager",
+          "honours": [
+            "Segunda División"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": 2025,
+          "team": "Girona",
+          "teamTh": "คิโรนา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Sevilla",
+          "teamTh": "เซบียา",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "carlo-anselotti-ligue": {
+      "summaryTh": "วิล สติลล์เป็นกุนซือรุ่นใหม่ผู้สร้างชื่อกับแร็งส์ ก่อนคุมล็องส์และเซาแธมป์ตัน.",
+      "timeline": [
+        {
+          "from": 2022,
+          "to": 2024,
+          "team": "Reims",
+          "teamTh": "แร็งส์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": 2025,
+          "team": "Lens",
+          "teamTh": "ล็องส์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Southampton",
+          "teamTh": "เซาแธมป์ตัน",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "adrien-rabiot-coach": {
+      "summaryTh": "วิเอร่ามีประสบการณ์คุมทีมจากนิวยอร์ก ซิตี้ นีซ คริสตัล พาเลซ สตราสบูร์ก และเจนัว.",
+      "timeline": [
+        {
+          "from": 2016,
+          "to": 2018,
+          "team": "New York City FC",
+          "teamTh": "นิวยอร์ก ซิตี้ เอฟซี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2018,
+          "to": 2020,
+          "team": "Nice",
+          "teamTh": "นีซ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2023,
+          "team": "Crystal Palace",
+          "teamTh": "คริสตัล พาเลซ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2023,
+          "to": 2024,
+          "team": "Strasbourg",
+          "teamTh": "สตราสบูร์ก",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Genoa",
+          "teamTh": "เจนัว",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "albert-stuvoy": {
+      "summaryTh": "สทอยเวนเบิร์กเป็นผู้ช่วยโค้ชคนสำคัญของอาร์เซนอล เคยทำงานกับทีมชาติเวลส์และแมนเชสเตอร์ ยูไนเต็ด.",
+      "timeline": [
+        {
+          "from": 2016,
+          "to": 2018,
+          "team": "Wales",
+          "teamTh": "เวลส์",
+          "role": "assistant",
+          "honours": []
+        },
+        {
+          "from": 2018,
+          "to": 2019,
+          "team": "Manchester United",
+          "teamTh": "แมนเชสเตอร์ ยูไนเต็ด",
+          "role": "assistant",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": null,
+          "team": "Arsenal",
+          "teamTh": "อาร์เซนอล",
+          "role": "assistant",
+          "honours": []
+        }
+      ]
+    },
+    "chris-wilder": {
+      "summaryTh": "ไวล์เดอร์พาเชฟฟิลด์ ยูไนเต็ดเลื่อนชั้นจากลีกวันถึงพรีเมียร์ลีกด้วยระบบโอเวอร์แลปเซ็นเตอร์แบ็ก.",
+      "timeline": [
+        {
+          "from": 2008,
+          "to": 2012,
+          "team": "Oxford United",
+          "teamTh": "อ็อกซ์ฟอร์ด ยูไนเต็ด",
+          "role": "manager",
+          "honours": [
+            "League Two"
+          ]
+        },
+        {
+          "from": 2014,
+          "to": 2016,
+          "team": "Northampton Town",
+          "teamTh": "นอร์ทแธมป์ตัน ทาวน์",
+          "role": "manager",
+          "honours": [
+            "League Two"
+          ]
+        },
+        {
+          "from": 2016,
+          "to": 2021,
+          "team": "Sheffield United",
+          "teamTh": "เชฟฟิลด์ ยูไนเต็ด",
+          "role": "manager",
+          "honours": [
+            "League One",
+            "EFL Championship"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": null,
+          "team": "Sheffield United",
+          "teamTh": "เชฟฟิลด์ ยูไนเต็ด",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "russell-martin": {
+      "summaryTh": "มาร์ตินพาสวอนซีและเซาแธมป์ตันเล่นฟุตบอลสร้างจากหลัง และพาเซาแธมป์ตันเลื่อนชั้น.",
+      "timeline": [
+        {
+          "from": 2021,
+          "to": 2023,
+          "team": "Swansea City",
+          "teamTh": "สวอนซี ซิตี้",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2023,
+          "to": 2024,
+          "team": "Southampton",
+          "teamTh": "เซาแธมป์ตัน",
+          "role": "manager",
+          "honours": [
+            "EFL Championship"
+          ]
+        }
+      ]
+    },
+    "daniel-farke": {
+      "summaryTh": "ฟาร์เคพานอริชคว้าแชมเปียนชิพสองครั้ง และคุมลีดส์ ยูไนเต็ด.",
+      "timeline": [
+        {
+          "from": 2017,
+          "to": 2021,
+          "team": "Norwich City",
+          "teamTh": "นอริช ซิตี้",
+          "role": "manager",
+          "honours": [
+            "EFL Championship ×2"
+          ]
+        },
+        {
+          "from": 2022,
+          "to": 2023,
+          "team": "Borussia Mönchengladbach",
+          "teamTh": "โบรุสเซีย มึนเชนกลัดบัค",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2023,
+          "to": null,
+          "team": "Leeds United",
+          "teamTh": "ลีดส์ ยูไนเต็ด",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "julen-lopetegui": {
+      "summaryTh": "โลเปเตกีพาสเปนชุดเยาวชนคว้าแชมป์ยุโรป ก่อนพาเซบียาคว้ายูโรปาลีกและคุมหลายสโมสรใหญ่.",
+      "timeline": [
+        {
+          "from": 2010,
+          "to": 2014,
+          "team": "Spain U19/U21",
+          "teamTh": "สเปน ยู19/ยู21",
+          "role": "national",
+          "honours": [
+            "UEFA U19 Championship ×2",
+            "UEFA U21 Championship"
+          ]
+        },
+        {
+          "from": 2014,
+          "to": 2016,
+          "team": "Porto",
+          "teamTh": "ปอร์โต",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2016,
+          "to": 2018,
+          "team": "Spain",
+          "teamTh": "สเปน",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2018,
+          "to": 2018,
+          "team": "Real Madrid",
+          "teamTh": "เรอัล มาดริด",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2022,
+          "team": "Sevilla",
+          "teamTh": "เซบียา",
+          "role": "manager",
+          "honours": [
+            "UEL"
+          ]
+        },
+        {
+          "from": 2022,
+          "to": 2023,
+          "team": "Wolverhampton Wanderers",
+          "teamTh": "วูล์ฟแฮมป์ตัน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": 2025,
+          "team": "West Ham United",
+          "teamTh": "เวสต์แฮม ยูไนเต็ด",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "quique-setien": {
+      "summaryTh": "เซเตียนขึ้นชื่อด้านฟุตบอลครองบอลจากลาส พัลมาสและเรอัล เบติส ก่อนรับงานคุมบาร์เซโลนา.",
+      "timeline": [
+        {
+          "from": 2015,
+          "to": 2017,
+          "team": "Las Palmas",
+          "teamTh": "ลาส ปัลมาส",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2017,
+          "to": 2019,
+          "team": "Real Betis",
+          "teamTh": "เรอัล เบติส",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2020,
+          "to": 2020,
+          "team": "Barcelona",
+          "teamTh": "บาร์เซโลนา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": 2023,
+          "team": "Villarreal",
+          "teamTh": "บียาร์เรอัล",
+          "role": "manager",
+          "honours": []
+        }
+      ]
+    },
+    "marcelino": {
+      "summaryTh": "มาร์เซลิโนพาบาเลนเซียคว้าโกปา เดล เรย์ และพาบียาร์เรอัลคว้าแชมป์ยูโรปาลีก.",
+      "timeline": [
+        {
+          "from": 2006,
+          "to": 2011,
+          "team": "Racing Santander",
+          "teamTh": "ราซิง ซานตันเดร์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2013,
+          "to": 2016,
+          "team": "Villarreal",
+          "teamTh": "บียาร์เรอัล",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2017,
+          "to": 2019,
+          "team": "Valencia",
+          "teamTh": "บาเลนเซีย",
+          "role": "manager",
+          "honours": [
+            "Copa del Rey"
+          ]
+        },
+        {
+          "from": 2021,
+          "to": 2022,
+          "team": "Athletic Club",
+          "teamTh": "แอธเลติก บิลเบา",
+          "role": "manager",
+          "honours": [
+            "Supercopa de España"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": 2024,
+          "team": "Marseille",
+          "teamTh": "มาร์กเซย",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Villarreal",
+          "teamTh": "บียาร์เรอัล",
+          "role": "manager",
+          "honours": [
+            "UEL"
+          ]
+        }
+      ]
+    },
+    "steve-clarke": {
+      "summaryTh": "คลาร์กคุมทีมชาติสกอตแลนด์ผ่านเข้ารอบสุดท้ายยูโรติดต่อกัน หลังเคยคุมเวสต์บรอมวิชและเรดิง.",
+      "timeline": [
+        {
+          "from": 2011,
+          "to": 2012,
+          "team": "West Bromwich Albion",
+          "teamTh": "เวสต์บรอมวิช อัลเบียน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2012,
+          "to": 2013,
+          "team": "Reading",
+          "teamTh": "เรดดิง",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": null,
+          "team": "Scotland",
+          "teamTh": "สกอตแลนด์",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "craig-bellamy": {
+      "summaryTh": "เบลลามีเริ่มงานคุมทีมชาติเวลส์หลังผ่านงานโค้ชเยาวชนและผู้ช่วยกับอันเดอร์เลชท์.",
+      "timeline": [
+        {
+          "from": 2021,
+          "to": 2024,
+          "team": "Anderlecht",
+          "teamTh": "อันเดอร์เลชท์",
+          "role": "assistant",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Wales",
+          "teamTh": "เวลส์",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "heimir-hallgrimsson": {
+      "summaryTh": "ฮัลล์กริมส์สันพาไอซ์แลนด์ไปยูโร 2016 และฟุตบอลโลก 2018 ก่อนคุมจาเมกาและไอร์แลนด์.",
+      "timeline": [
+        {
+          "from": 2013,
+          "to": 2016,
+          "team": "Iceland",
+          "teamTh": "ไอซ์แลนด์",
+          "role": "assistant",
+          "honours": []
+        },
+        {
+          "from": 2016,
+          "to": 2018,
+          "team": "Iceland",
+          "teamTh": "ไอซ์แลนด์",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": 2024,
+          "team": "Jamaica",
+          "teamTh": "จาเมกา",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Republic of Ireland",
+          "teamTh": "สาธารณรัฐไอร์แลนด์",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "rudi-garcia": {
+      "summaryTh": "การ์เซียพาลีลล์คว้าดับเบิลในฝรั่งเศส และพาโรมากับมาร์กเซยเข้ารอบลึกในยุโรป.",
+      "timeline": [
+        {
+          "from": 2008,
+          "to": 2013,
+          "team": "Lille",
+          "teamTh": "ลีลล์",
+          "role": "manager",
+          "honours": [
+            "Ligue 1",
+            "Coupe de France"
+          ]
+        },
+        {
+          "from": 2013,
+          "to": 2016,
+          "team": "Roma",
+          "teamTh": "โรมา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2016,
+          "to": 2019,
+          "team": "Marseille",
+          "teamTh": "มาร์กเซย",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "Lyon",
+          "teamTh": "ลียง",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": 2023,
+          "team": "Al-Nassr",
+          "teamTh": "อัล นาสเซอร์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2023,
+          "to": 2024,
+          "team": "Napoli",
+          "teamTh": "นาโปลี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Belgium",
+          "teamTh": "เบลเยียม",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "nestor-lorenzo": {
+      "summaryTh": "ลอเรนโซพาโคลอมเบียเข้าชิงโคปา อเมริกา 2024 หลังมีประสบการณ์คุมสโมสรในเปรูและอาร์เจนตินา.",
+      "timeline": [
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "Melgar",
+          "teamTh": "เมลการ์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2022,
+          "team": "FBC Melgar",
+          "teamTh": "เอฟบีซี เมลการ์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": null,
+          "team": "Colombia",
+          "teamTh": "โคลอมเบีย",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "javier-aguirre": {
+      "summaryTh": "อากีร์เรคุมเม็กซิโกหลายวาระและมีประสบการณ์ยาวนานในลาลีกากับหลายสโมสร.",
+      "timeline": [
+        {
+          "from": 2001,
+          "to": 2002,
+          "team": "Mexico",
+          "teamTh": "เม็กซิโก",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2002,
+          "to": 2006,
+          "team": "Osasuna",
+          "teamTh": "โอซาซูนา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2006,
+          "to": 2009,
+          "team": "Atlético Madrid",
+          "teamTh": "แอตเลติโก มาดริด",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2009,
+          "to": 2010,
+          "team": "Mexico",
+          "teamTh": "เม็กซิโก",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2010,
+          "to": 2014,
+          "team": "Zaragoza/Espanyol",
+          "teamTh": "ซาราโกซา/เอสปันญอล",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2015,
+          "to": 2017,
+          "team": "UAE",
+          "teamTh": "สหรัฐอาหรับเอมิเรตส์",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2020,
+          "team": "Leganés",
+          "teamTh": "เลกาเนส",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Mexico",
+          "teamTh": "เม็กซิโก",
+          "role": "national",
+          "honours": [
+            "CONCACAF Nations League",
+            "Gold Cup"
+          ]
+        }
+      ]
+    },
+    "hong-myung-bo": {
+      "summaryTh": "ฮง มย็อง-โบพาอุลซานคว้าแชมป์เคลีก ก่อนกลับมาคุมทีมชาติเกาหลีใต้.",
+      "timeline": [
+        {
+          "from": 2012,
+          "to": 2013,
+          "team": "South Korea",
+          "teamTh": "เกาหลีใต้",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2020,
+          "to": 2024,
+          "team": "Ulsan HD",
+          "teamTh": "อุลซาน เอชดี",
+          "role": "manager",
+          "honours": [
+            "K League 1 ×2"
+          ]
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "South Korea",
+          "teamTh": "เกาหลีใต้",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "eric-chelle": {
+      "summaryTh": "เชลเล่เคยคุมทีมชาติมาลี ก่อนรับงานคุมทีมชาติไนจีเรีย.",
+      "timeline": [
+        {
+          "from": 2022,
+          "to": 2024,
+          "team": "Mali",
+          "teamTh": "มาลี",
+          "role": "national",
+          "honours": []
+        },
+        {
+          "from": 2025,
+          "to": null,
+          "team": "Nigeria",
+          "teamTh": "ไนจีเรีย",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "pape-thiaw": {
+      "summaryTh": "ป๊าป เธียวเริ่มคุมทีมชาติเซเนกัลหลังประสบการณ์กับทีมเยาวชนและสโมสรในประเทศ.",
+      "timeline": [
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Senegal",
+          "teamTh": "เซเนกัล",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "hossam-hassan": {
+      "summaryTh": "ฮอสซัม ฮัสซันเคยคุมหลายสโมสรในอียิปต์ ก่อนรับงานทีมชาติอียิปต์.",
+      "timeline": [
+        {
+          "from": 2011,
+          "to": 2013,
+          "team": "Al Masry",
+          "teamTh": "อัล มาสรี",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2013,
+          "to": 2014,
+          "team": "Zamalek",
+          "teamTh": "ซามาเล็ค",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Egypt",
+          "teamTh": "อียิปต์",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "zlatko-dalic": {
+      "summaryTh": "ดาลิชพาโครเอเชียเข้าชิงฟุตบอลโลก 2018 และจบอันดับสามในปี 2022.",
+      "timeline": [
+        {
+          "from": 2014,
+          "to": 2017,
+          "team": "Al-Ain",
+          "teamTh": "อัล ไอน์",
+          "role": "manager",
+          "honours": [
+            "UAE Pro League"
+          ]
+        },
+        {
+          "from": 2017,
+          "to": null,
+          "team": "Croatia",
+          "teamTh": "โครเอเชีย",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "brian-riemer": {
+      "summaryTh": "รีเมอร์ทำงานในทีมงานของเบรนท์ฟอร์ด ก่อนคุมอันเดอร์เลชท์และทีมชาติเดนมาร์ก.",
+      "timeline": [
+        {
+          "from": 2018,
+          "to": 2022,
+          "team": "Brentford",
+          "teamTh": "เบรนท์ฟอร์ด",
+          "role": "assistant",
+          "honours": []
+        },
+        {
+          "from": 2022,
+          "to": 2024,
+          "team": "Anderlecht",
+          "teamTh": "อันเดอร์เลชท์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Denmark",
+          "teamTh": "เดนมาร์ก",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "jon-dahl-tomasson": {
+      "summaryTh": "โทมัสสันพามัลโมคว้าแชมป์ลีกสวีเดน ก่อนคุมแบล็กเบิร์นและทีมชาติสวีเดน.",
+      "timeline": [
+        {
+          "from": 2020,
+          "to": 2021,
+          "team": "Malmö FF",
+          "teamTh": "มัลโม เอฟเอฟ",
+          "role": "manager",
+          "honours": [
+            "Allsvenskan ×2"
+          ]
+        },
+        {
+          "from": 2022,
+          "to": 2024,
+          "team": "Blackburn Rovers",
+          "teamTh": "แบล็กเบิร์น โรเวอร์ส",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Sweden",
+          "teamTh": "สวีเดน",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "stale-solbakken": {
+      "summaryTh": "โซลบัคเคนพาโคเปนเฮเกนคว้าแชมป์เดนมาร์กหลายสมัย และคุมทีมชาตินอร์เวย์.",
+      "timeline": [
+        {
+          "from": 2006,
+          "to": 2011,
+          "team": "Copenhagen",
+          "teamTh": "โคเปนเฮเกน",
+          "role": "manager",
+          "honours": [
+            "Danish Superliga ×5"
+          ]
+        },
+        {
+          "from": 2012,
+          "to": 2013,
+          "team": "Wolverhampton Wanderers",
+          "teamTh": "วูล์ฟแฮมป์ตัน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2013,
+          "to": 2020,
+          "team": "Copenhagen",
+          "teamTh": "โคเปนเฮเกน",
+          "role": "manager",
+          "honours": [
+            "Danish Superliga ×3"
+          ]
+        },
+        {
+          "from": 2020,
+          "to": null,
+          "team": "Norway",
+          "teamTh": "นอร์เวย์",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "murat-yakin": {
+      "summaryTh": "ยาคินคว้าแชมป์ลีกสวิตเซอร์แลนด์กับบาเซิล และพาสวิตเซอร์แลนด์ทำผลงานดีในยูโร 2024.",
+      "timeline": [
+        {
+          "from": 2012,
+          "to": 2014,
+          "team": "Basel",
+          "teamTh": "บาเซิล",
+          "role": "manager",
+          "honours": [
+            "Swiss Super League ×2"
+          ]
+        },
+        {
+          "from": 2018,
+          "to": 2021,
+          "team": "Schaffhausen",
+          "teamTh": "ชาฟฟ์เฮาเซน",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": null,
+          "team": "Switzerland",
+          "teamTh": "สวิตเซอร์แลนด์",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "michal-probierz": {
+      "summaryTh": "โปรเบียร์ซคุมหลายสโมสรในโปแลนด์ ก่อนรับงานคุมทีมชาติโปแลนด์.",
+      "timeline": [
+        {
+          "from": 2012,
+          "to": 2014,
+          "team": "Lechia Gdańsk",
+          "teamTh": "เลเชีย กดัญสก์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2017,
+          "to": 2021,
+          "team": "Cracovia",
+          "teamTh": "คราโคเวีย",
+          "role": "manager",
+          "honours": [
+            "Polish Cup"
+          ]
+        },
+        {
+          "from": 2023,
+          "to": null,
+          "team": "Poland",
+          "teamTh": "โปแลนด์",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "vincenzo-montella": {
+      "summaryTh": "มอนเตลลาคุมหลายสโมสรในอิตาลีและตุรกี ก่อนพาทีมชาติตุรกีเข้าถึงรอบก่อนรองยูโร 2024.",
+      "timeline": [
+        {
+          "from": 2011,
+          "to": 2013,
+          "team": "Catania",
+          "teamTh": "คาตาเนีย",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2013,
+          "to": 2015,
+          "team": "Fiorentina",
+          "teamTh": "ฟิออเรนตินา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2015,
+          "to": 2016,
+          "team": "Sampdoria",
+          "teamTh": "ซามพ์โดเรีย",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2016,
+          "to": 2017,
+          "team": "AC Milan",
+          "teamTh": "เอซี มิลาน",
+          "role": "manager",
+          "honours": [
+            "Supercoppa Italiana"
+          ]
+        },
+        {
+          "from": 2017,
+          "to": 2018,
+          "team": "Sevilla",
+          "teamTh": "เซบียา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2019,
+          "to": 2021,
+          "team": "Fiorentina",
+          "teamTh": "ฟิออเรนตินา",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": 2023,
+          "team": "Adana Demirspor",
+          "teamTh": "อดานา เดมีร์สปอร์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2023,
+          "to": null,
+          "team": "Turkey",
+          "teamTh": "ตุรกี",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "dragan-stojkovic": {
+      "summaryTh": "สตอยโควิชคว้าแชมป์ลีกจีนกับกว่างโจว และพาเซอร์เบียผ่านเข้าสู่ฟุตบอลโลก 2022.",
+      "timeline": [
+        {
+          "from": 2008,
+          "to": 2015,
+          "team": "Nagoya Grampus",
+          "teamTh": "นาโกยา แกรมปัส",
+          "role": "manager",
+          "honours": [
+            "J1 League"
+          ]
+        },
+        {
+          "from": 2015,
+          "to": 2020,
+          "team": "Guangzhou R&F",
+          "teamTh": "กว่างโจว อาร์แอนด์เอฟ",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2021,
+          "to": null,
+          "team": "Serbia",
+          "teamTh": "เซอร์เบีย",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    },
+    "ivan-jovanovic": {
+      "summaryTh": "โยวาโนวิชคว้าแชมป์ลีกกับอาโปเอลและพาทีมไปแชมเปียนส์ลีก ก่อนคุมทีมชาติกรีซ.",
+      "timeline": [
+        {
+          "from": 2008,
+          "to": 2013,
+          "team": "APOEL",
+          "teamTh": "อาโปเอล",
+          "role": "manager",
+          "honours": [
+            "Cypriot First Division ×4"
+          ]
+        },
+        {
+          "from": 2013,
+          "to": 2016,
+          "team": "Al-Nasr",
+          "teamTh": "อัล นาสร์",
+          "role": "manager",
+          "honours": []
+        },
+        {
+          "from": 2024,
+          "to": null,
+          "team": "Greece",
+          "teamTh": "กรีซ",
+          "role": "national",
+          "honours": []
+        }
+      ]
+    }
+  }
+}

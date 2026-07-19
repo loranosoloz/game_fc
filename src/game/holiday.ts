@@ -7,6 +7,10 @@ import {
   recoverSquad,
   applyWeeklyWages,
 } from './simulate'
+import {
+  advanceInternationalBreak,
+  hasPendingInternationalBreak,
+} from './internationalBreaks'
 import { staffLevel } from './staff'
 import { recomputeDynamics } from './dynamics'
 import { medicalFacilityBonus } from './facilities'
@@ -30,6 +34,15 @@ export function takeHoliday(
 
   for (let i = 0; i < n; i++) {
     if (next.seasonComplete || next.board?.sacked) break
+
+    if (hasPendingInternationalBreak(next)) {
+      const br = advanceInternationalBreak(next)
+      if (!br.ok) break
+      next = br.save
+      simulated++
+      continue
+    }
+
     const md = nextUnplayedMatchday(next)
     if (md == null) break
 

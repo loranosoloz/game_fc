@@ -17,8 +17,30 @@ export type RoleCode =
   | 'ST'
   | 'SS'
 
-export type FormationId = '4-4-2' | '4-3-3' | '4-2-3-1'
+export type FormationId =
+  | '4-4-2'
+  | '4-4-2-diamond'
+  | '4-3-3'
+  | '4-3-3-false9'
+  | '4-2-3-1'
+  | '4-1-4-1'
+  | '4-3-2-1'
+  | '3-5-2'
+  | '3-4-3'
+  | '3-4-2-1'
+  | '3-1-4-2'
+  | '5-3-2'
+  | '5-4-1'
+  | '3-4-3-diamond'
+  | '4-2-4'
+  | '4-2-2-2'
+  | '4-5-1'
+  | '3-3-3-1'
+  | '3-6-1'
+  | '4-2-1-3'
 export type SquadRole = 'key' | 'regular' | 'squad' | 'prospect'
+/** การันตีสถานะในสัญญาเจรจา */
+export type SquadStatusGuarantee = 'star' | 'regular' | 'squad' | 'impact' | 'prospect'
 export type Mentality = 'defensive' | 'balanced' | 'attacking'
 export type Pressing = 'low' | 'medium' | 'high'
 export type Tempo = 'slow' | 'normal' | 'fast'
@@ -30,6 +52,11 @@ export type CompetitionKind =
   | 'ucl'
   | 'uel'
   | 'uecl'
+  | 'acl'
+  | 'acl_two'
+  | 'asean_cup'
+  | 'cwc'
+  | 'super_cup'
   | 'league_cup'
   | 'trophy'
 export type SetPiecePlan = 'mixed' | 'near_post' | 'far_post' | 'short' | 'direct'
@@ -186,6 +213,56 @@ export interface Player {
   bio?: PlayerBio | null
   /** Status / attrs จาก FMInside (0–99) */
   fmInside?: FmInsideProfile | null
+  /** แคปทีมชาติในเซฟนี้ (seed จาก FMInside.caps ถ้ายังไม่เคยตั้ง) */
+  ntCaps?: number
+  /** ภาษาที่พูดได้ (รหัสสั้น en/es/th …) — ผลต่อการคุยกับโค้ช */
+  languages?: string[]
+  /** ธงอยากย้ายทีม (ไม่ลิสต์ขายอัตโนมัติ) */
+  wantAway?: PlayerTransferDesire | null
+  /** ไม่ยอมต่อสัญญา — เสี่ยงย้ายฟรี + แฟนเกลียด */
+  refuseContractRenewal?: boolean
+  /** สโมสรขึ้นบัญชีย้ายทีม */
+  transferListed?: boolean
+  transferListMinFee?: number | null
+  /** % ขึ้นค่าเหนื่อยอัตโนมัติทุกฤดูกาล */
+  annualWageRisePercent?: number | null
+  /** % ขึ้นค่าเหนื่อยเมื่อติดโซนยุโรป */
+  europeWageBumpPercent?: number | null
+  /** ฉีกสัญญาเมื่อตกชั้น (0 = ฟรี) */
+  relegationReleaseClause?: number | null
+  /** สิทธิ์ซื้อคืนของสโมสรเก่า */
+  buyBack?: { clubId: string; fee: number; untilSeason: number } | null
+  /** สิทธิ์ปฏิเสธครั้งแรก */
+  firstRefusalClubId?: string | null
+  /** เอเยนต์ล็อกไม่ให้เจรจาถึง MD นี้ */
+  agentLockUntilMatchday?: number | null
+  /** สถานะทีมที่การันตีในสัญญา */
+  contractedSquadStatus?: SquadStatusGuarantee | null
+  /** พรี-คอนแทรกต์บอสแมน */
+  preContract?: {
+    clubId: string
+    wage: number
+    years: number
+    startSeason: number
+    squadStatus?: SquadStatusGuarantee
+  } | null
+  /** รางวัลติดตัวถาวรในเซฟ (Ballon / ดาวซัลโว / TOTW …) */
+  careerHonours?: import('./awards').PlayerCareerHonour[]
+}
+
+/** สถานะอยากย้าย — ข่าวสาธารณะถึงจะให้ AI แห่ยื่น */
+export interface PlayerTransferDesire {
+  active: boolean
+  /** แรงกดดัน 1–20 */
+  intensity: number
+  /** ข่าวออกสื่อแล้ว — AI รู้ */
+  publicNews: boolean
+  /** ครั้งที่ปฏิเสธคำขออยากย้าย */
+  refuseCount: number
+  sinceMatchday: number
+  reasonTh?: string
+  /** บอร์ดสั่งให้รับข้อเสนอ / บังคับขาย */
+  boardForced?: boolean
 }
 
 export type LifestyleOrder = 'none' | 'curfew' | 'extra_gym' | 'rest' | 'media_quiet'
@@ -226,6 +303,7 @@ export interface PlayerBio {
 
 /** FMInside normalized attributes (0–99) */
 export interface FmInsideAttrs {
+  goalkeeping: Record<string, number>
   technical: Record<string, number>
   mental: Record<string, number>
   physical: Record<string, number>
@@ -255,6 +333,50 @@ export interface FmInsideProfile {
   sourceUrl?: string
 }
 
+/** เหตุที่แฟนเกลียดนักเตะ */
+export type FanHateReason =
+  | 'to_rival'
+  | 'want_away'
+  | 'free_exit'
+  | 'refuse_contract'
+  | 'sell_star'
+  | 'betrayal'
+
+export interface FanHatred {
+  playerId: string
+  playerName: string
+  reason: FanHateReason
+  reasonTh: string
+  /** 1–20 */
+  intensity: number
+  sinceMatchday: number
+  /** ทีมที่ไป หรือทีมที่อยากไป */
+  otherClubId?: string | null
+  /** ยังอยู่ในทีม — โดนโห่ในบ้าน */
+  stillAtClub?: boolean
+}
+
+/** ระดับความเกลียดทีม (เบา → แรง) */
+export type FanTeamHateStyle = 'boo' | 'banners' | 'hostile'
+
+export interface FanTeamHatred {
+  clubId: string
+  /** % ของแฟนที่เกลียด (ประมาณ 20–95) */
+  pct: number
+  /** โห่ < ติดป้ายด่า < บรรยากาศเป็นศัตรู */
+  style: FanTeamHateStyle
+  reasonTh: string
+}
+
+/** แฟนระดับสโมสร — ใช้ได้ทั้ง AI และทีมผู้เล่น */
+export interface ClubFansState {
+  mood: number
+  hatedPlayers: FanHatred[]
+  /** ทีมที่แฟนเกลียด (คู่อริ / ดาร์บี้) */
+  hatedTeams: FanTeamHatred[]
+  lastEvent: string
+}
+
 export interface Club {
   id: string
   name: string
@@ -279,6 +401,32 @@ export interface Club {
   crestKey?: string | null
   /** บัญชีโซเชียลทางการของสโมสร */
   social: ClubSocial
+  /** หัวหน้าโค้ช AI จากพูลโลก · คลับที่ผู้เล่นคุม = ที่ปรึกษาแผน (ว่างเมื่อผู้เล่นเพิ่งรับงาน) */
+  coachId?: string | null
+  /** แฟนของสโมสรนี้ (ทุกทีม) */
+  clubFans?: ClubFansState | null
+}
+
+/** คู่อริระหว่างสโมสร — seed หรือเกิดเองระหว่างเซฟ */
+export type RivalryOrigin =
+  | 'seed'
+  | 'table'
+  | 'thrashing'
+  | 'incident'
+  | 'transfer'
+  | 'derby_run'
+
+export interface ClubRivalry {
+  id: string
+  clubAId: string
+  clubBId: string
+  /** ความร้อน 0–100 */
+  heat: number
+  origin: RivalryOrigin
+  labelTh: string
+  sinceSeason: number
+  /** นัดล่าสุดที่ปะทะ */
+  lastFixtureId?: string
 }
 
 export interface ClubSocial {
@@ -340,10 +488,17 @@ export interface Fixture {
   refereeId?: string
   /** สภาพอากาศนัดนี้ */
   weather?: MatchWeather
+  /** ผู้ชมที่ประมาณ/ล็อกไว้ก่อนเตะ (ปิดลูปกับตั๋ว) */
+  attendance?: number
   /** สองนัด: 1 = ขาแรก, 2 = ขากลับ */
   leg?: 1 | 2
   /** ผูกคู่สองนัด */
   tieId?: string
+  /** weekend = ลีกเสาร์ · midweek = ถ้วย/ยุโรปพุธ */
+  slot?: 'weekend' | 'midweek'
+  /** ผลยิงจุดโทษ (ถ้วย) */
+  penaltiesHome?: number
+  penaltiesAway?: number
 }
 
 export type MatchWeather = 'clear' | 'rain' | 'wind' | 'cold' | 'hot'
@@ -356,6 +511,8 @@ export interface Referee {
   reputation: number
   /** ความเข้มงวดในการเป่าใบ 1–20 */
   strictness: number
+  /** เอียงเข้าข้างเจ้าบ้าน 1–20 (10 = กลาง) */
+  homeBias: number
 }
 
 export interface TableRow {
@@ -379,6 +536,13 @@ export type MatchEventKind =
   | 'corner'
   | 'foul'
   | 'card'
+  | 'var'
+  | 'penalty'
+  | 'stoppage'
+  | 'substitution'
+  | 'tactical_window'
+  | 'extratime'
+  | 'shootout'
   | 'halftime'
   | 'secondhalf'
   | 'fulltime'
@@ -398,6 +562,8 @@ export interface MatchEvent {
   /** เมื่อ kind === 'goal' */
   assistPlayerId?: string
   assistPlayerName?: string
+  /** เมื่อ kind === 'goal' — มาจากจุดโทษในเกม */
+  fromPenalty?: boolean
   text: string
   spot: PitchSpot
   homeGoals: number
@@ -414,6 +580,29 @@ export interface TeamMatchStats {
   yellows: number
   reds: number
   possession: number
+  /** Expected goals */
+  xg: number
+}
+
+export interface MatchPlayerRating {
+  playerId: string
+  name: string
+  team: 'home' | 'away'
+  rating: number
+  goals: number
+  shots: number
+  xg: number
+  minutes: number
+}
+
+/** สรุปทำไมแพ้/ชนะจาก Match Engine ชั้นพื้นที่ */
+export interface MatchBreakdown {
+  homeFormation: FormationId
+  awayFormation: FormationId
+  lines: string[]
+  freePlayerNotes: string[]
+  overloadNotes: string[]
+  shoutNotes: string[]
 }
 
 export interface MatchResult {
@@ -424,6 +613,21 @@ export interface MatchResult {
   homeRating: number
   awayRating: number
   stats: { home: TeamMatchStats; away: TeamMatchStats }
+  breakdown?: MatchBreakdown
+  /** เรตติ้งรายคน */
+  playerRatings?: MatchPlayerRating[]
+  /** Man of the Match */
+  manOfTheMatchId?: string | null
+  manOfTheMatchName?: string | null
+  /** ผู้ชมที่ใช้นัดนี้ (ปิดลูปตั๋ว) */
+  attendance?: number
+  /** ไปต่อเวลา */
+  wentToExtraTime?: boolean
+  /** ยิงจุดโทษตัดสิน */
+  wentToPens?: boolean
+  penalties?: { home: number; away: number }
+  /** บาดเจ็บระหว่างแมตช์ (Burst Zone / soft-tissue) */
+  inMatchInjuries?: Array<{ playerId: string; type: InjuryType; days: number }>
 }
 
 export interface InboxMessage {
@@ -458,6 +662,10 @@ export interface FanState {
   lastEvent: string
   /** บันทึกบรรยากาศสนาม */
   atmosphereLogs: AtmosphereLog[]
+  /** นักเตะที่แฟนเกลียด (ย้ายฟรี / คู่อริ / ไม่ต่อสัญญา ฯลฯ) */
+  hatedPlayers: FanHatred[]
+  /** ทีมที่แฟนเกลียด */
+  hatedTeams?: FanTeamHatred[]
 }
 
 export interface AtmosphereLog {
@@ -485,6 +693,11 @@ export interface TrainingState {
   intensity: 'low' | 'medium' | 'high'
   /** playerId → individual focus */
   individual: Record<string, IndividualFocus>
+  /**
+   * ตารางซ้อมรายสัปดาห์ (จ–อา) — ถ้าว่างใช้ focus หลักทั้งสัปดาห์
+   * index 0 = จันทร์ … 6 = อาทิตย์
+   */
+  weekPlan?: TrainingFocus[]
 }
 
 export interface VisionKpi {
@@ -671,6 +884,8 @@ export interface PreMatchState {
   talkKind: TeamTalkKind | null
   /** คูณโบนัสแมตช์มนุษย์ (เช่น 1.05) */
   talkMatchBonus: number
+  /** ตะโกนสั่งข้างสนาม (รอใช้ตอนจำลอง) */
+  touchlineShouts?: import('./match/touchlineShouts').TouchlineShout[]
 }
 
 export interface DynamicsState {
@@ -824,6 +1039,10 @@ export interface ClubFinanceState {
   sponsorSeason: number
   tvSeason: number
   prizeSeason: number
+  /** ค่าตัวจ่ายซื้อสะสมฤดูกาล (FFP) */
+  transferOutSeason: number
+  /** ค่าตัวรับจากการขายสะสมฤดูกาล (FFP) */
+  transferInSeason: number
   lastMatchTickets: number
   lastMatchShirts: number
   lastMatchCrowd: number
@@ -901,6 +1120,12 @@ export interface ScoutKnowledge {
   visits: StadiumVisit[]
   /** สั่งสเกาต์ไปดูนัด */
   pendingWatches: FormWatchAssignment[]
+  /** รู้ค่าฉีกสัญญาแล้ว (ความลับ — เปิดเมื่อสนิทเอเยนต์/นักเตะ) */
+  knownReleaseClauseIds?: string[]
+  /** ความสนิทกับเอเยนต์ของนักเตะ 0–100 */
+  agentRapport?: Record<string, number>
+  /** ความสนิทกับตัวนักเตะ 0–100 (คุย/เจรจา) */
+  playerRapport?: Record<string, number>
 }
 
 export interface PressStory {
@@ -924,6 +1149,12 @@ export interface MediaItem {
   /** Romano reliability 0–100 (“Here we go” เมื่อสูง) */
   reliability?: number
   subjectName?: string
+  /** ชื่อสำนักข่าว / ช่อง (เช่น Sky Sports, Marca) */
+  outlet?: string
+  /** ตำนานเลิกเล่นที่ร่วมวิเคราะห์/บรรยาย (ไม่ใช่นักเตะในสกวด) */
+  punditName?: string
+  punditRole?: string
+  punditBio?: string
 }
 
 export interface MediaFeed {
@@ -959,6 +1190,56 @@ export interface PressConferenceState {
   matchSummary: string
   questions: PressQuestion[]
   /** Answer ids chosen in order; empty while pending */
+  chosen: string[]
+}
+
+/** ช่วงพักเบรกทีมชาติ (FIFA window) */
+export interface InternationalBreakState {
+  weeksLeft: number
+  /** รวมสัปดาห์ของหน้าต่างนี้ */
+  totalWeeks: number
+  label: string
+  afterMatchday: number
+  calledUpIds: string[]
+  /** รายละเอียดเรียกตัวโดยโค้ชทีมชาติ (AI เลือกตามสไตล์) */
+  callUps: {
+    playerId: string
+    playerName: string
+    nation: string
+    nationTh: string
+    coachName: string
+    clubId: string
+    clubName: string
+    score: number
+    reasons: string[]
+    firstCap: boolean
+    styleFit: number
+  }[]
+  /** ใกล้ติดแต่หลุดโผ (โฟกัสทีมผู้เล่น) */
+  snubs?: {
+    playerId: string
+    playerName: string
+    nation: string
+    nationTh: string
+    coachName: string
+    clubId: string
+    clubName: string
+    score: number
+    cutoffScore: number
+    reasons: string[]
+    rivalName: string | null
+  }[]
+}
+
+/** สัมภาษณ์นักเตะแยกจากแถลงผู้จัดการ */
+export interface PlayerInterviewState {
+  pending: boolean
+  date: string
+  playerId: string
+  playerName: string
+  kind: 'hero' | 'scorer' | 'young' | 'flop' | 'carded' | 'keeper'
+  blurb: string
+  questions: PressQuestion[]
   chosen: string[]
 }
 
@@ -1099,6 +1380,24 @@ export interface LoanDeal {
   optionToBuy: number | null
   recallable: boolean
   status: 'active' | 'ended' | 'recalled' | 'bought'
+  /**
+   * buy_loan_back = ซื้อขาดแล้วให้ต้นสังกัดเดิมยืมใช้จนจบฤดูกาล
+   * fromClubId = เจ้าของใหม่ · toClubId = ทีมที่ยืมใช้ · ฤดูกาลหน้าค่อยเข้าทีมเจ้าของ
+   */
+  kind?: 'standard' | 'buy_loan_back'
+  /** ค่าตัวที่จ่ายตอนซื้อ (เฉพาะ buy_loan_back) */
+  purchaseFee?: number | null
+  /** ห้ามลงแข่งเจอทีมแม่ (ค่าเริ่มต้น true) */
+  blockVsParent?: boolean
+  /** ราคาบังคับซื้อขาด */
+  obligationToBuy?: number | null
+  /** โหมดบังคับซื้อ */
+  obligationMode?: 'always' | 'avoid_relegation' | 'appearances' | null
+  obligationAppearances?: number
+  /** นัดที่ลงระหว่างยืม */
+  appearancesOnLoan?: number
+  /** เรียกกลับได้เฉพาะหน้าต่างวินเทอร์ */
+  recallWinterOnly?: boolean
 }
 
 export interface ShortlistEntry {
@@ -1111,7 +1410,36 @@ export interface ShortlistState {
   entries: ShortlistEntry[]
 }
 
+export interface TransferDeadlineLog {
+  id: string
+  hour: number
+  title: string
+  body: string
+}
+
+/** โหมดปิดตลาด — 3 วันสุดท้ายนับชั่วโมง (72 ชม.) */
+export interface TransferDeadlineState {
+  active: boolean
+  window: 'summer' | 'winter'
+  hoursRemaining: number
+  hoursElapsed: number
+  clockHour: number
+  startedMatchday: number
+  windowEndMatchday: number
+  completedForWindow?: 'summer' | 'winter' | null
+  log: TransferDeadlineLog[]
+}
+
 export type TransferOfferKind = 'buy' | 'sell' | 'exchange' | 'auction'
+
+/** แพทเทิร์นผ่อนค่าตัวแบบสโมสรจริง */
+export type FeePaymentPreset =
+  | 'full'
+  | 'half_2y'
+  | 'split_3y'
+  | 'equal_3y'
+  | 'front_heavy_3y'
+  | 'back_heavy_3y'
 
 export interface PendingTransferOffer {
   id: string
@@ -1134,6 +1462,17 @@ export interface PendingTransferOffer {
   counterFee?: number
   expiresMatchday: number
   note: string
+  /** ซื้อแล้วให้ต้นสังกัดยืมใช้จนจบฤดูกาล */
+  loanBackUntilNextSeason?: boolean
+  /** แพทเทิร์นผ่อนค่าตัว */
+  paymentPreset?: FeePaymentPreset
+  /** ข้อเสนอ ROFR แมตช์ราคา */
+  isRofrMatch?: boolean
+  /** แลกตัว: รอทั้งสองฝ่ายยอมรับ */
+  exchangeOurAccepted?: boolean
+  exchangeTheirAccepted?: boolean
+  exchangeOurWage?: number
+  exchangeTheirWage?: number
 }
 
 export interface TransferDeskState {
@@ -1149,6 +1488,34 @@ export interface TransferDeskState {
   }>
   /** เงื่อนไขพิเศษที่ยังค้าง (add-on / sell-on / โบนัสนัด) */
   clauses?: TransferClause[]
+  /** งวดค่าตัวที่ยังค้างจ่าย */
+  feeInstallments?: FeeInstallment[]
+}
+
+export interface FeePaymentSchedule {
+  preset: FeePaymentPreset
+  totalFee: number
+  dueNow: number
+  installments: Array<{
+    amount: number
+    dueSeason: number
+    installmentIndex: number
+    totalInstallments: number
+  }>
+}
+
+export interface FeeInstallment {
+  id: string
+  playerId: string
+  playerName: string
+  fromClubId: string
+  toClubId: string
+  amount: number
+  dueSeason: number
+  installmentIndex: number
+  totalInstallments: number
+  status: 'pending' | 'paid' | 'overdue'
+  note: string
 }
 
 /** ชนิดเงื่อนไขสัญญาจริงที่ใช้ในตลาด */
@@ -1158,6 +1525,7 @@ export type TransferClauseKind =
   | 'assists'
   | 'clean_sheets'
   | 'sell_on'
+  | 'sell_on_profit'
   | 'promotion'
   | 'league_title'
   | 'europe_qualify'
@@ -1166,6 +1534,7 @@ export type TransferClauseKind =
   | 'per_goal'
   | 'per_assist'
   | 'per_clean_sheet'
+  | 'intl_caps'
 
 /** แพ็ก add-on ตอนเจรจาซื้อ */
 export interface TransferAddonPackage {
@@ -1199,6 +1568,24 @@ export interface TransferAddonPackage {
   perAssist: number
   /** โบนัสนักเตะต่อคลีนชีต */
   perCleanSheet: number
+  /** sell-on: fee = % ของค่าตัวถัดไป · profit = % ของกำไร */
+  sellOnMode?: 'fee' | 'profit'
+  /** โบนัสแคปทีมชาติ → จ่ายคลับขาย */
+  intlCapsFee?: number
+  intlCapsNeeded?: number
+  /** สิทธิ์ซื้อคืน (ราคาตายตัว) — ติดกับนักเตะหลังขาย */
+  buyBackFee?: number
+  buyBackYears?: number
+  /** สิทธิ์ปฏิเสธครั้งแรกให้ผู้ขาย */
+  firstRefusal?: boolean
+  /** % ขึ้นค่าเหนื่อยรายปี */
+  annualWageRisePercent?: number
+  /** % ขึ้นค่าเหนื่อยเมื่อติดยุโรป */
+  europeWageBumpPercent?: number
+  /** ฉีกสัญญาเมื่อตกชั้น (null = ไม่ใส่, 0 = ฟรี) */
+  relegationReleaseFee?: number | null
+  /** การันตีสถานะในทีม */
+  contractedSquadStatus?: SquadStatusGuarantee
 }
 
 export interface TransferClause {
@@ -1219,6 +1606,9 @@ export interface TransferClause {
   sellOnPercent: number
   status: 'active' | 'paid' | 'void'
   note: string
+  /** ค่าตัวตอนซื้อ (สำหรับ sell_on_profit) */
+  originalFee?: number
+  sellOnMode?: 'fee' | 'profit'
 }
 
 export interface SponsorDeal {
@@ -1241,6 +1631,14 @@ export interface GameSave {
   managerName: string
   /** Manager public reputation 0–100 (jobs / pull / media) */
   managerReputation: number
+  /** สร้างตัว: สไตล์ / จุดแข็ง (มีผลแมตช์ + แผนเริ่มต้น) */
+  managerProfile?: import('./managerProfile').ManagerProfile
+  /** XP / เลเวลโค้ช — เก่งขึ้นเมื่อคุมดี · ลดแอตฯเมื่อแพ้บ่อย */
+  managerProgress?: import('./managerProgress').ManagerProgress
+  /** เควสตามความหวังสโมสร (ทีมเล็กก็เลเวลได้ถ้าทำเป้า) */
+  clubQuests?: import('./managerProgress').ClubQuest[]
+  /** ปฏิทินฤดูกาล — ช่องพัก/FIFA + ทัวร์นาเมนต์ฤดูร้อน */
+  seasonCalendar?: import('./seasonCalendar').SeasonCalendarState
   humanClubId: string
   /** eng | esp | ger | fra | ita | tha */
   leagueId: string
@@ -1277,6 +1675,33 @@ export interface GameSave {
   media: MediaFeed
   /** Post-match press conference (null when none pending) */
   pressConference: PressConferenceState | null
+  /** สัมภาษณ์นักเตะหลังเกม (แยกจากแถลงผู้จัดการ) */
+  playerInterview: PlayerInterviewState | null
+  /** พักเบรกทีมชาติค้าง (FIFA window) */
+  internationalBreak: InternationalBreakState | null
+  /**
+   * สมาคมฟุตบอลแต่ละชาติ — งบ + FIFA rank + โค้ชทีมชาติที่จ้าง
+   * key = ชื่อชาติอังกฤษ (England, Thailand, …)
+   */
+  associations: Record<
+    string,
+    {
+      nation: string
+      code: string
+      name: string
+      nameTh: string
+      fifaRank: number
+      budget: number
+      coachId: string | null
+      wageWeekly: number
+      hiredMatchday: number
+      /** ฟอร์มผลงานโค้ชชาติ 1–20 */
+      form: number
+      /** จำนวน FIFA window ที่โค้ชคนนี้คุม */
+      windowsInCharge: number
+      vacantWindows: number
+    }
+  >
   cup: CupState
   /** ลีกคัพ — ดิวิชัน 1+2 */
   leagueCup: CupState
@@ -1288,14 +1713,36 @@ export interface GameSave {
   uel: CupState
   /** UEFA Conference League — อันดับ 7–8 */
   uecl: CupState
+  /** AFC Champions League Elite */
+  acl: CupState
+  /** AFC Champions League Two */
+  aclTwo: CupState
+  /** ASEAN Club Championship */
+  aseanCup: CupState
+  /** FIFA Club World Cup (สโมสรโลก) */
+  cwc: CupState
+  /** เมล็ดพันธุ์สโมสรโลกจากแชมป์ฤดูกาลก่อน */
+  cwcAccess?: import('./clubWorldCup').CwcAccessState
+  /** แมตช์เปิดฤดูกาล (Community Shield / ซูเปอร์คัพ) */
+  superCup: CupState
+  /** แชมป์ลีก/ถ้วยฤดูกาลก่อน — ใช้จับคู่ซูเปอร์คัพ */
+  domesticTitles?: import('./superCup').DomesticTitles
+  /** ปรีซีซั่น / ทัวร์อุ่นเครื่องก่อนเปิดศึก */
+  preSeason?: import('./preSeason').PreSeasonState | null
   /** อันดับจบลีกยุโรปฤดูกาลก่อน (โควตาถ้วย) */
   euroAccess: EuroAccessState
+  /** อันดับจบลีกเอเชียฤดูกาลก่อน (โควตา ACL / ASEAN) */
+  asiaAccess: import('./asiaAccess').AsiaAccessState
   development: DevelopmentState
   /** นัดคุยผู้จัดการ ↔ นักเตะ / คำขอเรียกคุย */
   talks: TalksState
   loans: LoanDeal[]
   shortlist: ShortlistState
   transferDesk: TransferDeskState
+  /** โหมดปิดตลาดนับชั่วโมง (3 วันสุดท้าย) */
+  transferDeadline?: TransferDeadlineState | null
+  /** คู่อริสโมสร (seed + เกิดเอง) */
+  rivalries: ClubRivalry[]
   clubIncome: ClubIncomeState
   /** ตลาดเทคโอเวอร์ / ข้อเสนอจากกลุ่มทุน */
   takeover: TakeoverState
@@ -1311,6 +1758,22 @@ export interface GameSave {
   worldPulse: WorldPulseState
   /** พิธีกรรมก่อนเตะ (null เมื่อไม่มีนัด/หลังแข่งแล้ว) */
   preMatch: PreMatchState | null
+  /** สรุปหลังแมตช์เดย์ล่าสุด (แบนเนอร์พอร์ทัล) */
+  lastMatchdayReport?: import('./matchdayReport').MatchdayReport | null
+  /** สมุดเหตุการณ์สะสมทุกแมตช์เดย์ (ย้าย·แฟน·เทคโอเวอร์·งบ…) */
+  matchdayChronicle?: import('./matchdayReport').MatchdayReport[]
+  /** สรุปทัวร์นาเมนต์ชาติฤดูร้อน */
+  lastIntlTournamentReports?: import('./intlTournaments').IntlTournamentReport[]
+  /** ฟุตบอลโลก — คัดเลือกกลุ่มเก็บแต้ม + รอบ 32 ทีม */
+  worldCup?: import('./worldCup').WorldCupState | null
+  /** แคมป์ทีมชาติเมื่อคุณเป็นโค้ชชาติ (ช่วง FIFA window) */
+  ntCamp?: import('./ntCamp').NtCampState | null
+  /** ทีมยอดเยี่ยมสัปดาห์/เดือน · ผู้จัดการยอดเยี่ยม */
+  awards?: import('./awards').AwardsState
+  /** วิกฤตสภาพคล่อง / Administration */
+  insolvency?: import('./insolvency').ClubInsolvencyState
+  /** ประวัติย้ายสโมสรในอาชีพนี้ (world live DB) */
+  playerMoveLog?: import('./playerWorldDb').PlayerMoveEvent[]
 }
 
 export type FacilityKind = 'stadium' | 'training' | 'medical' | 'commercial' | 'youth'
@@ -1376,6 +1839,20 @@ export interface ContractTalkState {
   talks: ContractNegotiation[]
 }
 
+export interface WorldPulseClubRow {
+  key: string
+  name: string
+  shortName: string
+  played: number
+  won: number
+  drawn: number
+  lost: number
+  gf: number
+  ga: number
+  points: number
+  rep: number
+}
+
 export interface WorldLeaguePulse {
   leagueId: string
   name: string
@@ -1386,6 +1863,12 @@ export interface WorldLeaguePulse {
   note: string
   /** อันดับคลับ (def.key) จำลองสะสม — ใช้ตัดโควตายุโรป */
   orderedKeys?: string[]
+  /** ตารางเต็มของลีกนี้ */
+  table?: WorldPulseClubRow[]
+  /** ผลนัดล่าสุดในรอบนี้ */
+  recentResults?: string[]
+  /** ข้อความโควตายุโรปถ้าเป็นลีกยุโรป */
+  euroNote?: string
 }
 
 export interface WorldPulseState {
@@ -1401,8 +1884,13 @@ export interface EuroAccessState {
 
 export interface JobOffer {
   id: string
+  /** club = สโมสร · national = ทีมชาติ (สมาคมจ้าง) */
+  kind?: 'club' | 'national'
   clubId: string
   clubName: string
+  /** เมื่อ kind=national */
+  nation?: string
+  nationTh?: string
   issuedMatchday: number
   issuedSeason: number
   expiresMatchday: number
@@ -1420,12 +1908,124 @@ export interface CareerState {
   jobOffers: JobOffer[]
   clubsManaged: string[]
   lastJobNote: string | null
+  /** กำลังคุมทีมชาติอยู่ (ว่าง = ไม่ได้เป็นโค้ชชาติ) */
+  nationalNation?: string | null
+  /** ลาออกเองจากคลับล่าสุด */
+  resignedVoluntarily?: boolean
 }
 
 export const FORMATION_SLOTS: Record<FormationId, RoleCode[]> = {
+  // 4-back
   '4-4-2': ['GK', 'LB', 'CB', 'CB', 'RB', 'LM', 'CM', 'CM', 'RM', 'ST', 'ST'],
+  '4-4-2-diamond': ['GK', 'LB', 'CB', 'CB', 'RB', 'CDM', 'CM', 'CM', 'CAM', 'ST', 'ST'],
   '4-3-3': ['GK', 'LB', 'CB', 'CB', 'RB', 'CDM', 'CM', 'CM', 'LW', 'ST', 'RW'],
+  '4-3-3-false9': ['GK', 'LB', 'CB', 'CB', 'RB', 'CDM', 'CM', 'CM', 'LW', 'SS', 'RW'],
   '4-2-3-1': ['GK', 'LB', 'CB', 'CB', 'RB', 'CDM', 'CDM', 'LM', 'CAM', 'RM', 'ST'],
+  '4-1-4-1': ['GK', 'LB', 'CB', 'CB', 'RB', 'CDM', 'LM', 'CM', 'CM', 'RM', 'ST'],
+  '4-3-2-1': ['GK', 'LB', 'CB', 'CB', 'RB', 'CDM', 'CM', 'CM', 'CAM', 'CAM', 'ST'],
+  // 3/5-back
+  '3-5-2': ['GK', 'CB', 'CB', 'CB', 'LM', 'CDM', 'CM', 'CM', 'RM', 'ST', 'ST'],
+  '3-4-3': ['GK', 'CB', 'CB', 'CB', 'LM', 'CM', 'CM', 'RM', 'LW', 'ST', 'RW'],
+  '3-4-2-1': ['GK', 'CB', 'CB', 'CB', 'LM', 'CM', 'CM', 'RM', 'CAM', 'CAM', 'ST'],
+  '3-1-4-2': ['GK', 'CB', 'CB', 'CB', 'CDM', 'LM', 'CM', 'CM', 'RM', 'ST', 'ST'],
+  '5-3-2': ['GK', 'LB', 'CB', 'CB', 'CB', 'RB', 'CDM', 'CM', 'CM', 'ST', 'ST'],
+  '5-4-1': ['GK', 'LB', 'CB', 'CB', 'CB', 'RB', 'LM', 'CM', 'CM', 'RM', 'ST'],
+  // attacking / specialty
+  '3-4-3-diamond': ['GK', 'CB', 'CB', 'CB', 'CDM', 'LM', 'RM', 'CAM', 'LW', 'ST', 'RW'],
+  '4-2-4': ['GK', 'LB', 'CB', 'CB', 'RB', 'CDM', 'CDM', 'LW', 'ST', 'ST', 'RW'],
+  '4-2-2-2': ['GK', 'LB', 'CB', 'CB', 'RB', 'CDM', 'CDM', 'CAM', 'CAM', 'ST', 'ST'],
+  '4-5-1': ['GK', 'LB', 'CB', 'CB', 'RB', 'LM', 'CDM', 'CM', 'CM', 'RM', 'ST'],
+  '3-3-3-1': ['GK', 'CB', 'CB', 'CB', 'LM', 'CDM', 'RM', 'CAM', 'LW', 'RW', 'ST'],
+  '3-6-1': ['GK', 'CB', 'CB', 'CB', 'LM', 'CDM', 'CDM', 'CM', 'CM', 'RM', 'ST'],
+  '4-2-1-3': ['GK', 'LB', 'CB', 'CB', 'RB', 'CDM', 'CDM', 'CAM', 'LW', 'ST', 'RW'],
+}
+
+/**
+ * ชื่อแสดงผลครบทุกฟอเมชั่น (รหัสแผน + ชื่อไทย)
+ */
+export const FORMATION_LABEL_TH: Record<FormationId, string> = {
+  '4-4-2': '4-4-2 Flat · คลาสสิกแนวราบ',
+  '4-4-2-diamond': '4-4-2 Diamond · เพชรแคบกลาง',
+  '4-3-3': '4-3-3 DM · พิมพ์เขียวโมเดิร์น',
+  '4-3-3-false9': '4-3-3 False 9 · หน้าเป้าดึงลง',
+  '4-2-3-1': '4-2-3-1 Double Pivot · สองตัวค้ำกลาง',
+  '4-1-4-1': '4-1-4-1 Low Block · บล็อกต่ำสวนกลับ',
+  '4-3-2-1': '4-3-2-1 Christmas Tree · ทรงต้นคริสต์มาส',
+  '3-5-2': '3-5-2 · คลาสสิกอิตาลี',
+  '3-4-3': '3-4-3 Flat · กดแดนบนแนวราบ',
+  '3-4-2-1': '3-4-2-1 · โมเดิร์นสามแผงหลัง',
+  '3-1-4-2': '3-1-4-2 · บิลด์ผ่านตัวค้ำ',
+  '5-3-2': '5-3-2 Bus · รถบัสเน้นผล',
+  '5-4-1': '5-4-1 Ultra Defensive · ตั้งรับแน่นสุด',
+  '3-4-3-diamond': '3-4-3 Diamond · ครองบอลเต็มรูปแบบ',
+  '4-2-4': '4-2-4 · คลาสสิกบราซิล',
+  '4-2-2-2': '4-2-2-2 Magic Rectangle · สี่เหลี่ยมวิเศษ',
+  '4-5-1': '4-5-1 · กองกลางหนาแน่น',
+  '3-3-3-1': '3-3-3-1 Bielsa · กดสูงตลอด',
+  '3-6-1': '3-6-1 Overload · ถมกลางครองบอล',
+  '4-2-1-3': '4-2-1-3 Attacking · 4-3-3 โจมตี',
+}
+
+/** ชื่อสั้นบนปุ่ม (รหัส + ฉายา) */
+export const FORMATION_LABEL_SHORT: Record<FormationId, string> = {
+  '4-4-2': '4-4-2 Flat',
+  '4-4-2-diamond': '4-4-2 Diamond',
+  '4-3-3': '4-3-3 DM',
+  '4-3-3-false9': '4-3-3 False 9',
+  '4-2-3-1': '4-2-3-1 Pivot',
+  '4-1-4-1': '4-1-4-1 Low Block',
+  '4-3-2-1': '4-3-2-1 Tree',
+  '3-5-2': '3-5-2 Italia',
+  '3-4-3': '3-4-3 Flat',
+  '3-4-2-1': '3-4-2-1 Modern',
+  '3-1-4-2': '3-1-4-2 DM',
+  '5-3-2': '5-3-2 Bus',
+  '5-4-1': '5-4-1 Ultra',
+  '3-4-3-diamond': '3-4-3 Diamond',
+  '4-2-4': '4-2-4 Brasil',
+  '4-2-2-2': '4-2-2-2 Magic',
+  '4-5-1': '4-5-1 Dense',
+  '3-3-3-1': '3-3-3-1 Bielsa',
+  '3-6-1': '3-6-1 Overload',
+  '4-2-1-3': '4-2-1-3 Attack',
+}
+
+/** รายการฟอเมชั่นทั้งหมด 20 แบบ */
+export const ALL_FORMATIONS: FormationId[] = [
+  '4-4-2',
+  '4-4-2-diamond',
+  '4-3-3',
+  '4-3-3-false9',
+  '4-2-3-1',
+  '4-1-4-1',
+  '4-3-2-1',
+  '3-5-2',
+  '3-4-3',
+  '3-4-2-1',
+  '3-1-4-2',
+  '5-3-2',
+  '5-4-1',
+  '3-4-3-diamond',
+  '4-2-4',
+  '4-2-2-2',
+  '4-5-1',
+  '3-3-3-1',
+  '3-6-1',
+  '4-2-1-3',
+]
+
+export function isFormationId(v: string): v is FormationId {
+  return (ALL_FORMATIONS as string[]).includes(v)
+}
+
+export function normalizeFormationId(v: string | undefined | null): FormationId {
+  if (v && isFormationId(v)) return v
+  return '4-3-3'
+}
+
+export function formationLabel(id: string | null | undefined, short = false): string {
+  const f = normalizeFormationId(id ?? undefined)
+  return short ? FORMATION_LABEL_SHORT[f] : FORMATION_LABEL_TH[f]
 }
 
 export const DEFAULT_INSTRUCTIONS: TeamInstructions = {

@@ -18,13 +18,15 @@ import {
   topClubSocial,
   topPlayerSocial,
 } from '@/game/social'
+import { allMediaPersonalities, personalitiesForClub, personalitiesForLeague } from '@/game/mediaPersonalities'
+import { leagueIdOfSave } from '@/game/mediaOutlets'
 import { formatMoney } from '@/lib/format'
 import { cn } from '@/lib/cn'
 import { GhostButton, PageHeader, Panel, PrimaryButton } from '@/components/ui'
 
 const TABS: { id: MediaChannel; label: string; hint: string }[] = [
-  { id: 'news', label: 'ข่าว', hint: 'พาดหัวสื่อหลัก · ผลแข่ง · ดีล' },
-  { id: 'social', label: 'โซเชียล', hint: 'แฟน · สตอรี่นักเตะ · ทอล์คโชว์' },
+  { id: 'news', label: 'ข่าว', hint: 'สำนักข่าวประเทศละ 2 ช่อง · ผลแข่ง · ดีล' },
+  { id: 'social', label: 'โซเชียล', hint: 'แฟน · สตอรี่นักเตะ · ทอล์คโชว์ท้องถิ่น' },
   { id: 'romano', label: 'Romano', hint: 'ข่าวหลังบ้าน · ความเชื่อมั่น %' },
 ]
 
@@ -49,6 +51,20 @@ function MediaCard({ item, showReliability }: { item: MediaItem; showReliability
         <h3 className="text-sm font-bold text-slate-900">{item.headline}</h3>
         <time className="shrink-0 text-[11px] font-medium text-slate-400">{item.date}</time>
       </div>
+      {item.outlet ? (
+        <p className="mt-0.5 text-[10px] font-semibold tracking-wide text-slate-500 uppercase">
+          {item.outlet}
+        </p>
+      ) : null}
+      {item.punditName ? (
+        <p className="mt-1 text-[11px] text-slate-500">
+          <span className="font-semibold text-slate-700">
+            {item.punditName}
+            {item.punditRole ? ` · ${item.punditRole}` : ''}
+          </span>
+          {item.punditBio ? ` — ${item.punditBio}` : ''}
+        </p>
+      ) : null}
       <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{item.body}</p>
       <div className="mt-2 flex flex-wrap gap-2">
         {showReliability && item.reliability != null ? (
@@ -117,6 +133,15 @@ export function MediaPage() {
     [save],
   )
 
+  const clubKey = club.crestKey ?? null
+  const clubLegends = useMemo(() => personalitiesForClub(clubKey), [clubKey])
+  const leagueLegends = useMemo(
+    () => personalitiesForLeague(leagueIdOfSave(save)),
+    [save],
+  )
+  const [legendScope, setLegendScope] = useState<'club' | 'league'>('club')
+  const shownLegends = legendScope === 'club' && clubLegends.length ? clubLegends : leagueLegends
+
   const selectedKind = ROMANO_PLANT_KINDS.find((k) => k.id === kind)!
 
   const canSubmit =
@@ -130,8 +155,54 @@ export function MediaPage() {
     <div className="space-y-5">
       <PageHeader
         title="สื่อ & ข่าวหลังบ้าน"
-        subtitle="ทุกสโมสรและนักเตะมีบัญชีโซเชียล · ข่าวหลัก · Romano"
+        subtitle="ข่าวหลัก · โซเชียล · Romano · ตำนานเลิกเล่นในบทบาทนักวิเคราะห์"
       />
+
+      <Panel>
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className="text-[11px] font-semibold tracking-wide text-slate-500 uppercase">
+              ตำนานในสตูดิโอ
+            </p>
+            <p className="mt-1 text-sm text-slate-600">
+              ไม่ใช่นักเตะในสกวด — เป็นผู้บรรยาย / นักวิเคราะห์ / พิธีกร (อย่างน้อย 6 คนต่อสโมสรชั้นนำ)
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <GhostButton
+              type="button"
+              className={legendScope === 'club' ? 'bg-slate-900 text-white' : ''}
+              onClick={() => setLegendScope('club')}
+            >
+              สโมสรคุณ ({clubLegends.length})
+            </GhostButton>
+            <GhostButton
+              type="button"
+              className={legendScope === 'league' ? 'bg-slate-900 text-white' : ''}
+              onClick={() => setLegendScope('league')}
+            >
+              ทั้งลีก ({leagueLegends.length})
+            </GhostButton>
+          </div>
+        </div>
+        <ul className="mt-3 grid max-h-72 gap-2 overflow-y-auto sm:grid-cols-2 lg:grid-cols-3">
+          {shownLegends.map((p) => (
+            <li
+              key={p.id}
+              className="rounded-md border border-slate-200/80 bg-slate-50/80 px-3 py-2"
+            >
+              <p className="text-sm font-semibold text-slate-900">{p.name}</p>
+              <p className="text-[11px] font-medium text-slate-500">
+                {p.roleTh} · ตำนาน {p.legendClubName}
+              </p>
+              <p className="mt-1 text-xs leading-snug text-slate-600">{p.bioTh}</p>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-2 text-[11px] text-slate-400">
+          พูลรวม {allMediaPersonalities().length.toLocaleString('th-TH')} คน · ทุกสโมสรชั้นนำ ≥6 คน
+        </p>
+      </Panel>
 
       <div className="grid gap-3 sm:grid-cols-3">
         <Panel>

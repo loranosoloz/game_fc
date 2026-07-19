@@ -3,7 +3,7 @@ import { useGameStore } from '@/store/gameStore'
 import { roleLabel, roleShort, squadRoleLabel } from '@/game/positions'
 import { formatMoney } from '@/lib/format'
 import { cn } from '@/lib/cn'
-import type { LifestyleOrder, Player, SquadRole } from '@/game/types'
+import type { GameSave, LifestyleOrder, Player, SquadRole } from '@/game/types'
 import { knowledgeOf, revealPa, revealGrowth, revealHidden, visibleAttrsDetailed } from '@/game/scouting'
 import { personalitiesDb } from '@/game/attributes'
 import {
@@ -16,8 +16,17 @@ import { formatIllnessStatus, ILLNESS_TYPE_LABEL } from '@/game/illness'
 import { BodyMapFigure } from '@/components/BodyMapFigure'
 import { getActivity, recentLogsForPlayer } from '@/game/dailyLife'
 import { formatBanStatus } from '@/game/discipline'
-import { ensurePlayerSkills, skillLabel } from '@/game/playerSkills'
+import { ensurePlayerSkills, skillDescription, skillLabel } from '@/game/playerSkills'
+import { wantAwayLabel } from '@/game/wantAway'
 import { ensurePlayerSocial, formatFollowers } from '@/game/social'
+import { PlayerFace } from '@/components/PlayerFace'
+import { bioForPlayerName } from '@/data/world/playerBios'
+import { formatGbp } from '@/game/playerBio'
+import { fmInsideForPlayerName } from '@/data/world/fmInsidePlayers'
+import { formatEur } from '@/game/fmInside'
+import { formatLanguagesTh, playerLanguages } from '@/game/languages'
+import { playerNationality } from '@/game/nationalTeams'
+import { canRecallLoanDeal, ensureLoans } from '@/game/loans'
 
 const ROLES: SquadRole[] = ['key', 'regular', 'squad', 'prospect']
 
@@ -33,9 +42,16 @@ export function SquadPage() {
   const save = useGameStore((s) => s.save)!
   const setSquadRole = useGameStore((s) => s.setSquadRole)
   const setLifestyleOrder = useGameStore((s) => s.setLifestyleOrder)
+  const recallLoanDeal = useGameStore((s) => s.recallLoanDeal)
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const squad = save.players
     .filter((p) => p.clubId === save.humanClubId)
+    .sort((a, b) => b.overall - a.overall)
+  const ownedAway = save.players
+    .filter(
+      (p) =>
+        p.loanParentClubId === save.humanClubId && p.clubId !== save.humanClubId,
+    )
     .sort((a, b) => b.overall - a.overall)
   const selected = squad.find((p) => p.id === selectedId) ?? null
 
@@ -45,12 +61,68 @@ export function SquadPage() {
         <h2 className="text-lg font-semibold">สควอด</h2>
         <p className="text-sm text-slate-500">
           {squad.length} คน · CA/PA · คลิกดู status / แอตทริบิวต์
+          {ownedAway.length > 0 ? ` · นอกทีม (ยืม/ยืมกลับ) ${ownedAway.length} คน` : ''}
         </p>
+        {ownedAway.length > 0 ? (
+          <div className="mt-3 rounded-lg border border-teal-200 bg-teal-50/80 px-3 py-2 text-xs text-teal-950">
+            <p className="font-semibold">นักเตะของคุณที่อยู่นอกทีม</p>
+            <ul className="mt-1.5 space-y-1.5">
+              {ownedAway.map((p) => {
+                const host = save.clubs.find((c) => c.id === p.clubId)
+                const deal = ensureLoans(save).find(
+                  (d) => d.status === 'active' && d.playerId === p.id,
+                )
+                const recallCheck = deal ? canRecallLoanDeal(save, deal) : null
+                const isBuyLoanBack = deal?.kind === 'buy_loan_back'
+                return (
+                  <li
+                    key={p.id}
+                    className="flex flex-wrap items-center justify-between gap-2 rounded border border-teal-200/70 bg-white/70 px-2 py-1.5"
+                  >
+                    <span>
+                      {p.name} · {roleShort(p.role)} · CA {p.overall} · ที่{' '}
+                      {host?.shortName ?? p.clubId}
+                      {isBuyLoanBack
+                        ? ' · ซื้อ+ยืมกลับ (ฤดูกาลหน้าเข้าทีม)'
+                        : deal
+                          ? ` · ยืมถึง MD${deal.endMatchday}`
+                          : ''}
+                    </span>
+                    {deal && !isBuyLoanBack ? (
+                      <button
+                        type="button"
+                        className="rounded border border-rose-300 bg-rose-50 px-2 py-0.5 text-[11px] font-semibold text-rose-950 hover:bg-rose-100 disabled:opacity-50"
+                        disabled={!recallCheck?.ok}
+                        title={
+                          recallCheck?.ok
+                            ? 'เรียกกลับทีมคุณ'
+                            : recallCheck && 'reason' in recallCheck
+                              ? recallCheck.reason
+                              : undefined
+                        }
+                        onClick={() => recallLoanDeal(deal.id)}
+                      >
+                        {recallCheck?.ok
+                          ? 'เรียกกลับ'
+                          : `ยังเรียกไม่ได้${
+                              recallCheck && 'reason' in recallCheck
+                                ? ` (${recallCheck.reason})`
+                                : ''
+                            }`}
+                      </button>
+                    ) : null}
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        ) : null}
         <div className="mt-4 overflow-x-auto">
           <table className="w-full min-w-[720px] border-collapse text-left text-sm">
             <thead>
               <tr className="border-b border-slate-200 text-xs tracking-wide text-slate-500 uppercase">
                 <th className="py-2 pr-2 font-medium">Pos</th>
+                <th className="py-2 pr-2 font-medium" />
                 <th className="py-2 pr-2 font-medium">ชื่อ</th>
                 <th className="py-2 pr-2 font-medium">อายุ</th>
                 <th className="py-2 pr-2 font-medium">OVR</th>
@@ -72,6 +144,9 @@ export function SquadPage() {
                 >
                   <td className="py-2 pr-2 font-semibold" title={roleLabel(p.role)}>
                     {roleShort(p.role)}
+                  </td>
+                  <td className="py-2 pr-2">
+                    <PlayerFace name={p.name} size="xs" />
                   </td>
                   <td className="py-2 pr-2">
                     {p.name}
@@ -111,6 +186,7 @@ export function SquadPage() {
       </section>
 
       <PlayerDetailPanel
+        save={save}
         player={selected}
         knowledge={selected ? knowledgeOf(save.scouting, selected.id) : 100}
         mentorName={
@@ -141,12 +217,14 @@ function StatusBar({ label, value, max = 20 }: { label: string; value: number; m
 }
 
 function PlayerDetailPanel({
+  save,
   player,
   knowledge,
   mentorName,
   diary,
   onLifestyleOrder,
 }: {
+  save: GameSave
   player: Player | null
   knowledge: number
   mentorName: string | null
@@ -170,36 +248,97 @@ function PlayerDetailPanel({
   const lastAct = player.lastActivityId ? getActivity(player.lastActivityId) : null
   const ban = formatBanStatus(player)
   const lifeOrder = (player.lifestyleOrder ?? 'none') as LifestyleOrder
+  const bio = player.bio ?? bioForPlayerName(player.name)
+  const fm = player.fmInside ?? fmInsideForPlayerName(player.name)
+  const langs = playerLanguages(player, save)
+  const nat = playerNationality(player, save)
 
   return (
     <aside className="space-y-4 rounded-xl border border-slate-200 bg-white/80 p-5">
-      <div>
-        <h3 className="text-lg font-semibold">
-          {player.name}{' '}
-          <span className="text-sm font-normal text-slate-500">{roleShort(player.role)}</span>
-        </h3>
-        <p className="text-sm text-slate-600">
-          OVR {player.overall} · CA {player.ca} · PA {revealPa(player.pa, knowledge)} · {persona}
-        </p>
-        <p className="text-xs text-slate-500">
-          Scout {knowledge}% · {mentorName ? `mentor ${mentorName}` : 'no mentor'} ·{' '}
-          {formatMoney(player.wage)}/สัปดาห์ · กระเป๋า {formatMoney(player.cash ?? 0)}
-        </p>
-        {lastAct ? (
-          <p className="mt-2 rounded-md border border-slate-100 bg-slate-50 px-2 py-1.5 text-xs text-slate-700">
-            วันนี้: <strong>{lastAct.labelTh}</strong>
-            <span className="text-slate-400"> · {lastAct.category}</span>
-            {lastAct.missTraining ? (
-              <span className="ml-1 font-semibold text-rose-700">· มาซ้อมไม่ทัน</span>
-            ) : null}
+      <div className="flex items-start gap-3">
+        <PlayerFace name={player.name} size="lg" className="ring-2 ring-slate-200" />
+        <div className="min-w-0 flex-1">
+          <h3 className="text-lg font-semibold">
+            {player.name}{' '}
+            <span className="text-sm font-normal text-slate-500">{roleShort(player.role)}</span>
+          </h3>
+          <p className="text-sm text-slate-600">
+            OVR {player.overall} · CA {player.ca} · PA {revealPa(player.pa, knowledge)} · {persona}
           </p>
-        ) : null}
-        {ban ? (
-          <p className="mt-1 rounded bg-amber-50 px-2 py-1 text-xs font-semibold text-amber-900">
-            {ban} · เหลืองฤดูกาล {player.seasonYellows ?? 0}
+          <p className="text-xs text-slate-500">
+            {nat} · ภาษา: {formatLanguagesTh(langs)}
           </p>
-        ) : null}
+          <p className="text-xs text-slate-500">
+            Scout {knowledge}% · {mentorName ? `mentor ${mentorName}` : 'no mentor'} ·{' '}
+            {formatMoney(player.wage)}/สัปดาห์ · กระเป๋า {formatMoney(player.cash ?? 0)}
+          </p>
+          {fm?.heightCm ? (
+            <p className="mt-1 text-xs text-slate-500">
+              {fm.heightCm} cm
+              {fm.positions ? ` · ${fm.positions}` : ''}
+              {fm.caps != null ? ` · แคป ${fm.caps}/${fm.goalsIntl ?? 0}` : ''}
+            </p>
+          ) : null}
+          {lastAct ? (
+            <p className="mt-2 rounded-md border border-slate-100 bg-slate-50 px-2 py-1.5 text-xs text-slate-700">
+              วันนี้: <strong>{lastAct.labelTh}</strong>
+              <span className="text-slate-400"> · {lastAct.category}</span>
+              {lastAct.missTraining ? (
+                <span className="ml-1 font-semibold text-rose-700">· มาซ้อมไม่ทัน</span>
+              ) : null}
+            </p>
+          ) : null}
+          {ban ? (
+            <p className="mt-1 rounded bg-amber-50 px-2 py-1 text-xs font-semibold text-amber-900">
+              {ban} · เหลืองฤดูกาล {player.seasonYellows ?? 0}
+            </p>
+          ) : null}
+          {wantAwayLabel(player) ? (
+            <p className="mt-1 rounded bg-rose-50 px-2 py-1 text-xs font-semibold text-rose-900">
+              {wantAwayLabel(player)}
+              {player.wantAway?.publicNews ? ' · สื่อรู้แล้ว' : ' · ยังเป็นเรื่องภายใน'}
+              {player.wantAway?.intensity
+                ? ` · กดดัน ${player.wantAway.intensity}/20`
+                : ''}
+              {player.wantAway?.reasonTh ? ` · ${player.wantAway.reasonTh}` : ''}
+            </p>
+          ) : null}
+          {player.refuseContractRenewal ? (
+            <p className="mt-1 rounded bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-950">
+              ไม่ยอมต่อสัญญา — เสี่ยงย้ายฟรี · แฟนเกลียด
+            </p>
+          ) : null}
+        </div>
       </div>
+
+      {(player.careerHonours?.length ?? 0) > 0 ? (
+        <div>
+          <h4 className="text-sm font-semibold">รางวัลติดตัว</h4>
+          <p className="mt-0.5 text-xs text-slate-500">สะสมถาวรในเซฟ · ไม่หายเมื่อเปลี่ยนฤดูกาล</p>
+          <ul className="mt-2 max-h-40 space-y-1 overflow-y-auto text-xs">
+            {[...(player.careerHonours ?? [])].reverse().map((h) => (
+              <li
+                key={h.id}
+                className={cn(
+                  'rounded border px-2 py-1.5',
+                  h.kind === 'ballon_dor'
+                    ? 'border-amber-300 bg-amber-50 text-amber-950'
+                    : h.kind === 'golden_boot' || h.kind === 'golden_glove'
+                      ? 'border-sky-200 bg-sky-50 text-sky-950'
+                      : 'border-slate-100 bg-slate-50 text-slate-800',
+                )}
+              >
+                <p className="font-semibold">{h.label}</p>
+                <p className="text-[11px] opacity-80">
+                  ฤดูกาล {h.season}
+                  {h.clubShort ? ` · ${h.clubShort}` : ''}
+                  {h.detail ? ` · ${h.detail}` : ''}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
 
       <div>
         <h4 className="text-sm font-semibold">คำสั่งไลฟ์สไตล์</h4>
@@ -297,19 +436,131 @@ function PlayerDetailPanel({
 
       <div>
         <h4 className="text-sm font-semibold">
-          สกิลพิเศษ ({ensurePlayerSkills(player).length}/10)
+          พลังแฝง ({ensurePlayerSkills(player).length}/10 สล็อต)
         </h4>
-        <ul className="mt-2 flex flex-wrap gap-1.5">
+        <ul className="mt-2 flex flex-col gap-1.5">
           {ensurePlayerSkills(player).map((id) => (
             <li
               key={id}
-              className="rounded border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs text-slate-700"
+              className="rounded border border-emerald-200 bg-emerald-50 px-2.5 py-1.5 text-xs text-emerald-900"
+              title={skillDescription(id)}
             >
-              {skillLabel(id)}
+              <span className="font-medium">{skillLabel(id)}</span>
+              <span className="mt-0.5 block text-[11px] font-normal text-emerald-800/80">
+                {skillDescription(id)}
+              </span>
+            </li>
+          ))}
+          {Array.from({ length: Math.max(0, 10 - ensurePlayerSkills(player).length) }).map((_, i) => (
+            <li
+              key={`empty-${i}`}
+              className="rounded border border-dashed border-slate-300 bg-white px-2.5 py-1.5 text-xs text-slate-400"
+            >
+              ว่าง — ซ้อม/ลงเล่นเพื่อปลดล็อก
             </li>
           ))}
         </ul>
+        <p className="mt-1.5 text-[11px] text-slate-500">
+          ซ้อม / ลงเล่น / อายุน้อย → มีโอกาสปลดล็อกสล็อตว่าง
+        </p>
       </div>
+
+      {fm ? (
+        <div>
+          <h4 className="text-sm font-semibold">FMInside Status</h4>
+          <dl className="mt-2 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-xs">
+            {fm.wageEurPw != null ? (
+              <>
+                <dt className="text-slate-500">ค่าเหนื่อย</dt>
+                <dd>{formatEur(fm.wageEurPw)}/สัปดาห์</dd>
+              </>
+            ) : null}
+            {fm.sellValueEur != null ? (
+              <>
+                <dt className="text-slate-500">มูลค่าขาย</dt>
+                <dd>{formatEur(fm.sellValueEur)}</dd>
+              </>
+            ) : null}
+            {fm.contractEnd ? (
+              <>
+                <dt className="text-slate-500">สัญญาหมด</dt>
+                <dd>{fm.contractEnd}</dd>
+              </>
+            ) : null}
+            {fm.leftFoot != null || fm.rightFoot != null ? (
+              <>
+                <dt className="text-slate-500">เท้า</dt>
+                <dd>
+                  L {fm.leftFoot ?? '—'} · R {fm.rightFoot ?? '—'}
+                </dd>
+              </>
+            ) : null}
+          </dl>
+          {(
+            [
+              ['Goalkeeping', fm.attrs.goalkeeping ?? {}],
+              ['Technical', fm.attrs.technical],
+              ['Mental', fm.attrs.mental],
+              ['Physical', fm.attrs.physical],
+              ['Set Pieces', fm.attrs.setPieces],
+            ] as const
+          ).map(([title, group]) =>
+            Object.keys(group).length > 0 ? (
+              <div key={title} className="mt-3">
+                <h5 className="text-xs font-semibold text-slate-600">{title}</h5>
+                <ul className="mt-1 grid max-h-36 grid-cols-2 gap-x-2 gap-y-0.5 overflow-y-auto text-xs">
+                  {Object.entries(group).map(([k, v]) => (
+                    <li key={k} className="flex justify-between gap-2">
+                      <span className="truncate text-slate-500">{k}</span>
+                      <span className="font-medium tabular-nums">{v}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null,
+          )}
+          {fm.bestRolesIn && fm.bestRolesIn.length > 0 ? (
+            <p className="mt-2 text-xs text-slate-600">
+              Best in: {fm.bestRolesIn.slice(0, 3).map((r) => `${r.name} ${r.score}`).join(' · ')}
+            </p>
+          ) : null}
+        </div>
+      ) : null}
+
+      {bio ? (
+        <div>
+          <h4 className="text-sm font-semibold">ประวัติ (FM26)</h4>
+          <dl className="mt-2 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-xs">
+            {bio.nationality ? (
+              <>
+                <dt className="text-slate-500">สัญชาติ</dt>
+                <dd>{bio.nationality}</dd>
+              </>
+            ) : null}
+            {bio.dob ? (
+              <>
+                <dt className="text-slate-500">วันเกิด</dt>
+                <dd>{bio.dob}</dd>
+              </>
+            ) : null}
+            {bio.valueGbp != null ? (
+              <>
+                <dt className="text-slate-500">มูลค่า £</dt>
+                <dd>{formatGbp(bio.valueGbp)}</dd>
+              </>
+            ) : null}
+            {bio.peaked || bio.developNote ? (
+              <>
+                <dt className="text-slate-500">พัฒนา</dt>
+                <dd>
+                  {bio.peaked ? 'พีคแล้ว · ' : ''}
+                  {bio.developNote ?? '—'}
+                </dd>
+              </>
+            ) : null}
+          </dl>
+        </div>
+      ) : null}
 
       <div>
         <h4 className="text-sm font-semibold">Growth</h4>
@@ -332,12 +583,15 @@ function PlayerDetailPanel({
         </ul>
       </div>
       <div>
-        <h4 className="text-sm font-semibold">Attributes</h4>
+        <h4 className="text-sm font-semibold">Attributes (1–99)</h4>
         <ul className="mt-1 grid max-h-48 grid-cols-2 gap-1 overflow-y-auto text-xs">
           {attrs.map((row) => (
-            <li key={row.key} className="flex justify-between gap-2">
+            <li key={row.key} className="flex items-center justify-between gap-2">
               <span className="text-slate-500">{row.key}</span>
-              <span className={row.known ? 'font-medium' : 'text-slate-400'}>{row.display}</span>
+              <span className={cn('tabular-nums', row.known ? 'font-medium' : 'text-slate-400')}>
+                {row.display}
+                {row.known ? <span className="text-slate-400">/99</span> : null}
+              </span>
             </li>
           ))}
         </ul>

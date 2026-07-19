@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { useGameStore } from '@/store/gameStore'
 import { sortedTable } from '@/game/simulate'
 import { cn } from '@/lib/cn'
-import { DIV2_LEAGUE_NAME, type LeagueId } from '@/data/world'
+import { DIV2_LEAGUE_NAME, type LeagueId, promoRelegCount } from '@/data/world'
 import { ensurePhase5 } from '@/game/save'
+import { ClubCrest } from '@/components/ClubCrest'
 
 export function TablePage() {
   const saveRaw = useGameStore((s) => s.save)!
@@ -12,6 +13,8 @@ export function TablePage() {
   const [tab, setTab] = useState<'d1' | 'd2'>('d1')
   const rows = sortedTable(tab === 'd1' ? save.table : save.tableDiv2 ?? [])
   const humanDiv = save.clubs.find((c) => c.id === save.humanClubId)?.division ?? 1
+  const teamN = rows.length || (lid === 'ger' || lid === 'fra' ? 18 : 20)
+  const slots = promoRelegCount(lid)
 
   return (
     <section className="space-y-4 rounded-xl border border-slate-200 bg-white/80 p-5">
@@ -43,8 +46,9 @@ export function TablePage() {
         </button>
       </div>
       <p className="text-sm text-slate-500">
-        20 สโมสร · ท้ายฤดูกาล 3 ทีมท้ายดิวิชัน 1 ตกชั้น · 3 ทีมนำ{DIV2_LEAGUE_NAME[lid].nameTh}{' '}
-        เลื่อนชั้น
+        {teamN} สโมสร · ท้ายฤดูกาล {slots} ทีมท้ายดิวิชัน 1 ตกชั้น · {slots} ทีมนำ
+        {DIV2_LEAGUE_NAME[lid].nameTh} เลื่อนชั้น
+        {lid === 'ger' || lid === 'fra' ? ' · ฤดูกาล 34 นัด' : ' · ฤดูกาล 38 นัด'}
         {humanDiv === 2 ? ' · คุณอยู่ในลีกล่าง' : ''}
       </p>
       <div className="mt-2 overflow-x-auto">
@@ -81,18 +85,18 @@ export function TablePage() {
                 <tr key={row.clubId} className={cn('border-b border-slate-100', zone)}>
                   <td className="py-2 pr-2 font-semibold">{i + 1}</td>
                   <td className="py-2 pr-2">
-                    <span
-                      className="mr-2 inline-block h-2.5 w-2.5 rounded-full"
-                      style={{ backgroundColor: club.color }}
-                      aria-hidden
-                    />
-                    {club.name}
-                    {tab === 'd1' && i >= 17 ? (
-                      <span className="ml-1 text-[10px] text-rose-700">ตกชั้น</span>
-                    ) : null}
-                    {tab === 'd2' && i < 3 ? (
-                      <span className="ml-1 text-[10px] text-lime-800">เลื่อนชั้น</span>
-                    ) : null}
+                    <span className="inline-flex items-center gap-2">
+                      <ClubCrest club={club} size="xs" />
+                      <span>
+                        {club.name}
+                        {tab === 'd1' && i >= 17 ? (
+                          <span className="ml-1 text-[10px] text-rose-700">ตกชั้น</span>
+                        ) : null}
+                        {tab === 'd2' && i < 3 ? (
+                          <span className="ml-1 text-[10px] text-lime-800">เลื่อนชั้น</span>
+                        ) : null}
+                      </span>
+                    </span>
                   </td>
                   <td className="py-2 pr-2">
                     {you ? (

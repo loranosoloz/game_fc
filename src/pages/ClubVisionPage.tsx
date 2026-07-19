@@ -8,7 +8,7 @@ import {
   OWNER_PERSONALITY_DESC,
   OWNER_PERSONALITY_LABEL,
 } from '@/game/owner'
-import { ensureFans, fanMoodLabel, fanTicketMultiplier } from '@/game/fans'
+import { ensureFans, fanMoodLabel, fanTicketMultiplier, hateReasonLabel, FAN_TEAM_HATE_STYLE_TH } from '@/game/fans'
 import { FAN_FACTION_LABEL, type FanFactionKey } from '@/game/clubAtmosphere'
 import { ensureTakeover, verdictLabel, listInvestors } from '@/game/takeover'
 import { ensureFacilities, FACILITY_LABEL, stadiumCapacityForTier } from '@/game/facilities'
@@ -42,52 +42,89 @@ export function ClubVisionPage() {
   const proposal = facilities.pendingProposal
   const canFundProposal = proposal ? (club?.balance ?? 0) >= proposal.cost : false
 
-  if (board.sacked) {
+  if (board.sacked || save.career?.unemployed || save.career?.nationalNation) {
     const career = save.career
     const openJobs = (career?.jobOffers ?? []).filter((o) => o.status === 'open')
     const acceptJob = useGameStore.getState().acceptJob
     const rejectJob = useGameStore.getState().rejectJob
+    const ntNation = career?.nationalNation
+    const ntAssoc = ntNation ? save.associations?.[ntNation] : null
+    const jobless = board.sacked || career?.unemployed
     return (
       <div className="space-y-5">
-        <PageHeader title="ว่างงาน" subtitle="คุณถูกปลด — เลือกงานใหม่จากตลาดผู้จัดการ" />
-        <Panel tone="warn">
-          <p className="font-semibold text-rose-900">{board.sackedNote}</p>
-          <p className="mt-2 text-sm text-slate-700">
-            ชื่อเสียงผู้จัดการ {save.managerReputation ?? 50}/100
-            {career?.lastJobNote ? ` · ${career.lastJobNote}` : ''}
-          </p>
-        </Panel>
-        <Panel>
-          <h3 className="text-sm font-bold text-slate-900">ข้อเสนองาน</h3>
-          {openJobs.length === 0 ? (
-            <p className="mt-2 text-sm text-slate-500">
-              ยังไม่มีงานเปิด — รอการ์ดใหม่หลังเวลาผ่าน หรือเริ่มเกมใหม่จากหน้าแรก
+        <PageHeader
+          title={ntNation && !board.sacked ? 'อาชีพโค้ช' : 'ว่างงาน'}
+          subtitle={
+            board.sacked
+              ? 'คุณถูกปลด — เลือกงานใหม่จากตลาดผู้จัดการ'
+              : ntNation
+                ? `คุณเป็นโค้ชทีมชาติ${ntAssoc?.nameTh ?? ntNation} · หางานสโมสรได้จากตลาด`
+                : 'คุณลาออก/ว่างงาน — เลือกงานใหม่จากตลาดผู้จัดการ'
+          }
+        />
+        {board.sacked ? (
+          <Panel tone="warn">
+            <p className="font-semibold text-rose-900">{board.sackedNote}</p>
+            <p className="mt-2 text-sm text-slate-700">
+              ชื่อเสียงผู้จัดการ {save.managerReputation ?? 50}/100
+              {career?.lastJobNote ? ` · ${career.lastJobNote}` : ''}
             </p>
-          ) : (
-            <ul className="mt-3 space-y-3">
-              {openJobs.map((j) => (
-                <li key={j.id} className="rounded-md border border-slate-200 bg-slate-50 px-3 py-3">
-                  <p className="font-semibold">{j.clubName}</p>
-                  <p className="text-xs text-slate-500">
-                    ต้องการรีพ ≥ {j.reputationRequired} · ค่าเหนื่อย ~{formatMoney(j.wageWeekly)}
-                    /สัปดาห์ · หมด MD{j.expiresMatchday}
-                  </p>
-                  <p className="mt-1 text-sm text-slate-600">{j.note}</p>
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    <PrimaryButton onClick={() => acceptJob(j.id)}>รับงาน</PrimaryButton>
-                    <GhostButton onClick={() => rejectJob(j.id)}>ปฏิเสธ</GhostButton>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-          <Link
-            to="/"
-            className="mt-4 inline-block text-sm font-semibold underline underline-offset-2"
-          >
-            หรือเริ่มอาชีพใหม่จากหน้าแรก →
-          </Link>
-        </Panel>
+          </Panel>
+        ) : null}
+        {ntAssoc ? (
+          <Panel className="border-indigo-200 bg-indigo-50/50">
+            <p className="text-[11px] font-bold tracking-wider text-indigo-700 uppercase">
+              ทีมชาติที่คุณคุม
+            </p>
+            <h3 className="mt-1 text-lg font-bold text-slate-900">
+              {ntAssoc.nameTh} · FIFA #{ntAssoc.fifaRank}
+            </h3>
+            <p className="mt-1 text-sm text-slate-700">
+              ฟอร์ม {ntAssoc.form ?? 12}/20 · คุมมา {ntAssoc.windowsInCharge ?? 0} หน้าต่าง ·
+              คุณเป็นโค้ชที่สมาคมจ้าง — ไม่ใช่เจ้าของสโมสร
+            </p>
+          </Panel>
+        ) : null}
+        {jobless || ntNation ? (
+          <Panel>
+            <h3 className="text-sm font-bold text-slate-900">ข้อเสนองาน</h3>
+            {openJobs.length === 0 ? (
+              <p className="mt-2 text-sm text-slate-500">
+                ยังไม่มีงานเปิด — รอการ์ดใหม่หลังเวลาผ่าน หรือเริ่มเกมใหม่จากหน้าแรก
+              </p>
+            ) : (
+              <ul className="mt-3 space-y-3">
+                {openJobs.map((j) => (
+                  <li key={j.id} className="rounded-md border border-slate-200 bg-slate-50 px-3 py-3">
+                    <p className="font-semibold">
+                      {j.kind === 'national' ? `ทีมชาติ · ${j.nationTh ?? j.clubName}` : j.clubName}
+                      {j.kind === 'national' ? (
+                        <span className="ml-2 text-xs font-semibold text-indigo-700">ชาติ</span>
+                      ) : (
+                        <span className="ml-2 text-xs font-semibold text-slate-500">สโมสร</span>
+                      )}
+                    </p>
+                    <p className="text-xs text-slate-500">
+                      ต้องการรีพ ≥ {j.reputationRequired} · ค่าเหนื่อย ~{formatMoney(j.wageWeekly)}
+                      /สัปดาห์ · หมด MD{j.expiresMatchday}
+                    </p>
+                    <p className="mt-1 text-sm text-slate-600">{j.note}</p>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      <PrimaryButton onClick={() => acceptJob(j.id)}>รับงาน</PrimaryButton>
+                      <GhostButton onClick={() => rejectJob(j.id)}>ปฏิเสธ</GhostButton>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+            <Link
+              to="/"
+              className="mt-4 inline-block text-sm font-semibold underline underline-offset-2"
+            >
+              หรือเริ่มอาชีพใหม่จากหน้าแรก →
+            </Link>
+          </Panel>
+        ) : null}
       </div>
     )
   }
@@ -96,12 +133,32 @@ export function ClubVisionPage() {
   const factions = Object.keys(FAN_FACTION_LABEL) as FanFactionKey[]
   const logs = fans.atmosphereLogs ?? []
 
+  const resignClub = useGameStore((s) => s.resignClub)
+
   return (
     <div className="space-y-5">
       <PageHeader
         title="Club Vision"
-        subtitle="เจ้าของมาสนาม · บอร์ด · กลุ่มแฟนหลายฝ่าย · ของบและคำสั่ง"
+        subtitle="คุณเป็นผู้จัดการที่ถูกจ้าง · เจ้าของ/บอร์ด/แฟนเป็นฝ่ายประเมินคุณ"
       />
+
+      <Panel className="border-slate-200 bg-slate-50/80">
+        <p className="text-sm text-slate-700">
+          สัญญาผู้จัดการที่ <span className="font-semibold">{club?.name ?? '—'}</span> ·
+          เจ้าของคือ NPC คนละคนกับคุณ — ผลงานแย่บอร์ดปลดได้ · คุณก็ลาออกเองได้
+        </p>
+        <div className="mt-3">
+          <GhostButton
+            onClick={() => {
+              if (window.confirm('ลาออกจากตำแหน่งผู้จัดการสโมสรนี้? คลับจะกลับเป็น AI คุม')) {
+                resignClub()
+              }
+            }}
+          >
+            ลาออกจากสโมสร
+          </GhostButton>
+        </div>
+      </Panel>
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         <StatTile
@@ -256,6 +313,56 @@ export function ClubVisionPage() {
           </div>
         </Panel>
       </div>
+
+      <Panel>
+        <h3 className="text-sm font-bold text-slate-900">เควสสโมสร · ความหวังบอร์ด</h3>
+        <p className="mt-1 text-xs text-slate-500">
+          แต่ละคลับเป้าไม่เหมือนกัน — ทีมเล็กทำรอดตกชั้น/เก็บแต้มก็ได้ XP เลเวลอัพ · ชนะบ่อยอัพแอตฯ ·
+          แพ้ต่อเนื่องอาจลดแอตฯ
+        </p>
+        {(() => {
+          const quests = (save.clubQuests ?? []).filter(
+            (q) => q.clubId === save.humanClubId && q.season === save.season,
+          )
+          const prog = save.managerProgress
+          return (
+            <>
+              {prog ? (
+                <p className="mt-2 text-sm text-slate-700">
+                  ผู้จัดการ Lv.{prog.level} · XP {prog.xp}
+                  {prog.lastNote ? ` · ${prog.lastNote}` : ''}
+                </p>
+              ) : null}
+              {quests.length === 0 ? (
+                <p className="mt-2 text-sm text-slate-500">ยังไม่มีเควส — จะสร้างเมื่อโหลด/เริ่มฤดูกาล</p>
+              ) : (
+                <ul className="mt-3 space-y-2">
+                  {quests.map((q) => (
+                    <li
+                      key={q.id}
+                      className="rounded-md border border-slate-100 bg-slate-50/80 px-3 py-2 text-sm"
+                    >
+                      <div className="flex flex-wrap items-baseline justify-between gap-2">
+                        <p className="font-semibold text-slate-900">
+                          {q.status === 'completed' ? '✓ ' : q.status === 'failed' ? '✗ ' : '○ '}
+                          {q.title}
+                          <span className="ml-2 text-[10px] font-bold uppercase text-slate-400">
+                            {q.tier === 'core' ? 'หลัก' : 'โบนัส'}
+                          </span>
+                        </p>
+                        <span className="text-xs tabular-nums text-slate-500">
+                          {q.current}/{q.target} · +{q.rewardXp} XP
+                        </span>
+                      </div>
+                      <p className="mt-0.5 text-xs text-slate-600">{q.body}</p>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </>
+          )
+        })()}
+      </Panel>
 
       <Panel>
         <h3 className="text-sm font-bold text-slate-900">ตลาดเทคโอเวอร์</h3>
@@ -436,6 +543,51 @@ export function ClubVisionPage() {
         ) : (
           <p className="mt-2 text-xs text-slate-500">{fans.lastEvent}</p>
         )}
+        {(fans.hatedPlayers ?? []).length > 0 ? (
+          <div className="mt-3 rounded-md border border-rose-200 bg-rose-50 px-3 py-2">
+            <p className="text-xs font-semibold text-rose-950">แฟนเกลียดนักเตะ</p>
+            <ul className="mt-1 max-h-28 space-y-1 overflow-y-auto text-xs text-rose-900">
+              {(fans.hatedPlayers ?? [])
+                .slice()
+                .sort((a, b) => b.intensity - a.intensity)
+                .slice(0, 10)
+                .map((h) => {
+                  const clubHate = save.clubs.find((c) => c.id === h.otherClubId)
+                  return (
+                    <li key={h.playerId}>
+                      <strong>{h.playerName}</strong> — {h.reasonTh || hateReasonLabel(h.reason)} ·{' '}
+                      {h.intensity}/20
+                      {h.stillAtClub ? ' · ยังในทีม (โดนโห่บ้าน)' : ''}
+                      {clubHate ? ` · กับ ${clubHate.shortName}` : ''}
+                    </li>
+                  )
+                })}
+            </ul>
+          </div>
+        ) : null}
+        {(fans.hatedTeams ?? []).length > 0 ? (
+          <div className="mt-3 rounded-md border border-orange-200 bg-orange-50 px-3 py-2">
+            <p className="text-xs font-semibold text-orange-950">ทีมที่แฟนเกลียด</p>
+            <ul className="mt-1 max-h-28 space-y-1 overflow-y-auto text-xs text-orange-950">
+              {(fans.hatedTeams ?? [])
+                .slice()
+                .sort((a, b) => b.pct - a.pct)
+                .slice(0, 10)
+                .map((t) => {
+                  const foe = save.clubs.find((c) => c.id === t.clubId)
+                  return (
+                    <li key={t.clubId}>
+                      <strong>{foe?.shortName ?? t.clubId}</strong> —{' '}
+                      {FAN_TEAM_HATE_STYLE_TH[t.style]} · ~{t.pct}% · {t.reasonTh}
+                    </li>
+                  )
+                })}
+            </ul>
+            <p className="mt-1 text-[10px] text-orange-800/80">
+              ระดับ: โห่ใส่ → ติดป้ายด่า → บรรยากาศเป็นศัตรู
+            </p>
+          </div>
+        ) : null}
         <div className="mt-3 flex flex-wrap gap-2">
           {factions.map((key) => (
             <GhostButton key={key} onClick={() => outreach(key)}>

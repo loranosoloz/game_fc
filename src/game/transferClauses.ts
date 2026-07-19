@@ -44,6 +44,15 @@ export function emptyAddonPackage(): TransferAddonPackage {
     perGoal: 0,
     perAssist: 0,
     perCleanSheet: 0,
+    sellOnMode: 'fee',
+    intlCapsFee: 0,
+    intlCapsNeeded: 10,
+    buyBackFee: 0,
+    buyBackYears: 3,
+    firstRefusal: false,
+    annualWageRisePercent: 0,
+    europeWageBumpPercent: 0,
+    relegationReleaseFee: null,
   }
 }
 
@@ -212,16 +221,37 @@ export function attachClausesAfterBuy(
     sellerNotes.push(`คลีนชีต ${formatMoney(pkg.cleanSheetsFee)}`)
   }
   if (pkg.sellOnPercent > 0) {
+    const mode = pkg.sellOnMode === 'profit' ? 'profit' : 'fee'
     pushClause(clauses, {
       ...base,
-      kind: 'sell_on',
+      kind: mode === 'profit' ? 'sell_on_profit' : 'sell_on',
       payee: 'seller',
       amount: 0,
       appearancesNeeded: 0,
       sellOnPercent: pkg.sellOnPercent,
-      note: `Sell-on ${pkg.sellOnPercent}% เมื่อขายต่อ`,
+      sellOnMode: mode,
+      originalFee: 0, // ตั้งตอนปิดดีลถ้ามีค่าตัว
+      note:
+        mode === 'profit'
+          ? `Sell-on ${pkg.sellOnPercent}% ของกำไรเมื่อขายต่อ`
+          : `Sell-on ${pkg.sellOnPercent}% ของค่าตัวเมื่อขายต่อ`,
     })
-    sellerNotes.push(`Sell-on ${pkg.sellOnPercent}%`)
+    sellerNotes.push(
+      mode === 'profit'
+        ? `Sell-on กำไร ${pkg.sellOnPercent}%`
+        : `Sell-on ${pkg.sellOnPercent}%`,
+    )
+  }
+  if ((pkg.intlCapsFee ?? 0) > 0) {
+    pushClause(clauses, {
+      ...base,
+      kind: 'intl_caps',
+      payee: 'seller',
+      amount: pkg.intlCapsFee!,
+      appearancesNeeded: pkg.intlCapsNeeded || 10,
+      note: `Add-on แคปทีมชาติครบ ${pkg.intlCapsNeeded || 10} · ${formatMoney(pkg.intlCapsFee!)}`,
+    })
+    sellerNotes.push(`แคปชาติ ${formatMoney(pkg.intlCapsFee!)}`)
   }
   if (pkg.promotionFee > 0) {
     pushClause(clauses, {
@@ -314,26 +344,37 @@ export function attachClausesAfterBuy(
     playerNotes.push(`คลีนชีต ${formatMoney(pkg.perCleanSheet)}/นัด`)
   }
 
-  if (clauses.length === (desk.clauses?.length ?? 0)) return save
+  const hasPlayerContractBits =
+    (pkg.annualWageRisePercent ?? 0) > 0 ||
+    (pkg.europeWageBumpPercent ?? 0) > 0 ||
+    pkg.relegationReleaseFee != null ||
+    Boolean(pkg.contractedSquadStatus) ||
+    (pkg.buyBackFee ?? 0) > 0 ||
+    Boolean(pkg.firstRefusal)
+
+  if (clauses.length === (desk.clauses?.length ?? 0) && !hasPlayerContractBits) return save
 
   let next: GameSave = {
     ...save,
     transferDesk: { ...desk, clauses: clauses.slice(0, 80) },
-    inbox: [
-      {
-        id: uid('msg-cl-pack'),
-        date: save.currentDate,
-        title: 'เงื่อนไขพิเศษมีผล',
-        body: [
-          sellerNotes.length ? `คลับขาย: ${sellerNotes.join(' · ')}` : '',
-          playerNotes.length ? `นักเตะ: ${playerNotes.join(' · ')}` : '',
-        ]
-          .filter(Boolean)
-          .join(' | '),
-        read: false,
-      },
-      ...save.inbox,
-    ].slice(0, 40),
+    inbox:
+      clauses.length > (desk.clauses?.length ?? 0)
+        ? [
+            {
+              id: uid('msg-cl-pack'),
+              date: save.currentDate,
+              title: 'เงื่อนไขพิเศษมีผล',
+              body: [
+                sellerNotes.length ? `คลับขาย: ${sellerNotes.join(' · ')}` : '',
+                playerNotes.length ? `นักเตะ: ${playerNotes.join(' · ')}` : '',
+              ]
+                .filter(Boolean)
+                .join(' | '),
+              read: false,
+            },
+            ...save.inbox,
+          ].slice(0, 40)
+        : save.inbox,
   }
 
   // จ่ายเงินเซ็นสัญญาทันที
@@ -374,6 +415,58 @@ export function attachClausesAfterBuy(
           ),
         },
       }
+    }
+  }
+
+  // ติดเงื่อนไขสัญญาส่วนตัว + buy-back / ROFR
+  next = {
+    ...next,
+    players: next.players.map((p) => {
+      if (p.id !== opts.playerId) return p
+      return {
+        ...p,
+        annualWageRisePercent:
+          (pkg.annualWageRisePercent ?? 0) > 0
+            ? pkg.annualWageRisePercent
+            : p.annualWageRisePercent,
+        europeWageBumpPercent:
+          (pkg.europeWageBumpPercent ?? 0) > 0
+            ? pkg.europeWageBumpPercent
+            : p.europeWageBumpPercent,
+        relegationReleaseClause:
+          pkg.relegationReleaseFee !== undefined && pkg.relegationReleaseFee !== null
+            ? pkg.relegationReleaseFee
+            : p.relegationReleaseClause,
+        contractedSquadStatus: pkg.contractedSquadStatus ?? p.contractedSquadStatus,
+        buyBack:
+          (pkg.buyBackFee ?? 0) > 0
+            ? {
+                clubId: opts.sellerClubId,
+                fee: pkg.buyBackFee!,
+                untilSeason: save.season + (pkg.buyBackYears ?? 3),
+              }
+            : p.buyBack,
+        firstRefusalClubId: pkg.firstRefusal ? opts.sellerClubId : p.firstRefusalClubId,
+      }
+    }),
+  }
+
+  // ตั้ง originalFee สำหรับ sell-on profit (ใช้ค่าตัวโดยประมาณจาก release/value)
+  const bought = next.players.find((p) => p.id === opts.playerId)
+  const approxFee = bought?.releaseClause ? Math.round(bought.releaseClause / 1.5) : 0
+  if (approxFee > 0) {
+    next = {
+      ...next,
+      transferDesk: {
+        ...next.transferDesk!,
+        clauses: ensureClauses(next.transferDesk!).map((c) =>
+          c.playerId === opts.playerId &&
+          (c.kind === 'sell_on' || c.kind === 'sell_on_profit') &&
+          !c.originalFee
+            ? { ...c, originalFee: approxFee }
+            : c,
+        ),
+      },
     }
   }
 
@@ -421,6 +514,7 @@ const MILESTONE_KINDS: TransferClauseKind[] = [
   'goals',
   'assists',
   'clean_sheets',
+  'intl_caps',
 ]
 
 /** นับสถิติแมตช์ → จ่าย milestone / โบนัสรายนัด */
@@ -505,6 +599,10 @@ export function tickPerformanceClauses(
       if (cl.kind === 'goals') add = touch.goals
       if (cl.kind === 'assists') add = touch.assists
       if (cl.kind === 'clean_sheets') add = touch.cleanSheet ? 1 : 0
+      if (cl.kind === 'intl_caps') {
+        // นับแคปจาก ntCaps ที่เพิ่มขึ้น — ใช้ 0 ในแมตช์คลับ (อัปเดตแยก)
+        add = 0
+      }
       if (add <= 0) continue
 
       const soFar = nextCl.appearancesSoFar + add
@@ -544,6 +642,61 @@ export function tickPerformanceClauses(
     return nextCl
   })
 
+  if (!dirty) return save
+  return {
+    ...save,
+    clubs: state.clubs,
+    players: state.players,
+    clubFinance: state.finance,
+    inbox: state.inbox,
+    transferDesk: { ...desk, clauses },
+  }
+}
+
+/** เช็คโบนัสแคปทีมชาติจาก ntCaps */
+export function tickIntlCapsClauses(save: GameSave): GameSave {
+  const desk = save.transferDesk
+  if (!desk?.clauses?.length) return save
+  let state: PayState = {
+    clubs: save.clubs,
+    players: save.players,
+    finance: ensureClubFinance(save),
+    inbox: save.inbox,
+  }
+  let dirty = false
+  const clauses = ensureClauses(desk).map((cl) => {
+    if (cl.status !== 'active' || cl.kind !== 'intl_caps') return cl
+    const player = state.players.find((p) => p.id === cl.playerId)
+    if (!player) return cl
+    const caps = player.ntCaps ?? 0
+    if (caps < cl.appearancesNeeded) {
+      if (caps !== cl.appearancesSoFar) {
+        dirty = true
+        return { ...cl, appearancesSoFar: caps }
+      }
+      return cl
+    }
+    const paid = payClause(
+      state,
+      save,
+      cl,
+      cl.amount,
+      'จ่าย Add-on แคปชาติ',
+      `${cl.playerName} ครบ ${cl.appearancesNeeded} แคป · ${formatMoney(cl.amount)}`,
+    )
+    if (!paid.ok) {
+      dirty = true
+      return { ...cl, appearancesSoFar: caps, note: `${cl.note} · รอจ่าย` }
+    }
+    state = paid.state
+    dirty = true
+    return {
+      ...cl,
+      appearancesSoFar: caps,
+      status: 'paid' as const,
+      note: `จ่ายแล้ว ${formatMoney(cl.amount)}`,
+    }
+  })
   if (!dirty) return save
   return {
     ...save,
@@ -692,8 +845,16 @@ export function settleSellOnClauses(
   }
 
   const clauses = ensureClauses(desk).map((cl) => {
-    if (cl.status !== 'active' || cl.kind !== 'sell_on' || cl.playerId !== playerId) return cl
-    const due = Math.round(saleFee * (cl.sellOnPercent / 100))
+    if (cl.status !== 'active' || (cl.kind !== 'sell_on' && cl.kind !== 'sell_on_profit') || cl.playerId !== playerId)
+      return cl
+    let due = 0
+    if (cl.kind === 'sell_on_profit' || cl.sellOnMode === 'profit') {
+      const base = cl.originalFee ?? 0
+      const profit = Math.max(0, saleFee - base)
+      due = Math.round(profit * (cl.sellOnPercent / 100))
+    } else {
+      due = Math.round(saleFee * (cl.sellOnPercent / 100))
+    }
     if (due <= 0) return { ...cl, status: 'paid' as const }
     const paid = payClause(
       state,
@@ -701,7 +862,9 @@ export function settleSellOnClauses(
       cl,
       due,
       'Sell-on ถูกเรียกเก็บ',
-      `ขาย ${cl.playerName} · จ่าย ${formatMoney(due)} (${cl.sellOnPercent}%) ให้คลับเดิม`,
+      `ขาย ${cl.playerName} · จ่าย ${formatMoney(due)} (${cl.sellOnPercent}%${
+        cl.kind === 'sell_on_profit' || cl.sellOnMode === 'profit' ? ' ของกำไร' : ''
+      }) ให้คลับเดิม`,
     )
     if (!paid.ok) {
       return { ...cl, note: `${cl.note} · ค้างจ่าย ${formatMoney(due)}` }

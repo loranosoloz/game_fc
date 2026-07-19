@@ -1,8 +1,55 @@
 import type { ClubIncomeState, GameSave, SponsorDeal } from './types'
 import { ensureClubFinance } from './playerEconomy'
+import prizeDb from '@/data/prizeMoney.json'
+import { applyTitleClubReputation, type TitleRepKind } from './reputation'
 
 function uid(prefix: string) {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`
+}
+
+const DOMESTIC_PRIZE_KINDS = new Set(['cup', 'league_cup', 'trophy'])
+
+/** ตัวคูณเงินรางวัลถ้วยในประเทศตามความเข้มของลีก (1.0 = พรีเมียร์ลีก) */
+export function domesticPrizeScale(leagueId: string | undefined | null): number {
+  const scales = (prizeDb as { leagueScale?: Record<string, number> }).leagueScale ?? {}
+  const id = leagueId || 'eng'
+  return scales[id] ?? 0.4
+}
+
+/** ปรับยอดตามลีก — ถ้วยทวีปไม่คูณ */
+export function scaledPrizeAmount(
+  base: number,
+  kind: string,
+  leagueId: string | undefined | null,
+): number {
+  if (!DOMESTIC_PRIZE_KINDS.has(kind)) return base
+  const scale = domesticPrizeScale(leagueId)
+  return Math.max(50_000, Math.round(base * scale))
+}
+
+export type PrizeKind =
+  | 'cup'
+  | 'ucl'
+  | 'uel'
+  | 'uecl'
+  | 'acl'
+  | 'acl_two'
+  | 'asean_cup'
+  | 'cwc'
+  | 'super_cup'
+  | 'league_cup'
+  | 'trophy'
+
+export function prizeAmountFor(
+  save: GameSave,
+  kind: PrizeKind,
+  slot: 'champion' | 'runnerUp',
+): number {
+  const base =
+    slot === 'champion'
+      ? ((prizeDb.champion as Record<string, number>)[kind] ?? 1_000_000)
+      : ((prizeDb.runnerUp as Record<string, number>)[kind] ?? 0)
+  return scaledPrizeAmount(base, kind, save.leagueId)
 }
 
 const SPONSOR_NAMES = [
@@ -81,7 +128,7 @@ export function applyMatchdayIncome(save: GameSave): GameSave {
         date: save.currentDate,
         kind: 'tv' as const,
         amount: tv,
-        note: `ค่าสิทธิ์ถ่ายทอด MD${save.matchday}`,
+        note: `TV MD${save.matchday}`,
       },
       ...finance.ledger,
     ].slice(0, 50),
@@ -99,54 +146,126 @@ export function applyMatchdayIncome(save: GameSave): GameSave {
   }
 }
 
-export function awardCompetitionPrize(
+function payPrize(
   save: GameSave,
-  kind: 'cup' | 'ucl' | 'league_cup' | 'trophy',
-  championClubId: string,
+  clubId: string,
+  amount: number,
+  note: string,
 ): GameSave {
-  const prize =
-    kind === 'ucl'
-      ? 12_000_000
-      : kind === 'cup'
-        ? 4_500_000
-        : kind === 'league_cup'
-          ? 2_500_000
-          : 1_200_000
-  const note =
-    kind === 'ucl'
-      ? 'เงินรางวัลแชมป์ UCL'
-      : kind === 'cup'
-        ? 'เงินรางวัลแชมป์ถ้วยชาติ'
-        : kind === 'league_cup'
-          ? 'เงินรางวัลแชมป์ลีกคัพ'
-          : 'เงินรางวัลแชมป์ถ้วยลีกล่าง'
-  if (championClubId !== save.humanClubId) {
-    // still pay AI quietly
-    const clubs = save.clubs.map((c) =>
-      c.id === championClubId ? { ...c, balance: c.balance + prize } : c,
-    )
-    return { ...save, clubs }
-  }
+  if (amount <= 0) return save
+  const clubs = save.clubs.map((c) =>
+    c.id === clubId ? { ...c, balance: c.balance + amount } : c,
+  )
+  if (clubId !== save.humanClubId) return { ...save, clubs }
 
   let finance = ensureClubFinance(save)
-  const clubs = save.clubs.map((c) =>
-    c.id === save.humanClubId ? { ...c, balance: c.balance + prize } : c,
-  )
   finance = {
     ...finance,
-    prizeSeason: (finance.prizeSeason ?? 0) + prize,
+    prizeSeason: (finance.prizeSeason ?? 0) + amount,
     ledger: [
       {
         id: uid('led'),
         date: save.currentDate,
         kind: 'prize' as const,
-        amount: prize,
+        amount,
         note,
       },
       ...finance.ledger,
     ].slice(0, 50),
   }
   return { ...save, clubs, clubFinance: finance }
+}
+
+export function prizeTable() {
+  return prizeDb
+}
+
+/** ทีมแพ้ชิงชนะเลิศจากนัด final ที่เล่นแล้ว */
+export function finalRunnerUpClubId(
+  fixtures: GameSave['fixtures'],
+  competition: string,
+  championClubId: string,
+): string | null {
+  const finals = fixtures.filter(
+    (f) => f.competition === competition && f.cupRound === 'final' && f.played,
+  )
+  const final = finals[finals.length - 1]
+  if (!final) return null
+  if (final.homeClubId === championClubId) return final.awayClubId
+  if (final.awayClubId === championClubId) return final.homeClubId
+  return null
+}
+
+/** ทีมที่เพิ่งเข้าสู่รอบ qf/sf (เพิ่งมีฟิกซ์เจอร์รอบนั้น) */
+export function newlyQualifiedClubIds(
+  prevFixtures: GameSave['fixtures'],
+  nextFixtures: GameSave['fixtures'],
+  competition: 'ucl' | 'uel' | 'uecl' | 'acl' | 'acl_two' | 'asean_cup',
+  stage: 'qf' | 'sf',
+): string[] {
+  const had = prevFixtures.some(
+    (f) => f.competition === competition && f.cupRound === stage,
+  )
+  if (had) return []
+  const ids = new Set<string>()
+  for (const f of nextFixtures) {
+    if (f.competition === competition && f.cupRound === stage) {
+      ids.add(f.homeClubId)
+      ids.add(f.awayClubId)
+    }
+  }
+  return [...ids]
+}
+
+/** เงินรางวัลแชมป์ (+รองชนะเลิศถ้ามี) — ถ้วยในประเทศสเกลตามลีก */
+export function awardCompetitionPrize(
+  save: GameSave,
+  kind: PrizeKind,
+  championClubId: string,
+  runnerUpClubId?: string | null,
+): GameSave {
+  const champAmt = prizeAmountFor(save, kind, 'champion')
+  const label = (prizeDb.labels as Record<string, string>)[kind] ?? kind
+  const scaleNote =
+    DOMESTIC_PRIZE_KINDS.has(kind) && save.leagueId
+      ? ` · สเกลลีก ×${domesticPrizeScale(save.leagueId).toFixed(2)}`
+      : ''
+  let next = payPrize(save, championClubId, champAmt, `เงินรางวัลแชมป์ ${label}${scaleNote}`)
+
+  if (runnerUpClubId) {
+    const ru = prizeAmountFor(save, kind, 'runnerUp')
+    if (ru > 0) {
+      next = payPrize(next, runnerUpClubId, ru, `เงินรางวัลรองชนะเลิศ ${label}${scaleNote}`)
+    }
+  }
+  return {
+    ...next,
+    clubs: applyTitleClubReputation(
+      next.clubs,
+      kind as TitleRepKind,
+      championClubId,
+      runnerUpClubId,
+    ),
+  }
+}
+
+/** โบนัสเข้ารอบลึก (QF / SF) — จ่ายทีมที่เพิ่งผ่านเข้ารอบ */
+export function awardProgressPrize(
+  save: GameSave,
+  kind: 'ucl' | 'uel' | 'uecl' | 'acl' | 'acl_two' | 'asean_cup',
+  stage: 'qf' | 'sf',
+  clubIds: string[],
+): GameSave {
+  const amt =
+    ((prizeDb.progress as Record<string, Record<string, number>>)[kind] ?? {})[stage] ?? 0
+  if (amt <= 0 || !clubIds.length) return save
+  const label = (prizeDb.labels as Record<string, string>)[kind] ?? kind
+  const stageTh = stage === 'qf' ? 'รอบ 8 ทีม' : 'รอบรองชนะเลิศ'
+  let next = save
+  for (const id of clubIds) {
+    next = payPrize(next, id, amt, `โบนัส${stageTh} ${label}`)
+  }
+  return next
 }
 
 /** พยากรณ์กระแสเงิน 6 แมตช์เดย์ถัดไป */

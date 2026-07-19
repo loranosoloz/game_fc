@@ -12,6 +12,7 @@ import {
 import { createBodyMap } from './bodyMap'
 import { rollPlayerSkills } from './playerSkills'
 import { createClubSocial, createPlayerSocial } from './social'
+import { getWorldCoach, instructionsFromCoach } from './worldCoaches'
 
 const CLUB_DEFS: Array<{ name: string; shortName: string; color: string; rep: number }> = [
   { name: 'Northgate United', shortName: 'NOR', color: '#1d4ed8', rep: 78 },
@@ -131,6 +132,8 @@ export function createPlayersForClubs(clubs: Club[], seed = 2026): Player[] {
         const name = `${FIRST[Math.floor(rng() * FIRST.length)]} ${LAST[Math.floor(rng() * LAST.length)]}`
         const ca = caFromOverall(overall)
         const personality = pickPersonality(rng, age, overall)
+        const attrs = makeAttrs(rng, overall, row.role)
+        const ovr = overallFromCa(ca)
         clubPlayers.push({
           id: `p-${n}`,
           clubId: club.id,
@@ -138,10 +141,10 @@ export function createPlayersForClubs(clubs: Club[], seed = 2026): Player[] {
           age,
           role: row.role,
           position: roleGroup(row.role),
-          overall: overallFromCa(ca),
+          overall: ovr,
           ca,
           pa: makePa(rng, ca, age),
-          attrs: makeAttrs(rng, overall, row.role),
+          attrs,
           hidden: makeHidden(rng),
           growth: personality.growth,
           personalityId: personality.personalityId,
@@ -171,7 +174,11 @@ export function createPlayersForClubs(clubs: Club[], seed = 2026): Player[] {
           isYouth: false,
           mentorId: null,
           mediaHandling: 6 + Math.floor(rng() * 12),
-          skills: rollPlayerSkills(roleGroup(row.role), overallFromCa(ca), rng),
+          skills: rollPlayerSkills(roleGroup(row.role), ovr, rng, {
+            role: row.role,
+            attrs,
+            id: `p-${n}`,
+          }),
           social: createPlayerSocial(
             {
               id: `p-${n}`,
@@ -245,13 +252,27 @@ export function autoPickTactics(
 }
 
 export function createTacticsForAll(clubs: Club[], players: Player[]): Record<string, Tactics> {
-  const formations: FormationId[] = ['4-3-3', '4-4-2', '4-2-3-1']
   const map: Record<string, Tactics> = {}
-  clubs.forEach((club, i) => {
-    const f = formations[i % formations.length]
-    const oop = formations[(i + 1) % formations.length]
-    map[club.id] = autoPickTactics(club.id, players, f, oop)
-  })
+  for (const club of clubs) {
+    const coach = getWorldCoach(club.coachId)
+    const formation = coach?.preferredFormation ?? '4-3-3'
+    const oop = coach?.formationOop ?? formation
+    const base = autoPickTactics(club.id, players, formation, oop)
+    if (!coach) {
+      map[club.id] = base
+      continue
+    }
+    map[club.id] = {
+      ...base,
+      instructions: instructionsFromCoach(coach),
+      setPieces: {
+        ...DEFAULT_SET_PIECES,
+        corners: coach.solveGame.includes('set_pieces') ? 'near_post' : DEFAULT_SET_PIECES.corners,
+        freeKicks: coach.solveGame.includes('set_pieces') ? 'direct' : DEFAULT_SET_PIECES.freeKicks,
+      },
+      familiarity: Math.min(78, 50 + Math.round(coach.power / 5)),
+    }
+  }
   return map
 }
 

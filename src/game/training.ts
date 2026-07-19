@@ -1,12 +1,27 @@
 import mentoringDb from '@/data/mentoring.json'
+import developmentDb from '@/data/development.json'
 import type { GameSave, Player, TrainingFocus, TrainingState } from './types'
 import { ATTR_BUMP, ATTR_MAX, ATTR_MIN, overallFromCa } from './attributes'
 import { applyInjury, tickPlayerInjury } from './medical'
 import { applyTrainingWear, bodyWearInjuryBonus } from './bodyMap'
 import { FOCUS_ATTRS } from './focusAttrs'
+import { tryUnlockPlayerSkill } from './playerSkills'
 
 export function defaultTraining(): TrainingState {
-  return { focus: 'tactics', intensity: 'medium', individual: {} }
+  return {
+    focus: 'tactics',
+    intensity: 'medium',
+    individual: {},
+    weekPlan: ['tactics', 'fitness', 'attacking', 'defending', 'tactics', 'setpieces', 'rest'],
+  }
+}
+
+/** โฟกัสที่ใช้จริงในรอบนี้ — หมุนตามวันในสัปดาห์ถ้ามี weekPlan */
+export function resolveTrainingFocus(training: TrainingState, matchday = 0): TrainingFocus {
+  const plan = training.weekPlan
+  if (!plan?.length) return training.focus
+  const idx = ((matchday % 7) + 7) % 7
+  return plan[idx] ?? training.focus
 }
 
 function clamp(n: number, min: number, max: number) {
@@ -23,7 +38,9 @@ export function applyTrainingWeek(
   humanClubId: string,
   training: TrainingState,
   facilityBonus = 0,
+  matchday = 0,
 ): { players: Player[]; note: string; injuries: string[] } {
+  const focus = resolveTrainingFocus(training, matchday)
   const intensityMul = training.intensity === 'high' ? 1.35 : training.intensity === 'low' ? 0.7 : 1
   const facMul = 1 + facilityBonus
   const injuries: string[] = []
@@ -45,22 +62,22 @@ export function applyTrainingWeek(
     let ca = p.ca
     let attrs = { ...p.attrs }
 
-    if (training.focus === 'rest') {
+    if (focus === 'rest') {
       condition = clamp(condition + 8 * intensityMul, 40, 100)
       sharpness = clamp(sharpness - 2, 30, 100)
     } else {
       condition = clamp(condition - 3 * intensityMul, 40, 100)
       sharpness = clamp(sharpness + 2 * intensityMul, 30, 100)
-      if (training.focus === 'fitness') condition = clamp(condition + 1, 40, 100)
-      if (training.focus === 'tactics') form = clamp(form + (Math.random() > 0.6 ? 1 : 0), 1, 20)
-      if (training.focus === 'attacking' && (p.position === 'FW' || p.role === 'CAM')) {
-        if (Math.random() < 0.06 * intensityMul * facMul * (p.growth.learningRate / 20)) {
+      if (focus === 'fitness') condition = clamp(condition + 1, 40, 100)
+      if (focus === 'tactics') form = clamp(form + (Math.random() > 0.6 ? 1 : 0), 1, 20)
+      if (focus === 'attacking' && (p.position === 'FW' || p.role === 'CAM')) {
+        if (Math.random() < 0.12 * intensityMul * facMul * (p.growth.learningRate / 20)) {
           ca = Math.min(p.pa, ca + 1)
           overall = overallFromCa(ca)
         }
       }
-      if (training.focus === 'defending' && p.position === 'DF') {
-        if (Math.random() < 0.06 * intensityMul * facMul * (p.growth.learningRate / 20)) {
+      if (focus === 'defending' && p.position === 'DF') {
+        if (Math.random() < 0.12 * intensityMul * facMul * (p.growth.learningRate / 20)) {
           ca = Math.min(p.pa, ca + 1)
           overall = overallFromCa(ca)
         }
@@ -69,11 +86,25 @@ export function applyTrainingWeek(
 
     const ind = individual[p.id] ?? 'none'
     const keys = FOCUS_ATTRS[ind]
-    if (keys.length && training.focus !== 'rest' && Math.random() < 0.22 * intensityMul * facMul) {
+    if (keys.length && focus !== 'rest' && Math.random() < 0.38 * intensityMul * facMul) {
       const k = keys[Math.floor(Math.random() * keys.length)]
       const learnMul = p.growth.learningRate / 20
-      if (learnMul > 0.2 || Math.random() < 0.2) {
+      if (learnMul > 0.15 || Math.random() < 0.3) {
         attrs[k] = clamp(attrs[k] + ATTR_BUMP, ATTR_MIN, ATTR_MAX)
+      }
+    }
+
+    let skills = p.skills
+    if (focus !== 'rest') {
+      const unlockChance =
+        (developmentDb.skillUnlock?.baseChance ?? 0.14) *
+        0.7 *
+        intensityMul *
+        facMul *
+        (p.growth.learningRate / 20)
+      if (Math.random() < unlockChance) {
+        const unlocked = tryUnlockPlayerSkill({ ...p, skills })
+        if (unlocked) skills = unlocked.skills
       }
     }
 
@@ -85,14 +116,15 @@ export function applyTrainingWeek(
       overall,
       ca,
       attrs,
+      skills,
     }
-    out = applyTrainingWear(out, training.focus !== 'rest' && training.intensity === 'high')
+    out = applyTrainingWear(out, focus !== 'rest' && training.intensity === 'high')
 
     const injuryChance =
       (0.04 * (training.intensity === 'high' ? 1 : 0.4) * (p.hidden.injuryProneness / 12) +
         bodyWearInjuryBonus(out)) *
-      (training.focus === 'rest' ? 0 : 1)
-    if (training.focus !== 'rest' && Math.random() < injuryChance) {
+      (focus === 'rest' ? 0 : 1)
+    if (focus !== 'rest' && Math.random() < injuryChance) {
       out = applyInjury(out, 'training')
       injuries.push(p.name)
     }
@@ -110,8 +142,8 @@ export function applyTrainingWeek(
   }
   const note =
     injuries.length > 0
-      ? `ซ้อมโฟกัส「${focusTh[training.focus]}」(${training.intensity}) — เจ็บจากซ้อม: ${injuries.join(', ')}`
-      : `ซ้อมโฟกัส「${focusTh[training.focus]}」ความเข้ม ${training.intensity} เสร็จสิ้น`
+      ? `ซ้อมโฟกัส「${focusTh[focus]}」(${training.intensity}) — เจ็บจากซ้อม: ${injuries.join(', ')}`
+      : `ซ้อมโฟกัส「${focusTh[focus]}」ความเข้ม ${training.intensity} เสร็จสิ้น`
 
   return { players: next, note, injuries }
 }

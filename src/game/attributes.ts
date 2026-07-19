@@ -8,8 +8,72 @@ import { ensurePlayerSkills } from './playerSkills'
 
 export { attributesDb, personalitiesDb, developmentDb }
 
+/** Player attribute scale matches FMInside (1–99) */
+export const ATTR_MIN = 1
+export const ATTR_MAX = 99
+/** Training / development bump sized for 99-scale */
+export const ATTR_BUMP = 6
+
 function clamp(n: number, min = 1, max = 20) {
   return Math.max(min, Math.min(max, Math.round(n)))
+}
+
+export function clampAttr(n: number): number {
+  return Math.max(ATTR_MIN, Math.min(ATTR_MAX, Math.round(n)))
+}
+
+/** Upgrade legacy 1–20 attrs to 1–99 (detect by max ≤ 25) */
+export function ensureAttrsScale99(attrs: PlayerAttributes): PlayerAttributes {
+  const vals = Object.values(attrs).filter((v) => typeof v === 'number') as number[]
+  if (vals.length === 0) return attrs
+  const max = Math.max(...vals)
+  if (max > 25) {
+    return {
+      finishing: clampAttr(attrs.finishing),
+      passing: clampAttr(attrs.passing),
+      tackling: clampAttr(attrs.tackling),
+      dribbling: clampAttr(attrs.dribbling),
+      crossing: clampAttr(attrs.crossing),
+      heading: clampAttr(attrs.heading),
+      technique: clampAttr(attrs.technique),
+      decision: clampAttr(attrs.decision),
+      vision: clampAttr(attrs.vision),
+      composure: clampAttr(attrs.composure),
+      positioning: clampAttr(attrs.positioning),
+      workRate: clampAttr(attrs.workRate),
+      pace: clampAttr(attrs.pace),
+      stamina: clampAttr(attrs.stamina),
+      strength: clampAttr(attrs.strength),
+      agility: clampAttr(attrs.agility),
+      jumping: clampAttr(attrs.jumping),
+      handling: clampAttr(attrs.handling),
+      reflexes: clampAttr(attrs.reflexes),
+      aerialReach: clampAttr(attrs.aerialReach),
+    }
+  }
+  const to99 = (v: number) => clampAttr(Math.round((v / 20) * 99))
+  return {
+    finishing: to99(attrs.finishing),
+    passing: to99(attrs.passing),
+    tackling: to99(attrs.tackling),
+    dribbling: to99(attrs.dribbling),
+    crossing: to99(attrs.crossing),
+    heading: to99(attrs.heading),
+    technique: to99(attrs.technique),
+    decision: to99(attrs.decision),
+    vision: to99(attrs.vision),
+    composure: to99(attrs.composure),
+    positioning: to99(attrs.positioning),
+    workRate: to99(attrs.workRate),
+    pace: to99(attrs.pace),
+    stamina: to99(attrs.stamina),
+    strength: to99(attrs.strength),
+    agility: to99(attrs.agility),
+    jumping: to99(attrs.jumping),
+    handling: to99(attrs.handling),
+    reflexes: to99(attrs.reflexes),
+    aerialReach: to99(attrs.aerialReach),
+  }
 }
 
 function randRange(rng: () => number, min: number, max: number) {
@@ -25,45 +89,45 @@ export function overallFromCa(ca: number): number {
 }
 
 export function makeAttrs(rng: () => number, overall: number, role: RoleCode): PlayerAttributes {
-  const base = overall / 5
-  const jitter = () => base + (rng() - 0.5) * 4
+  const base = Math.max(35, Math.min(92, overall))
+  const jitter = () => base + (rng() - 0.5) * 16
   const attrs: PlayerAttributes = {
-    finishing: clamp(jitter()),
-    passing: clamp(jitter()),
-    tackling: clamp(jitter()),
-    dribbling: clamp(jitter()),
-    crossing: clamp(jitter()),
-    heading: clamp(jitter()),
-    technique: clamp(jitter()),
-    decision: clamp(jitter()),
-    vision: clamp(jitter()),
-    composure: clamp(jitter()),
-    positioning: clamp(jitter()),
-    workRate: clamp(jitter()),
-    pace: clamp(jitter()),
-    stamina: clamp(jitter()),
-    strength: clamp(jitter()),
-    agility: clamp(jitter()),
-    jumping: clamp(jitter()),
-    handling: clamp(jitter() * 0.35),
-    reflexes: clamp(jitter() * 0.35),
-    aerialReach: clamp(jitter() * 0.35),
+    finishing: clampAttr(jitter()),
+    passing: clampAttr(jitter()),
+    tackling: clampAttr(jitter()),
+    dribbling: clampAttr(jitter()),
+    crossing: clampAttr(jitter()),
+    heading: clampAttr(jitter()),
+    technique: clampAttr(jitter()),
+    decision: clampAttr(jitter()),
+    vision: clampAttr(jitter()),
+    composure: clampAttr(jitter()),
+    positioning: clampAttr(jitter()),
+    workRate: clampAttr(jitter()),
+    pace: clampAttr(jitter()),
+    stamina: clampAttr(jitter()),
+    strength: clampAttr(jitter()),
+    agility: clampAttr(jitter()),
+    jumping: clampAttr(jitter()),
+    handling: clampAttr(jitter() * 0.35),
+    reflexes: clampAttr(jitter() * 0.35),
+    aerialReach: clampAttr(jitter() * 0.35),
   }
   const group = roleGroup(role)
   if (role === 'GK') {
-    attrs.handling = clamp(base + 3 + rng() * 3)
-    attrs.reflexes = clamp(base + 3 + rng() * 3)
-    attrs.aerialReach = clamp(base + 2 + rng() * 3)
-    attrs.finishing = clamp(base * 0.35)
+    attrs.handling = clampAttr(base + 8 + rng() * 10)
+    attrs.reflexes = clampAttr(base + 8 + rng() * 10)
+    attrs.aerialReach = clampAttr(base + 5 + rng() * 10)
+    attrs.finishing = clampAttr(base * 0.35)
   } else if (group === 'FW') {
-    attrs.finishing = clamp(base + 2 + rng() * 3)
-    attrs.composure = clamp(base + 1 + rng() * 2)
+    attrs.finishing = clampAttr(base + 6 + rng() * 10)
+    attrs.composure = clampAttr(base + 3 + rng() * 8)
   } else if (group === 'DF') {
-    attrs.tackling = clamp(base + 2 + rng() * 3)
-    attrs.positioning = clamp(base + 2 + rng() * 2)
+    attrs.tackling = clampAttr(base + 6 + rng() * 10)
+    attrs.positioning = clampAttr(base + 5 + rng() * 8)
   } else {
-    attrs.passing = clamp(base + 2 + rng() * 3)
-    attrs.vision = clamp(base + 1 + rng() * 2)
+    attrs.passing = clampAttr(base + 6 + rng() * 10)
+    attrs.vision = clampAttr(base + 3 + rng() * 8)
   }
   return attrs
 }
@@ -112,30 +176,33 @@ export function ensurePlayerV3Fields(p: Partial<Player> & { id: string; clubId: 
       ? { personalityId: p.personalityId, growth: p.growth }
       : pickPersonality(rng, p.age ?? 24, overall)
 
-  const attrs = p.attrs
-    ? {
-        finishing: p.attrs.finishing ?? 10,
-        passing: p.attrs.passing ?? 10,
-        tackling: p.attrs.tackling ?? 10,
-        dribbling: (p.attrs as PlayerAttributes).dribbling ?? 10,
-        crossing: (p.attrs as PlayerAttributes).crossing ?? 10,
-        heading: (p.attrs as PlayerAttributes).heading ?? 10,
-        technique: (p.attrs as PlayerAttributes).technique ?? 10,
-        decision: p.attrs.decision ?? 10,
-        vision: (p.attrs as PlayerAttributes).vision ?? 10,
-        composure: (p.attrs as PlayerAttributes).composure ?? 10,
-        positioning: (p.attrs as PlayerAttributes).positioning ?? 10,
-        workRate: (p.attrs as PlayerAttributes).workRate ?? 10,
-        pace: p.attrs.pace ?? 10,
-        stamina: p.attrs.stamina ?? 10,
-        strength: (p.attrs as PlayerAttributes).strength ?? 10,
-        agility: (p.attrs as PlayerAttributes).agility ?? 10,
-        jumping: (p.attrs as PlayerAttributes).jumping ?? 10,
-        handling: p.attrs.handling ?? 5,
-        reflexes: (p.attrs as PlayerAttributes).reflexes ?? 5,
-        aerialReach: (p.attrs as PlayerAttributes).aerialReach ?? 5,
-      }
-    : makeAttrs(rng, overall, role)
+  const mid = Math.round(overall * 0.85)
+  const attrs = ensureAttrsScale99(
+    p.attrs
+      ? {
+          finishing: p.attrs.finishing ?? mid,
+          passing: p.attrs.passing ?? mid,
+          tackling: p.attrs.tackling ?? mid,
+          dribbling: (p.attrs as PlayerAttributes).dribbling ?? mid,
+          crossing: (p.attrs as PlayerAttributes).crossing ?? mid,
+          heading: (p.attrs as PlayerAttributes).heading ?? mid,
+          technique: (p.attrs as PlayerAttributes).technique ?? mid,
+          decision: p.attrs.decision ?? mid,
+          vision: (p.attrs as PlayerAttributes).vision ?? mid,
+          composure: (p.attrs as PlayerAttributes).composure ?? mid,
+          positioning: (p.attrs as PlayerAttributes).positioning ?? mid,
+          workRate: (p.attrs as PlayerAttributes).workRate ?? mid,
+          pace: p.attrs.pace ?? mid,
+          stamina: p.attrs.stamina ?? mid,
+          strength: (p.attrs as PlayerAttributes).strength ?? mid,
+          agility: (p.attrs as PlayerAttributes).agility ?? mid,
+          jumping: (p.attrs as PlayerAttributes).jumping ?? mid,
+          handling: p.attrs.handling ?? Math.round(mid * 0.4),
+          reflexes: (p.attrs as PlayerAttributes).reflexes ?? Math.round(mid * 0.4),
+          aerialReach: (p.attrs as PlayerAttributes).aerialReach ?? Math.round(mid * 0.4),
+        }
+      : makeAttrs(rng, overall, role),
+  )
 
   return {
     id: p.id,
@@ -182,6 +249,8 @@ export function ensurePlayerV3Fields(p: Partial<Player> & { id: string; clubId: 
       overall: p.overall ?? overallFromCa(ca),
       role,
     } as Player),
+    wantAway: p.wantAway ?? null,
+    refuseContractRenewal: p.refuseContractRenewal ?? false,
     cash:
       typeof p.cash === 'number'
         ? p.cash
@@ -197,6 +266,7 @@ export function ensurePlayerV3Fields(p: Partial<Player> & { id: string; clubId: 
       postsWeek: 2,
       verified: (p.overall ?? 0) >= 78,
     },
+    careerHonours: Array.isArray(p.careerHonours) ? p.careerHonours : [],
   }
 }
 

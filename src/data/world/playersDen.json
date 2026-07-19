@@ -1,0 +1,2089 @@
+{
+  "source": "fmtransferupdate.com + FMInside (personal display)",
+  "sourceUrl": "https://fmtransferupdate.com/",
+  "note": "Not for redistribution or commercial sale. Danish Superliga / den pack.",
+  "clubs": {
+    "kop": [
+      {
+        "name": "Dominik Kotarski",
+        "role": "GK",
+        "age": 26,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Rúnar Alex Rúnarsson",
+        "role": "GK",
+        "age": 31,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Theo Sander",
+        "role": "GK",
+        "age": 21,
+        "ovr": 82,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Junnosuke Suzuki",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 81,
+        "fmPos": "D RC, DM"
+      },
+      {
+        "name": "Gabriel Pereira",
+        "role": "CB",
+        "age": 26,
+        "ovr": 81,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Felix Beijmo",
+        "role": "CB",
+        "age": 28,
+        "ovr": 81,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Rodrigo Huescas",
+        "role": "CB",
+        "age": 22,
+        "ovr": 80,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Marcos López",
+        "role": "CB",
+        "age": 26,
+        "ovr": 80,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Birger Meling",
+        "role": "CB",
+        "age": 31,
+        "ovr": 80,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Munashe Garananga",
+        "role": "CB",
+        "age": 25,
+        "ovr": 79,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Kenay Myrie",
+        "role": "RB",
+        "age": 19,
+        "ovr": 79,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Magnus Mattsson",
+        "role": "CM",
+        "age": 27,
+        "ovr": 79,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Alex Král",
+        "role": "CM",
+        "age": 28,
+        "ovr": 78,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "William Clem",
+        "role": "CM",
+        "age": 22,
+        "ovr": 78,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Mads Emil Madsen",
+        "role": "CM",
+        "age": 28,
+        "ovr": 78,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Thomas Delaney",
+        "role": "CM",
+        "age": 34,
+        "ovr": 77,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Hunor Németh",
+        "role": "CM",
+        "age": 19,
+        "ovr": 77,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Dominik Sarapata",
+        "role": "CM",
+        "age": 18,
+        "ovr": 77,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Mohamed Elyounoussi",
+        "role": "ST",
+        "age": 31,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Elias Achouri",
+        "role": "ST",
+        "age": 27,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Robert",
+        "role": "ST",
+        "age": 21,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jordan Larsson",
+        "role": "ST",
+        "age": 29,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Youssoufa Moukoko",
+        "role": "ST",
+        "age": 21,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Andreas Cornelius",
+        "role": "ST",
+        "age": 33,
+        "ovr": 72,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Viktor Bjarki Daðason",
+        "role": "ST",
+        "age": 18,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jonathan Moalem",
+        "role": "ST",
+        "age": 19,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      }
+    ],
+    "fcm": [
+      {
+        "name": "Elías Rafn Ólafsson",
+        "role": "GK",
+        "age": 26,
+        "ovr": 77,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nordin Bakker",
+        "role": "GK",
+        "age": 28,
+        "ovr": 77,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Ovie Ejeheri",
+        "role": "GK",
+        "age": 23,
+        "ovr": 77,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Rasmus Kristensen",
+        "role": "CB",
+        "age": 29,
+        "ovr": 76,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Mads Bech Sørensen",
+        "role": "CB",
+        "age": 27,
+        "ovr": 76,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Martin Erlić",
+        "role": "CB",
+        "age": 28,
+        "ovr": 76,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Victor Bak",
+        "role": "CB",
+        "age": 22,
+        "ovr": 75,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Ousmane Diao",
+        "role": "CB",
+        "age": 22,
+        "ovr": 75,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Lee Han-Beom",
+        "role": "CB",
+        "age": 24,
+        "ovr": 75,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Adam Gabriel",
+        "role": "CB",
+        "age": 25,
+        "ovr": 74,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Djé Béni",
+        "role": "CB",
+        "age": 21,
+        "ovr": 74,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Philip Billing",
+        "role": "CM",
+        "age": 30,
+        "ovr": 74,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Pedro Bravo",
+        "role": "CM",
+        "age": 21,
+        "ovr": 73,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Dani Silva",
+        "role": "CM",
+        "age": 26,
+        "ovr": 73,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Denil Castillo",
+        "role": "CM",
+        "age": 22,
+        "ovr": 73,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Kjell Wätjen",
+        "role": "CM",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Jonatan Lindekilde",
+        "role": "CM",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Alamara Djabi",
+        "role": "CM",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Lasse Overgaard",
+        "role": "CM",
+        "age": 20,
+        "ovr": 69,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Franculino",
+        "role": "ST",
+        "age": 22,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Cho Gue-Sung",
+        "role": "ST",
+        "age": 28,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mikael Uhre",
+        "role": "ST",
+        "age": 31,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Darío Osorio",
+        "role": "ST",
+        "age": 22,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Júnior Brumado",
+        "role": "ST",
+        "age": 27,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mikel Gogorza",
+        "role": "ST",
+        "age": 19,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Edward Chilufya",
+        "role": "ST",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Valdemar Byskov",
+        "role": "ST",
+        "age": 21,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      }
+    ],
+    "bro": [
+      {
+        "name": "Patrick Pentz",
+        "role": "GK",
+        "age": 29,
+        "ovr": 76,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Gavin Beavers",
+        "role": "GK",
+        "age": 21,
+        "ovr": 76,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Daniel Wass",
+        "role": "CDM",
+        "age": 37,
+        "ovr": 76,
+        "fmPos": "D/WB R, DM, M RC"
+      },
+      {
+        "name": "Luis Binks",
+        "role": "CB",
+        "age": 24,
+        "ovr": 75,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Sean Klaiber",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 75,
+        "fmPos": "D/WB R, DM, M RC"
+      },
+      {
+        "name": "Oliver Villadsen",
+        "role": "RB",
+        "age": 24,
+        "ovr": 75,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Marko Divković",
+        "role": "ST",
+        "age": 27,
+        "ovr": 74,
+        "fmPos": "D/WB L, M L, ST"
+      },
+      {
+        "name": "Mats Köhlert",
+        "role": "LW",
+        "age": 28,
+        "ovr": 74,
+        "fmPos": "D/WB/AM L"
+      },
+      {
+        "name": "Rasmus Lauritsen",
+        "role": "CB",
+        "age": 30,
+        "ovr": 74,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Jordi Vanlerberghe",
+        "role": "CB",
+        "age": 30,
+        "ovr": 73,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Bartosz Slisz",
+        "role": "CM",
+        "age": 27,
+        "ovr": 73,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Benjamin Tahirović",
+        "role": "CM",
+        "age": 23,
+        "ovr": 73,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Mathias Jensen",
+        "role": "CM",
+        "age": 21,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Max Ejdum",
+        "role": "CM",
+        "age": 21,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Jakob Wismann",
+        "role": "CM",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Kevin Andreasen",
+        "role": "CM",
+        "age": 30,
+        "ovr": 71,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Emmanuel Dennis",
+        "role": "ST",
+        "age": 28,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Filip Bundgaard",
+        "role": "ST",
+        "age": 22,
+        "ovr": 71,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mads Frøkjær",
+        "role": "ST",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ousmane Sow",
+        "role": "ST",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jacob Ambæk",
+        "role": "ST",
+        "age": 18,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Patrick Mortensen",
+        "role": "ST",
+        "age": 37,
+        "ovr": 67,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Sho Fukuda",
+        "role": "ST",
+        "age": 25,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kotaro Uchino",
+        "role": "ST",
+        "age": 22,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      }
+    ],
+    "nsj": [
+      {
+        "name": "Andreas Hansen",
+        "role": "GK",
+        "age": 30,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Jakob Busk",
+        "role": "GK",
+        "age": 32,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Victor Øberg",
+        "role": "GK",
+        "age": 19,
+        "ovr": 74,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Tobias Salquist",
+        "role": "CB",
+        "age": 31,
+        "ovr": 73,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Peter Ankersen",
+        "role": "RB",
+        "age": 35,
+        "ovr": 73,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Runar Norheim",
+        "role": "LW",
+        "age": 21,
+        "ovr": 73,
+        "fmPos": "D/WB/AM L"
+      },
+      {
+        "name": "Juho Lähteenmäki",
+        "role": "LB",
+        "age": 20,
+        "ovr": 72,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Noah Markmann",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Markus Walker",
+        "role": "CB",
+        "age": 19,
+        "ovr": 72,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Stephen Acquah",
+        "role": "CB",
+        "age": 20,
+        "ovr": 71,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Matej Tuka",
+        "role": "LB",
+        "age": 19,
+        "ovr": 71,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Caleb Yirenkyi",
+        "role": "CM",
+        "age": 20,
+        "ovr": 71,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Mark Brink",
+        "role": "CAM",
+        "age": 28,
+        "ovr": 70,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Nicklas Røjkjær",
+        "role": "LW",
+        "age": 27,
+        "ovr": 70,
+        "fmPos": "DM, AM LC"
+      },
+      {
+        "name": "Malte Heyde",
+        "role": "CM",
+        "age": 19,
+        "ovr": 70,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ibrahim Adel",
+        "role": "ST",
+        "age": 25,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ola Solbakken",
+        "role": "ST",
+        "age": 27,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Prince Amoako",
+        "role": "ST",
+        "age": 19,
+        "ovr": 69,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Alexander Lind",
+        "role": "ST",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Justin Janssen",
+        "role": "ST",
+        "age": 19,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Villum Berthelsen",
+        "role": "ST",
+        "age": 20,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lévy Néne",
+        "role": "ST",
+        "age": 20,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lamine Sadio",
+        "role": "ST",
+        "age": 18,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      }
+    ],
+    "ran": [
+      {
+        "name": "Paul Izzo",
+        "role": "GK",
+        "age": 31,
+        "ovr": 71,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Jannich Storch",
+        "role": "GK",
+        "age": 33,
+        "ovr": 71,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Mert Demirci",
+        "role": "GK",
+        "age": 22,
+        "ovr": 71,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Wessel Dammers",
+        "role": "CDM",
+        "age": 31,
+        "ovr": 70,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Daniel Høegh",
+        "role": "CB",
+        "age": 35,
+        "ovr": 70,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Nikolas Dyhr",
+        "role": "CB",
+        "age": 25,
+        "ovr": 70,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Lucas Lissens",
+        "role": "CB",
+        "age": 24,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Sabil Hansen",
+        "role": "CB",
+        "age": 20,
+        "ovr": 69,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Martin Sjølstad",
+        "role": "CB",
+        "age": 26,
+        "ovr": 69,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Benjamin Örn",
+        "role": "CB",
+        "age": 22,
+        "ovr": 68,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Oliver Jones",
+        "role": "CB",
+        "age": 23,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "John Björkengren",
+        "role": "CM",
+        "age": 27,
+        "ovr": 68,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Frederik Lauenborg",
+        "role": "CM",
+        "age": 29,
+        "ovr": 67,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Laurits Pedersen",
+        "role": "CM",
+        "age": 20,
+        "ovr": 67,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Max Albæk",
+        "role": "CM",
+        "age": 20,
+        "ovr": 67,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Mads Søndergaard",
+        "role": "CM",
+        "age": 19,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Mads Zander",
+        "role": "CM",
+        "age": 25,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Victor Hüttel",
+        "role": "CM",
+        "age": 20,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Norman Campbell",
+        "role": "ST",
+        "age": 26,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mathias Greve",
+        "role": "ST",
+        "age": 31,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Elies Mahmoud",
+        "role": "ST",
+        "age": 25,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Warren Caddy",
+        "role": "ST",
+        "age": 29,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mohamed Sankoh",
+        "role": "ST",
+        "age": 22,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ousseynou Seck",
+        "role": "ST",
+        "age": 19,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mike Themsen",
+        "role": "ST",
+        "age": 20,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Noah Shamoun",
+        "role": "ST",
+        "age": 23,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      }
+    ],
+    "agf": [
+      {
+        "name": "Jesper Hansen",
+        "role": "GK",
+        "age": 41,
+        "ovr": 71,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Mads Hedenstad",
+        "role": "GK",
+        "age": 25,
+        "ovr": 71,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Marius van der Raad",
+        "role": "GK",
+        "age": 20,
+        "ovr": 71,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Frederik Tingager",
+        "role": "CB",
+        "age": 33,
+        "ovr": 70,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Gift Links",
+        "role": "CAM",
+        "age": 27,
+        "ovr": 70,
+        "fmPos": "WB RL, AM RL"
+      },
+      {
+        "name": "Rasmus Carstensen",
+        "role": "RB",
+        "age": 25,
+        "ovr": 70,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Tobias Mølgaard",
+        "role": "CB",
+        "age": 29,
+        "ovr": 69,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Eric Kahl",
+        "role": "CB",
+        "age": 24,
+        "ovr": 69,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Jonas Jensen-Abbew",
+        "role": "CB",
+        "age": 24,
+        "ovr": 69,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Jacob Andersen",
+        "role": "CM",
+        "age": 22,
+        "ovr": 68,
+        "fmPos": "D RC, M R"
+      },
+      {
+        "name": "Luka Callø",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 68,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Nicolai Poulsen",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 68,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Magnus Knudsen",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Jens Jønsson",
+        "role": "CDM",
+        "age": 33,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Markus Solbakken",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 67,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Oskar Haugstrup",
+        "role": "CM",
+        "age": 19,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Tobias Bech",
+        "role": "ST",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kristian Arnstad",
+        "role": "ST",
+        "age": 22,
+        "ovr": 66,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Kevin Yakob",
+        "role": "ST",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Sebastian Jørgensen",
+        "role": "ST",
+        "age": 26,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Janni Serra",
+        "role": "ST",
+        "age": 28,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Youssouph Badji",
+        "role": "ST",
+        "age": 24,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Frederik Emmery",
+        "role": "ST",
+        "age": 19,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tómas Óli Kristjánsson",
+        "role": "ST",
+        "age": 18,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      }
+    ],
+    "vib": [
+      {
+        "name": "Lucas Lund",
+        "role": "GK",
+        "age": 26,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kasper Kiilerich",
+        "role": "GK",
+        "age": 20,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nicolai Dybdal",
+        "role": "GK",
+        "age": 19,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Žan Zaletel",
+        "role": "CB",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Oliver Bundgaard",
+        "role": "CM",
+        "age": 25,
+        "ovr": 68,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "Daniel Anyembe",
+        "role": "RB",
+        "age": 27,
+        "ovr": 68,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Srđan Kuzmić",
+        "role": "CB",
+        "age": 22,
+        "ovr": 67,
+        "fmPos": "D RLC"
+      },
+      {
+        "name": "Sami Jalal",
+        "role": "CAM",
+        "age": 21,
+        "ovr": 67,
+        "fmPos": "WB R, AM RL"
+      },
+      {
+        "name": "Hjalte Bidstrup",
+        "role": "RB",
+        "age": 20,
+        "ovr": 67,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Mohamed Iyadh Riahi",
+        "role": "RB",
+        "age": 20,
+        "ovr": 66,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Lukas Kirkegaard",
+        "role": "CB",
+        "age": 21,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Thomas Jørgensen",
+        "role": "CM",
+        "age": 20,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Mees Hoedemakers",
+        "role": "CM",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Jeppe Grønning",
+        "role": "CM",
+        "age": 35,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Mads Søndergaard",
+        "role": "CM",
+        "age": 23,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Carl Christensen",
+        "role": "CM",
+        "age": 20,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Nicklas Pedersen",
+        "role": "CM",
+        "age": 19,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Frederik Spangsberg",
+        "role": "CM",
+        "age": 19,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Andreas Søndergaard",
+        "role": "CM",
+        "age": 19,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Bilal Brahimi",
+        "role": "ST",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Charly Nouck",
+        "role": "ST",
+        "age": 22,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tim Freriks",
+        "role": "ST",
+        "age": 27,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Yonis Njoh",
+        "role": "ST",
+        "age": 22,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Dorian Hanza",
+        "role": "ST",
+        "age": 25,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Asker Beck",
+        "role": "ST",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Osman Addo",
+        "role": "ST",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Frederik Lossin",
+        "role": "ST",
+        "age": 19,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      }
+    ],
+    "sil": [
+      {
+        "name": "Aske Andrésen",
+        "role": "GK",
+        "age": 21,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Bastian Holm",
+        "role": "GK",
+        "age": 21,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Pedro Ganchas",
+        "role": "CB",
+        "age": 26,
+        "ovr": 69,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Alexander Busch",
+        "role": "CB",
+        "age": 22,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Robin Østrøm",
+        "role": "CB",
+        "age": 23,
+        "ovr": 68,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Andreas Poulsen",
+        "role": "LB",
+        "age": 26,
+        "ovr": 68,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Jens Martin Gammelby",
+        "role": "CB",
+        "age": 31,
+        "ovr": 67,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Pontus Rödin",
+        "role": "CB",
+        "age": 25,
+        "ovr": 67,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Julius Nielsen",
+        "role": "CDM",
+        "age": 20,
+        "ovr": 67,
+        "fmPos": "D R, DM"
+      },
+      {
+        "name": "Melker Jonsson",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "D RC, DM"
+      },
+      {
+        "name": "Mads Freundlich",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Mikkel Øxenberg",
+        "role": "CDM",
+        "age": 19,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Victor Dahl",
+        "role": "CM",
+        "age": 19,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Lucas Heilmann",
+        "role": "CM",
+        "age": 28,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Callum McCowatt",
+        "role": "ST",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Younes Bakiz",
+        "role": "ST",
+        "age": 27,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Mads Larsen",
+        "role": "ST",
+        "age": 24,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Rami Al Hajj",
+        "role": "ST",
+        "age": 24,
+        "ovr": 64,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Sofus Berger",
+        "role": "ST",
+        "age": 23,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Oliver Ross",
+        "role": "ST",
+        "age": 21,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Alexander Simmelhack",
+        "role": "ST",
+        "age": 20,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Villads Westh",
+        "role": "ST",
+        "age": 22,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      }
+    ],
+    "obk": [
+      {
+        "name": "Viljar Myhra",
+        "role": "GK",
+        "age": 29,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Martin Hansen",
+        "role": "GK",
+        "age": 36,
+        "ovr": 69,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Adam Sørensen",
+        "role": "CM",
+        "age": 25,
+        "ovr": 69,
+        "fmPos": "D/WB/M L"
+      },
+      {
+        "name": "James Gomez",
+        "role": "CB",
+        "age": 24,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Topi Keskinen",
+        "role": "CAM",
+        "age": 23,
+        "ovr": 68,
+        "fmPos": "WB L, AM RL"
+      },
+      {
+        "name": "Julius Berthel Askou",
+        "role": "CB",
+        "age": 20,
+        "ovr": 68,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Marcus McCoy",
+        "role": "RB",
+        "age": 20,
+        "ovr": 67,
+        "fmPos": "D/WB RL"
+      },
+      {
+        "name": "Peter Therkildsen",
+        "role": "CB",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Yaya Bojang",
+        "role": "CDM",
+        "age": 21,
+        "ovr": 67,
+        "fmPos": "D C, DM"
+      },
+      {
+        "name": "Magnus Andersen",
+        "role": "CAM",
+        "age": 20,
+        "ovr": 66,
+        "fmPos": "D/WB R, AM RL"
+      },
+      {
+        "name": "Rasmus Falk",
+        "role": "CM",
+        "age": 34,
+        "ovr": 66,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Ismahila Ouédraogo",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 66,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Jakob Bonde",
+        "role": "CM",
+        "age": 32,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Anssi Suhonen",
+        "role": "CM",
+        "age": 25,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Nikolaj Juul-Sandberg",
+        "role": "CM",
+        "age": 20,
+        "ovr": 65,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Vitus Friis",
+        "role": "CM",
+        "age": 19,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Noah Lassen",
+        "role": "CM",
+        "age": 19,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Gustav Wulff",
+        "role": "CM",
+        "age": 19,
+        "ovr": 64,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Fiete Arp",
+        "role": "ST",
+        "age": 26,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jay-Roy Grot",
+        "role": "ST",
+        "age": 28,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Noah Ganaus",
+        "role": "ST",
+        "age": 25,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Jona Niemiec",
+        "role": "ST",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "William Martin",
+        "role": "ST",
+        "age": 19,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lasse Legolas",
+        "role": "ST",
+        "age": 19,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Valdemar Grymer",
+        "role": "ST",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Julian Vitus Pedersen",
+        "role": "ST",
+        "age": 19,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      }
+    ],
+    "vej": [
+      {
+        "name": "Nicolai Larsen",
+        "role": "GK",
+        "age": 35,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Igor Vekić",
+        "role": "GK",
+        "age": 28,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Kasper Kristensen",
+        "role": "GK",
+        "age": 26,
+        "ovr": 67,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Christian Sørensen",
+        "role": "LB",
+        "age": 33,
+        "ovr": 66,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Stefan Velkov",
+        "role": "CB",
+        "age": 29,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Lasse Nielsen",
+        "role": "CB",
+        "age": 38,
+        "ovr": 66,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Thomas Gundelund",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 65,
+        "fmPos": "D/WB R, DM"
+      },
+      {
+        "name": "Lasse Flø",
+        "role": "CM",
+        "age": 20,
+        "ovr": 65,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Giorgi Tabatadze",
+        "role": "LB",
+        "age": 20,
+        "ovr": 65,
+        "fmPos": "D/WB L"
+      },
+      {
+        "name": "Noah Svenningsen",
+        "role": "CM",
+        "age": 25,
+        "ovr": 64,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Kristian Bonde",
+        "role": "CM",
+        "age": 33,
+        "ovr": 64,
+        "fmPos": "D/WB/M R"
+      },
+      {
+        "name": "Lundrim Hetemi",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Mike Vestergård",
+        "role": "CDM",
+        "age": 28,
+        "ovr": 63,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Sander Ravn",
+        "role": "CAM",
+        "age": 19,
+        "ovr": 63,
+        "fmPos": "DM, AM C"
+      },
+      {
+        "name": "Mikkel Duelund",
+        "role": "ST",
+        "age": 29,
+        "ovr": 63,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Andrew Hjulsager",
+        "role": "ST",
+        "age": 31,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Christian Gammelgaard",
+        "role": "ST",
+        "age": 23,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Wahid Faghir",
+        "role": "ST",
+        "age": 22,
+        "ovr": 62,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tobias Bach",
+        "role": "ST",
+        "age": 23,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Gustav Marcussen",
+        "role": "ST",
+        "age": 28,
+        "ovr": 59,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Bismark Edjeodji",
+        "role": "ST",
+        "age": 19,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Tobias Lauritsen",
+        "role": "ST",
+        "age": 22,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      }
+    ],
+    "son": [
+      {
+        "name": "Marcus Bundgaard",
+        "role": "GK",
+        "age": 24,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Nicolai Flø",
+        "role": "GK",
+        "age": 30,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Berkant Bayrak",
+        "role": "GK",
+        "age": 21,
+        "ovr": 66,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Magnus Jensen",
+        "role": "ST",
+        "age": 29,
+        "ovr": 65,
+        "fmPos": "D C, ST"
+      },
+      {
+        "name": "Maxime Soulas",
+        "role": "CB",
+        "age": 27,
+        "ovr": 65,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Daníel Leó Grétarsson",
+        "role": "CB",
+        "age": 30,
+        "ovr": 65,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Andreas Oggesen",
+        "role": "CDM",
+        "age": 32,
+        "ovr": 64,
+        "fmPos": "D/WB R, DM"
+      },
+      {
+        "name": "Rúnar Þór Sigurgeirsson",
+        "role": "CB",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "Defenders"
+      },
+      {
+        "name": "Ebube Duru",
+        "role": "CM",
+        "age": 26,
+        "ovr": 64,
+        "fmPos": "D/M L"
+      },
+      {
+        "name": "Tobias Klysner",
+        "role": "CAM",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "D R, AM RL"
+      },
+      {
+        "name": "Simon Wæver",
+        "role": "RB",
+        "age": 30,
+        "ovr": 63,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Mathias Olesen",
+        "role": "CM",
+        "age": 25,
+        "ovr": 63,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Rasmus Vinderslev",
+        "role": "CM",
+        "age": 28,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Mohamed Cherif Haïdara",
+        "role": "CM",
+        "age": 20,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Sefer Emini",
+        "role": "CM",
+        "age": 26,
+        "ovr": 62,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Anders Hoeg",
+        "role": "CM",
+        "age": 20,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Lasse Mandal",
+        "role": "CM",
+        "age": 19,
+        "ovr": 61,
+        "fmPos": "Midfielders"
+      },
+      {
+        "name": "Matthew Hoppe",
+        "role": "ST",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Alexander Lyng",
+        "role": "ST",
+        "age": 21,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Lirim Qamili",
+        "role": "ST",
+        "age": 28,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Olti Hyseni",
+        "role": "ST",
+        "age": 19,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Ismaïl Seydi",
+        "role": "ST",
+        "age": 25,
+        "ovr": 57,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Anders Bergholt",
+        "role": "ST",
+        "age": 20,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "David Boison Frimpong",
+        "role": "ST",
+        "age": 19,
+        "ovr": 56,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Albert Rrahmani",
+        "role": "ST",
+        "age": 19,
+        "ovr": 55,
+        "fmPos": "Forwards"
+      }
+    ],
+    "frd": [
+      {
+        "name": "Valdemar Birksø",
+        "role": "GK",
+        "age": 25,
+        "ovr": 61,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Andreas Gülstorff",
+        "role": "GK",
+        "age": 23,
+        "ovr": 61,
+        "fmPos": "GK"
+      },
+      {
+        "name": "Svenn Crone",
+        "role": "RB",
+        "age": 31,
+        "ovr": 61,
+        "fmPos": "D/WB R"
+      },
+      {
+        "name": "Jeppe Kudsk",
+        "role": "CB",
+        "age": 23,
+        "ovr": 60,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Frederik Rieper",
+        "role": "CB",
+        "age": 27,
+        "ovr": 60,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Anders Dahl",
+        "role": "CM",
+        "age": 24,
+        "ovr": 60,
+        "fmPos": "D/WB R, M C"
+      },
+      {
+        "name": "Jakob Jessen",
+        "role": "CDM",
+        "age": 22,
+        "ovr": 59,
+        "fmPos": "D/WB L, DM"
+      },
+      {
+        "name": "Adam Andersen",
+        "role": "CB",
+        "age": 21,
+        "ovr": 59,
+        "fmPos": "D RC"
+      },
+      {
+        "name": "Malthe Ladefoged",
+        "role": "CB",
+        "age": 20,
+        "ovr": 59,
+        "fmPos": "D C"
+      },
+      {
+        "name": "Oliver Vest",
+        "role": "CB",
+        "age": 19,
+        "ovr": 58,
+        "fmPos": "D LC"
+      },
+      {
+        "name": "Andreas Pyndt",
+        "role": "CDM",
+        "age": 25,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Felix Winther",
+        "role": "CDM",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "William Madsen",
+        "role": "CDM",
+        "age": 24,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Daniel Haarbo",
+        "role": "CDM",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "DM"
+      },
+      {
+        "name": "Anes Smailagić",
+        "role": "CM",
+        "age": 19,
+        "ovr": 58,
+        "fmPos": "M C"
+      },
+      {
+        "name": "Agon Muçolli",
+        "role": "ST",
+        "age": 27,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Emilio Simonsen",
+        "role": "ST",
+        "age": 26,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Eskild Dall",
+        "role": "ST",
+        "age": 23,
+        "ovr": 58,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Patrick Egelund",
+        "role": "ST",
+        "age": 25,
+        "ovr": 53,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Elias Hansborg-Sørensen",
+        "role": "ST",
+        "age": 21,
+        "ovr": 53,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Nemo Thomsen",
+        "role": "ST",
+        "age": 22,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      },
+      {
+        "name": "Suheyb Yarow",
+        "role": "ST",
+        "age": 28,
+        "ovr": 52,
+        "fmPos": "Forwards"
+      }
+    ]
+  }
+}

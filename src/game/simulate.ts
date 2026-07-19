@@ -1,18 +1,33 @@
 import type { Club, Fixture, GameSave, InboxMessage, MatchResult, Player, TableRow, Tactics } from './types'
 import { applyMatchFatigue, simulateFixture } from './matchEngine'
+import { applyHalfTimeTactics, type HalfTimeAdjustments, type HalfTimeSub } from './match/halfTime'
+import { estimateAttendance } from './match/crowdPressure'
+import type { TouchlineShout } from './match/touchlineShouts'
+import { MAX_MATCH_SUBS } from './match/knockout'
+import { aiSolveGame } from './match/aiSolveGame'
+import { ensureClubMatchdaySquad, MATCH_BENCH_SIZE } from './match/matchdaySquad'
 import { autoPickTactics } from './seed'
-import { applyMatchToFans, ensureFans, processFanPolitics } from './fans'
+import { getWorldCoach, instructionsFromCoach } from './worldCoaches'
+import { applyMatchToFans, applyFanHatredBothSides, ensureFans, processFanPolitics, seedClubHatedTeams, fanTicketMultiplier } from './fans'
 import { applyMatchToBoard, processBoardPolitics } from './board'
 import { applyMatchToOwner, ensureOwner } from './owner'
 import { processStadiumPresence } from './clubAtmosphere'
 import { scanTakeoverMarket } from './takeover'
 import { enterUnemployment, refreshJobMarket } from './jobs'
+import {
+  applyManagerMatchProgress,
+  tickClubQuests,
+} from './managerProgress'
+import { maybeQueueCalendarGap } from './seasonCalendar'
 import { processFacilities, commercialGateBonus, trainingFacilityBonus } from './facilities'
 import { tickSocialAfterMatchday } from './social'
 import { transferWindowKind } from './transferWindow'
+import { winterWindowRange } from '@/data/world/leagueSize'
+import { maybeQueueInternationalBreak } from './internationalBreaks'
 import { tickWorldPulse } from './worldPulse'
 import { applyTrainingWeek, updatePlayingTimeMorale } from './training'
-import { tickPlayerInjury } from './medical'
+import { tickContractedPlayingTime } from './transferExtras'
+import { applyInjury, tickPlayerInjury } from './medical'
 import {
   tickIllness,
   rollSquadIllnesses,
@@ -33,13 +48,31 @@ import {
   pushNews,
 } from './media'
 import { createPressConference } from './pressConference'
+import { maybeCreatePlayerInterview } from './playerInterview'
+import { rollClubWorldEvents } from './clubEvents'
 import { maybeAiRomanoPlants } from './romanoPlant'
+import { processMatchdayAwards, finalizeSeasonAwards } from './awards'
 import { resolveFormWatches, weeklyScoutPassive } from './scouting'
 import { generateStadiumVisits } from './stadiumVisits'
 import { generatePlayerTalkRequests, processAiPlayerTalks, resolveTalkPromises } from './playerTalks'
-import { processLoansMatchday } from './loans'
-import { applyMatchdayIncome, awardCompetitionPrize } from './clubIncome'
+import { processLoansMatchday, tickLoanAppearances } from './loans'
+import {
+  applyMatchdayIncome,
+  awardCompetitionPrize,
+  awardProgressPrize,
+  finalRunnerUpClubId,
+  newlyQualifiedClubIds,
+} from './clubIncome'
+import { applyFfpBreachSanction } from './financeFfp'
+import {
+  ensureInsolvency,
+  tickInsolvency,
+} from './insolvency'
+import { estimatedValue, sellPlayerToAi } from './transfer'
+import { formatMoney } from '@/lib/format'
 import { processTransferDeskMatchday } from './transferDesk'
+import { tickWantAwayDrama } from './wantAway'
+import { rivalIdsForClub, seedLeagueRivalries, tickEmergentRivalries } from './rivalries'
 import { tickEndOfSeasonClauses } from './transferClauses'
 import type { MediaItem } from './types'
 import { maybePromoteYouth } from './youth'
@@ -49,6 +82,24 @@ import {
   advanceTrophyAfterMatchday,
 } from './extraCups'
 import { advanceUclAfterMatchday, advanceUelAfterMatchday, advanceUeclAfterMatchday } from './ucl'
+import {
+  advanceAclAfterMatchday,
+  advanceAclTwoAfterMatchday,
+  advanceAseanCupAfterMatchday,
+  createAclState,
+  createAclTwoState,
+  createAseanCupState,
+} from './asiaAccess'
+import {
+  advanceCwcAfterMatchday,
+  createCwcState,
+  ensureCwcAccess,
+  recordCwcChampion,
+} from './clubWorldCup'
+import {
+  createSuperCupState,
+  crownSuperCupFromFixtures,
+} from './superCup'
 import { snapshotEuroRanks } from './europeAccess'
 import { assignRefereesToFixtures, getReferee } from './referees'
 import { fixtureWeatherSeed, pickWeather, weatherMatchModifiers } from './weather'
@@ -122,9 +173,31 @@ export interface PreparedMatchday {
   results: Array<{ fixture: Fixture; result: MatchResult }>
   humanResult: MatchResult | null
   humanFixture: Fixture | null
+  /** ขอเปลี่ยนตัวล่วงหน้า (เลือกได้ตลอด) — ลงสนามเมื่อบอลออก */
+  pendingHumanSubs?: HalfTimeSub[]
+  /** คิวที่ขอไว้ในครึ่งปัจจุบัน (สะสมก่อนซิมใหม่ / แสดงใน UI) */
+  phaseQueuedSubs?: HalfTimeSub[]
+  /** นาทีที่เริ่มอนุญาตให้ลงตัวจากคิว (ขอกลางเกม) */
+  pendingSubsEarliestMinute?: number
+  /** ตะโกนกลางเกม — ใช้ตอนซิมครึ่งหลัง / พักครึ่ง */
+  pendingLiveShouts?: TouchlineShout[]
+  /** Live match: paused at HT until continueAfterHalfTime */
+  halfTime?: {
+    midState: import('./match/halfTime').MatchMidState
+    resolved: boolean
+  } | null
+  /** Live: paused ~70' for mid-match subs */
+  matchWindow?: {
+    midState: import('./match/halfTime').MatchMidState
+    resolved: boolean
+  } | null
 }
 
-export function prepareMatchday(save: GameSave, matchday: number): PreparedMatchday | null {
+export function prepareMatchday(
+  save: GameSave,
+  matchday: number,
+  opts?: { pauseAtHalfTime?: boolean },
+): PreparedMatchday | null {
   let fixtures = assignRefereesToFixtures(save.fixtures)
   fixtures = fixtures.map((f) => {
     if (f.matchday !== matchday || f.played || f.weather) return f
@@ -141,13 +214,26 @@ export function prepareMatchday(save: GameSave, matchday: number): PreparedMatch
   for (const club of save.clubs) {
     if (club.controlledBy === 'ai') {
       const current = tacticsByClub[club.id]
-      const picked = autoPickTactics(club.id, players, current.formation, current.formationOop)
+      const coach = getWorldCoach(club.coachId)
+      const formation = coach?.preferredFormation ?? current.formation
+      const oop = coach?.formationOop ?? current.formationOop
+      const picked = autoPickTactics(club.id, players, formation, oop)
       tacticsByClub[club.id] = {
         ...picked,
-        instructions: current.instructions,
+        instructions: coach ? instructionsFromCoach(coach) : current.instructions,
         familiarity: current.familiarity,
         setPieces: current.setPieces,
       }
+    } else {
+      // มนุษย์: เติมม้านั่งสำรองให้ครบก่อนเตะ
+      tacticsByClub[club.id] = ensureClubMatchdaySquad(save, club.id, tacticsByClub[club.id]!)
+    }
+  }
+  // AI ม้านั่งก็ต้องครบ (autoPick มีแล้ว แต่กันเคสว่าง)
+  for (const club of save.clubs) {
+    const t = tacticsByClub[club.id]!
+    if (t.bench.length < MATCH_BENCH_SIZE) {
+      tacticsByClub[club.id] = ensureClubMatchdaySquad(save, club.id, t)
     }
   }
 
@@ -158,25 +244,60 @@ export function prepareMatchday(save: GameSave, matchday: number): PreparedMatch
   const results: PreparedMatchday['results'] = []
   let humanResult: MatchResult | null = null
   let humanFixture: Fixture | null = null
+  let halfTime: PreparedMatchday['halfTime'] = null
 
   for (const fixture of dayFixtures) {
+    const involvesHuman =
+      fixture.homeClubId === save.humanClubId || fixture.awayClubId === save.humanClubId
+    const pauseHt = !!(opts?.pauseAtHalfTime && involvesHuman)
+    const homeClub = save.clubs.find((c) => c.id === fixture.homeClubId)!
+    const isHumanHome = homeClub.id === save.humanClubId
+    const fanMult =
+      isHumanHome && save.fans ? fanTicketMultiplier(save.fans, matchday) : 1
+    const attendance =
+      fixture.attendance ??
+      estimateAttendance(homeClub.stadiumCapacity, homeClub.reputation, fanMult)
+    const fxWithCrowd: Fixture = { ...fixture, attendance }
     const result = simulateFixture(
-      fixture,
+      fxWithCrowd,
       save.clubs,
       players,
       tacticsByClub,
       matchday * 17,
-      fixture.homeClubId === save.humanClubId || fixture.awayClubId === save.humanClubId
-        ? dynBonus
-        : 1,
+      involvesHuman ? dynBonus : 1,
       getReferee(fixture.refereeId),
+      save.managerProfile
+        ? {
+            humanClubId: save.humanClubId,
+            managerName: save.managerName,
+            manager: {
+              style: save.managerProfile.style,
+              power: save.managerProfile.power,
+              attackingIQ: save.managerProfile.attackingIQ,
+              defendingIQ: save.managerProfile.defendingIQ,
+              strongVs: save.managerProfile.strongVs,
+              weakVs: save.managerProfile.weakVs,
+            },
+          }
+        : undefined,
+      {
+        teamTalk: involvesHuman ? (save.preMatch?.talkKind ?? null) : null,
+        pendingShouts: involvesHuman ? save.preMatch?.touchlineShouts : undefined,
+        fidelity: involvesHuman ? 'human' : 'ai',
+        phase: pauseHt ? 'firstHalf' : 'full',
+        crowd: {
+          attendance,
+          fans: isHumanHome ? save.fans : undefined,
+        },
+      },
     )
-    results.push({ fixture, result })
-    const involvesHuman =
-      fixture.homeClubId === save.humanClubId || fixture.awayClubId === save.humanClubId
+    results.push({ fixture: fxWithCrowd, result })
     if (involvesHuman) {
       humanResult = result
-      humanFixture = fixture
+      humanFixture = fxWithCrowd
+      if (pauseHt && result.midState) {
+        halfTime = { midState: result.midState, resolved: false }
+      }
     }
   }
 
@@ -187,7 +308,415 @@ export function prepareMatchday(save: GameSave, matchday: number): PreparedMatch
     results,
     humanResult,
     humanFixture,
+    halfTime,
+    matchWindow: null,
   }
+}
+
+/** After HT UI — apply adjustments and simulate to ~70' window (or full 2H if no live window). */
+/** รวมคิวเปลี่ยนตัว — ไม่ซ้ำ out/in · จำกัดโควต้า */
+function mergeSubs(
+  a: HalfTimeSub[] | undefined,
+  b: HalfTimeSub[] | undefined,
+  max: number,
+): HalfTimeSub[] {
+  const out: HalfTimeSub[] = []
+  const used = new Set<string>()
+  for (const s of [...(a ?? []), ...(b ?? [])]) {
+    if (out.length >= max) break
+    if (used.has(s.outId) || used.has(s.inId)) continue
+    used.add(s.outId)
+    used.add(s.inId)
+    out.push(s)
+  }
+  return out
+}
+
+function syncHumanTacticsFromMid(
+  tacticsByClub: Record<string, Tactics>,
+  mid: import('./match/halfTime').MatchMidState,
+  fx: Fixture,
+  humanClubId: string,
+): Record<string, Tactics> {
+  const humanIsHome = fx.homeClubId === humanClubId
+  const newXi = humanIsHome ? mid.homeXi : mid.awayXi
+  const tac = tacticsByClub[humanClubId]
+  if (!tac || !newXi?.length) return tacticsByClub
+  const pool = [...new Set([...tac.startingXi, ...tac.bench, ...newXi])]
+  const on = new Set(newXi)
+  return {
+    ...tacticsByClub,
+    [humanClubId]: {
+      ...tac,
+      startingXi: [...newXi],
+      bench: pool.filter((id) => !on.has(id)),
+    },
+  }
+}
+
+export function continueAfterHalfTime(
+  save: GameSave,
+  prepared: PreparedMatchday,
+  adj: HalfTimeAdjustments = {},
+): PreparedMatchday {
+  if (!prepared.halfTime || prepared.halfTime.resolved || !prepared.humanFixture || !prepared.humanResult) {
+    return prepared
+  }
+  const fx = prepared.humanFixture
+  const mid = prepared.halfTime.midState
+  const sentOff = new Set(mid.sentOffIds)
+  const humanIsHome = fx.homeClubId === save.humanClubId
+  const humanClubId = save.humanClubId
+  const remaining = Math.max(
+    0,
+    (mid.maxSubs ?? MAX_MATCH_SUBS) -
+      (humanIsHome ? mid.homeSubsUsed ?? mid.subsUsed ?? 0 : mid.awaySubsUsed ?? mid.subsUsed ?? 0),
+  )
+
+  // รวมคิวที่เลือกล่วงหน้า + ที่พักครึ่ง — แผน/กดทันที · ตัวสำรองรอบอลออก
+  const queuedSubs = mergeSubs(
+    mergeSubs(prepared.pendingHumanSubs, prepared.phaseQueuedSubs, remaining),
+    adj.subs,
+    remaining,
+  )
+  let tacticsByClub = { ...prepared.tacticsByClub }
+  const applied = applyHalfTimeTactics(
+    tacticsByClub[humanClubId]!,
+    { ...adj, subs: [] },
+    sentOff,
+    0,
+  )
+  tacticsByClub[humanClubId] = applied.tactics
+
+  const humanIsHomeSide = humanIsHome
+  let homeSubsUsed = mid.homeSubsUsed ?? (humanIsHomeSide ? mid.subsUsed ?? 0 : 0)
+  let awaySubsUsed = mid.awaySubsUsed ?? (humanIsHomeSide ? 0 : mid.subsUsed ?? 0)
+
+  // AI แก้เกมเต็มรูปแบบที่พักครึ่ง (แผน+ตัว — พักครึ่งบอลออกอยู่แล้ว)
+  const aiClubId = humanIsHome ? fx.awayClubId : fx.homeClubId
+  const aiSide: 'home' | 'away' = humanIsHome ? 'away' : 'home'
+  const aiTac = tacticsByClub[aiClubId]!
+  const aiGoals = humanIsHome ? mid.awayGoals : mid.homeGoals
+  const humanGoals = humanIsHome ? mid.homeGoals : mid.awayGoals
+  const aiUsed = aiSide === 'home' ? homeSubsUsed : awaySubsUsed
+  const aiSolved = aiSolveGame({
+    tactics: aiTac,
+    players: save.players,
+    conditions: mid.conditions,
+    ourGoals: aiGoals,
+    theirGoals: humanGoals,
+    minute: 46,
+    remainingSubs: MAX_MATCH_SUBS - aiUsed,
+    coach: getWorldCoach(save.clubs.find((c) => c.id === aiClubId)?.coachId),
+    rng: () => Math.random(),
+  })
+  tacticsByClub[aiClubId] = aiSolved.tactics
+  if (aiSide === 'home') homeSubsUsed += aiSolved.subs.length
+  else awaySubsUsed += aiSolved.subs.length
+
+  for (const s of aiSolved.subs) {
+    const outN = save.players.find((p) => p.id === s.outId)?.name ?? s.outId
+    const inN = save.players.find((p) => p.id === s.inId)?.name ?? s.inId
+    mid.events.push({
+      id: `ev-${fx.id}-aisub-${s.inId}`,
+      minute: 46,
+      kind: 'substitution',
+      text: `AI พักครึ่ง · ${outN} ↔ ${inN}`,
+      spot: { x: 50, y: 50 },
+      homeGoals: mid.homeGoals,
+      awayGoals: mid.awayGoals,
+      clubId: aiClubId,
+      playerId: s.inId,
+      playerName: inN,
+    })
+  }
+  if (aiSolved.shout) {
+    mid.events.push({
+      id: `ev-${fx.id}-aisolve-ht`,
+      minute: 46,
+      kind: 'commentary',
+      text: aiSolved.shout,
+      spot: { x: 50, y: 50 },
+      homeGoals: mid.homeGoals,
+      awayGoals: mid.awayGoals,
+      clubId: aiClubId,
+    })
+  }
+  if (queuedSubs.length > 0) {
+    mid.events.push({
+      id: `ev-${fx.id}-ht-queue`,
+      minute: 45,
+      kind: 'commentary',
+      text: `ขอเปลี่ยนตัว ${queuedSubs.length} คน — ลงสนามเมื่อบอลออก`,
+      spot: { x: 50, y: 50 },
+      homeGoals: mid.homeGoals,
+      awayGoals: mid.awayGoals,
+      clubId: humanClubId,
+    })
+  }
+
+  const dynBonus =
+    (save.humanClubId && save.dynamics ? dynamicsMatchBonus(save.dynamics) : 1) *
+    (adj.teamTalk
+      ? ({ calm: 1.02, inspire: 1.05, focus_weakness: 1.06, trust_xi: 1.03 }[adj.teamTalk] ?? 1)
+      : 1)
+
+  const resume: typeof mid = {
+    ...mid,
+    homeSubsUsed,
+    awaySubsUsed,
+    subsUsed: humanIsHomeSide ? homeSubsUsed : awaySubsUsed,
+    maxSubs: mid.maxSubs ?? MAX_MATCH_SUBS,
+    clockMinute: mid.clockMinute ?? 45,
+  }
+
+  const second = simulateFixture(
+    fx,
+    save.clubs,
+    save.players,
+    tacticsByClub,
+    prepared.matchday * 17 + 91,
+    dynBonus,
+    getReferee(fx.refereeId),
+    save.managerProfile
+      ? {
+          humanClubId: save.humanClubId,
+          managerName: save.managerName,
+          manager: {
+            style: save.managerProfile.style,
+            power: save.managerProfile.power,
+            attackingIQ: save.managerProfile.attackingIQ,
+            defendingIQ: save.managerProfile.defendingIQ,
+            strongVs: save.managerProfile.strongVs,
+            weakVs: save.managerProfile.weakVs,
+          },
+        }
+      : undefined,
+    {
+      teamTalk: adj.teamTalk ?? null,
+      pendingShouts: adj.shouts?.length
+        ? adj.shouts
+        : prepared.pendingLiveShouts,
+      fidelity: 'human',
+      phase: 'secondHalf',
+      resume,
+      pendingHumanSubs: queuedSubs,
+      crowd: {
+        attendance: fx.attendance,
+        fans: fx.homeClubId === save.humanClubId ? save.fans : undefined,
+      },
+    },
+  )
+
+  const results = prepared.results.map((r) =>
+    r.fixture.id === fx.id ? { fixture: fx, result: second } : r,
+  )
+
+  let tacticsOut = tacticsByClub
+  if (second.midState) {
+    tacticsOut = syncHumanTacticsFromMid(tacticsByClub, second.midState, fx, humanClubId)
+  } else {
+    // ครึ่งหลังจบแล้ว — sync จาก XI ใน events ล่าสุดผ่าน homeXi ใน breakdown ไม่มี mid
+    // ใช้ phaseQueued ที่ลงไปแล้วผ่าน pending ในเอนจิน → อัปเดตจาก queuedSubs
+    if (queuedSubs.length > 0) {
+      const applied = applyHalfTimeTactics(
+        tacticsByClub[humanClubId]!,
+        { subs: queuedSubs },
+        sentOff,
+        queuedSubs.length,
+      )
+      tacticsOut = { ...tacticsByClub, [humanClubId]: applied.tactics }
+    }
+  }
+
+  return {
+    ...prepared,
+    tacticsByClub: tacticsOut,
+    results,
+    humanResult: second,
+    pendingHumanSubs: [],
+    phaseQueuedSubs: [],
+    pendingSubsEarliestMinute: undefined,
+    pendingLiveShouts: undefined,
+    halfTime: { midState: resume, resolved: true },
+    matchWindow: null,
+  }
+}
+
+/**
+ * ขอเปลี่ยนตัวระหว่างแมตช์สด — เลือกได้ตลอด · เกมไม่หยุด · ลงสนามเมื่อบอลออก
+ */
+export function queueHumanSubLive(
+  save: GameSave,
+  prepared: PreparedMatchday,
+  sub: HalfTimeSub,
+  atMinute: number,
+): PreparedMatchday {
+  if (!prepared.humanFixture) return prepared
+  const humanIsHome = prepared.humanFixture.homeClubId === save.humanClubId
+  const mid = prepared.halfTime?.midState
+  const used = mid
+    ? humanIsHome
+      ? mid.homeSubsUsed ?? mid.subsUsed ?? 0
+      : mid.awaySubsUsed ?? mid.subsUsed ?? 0
+    : 0
+  const maxSubs = mid?.maxSubs ?? MAX_MATCH_SUBS
+  const existing = prepared.phaseQueuedSubs ?? prepared.pendingHumanSubs ?? []
+  const remaining = Math.max(0, maxSubs - used)
+  if (existing.length >= remaining) return prepared
+
+  const tac = prepared.tacticsByClub[save.humanClubId]
+  if (!tac) return prepared
+  if (!tac.startingXi.includes(sub.outId) || !tac.bench.includes(sub.inId)) return prepared
+  if (mid?.sentOffIds.includes(sub.outId) || mid?.sentOffIds.includes(sub.inId)) return prepared
+
+  const phaseQueued = mergeSubs(existing, [sub], remaining)
+  const withQueue: PreparedMatchday = {
+    ...prepared,
+    pendingHumanSubs: phaseQueued,
+    phaseQueuedSubs: phaseQueued,
+    pendingSubsEarliestMinute: Math.max(prepared.pendingSubsEarliestMinute ?? 0, atMinute),
+  }
+
+  // ครึ่งแรก — เก็บคิว ใช้ตอนพักครึ่ง
+  if (!prepared.halfTime?.resolved) return withQueue
+
+  // ครึ่งหลังกำลังเล่น — ซิมใหม่จากพักครึ่ง (เกมใน UI ไม่หยุดแผง)
+  return resimSecondHalfWithPending(save, withQueue)
+}
+
+export function removeHumanSubLive(
+  save: GameSave,
+  prepared: PreparedMatchday,
+  outId: string,
+): PreparedMatchday {
+  const pending = (prepared.phaseQueuedSubs ?? prepared.pendingHumanSubs ?? []).filter(
+    (s) => s.outId !== outId,
+  )
+  const next: PreparedMatchday = {
+    ...prepared,
+    pendingHumanSubs: pending,
+    phaseQueuedSubs: pending,
+    pendingSubsEarliestMinute: pending.length ? prepared.pendingSubsEarliestMinute : undefined,
+  }
+  if (!prepared.halfTime?.resolved) return next
+  return resimSecondHalfWithPending(save, next)
+}
+
+function humanSimCtx(save: GameSave) {
+  return save.managerProfile
+    ? {
+        humanClubId: save.humanClubId,
+        managerName: save.managerName,
+        manager: {
+          style: save.managerProfile.style,
+          power: save.managerProfile.power,
+          attackingIQ: save.managerProfile.attackingIQ,
+          defendingIQ: save.managerProfile.defendingIQ,
+          strongVs: save.managerProfile.strongVs,
+          weakVs: save.managerProfile.weakVs,
+        },
+      }
+    : undefined
+}
+
+function resimSecondHalfWithPending(save: GameSave, prepared: PreparedMatchday): PreparedMatchday {
+  if (!prepared.halfTime?.resolved || !prepared.humanFixture) return prepared
+  const fx = prepared.humanFixture
+  const mid = prepared.halfTime.midState
+  const queued = prepared.phaseQueuedSubs ?? prepared.pendingHumanSubs ?? []
+  const tacticsByClub = syncHumanTacticsFromMid(
+    prepared.tacticsByClub,
+    mid,
+    fx,
+    save.humanClubId,
+  )
+  const second = simulateFixture(
+    fx,
+    save.clubs,
+    save.players,
+    tacticsByClub,
+    prepared.matchday * 17 + 91,
+    save.humanClubId && save.dynamics ? dynamicsMatchBonus(save.dynamics) : 1,
+    getReferee(fx.refereeId),
+    humanSimCtx(save),
+    {
+      fidelity: 'human',
+      phase: 'secondHalf',
+      resume: mid,
+      pendingHumanSubs: queued,
+      pendingSubsEarliestMinute: prepared.pendingSubsEarliestMinute,
+      pendingShouts: prepared.pendingLiveShouts,
+      crowd: {
+        attendance: fx.attendance,
+        fans: fx.homeClubId === save.humanClubId ? save.fans : undefined,
+      },
+    },
+  )
+  const results = prepared.results.map((r) =>
+    r.fixture.id === fx.id ? { fixture: fx, result: second } : r,
+  )
+  let tacticsOut = tacticsByClub
+  if (queued.length > 0) {
+    const applied = applyHalfTimeTactics(
+      tacticsByClub[save.humanClubId]!,
+      { subs: queued },
+      new Set(mid.sentOffIds),
+      queued.length,
+    )
+    tacticsOut = { ...tacticsByClub, [save.humanClubId]: applied.tactics }
+  }
+  return {
+    ...prepared,
+    tacticsByClub: tacticsOut,
+    results,
+    humanResult: second,
+    pendingHumanSubs: queued,
+    phaseQueuedSubs: queued,
+    pendingLiveShouts: undefined,
+    matchWindow: null,
+  }
+}
+
+/**
+ * แก้แผน / ตะโกนกลางเกม — ไม่หยุดเกม · ครึ่งหลังซิมใหม่จากพักครึ่ง
+ */
+export function applyLiveMatchAdjustments(
+  save: GameSave,
+  prepared: PreparedMatchday,
+  adj: HalfTimeAdjustments,
+  atMinute: number,
+): PreparedMatchday {
+  if (!prepared.humanFixture) return prepared
+  const humanClubId = save.humanClubId
+  const sentOff = new Set(prepared.halfTime?.midState?.sentOffIds ?? [])
+  let tacticsByClub = { ...prepared.tacticsByClub }
+  const applied = applyHalfTimeTactics(
+    tacticsByClub[humanClubId]!,
+    { ...adj, subs: [] },
+    sentOff,
+    0,
+  )
+  tacticsByClub[humanClubId] = applied.tactics
+
+  let next: PreparedMatchday = {
+    ...prepared,
+    tacticsByClub,
+    pendingLiveShouts: adj.shouts?.length
+      ? adj.shouts.slice(-3)
+      : prepared.pendingLiveShouts,
+  }
+
+  if (adj.subs?.length) {
+    for (const s of adj.subs) {
+      next = queueHumanSubLive(save, next, s, atMinute)
+    }
+  }
+
+  // ครึ่งแรก — เก็บแผน/ตะโกน ใช้ตอนพักครึ่ง
+  if (!prepared.halfTime?.resolved) return next
+
+  return resimSecondHalfWithPending(save, next)
 }
 
 export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday): GameSave {
@@ -206,8 +735,19 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   let ucl = save.ucl
   let uel = save.uel ?? { name: 'UEFA Europa League', championClubId: null, eliminated: [] }
   let uecl = save.uecl ?? { name: 'UEFA Conference League', championClubId: null, eliminated: [] }
+  let acl = save.acl ?? createAclState()
+  let aclTwo = save.aclTwo ?? createAclTwoState()
+  let aseanCup = save.aseanCup ?? createAseanCupState()
+  let cwc = save.cwc ?? createCwcState()
+  let cwcAccess = ensureCwcAccess(save)
+  let superCup = save.superCup ?? createSuperCupState(save.leagueId || 'eng')
   let pressConference = save.pressConference ?? null
+  let playerInterview = save.playerInterview ?? null
   let managerReputation = save.managerReputation ?? 50
+  let managerProgress = save.managerProgress
+  let managerProfile = save.managerProfile
+  let clubQuests = save.clubQuests
+  let humanMatchHint: { won: boolean; competition: string } | undefined
   let clubFinance = ensureClubFinance(save)
   const inbox: InboxMessage[] = [...save.inbox]
   let tacticsByClub = { ...prepared.tacticsByClub }
@@ -224,11 +764,11 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     return b.gf - b.ga - (a.gf - a.ga)
   })
   const humanRank = sorted.findIndex((r) => r.clubId === save.humanClubId)
-  const rivalIds = new Set(
-    sorted
-      .filter((_, i) => humanRank >= 0 && Math.abs(i - humanRank) <= 2 && i !== humanRank)
-      .map((r) => r.clubId),
-  )
+  let workingSave: GameSave = save.rivalries?.length
+    ? save
+    : seedLeagueRivalries(save)
+  const rivalIds = rivalIdsForClub(workingSave, save.humanClubId, sorted)
+  void humanRank
 
   for (const { fixture, result } of prepared.results) {
     playedClubs.add(fixture.homeClubId)
@@ -242,6 +782,9 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
             awayGoals: result.awayGoals,
             refereeId: fixture.refereeId ?? f.refereeId,
             weather: fixture.weather ?? f.weather,
+            attendance: result.attendance ?? fixture.attendance ?? f.attendance,
+            penaltiesHome: result.penalties?.home,
+            penaltiesAway: result.penalties?.away,
           }
         : f,
     )
@@ -254,6 +797,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     const home = clubs.find((c) => c.id === fixture.homeClubId)!
     const away = clubs.find((c) => c.id === fixture.awayClubId)!
     const isHumanHome = home.id === save.humanClubId
+    const gateAttendance = result.attendance ?? fixture.attendance
     const receipt = calcGateReceipt(
       home,
       result.homeGoals,
@@ -261,6 +805,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       isHumanHome ? fans : undefined,
       prepared.matchday,
       isHumanHome ? commercialGateBonus(save) : 1,
+      gateAttendance,
     )
     clubs = clubs.map((c) =>
       c.id === home.id ? applyGateReceiptToClub(c, receipt) : c,
@@ -271,6 +816,18 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     const homeIncome = receipt.total
 
     const injuryMult = weatherMatchModifiers(fixture.weather ?? 'clear').injury
+    // บาดเจ็บ Burst Zone ระหว่างเกม — ลงทะเบียนก่อน fatigue ปกติ
+    for (const inj of result.inMatchInjuries ?? []) {
+      players = players.map((p) => {
+        if (p.id !== inj.playerId || p.injuryDays > 0) return p
+        const next = applyInjury(p, 'match')
+        return {
+          ...next,
+          injuryDays: inj.days,
+          injuryType: inj.type,
+        }
+      })
+    }
     players = applyMatchFatigue(players, tacticsByClub[fixture.homeClubId], true, injuryMult)
     players = applyMatchFatigue(players, tacticsByClub[fixture.awayClubId], true, injuryMult)
     tacticsByClub[fixture.homeClubId] = bumpFamiliarity(tacticsByClub[fixture.homeClubId], true)
@@ -298,6 +855,40 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       }
     }
 
+    // แฟนเกลียดตอนเจอกัน — ทุกคู่ (ไม่ใช่แค่ทีมผู้เล่น)
+    {
+      const homeXi = tacticsByClub[fixture.homeClubId]?.startingXi ?? []
+      const awayXi = tacticsByClub[fixture.awayClubId]?.startingXi ?? []
+      const hate = applyFanHatredBothSides(
+        {
+          ...save,
+          clubs,
+          players,
+          fans,
+          inbox: [...inbox],
+          currentDate: fixture.date,
+          matchday: prepared.matchday,
+          rivalries: workingSave.rivalries ?? save.rivalries,
+        },
+        fixture.homeClubId,
+        fixture.awayClubId,
+        homeXi,
+        awayXi,
+        result.homeGoals,
+        result.awayGoals,
+      )
+      clubs = hate.save.clubs
+      fans = hate.save.fans
+      players = hate.save.players
+      const seen = new Set(inbox.map((m) => m.id))
+      for (const msg of hate.save.inbox) {
+        if (!seen.has(msg.id)) {
+          inbox.unshift(msg)
+          seen.add(msg.id)
+        }
+      }
+    }
+
     const involvesHuman =
       fixture.homeClubId === save.humanClubId || fixture.awayClubId === save.humanClubId
     if (involvesHuman) {
@@ -308,6 +899,19 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       const themGoals = usHome ? result.awayGoals : result.homeGoals
       const outcome = usGoals > themGoals ? 'ชนะ' : usGoals === themGoals ? 'เสมอ' : 'แพ้'
       fans = applyMatchToFans(fans, usGoals, themGoals, usHome)
+      clubs = clubs.map((c) =>
+        c.id === save.humanClubId
+          ? {
+              ...c,
+              clubFans: {
+                mood: fans.mood,
+                lastEvent: fans.lastEvent || c.clubFans?.lastEvent || '',
+                hatedPlayers: fans.hatedPlayers ?? c.clubFans?.hatedPlayers ?? [],
+                hatedTeams: fans.hatedTeams ?? c.clubFans?.hatedTeams ?? [],
+              },
+            }
+          : c,
+      )
 
       const midSave: GameSave = {
         ...save,
@@ -345,17 +949,73 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
         inbox.length = 0
         inbox.push(...atm.inbox)
       }
+
       newsBatch.push(newsAfterMatch({ ...midSave, board }, usGoals, themGoals, opp.name))
+      // second outlet angle ~50%
+      if (Math.random() < 0.5) {
+        const alt = newsAfterMatch(
+          { ...midSave, board, matchday: prepared.matchday + 17 },
+          usGoals,
+          themGoals,
+          opp.name,
+        )
+        newsBatch.push({
+          ...alt,
+          body: `มุมมองสำนักที่สอง: ${alt.body}`,
+        })
+      }
       pressConference = createPressConference(
         { ...midSave, board, currentDate: fixture.date },
         usGoals,
         themGoals,
         opp.name,
       )
+      playerInterview = maybeCreatePlayerInterview(
+        { ...midSave, currentDate: fixture.date },
+        result,
+      )
       managerReputation = Math.max(
         0,
         Math.min(100, managerReputation + (usGoals > themGoals ? 2 : usGoals === themGoals ? 0 : -2)),
       )
+
+      // XP / เลเวล / แอตฯ ขึ้นลง ตามผลงาน
+      {
+        const humanClub =
+          clubs.find((c) => c.id === save.humanClubId) ??
+          save.clubs.find((c) => c.id === save.humanClubId)!
+        const progressSave = applyManagerMatchProgress(
+          {
+            ...midSave,
+            managerReputation,
+            managerProgress,
+            managerProfile,
+            board,
+            fans,
+            owner: ownerState,
+            inbox: [...inbox],
+            lastHumanResult: result,
+          },
+          {
+            won: usGoals > themGoals,
+            drawn: usGoals === themGoals,
+            lost: usGoals < themGoals,
+            clubRep: humanClub.reputation,
+            oppRep: opp.reputation,
+            competition: fixture.competition,
+          },
+        )
+        managerReputation = progressSave.managerReputation
+        managerProgress = progressSave.managerProgress
+        managerProfile = progressSave.managerProfile
+        humanMatchHint = {
+          won: usGoals > themGoals,
+          competition: fixture.competition,
+        }
+        for (const m of progressSave.inbox) {
+          if (!inbox.some((x) => x.id === m.id)) inbox.unshift(m)
+        }
+      }
 
       const st = usHome ? result.stats.home : result.stats.away
       const comp =
@@ -367,7 +1027,17 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
               ? `Europa (${fixture.cupRound})`
               : fixture.competition === 'uecl'
                 ? `Conference (${fixture.cupRound})`
-                : 'ลีก'
+                : fixture.competition === 'acl'
+                  ? `ACL Elite (${fixture.cupRound})`
+                  : fixture.competition === 'acl_two'
+                    ? `ACL Two (${fixture.cupRound})`
+                    : fixture.competition === 'asean_cup'
+                      ? `ASEAN (${fixture.cupRound})`
+                      : fixture.competition === 'cwc'
+                        ? `สโมสรโลก (${fixture.cupRound})`
+                        : fixture.competition === 'super_cup'
+                          ? `${save.superCup?.name ?? 'Super Cup'}`
+                          : 'ลีก'
       const gateNote = usHome
         ? ` · ตั๋ว ${receipt.tickets.toLocaleString('th-TH')} + เสื้อ ${receipt.shirts.toLocaleString('th-TH')} ฿ (ผู้ชม ~${receipt.crowd.toLocaleString('th-TH')})`
         : ` · รายได้เจ้าบ้าน ${homeIncome.toLocaleString('th-TH')} ฿`
@@ -456,6 +1126,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       { ...save, clubs, currentDate: prepared.date, clubFinance },
       'cup',
       cup.championClubId,
+      finalRunnerUpClubId(fixtures, 'cup', cup.championClubId),
     )
     clubs = cupPrize.clubs
     clubFinance = cupPrize.clubFinance
@@ -477,6 +1148,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       { ...save, clubs, currentDate: prepared.date, clubFinance },
       'league_cup',
       leagueCup.championClubId,
+      finalRunnerUpClubId(fixtures, 'league_cup', leagueCup.championClubId),
     )
     clubs = prize.clubs
     clubFinance = prize.clubFinance
@@ -498,6 +1170,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       { ...save, clubs, currentDate: prepared.date, clubFinance },
       'trophy',
       trophy.championClubId,
+      finalRunnerUpClubId(fixtures, 'trophy', trophy.championClubId),
     )
     clubs = prize.clubs
     clubFinance = prize.clubFinance
@@ -506,6 +1179,15 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   const uclAdv = advanceUclAfterMatchday(fixtures, ucl, prepared.matchday)
   fixtures = uclAdv.fixtures
   ucl = uclAdv.ucl
+  {
+    let prizeSave = { ...save, clubs, fixtures, currentDate: prepared.date, clubFinance }
+    for (const stage of ['qf', 'sf'] as const) {
+      const ids = newlyQualifiedClubIds(save.fixtures, fixtures, 'ucl', stage)
+      if (ids.length) prizeSave = awardProgressPrize(prizeSave, 'ucl', stage, ids)
+    }
+    clubs = prizeSave.clubs
+    clubFinance = prizeSave.clubFinance
+  }
   if (ucl.championClubId && !save.ucl?.championClubId) {
     const champ = clubs.find((c) => c.id === ucl.championClubId)
     inbox.unshift({
@@ -530,6 +1212,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       { ...save, clubs, currentDate: prepared.date, clubFinance },
       'ucl',
       ucl.championClubId,
+      finalRunnerUpClubId(fixtures, 'ucl', ucl.championClubId),
     )
     clubs = uclPrize.clubs
     clubFinance = uclPrize.clubFinance
@@ -538,6 +1221,15 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   const uelAdv = advanceUelAfterMatchday(fixtures, uel, prepared.matchday)
   fixtures = uelAdv.fixtures
   uel = uelAdv.uel
+  {
+    let prizeSave = { ...save, clubs, fixtures, currentDate: prepared.date, clubFinance }
+    for (const stage of ['qf', 'sf'] as const) {
+      const ids = newlyQualifiedClubIds(save.fixtures, fixtures, 'uel', stage)
+      if (ids.length) prizeSave = awardProgressPrize(prizeSave, 'uel', stage, ids)
+    }
+    clubs = prizeSave.clubs
+    clubFinance = prizeSave.clubFinance
+  }
   if (uel.championClubId && !save.uel?.championClubId) {
     const champ = clubs.find((c) => c.id === uel.championClubId)
     inbox.unshift({
@@ -550,11 +1242,28 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     if (uel.championClubId === save.humanClubId) {
       managerReputation = Math.min(100, managerReputation + 5)
     }
+    const uelPrize = awardCompetitionPrize(
+      { ...save, clubs, currentDate: prepared.date, clubFinance },
+      'uel',
+      uel.championClubId,
+      finalRunnerUpClubId(fixtures, 'uel', uel.championClubId),
+    )
+    clubs = uelPrize.clubs
+    clubFinance = uelPrize.clubFinance
   }
 
   const ueclAdv = advanceUeclAfterMatchday(fixtures, uecl, prepared.matchday)
   fixtures = ueclAdv.fixtures
   uecl = ueclAdv.uecl
+  {
+    let prizeSave = { ...save, clubs, fixtures, currentDate: prepared.date, clubFinance }
+    for (const stage of ['qf', 'sf'] as const) {
+      const ids = newlyQualifiedClubIds(save.fixtures, fixtures, 'uecl', stage)
+      if (ids.length) prizeSave = awardProgressPrize(prizeSave, 'uecl', stage, ids)
+    }
+    clubs = prizeSave.clubs
+    clubFinance = prizeSave.clubFinance
+  }
   if (uecl.championClubId && !save.uecl?.championClubId) {
     const champ = clubs.find((c) => c.id === uecl.championClubId)
     inbox.unshift({
@@ -567,6 +1276,156 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     if (uecl.championClubId === save.humanClubId) {
       managerReputation = Math.min(100, managerReputation + 4)
     }
+    const ueclPrize = awardCompetitionPrize(
+      { ...save, clubs, currentDate: prepared.date, clubFinance },
+      'uecl',
+      uecl.championClubId,
+      finalRunnerUpClubId(fixtures, 'uecl', uecl.championClubId),
+    )
+    clubs = ueclPrize.clubs
+    clubFinance = ueclPrize.clubFinance
+  }
+
+  const aclAdv = advanceAclAfterMatchday(fixtures, acl, prepared.matchday)
+  fixtures = aclAdv.fixtures
+  acl = aclAdv.cup
+  {
+    let prizeSave = { ...save, clubs, fixtures, currentDate: prepared.date, clubFinance }
+    for (const stage of ['qf', 'sf'] as const) {
+      const ids = newlyQualifiedClubIds(save.fixtures, fixtures, 'acl', stage)
+      if (ids.length) prizeSave = awardProgressPrize(prizeSave, 'acl', stage, ids)
+    }
+    clubs = prizeSave.clubs
+    clubFinance = prizeSave.clubFinance
+  }
+  if (acl.championClubId && !save.acl?.championClubId) {
+    const champ = clubs.find((c) => c.id === acl.championClubId)
+    inbox.unshift({
+      id: `msg-acl-${Date.now()}`,
+      date: prepared.date,
+      title: 'ACL Elite champions',
+      body: `${champ?.name ?? acl.championClubId} คว้าแชมป์ ${acl.name}`,
+      read: false,
+    })
+    if (acl.championClubId === save.humanClubId) {
+      managerReputation = Math.min(100, managerReputation + 6)
+    }
+    const prize = awardCompetitionPrize(
+      { ...save, clubs, currentDate: prepared.date, clubFinance },
+      'acl',
+      acl.championClubId,
+      finalRunnerUpClubId(fixtures, 'acl', acl.championClubId),
+    )
+    clubs = prize.clubs
+    clubFinance = prize.clubFinance
+  }
+
+  const aclTwoAdv = advanceAclTwoAfterMatchday(fixtures, aclTwo, prepared.matchday)
+  fixtures = aclTwoAdv.fixtures
+  aclTwo = aclTwoAdv.cup
+  {
+    let prizeSave = { ...save, clubs, fixtures, currentDate: prepared.date, clubFinance }
+    for (const stage of ['qf', 'sf'] as const) {
+      const ids = newlyQualifiedClubIds(save.fixtures, fixtures, 'acl_two', stage)
+      if (ids.length) prizeSave = awardProgressPrize(prizeSave, 'acl_two', stage, ids)
+    }
+    clubs = prizeSave.clubs
+    clubFinance = prizeSave.clubFinance
+  }
+  if (aclTwo.championClubId && !save.aclTwo?.championClubId) {
+    const champ = clubs.find((c) => c.id === aclTwo.championClubId)
+    inbox.unshift({
+      id: `msg-acl2-${Date.now()}`,
+      date: prepared.date,
+      title: 'ACL Two champions',
+      body: `${champ?.name ?? aclTwo.championClubId} คว้าแชมป์ ${aclTwo.name}`,
+      read: false,
+    })
+    if (aclTwo.championClubId === save.humanClubId) {
+      managerReputation = Math.min(100, managerReputation + 4)
+    }
+    const prize = awardCompetitionPrize(
+      { ...save, clubs, currentDate: prepared.date, clubFinance },
+      'acl_two',
+      aclTwo.championClubId,
+      finalRunnerUpClubId(fixtures, 'acl_two', aclTwo.championClubId),
+    )
+    clubs = prize.clubs
+    clubFinance = prize.clubFinance
+  }
+
+  const aseanAdv = advanceAseanCupAfterMatchday(fixtures, aseanCup, prepared.matchday)
+  fixtures = aseanAdv.fixtures
+  aseanCup = aseanAdv.cup
+  if (aseanCup.championClubId && !save.aseanCup?.championClubId) {
+    const champ = clubs.find((c) => c.id === aseanCup.championClubId)
+    inbox.unshift({
+      id: `msg-asean-${Date.now()}`,
+      date: prepared.date,
+      title: 'ASEAN Club champions',
+      body: `${champ?.name ?? aseanCup.championClubId} คว้าแชมป์ ${aseanCup.name}`,
+      read: false,
+    })
+    if (aseanCup.championClubId === save.humanClubId) {
+      managerReputation = Math.min(100, managerReputation + 3)
+    }
+    const prize = awardCompetitionPrize(
+      { ...save, clubs, currentDate: prepared.date, clubFinance },
+      'asean_cup',
+      aseanCup.championClubId,
+      finalRunnerUpClubId(fixtures, 'asean_cup', aseanCup.championClubId),
+    )
+    clubs = prize.clubs
+    clubFinance = prize.clubFinance
+  }
+
+  const cwcAdv = advanceCwcAfterMatchday(fixtures, cwc, prepared.matchday)
+  fixtures = cwcAdv.fixtures
+  cwc = cwcAdv.cup
+  if (cwc.championClubId && !save.cwc?.championClubId) {
+    const champ = clubs.find((c) => c.id === cwc.championClubId)
+    inbox.unshift({
+      id: `msg-cwc-${Date.now()}`,
+      date: prepared.date,
+      title: 'Champions of the Club World',
+      body: `${champ?.name ?? cwc.championClubId} คว้าแชมป์สโมสรโลก`,
+      read: false,
+    })
+    if (cwc.championClubId === save.humanClubId) {
+      managerReputation = Math.min(100, managerReputation + 8)
+    }
+    cwcAccess = recordCwcChampion(cwcAccess, champ?.name ?? cwc.championClubId)
+    const prize = awardCompetitionPrize(
+      { ...save, clubs, currentDate: prepared.date, clubFinance },
+      'cwc',
+      cwc.championClubId,
+      finalRunnerUpClubId(fixtures, 'cwc', cwc.championClubId),
+    )
+    clubs = prize.clubs
+    clubFinance = prize.clubFinance
+  }
+
+  superCup = crownSuperCupFromFixtures(fixtures, superCup, prepared.matchday)
+  if (superCup.championClubId && !save.superCup?.championClubId) {
+    const champ = clubs.find((c) => c.id === superCup.championClubId)
+    inbox.unshift({
+      id: `msg-sc-${Date.now()}`,
+      date: prepared.date,
+      title: `${superCup.name} champions`,
+      body: `${champ?.name ?? superCup.championClubId} คว้าแชมป์${superCup.name} · นัดเปิดฤดูกาล`,
+      read: false,
+    })
+    if (superCup.championClubId === save.humanClubId) {
+      managerReputation = Math.min(100, managerReputation + 2)
+    }
+    const prize = awardCompetitionPrize(
+      { ...save, clubs, currentDate: prepared.date, clubFinance },
+      'super_cup',
+      superCup.championClubId,
+      finalRunnerUpClubId(fixtures, 'super_cup', superCup.championClubId),
+    )
+    clubs = prize.clubs
+    clubFinance = prize.clubFinance
   }
 
   let next: GameSave = {
@@ -586,8 +1445,18 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     ucl,
     uel,
     uecl,
+    acl,
+    aclTwo,
+    aseanCup,
+    cwc,
+    cwcAccess,
+    superCup,
     managerReputation,
+    managerProgress,
+    managerProfile,
+    clubQuests,
     pressConference,
+    playerInterview,
     clubFinance,
     inbox: inbox.slice(0, 40),
     lastHumanResult: humanResult ?? save.lastHumanResult,
@@ -597,7 +1466,22 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       .every((f) => f.played),
     currentDate: prepared.date,
     preMatch: null,
+    rivalries: workingSave.rivalries ?? save.rivalries ?? [],
   }
+
+  next = tickEmergentRivalries(
+    next,
+    prepared.results.map(({ fixture, result }) => ({
+      homeClubId: fixture.homeClubId,
+      awayClubId: fixture.awayClubId,
+      homeGoals: result.homeGoals,
+      awayGoals: result.awayGoals,
+      competition: fixture.competition,
+      fixtureId: fixture.id,
+    })),
+    next.table,
+  )
+  next = seedClubHatedTeams(next)
 
   if (cardFineTriggers.length > 0) {
     let fineRng = prepared.matchday * 4243
@@ -614,6 +1498,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     next.humanClubId,
     next.training,
     trainingFacilityBonus(next),
+    next.matchday,
   )
   const coachBoost = staffLevel(next.staff, 'coach') / 40
   const trainingInjuries = detectNewInjuries(injuryBefore, trained.players, next.humanClubId)
@@ -645,6 +1530,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     ].slice(0, 40),
   }
   next = { ...next, players: updatePlayingTimeMorale(next) }
+  next = tickContractedPlayingTime(next)
   next = { ...next, dynamics: recomputeDynamics(next) }
   next = applyDevelopmentForSave(next)
   next = maybePromoteYouth(next)
@@ -707,8 +1593,20 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   next = resolveTalkPromises(next)
   next = generatePlayerTalkRequests(next)
   next = processAiPlayerTalks(next)
+  next = tickWantAwayDrama(next)
   next = applyMatchdayIncome(next)
+  next = applyFfpBreachSanction(next)
   next = processLoansMatchday(next)
+  {
+    const xiPlayers = prepared.results.flatMap((r) => {
+      const f = next.fixtures.find((x) => x.id === r.result.fixtureId)
+      if (!f) return [] as string[]
+      const homeXi = next.tacticsByClub[f.homeClubId]?.startingXi ?? []
+      const awayXi = next.tacticsByClub[f.awayClubId]?.startingXi ?? []
+      return [...homeXi, ...awayXi]
+    })
+    next = tickLoanAppearances(next, xiPlayers)
+  }
   next = processTransferDeskMatchday(
     next,
     prepared.results.map((r) => r.result),
@@ -718,7 +1616,9 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     next = { ...next, euroAccess: snapshotEuroRanks(next) }
   }
   next = processFanPolitics(next)
+  next = rollClubWorldEvents(next)
   next = processBoardPolitics(next)
+  next = tickClubQuests(next, humanMatchHint)
   if (next.board?.sacked) {
     next = enterUnemployment(next)
   }
@@ -729,25 +1629,39 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   next = processFacilities(next)
   next = tickSocialAfterMatchday(next)
   next = tickWorldPulse(next)
-  if (next.matchday === 19 && transferWindowKind(next) === 'winter') {
-    next = {
-      ...next,
-      inbox: [
-        {
-          id: `msg-winter-${Date.now()}`,
-          date: next.currentDate,
-          title: 'ตลาดวินเทอร์เปิด',
-          body: 'หน้าต่างตลาดฤดูหนาว MD19–23 — ซื้อ/ขาย/ยืมได้ในช่วงนี้',
-          read: false,
-        },
-        ...next.inbox,
-      ].slice(0, 40),
+  {
+    const winter = winterWindowRange(next.leagueId || 'eng')
+    if (next.matchday === winter.start && transferWindowKind(next) === 'winter') {
+      next = {
+        ...next,
+        inbox: [
+          {
+            id: `msg-winter-${Date.now()}`,
+            date: next.currentDate,
+            title: 'ตลาดวินเทอร์เปิด',
+            body: `หน้าต่างตลาดฤดูหนาว MD${winter.start}–${winter.end} — ซื้อ/ขาย/ยืมได้ในช่วงนี้`,
+            read: false,
+          },
+          ...next.inbox,
+        ].slice(0, 40),
+      }
     }
   }
   next = { ...next, media: ensureMediaFeed(next) }
   for (const n of newsBatch) next = pushNews(next, n)
+  next = processMatchdayAwards(next, {
+    matchday: prepared.matchday,
+    date: prepared.date,
+    results: prepared.results,
+    tacticsByClub: prepared.tacticsByClub,
+  })
+  if (next.seasonComplete) {
+    next = finalizeSeasonAwards(next, prepared.date)
+  }
   next = advanceMediaWeek(next)
   next = maybeAiRomanoPlants(next)
+  next = maybeQueueInternationalBreak(next)
+  next = maybeQueueCalendarGap(next)
 
   return next
 }
@@ -770,10 +1684,10 @@ export function payWeeklyWages(clubs: Club[], players: Player[]): Club[] {
 }
 
 export function applyWeeklyWages(save: GameSave): GameSave {
-  const paid = payWeeklyWagesWithCash(save.clubs, save.players)
+  const paid = payWeeklyWagesWithCash(save.clubs, save.players, save.loans)
   const humanWage = paid.wageTotalByClub[save.humanClubId] ?? 0
   const finance = ensureClubFinance(save)
-  return {
+  let next: GameSave = {
     ...save,
     clubs: paid.clubs,
     players: paid.players,
@@ -792,6 +1706,38 @@ export function applyWeeklyWages(save: GameSave): GameSave {
       ].slice(0, 50),
     },
   }
+  next = tickInsolvency(next)
+  next = processFireSaleAiBids(next)
+  return next
+}
+
+/** AI กดซื้อถูกตอน fire sale */
+function processFireSaleAiBids(save: GameSave): GameSave {
+  const inv = ensureInsolvency(save)
+  if (inv.stage !== 'administration' || !inv.fireSalePlayerIds.length) return save
+  if (transferWindowKind(save) === 'closed') return save
+
+  let next = save
+  for (const id of inv.fireSalePlayerIds.slice(0, 2)) {
+    const p = next.players.find((x) => x.id === id && x.clubId === next.humanClubId)
+    if (!p) continue
+    if (Math.random() > 0.35) continue
+    const ask = Math.round(estimatedValue(p, next) * 0.72)
+    const sold = sellPlayerToAi(next, id, ask, undefined, { allowToRival: false, fireSale: true })
+    if (sold.ok && sold.save) {
+      next = sold.save
+      const left = ensureInsolvency(next).fireSalePlayerIds.filter((x) => x !== id)
+      next = {
+        ...next,
+        insolvency: {
+          ...ensureInsolvency(next),
+          fireSalePlayerIds: left,
+          lastNote: `Fire sale: ขาย ${p.name} · ${formatMoney(ask)}`,
+        },
+      }
+    }
+  }
+  return next
 }
 
 export function recoverSquad(players: Player[], physioLevel = 8): Player[] {

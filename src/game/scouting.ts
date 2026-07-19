@@ -16,33 +16,51 @@ const ALUMNI_FLOOR = 50
 
 export function emptyScoutExtras(): Pick<
   ScoutKnowledge,
-  'alumniIds' | 'formSightings' | 'visits' | 'pendingWatches'
+  | 'alumniIds'
+  | 'formSightings'
+  | 'visits'
+  | 'pendingWatches'
+  | 'knownReleaseClauseIds'
+  | 'agentRapport'
+  | 'playerRapport'
 > {
   return {
     alumniIds: [],
     formSightings: [],
     visits: [],
     pendingWatches: [],
+    knownReleaseClauseIds: [],
+    agentRapport: {},
+    playerRapport: {},
   }
 }
 
 export function createScouting(players: Player[], humanClubId: string): ScoutKnowledge {
   const byPlayer: Record<string, number> = {}
+  const knownReleaseClauseIds: string[] = []
   for (const p of players) {
     byPlayer[p.id] = p.clubId === humanClubId ? 100 : 0
+    if (p.clubId === humanClubId) knownReleaseClauseIds.push(p.id)
   }
-  return { byPlayer, ...emptyScoutExtras() }
+  return { byPlayer, ...emptyScoutExtras(), knownReleaseClauseIds }
 }
 
 export function ensureScouting(save: GameSave): ScoutKnowledge {
   const raw = save.scouting
   if (!raw?.byPlayer) return createScouting(save.players, save.humanClubId)
+  const known = raw.knownReleaseClauseIds ?? []
+  // ทีมตัวเองต้องรู้ค่าฉีกเสมอ
+  const ownIds = save.players.filter((p) => p.clubId === save.humanClubId).map((p) => p.id)
+  const knownSet = new Set([...known, ...ownIds])
   return {
     byPlayer: raw.byPlayer,
     alumniIds: raw.alumniIds ?? [],
     formSightings: raw.formSightings ?? [],
     visits: raw.visits ?? [],
     pendingWatches: raw.pendingWatches ?? [],
+    knownReleaseClauseIds: [...knownSet],
+    agentRapport: raw.agentRapport ?? {},
+    playerRapport: raw.playerRapport ?? {},
   }
 }
 
@@ -121,14 +139,14 @@ export function maskAttrValue(
     group === 'goalkeeping' ? 50 : group === 'technical' ? 35 : group === 'mental' ? 45 : 40
   if (knowledge < groupNeed - 15) return null
   if (knowledge < groupNeed) {
-    if (value >= 15) return { band: 'สูง' }
-    if (value >= 10) return { band: 'กลาง' }
+    if (value >= 75) return { band: 'สูง' }
+    if (value >= 50) return { band: 'กลาง' }
     return { band: 'ต่ำ' }
   }
   if (knowledge < 70) {
-    const noise = knowledge < 55 ? 2 : 1
-    const stepped = Math.round(value / (noise + 1)) * (noise + 1)
-    return Math.max(1, Math.min(20, stepped))
+    const step = knowledge < 55 ? 5 : 3
+    const stepped = Math.round(value / step) * step
+    return Math.max(1, Math.min(99, stepped))
   }
   return value
 }
