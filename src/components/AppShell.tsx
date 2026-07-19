@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useGameStore } from '@/store/gameStore'
 import { cn } from '@/lib/cn'
 import { sortedTable } from '@/game/simulate'
@@ -14,10 +14,11 @@ const links = [
 ]
 
 export function AppShell() {
+  const navigate = useNavigate()
   const save = useGameStore((s) => s.save)
   const status = useGameStore((s) => s.status)
   const clearStatus = useGameStore((s) => s.clearStatus)
-  const playNextMatchday = useGameStore((s) => s.playNextMatchday)
+  const startLiveMatch = useGameStore((s) => s.startLiveMatch)
 
   if (!save) return null
 
@@ -43,11 +44,13 @@ export function AppShell() {
         </div>
         <button
           type="button"
-          onClick={playNextMatchday}
+          onClick={() => {
+            if (startLiveMatch()) navigate('/match/live')
+          }}
           disabled={save.seasonComplete}
           className="rounded-md bg-slate-900 px-4 py-2.5 text-sm font-semibold text-lime-300 transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40"
         >
-          {save.seasonComplete ? 'Season complete' : 'Play next matchday (all 20 clubs)'}
+          {save.seasonComplete ? 'Season complete' : 'Play next match (pitch)'}
         </button>
       </header>
 

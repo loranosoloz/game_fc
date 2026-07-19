@@ -68,11 +68,36 @@ export interface TableRow {
   points: number
 }
 
+export type MatchEventKind =
+  | 'kickoff'
+  | 'commentary'
+  | 'chance'
+  | 'shot'
+  | 'save'
+  | 'goal'
+  | 'corner'
+  | 'foul'
+  | 'card'
+  | 'halftime'
+  | 'secondhalf'
+  | 'fulltime'
+
+/** Ball spot on pitch: x along length (0=home goal, 100=away goal), y across width. */
+export interface PitchSpot {
+  x: number
+  y: number
+}
+
 export interface MatchEvent {
+  id: string
   minute: number
-  kind: 'goal' | 'card'
-  clubId: string
-  playerName: string
+  kind: MatchEventKind
+  clubId?: string
+  playerName?: string
+  text: string
+  spot: PitchSpot
+  homeGoals: number
+  awayGoals: number
 }
 
 export interface MatchResult {

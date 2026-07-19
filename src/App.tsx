@@ -6,6 +6,7 @@ import { PortalPage } from '@/pages/PortalPage'
 import { SquadPage } from '@/pages/SquadPage'
 import { TacticsPage } from '@/pages/TacticsPage'
 import { MatchPage } from '@/pages/MatchPage'
+import { LiveMatchPage } from '@/pages/LiveMatchPage'
 import { TablePage } from '@/pages/TablePage'
 import { FinancePage } from '@/pages/FinancePage'
 import { SavePage } from '@/pages/SavePage'
@@ -21,6 +22,14 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route
+        path="/match/live"
+        element={
+          <RequireSave>
+            <LiveMatchPage />
+          </RequireSave>
+        }
+      />
       <Route
         element={
           <RequireSave>

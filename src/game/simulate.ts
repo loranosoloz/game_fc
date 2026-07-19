@@ -1,4 +1,4 @@
-import type { Club, Fixture, GameSave, InboxMessage, MatchResult, Player, TableRow } from './types'
+import type { Club, Fixture, GameSave, InboxMessage, MatchResult, Player, TableRow, Tactics } from './types'
 import { applyMatchFatigue, simulateFixture } from './matchEngine'
 import { autoPickTactics } from './seed'
 
@@ -44,34 +44,64 @@ function ticketIncome(club: Club, isHome: boolean, goalsFor: number, goalsAgains
   return Math.round(crowd * 18 * mood)
 }
 
-/** Simulate every unplayed fixture on a matchday — human + all AI clubs. */
-export function simulateMatchday(save: GameSave, matchday: number): {
-  save: GameSave
+export interface PreparedMatchday {
+  matchday: number
+  date: string
+  tacticsByClub: Record<string, Tactics>
+  results: Array<{ fixture: Fixture; result: MatchResult }>
   humanResult: MatchResult | null
-  resultsCount: number
-} {
+  humanFixture: Fixture | null
+}
+
+/** Pre-simulate entire matchday (human + AI) without writing to save yet. */
+export function prepareMatchday(save: GameSave, matchday: number): PreparedMatchday | null {
   const dayFixtures = save.fixtures.filter((f) => f.matchday === matchday && !f.played)
-  if (dayFixtures.length === 0) {
-    return { save, humanResult: null, resultsCount: 0 }
-  }
+  if (dayFixtures.length === 0) return null
 
-  let fixtures = save.fixtures.slice()
-  let table = save.table.slice()
-  let players = save.players.slice()
-  let clubs = save.clubs.map((c) => ({ ...c }))
-  let humanResult: MatchResult | null = null
-  const inbox: InboxMessage[] = [...save.inbox]
+  let players = save.players
   let tacticsByClub = { ...save.tacticsByClub }
-
-  // AI refreshes XI lightly before matchday
-  for (const club of clubs) {
+  for (const club of save.clubs) {
     if (club.controlledBy === 'ai') {
       tacticsByClub[club.id] = autoPickTactics(club.id, players, tacticsByClub[club.id].formation)
     }
   }
 
+  const results: PreparedMatchday['results'] = []
+  let humanResult: MatchResult | null = null
+  let humanFixture: Fixture | null = null
+
   for (const fixture of dayFixtures) {
-    const result = simulateFixture(fixture, clubs, players, tacticsByClub, matchday * 17)
+    const result = simulateFixture(fixture, save.clubs, players, tacticsByClub, matchday * 17)
+    results.push({ fixture, result })
+    const involvesHuman =
+      fixture.homeClubId === save.humanClubId || fixture.awayClubId === save.humanClubId
+    if (involvesHuman) {
+      humanResult = result
+      humanFixture = fixture
+    }
+  }
+
+  return {
+    matchday,
+    date: dayFixtures[0]?.date ?? save.currentDate,
+    tacticsByClub,
+    results,
+    humanResult,
+    humanFixture,
+  }
+}
+
+/** Apply a prepared matchday package to the save (after live watch or instant skip). */
+export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday): GameSave {
+  let fixtures = save.fixtures.slice()
+  let table = save.table.slice()
+  let players = save.players.slice()
+  let clubs = save.clubs.map((c) => ({ ...c }))
+  const inbox: InboxMessage[] = [...save.inbox]
+  const tacticsByClub = prepared.tacticsByClub
+  let humanResult: MatchResult | null = null
+
+  for (const { fixture, result } of prepared.results) {
     fixtures = fixtures.map((f) =>
       f.id === fixture.id
         ? { ...f, played: true, homeGoals: result.homeGoals, awayGoals: result.awayGoals }
@@ -82,10 +112,7 @@ export function simulateMatchday(save: GameSave, matchday: number): {
     const home = clubs.find((c) => c.id === fixture.homeClubId)!
     const away = clubs.find((c) => c.id === fixture.awayClubId)!
     const homeIncome = ticketIncome(home, true, result.homeGoals, result.awayGoals)
-    clubs = clubs.map((c) => {
-      if (c.id === home.id) return { ...c, balance: c.balance + homeIncome }
-      return c
-    })
+    clubs = clubs.map((c) => (c.id === home.id ? { ...c, balance: c.balance + homeIncome } : c))
 
     players = applyMatchFatigue(players, tacticsByClub[fixture.homeClubId], true)
     players = applyMatchFatigue(players, tacticsByClub[fixture.awayClubId], true)
@@ -103,30 +130,37 @@ export function simulateMatchday(save: GameSave, matchday: number): {
         id: `msg-${Date.now()}-${fixture.id}`,
         date: fixture.date,
         title: `${outcome} vs ${opp.name}`,
-        body: `Final score ${result.homeGoals}–${result.awayGoals}. Gate receipts for home side: £${homeIncome.toLocaleString()}. All other matchday fixtures (AI vs AI) were also simulated.`,
+        body: `Final score ${result.homeGoals}–${result.awayGoals}. Gate receipts (home): £${homeIncome.toLocaleString()}. ${prepared.results.length - 1} other AI fixtures were also completed this matchday.`,
         read: false,
       })
     }
   }
 
-  const seasonComplete = fixtures.every((f) => f.played)
-
   return {
-    save: {
-      ...save,
-      fixtures,
-      table,
-      players,
-      clubs,
-      tacticsByClub,
-      inbox: inbox.slice(0, 40),
-      lastHumanResult: humanResult ?? save.lastHumanResult,
-      matchday,
-      seasonComplete,
-      currentDate: dayFixtures[0]?.date ?? save.currentDate,
-    },
-    humanResult,
-    resultsCount: dayFixtures.length,
+    ...save,
+    fixtures,
+    table,
+    players,
+    clubs,
+    tacticsByClub,
+    inbox: inbox.slice(0, 40),
+    lastHumanResult: humanResult ?? save.lastHumanResult,
+    matchday: prepared.matchday,
+    seasonComplete: fixtures.every((f) => f.played),
+    currentDate: prepared.date,
+  }
+}
+
+/** Instant simulate (no live pitch) — used as fallback / skip. */
+export function simulateMatchday(save: GameSave, matchday: number) {
+  const prepared = prepareMatchday(save, matchday)
+  if (!prepared) {
+    return { save, humanResult: null, resultsCount: 0 }
+  }
+  return {
+    save: applyPreparedMatchday(save, prepared),
+    humanResult: prepared.humanResult,
+    resultsCount: prepared.results.length,
   }
 }
 
@@ -152,4 +186,10 @@ export function sortedTable(table: TableRow[]) {
     if (gdB !== gdA) return gdB - gdA
     return b.gf - a.gf
   })
+}
+
+export function nextUnplayedMatchday(save: GameSave): number | null {
+  const upcoming = save.fixtures.filter((f) => !f.played)
+  if (upcoming.length === 0) return null
+  return Math.min(...upcoming.map((f) => f.matchday))
 }
