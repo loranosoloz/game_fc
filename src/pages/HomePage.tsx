@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { listClubOptions } from '@/game/seed'
+import { listClubOptionsForLeague } from '@/game/worldSeed'
+import { listLeagues, type LeagueId } from '@/data/world'
 import { useGameStore } from '@/store/gameStore'
 import { loadFromStorage } from '@/game/save'
 
@@ -9,12 +10,21 @@ export function HomePage() {
   const newGame = useGameStore((s) => s.newGame)
   const continueGame = useGameStore((s) => s.continueGame)
   const hasSave = useMemo(() => Boolean(loadFromStorage()), [])
-  const clubs = listClubOptions()
-  const [managerName, setManagerName] = useState('ผู้จัดการใหม่')
-  const [clubId, setClubId] = useState(clubs[12]?.id ?? clubs[0].id)
+  const leagues = listLeagues()
+  const [leagueId, setLeagueId] = useState<LeagueId>('eng')
+  const clubs = useMemo(() => listClubOptionsForLeague(leagueId), [leagueId])
+  const [managerName, setManagerName] = useState('Manager')
+  const [clubId, setClubId] = useState(clubs[0]?.id ?? 'club-1')
+
+  // Reset club when league changes
+  const onLeagueChange = (id: LeagueId) => {
+    setLeagueId(id)
+    const nextClubs = listClubOptionsForLeague(id)
+    setClubId(nextClubs[0]?.id ?? 'club-1')
+  }
 
   const start = () => {
-    newGame(managerName, clubId)
+    newGame(managerName, clubId, leagueId)
     navigate('/portal')
   }
 
@@ -22,18 +32,20 @@ export function HomePage() {
     if (continueGame()) navigate('/portal')
   }
 
+  const leagueMeta = leagues.find((l) => l.id === leagueId)
+
   return (
     <div className="mx-auto flex min-h-full max-w-3xl flex-col justify-center gap-8 px-4 py-10">
       <div>
         <p className="text-xs font-semibold tracking-[0.25em] text-slate-500 uppercase">
-          ลีกผู้เล่นคนเดียว
+          World leagues
         </p>
         <h1 className="mt-2 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">
           FC Manager
         </h1>
         <p className="mt-3 max-w-xl text-base leading-relaxed text-slate-600">
-          ลีก 20 สโมสร คุณคุม 1 ทีม ที่เหลืออีก 19 เป็น AI ทุกแมตช์เดย์จำลอง{' '}
-          <strong>นัดทั้งหมด</strong> แล้วอัปเดตตารางเดียวกัน
+          เลือกลีกจริง 6 ลีก — อังกฤษ สเปน เยอรมัน ฝรั่งเศส อิตาลี ไทย — คุม 1 สโมสร ที่เหลือ 19 เป็น
+          AI ชื่อสโมสรและนักเตะดาวใช้ชื่อจริง
         </p>
       </div>
 
@@ -47,6 +59,25 @@ export function HomePage() {
               value={managerName}
               onChange={(e) => setManagerName(e.target.value)}
             />
+          </label>
+          <label className="grid gap-1.5 text-sm">
+            <span className="font-medium text-slate-700">ลีก</span>
+            <select
+              className="rounded-md border border-slate-300 bg-white px-3 py-2 outline-none ring-lime-400 focus:ring-2"
+              value={leagueId}
+              onChange={(e) => onLeagueChange(e.target.value as LeagueId)}
+            >
+              {leagues.map((l) => (
+                <option key={l.id} value={l.id}>
+                  {l.nameTh} — {l.name}
+                </option>
+              ))}
+            </select>
+            {leagueMeta ? (
+              <span className="text-xs text-slate-500">
+                {leagueMeta.nation} · ถ้วย {leagueMeta.cupName}
+              </span>
+            ) : null}
           </label>
           <label className="grid gap-1.5 text-sm">
             <span className="font-medium text-slate-700">เลือกสโมสรของคุณ (ที่เหลือเป็น AI)</span>

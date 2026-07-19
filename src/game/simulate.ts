@@ -2,8 +2,20 @@ import type { Club, Fixture, GameSave, InboxMessage, MatchResult, Player, TableR
 import { applyMatchFatigue, simulateFixture } from './matchEngine'
 import { autoPickTactics } from './seed'
 import { applyMatchToFans, ensureFans, fanTicketMultiplier } from './fans'
+import { applyMatchToBoard } from './board'
+import { applyTrainingWeek, updatePlayingTimeMorale } from './training'
+import { tickPlayerInjury } from './medical'
+import { applyDevelopmentForSave } from './development'
+import { recomputeDynamics, dynamicsMatchBonus } from './dynamics'
+import { pressAfterMatch } from './press'
+import { maybePromoteYouth } from './youth'
+import { weeklyScoutPassive } from './scouting'
+import { advanceCupAfterMatchday } from './cup'
+import { advanceUclAfterMatchday } from './ucl'
+import { staffLevel } from './staff'
 
 function applyResultToTable(table: TableRow[], fixture: Fixture, homeGoals: number, awayGoals: number): TableRow[] {
+  if (fixture.competition === 'cup' || fixture.competition === 'ucl') return table
   return table.map((row) => {
     if (row.clubId === fixture.homeClubId) {
       const won = homeGoals > awayGoals
@@ -51,6 +63,14 @@ function ticketIncome(
   return Math.round(crowd * 18 * mood)
 }
 
+function bumpFamiliarity(tactics: Tactics, played: boolean): Tactics {
+  if (!played) return tactics
+  return {
+    ...tactics,
+    familiarity: Math.min(100, tactics.familiarity + 2),
+  }
+}
+
 export interface PreparedMatchday {
   matchday: number
   date: string
@@ -60,25 +80,43 @@ export interface PreparedMatchday {
   humanFixture: Fixture | null
 }
 
-/** Pre-simulate entire matchday (human + AI) without writing to save yet. */
 export function prepareMatchday(save: GameSave, matchday: number): PreparedMatchday | null {
   const dayFixtures = save.fixtures.filter((f) => f.matchday === matchday && !f.played)
   if (dayFixtures.length === 0) return null
 
-  let players = save.players
+  const players = save.players
   let tacticsByClub = { ...save.tacticsByClub }
   for (const club of save.clubs) {
     if (club.controlledBy === 'ai') {
-      tacticsByClub[club.id] = autoPickTactics(club.id, players, tacticsByClub[club.id].formation)
+      const current = tacticsByClub[club.id]
+      const picked = autoPickTactics(club.id, players, current.formation, current.formationOop)
+      tacticsByClub[club.id] = {
+        ...picked,
+        instructions: current.instructions,
+        familiarity: current.familiarity,
+        setPieces: current.setPieces,
+      }
     }
   }
+
+  const dynBonus =
+    save.humanClubId && save.dynamics ? dynamicsMatchBonus(save.dynamics) : 1
 
   const results: PreparedMatchday['results'] = []
   let humanResult: MatchResult | null = null
   let humanFixture: Fixture | null = null
 
   for (const fixture of dayFixtures) {
-    const result = simulateFixture(fixture, save.clubs, players, tacticsByClub, matchday * 17)
+    const result = simulateFixture(
+      fixture,
+      save.clubs,
+      players,
+      tacticsByClub,
+      matchday * 17,
+      fixture.homeClubId === save.humanClubId || fixture.awayClubId === save.humanClubId
+        ? dynBonus
+        : 1,
+    )
     results.push({ fixture, result })
     const involvesHuman =
       fixture.homeClubId === save.humanClubId || fixture.awayClubId === save.humanClubId
@@ -98,7 +136,6 @@ export function prepareMatchday(save: GameSave, matchday: number): PreparedMatch
   }
 }
 
-/** Apply a prepared matchday package to the save (after live watch or instant skip). */
 export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday): GameSave {
   save = ensureFans(save)
   let fixtures = save.fixtures.slice()
@@ -106,8 +143,12 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   let players = save.players.slice()
   let clubs = save.clubs.map((c) => ({ ...c }))
   let fans = save.fans
+  let board = save.board
+  let press = save.press.slice()
+  let cup = save.cup
+  let ucl = save.ucl
   const inbox: InboxMessage[] = [...save.inbox]
-  const tacticsByClub = prepared.tacticsByClub
+  let tacticsByClub = { ...prepared.tacticsByClub }
   let humanResult: MatchResult | null = null
 
   for (const { fixture, result } of prepared.results) {
@@ -127,6 +168,8 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
 
     players = applyMatchFatigue(players, tacticsByClub[fixture.homeClubId], true)
     players = applyMatchFatigue(players, tacticsByClub[fixture.awayClubId], true)
+    tacticsByClub[fixture.homeClubId] = bumpFamiliarity(tacticsByClub[fixture.homeClubId], true)
+    tacticsByClub[fixture.awayClubId] = bumpFamiliarity(tacticsByClub[fixture.awayClubId], true)
 
     const involvesHuman =
       fixture.homeClubId === save.humanClubId || fixture.awayClubId === save.humanClubId
@@ -138,17 +181,68 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       const themGoals = usHome ? result.awayGoals : result.homeGoals
       const outcome = usGoals > themGoals ? 'ชนะ' : usGoals === themGoals ? 'เสมอ' : 'แพ้'
       fans = applyMatchToFans(fans, usGoals, themGoals, usHome)
+
+      const midSave: GameSave = {
+        ...save,
+        table,
+        fans,
+        board,
+        players,
+        clubs,
+        tacticsByClub,
+        fixtures,
+      }
+      board = applyMatchToBoard(midSave, usGoals, themGoals)
+      press = [pressAfterMatch({ ...midSave, board }, usGoals, themGoals, opp.name), ...press].slice(
+        0,
+        30,
+      )
+
+      const comp =
+        fixture.competition === 'cup'
+          ? `ถ้วย (${fixture.cupRound})`
+          : fixture.competition === 'ucl'
+            ? `UCL (${fixture.cupRound})`
+            : 'ลีก'
       inbox.unshift({
         id: `msg-${Date.now()}-${fixture.id}`,
         date: fixture.date,
-        title: `${outcome} พบ ${opp.name}`,
+        title: `${outcome} พบ ${opp.name} · ${comp}`,
         body: `สกอร์ ${result.homeGoals}–${result.awayGoals} · ตั๋วเหย้า ${homeIncome.toLocaleString('th-TH')} บาท · แฟน: ${fans.lastVerdict}`,
         read: false,
       })
     }
   }
 
-  return {
+  const cupAdv = advanceCupAfterMatchday(fixtures, cup, prepared.matchday)
+  fixtures = cupAdv.fixtures
+  cup = cupAdv.cup
+  if (cup.championClubId && !save.cup.championClubId) {
+    const champ = clubs.find((c) => c.id === cup.championClubId)
+    inbox.unshift({
+      id: `msg-cup-${Date.now()}`,
+      date: prepared.date,
+      title: 'Champions of the Cup',
+      body: `${champ?.name ?? cup.championClubId} คว้าแชมป์ ${cup.name}`,
+      read: false,
+    })
+  }
+
+  const uclAdv = advanceUclAfterMatchday(fixtures, ucl, prepared.matchday)
+  fixtures = uclAdv.fixtures
+  ucl = uclAdv.ucl
+  if (ucl.championClubId && !save.ucl?.championClubId) {
+    const champ = clubs.find((c) => c.id === ucl.championClubId)
+    inbox.unshift({
+      id: `msg-ucl-${Date.now()}`,
+      date: prepared.date,
+      title: 'Champions of Europe',
+      body: `${champ?.name ?? ucl.championClubId} คว้าแชมป์ ${ucl.name}`,
+      read: false,
+    })
+  }
+
+  let next: GameSave = {
     ...save,
     fixtures,
     table,
@@ -156,15 +250,46 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     clubs,
     tacticsByClub,
     fans,
+    board,
+    press,
+    cup,
+    ucl,
     inbox: inbox.slice(0, 40),
     lastHumanResult: humanResult ?? save.lastHumanResult,
     matchday: prepared.matchday,
-    seasonComplete: fixtures.every((f) => f.played),
+    seasonComplete: fixtures.filter((f) => f.competition === 'league').every((f) => f.played),
     currentDate: prepared.date,
   }
+
+  const trained = applyTrainingWeek(next.players, next.humanClubId, next.training)
+  const coachBoost = staffLevel(next.staff, 'coach') / 40
+  next = {
+    ...next,
+    players: trained.players.map((p) =>
+      p.clubId === next.humanClubId
+        ? { ...p, sharpness: Math.min(100, p.sharpness + coachBoost) }
+        : p,
+    ),
+    inbox: [
+      {
+        id: `msg-train-${Date.now()}`,
+        date: prepared.date,
+        title: 'สรุปการซ้อม',
+        body: trained.note,
+        read: false,
+      },
+      ...next.inbox,
+    ].slice(0, 40),
+  }
+  next = { ...next, players: updatePlayingTimeMorale(next) }
+  next = { ...next, dynamics: recomputeDynamics(next) }
+  next = applyDevelopmentForSave(next)
+  next = maybePromoteYouth(next)
+  next = { ...next, scouting: weeklyScoutPassive(next, next.staff) }
+
+  return next
 }
 
-/** Instant simulate (no live pitch) — used as fallback / skip. */
 export function simulateMatchday(save: GameSave, matchday: number) {
   const prepared = prepareMatchday(save, matchday)
   if (!prepared) {
@@ -184,11 +309,8 @@ export function payWeeklyWages(clubs: Club[], players: Player[]): Club[] {
   })
 }
 
-export function recoverSquad(players: Player[]): Player[] {
-  return players.map((p) => ({
-    ...p,
-    condition: Math.min(100, p.condition + 3),
-  }))
+export function recoverSquad(players: Player[], physioLevel = 8): Player[] {
+  return players.map((p) => tickPlayerInjury(p, physioLevel))
 }
 
 export function sortedTable(table: TableRow[]) {

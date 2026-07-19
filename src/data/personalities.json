@@ -1,0 +1,58 @@
+{
+  "archetypes": [
+    {
+      "id": "model_pro",
+      "label": "Model Professional",
+      "determination": [14, 18],
+      "ambition": [10, 15],
+      "professionalism": [15, 20],
+      "adaptability": [10, 16],
+      "learningRate": [12, 17]
+    },
+    {
+      "id": "driven",
+      "label": "Driven",
+      "determination": [15, 20],
+      "ambition": [15, 20],
+      "professionalism": [10, 15],
+      "adaptability": [8, 14],
+      "learningRate": [13, 18]
+    },
+    {
+      "id": "balanced",
+      "label": "Balanced",
+      "determination": [8, 14],
+      "ambition": [8, 14],
+      "professionalism": [8, 14],
+      "adaptability": [8, 14],
+      "learningRate": [8, 14]
+    },
+    {
+      "id": "unambitious",
+      "label": "Unambitious",
+      "determination": [4, 10],
+      "ambition": [2, 8],
+      "professionalism": [6, 12],
+      "adaptability": [6, 12],
+      "learningRate": [3, 9]
+    },
+    {
+      "id": "temperamental",
+      "label": "Temperamental",
+      "determination": [10, 16],
+      "ambition": [12, 18],
+      "professionalism": [3, 9],
+      "adaptability": [5, 11],
+      "learningRate": [7, 13]
+    },
+    {
+      "id": "wonderkid",
+      "label": "Wonderkid Mentality",
+      "determination": [12, 18],
+      "ambition": [14, 20],
+      "professionalism": [8, 14],
+      "adaptability": [12, 18],
+      "learningRate": [15, 20]
+    }
+  ]
+}

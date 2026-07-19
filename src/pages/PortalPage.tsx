@@ -2,13 +2,17 @@ import { useGameStore } from '@/store/gameStore'
 import { sortedTable } from '@/game/simulate'
 import { formatMoney } from '@/lib/format'
 import { ensureFans, fanMoodLabel, fanTicketMultiplier } from '@/game/fans'
+import { boardLabel } from '@/game/board'
+import { ensurePhase5 } from '@/game/save'
+import { gossipLine } from '@/game/press'
 
 export function PortalPage() {
   const saveRaw = useGameStore((s) => s.save)!
-  const save = ensureFans(saveRaw)
+  const save = ensurePhase5(ensureFans(saveRaw))
   const markInboxRead = useGameStore((s) => s.markInboxRead)
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
   const fans = save.fans
+  const board = save.board
   const nextFx = save.fixtures.find(
     (f) =>
       !f.played &&
@@ -24,6 +28,7 @@ export function PortalPage() {
   const table = sortedTable(save.table)
   const top5 = table.slice(0, 5)
   const ticketBoost = Math.round((fanTicketMultiplier(fans) - 1) * 100)
+  const rank = table.findIndex((r) => r.clubId === save.humanClubId) + 1
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
@@ -53,10 +58,78 @@ export function PortalPage() {
               </dd>
             </div>
             <div>
+              <dt className="text-slate-500">ลีก</dt>
+              <dd className="font-semibold">{save.leagueName ?? '—'}</dd>
+            </div>
+            <div>
               <dt className="text-slate-500">โลกเกม</dt>
               <dd className="font-semibold">คุณ 1 · AI 19</dd>
             </div>
           </dl>
+        </div>
+
+        <div className="rounded-xl border border-slate-200 bg-white/80 p-5">
+          <h2 className="text-lg font-semibold">Dynamics</h2>
+          <p className="mt-1 text-sm text-slate-600">{save.dynamics.lastNote}</p>
+          <dl className="mt-3 grid grid-cols-3 gap-2 text-center text-xs">
+            <div className="rounded-md bg-slate-50 px-2 py-2">
+              <dt className="text-slate-500">สามัคคี</dt>
+              <dd className="text-lg font-bold">{save.dynamics.cohesion}</dd>
+            </div>
+            <div className="rounded-md bg-slate-50 px-2 py-2">
+              <dt className="text-slate-500">ลำดับชั้น</dt>
+              <dd className="text-lg font-bold">{save.dynamics.hierarchyStability}</dd>
+            </div>
+            <div className="rounded-md bg-slate-50 px-2 py-2">
+              <dt className="text-slate-500">ห้องแต่งตัว</dt>
+              <dd className="text-lg font-bold">{save.dynamics.dressingRoomMood}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div className="rounded-xl border border-slate-200 bg-white/80 p-5">
+          <h2 className="text-lg font-semibold">สื่อ / ซุบซิบ</h2>
+          <p className="mt-1 text-xs text-amber-800">{gossipLine(save)}</p>
+          <ul className="mt-3 space-y-2">
+            {save.press.length === 0 ? (
+              <li className="text-sm text-slate-500">ยังไม่มีข่าว</li>
+            ) : (
+              save.press.slice(0, 5).map((story) => (
+                <li key={story.id} className="rounded-md border border-slate-100 bg-slate-50 px-3 py-2">
+                  <p className="text-sm font-medium">{story.headline}</p>
+                  <p className="mt-1 text-xs text-slate-600">{story.body}</p>
+                </li>
+              ))
+            )}
+          </ul>
+        </div>
+
+        <div className="rounded-xl border border-slate-200 bg-white/80 p-5">
+          <h2 className="text-lg font-semibold">บอร์ดสโมสร</h2>
+          <p className="mt-1 text-sm text-slate-600">{board.lastNote}</p>
+          <div className="mt-3">
+            <div className="mb-1 flex justify-between text-xs text-slate-500">
+              <span>
+                ความมั่นใจ · {boardLabel(board.confidence)} ({board.confidence}/100)
+              </span>
+              <span>
+                อันดับ #{rank || '—'} / เป้าท็อป {board.targetMaxRank}
+              </span>
+            </div>
+            <div className="h-2 overflow-hidden rounded-full bg-slate-200">
+              <div
+                className="h-full rounded-full bg-violet-500 transition-all"
+                style={{ width: `${board.confidence}%` }}
+              />
+            </div>
+          </div>
+          <ul className="mt-3 space-y-1 text-xs text-slate-600">
+            {board.kpis?.map((k) => (
+              <li key={k.id}>
+                {k.met ? '✓' : '·'} {k.label}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="rounded-xl border border-slate-200 bg-white/80 p-5">

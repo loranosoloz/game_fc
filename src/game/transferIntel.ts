@@ -1,6 +1,6 @@
-import type { GameSave, Player, Position } from './types'
+import type { GameSave, Player, PositionGroup } from './types'
 import { estimatedValue } from './transfer'
-import { positionLabel } from './seed'
+import { groupLabel, roleLabel } from './positions'
 import { formatMoney } from '@/lib/format'
 import { fanMoodLabel } from './fans'
 import type { FanState } from './types'
@@ -41,11 +41,11 @@ function avgOvr(players: Player[]) {
   return players.reduce((s, p) => s + p.overall, 0) / players.length
 }
 
-function depthAt(players: Player[], pos: Position) {
+function depthAt(players: Player[], pos: PositionGroup) {
   return players.filter((p) => p.position === pos).length
 }
 
-function bestAt(players: Player[], pos: Position) {
+function bestAt(players: Player[], pos: PositionGroup) {
   return players.filter((p) => p.position === pos).sort((a, b) => b.overall - a.overall)[0]
 }
 
@@ -110,7 +110,7 @@ export function analyzeBuy(save: GameSave, player: Player, fans: FanState): Tran
       lens: 'ความลึกสควอด',
       tone: 'critical',
       score: 90,
-      title: `ตำแหน่ง${positionLabel(player.position)}ขาดแคลน`,
+      title: `ตำแหน่ง${roleLabel(player.role)}ขาดแคลน`,
       why: `ตอนนี้มีเพียง ${depth} คน — ถ้ามีเจ็บ/ใบแดง แผนจะพังทันที การซื้อครั้งนี้แก้ปัญหาโครงสร้าง ไม่ใช่แค่เสริมสวย`,
     })
     score += 18
@@ -311,7 +311,7 @@ export function analyzeSell(save: GameSave, player: Player, fans: FanState): Tra
       tone: 'critical',
       score: 15,
       title: 'ขายแล้วตำแหน่งจะแห้ง',
-      why: `เหลือเพียง ${depth} คนในตำแหน่ง${positionLabel(player.position)} — การขายตอนนี้คือการพนันสุขภาพทั้งฤดูกาล`,
+      why: `เหลือเพียง ${depth} คนในกลุ่ม${groupLabel(player.position)} — การขายตอนนี้คือการพนันสุขภาพทั้งฤดูกาล`,
     })
     score -= 22
   } else if (depth >= 5 && rank >= 3) {

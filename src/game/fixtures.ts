@@ -32,6 +32,7 @@ export function generateSeasonFixtures(clubIds: string[], seasonStart = '2026-08
         homeClubId: home,
         awayClubId: away,
         played: false,
+        competition: 'league',
       })
     }
     const fixed = rotation[0]
@@ -50,6 +51,7 @@ export function generateSeasonFixtures(clubIds: string[], seasonStart = '2026-08
       homeClubId: fx.awayClubId,
       awayClubId: fx.homeClubId,
       played: false,
+      competition: 'league',
     })
   }
 

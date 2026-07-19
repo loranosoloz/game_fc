@@ -1,0 +1,39 @@
+{
+  "individualFocuses": [
+    { "id": "finishing", "label": "Finishing", "attrs": ["finishing", "composure"] },
+    { "id": "passing", "label": "Passing", "attrs": ["passing", "vision", "technique"] },
+    { "id": "defending", "label": "Defending", "attrs": ["tackling", "positioning", "heading"] },
+    { "id": "athleticism", "label": "Athleticism", "attrs": ["pace", "stamina", "agility", "strength"] },
+    { "id": "goalkeeping", "label": "Goalkeeping", "attrs": ["handling", "reflexes", "aerialReach"] },
+    { "id": "none", "label": "General", "attrs": [] }
+  ],
+  "personalityEvents": [
+    {
+      "id": "ambition_clash",
+      "minAmbition": 15,
+      "maxMorale": 8,
+      "title": "Ambition clash",
+      "body": "{name} ไม่พอใจโอกาสลงเล่น — ambition สูงทำให้กดดันสตาฟ"
+    },
+    {
+      "id": "pro_boost",
+      "minProfessionalism": 15,
+      "title": "Model pro",
+      "body": "{name} เป็นตัวอย่างในห้องซ้อม — professionalism ดันการพัฒนาเล็กน้อย"
+    },
+    {
+      "id": "temper_flare",
+      "maxProfessionalism": 7,
+      "minDetermination": 12,
+      "title": "Temper flare",
+      "body": "{name} ปะทะกับเพื่อนร่วมทีม — กระทบความสามัคคี"
+    },
+    {
+      "id": "wonder_spark",
+      "maxAge": 21,
+      "minLearning": 15,
+      "title": "Wonderkid spark",
+      "body": "{name} ซึมซับการซ้อมเร็วผิดปกติ — learning rate ช่วยให้ CA ขยับ"
+    }
+  ]
+}

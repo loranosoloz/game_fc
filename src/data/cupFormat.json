@@ -1,0 +1,10 @@
+{
+  "name": "National Cup",
+  "rounds": [
+    { "id": "r16", "label": "Round of 16", "matchdayOffset": 4 },
+    { "id": "qf", "label": "Quarter-final", "matchdayOffset": 12 },
+    { "id": "sf", "label": "Semi-final", "matchdayOffset": 22 },
+    { "id": "final", "label": "Final", "matchdayOffset": 32 }
+  ],
+  "teamsInFirstRound": 16
+}

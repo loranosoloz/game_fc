@@ -1,0 +1,44 @@
+{
+  "groups": [
+    { "id": "technical", "label": "Technical", "labelTh": "เทคนิค" },
+    { "id": "mental", "label": "Mental", "labelTh": "จิตใจ" },
+    { "id": "physical", "label": "Physical", "labelTh": "ร่างกาย" },
+    { "id": "goalkeeping", "label": "Goalkeeping", "labelTh": "ผู้รักษาประตู" }
+  ],
+  "attributes": [
+    { "key": "finishing", "group": "technical", "min": 1, "max": 20 },
+    { "key": "passing", "group": "technical", "min": 1, "max": 20 },
+    { "key": "tackling", "group": "technical", "min": 1, "max": 20 },
+    { "key": "dribbling", "group": "technical", "min": 1, "max": 20 },
+    { "key": "crossing", "group": "technical", "min": 1, "max": 20 },
+    { "key": "heading", "group": "technical", "min": 1, "max": 20 },
+    { "key": "technique", "group": "technical", "min": 1, "max": 20 },
+    { "key": "decision", "group": "mental", "min": 1, "max": 20 },
+    { "key": "vision", "group": "mental", "min": 1, "max": 20 },
+    { "key": "composure", "group": "mental", "min": 1, "max": 20 },
+    { "key": "positioning", "group": "mental", "min": 1, "max": 20 },
+    { "key": "workRate", "group": "mental", "min": 1, "max": 20 },
+    { "key": "pace", "group": "physical", "min": 1, "max": 20 },
+    { "key": "stamina", "group": "physical", "min": 1, "max": 20 },
+    { "key": "strength", "group": "physical", "min": 1, "max": 20 },
+    { "key": "agility", "group": "physical", "min": 1, "max": 20 },
+    { "key": "jumping", "group": "physical", "min": 1, "max": 20 },
+    { "key": "handling", "group": "goalkeeping", "min": 1, "max": 20 },
+    { "key": "reflexes", "group": "goalkeeping", "min": 1, "max": 20 },
+    { "key": "aerialReach", "group": "goalkeeping", "min": 1, "max": 20 }
+  ],
+  "hidden": [
+    { "key": "consistency", "min": 1, "max": 20 },
+    { "key": "importantMatches", "min": 1, "max": 20 },
+    { "key": "dirtiness", "min": 1, "max": 20 },
+    { "key": "injuryProneness", "min": 1, "max": 20 },
+    { "key": "versatility", "min": 1, "max": 20 }
+  ],
+  "growth": [
+    { "key": "determination", "min": 1, "max": 20 },
+    { "key": "ambition", "min": 1, "max": 20 },
+    { "key": "professionalism", "min": 1, "max": 20 },
+    { "key": "adaptability", "min": 1, "max": 20 },
+    { "key": "learningRate", "min": 1, "max": 20 }
+  ]
+}

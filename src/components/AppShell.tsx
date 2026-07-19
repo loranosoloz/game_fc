@@ -7,7 +7,14 @@ const links = [
   { to: '/portal', label: 'พอร์ทัล' },
   { to: '/squad', label: 'สควอด' },
   { to: '/tactics', label: 'แท็กติก' },
+  { to: '/training', label: 'ซ้อม' },
+  { to: '/medical', label: 'แพทย์' },
+  { to: '/youth', label: 'เยาวชน' },
+  { to: '/development', label: 'พัฒนา' },
+  { to: '/staff', label: 'สตาฟ' },
+  { to: '/data', label: 'Data' },
   { to: '/match', label: 'แมตช์' },
+  { to: '/competitions', label: 'ถ้วย' },
   { to: '/table', label: 'ตาราง' },
   { to: '/transfers', label: 'ตลาด' },
   { to: '/finance', label: 'การเงิน' },
@@ -39,8 +46,8 @@ export function AppShell() {
             {club.name}
           </h1>
           <p className="mt-1 text-sm text-slate-600">
-            {save.managerName} · ฤดูกาล {save.season} · {save.currentDate} · อันดับ #{rank || '—'} ·{' '}
-            <span className="text-sky-700">คุณ</span> + AI {aiCount} ทีม
+            {save.managerName} · {save.leagueName} · ฤดูกาล {save.season} · {save.currentDate} · อันดับ #
+            {rank || '—'} · <span className="text-sky-700">คุณ</span> + AI {aiCount} ทีม
           </p>
         </div>
         <button

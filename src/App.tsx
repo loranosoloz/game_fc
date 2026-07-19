@@ -5,6 +5,13 @@ import { HomePage } from '@/pages/HomePage'
 import { PortalPage } from '@/pages/PortalPage'
 import { SquadPage } from '@/pages/SquadPage'
 import { TacticsPage } from '@/pages/TacticsPage'
+import { TrainingPage } from '@/pages/TrainingPage'
+import { MedicalPage } from '@/pages/MedicalPage'
+import { YouthPage } from '@/pages/YouthPage'
+import { StaffPage } from '@/pages/StaffPage'
+import { DataHubPage } from '@/pages/DataHubPage'
+import { DevelopmentPage } from '@/pages/DevelopmentPage'
+import { CompetitionsPage } from '@/pages/CompetitionsPage'
 import { MatchPage } from '@/pages/MatchPage'
 import { LiveMatchPage } from '@/pages/LiveMatchPage'
 import { TablePage } from '@/pages/TablePage'
@@ -41,6 +48,13 @@ export default function App() {
         <Route path="/portal" element={<PortalPage />} />
         <Route path="/squad" element={<SquadPage />} />
         <Route path="/tactics" element={<TacticsPage />} />
+        <Route path="/training" element={<TrainingPage />} />
+        <Route path="/medical" element={<MedicalPage />} />
+        <Route path="/youth" element={<YouthPage />} />
+        <Route path="/staff" element={<StaffPage />} />
+        <Route path="/data" element={<DataHubPage />} />
+        <Route path="/development" element={<DevelopmentPage />} />
+        <Route path="/competitions" element={<CompetitionsPage />} />
         <Route path="/match" element={<MatchPage />} />
         <Route path="/table" element={<TablePage />} />
         <Route path="/transfers" element={<TransfersPage />} />

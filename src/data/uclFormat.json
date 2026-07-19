@@ -1,0 +1,11 @@
+{
+  "name": "UEFA Champions League",
+  "rounds": [
+    { "id": "r16", "label": "Round of 16", "matchdayOffset": 6 },
+    { "id": "qf", "label": "Quarter-final", "matchdayOffset": 14 },
+    { "id": "sf", "label": "Semi-final", "matchdayOffset": 24 },
+    { "id": "final", "label": "Final", "matchdayOffset": 34 }
+  ],
+  "domesticSlots": 4,
+  "inviteSlots": 12
+}

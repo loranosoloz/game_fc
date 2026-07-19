@@ -8,6 +8,7 @@ import type {
   Player,
   Tactics,
 } from './types'
+import { applyInjury } from './medical'
 
 function mulberry32(seed: number) {
   return () => {
@@ -18,16 +19,47 @@ function mulberry32(seed: number) {
   }
 }
 
+function instructionAttackBonus(t: Tactics): number {
+  const i = t.instructions
+  let atk = 1
+  if (i.mentality === 'attacking') atk += 0.06
+  if (i.mentality === 'defensive') atk -= 0.05
+  if (i.style === 'counter') atk += 0.03
+  if (i.style === 'possession') atk += 0.02
+  if (i.tempo === 'fast') atk += 0.02
+  if (i.pressing === 'high') atk += 0.02
+  return atk
+}
+
+function instructionDefenseBonus(t: Tactics): number {
+  const i = t.instructions
+  let def = 1
+  if (i.mentality === 'defensive') def += 0.06
+  if (i.mentality === 'attacking') def -= 0.04
+  if (i.pressing === 'high') def += 0.03
+  if (i.pressing === 'low') def -= 0.02
+  if (i.width === 'narrow') def += 0.02
+  return def
+}
+
 function xiStrength(players: Player[], tactics: Tactics): number {
   const xi = tactics.startingXi
     .map((id) => players.find((p) => p.id === id))
     .filter(Boolean) as Player[]
   if (xi.length === 0) return 50
   const sum = xi.reduce((acc, p) => {
-    const fitness = (p.condition / 100) * (0.7 + p.form / 40) * (0.85 + p.morale / 50)
+    if (p.injuryDays > 0) return acc
+    const fitness =
+      (p.condition / 100) *
+      (0.7 + p.form / 40) *
+      (0.85 + p.morale / 50) *
+      (0.85 + p.sharpness / 200) *
+      (0.9 + (p.happiness ?? 12) / 100)
     return acc + p.overall * fitness
   }, 0)
-  return sum / xi.length
+  const base = sum / xi.length
+  const fam = 0.88 + (tactics.familiarity / 100) * 0.2
+  return base * fam * instructionAttackBonus(tactics)
 }
 
 function sampleGoals(attack: number, defense: number, homeBoost: number, rng: () => number) {
@@ -89,6 +121,7 @@ export function simulateFixture(
   players: Player[],
   tacticsByClub: Record<string, Tactics>,
   seedExtra = 0,
+  humanDynamicsBonus = 1,
 ): MatchResult {
   const seed =
     fixture.matchday * 10_000 +
@@ -101,11 +134,32 @@ export function simulateFixture(
   const awayClub = clubs.find((c) => c.id === fixture.awayClubId)!
   const homeTactics = tacticsByClub[fixture.homeClubId]
   const awayTactics = tacticsByClub[fixture.awayClubId]
-  const homeRating = xiStrength(players, homeTactics)
-  const awayRating = xiStrength(players, awayTactics)
 
-  const homeGoals = sampleGoals(homeRating, awayRating, 1.12, rng)
-  const awayGoals = sampleGoals(awayRating, homeRating, 0.95, rng)
+  const setPieceBonus = (t: Tactics) => {
+    let b = 1
+    if (t.setPieces?.corners === 'near_post' || t.setPieces?.corners === 'far_post') b += 0.03
+    if (t.setPieces?.freeKicks === 'direct') b += 0.02
+    return b
+  }
+
+  let homeRating = xiStrength(players, homeTactics) * setPieceBonus(homeTactics)
+  let awayRating = xiStrength(players, awayTactics) * setPieceBonus(awayTactics)
+  if (humanDynamicsBonus !== 1) {
+    homeRating *= humanDynamicsBonus
+    awayRating *= Math.max(0.85, 2 - humanDynamicsBonus)
+  }
+
+  const homeDef = homeRating * instructionDefenseBonus(homeTactics)
+  const awayDef = awayRating * instructionDefenseBonus(awayTactics)
+
+  let homeGoals = sampleGoals(homeRating, awayDef, 1.12, rng)
+  let awayGoals = sampleGoals(awayRating, homeDef, 0.95, rng)
+
+  // Cup / UCL: no draws
+  if ((fixture.competition === 'cup' || fixture.competition === 'ucl') && homeGoals === awayGoals) {
+    if (rng() < 0.5) homeGoals += 1
+    else awayGoals += 1
+  }
 
   const homePool = buildSidePlayers(homeTactics, players)
   const awayPool = buildSidePlayers(awayTactics, players)
@@ -356,16 +410,32 @@ export function simulateFixture(
 
 export function applyMatchFatigue(players: Player[], tactics: Tactics, played: boolean): Player[] {
   if (!played) return players
+  const xi = new Set(tactics.startingXi)
   const used = new Set([...tactics.startingXi, ...tactics.bench.slice(0, 3)])
   return players.map((p) => {
     if (!used.has(p.id)) {
-      return { ...p, condition: Math.min(100, p.condition + 4) }
+      return {
+        ...p,
+        condition: Math.min(100, p.condition + 4),
+        sharpness: Math.max(30, p.sharpness - 1),
+      }
     }
     const drop = 6 + Math.floor(Math.random() * 6)
-    return {
+    let next = {
       ...p,
       condition: Math.max(45, p.condition - drop),
+      sharpness: Math.min(100, p.sharpness + (xi.has(p.id) ? 3 : 1)),
       form: Math.min(20, Math.max(1, p.form + (Math.random() > 0.5 ? 1 : -1))),
+      minutesPlayed: p.minutesPlayed + (xi.has(p.id) ? 90 : 20),
     }
+    if (
+      xi.has(p.id) &&
+      p.injuryDays <= 0 &&
+      next.condition < 60 &&
+      Math.random() < 0.02 + p.hidden.injuryProneness / 400
+    ) {
+      next = applyInjury(next, 'match')
+    }
+    return next
   })
 }

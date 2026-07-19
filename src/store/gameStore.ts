@@ -1,6 +1,17 @@
 import { create } from 'zustand'
-import type { FormationId, GameSave, Tactics } from '@/game/types'
-import { createNewGame, loadFromStorage, saveToStorage, clearStorage } from '@/game/save'
+import type {
+  FormationId,
+  GameSave,
+  IndividualFocus,
+  InjuryTreatment,
+  SetPiecePlan,
+  SquadRole,
+  Tactics,
+  TeamInstructions,
+  TrainingState,
+} from '@/game/types'
+import { createNewGame, loadFromStorage, saveToStorage, clearStorage, ensurePhase5 } from '@/game/save'
+import type { LeagueId } from '@/data/world'
 import {
   applyPreparedMatchday,
   nextUnplayedMatchday,
@@ -13,17 +24,30 @@ import {
 import { autoPickTactics } from '@/game/seed'
 import { FORMATION_SLOTS } from '@/game/types'
 import { buyPlayerFromAi, sellPlayerToAi } from '@/game/transfer'
+import { applyTrainingWeek, recoverInjuriesOneDay } from '@/game/training'
+import { setPlayerTreatment } from '@/game/medical'
+import { upgradeStaff, staffUpgradeCost, staffLevel } from '@/game/staff'
+import { upgradeAcademy } from '@/game/youth'
+import { scoutPlayer } from '@/game/scouting'
+import { recomputeDynamics } from '@/game/dynamics'
+import { assignMentor } from '@/game/development'
 
 interface GameStore {
   save: GameSave | null
   status: string | null
   liveMatch: PreparedMatchday | null
-  newGame: (managerName: string, humanClubId: string) => void
+  newGame: (managerName: string, humanClubId: string, leagueId?: LeagueId) => void
   continueGame: () => boolean
   persist: () => void
   resetSave: () => void
-  setFormation: (formation: FormationId) => void
+  setFormation: (formation: FormationId, which?: 'ip' | 'oop') => void
+  setInstructions: (patch: Partial<TeamInstructions>) => void
+  setSetPieces: (corners?: SetPiecePlan, freeKicks?: SetPiecePlan) => void
   setStartingXi: (playerIds: string[]) => void
+  setSquadRole: (playerId: string, role: SquadRole) => void
+  setTraining: (patch: Partial<TrainingState>) => void
+  runTrainingNow: () => void
+  setInjuryTreatment: (playerId: string, treatment: InjuryTreatment) => void
   autoPickHumanXi: () => void
   playNextMatchday: () => void
   startLiveMatch: () => boolean
@@ -34,13 +58,20 @@ interface GameStore {
   clearStatus: () => void
   offerBuyPlayer: (playerId: string, fee: number, wage: number) => boolean
   offerSellPlayer: (playerId: string, fee: number) => boolean
+  upgradeStaffRole: (role: 'coach' | 'scout' | 'physio') => void
+  upgradeYouthAcademy: () => void
+  runScout: (playerId: string) => void
+  setIndividualFocus: (playerId: string, focus: IndividualFocus) => void
+  setMentor: (menteeId: string, mentorId: string | null) => void
 }
 
 function finalizeApplied(save: GameSave, matchday: number, resultsCount: number) {
+  const physio = staffLevel(save.staff, 'physio')
   const withRecovery = {
     ...save,
-    players: recoverSquad(save.players),
+    players: recoverSquad(save.players, physio),
     clubs: payWeeklyWages(save.clubs, save.players),
+    dynamics: recomputeDynamics(save),
   }
   saveToStorage(withRecovery)
   return {
@@ -50,21 +81,37 @@ function finalizeApplied(save: GameSave, matchday: number, resultsCount: number)
   }
 }
 
+function patchHumanTactics(save: GameSave, patch: Partial<Tactics>): GameSave {
+  const humanId = save.humanClubId
+  const current = save.tacticsByClub[humanId]
+  return {
+    ...save,
+    tacticsByClub: {
+      ...save.tacticsByClub,
+      [humanId]: { ...current, ...patch },
+    },
+  }
+}
+
 export const useGameStore = create<GameStore>((set, get) => ({
   save: null,
   status: null,
   liveMatch: null,
 
-  newGame: (managerName, humanClubId) => {
-    const save = createNewGame(managerName, humanClubId)
+  newGame: (managerName, humanClubId, leagueId = 'eng') => {
+    const save = createNewGame(managerName, humanClubId, leagueId)
     saveToStorage(save)
-    set({ save, status: 'เริ่มอาชีพใหม่แล้ว — มี AI คุมอีก 19 ทีม', liveMatch: null })
+    set({
+      save,
+      status: `เริ่มอาชีพใน ${save.leagueName} — ${save.clubs.find((c) => c.id === humanClubId)?.name}`,
+      liveMatch: null,
+    })
   },
 
   continueGame: () => {
     const save = loadFromStorage()
     if (!save) return false
-    set({ save, status: null, liveMatch: null })
+    set({ save: ensurePhase5(save), status: null, liveMatch: null })
     return true
   },
 
@@ -78,12 +125,60 @@ export const useGameStore = create<GameStore>((set, get) => ({
     set({ save: null, status: 'ลบเซฟแล้ว', liveMatch: null })
   },
 
-  setFormation: (formation) => {
+  setFormation: (formation, which = 'ip') => {
     const { save } = get()
     if (!save) return
     const humanId = save.humanClubId
-    const picked = autoPickTactics(humanId, save.players, formation)
-    const next = { ...save, tacticsByClub: { ...save.tacticsByClub, [humanId]: picked } }
+    const current = save.tacticsByClub[humanId]
+    if (which === 'oop') {
+      const next = patchHumanTactics(save, {
+        formationOop: formation,
+        familiarity: Math.max(35, current.familiarity - 8),
+      })
+      saveToStorage(next)
+      set({ save: next })
+      return
+    }
+    const picked = autoPickTactics(humanId, save.players, formation, current.formationOop)
+    const next = {
+      ...save,
+      tacticsByClub: {
+        ...save.tacticsByClub,
+        [humanId]: {
+          ...picked,
+          instructions: current.instructions,
+          setPieces: current.setPieces,
+          familiarity: Math.max(35, current.familiarity - 12),
+          formationOop: current.formationOop,
+        },
+      },
+    }
+    saveToStorage(next)
+    set({ save: next })
+  },
+
+  setInstructions: (patch) => {
+    const { save } = get()
+    if (!save) return
+    const current = save.tacticsByClub[save.humanClubId]
+    const next = patchHumanTactics(save, {
+      instructions: { ...current.instructions, ...patch },
+      familiarity: Math.max(30, current.familiarity - 4),
+    })
+    saveToStorage(next)
+    set({ save: next })
+  },
+
+  setSetPieces: (corners, freeKicks) => {
+    const { save } = get()
+    if (!save) return
+    const current = save.tacticsByClub[save.humanClubId]
+    const next = patchHumanTactics(save, {
+      setPieces: {
+        corners: corners ?? current.setPieces.corners,
+        freeKicks: freeKicks ?? current.setPieces.freeKicks,
+      },
+    })
     saveToStorage(next)
     set({ save: next })
   },
@@ -96,15 +191,114 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const slots = FORMATION_SLOTS[current.formation].length
     const startingXi = playerIds.slice(0, slots)
     const rest = save.players
-      .filter((p) => p.clubId === humanId && !startingXi.includes(p.id))
+      .filter((p) => p.clubId === humanId && !startingXi.includes(p.id) && p.injuryDays <= 0)
       .sort((a, b) => b.overall - a.overall)
       .map((p) => p.id)
       .slice(0, 7)
-    const tactics: Tactics = { ...current, startingXi, bench: rest }
+    const tactics: Tactics = {
+      ...current,
+      startingXi,
+      bench: rest,
+      familiarity: Math.max(30, current.familiarity - 2),
+    }
     const next = {
       ...save,
       tacticsByClub: { ...save.tacticsByClub, [humanId]: tactics },
+      dynamics: recomputeDynamics({
+        ...save,
+        tacticsByClub: { ...save.tacticsByClub, [humanId]: tactics },
+      }),
     }
+    saveToStorage(next)
+    set({ save: next })
+  },
+
+  setSquadRole: (playerId, role) => {
+    const { save } = get()
+    if (!save) return
+    const nextPlayers = save.players.map((p) => (p.id === playerId ? { ...p, squadRole: role } : p))
+    const next = {
+      ...save,
+      players: nextPlayers,
+      dynamics: recomputeDynamics({ ...save, players: nextPlayers }),
+    }
+    saveToStorage(next)
+    set({ save: next })
+  },
+
+  setTraining: (patch) => {
+    const { save } = get()
+    if (!save) return
+    const next = {
+      ...save,
+      training: { ...save.training, individual: save.training.individual ?? {}, ...patch },
+    }
+    saveToStorage(next)
+    set({ save: next })
+  },
+
+  setIndividualFocus: (playerId, focus) => {
+    const { save } = get()
+    if (!save) return
+    const next = {
+      ...save,
+      training: {
+        ...save.training,
+        individual: { ...(save.training.individual ?? {}), [playerId]: focus },
+      },
+    }
+    saveToStorage(next)
+    set({ save: next })
+  },
+
+  setMentor: (menteeId, mentorId) => {
+    const { save } = get()
+    if (!save) return
+    const result = assignMentor(save, menteeId, mentorId)
+    set({ status: result.message })
+    saveToStorage(result.save)
+    set({ save: result.save })
+  },
+
+  runTrainingNow: () => {
+    const { save } = get()
+    if (!save) return
+    const previouslyInjured = new Set(
+      save.players
+        .filter((p) => p.clubId === save.humanClubId && p.injuryDays > 0)
+        .map((p) => p.id),
+    )
+    const { players, note } = applyTrainingWeek(save.players, save.humanClubId, save.training)
+    const physio = staffLevel(save.staff, 'physio')
+    const nextPlayers = players.map((p) => {
+      if (!previouslyInjured.has(p.id)) return p
+      return recoverInjuriesOneDay([p], physio)[0]
+    })
+    const next = {
+      ...save,
+      players: nextPlayers,
+      inbox: [
+        {
+          id: `msg-train-${Date.now()}`,
+          date: save.currentDate,
+          title: 'ซ้อมพิเศษ',
+          body: note,
+          read: false,
+        },
+        ...save.inbox,
+      ].slice(0, 40),
+    }
+    saveToStorage(next)
+    set({ save: next, status: note })
+  },
+
+  setInjuryTreatment: (playerId, treatment) => {
+    const { save } = get()
+    if (!save) return
+    const nextPlayers = save.players.map((p) =>
+      p.id === playerId ? setPlayerTreatment(p, treatment) : p,
+    )
+    const next = { ...save, players: nextPlayers }
     saveToStorage(next)
     set({ save: next })
   },
@@ -114,10 +308,18 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (!save) return
     const humanId = save.humanClubId
     const current = save.tacticsByClub[humanId]
-    const picked = autoPickTactics(humanId, save.players, current.formation)
+    const picked = autoPickTactics(humanId, save.players, current.formation, current.formationOop)
     const next = {
       ...save,
-      tacticsByClub: { ...save.tacticsByClub, [humanId]: picked },
+      tacticsByClub: {
+        ...save.tacticsByClub,
+        [humanId]: {
+          ...picked,
+          instructions: current.instructions,
+          setPieces: current.setPieces,
+          familiarity: current.familiarity,
+        },
+      },
     }
     saveToStorage(next)
     set({ save: next, status: 'เลือก XI ที่ดีที่สุดให้อัตโนมัติแล้ว' })
@@ -211,5 +413,45 @@ export const useGameStore = create<GameStore>((set, get) => ({
     saveToStorage(result.save)
     set({ save: result.save })
     return true
+  },
+
+  upgradeStaffRole: (role) => {
+    const { save } = get()
+    if (!save) return
+    const member = save.staff.members.find((m) => m.role === role)!
+    const cost = staffUpgradeCost(member.level)
+    const club = save.clubs.find((c) => c.id === save.humanClubId)!
+    const result = upgradeStaff(save.staff, role, club.balance >= cost)
+    if (!result.ok) {
+      set({ status: result.message })
+      return
+    }
+    const next = {
+      ...save,
+      staff: result.staff,
+      clubs: save.clubs.map((c) =>
+        c.id === club.id ? { ...c, balance: c.balance - cost } : c,
+      ),
+    }
+    saveToStorage(next)
+    set({ save: next, status: result.message })
+  },
+
+  upgradeYouthAcademy: () => {
+    const { save } = get()
+    if (!save) return
+    const result = upgradeAcademy(save)
+    set({ status: result.message })
+    if (!result.ok) return
+    saveToStorage(result.save)
+    set({ save: result.save })
+  },
+
+  runScout: (playerId) => {
+    const { save } = get()
+    if (!save) return
+    const { save: next, message } = scoutPlayer(save, playerId)
+    saveToStorage(next)
+    set({ save: next, status: message })
   },
 }))

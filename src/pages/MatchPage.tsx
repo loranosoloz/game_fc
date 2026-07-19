@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useGameStore } from '@/store/gameStore'
+import { buildOppositionReport } from '@/game/opposition'
 
 export function MatchPage() {
   const navigate = useNavigate()
@@ -19,6 +20,13 @@ export function MatchPage() {
 
   const dayFixtures =
     next != null ? save.fixtures.filter((f) => f.matchday === next.matchday) : []
+
+  const oppId = next
+    ? next.homeClubId === save.humanClubId
+      ? next.awayClubId
+      : next.homeClubId
+    : null
+  const report = oppId ? buildOppositionReport(save, oppId) : null
 
   const enterLive = () => {
     if (startLiveMatch()) navigate('/match/live')
@@ -75,6 +83,22 @@ export function MatchPage() {
             ) : null}
           </div>
         )}
+
+        {report ? (
+          <div className="mt-6 border-t border-slate-100 pt-4">
+            <h3 className="font-semibold">Opposition report</h3>
+            <p className="mt-1 text-sm text-slate-600">
+              รูป {report.formation} · ความแข็งแกร่ง XI ~{report.strength}
+            </p>
+            <p className="mt-2 text-sm">
+              <span className="font-medium">จุดอ่อน:</span> {report.weakness}
+            </p>
+            <p className="mt-1 text-sm">
+              <span className="font-medium">ภัยคุกคาม:</span> {report.threatPlayers.join(' · ')}
+            </p>
+            <p className="mt-2 text-sm text-slate-700">{report.advice}</p>
+          </div>
+        ) : null}
 
         {last ? (
           <div className="mt-6 border-t border-slate-100 pt-4">

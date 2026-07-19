@@ -2,12 +2,13 @@ import { useMemo, useState } from 'react'
 import { useGameStore } from '@/store/gameStore'
 import { estimatedValue, listMarketPlayers, minAcceptableFee } from '@/game/transfer'
 import { analyzeBuy, analyzeSell } from '@/game/transferIntel'
-import { positionLabel } from '@/game/seed'
+import { roleLabel, roleShort } from '@/game/positions'
 import { formatMoney } from '@/lib/format'
-import type { Position } from '@/game/types'
+import type { PositionGroup } from '@/game/types'
 import { cn } from '@/lib/cn'
 import { TransferIntelPanel } from '@/components/TransferIntelPanel'
 import { ensureFans, fanMoodLabel } from '@/game/fans'
+import { knowledgeOf, revealPa } from '@/game/scouting'
 
 type Tab = 'buy' | 'sell'
 
@@ -16,9 +17,10 @@ export function TransfersPage() {
   const save = ensureFans(saveRaw)
   const offerBuyPlayer = useGameStore((s) => s.offerBuyPlayer)
   const offerSellPlayer = useGameStore((s) => s.offerSellPlayer)
+  const runScout = useGameStore((s) => s.runScout)
 
   const [tab, setTab] = useState<Tab>('buy')
-  const [pos, setPos] = useState<Position | 'ALL'>('ALL')
+  const [pos, setPos] = useState<PositionGroup | 'ALL'>('ALL')
   const [q, setQ] = useState('')
   const [selectedId, setSelectedId] = useState<string | null>(null)
 
@@ -112,13 +114,13 @@ export function TransfersPage() {
               <select
                 className="rounded-md border border-slate-300 px-3 py-1.5 text-sm"
                 value={pos}
-                onChange={(e) => setPos(e.target.value as Position | 'ALL')}
+                onChange={(e) => setPos(e.target.value as PositionGroup | 'ALL')}
               >
                 <option value="ALL">ทุกตำแหน่ง</option>
-                <option value="GK">ผู้รักษาประตู</option>
-                <option value="DF">กองหลัง</option>
-                <option value="MF">กองกลาง</option>
-                <option value="FW">กองหน้า</option>
+                <option value="GK">GK</option>
+                <option value="DF">DF</option>
+                <option value="MF">MF</option>
+                <option value="FW">FW</option>
               </select>
             </div>
             <ul className="mt-3 max-h-[26rem] space-y-1 overflow-y-auto text-sm">
@@ -135,7 +137,10 @@ export function TransfersPage() {
                     )}
                   >
                     <span>
-                      <span className="font-semibold">{positionLabel(p.position)}</span> {p.name}
+<span className="font-semibold" title={roleLabel(p.role)}>
+                        {roleShort(p.role)}
+                      </span>{' '}
+                      {p.name}
                       <span className="mt-0.5 block text-xs text-slate-500">
                         {p.clubName} · อายุ {p.age}
                       </span>
@@ -164,7 +169,10 @@ export function TransfersPage() {
                   )}
                 >
                   <span>
-                    <span className="font-semibold">{positionLabel(p.position)}</span> {p.name}
+                    <span className="font-semibold" title={roleLabel(p.role)}>
+                      {roleShort(p.role)}
+                    </span>{' '}
+                    {p.name}
                     <span className="mt-0.5 block text-xs text-slate-500">อายุ {p.age}</span>
                   </span>
                   <span className="text-right">
@@ -183,16 +191,26 @@ export function TransfersPage() {
         {tab === 'buy' && selectedBuy && sellerClub ? (
           <div className="mt-3 space-y-3 text-sm">
             <p>
-              <strong>{selectedBuy.name}</strong> · {positionLabel(selectedBuy.position)} · OVR{' '}
+              <strong>{selectedBuy.name}</strong> · {roleShort(selectedBuy.role)} · OVR{' '}
               {selectedBuy.overall}
             </p>
             <p className="text-slate-600">
               สังกัด: {selectedBuy.clubName} (AI)
               <br />
+              Scout knowledge: {knowledgeOf(save.scouting, selectedBuy.id)}% · PA{' '}
+              {revealPa(selectedBuy.pa, knowledgeOf(save.scouting, selectedBuy.id))}
+              <br />
               มูลค่าประเมิน: {formatMoney(selectedBuy.value)}
               <br />
               ค่าตัวขั้นต่ำโดยประมาณ: {formatMoney(minAcceptableFee(selectedBuy, sellerClub))}
             </p>
+            <button
+              type="button"
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 font-semibold hover:bg-slate-50"
+              onClick={() => runScout(selectedBuy.id)}
+            >
+              ส่งสเกาต์ (+ความรู้)
+            </button>
             <label className="grid gap-1">
               <span>เสนอค่าตัว</span>
               <input
@@ -224,7 +242,7 @@ export function TransfersPage() {
         {tab === 'sell' && selectedSell ? (
           <div className="mt-3 space-y-3 text-sm">
             <p>
-              <strong>{selectedSell.name}</strong> · {positionLabel(selectedSell.position)} · OVR{' '}
+              <strong>{selectedSell.name}</strong> · {roleShort(selectedSell.role)} · OVR{' '}
               {selectedSell.overall}
             </p>
             <p className="text-slate-600">มูลค่าประเมิน: {formatMoney(selectedSell.value)}</p>

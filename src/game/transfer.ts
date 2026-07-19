@@ -7,10 +7,14 @@ import {
   ensureFans,
   fanInbox,
 } from './fans'
+import { canAffordTransfer } from './financeFfp'
+import { pressAfterTransfer } from './press'
+import { injuryHistoryPenalty } from './medical'
 
 export function estimatedValue(player: Player): number {
   const ageFactor = player.age <= 24 ? 1.25 : player.age <= 29 ? 1.0 : player.age <= 32 ? 0.7 : 0.45
-  return Math.round(player.overall ** 2 * 900 * ageFactor)
+  const injuryFactor = injuryHistoryPenalty(player) * (player.injuryDays > 0 ? 0.85 : 1)
+  return Math.round(player.overall ** 2 * 900 * ageFactor * injuryFactor)
 }
 
 export function minAcceptableFee(player: Player, seller: Club): number {
@@ -31,7 +35,13 @@ function stripFromTactics(tactics: Tactics, playerId: string): Tactics {
 
 function ensureXiFilled(clubId: string, players: Player[], tactics: Tactics): Tactics {
   if (tactics.startingXi.length >= 11) return tactics
-  return autoPickTactics(clubId, players, tactics.formation)
+  const picked = autoPickTactics(clubId, players, tactics.formation, tactics.formationOop)
+  return {
+    ...picked,
+    instructions: tactics.instructions,
+    familiarity: tactics.familiarity,
+    setPieces: tactics.setPieces,
+  }
 }
 
 function squadAvg(save: GameSave, clubId: string) {
@@ -63,6 +73,9 @@ export function buyPlayerFromAi(
     return { ok: false, message: `งบไม่พอ (มี ${formatMoney(buyer.balance)})` }
   }
 
+  const ffp = canAffordTransfer(save, offerFee, offerWage)
+  if (!ffp.ok) return { ok: false, message: `FFP: ${ffp.reason}` }
+
   const sellerDepth = save.players.filter(
     (p) => p.clubId === seller.id && p.position === player.position,
   ).length
@@ -86,7 +99,13 @@ export function buyPlayerFromAi(
 
   let players = save.players.map((p) =>
     p.id === playerId
-      ? { ...p, clubId: buyer.id, wage: offerWage, morale: Math.min(20, p.morale + 2) }
+      ? {
+          ...p,
+          clubId: buyer.id,
+          wage: offerWage,
+          morale: Math.min(20, p.morale + 2),
+          happiness: Math.min(20, (p.happiness ?? p.morale) + 2),
+        }
       : p,
   )
 
@@ -115,6 +134,7 @@ export function buyPlayerFromAi(
     player.age,
   )
   const fanResult = applyTransferToFans(save.fans, kind, player.name)
+  const story = pressAfterTransfer(save, player.name, true)
 
   const inbox: InboxMessage[] = [
     {
@@ -137,6 +157,10 @@ export function buyPlayerFromAi(
       clubs,
       tacticsByClub,
       fans: fanResult.fans,
+      press: [story, ...save.press].slice(0, 30),
+      scouting: {
+        byPlayer: { ...save.scouting.byPlayer, [playerId]: 100 },
+      },
       inbox: inbox.slice(0, 40),
     },
   }
@@ -195,7 +219,14 @@ export function sellPlayerToAi(save: GameSave, playerId: string, askFee: number)
   }
 
   let players = save.players.map((p) =>
-    p.id === playerId ? { ...p, clubId: buyer.id, morale: Math.max(1, p.morale - 1) } : p,
+    p.id === playerId
+      ? {
+          ...p,
+          clubId: buyer.id,
+          morale: Math.max(1, p.morale - 1),
+          happiness: Math.max(1, (p.happiness ?? p.morale) - 1),
+        }
+      : p,
   )
 
   let clubs = save.clubs.map((c) => {
@@ -223,6 +254,7 @@ export function sellPlayerToAi(save: GameSave, playerId: string, askFee: number)
     player.age,
   )
   const fanResult = applyTransferToFans(save.fans, kind, player.name)
+  const story = pressAfterTransfer(save, player.name, false)
 
   const inbox: InboxMessage[] = [
     {
@@ -245,6 +277,7 @@ export function sellPlayerToAi(save: GameSave, playerId: string, askFee: number)
       clubs,
       tacticsByClub,
       fans: fanResult.fans,
+      press: [story, ...save.press].slice(0, 30),
       inbox: inbox.slice(0, 40),
     },
   }

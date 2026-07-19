@@ -1,0 +1,9 @@
+{
+  "roles": [
+    { "id": "coach", "label": "Coach", "labelTh": "โค้ช", "affects": "training" },
+    { "id": "scout", "label": "Scout", "labelTh": "สเกาต์", "affects": "scouting" },
+    { "id": "physio", "label": "Physio", "labelTh": "แพทย์", "affects": "recovery" }
+  ],
+  "defaultLevel": 8,
+  "maxLevel": 20
+}
