@@ -17,16 +17,25 @@ export function createClubFinance(): ClubFinanceState {
     ticketSeason: 0,
     shirtSeason: 0,
     wageSeason: 0,
+    fineSeason: 0,
     lastMatchTickets: 0,
     lastMatchShirts: 0,
     lastMatchCrowd: 0,
     ledger: [],
     spendLogs: [],
+    fineLogs: [],
   }
 }
 
 export function ensureClubFinance(save: GameSave): ClubFinanceState {
-  return save.clubFinance ?? createClubFinance()
+  const raw = save.clubFinance
+  if (!raw) return createClubFinance()
+  return {
+    ...createClubFinance(),
+    ...raw,
+    fineSeason: raw.fineSeason ?? 0,
+    fineLogs: raw.fineLogs ?? [],
+  }
 }
 
 export function getSpend(id: string): PlayerSpendDef | undefined {

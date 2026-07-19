@@ -30,6 +30,7 @@ import {
   applyDisciplineFromEvents,
   stripBannedFromTactics,
 } from './discipline'
+import { applyMatchCardFines } from './disciplineFines'
 import {
   staffLevel,
   refreshStaffMarket,
@@ -176,6 +177,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   let discRngSeed = prepared.matchday * 7919
   const newsBatch: MediaItem[] = []
   const injuryBefore = players.map((p) => ({ id: p.id, injuryDays: p.injuryDays }))
+  const cardFineTriggers: Array<{ playerId: string; kind: 'red_card' | 'yellow_ban' }> = []
 
   const sorted = table.slice().sort((a, b) => {
     if (b.points !== a.points) return b.points - a.points
@@ -232,6 +234,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       return discRngSeed / 2147483647
     })
     players = disc.players
+    for (const t of disc.fineTriggers) cardFineTriggers.push(t)
     for (const note of disc.notes) {
       if (
         fixture.homeClubId === save.humanClubId ||
@@ -409,6 +412,16 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     matchday: prepared.matchday,
     seasonComplete: fixtures.filter((f) => f.competition === 'league').every((f) => f.played),
     currentDate: prepared.date,
+  }
+
+  if (cardFineTriggers.length > 0) {
+    let fineRng = prepared.matchday * 4243
+    next = applyMatchCardFines(next, cardFineTriggers, prepared.date, () => {
+      fineRng = (fineRng * 16807) % 2147483647
+      return fineRng / 2147483647
+    })
+    players = next.players
+    clubFinance = next.clubFinance
   }
 
   const trained = applyTrainingWeek(next.players, next.humanClubId, next.training)

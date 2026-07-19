@@ -11,6 +11,7 @@
 | Media: news + social + Romano (+ press / plant) | ✅ | ✅ committed |
 | Scouting 0%/alumni 50% + stadium guests + form watch | ✅ | ✅ committed |
 | Gate tickets/shirts + player wallets + spending DB | ✅ | ✅ committed |
+| Discipline fines (สุ่มหน้างาน → หัก cash) | ✅ | ✅ committed |
 
 Data packs: `src/data/` + `src/data/world/` · Save **v6**
 

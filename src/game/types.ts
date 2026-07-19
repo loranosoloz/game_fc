@@ -430,8 +430,33 @@ export interface PlayerSpendLog {
 export interface FinanceLedgerEntry {
   id: string
   date: string
-  kind: 'tickets' | 'shirts' | 'wages' | 'other'
+  kind: 'tickets' | 'shirts' | 'wages' | 'fine' | 'other'
   amount: number
+  note: string
+}
+
+export interface DisciplineFineDef {
+  id: string
+  labelTh: string
+  triggers: string[]
+  fineMin: number
+  fineMax: number
+  wageShareMin: number
+  wageShareMax: number
+  caughtBase: number
+  effects?: { morale?: number; happiness?: number }
+  note: string
+}
+
+export interface PlayerFineLog {
+  id: string
+  date: string
+  playerId: string
+  playerName: string
+  fineId: string
+  labelTh: string
+  amount: number
+  trigger: string
   note: string
 }
 
@@ -440,11 +465,14 @@ export interface ClubFinanceState {
   ticketSeason: number
   shirtSeason: number
   wageSeason: number
+  /** ค่าปรับวินัยที่หักจากนักเตะ (เข้าคลับ) สะสมฤดูกาล */
+  fineSeason: number
   lastMatchTickets: number
   lastMatchShirts: number
   lastMatchCrowd: number
   ledger: FinanceLedgerEntry[]
   spendLogs: PlayerSpendLog[]
+  fineLogs: PlayerFineLog[]
 }
 
 export interface YouthState {

@@ -2,6 +2,7 @@ import { useGameStore } from '@/store/gameStore'
 import { formatMoney } from '@/lib/format'
 import { ffpStatus } from '@/game/financeFfp'
 import { ensureClubFinance, PLAYER_SPENDINGS } from '@/game/playerEconomy'
+import { DISCIPLINE_FINES } from '@/game/disciplineFines'
 import { ensurePhase5 } from '@/game/save'
 import { PageHeader, Panel, ProgressBar, StatTile } from '@/components/ui'
 
@@ -25,7 +26,7 @@ export function FinancePage() {
     <div className="space-y-5">
       <PageHeader
         title="การเงิน"
-        subtitle="ตั๋ว + เสื้อเข้าคลับ · ค่าเหนื่อยเข้ากระเป๋านักเตะ · DB การใช้จ่ายส่วนตัว"
+        subtitle="ตั๋ว + เสื้อ · กระเป๋านักเตะ · ค่าปรับวินัย · การใช้จ่ายส่วนตัว"
       />
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -67,14 +68,14 @@ export function FinancePage() {
           hint={`งบสัปดาห์ ${formatMoney(club.wageBudgetWeekly)} · ${wagePct}%`}
         />
         <StatTile
+          label="ค่าปรับวินัย (เข้าคลับ)"
+          value={formatMoney(finance.fineSeason ?? 0)}
+          hint={`DB ปรับ ${DISCIPLINE_FINES.length} แบบ · สุ่มหน้างาน`}
+        />
+        <StatTile
           label="FFP"
           value={ffp.ok ? 'ผ่าน' : 'เสี่ยง'}
           hint={ffp.warning ?? 'อยู่ในเกณฑ์'}
-        />
-        <StatTile
-          label="รายการใช้จ่ายใน DB"
-          value={PLAYER_SPENDINGS.length}
-          hint="นักเตะสุ่มใช้ตามบุคลิก/เงิน"
         />
       </div>
 
@@ -117,7 +118,7 @@ export function FinancePage() {
         </Panel>
       </div>
 
-      <div className="grid gap-5 lg:grid-cols-2">
+      <div className="grid gap-5 lg:grid-cols-3">
         <Panel>
           <h3 className="text-sm font-bold text-slate-900">สมุดบัญชีสนาม</h3>
           {ledger.length === 0 ? (
@@ -145,6 +146,29 @@ export function FinancePage() {
                     {e.amount >= 0 ? '+' : ''}
                     {formatMoney(e.amount)}
                   </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </Panel>
+
+        <Panel tone="warn">
+          <h3 className="text-sm font-bold text-slate-900">ค่าปรับวินัยล่าสุด</h3>
+          <p className="mt-1 text-xs text-amber-900/80">
+            DB {DISCIPLINE_FINES.length} แบบ — สุ่มตามหน้างาน (ขาดซ้อม / ผับ / พนัน / ใบแดง ฯลฯ)
+          </p>
+          {(finance.fineLogs ?? []).length === 0 ? (
+            <p className="mt-3 text-sm text-slate-500">ยังไม่มี — พอมีเคสวินัยจะหักเงินเข้าตรงนี้</p>
+          ) : (
+            <ul className="mt-3 max-h-64 space-y-1.5 overflow-y-auto text-sm">
+              {(finance.fineLogs ?? []).slice(0, 12).map((l) => (
+                <li key={l.id} className="rounded-md border border-rose-100 bg-white/80 px-3 py-2">
+                  <p className="font-semibold text-slate-900">
+                    {l.playerName} · {l.labelTh}
+                  </p>
+                  <p className="text-xs text-slate-600">
+                    −{formatMoney(l.amount)} · {l.note}
+                  </p>
                 </li>
               ))}
             </ul>

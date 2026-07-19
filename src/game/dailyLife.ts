@@ -7,6 +7,7 @@ import type {
   StaffPerson,
 } from './types'
 import { ensureLivingStaff, finalizePool, pricingFromSkills } from './staff'
+import { applyLifestyleFines } from './disciplineFines'
 
 function mulberry32(seed: number) {
   return () => {
@@ -243,7 +244,7 @@ export function simulateDailyLife(save: GameSave, dayCount = 7): GameSave {
 
   const fin = finalizePool(pool, humanId)
 
-  return {
+  let next: GameSave = {
     ...save,
     players,
     staff: {
@@ -254,6 +255,23 @@ export function simulateDailyLife(save: GameSave, dayCount = 7): GameSave {
     dailyLogs: [...logs, ...(save.dailyLogs ?? [])].slice(0, 500),
     inbox,
   }
+
+  // ค่าปรับวินัย — สุ่มตามหน้างานเมื่อผิดกฎ / ขาดซ้อม / อบายมุข
+  next = applyLifestyleFines(
+    next,
+    logs
+      .filter((l) => l.subject === 'player')
+      .map((l) => ({
+        playerId: l.playerId,
+        activityId: l.activityId,
+        category: l.category,
+        missTraining: l.missTraining,
+        date: l.date,
+      })),
+    rng,
+  )
+
+  return next
 }
 
 export function recentLogsForPlayer(save: GameSave, playerId: string, limit = 14): DailyActivityLog[] {

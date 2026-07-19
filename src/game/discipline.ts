@@ -61,9 +61,14 @@ export function applyDisciplineFromEvents(
   players: Player[],
   events: MatchEvent[],
   rng: () => number,
-): { players: Player[]; notes: string[] } {
+): {
+  players: Player[]
+  notes: string[]
+  fineTriggers: Array<{ playerId: string; kind: 'red_card' | 'yellow_ban' }>
+} {
   let next = players
   const notes: string[] = []
+  const fineTriggers: Array<{ playerId: string; kind: 'red_card' | 'yellow_ban' }> = []
   for (const ev of events) {
     if (ev.kind !== 'card' || !ev.playerId) continue
     const color = ev.cardColor ?? 'yellow'
@@ -76,9 +81,13 @@ export function applyDisciplineFromEvents(
         `${updated.name} โดนแบน ${updated.banMatches} นัด` +
           (color === 'red' ? ' (ใบแดง)' : ' (ใบเหลืองสะสม)'),
       )
+      fineTriggers.push({
+        playerId: updated.id,
+        kind: color === 'red' ? 'red_card' : 'yellow_ban',
+      })
     }
   }
-  return { players: next, notes }
+  return { players: next, notes, fineTriggers }
 }
 
 /** After a matchday completes, tick bans for players who did not play (or all clubs). */
