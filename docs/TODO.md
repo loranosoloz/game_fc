@@ -12,8 +12,8 @@
 | Scouting 0%/alumni 50% + stadium guests + form watch | ✅ | ✅ committed |
 | Gate tickets/shirts + player wallets + spending DB | ✅ | ✅ committed |
 | Discipline fines (สุ่มหน้างาน → หัก cash) | ✅ | ✅ committed |
-| Meetings · 100 ประเภท · 600 dialog · AI คุยด้วย | ✅ | ⏳ รอ commit |
-| Expansion pack: loan / sponsor·TV·prize / shortlist / desk / UCL 2 legs / IDB / opp | ✅ | ⏳ รอ commit |
+| Meetings · 100 ประเภท · 600 dialog · AI คุยด้วย | ✅ | ✅ committed |
+| Expansion pack: loan / sponsor·TV·prize / shortlist / desk / UCL 2 legs / IDB / opp | ✅ | ✅ committed |
 
 Data packs: `src/data/` + `src/data/world/` · Save **v6**
 
@@ -21,12 +21,11 @@ Data packs: `src/data/` + `src/data/world/` · Save **v6**
 
 ## Git
 
-- สาขา: `master` · **meetings + expansion pack รอ commit**
-- สถานะกับ remote: **ahead of `origin/master`** — ยังไม่ `git push` จนกว่าจะสั่ง
+- สาขา: `master` · งานชุดล่าสุดอยู่ใน commit `15450c1`
+- สถานะกับ remote: **ahead of `origin/master` (5)** — ยังไม่ `git push` จนกว่าจะสั่ง
 
 ### Todo ฝั่ง Git (ค้าง)
 
-- [ ] commit ระบบ meetings + expansion pack
 - [ ] `git push origin master` เมื่อพร้อมเผยแพร่ remote
 
 ## ขยายต่อได้ (ออปชันลึกขึ้น)
