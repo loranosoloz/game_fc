@@ -43,6 +43,19 @@ import { assignMentor } from '@/game/development'
 import { plantRomanoStory } from '@/game/romanoPlant'
 import type { PlantOpts, RomanoPlantKind } from '@/game/romanoPlant'
 import { requestClubBudget } from '@/game/owner'
+import {
+  inviteOwnerToStadium,
+  requestBoardPublicSupport,
+  callBoardEmergencyMeeting,
+  outreachFanFaction,
+  resolveOwnerDemand,
+  type FanFactionKey,
+} from '@/game/clubAtmosphere'
+import {
+  setTakeoverAdvice,
+  attemptTakeoverDeal,
+  rejectTakeoverOffer,
+} from '@/game/takeover'
 import { managerTalk, respondToPlayerRequest } from '@/game/playerTalks'
 import type { ManagerTalkTopic, TalkResponse } from '@/game/types'
 import {
@@ -107,6 +120,14 @@ interface GameStore {
   startManagerTalk: (topic: ManagerTalkTopic, playerId?: string) => boolean
   answerPlayerRequest: (requestId: string, response: TalkResponse) => boolean
   requestBoardBudget: (amount: number) => boolean
+  inviteOwnerStadium: () => boolean
+  requestPublicSupport: () => boolean
+  callBoardMeeting: () => boolean
+  outreachFans: (faction: 'ultras' | 'soft' | 'casual' | 'corporate' | 'international') => boolean
+  answerOwnerDemand: (accept: boolean) => boolean
+  adviseTakeover: (offerId: string, advice: 'recommend' | 'caution' | 'reject') => boolean
+  attemptTakeover: (offerId: string) => boolean
+  rejectTakeover: (offerId: string) => boolean
   answerPressConference: (answerIds: string[]) => void
   dismissPressConference: () => void
 }
@@ -732,6 +753,91 @@ export const useGameStore = create<GameStore>((set, get) => ({
     saveToStorage(result.save)
     set({ save: result.save })
     return result.ok
+  },
+
+  inviteOwnerStadium: () => {
+    const { save } = get()
+    if (!save) return false
+    const result = inviteOwnerToStadium(save)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  requestPublicSupport: () => {
+    const { save } = get()
+    if (!save) return false
+    const result = requestBoardPublicSupport(save)
+    set({ status: result.message })
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return result.ok
+  },
+
+  callBoardMeeting: () => {
+    const { save } = get()
+    if (!save) return false
+    const result = callBoardEmergencyMeeting(save)
+    set({ status: result.message })
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return result.ok
+  },
+
+  outreachFans: (faction) => {
+    const { save } = get()
+    if (!save) return false
+    const result = outreachFanFaction(save, faction as FanFactionKey)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  answerOwnerDemand: (accept) => {
+    const { save } = get()
+    if (!save) return false
+    const result = resolveOwnerDemand(save, accept)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  adviseTakeover: (offerId, advice) => {
+    const { save } = get()
+    if (!save) return false
+    const result = setTakeoverAdvice(save, offerId, advice)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  attemptTakeover: (offerId) => {
+    const { save } = get()
+    if (!save) return false
+    const result = attemptTakeoverDeal(save, offerId)
+    set({ status: result.message })
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return result.ok
+  },
+
+  rejectTakeover: (offerId) => {
+    const { save } = get()
+    if (!save) return false
+    const result = rejectTakeoverOffer(save, offerId)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
   },
 
   answerPressConference: (answerIds) => {

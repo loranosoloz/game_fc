@@ -141,6 +141,31 @@ export function newsAfterInjury(
   )
 }
 
+export function newsAfterIllness(
+  save: GameSave,
+  playerName: string,
+  illnessType: string,
+  days: number,
+): MediaItem {
+  const club = save.clubs.find((c) => c.id === save.humanClubId)!
+  const label: Record<string, string> = {
+    cold: 'หวัด',
+    flu: 'ไข้หวัดใหญ่',
+    stomach: 'ท้องเสีย',
+    virus: 'ไวรัส',
+    fever: 'มีไข้',
+  }
+  const th = label[illnessType] ?? 'ป่วย'
+  return item(
+    'news',
+    save.currentDate,
+    `${club.shortName}: ${playerName} ป่วย${th}`,
+    `ทีมแพทย์ยืนยันต้องพักประมาณ ${days} วัน — ยังไม่เกี่ยวกับอาการบาดเจ็บกล้ามเนื้อ`,
+    'neutral',
+    { tags: ['medical', 'illness'], subjectName: playerName },
+  )
+}
+
 export function newsAfterYouth(save: GameSave, names: string): MediaItem {
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
   return item(

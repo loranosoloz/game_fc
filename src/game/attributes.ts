@@ -163,6 +163,8 @@ export function ensurePlayerV3Fields(p: Partial<Player> & { id: string; clubId: 
     injuryBodyPart: p.injuryBodyPart ?? null,
     bodyMap: ensureBodyMap(p),
     injuryHistory: p.injuryHistory ?? [],
+    illnessDays: p.illnessDays ?? 0,
+    illnessType: p.illnessType ?? null,
     seasonYellows: p.seasonYellows ?? 0,
     banMatches: p.banMatches ?? 0,
     leaveDays: p.leaveDays ?? 0,

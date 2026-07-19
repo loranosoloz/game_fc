@@ -62,6 +62,9 @@ export function createBoardState(reputation: number): BoardState {
     sacked: false,
     sackedNote: null,
     lastBudgetRequestMatchday: -99,
+    transferFreezeUntil: -1,
+    lastStadiumVisitMatchday: -99,
+    publicSupport: false,
   }
 }
 
@@ -76,6 +79,9 @@ export function ensureBoard(save: GameSave): BoardState {
     sacked: b.sacked ?? false,
     sackedNote: b.sackedNote ?? null,
     lastBudgetRequestMatchday: b.lastBudgetRequestMatchday ?? -99,
+    transferFreezeUntil: b.transferFreezeUntil ?? -1,
+    lastStadiumVisitMatchday: b.lastStadiumVisitMatchday ?? -99,
+    publicSupport: b.publicSupport ?? false,
     kpis: b.kpis?.length ? b.kpis : createBoardState(50).kpis,
   }
 }

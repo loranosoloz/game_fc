@@ -28,6 +28,7 @@ import { createLoansState, ensureLoans } from './loans'
 import { createShortlist, ensureShortlist } from './shortlist'
 import { createTransferDesk, ensureTransferDesk } from './transferDesk'
 import { createClubIncome, ensureClubIncome } from './clubIncome'
+import { createTakeoverState, ensureTakeover } from './takeover'
 import { persistSaveSync, loadSaveRawAsync, clearAllSaves } from './idbSave'
 import { roleGroup } from './positions'
 import type { RoleCode } from './types'
@@ -104,6 +105,7 @@ export function createNewGame(
     shortlist: createShortlist(),
     transferDesk: createTransferDesk(),
     clubIncome: createClubIncome(human.reputation),
+    takeover: createTakeoverState(2026),
   }
 }
 
@@ -140,6 +142,8 @@ export function ensurePhase5(save: GameSave): GameSave {
   if (!next.shortlist) next = { ...next, shortlist: ensureShortlist(next) }
   if (!next.transferDesk) next = { ...next, transferDesk: ensureTransferDesk(next) }
   if (!next.clubIncome) next = { ...next, clubIncome: ensureClubIncome(next) }
+  if (!next.takeover) next = { ...next, takeover: ensureTakeover(next) }
+  else next = { ...next, takeover: ensureTakeover(next) }
   if (!next.leagueId) next = { ...next, leagueId: 'eng', leagueName: next.leagueName ?? 'Premier League' }
   if (!next.leagueName) next = { ...next, leagueName: 'World League' }
 
@@ -292,6 +296,9 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
     clubIncome:
       (raw.clubIncome as GameSave['clubIncome']) ??
       createClubIncome(human.reputation),
+    takeover: (raw.takeover as GameSave['takeover']) ?? createTakeoverState(
+      typeof raw.season === 'number' ? (raw.season as number) : 2026,
+    ),
   } as GameSave
 
   return ensurePhase5(ensureFans(base))

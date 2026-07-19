@@ -4,7 +4,7 @@ import { roleShort } from './positions'
 export function buildOppositionReport(save: GameSave, opponentId: string): OppositionReport {
   const tactics = save.tacticsByClub[opponentId]
   const squad = save.players
-    .filter((p) => p.clubId === opponentId && p.injuryDays <= 0)
+    .filter((p) => p.clubId === opponentId && p.injuryDays <= 0 && (p.illnessDays ?? 0) <= 0)
     .sort((a, b) => b.overall - a.overall)
   const avg = squad.slice(0, 11).reduce((s, p) => s + p.overall, 0) / Math.max(1, Math.min(11, squad.length))
   const threats = squad.slice(0, 3)

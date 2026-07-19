@@ -54,13 +54,23 @@ export function createOwnerState(clubRep: number, seed = Date.now()): OwnerState
     warChest: Math.round(5_000_000 + clubRep * 200_000 + rng * 8_000_000),
     lastNote: `${name} (${OWNER_PERSONALITY_LABEL[personality]}) — ${OWNER_PERSONALITY_DESC[personality]}`,
     takeoverHeat: personality === 'frugal' && clubRep < 55 ? 18 : 8,
+    lastStadiumVisitMatchday: -99,
+    stadiumLogs: [],
+    pendingDemand: null,
   }
 }
 
 export function ensureOwner(save: GameSave): OwnerState {
-  if (save.owner?.name) return save.owner
   const club = save.clubs.find((c) => c.id === save.humanClubId)
-  return createOwnerState(club?.reputation ?? 50, save.season * 100 + save.matchday)
+  const fresh = createOwnerState(club?.reputation ?? 50, save.season * 100 + save.matchday)
+  if (!save.owner?.name) return fresh
+  return {
+    ...fresh,
+    ...save.owner,
+    lastStadiumVisitMatchday: save.owner.lastStadiumVisitMatchday ?? -99,
+    stadiumLogs: save.owner.stadiumLogs ?? [],
+    pendingDemand: save.owner.pendingDemand ?? null,
+  }
 }
 
 /** หลังแมตช์ — เจ้าของตอบสนองผลงาน/แฟน/งบ */

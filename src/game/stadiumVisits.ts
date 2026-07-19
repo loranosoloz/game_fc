@@ -34,7 +34,7 @@ export function clubHasMatchThisDay(
  * เจ็บหรือแบน → ว่างมาเข้าสนามได้
  */
 export function playerBusyThisDay(save: GameSave, player: Player, matchday: number): boolean {
-  if ((player.injuryDays ?? 0) > 0) return false
+  if ((player.injuryDays ?? 0) > 0 || (player.illnessDays ?? 0) > 0) return false
   if ((player.banMatches ?? 0) > 0) return false
   if (!player.clubId) return false
   return clubHasMatchThisDay(save, player.clubId, matchday)

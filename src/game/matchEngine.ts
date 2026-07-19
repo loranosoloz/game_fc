@@ -51,7 +51,7 @@ function xiStrength(players: Player[], tactics: Tactics, phase: 'attack' | 'defe
     .filter(Boolean) as Player[]
   if (xi.length === 0) return 50
   const sum = xi.reduce((acc, p) => {
-    if (p.injuryDays > 0 || (p.banMatches ?? 0) > 0 || (p.leaveDays ?? 0) > 0) return acc
+    if (p.injuryDays > 0 || (p.banMatches ?? 0) > 0 || (p.leaveDays ?? 0) > 0 || (p.illnessDays ?? 0) > 0) return acc
     const fitness =
       (p.condition / 100) *
       (0.7 + p.form / 40) *
@@ -542,6 +542,7 @@ export function applyMatchFatigue(players: Player[], tactics: Tactics, played: b
     if (
       xi.has(p.id) &&
       p.injuryDays <= 0 &&
+      (p.illnessDays ?? 0) <= 0 &&
       (p.banMatches ?? 0) <= 0 &&
       next.condition < 60 &&
       Math.random() < 0.02 + p.hidden.injuryProneness / 400 + wearBonus

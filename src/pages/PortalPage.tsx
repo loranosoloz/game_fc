@@ -343,18 +343,26 @@ export function PortalPage() {
               />
             </div>
           </div>
-          <dl className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
+          <dl className="mt-4 grid grid-cols-2 gap-2 text-center text-xs sm:grid-cols-5">
             <div className="rounded-md bg-slate-50 px-2 py-2">
-              <dt className="text-slate-500">Ultras</dt>
+              <dt className="text-slate-500">หัวรุนแรง</dt>
               <dd className="text-lg font-bold">{fans.factions.ultras}</dd>
+            </div>
+            <div className="rounded-md bg-slate-50 px-2 py-2">
+              <dt className="text-slate-500">ซอฟต์</dt>
+              <dd className="text-lg font-bold">{fans.factions.soft}</dd>
             </div>
             <div className="rounded-md bg-slate-50 px-2 py-2">
               <dt className="text-slate-500">ทั่วไป</dt>
               <dd className="text-lg font-bold">{fans.factions.casual}</dd>
             </div>
             <div className="rounded-md bg-slate-50 px-2 py-2">
-              <dt className="text-slate-500">องค์กร</dt>
+              <dt className="text-slate-500">คอร์ป</dt>
               <dd className="text-lg font-bold">{fans.factions.corporate}</dd>
+            </div>
+            <div className="rounded-md bg-slate-50 px-2 py-2">
+              <dt className="text-slate-500">ต่างชาติ</dt>
+              <dd className="text-lg font-bold">{fans.factions.international}</dd>
             </div>
           </dl>
           <p className="mt-3 text-xs text-slate-500">

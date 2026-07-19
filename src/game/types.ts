@@ -327,9 +327,16 @@ export interface FanState {
   expectation: number
   loyalty: number
   factions: {
+    /** หัวรุนแรง / Ultras */
     ultras: number
+    /** ซอฟต์ / ครอบครัว */
+    soft: number
+    /** แฟนทั่วไป */
     casual: number
+    /** คอร์ปอเรต / สปอนเซอร์ */
     corporate: number
+    /** แฟนต่างชาติ / ท่องเที่ยวฟุตบอล */
+    international: number
   }
   lastVerdict: string
   /** ประท้วงกำลังเกิด */
@@ -337,6 +344,17 @@ export interface FanState {
   /** คว่ำบาตรตั๋วจนแมตช์เดย์นี้ */
   boycottUntilMatchday: number
   lastEvent: string
+  /** บันทึกบรรยากาศสนาม */
+  atmosphereLogs: AtmosphereLog[]
+}
+
+export interface AtmosphereLog {
+  id: string
+  date: string
+  matchday: number
+  kind: 'owner' | 'board' | 'fans' | 'mixed'
+  title: string
+  body: string
 }
 
 export type TrainingFocus = 'tactics' | 'fitness' | 'attacking' | 'defending' | 'setpieces' | 'rest'
@@ -386,6 +404,10 @@ export interface BoardState {
   sacked: boolean
   sackedNote: string | null
   lastBudgetRequestMatchday: number
+  /** แช่แข็งตลาดจนแมตช์เดย์ */
+  transferFreezeUntil: number
+  lastStadiumVisitMatchday: number
+  publicSupport: boolean
 }
 
 export type OwnerPersonality =
@@ -396,6 +418,15 @@ export type OwnerPersonality =
   | 'glory_hunter'
   | 'local_hero'
 
+export interface OwnerStadiumLog {
+  id: string
+  date: string
+  matchday: number
+  attended: boolean
+  action: string
+  note: string
+}
+
 export interface OwnerState {
   name: string
   personality: OwnerPersonality
@@ -404,6 +435,110 @@ export interface OwnerState {
   warChest: number
   lastNote: string
   takeoverHeat: number
+  lastStadiumVisitMatchday: number
+  stadiumLogs: OwnerStadiumLog[]
+  /** คำสั่งค้างจากเจ้าของที่ผู้จัดการต้องตอบ */
+  pendingDemand: OwnerDemand | null
+}
+
+export type OwnerDemandKind =
+  | 'sign_star'
+  | 'play_youth'
+  | 'win_next'
+  | 'cut_wages'
+  | 'attacking_style'
+  | 'meet_fans'
+
+export interface OwnerDemand {
+  id: string
+  kind: OwnerDemandKind
+  issuedMatchday: number
+  dueMatchday: number
+  note: string
+  status: 'pending' | 'done' | 'failed'
+}
+
+export type InvestorStyle =
+  | 'private_equity'
+  | 'billionaire_toy'
+  | 'consortium'
+  | 'fan_ownership'
+  | 'oil_state'
+  | 'tech_mogul'
+  | 'heritage'
+  | 'sportswashing'
+  | 'local_pride'
+  | 'sovereign_fund'
+
+export interface InvestorGroup {
+  id: string
+  name: string
+  origin: string
+  countryCode: string
+  style: InvestorStyle
+  styleLabel: string
+  capital: number
+  ambition: number
+  patience: number
+  /** ภาพลักษณ์ในสายตาแฟน 0–100 */
+  reputation: number
+  prefersRepMin: number
+  prefersRepMax: number
+  note: string
+}
+
+export type TakeoverVerdict = 'attractive' | 'fair' | 'risky' | 'toxic'
+
+export interface TakeoverOffer {
+  id: string
+  investorId: string
+  investorName: string
+  investorStyle: InvestorStyle
+  investorOrigin: string
+  issuedMatchday: number
+  expiresMatchday: number
+  /** มูลค่าที่เสนอซื้อคลับ */
+  bid: number
+  /** เงินฉีดเข้าคลับหลังดีล */
+  promisedInvestment: number
+  keepManager: boolean
+  conditions: string
+  sellerScore: number
+  buyerScore: number
+  fanScore: number
+  boardScore: number
+  /** คะแนนรวมถ่วงน้ำหนัก — ไม่ใช่แค่ขายเลย */
+  overallScore: number
+  verdict: TakeoverVerdict
+  reasons: {
+    seller: string[]
+    buyer: string[]
+    fans: string[]
+    board: string[]
+  }
+  status: 'open' | 'accepted' | 'rejected' | 'expired' | 'withdrawn'
+  managerAdvice: 'recommend' | 'caution' | 'reject' | null
+}
+
+export interface TakeoverState {
+  offers: TakeoverOffer[]
+  lastDealNote: string | null
+  coolDownUntilMatchday: number
+  /** ความสนใจตลาดซื้อขายคลับ 0–100 */
+  marketInterest: number
+  history: Array<{ matchday: number; note: string }>
+  /** ฤดูกาลล่าสุดที่กลุ่มทุนเข้ามา */
+  lastApproachSeason: number
+  /** ฤดูกาลถัดไปที่อนุญาตให้เข้ามา (ห่าง 1–3 ปี) */
+  nextEligibleSeason: number
+  /** ปีที่ทีมย่ำแย่/ติดหล่มติดต่อกัน */
+  strugglingSeasons: number
+  /** ฤดูกาลที่รีวิวผลปลายปีล่าสุด */
+  lastSeasonReviewed: number
+  /** ปีนี้มีรอบเข้ามาแล้วหรือยัง (ปีละ ≤1 ครั้ง) */
+  approachedThisSeason: boolean
+  /** ธงฤดูกาลของ cadence — เปลี่ยนปีแล้วรีเซ็ต approachedThisSeason */
+  cadenceSeason: number
 }
 
 export interface OppositionReport {
@@ -938,6 +1073,8 @@ export interface GameSave {
   shortlist: ShortlistState
   transferDesk: TransferDeskState
   clubIncome: ClubIncomeState
+  /** ตลาดเทคโอเวอร์ / ข้อเสนอจากกลุ่มทุน */
+  takeover: TakeoverState
 }
 
 export const FORMATION_SLOTS: Record<FormationId, RoleCode[]> = {

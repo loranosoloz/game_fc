@@ -11,6 +11,7 @@ import { canAffordTransfer } from './financeFfp'
 import { newsAfterTransfer, newsAfterContract, pushNews } from './media'
 import { injuryHistoryPenalty } from './medical'
 import { ensureScouting, markPlayerAsAlumni } from './scouting'
+import { isTransferFrozen } from './clubAtmosphere'
 
 export function estimatedValue(player: Player): number {
   const ageFactor = player.age <= 24 ? 1.25 : player.age <= 29 ? 1.0 : player.age <= 32 ? 0.7 : 0.45
@@ -60,6 +61,12 @@ export function buyPlayerFromAi(
   contractYears = 3,
 ): OfferResult {
   save = ensureFans(save)
+  if (isTransferFrozen(save)) {
+    return {
+      ok: false,
+      message: `บอร์ดแช่แข็งตลาดถึง MD${save.board.transferFreezeUntil} — ซื้อไม่ได้ชั่วคราว`,
+    }
+  }
   const player = save.players.find((p) => p.id === playerId)
   if (!player) return { ok: false, message: 'ไม่พบนักเตะ' }
   if (player.clubId === save.humanClubId) {
@@ -180,6 +187,12 @@ export function buyPlayerFromAi(
 /** ขายนักเตะให้คลับ AI */
 export function sellPlayerToAi(save: GameSave, playerId: string, askFee: number): OfferResult {
   save = ensureFans(save)
+  if (isTransferFrozen(save)) {
+    return {
+      ok: false,
+      message: `บอร์ดแช่แข็งตลาดถึง MD${save.board.transferFreezeUntil} — ขายไม่ได้ชั่วคราว`,
+    }
+  }
   const player = save.players.find((p) => p.id === playerId)
   if (!player) return { ok: false, message: 'ไม่พบนักเตะ' }
   if (player.clubId !== save.humanClubId) {

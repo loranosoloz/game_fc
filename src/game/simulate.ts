@@ -4,6 +4,8 @@ import { autoPickTactics } from './seed'
 import { applyMatchToFans, ensureFans, processFanPolitics } from './fans'
 import { applyMatchToBoard, processBoardPolitics } from './board'
 import { applyMatchToOwner, ensureOwner } from './owner'
+import { processStadiumPresence } from './clubAtmosphere'
+import { scanTakeoverMarket } from './takeover'
 import { applyTrainingWeek, updatePlayingTimeMorale } from './training'
 import { tickPlayerInjury } from './medical'
 import {
@@ -287,6 +289,29 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       }
       board = applyMatchToBoard(midSave, usGoals, themGoals)
       ownerState = applyMatchToOwner({ ...midSave, board, fans }, usGoals, themGoals)
+      {
+        const atm = processStadiumPresence(
+          {
+            ...midSave,
+            board,
+            fans,
+            owner: ownerState,
+            clubs,
+            inbox,
+            currentDate: fixture.date,
+            matchday: prepared.matchday,
+          },
+          usGoals,
+          themGoals,
+          usHome,
+        )
+        ownerState = atm.owner
+        board = atm.board
+        fans = atm.fans
+        clubs = atm.clubs
+        inbox.length = 0
+        inbox.push(...atm.inbox)
+      }
       newsBatch.push(newsAfterMatch({ ...midSave, board }, usGoals, themGoals, opp.name))
       pressConference = createPressConference(
         { ...midSave, board, currentDate: fixture.date },
@@ -555,6 +580,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   next = processTransferDeskMatchday(next)
   next = processFanPolitics(next)
   next = processBoardPolitics(next)
+  next = scanTakeoverMarket(next)
   next = { ...next, media: ensureMediaFeed(next) }
   for (const n of newsBatch) next = pushNews(next, n)
   next = advanceMediaWeek(next)

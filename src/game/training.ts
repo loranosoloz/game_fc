@@ -36,8 +36,8 @@ export function applyTrainingWeek(
   const individual = training.individual ?? {}
   const next = players.map((p) => {
     if (p.clubId !== humanClubId) return p
-    if (p.injuryDays > 0) {
-      const condBoost = p.treatment === 'rest' ? 8 : 5
+    if (p.injuryDays > 0 || (p.illnessDays ?? 0) > 0) {
+      const condBoost = p.treatment === 'rest' || (p.illnessDays ?? 0) > 0 ? 8 : 5
       return {
         ...p,
         condition: clamp(p.condition + condBoost, 40, 100),

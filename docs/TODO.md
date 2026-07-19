@@ -14,7 +14,9 @@
 | Discipline fines (สุ่มหน้างาน → หัก cash) | ✅ | ✅ committed |
 | Meetings · 100 ประเภท · 600 dialog · AI คุยด้วย | ✅ | ✅ committed |
 | Expansion pack: loan / sponsor·TV·prize / shortlist / desk / UCL 2 legs / IDB / opp | ✅ | ✅ committed |
-| Owner + Board sack/คำขาด + Fans ประท้วง + Club Vision | ✅ | ⏳ รอ commit |
+| Owner + Board sack/คำขาด + Fans ประท้วง + Club Vision | ✅ | ✅ committed |
+| Owner/Board มาสนาม + แฟน 5 กลุ่ม + แอ็กชัน Club Vision | ✅ | ⏳ รอ commit |
+| เทคโอเวอร์ · กลุ่มทุน 100 · ประเมินเหตุผลขาย/ซื้อ | ✅ | ⏳ รอ commit |
 
 Data packs: `src/data/` + `src/data/world/` · Save **v6**
 

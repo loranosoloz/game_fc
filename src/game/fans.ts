@@ -2,19 +2,23 @@ import type { FanState, GameSave, InboxMessage } from './types'
 
 export function createFanState(clubReputation: number): FanState {
   const base = Math.min(78, 52 + Math.round(clubReputation / 4))
+  const intl = Math.min(70, 35 + Math.round(clubReputation / 5))
   return {
     mood: base,
     expectation: Math.min(85, 45 + Math.round(clubReputation / 3)),
     loyalty: Math.min(80, 40 + Math.round(clubReputation / 4)),
     factions: {
       ultras: 55 + Math.round(clubReputation / 10),
+      soft: 58 + Math.round(clubReputation / 12),
       casual: 60,
       corporate: 50 + Math.round(clubReputation / 8),
+      international: intl,
     },
     lastVerdict: 'แฟนบอลพร้อมสนับสนุนฤดูกาลใหม่',
     protestActive: false,
     boycottUntilMatchday: -1,
     lastEvent: 'เปิดฤดูกาล — อัฒจันทร์พร้อม',
+    atmosphereLogs: [],
   }
 }
 
@@ -22,14 +26,28 @@ function clamp(n: number, min = 0, max = 100) {
   return Math.max(min, Math.min(max, Math.round(n)))
 }
 
+function defaultFactions(clubRep: number, partial?: FanState['factions']) {
+  const fresh = createFanState(clubRep).factions
+  return {
+    ultras: partial?.ultras ?? fresh.ultras,
+    soft: partial?.soft ?? fresh.soft,
+    casual: partial?.casual ?? fresh.casual,
+    corporate: partial?.corporate ?? fresh.corporate,
+    international: partial?.international ?? fresh.international,
+  }
+}
+
 export function ensureFanState(fans: FanState | undefined, clubRep = 50): FanState {
   if (!fans) return createFanState(clubRep)
+  const base = createFanState(clubRep)
   return {
-    ...createFanState(clubRep),
+    ...base,
     ...fans,
+    factions: defaultFactions(clubRep, fans.factions),
     protestActive: fans.protestActive ?? false,
     boycottUntilMatchday: fans.boycottUntilMatchday ?? -1,
     lastEvent: fans.lastEvent ?? fans.lastVerdict,
+    atmosphereLogs: fans.atmosphereLogs ?? [],
   }
 }
 
@@ -42,11 +60,15 @@ export function fanMoodLabel(mood: number): string {
 }
 
 export function fanTicketMultiplier(fans: FanState, matchday = 0): number {
-  let m = 0.62 + (fans.mood / 100) * 0.66
-  if (fans.boycottUntilMatchday >= matchday) m *= 0.55
-  if (fans.protestActive) m *= 0.85
-  // loyalty soft floor
-  m *= 0.92 + fans.loyalty / 800
+  const f = ensureFanState(fans)
+  let m = 0.62 + (f.mood / 100) * 0.66
+  if (f.boycottUntilMatchday >= matchday) m *= 0.55
+  if (f.protestActive) m *= 0.85
+  m *= 0.92 + f.loyalty / 800
+  // soft + international ดึงตั๋ว/ทัวร์
+  m *= 1 + f.factions.soft / 900 + f.factions.international / 700
+  // ultras สูงมากแต่ประท้วง → ตั๋วตก
+  if (f.factions.ultras > 75 && f.mood < 40) m *= 0.92
   return m
 }
 
@@ -90,20 +112,27 @@ export function applyMatchToFans(
   }
   if (mood >= 55) protestActive = false
 
+  const fac = base.factions
   return {
     ...base,
     mood,
     loyalty,
     expectation: clamp(base.expectation + (won ? 1 : drawn ? 0 : -1)),
     factions: {
-      ultras: clamp(base.factions.ultras + (won ? 3 : -4)),
-      casual: clamp(base.factions.casual + (won ? 2 : drawn ? 0 : -2)),
-      corporate: clamp(base.factions.corporate + (won ? 1 : drawn ? 0 : -1)),
+      ultras: clamp(fac.ultras + (won ? 3 : -4)),
+      soft: clamp(fac.soft + (won ? 2 : drawn ? 0 : -1)),
+      casual: clamp(fac.casual + (won ? 2 : drawn ? 0 : -2)),
+      corporate: clamp(fac.corporate + (won ? 1 : drawn ? 0 : -1)),
+      international: clamp(fac.international + (won && wasHome ? 2 : lostAway(wasHome, won) ? -1 : 0)),
     },
     lastVerdict: verdict,
     protestActive,
     lastEvent,
   }
+}
+
+function lostAway(wasHome: boolean, won: boolean) {
+  return !wasHome && !won
 }
 
 export type TransferFanKind =
@@ -172,10 +201,11 @@ export function applyTransferToFans(
   let lastEvent = base.lastEvent
   if (kind === 'sell_star' && mood < 40) {
     protestActive = true
-    boycottUntilMatchday = Math.max(boycottUntilMatchday, 0) // set by caller with matchday
+    boycottUntilMatchday = Math.max(boycottUntilMatchday, 0)
     lastEvent = `ประท้วงขายดาว ${playerName}`
   }
 
+  const fac = base.factions
   return {
     fans: {
       ...base,
@@ -184,11 +214,15 @@ export function applyTransferToFans(
       boycottUntilMatchday,
       lastEvent: lastEvent || message,
       factions: {
-        ultras: clamp(base.factions.ultras + (kind === 'sell_star' ? -8 : kind === 'buy_star' ? 5 : 0)),
-        casual: clamp(base.factions.casual + delta * 0.6),
+        ultras: clamp(fac.ultras + (kind === 'sell_star' ? -8 : kind === 'buy_star' ? 5 : 0)),
+        soft: clamp(fac.soft + (kind === 'sell_star' ? -3 : kind === 'buy_star' ? 2 : delta * 0.3)),
+        casual: clamp(fac.casual + delta * 0.6),
         corporate: clamp(
-          base.factions.corporate +
+          fac.corporate +
             (kind === 'sell_star' || kind === 'sell_surplus' ? 3 : kind === 'buy_star' ? -1 : 0),
+        ),
+        international: clamp(
+          fac.international + (kind === 'buy_star' ? 3 : kind === 'sell_star' ? -2 : 0),
         ),
       },
       lastVerdict: message,
@@ -208,7 +242,7 @@ export function processFanPolitics(save: GameSave): GameSave {
       ...fans,
       protestActive: true,
       boycottUntilMatchday: save.matchday + 1,
-      lastEvent: 'กลุ่ม Ultras นัดประท้วงหน้าสโมสร · คว่ำบาตรตั๋วนัดหน้า',
+      lastEvent: 'กลุ่มหัวรุนแรงนัดประท้วงหน้าสโมสร · คว่ำบาตรตั๋วนัดหน้า',
     }
     inbox = [
       {
@@ -227,6 +261,42 @@ export function processFanPolitics(save: GameSave): GameSave {
     }
   }
 
+  // soft fans ขอ Family Day เมื่อ mood กลางๆ
+  if (
+    !fans.protestActive &&
+    fans.factions.soft >= 65 &&
+    fans.mood >= 45 &&
+    fans.mood < 70 &&
+    Math.random() < 0.12
+  ) {
+    fans = {
+      ...fans,
+      lastEvent: 'กลุ่มซอฟต์ร้องขอ Family Day / โซนเด็กในสนาม',
+    }
+    inbox = [
+      {
+        id: `msg-soft-${Date.now()}`,
+        date: save.currentDate,
+        title: 'คำขอจากแฟนครอบครัว',
+        body: fans.lastEvent + ' — ไปเข้าหาที่หน้า Club Vision',
+        read: false,
+      },
+      ...inbox,
+    ].slice(0, 40)
+  }
+
+  // international tourism interest
+  if (fans.factions.international >= 60 && Math.random() < 0.1) {
+    fans = {
+      ...fans,
+      lastEvent: 'ทัวร์ต่างชาติสนใจแพ็กเกจดูบอลบ้าน — โอกาสรายได้เสื้อ',
+      factions: {
+        ...fans.factions,
+        international: clamp(fans.factions.international + 1),
+      },
+    }
+  }
+
   if (fans.protestActive && fans.mood >= 50) {
     fans = {
       ...fans,
@@ -239,7 +309,6 @@ export function processFanPolitics(save: GameSave): GameSave {
     fans = { ...fans, boycottUntilMatchday: -1 }
   }
 
-  // faction event: corporate happy when finance KPI met
   if (board.kpis?.some((k) => k.id === 'finance' && k.met) && Math.random() < 0.15) {
     fans = {
       ...fans,

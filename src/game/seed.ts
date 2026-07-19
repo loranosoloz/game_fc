@@ -148,6 +148,8 @@ export function createPlayersForClubs(clubs: Club[], seed = 2026): Player[] {
           injuryBodyPart: null,
           bodyMap: createBodyMap(rng),
           injuryHistory: [],
+          illnessDays: 0,
+          illnessType: null,
           seasonYellows: 0,
           banMatches: 0,
           leaveDays: 0,
@@ -182,6 +184,7 @@ export function autoPickTactics(
       (p) =>
         p.clubId === clubId &&
         p.injuryDays <= 0 &&
+        (p.illnessDays ?? 0) <= 0 &&
         (p.banMatches ?? 0) <= 0 &&
         (p.leaveDays ?? 0) <= 0,
     )

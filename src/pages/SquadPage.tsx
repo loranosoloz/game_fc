@@ -12,6 +12,7 @@ import {
   TREATMENT_LABEL,
 } from '@/game/medical'
 import { BODY_PART_LABEL } from '@/game/bodyMap'
+import { formatIllnessStatus, ILLNESS_TYPE_LABEL } from '@/game/illness'
 import { BodyMapFigure } from '@/components/BodyMapFigure'
 import { getActivity } from '@/game/dailyLife'
 import { formatBanStatus } from '@/game/discipline'
@@ -85,6 +86,8 @@ export function SquadPage() {
                   <td className="py-2">
                     {p.injuryDays > 0 ? (
                       <span className="text-rose-600">{formatInjuryStatus(p)}</span>
+                    ) : (p.illnessDays ?? 0) > 0 ? (
+                      <span className="text-violet-700">{formatIllnessStatus(p)}</span>
                     ) : (
                       <span className="text-emerald-700">{p.condition}%</span>
                     )}
@@ -196,6 +199,11 @@ function PlayerDetailPanel({
             {player.injuryBodyPart ? ` · ${BODY_PART_LABEL[player.injuryBodyPart]}` : ''} ·{' '}
             {player.injuryDays} วัน · รักษา{' '}
             {player.treatment ? TREATMENT_LABEL[player.treatment] : '—'}
+          </p>
+        ) : (player.illnessDays ?? 0) > 0 ? (
+          <p className="mt-2 rounded bg-violet-50 px-2 py-1.5 text-xs text-violet-900">
+            ป่วย: {player.illnessType ? ILLNESS_TYPE_LABEL[player.illnessType] : '—'} ·{' '}
+            {player.illnessDays} วัน · ไม่พร้อมลงแข่ง
           </p>
         ) : (
           <p className="mt-2 text-xs text-emerald-700">พร้อมลงแข่ง · condition {player.condition}%</p>

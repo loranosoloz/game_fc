@@ -3,7 +3,7 @@ import type { IllnessType, Player } from './types'
 export const ILLNESS_TYPE_LABEL: Record<IllnessType, string> = {
   cold: 'หวัด',
   flu: 'ไข้หวัดใหญ่',
-  stomach: 'ปวดท้อง / อาหารเป็นพิษ',
+  stomach: 'ท้องเสีย',
   virus: 'ไวรัส',
   fever: 'มีไข้',
 }

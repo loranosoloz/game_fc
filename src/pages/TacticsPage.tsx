@@ -11,6 +11,7 @@ import type {
 } from '@/game/types'
 import { FORMATION_SLOTS } from '@/game/types'
 import { roleLabel, roleShort } from '@/game/positions'
+import { isUnavailable } from '@/game/discipline'
 import { cn } from '@/lib/cn'
 
 const FORMATIONS: FormationId[] = ['4-3-3', '4-4-2', '4-2-3-1']
@@ -290,19 +291,19 @@ export function TacticsPage() {
         <ul className="mt-3 grid gap-1 sm:grid-cols-2">
           {squad.map((p) => {
             const selected = tactics.startingXi.includes(p.id)
-            const injured = p.injuryDays > 0
+            const unavailable = isUnavailable(p)
             return (
               <li key={p.id}>
                 <button
                   type="button"
-                  disabled={injured && !selected}
+                  disabled={unavailable && !selected}
                   onClick={() => togglePlayer(p.id)}
                   className={cn(
                     'flex w-full items-center justify-between rounded-md border px-3 py-2 text-left text-sm',
                     selected
                       ? 'border-sky-300 bg-sky-50'
                       : 'border-slate-200 bg-white hover:bg-slate-50',
-                    injured && 'opacity-50',
+                    unavailable && 'opacity-50',
                   )}
                 >
                   <span>
@@ -310,8 +311,10 @@ export function TacticsPage() {
                       {roleShort(p.role)}
                     </span>{' '}
                     {p.name}
-                    {injured ? (
+                    {p.injuryDays > 0 ? (
                       <span className="ml-1 text-xs text-rose-600">เจ็บ {p.injuryDays}ว</span>
+                    ) : (p.illnessDays ?? 0) > 0 ? (
+                      <span className="ml-1 text-xs text-violet-700">ป่วย {p.illnessDays}ว</span>
                     ) : null}
                   </span>
                   <span className="text-slate-500">{p.overall}</span>

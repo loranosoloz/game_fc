@@ -92,6 +92,8 @@ export function maybePromoteYouth(save: GameSave): GameSave {
       injuryBodyPart: null,
       bodyMap: createBodyMap(rng),
       injuryHistory: [],
+      illnessDays: 0,
+      illnessType: null,
       seasonYellows: 0,
       banMatches: 0,
       leaveDays: 0,
