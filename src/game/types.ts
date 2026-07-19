@@ -1081,6 +1081,8 @@ export interface GameSave {
   facilities: FacilitiesState
   /** เจรจาสัญญาหลายรอบ */
   contractTalks: ContractTalkState
+  /** สรุปลีกอื่นในโลก (เบา) */
+  worldPulse: WorldPulseState
 }
 
 export type FacilityKind = 'stadium' | 'training' | 'medical' | 'commercial'
@@ -1120,6 +1122,21 @@ export interface ContractNegotiation {
 
 export interface ContractTalkState {
   talks: ContractNegotiation[]
+}
+
+export interface WorldLeaguePulse {
+  leagueId: string
+  name: string
+  nameTh: string
+  matchday: number
+  leader: string
+  second: string
+  note: string
+}
+
+export interface WorldPulseState {
+  leagues: WorldLeaguePulse[]
+  lastUpdateMatchday: number
 }
 
 export interface JobOffer {

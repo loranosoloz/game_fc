@@ -79,7 +79,7 @@ export function createUclInviteClubs(homeLeagueId: LeagueId): {
   return { clubs, players, tactics }
 }
 
-/** Top 4 domestic by rep (human always included) + invite clubs → R16. */
+/** Top 4 domestic + invite → league phase (16 ทีม เล่น 6 นัด) แล้ว top 8 เข้า QF */
 export function generateUclFixtures(
   domesticClubs: Club[],
   inviteClubs: Club[],
@@ -100,23 +100,91 @@ export function generateUclFixtures(
   const field = [...domestic, ...inviteClubs].slice(0, 16)
   if (field.length < 16) return []
 
-  const r16 = uclFormat.rounds[0]
+  const leagueRound = uclFormat.rounds[0] as {
+    id: string
+    leaguePhase?: boolean
+    matchdayOffsets?: number[]
+  }
+  if (!leagueRound.leaguePhase || !leagueRound.matchdayOffsets?.length) {
+    // fallback แบบเก่า
+    const r16 = uclFormat.rounds[0]
+    const fixtures: Fixture[] = []
+    for (let i = 0; i < 8; i++) {
+      fixtures.push({
+        id: `ucl-${r16.id}-${i + 1}`,
+        matchday: (r16 as { matchdayOffset: number }).matchdayOffset,
+        date: addDays(seasonStartDate, ((r16 as { matchdayOffset: number }).matchdayOffset - 1) * 7),
+        homeClubId: field[i].id,
+        awayClubId: field[15 - i].id,
+        played: false,
+        competition: 'ucl',
+        cupRound: r16.id,
+      })
+    }
+    return fixtures
+  }
+
   const fixtures: Fixture[] = []
-  for (let i = 0; i < 8; i++) {
-    const home = field[i]
-    const away = field[15 - i]
-    fixtures.push({
-      id: `ucl-${r16.id}-${i + 1}`,
-      matchday: r16.matchdayOffset,
-      date: addDays(seasonStartDate, (r16.matchdayOffset - 1) * 7),
-      homeClubId: home.id,
-      awayClubId: away.id,
-      played: false,
-      competition: 'ucl',
-      cupRound: r16.id,
-    })
+  const ids = field.map((c) => c.id)
+  let fxN = 1
+  for (let mi = 0; mi < leagueRound.matchdayOffsets.length; mi++) {
+    const md = leagueRound.matchdayOffsets[mi]
+    // หมุนคู่แข่งแต่ละนัด
+    const rot = ids.slice()
+    for (let k = 0; k < mi; k++) {
+      const last = rot.pop()!
+      rot.splice(1, 0, last)
+    }
+    for (let i = 0; i < 8; i++) {
+      const home = rot[i]
+      const away = rot[15 - i]
+      fixtures.push({
+        id: `ucl-league-${fxN++}`,
+        matchday: md,
+        date: addDays(seasonStartDate, (md - 1) * 7),
+        homeClubId: home,
+        awayClubId: away,
+        played: false,
+        competition: 'ucl',
+        cupRound: 'league',
+      })
+    }
   }
   return fixtures
+}
+
+function leaguePhaseTable(fixtures: Fixture[]): string[] {
+  const stats = new Map<string, { pts: number; gd: number; gf: number }>()
+  const bump = (id: string, pts: number, gf: number, ga: number) => {
+    const cur = stats.get(id) ?? { pts: 0, gd: 0, gf: 0 }
+    stats.set(id, {
+      pts: cur.pts + pts,
+      gd: cur.gd + (gf - ga),
+      gf: cur.gf + gf,
+    })
+  }
+  for (const f of fixtures) {
+    if (!f.played) continue
+    const hg = f.homeGoals ?? 0
+    const ag = f.awayGoals ?? 0
+    if (hg > ag) {
+      bump(f.homeClubId, 3, hg, ag)
+      bump(f.awayClubId, 0, ag, hg)
+    } else if (hg < ag) {
+      bump(f.awayClubId, 3, ag, hg)
+      bump(f.homeClubId, 0, hg, ag)
+    } else {
+      bump(f.homeClubId, 1, hg, ag)
+      bump(f.awayClubId, 1, ag, hg)
+    }
+  }
+  return [...stats.entries()]
+    .sort((a, b) => {
+      if (b[1].pts !== a[1].pts) return b[1].pts - a[1].pts
+      if (b[1].gd !== a[1].gd) return b[1].gd - a[1].gd
+      return b[1].gf - a[1].gf
+    })
+    .map(([id]) => id)
 }
 
 export function advanceUclAfterMatchday(
@@ -133,17 +201,30 @@ export function advanceUclAfterMatchday(
   const roundId = playedThis[0].cupRound
   if (!roundId) return { fixtures, ucl }
 
-  const roundMeta = uclFormat.rounds.find((r) => r.id === roundId)
+  const roundMeta = uclFormat.rounds.find((r) => r.id === roundId) as {
+    id: string
+    leaguePhase?: boolean
+    qualifyCount?: number
+    twoLegged?: boolean
+    returnOffset?: number
+    matchdayOffset?: number
+  }
   const roundAll = fixtures.filter((f) => f.competition === 'ucl' && f.cupRound === roundId)
   if (!roundAll.every((f) => f.played)) {
-    // ยังมีนัดในรอบนี้ไม่จบ (รอขากลับ)
     return { fixtures, ucl }
   }
 
-  const winners: string[] = []
+  let winners: string[] = []
   const eliminated = [...ucl.eliminated]
 
-  if (roundMeta && (roundMeta as { twoLegged?: boolean }).twoLegged) {
+  if (roundMeta?.leaguePhase) {
+    const ranked = leaguePhaseTable(roundAll)
+    const q = roundMeta.qualifyCount ?? 8
+    winners = ranked.slice(0, q)
+    for (const id of ranked.slice(q)) {
+      if (!eliminated.includes(id)) eliminated.push(id)
+    }
+  } else if (roundMeta?.twoLegged) {
     const byTie = new Map<string, Fixture[]>()
     for (const f of roundAll) {
       const tid = f.tieId ?? f.id

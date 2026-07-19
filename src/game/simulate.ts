@@ -9,6 +9,7 @@ import { scanTakeoverMarket } from './takeover'
 import { enterUnemployment, refreshJobMarket } from './jobs'
 import { processFacilities, medicalFacilityBonus, commercialGateBonus } from './facilities'
 import { transferWindowKind } from './transferWindow'
+import { tickWorldPulse } from './worldPulse'
 import { applyTrainingWeek, updatePlayingTimeMorale } from './training'
 import { tickPlayerInjury } from './medical'
 import {
@@ -592,6 +593,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     next = refreshJobMarket(next)
   }
   next = processFacilities(next)
+  next = tickWorldPulse(next)
   if (next.matchday === 19 && transferWindowKind(next) === 'winter') {
     next = {
       ...next,

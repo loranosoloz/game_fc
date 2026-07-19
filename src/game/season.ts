@@ -16,6 +16,7 @@ import { createYouthState } from './youth'
 import { ensureFans } from './fans'
 import { autoPickTactics } from './seed'
 import { createTransferDesk } from './transferDesk'
+import { createWorldPulse } from './worldPulse'
 
 function uid(prefix: string) {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 5)}`
@@ -264,6 +265,7 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
     inbox,
     loans: [],
     transferDesk: createTransferDesk(),
+    worldPulse: createWorldPulse(leagueId),
   }
 
   return {

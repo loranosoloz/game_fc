@@ -60,6 +60,7 @@ import { startNextSeason } from '@/game/season'
 import { acceptJobOffer, rejectJobOffer } from '@/game/jobs'
 import { startFacilityUpgrade, medicalFacilityBonus } from '@/game/facilities'
 import type { FacilityKind } from '@/game/types'
+import { takeHoliday } from '@/game/holiday'
 import { managerTalk, respondToPlayerRequest } from '@/game/playerTalks'
 import type { ManagerTalkTopic, TalkResponse } from '@/game/types'
 import {
@@ -136,6 +137,7 @@ interface GameStore {
   acceptJob: (offerId: string) => boolean
   rejectJob: (offerId: string) => boolean
   upgradeFacility: (kind: FacilityKind) => boolean
+  takeManagerHoliday: (matchdays: number) => boolean
   answerPressConference: (answerIds: string[]) => void
   dismissPressConference: () => void
 }
@@ -890,6 +892,17 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (!result.ok) return false
     saveToStorage(result.save)
     set({ save: result.save })
+    return true
+  },
+
+  takeManagerHoliday: (matchdays) => {
+    const { save } = get()
+    if (!save) return false
+    const result = takeHoliday(save, matchdays)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save, liveMatch: null })
     return true
   },
 

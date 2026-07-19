@@ -37,7 +37,7 @@ export function CompetitionsPage() {
             </p>
           ) : (
             <p className="mt-2 text-sm text-slate-600">
-              Top 4 ลีกในประเทศ + สโมสรเชิญจากลีกอื่น · R16 → Final · ไม่มีเสมอ
+              League phase (16 ทีม · 6 นัด) → Top 8 เข้า QF → SF → Final
             </p>
           )}
         </div>
@@ -104,6 +104,24 @@ export function CompetitionsPage() {
             )}
           </section>
         ))}
+      </section>
+
+      <section className="rounded-xl border border-slate-200 bg-white/80 p-5">
+        <h2 className="text-lg font-semibold">ลีกอื่นในโลก</h2>
+        <p className="mt-1 text-xs text-slate-500">
+          สรุปเบาๆ (ไม่จำลองเต็มทุกนัด) — อัปเดตหลังแมตช์เดย์
+        </p>
+        <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+          {(save.worldPulse?.leagues ?? []).map((l) => (
+            <li key={l.leagueId} className="rounded-md bg-slate-50 px-3 py-2 text-sm">
+              <p className="font-semibold">{l.nameTh}</p>
+              <p className="text-xs text-slate-500">
+                นำ {l.leader} · ที่ 2 {l.second} · MD{l.matchday}
+              </p>
+              <p className="text-xs text-slate-600">{l.note}</p>
+            </li>
+          ))}
+        </ul>
       </section>
     </div>
   )

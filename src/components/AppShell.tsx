@@ -116,6 +116,13 @@ export function AppShell() {
                 เริ่มฤดูกาลใหม่
               </PrimaryButton>
             ) : null}
+            {!save.seasonComplete && !save.board?.sacked ? (
+              <PrimaryButton
+                onClick={() => useGameStore.getState().takeManagerHoliday(3)}
+              >
+                พักร้อน 3 MD
+              </PrimaryButton>
+            ) : null}
           </div>
         </div>
       </header>

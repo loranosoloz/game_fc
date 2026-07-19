@@ -1,9 +1,15 @@
 {
   "name": "UEFA Champions League",
   "rounds": [
-    { "id": "r16", "label": "Round of 16", "matchdayOffset": 6, "twoLegged": false },
-    { "id": "qf", "label": "Quarter-final", "matchdayOffset": 14, "twoLegged": true, "returnOffset": 16 },
-    { "id": "sf", "label": "Semi-final", "matchdayOffset": 24, "twoLegged": true, "returnOffset": 26 },
+    {
+      "id": "league",
+      "label": "League phase",
+      "leaguePhase": true,
+      "matchdayOffsets": [4, 6, 8, 10, 12, 14],
+      "qualifyCount": 8
+    },
+    { "id": "qf", "label": "Quarter-final", "matchdayOffset": 20, "twoLegged": true, "returnOffset": 22 },
+    { "id": "sf", "label": "Semi-final", "matchdayOffset": 28, "twoLegged": true, "returnOffset": 30 },
     { "id": "final", "label": "Final", "matchdayOffset": 34, "twoLegged": false }
   ],
   "domesticSlots": 4,

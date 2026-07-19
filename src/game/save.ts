@@ -32,6 +32,7 @@ import { createTakeoverState, ensureTakeover } from './takeover'
 import { createCareerState, ensureCareer } from './jobs'
 import { createFacilitiesState, ensureFacilities } from './facilities'
 import { createContractTalks, ensureContractTalks } from './transfer'
+import { createWorldPulse, ensureWorldPulse } from './worldPulse'
 import { persistSaveSync, loadSaveRawAsync, clearAllSaves } from './idbSave'
 import { roleGroup } from './positions'
 import type { RoleCode } from './types'
@@ -112,6 +113,7 @@ export function createNewGame(
     career: createCareerState(humanClubId),
     facilities: createFacilitiesState(human.stadiumCapacity),
     contractTalks: createContractTalks(),
+    worldPulse: createWorldPulse(leagueId),
   }
 }
 
@@ -157,6 +159,8 @@ export function ensurePhase5(save: GameSave): GameSave {
     next = { ...next, facilities: createFacilitiesState(h?.stadiumCapacity ?? 25_000) }
   } else next = { ...next, facilities: ensureFacilities(next) }
   if (!next.contractTalks) next = { ...next, contractTalks: ensureContractTalks(next) }
+  if (!next.worldPulse) next = { ...next, worldPulse: createWorldPulse(next.leagueId || 'eng') }
+  else next = { ...next, worldPulse: ensureWorldPulse(next) }
   if (!next.leagueId) next = { ...next, leagueId: 'eng', leagueName: next.leagueName ?? 'Premier League' }
   if (!next.leagueName) next = { ...next, leagueName: 'World League' }
 
@@ -320,6 +324,9 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
       createFacilitiesState(human.stadiumCapacity),
     contractTalks:
       (raw.contractTalks as GameSave['contractTalks']) ?? createContractTalks(),
+    worldPulse:
+      (raw.worldPulse as GameSave['worldPulse']) ??
+      createWorldPulse((raw.leagueId as string) ?? 'eng'),
   } as GameSave
 
   return ensurePhase5(ensureFans(base))
