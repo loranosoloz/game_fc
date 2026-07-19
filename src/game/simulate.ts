@@ -48,6 +48,7 @@ import {
 } from './extraCups'
 import { advanceUclAfterMatchday } from './ucl'
 import { assignRefereesToFixtures, getReferee } from './referees'
+import { fixtureWeatherSeed, pickWeather, weatherMatchModifiers } from './weather'
 import {
   applyDisciplineFromEvents,
   stripBannedFromTactics,
@@ -122,6 +123,13 @@ export interface PreparedMatchday {
 
 export function prepareMatchday(save: GameSave, matchday: number): PreparedMatchday | null {
   let fixtures = assignRefereesToFixtures(save.fixtures)
+  fixtures = fixtures.map((f) => {
+    if (f.matchday !== matchday || f.played || f.weather) return f
+    return {
+      ...f,
+      weather: pickWeather(fixtureWeatherSeed(f.id, matchday)),
+    }
+  })
   const dayFixtures = fixtures.filter((f) => f.matchday === matchday && !f.played)
   if (dayFixtures.length === 0) return null
 
@@ -227,6 +235,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
             homeGoals: result.homeGoals,
             awayGoals: result.awayGoals,
             refereeId: fixture.refereeId ?? f.refereeId,
+            weather: fixture.weather ?? f.weather,
           }
         : f,
     )
@@ -255,8 +264,9 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     }
     const homeIncome = receipt.total
 
-    players = applyMatchFatigue(players, tacticsByClub[fixture.homeClubId], true)
-    players = applyMatchFatigue(players, tacticsByClub[fixture.awayClubId], true)
+    const injuryMult = weatherMatchModifiers(fixture.weather ?? 'clear').injury
+    players = applyMatchFatigue(players, tacticsByClub[fixture.homeClubId], true, injuryMult)
+    players = applyMatchFatigue(players, tacticsByClub[fixture.awayClubId], true, injuryMult)
     tacticsByClub[fixture.homeClubId] = bumpFamiliarity(tacticsByClub[fixture.homeClubId], true)
     tacticsByClub[fixture.awayClubId] = bumpFamiliarity(tacticsByClub[fixture.awayClubId], true)
 

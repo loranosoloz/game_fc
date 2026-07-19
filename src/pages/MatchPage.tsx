@@ -2,6 +2,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useGameStore } from '@/store/gameStore'
 import { buildOppositionReport } from '@/game/opposition'
 import { getReferee, pickRefereeId, reputationLabel, strictnessLabel } from '@/game/referees'
+import { fixtureWeatherSeed, pickWeather, WEATHER_LABEL } from '@/game/weather'
 import { MatchStatsPanel } from '@/components/MatchStatsPanel'
 import { GhostButton, PageHeader, Panel, PrimaryButton, StatTile } from '@/components/ui'
 import { ensureScouting, formWatchCost } from '@/game/scouting'
@@ -40,6 +41,9 @@ export function MatchPage() {
 
   const nextRef = next
     ? getReferee(next.refereeId ?? pickRefereeId(next.id, next.competition ?? 'league'))
+    : null
+  const nextWeather = next
+    ? (next.weather ?? pickWeather(fixtureWeatherSeed(next.id, next.matchday)))
     : null
 
   const lastFx = last
@@ -85,6 +89,12 @@ export function MatchPage() {
                   }
                 />
               </div>
+              {nextWeather ? (
+                <div className="rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-2.5 text-sm">
+                  <span className="text-slate-400">สภาพอากาศ · </span>
+                  <strong className="text-white">{WEATHER_LABEL[nextWeather]}</strong>
+                </div>
+              ) : null}
               {nextRef ? (
                 <div className="rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-2.5 text-sm">
                   <span className="text-slate-400">ผู้ตัดสิน · </span>

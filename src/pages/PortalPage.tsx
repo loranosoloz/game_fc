@@ -10,6 +10,7 @@ import { ensureMediaFeed, gossipLine, countTodaysNews } from '@/game/media'
 import { ensureScouting } from '@/game/scouting'
 import { pendingTalkRequests } from '@/game/playerTalks'
 import { latestSquadDay } from '@/game/dailyLife'
+import { fixtureWeatherSeed, pickWeather, WEATHER_LABEL } from '@/game/weather'
 import { cn } from '@/lib/cn'
 
 export function PortalPage() {
@@ -101,6 +102,15 @@ export function PortalPage() {
                   <>
                     {opp.name}{' '}
                     <span className="text-xs font-normal text-slate-500">(AI)</span>
+                    {nextFx ? (
+                      <span className="mt-0.5 block text-xs font-normal text-slate-500">
+                        สภาพอากาศ{' '}
+                        {WEATHER_LABEL[
+                          nextFx.weather ??
+                            pickWeather(fixtureWeatherSeed(nextFx.id, nextFx.matchday))
+                        ]}
+                      </span>
+                    ) : null}
                   </>
                 ) : (
                   '—'

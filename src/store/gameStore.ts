@@ -36,7 +36,7 @@ import type { OppositionInstructions } from '@/game/types'
 import { applyTrainingWeek, recoverInjuriesOneDay } from '@/game/training'
 import { setPlayerTreatment } from '@/game/medical'
 import { upgradeStaff, staffUpgradeCost, staffLevel, hireStaff, convertPlayerToStaff, promoteStaffToCoach } from '@/game/staff'
-import { upgradeAcademy } from '@/game/youth'
+import { boostAffiliateRelations as boostAffiliateRelationsFn } from '@/game/affiliates'
 import { scoutPlayer, assignFormWatch } from '@/game/scouting'
 import { recomputeDynamics } from '@/game/dynamics'
 import { assignMentor } from '@/game/development'
@@ -121,6 +121,7 @@ interface GameStore {
   promoteToCoach: (staffId: string) => boolean
   retirePlayerToStaff: (playerId: string, role?: 'coach' | 'scout' | 'physio') => boolean
   upgradeYouthAcademy: () => void
+  boostAffiliateRelations: () => boolean
   runScout: (playerId: string) => void
   assignScoutWatch: (fixtureId: string, targetPlayerIds?: string[]) => boolean
   setIndividualFocus: (playerId: string, focus: IndividualFocus) => void
@@ -704,11 +705,22 @@ export const useGameStore = create<GameStore>((set, get) => ({
   upgradeYouthAcademy: () => {
     const { save } = get()
     if (!save) return
-    const result = upgradeAcademy(save)
+    const result = proposeFacilityUpgradeFn(save, 'youth')
     set({ status: result.message })
     if (!result.ok) return
     saveToStorage(result.save)
     set({ save: result.save })
+  },
+
+  boostAffiliateRelations: () => {
+    const { save } = get()
+    if (!save) return false
+    const result = boostAffiliateRelationsFn(save)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
   },
 
   runScout: (playerId) => {

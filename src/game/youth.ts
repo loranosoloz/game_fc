@@ -16,6 +16,8 @@ import { newsAfterYouth, pushNews } from './media'
 import { createBodyMap } from './bodyMap'
 import { rollPlayerSkills } from './playerSkills'
 import { createPlayerSocial } from './social'
+import { feederLevelSum } from './affiliates'
+import { proposeFacilityUpgrade } from './facilities'
 
 const YOUTH_NAME_POOL = [
   ...new Set([...Object.values(REAL_NAME_BANKS).flat(), ...REAL_NAME_OVERFLOW]),
@@ -58,10 +60,13 @@ export function maybePromoteYouth(save: GameSave): GameSave {
   }, 0)
 
   const usedNames = new Set(save.players.map((p) => p.name))
+  const affiliateBoost = feederLevelSum(save)
   for (let i = 0; i < count; i++) {
     maxId += 1
     const role = YOUTH_ROLES[Math.floor(rng() * YOUTH_ROLES.length)]
-    const overall = Math.round(48 + save.youth.academyLevel * 0.9 + rng() * 8)
+    const overall = Math.round(
+      48 + save.youth.academyLevel * 0.9 + rng() * 8 + affiliateBoost * 0.35,
+    )
     const age = 16 + Math.floor(rng() * 3)
     const ca = caFromOverall(overall)
     const personality = pickPersonality(rng, age, overall)
@@ -75,7 +80,10 @@ export function maybePromoteYouth(save: GameSave): GameSave {
       position: roleGroup(role),
       overall: overallFromCa(ca),
       ca,
-      pa: makePa(rng, ca, age) + Math.round(save.youth.academyLevel * 0.8),
+      pa:
+        makePa(rng, ca, age) +
+        Math.round(save.youth.academyLevel * 0.8) +
+        Math.round(affiliateBoost * 0.55),
       attrs: makeAttrs(rng, overall, role),
       hidden: makeHidden(rng),
       growth: { ...personality.growth, learningRate: Math.min(20, personality.growth.learningRate + 2) },
@@ -152,20 +160,7 @@ export function maybePromoteYouth(save: GameSave): GameSave {
   return pushNews(next, newsAfterYouth(next, names))
 }
 
+/** @deprecated ใช้ proposeFacilityUpgrade('youth') — คงไว้เป็น thin wrapper */
 export function upgradeAcademy(save: GameSave): { save: GameSave; ok: boolean; message: string } {
-  const cost = 250_000 + save.youth.academyLevel * 120_000
-  const club = save.clubs.find((c) => c.id === save.humanClubId)!
-  if (club.balance < cost) return { save, ok: false, message: 'งบไม่พออัปเกรดอะคาเดมี่' }
-  if (save.youth.academyLevel >= 20) return { save, ok: false, message: 'อะคาเดมี่ระดับสูงสุดแล้ว' }
-  return {
-    ok: true,
-    message: `อัปเกรดอะคาเดมี่เป็นระดับ ${save.youth.academyLevel + 1}`,
-    save: {
-      ...save,
-      clubs: save.clubs.map((c) =>
-        c.id === club.id ? { ...c, balance: c.balance - cost } : c,
-      ),
-      youth: { ...save.youth, academyLevel: save.youth.academyLevel + 1 },
-    },
-  }
+  return proposeFacilityUpgrade(save, 'youth')
 }

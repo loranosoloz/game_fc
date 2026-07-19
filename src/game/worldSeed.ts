@@ -183,10 +183,8 @@ export function createPlayersForClubDef(opts: {
   const clubPlayers: Player[] = []
   let n = startN
 
-  const roster: typeof def.stars = []
-  const starQueue = roster.length > 0 ? roster : def.stars.slice()
+  const starQueue = def.stars.slice()
   const usedRoles = new Map<RoleCode, number>()
-  const useFullRoster = false
 
   for (const star of starQueue) {
     n += 1
@@ -249,7 +247,6 @@ export function createPlayersForClubDef(opts: {
     })
   }
 
-  if (!useFullRoster) {
   for (const row of template) {
     const already = usedRoles.get(row.role) ?? 0
     const need = Math.max(0, row.count - already)
@@ -315,7 +312,6 @@ export function createPlayersForClubDef(opts: {
         ),
       })
     }
-  }
   }
 
   clubPlayers.sort((a, b) => b.overall - a.overall)

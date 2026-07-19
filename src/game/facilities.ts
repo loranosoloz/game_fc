@@ -25,7 +25,11 @@ export function clubFacilityCeilings(
   division: 1 | 2 = 1,
 ): Pick<
   FacilitiesState,
-  'maxStadiumTier' | 'maxTrainingTier' | 'maxMedicalTier' | 'maxCommercialTier'
+  | 'maxStadiumTier'
+  | 'maxTrainingTier'
+  | 'maxMedicalTier'
+  | 'maxCommercialTier'
+  | 'maxYouthTier'
 > {
   const rep = reputation
   if (division === 2) {
@@ -34,6 +38,7 @@ export function clubFacilityCeilings(
       maxTrainingTier: clamp(3 + Math.floor(rep / 28), 3, 7),
       maxMedicalTier: clamp(3 + Math.floor(rep / 28), 3, 7),
       maxCommercialTier: clamp(2 + Math.floor(rep / 30), 2, 6),
+      maxYouthTier: clamp(3 + Math.floor(rep / 26), 3, 7),
     }
   }
   return {
@@ -41,6 +46,7 @@ export function clubFacilityCeilings(
     maxTrainingTier: rep >= 80 ? 10 : rep >= 60 ? 9 : rep >= 45 ? 8 : 7,
     maxMedicalTier: rep >= 80 ? 10 : rep >= 60 ? 9 : rep >= 45 ? 8 : 7,
     maxCommercialTier: rep >= 85 ? 10 : rep >= 65 ? 9 : rep >= 50 ? 8 : 6,
+    maxYouthTier: rep >= 82 ? 10 : rep >= 65 ? 9 : rep >= 50 ? 8 : 7,
   }
 }
 
@@ -52,10 +58,15 @@ export function stadiumTierFromCapacity(capacity: number): number {
   return clamp(Math.round(capacity / SEATS_PER_STADIUM_TIER), 1, GLOBAL_MAX_TIER)
 }
 
+export function youthTierFromAcademyLevel(academyLevel: number, maxYouthTier: number): number {
+  return Math.min(maxYouthTier, Math.max(1, Math.round(academyLevel / 2)))
+}
+
 export function createFacilitiesState(
   stadiumCapacity: number,
   clubRep = 50,
   division: 1 | 2 = 1,
+  academyLevel = 8,
 ): FacilitiesState {
   const ceilings = clubFacilityCeilings(clubRep, division)
   const stadiumTier = Math.min(
@@ -68,6 +79,7 @@ export function createFacilitiesState(
     trainingTier: Math.min(ceilings.maxTrainingTier, clamp(2 + Math.floor(clubRep / 30), 2, 5)),
     medicalTier: Math.min(ceilings.maxMedicalTier, clamp(2 + Math.floor(clubRep / 32), 2, 5)),
     commercialTier: Math.min(ceilings.maxCommercialTier, clamp(1 + Math.floor(clubRep / 35), 1, 4)),
+    youthTier: youthTierFromAcademyLevel(academyLevel, ceilings.maxYouthTier),
     project: null,
     pendingProposal: null,
     lastProposalMatchday: -99,
@@ -77,16 +89,22 @@ export function createFacilitiesState(
 
 export function ensureFacilities(save: GameSave): FacilitiesState {
   const club = save.clubs.find((c) => c.id === save.humanClubId)
+  const academyLevel = save.youth?.academyLevel ?? 8
   const fresh = createFacilitiesState(
     club?.stadiumCapacity ?? 25_000,
     club?.reputation ?? 50,
     club?.division ?? 1,
+    academyLevel,
   )
   if (!save.facilities) return fresh
   const ceilings = clubFacilityCeilings(club?.reputation ?? 50, club?.division ?? 1)
   const stadiumTier = Math.min(
     ceilings.maxStadiumTier,
     save.facilities.stadiumTier ?? stadiumTierFromCapacity(club?.stadiumCapacity ?? 25_000),
+  )
+  const youthTier = Math.min(
+    ceilings.maxYouthTier,
+    save.facilities.youthTier ?? youthTierFromAcademyLevel(academyLevel, ceilings.maxYouthTier),
   )
   return {
     ...fresh,
@@ -105,6 +123,7 @@ export function ensureFacilities(save: GameSave): FacilitiesState {
       ceilings.maxCommercialTier,
       save.facilities.commercialTier ?? fresh.commercialTier,
     ),
+    youthTier,
     project: save.facilities.project ?? null,
     pendingProposal: save.facilities.pendingProposal ?? null,
     lastProposalMatchday: save.facilities.lastProposalMatchday ?? -99,
@@ -116,32 +135,47 @@ export const FACILITY_LABEL: Record<FacilityKind, string> = {
   training: 'ศูนย์ฝึก',
   medical: 'ศูนย์การแพทย์',
   commercial: 'โซนพาณิชย์ / พิพิธภัณฑ์',
+  youth: 'อะคาเดมี่เยาวชน',
 }
 
 function tierKey(kind: FacilityKind): keyof Pick<
   FacilitiesState,
-  'stadiumTier' | 'trainingTier' | 'medicalTier' | 'commercialTier'
+  'stadiumTier' | 'trainingTier' | 'medicalTier' | 'commercialTier' | 'youthTier'
 > {
-  return kind === 'stadium'
-    ? 'stadiumTier'
-    : kind === 'training'
-      ? 'trainingTier'
-      : kind === 'medical'
-        ? 'medicalTier'
-        : 'commercialTier'
+  switch (kind) {
+    case 'stadium':
+      return 'stadiumTier'
+    case 'training':
+      return 'trainingTier'
+    case 'medical':
+      return 'medicalTier'
+    case 'commercial':
+      return 'commercialTier'
+    case 'youth':
+      return 'youthTier'
+  }
 }
 
 function maxKey(kind: FacilityKind): keyof Pick<
   FacilitiesState,
-  'maxStadiumTier' | 'maxTrainingTier' | 'maxMedicalTier' | 'maxCommercialTier'
+  | 'maxStadiumTier'
+  | 'maxTrainingTier'
+  | 'maxMedicalTier'
+  | 'maxCommercialTier'
+  | 'maxYouthTier'
 > {
-  return kind === 'stadium'
-    ? 'maxStadiumTier'
-    : kind === 'training'
-      ? 'maxTrainingTier'
-      : kind === 'medical'
-        ? 'maxMedicalTier'
-        : 'maxCommercialTier'
+  switch (kind) {
+    case 'stadium':
+      return 'maxStadiumTier'
+    case 'training':
+      return 'maxTrainingTier'
+    case 'medical':
+      return 'maxMedicalTier'
+    case 'commercial':
+      return 'maxCommercialTier'
+    case 'youth':
+      return 'maxYouthTier'
+  }
 }
 
 export function facilityCurrentTier(fac: FacilitiesState, kind: FacilityKind): number {
@@ -158,12 +192,20 @@ export function facilityUpgradeCost(kind: FacilityKind, tier: number): number {
     return Math.round(2_800_000 + tier * 2_400_000 + tier * tier * 220_000)
   }
   const base =
-    kind === 'training' ? 1_800_000 : kind === 'medical' ? 1_500_000 : 1_200_000
+    kind === 'training'
+      ? 1_800_000
+      : kind === 'medical'
+        ? 1_500_000
+        : kind === 'youth'
+          ? 1_400_000
+          : 1_200_000
   return Math.round(base + tier * base * 0.55)
 }
 
 export function facilityBuildDays(kind: FacilityKind): number {
-  return kind === 'stadium' ? 6 : kind === 'training' ? 4 : 3
+  if (kind === 'stadium') return 6
+  if (kind === 'training' || kind === 'youth') return 4
+  return 3
 }
 
 export function facilityProgressLabel(fac: FacilitiesState, kind: FacilityKind): string {
@@ -171,6 +213,9 @@ export function facilityProgressLabel(fac: FacilitiesState, kind: FacilityKind):
   const max = facilityMaxTier(fac, kind)
   if (kind === 'stadium') {
     return `${cur}/${max} · ${stadiumCapacityForTier(cur).toLocaleString('th-TH')}/${stadiumCapacityForTier(max).toLocaleString('th-TH')} ที่นั่ง`
+  }
+  if (kind === 'youth') {
+    return `Lv.${cur}/${max} · อะคาเดมี่ ~${Math.min(20, cur * 2)}/20`
   }
   return `Lv.${cur}/${max}`
 }
@@ -267,6 +312,7 @@ function ownerApproveChance(save: GameSave, proposal: FacilityProposal): number 
   if (owner.personality === 'patient') chance += 0.05
   if (board.confidence < 40) chance -= 0.12
   if (proposal.cost > 8_000_000) chance -= 0.08
+  if (proposal.kind === 'youth') chance += 0.04
   return Math.min(0.9, Math.max(0.06, chance))
 }
 
@@ -424,6 +470,7 @@ export function processFacilities(save: GameSave): GameSave {
   let clubs = save.clubs
   let fans = save.fans
   let inbox = save.inbox
+  let youth = save.youth
   let note = ''
 
   if (kind === 'stadium') {
@@ -457,6 +504,16 @@ export function processFacilities(save: GameSave): GameSave {
   } else if (kind === 'medical') {
     next = { ...next, medicalTier: Math.min(fac.maxMedicalTier, fac.medicalTier + 1) }
     note = `ศูนย์การแพทย์ระดับ ${next.medicalTier}/${fac.maxMedicalTier} · ฟื้นตัวเร็วขึ้น`
+  } else if (kind === 'youth') {
+    const newTier = Math.min(fac.maxYouthTier, fac.youthTier + 1)
+    next = { ...next, youthTier: newTier }
+    const academyLevel = Math.min(20, newTier * 2)
+    youth = {
+      ...youth,
+      academyLevel,
+      lastIntakeNote: `อะคาเดมี่ซิงก์ Lv.${academyLevel}/20 จากสิ่งอำนวยเยาวชน Lv.${newTier}`,
+    }
+    note = `อะคาเดมี่เยาวชน Lv.${newTier}/${fac.maxYouthTier} · ระดับอะคาเดมี่ ${academyLevel}/20`
   } else {
     next = { ...next, commercialTier: Math.min(fac.maxCommercialTier, fac.commercialTier + 1) }
     const boost = 200_000 + next.commercialTier * 80_000
@@ -487,7 +544,7 @@ export function processFacilities(save: GameSave): GameSave {
     ...inbox,
   ].slice(0, 40)
 
-  return { ...save, facilities: next, clubs, fans, inbox }
+  return { ...save, facilities: next, clubs, fans, inbox, youth }
 }
 
 export function trainingFacilityBonus(save: GameSave): number {

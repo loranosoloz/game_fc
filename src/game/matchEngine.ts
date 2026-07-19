@@ -13,6 +13,7 @@ import { applyInjury } from './medical'
 import { applyMatchWear, bodyWearInjuryBonus } from './bodyMap'
 import { getReferee, refereeKickoffNote } from './referees'
 import { xiSkillBonuses } from './playerSkills'
+import { weatherMatchModifiers } from './weather'
 
 function mulberry32(seed: number) {
   return () => {
@@ -200,6 +201,12 @@ export function simulateFixture(
   const awayPool = buildSidePlayers(awayTactics, players)
   homeAttack *= oppositionBias(homeTactics, awayPool, homePool)
   awayAttack *= oppositionBias(awayTactics, homePool, awayPool)
+
+  const wx = weatherMatchModifiers(fixture.weather ?? 'clear')
+  homeAttack *= wx.attack
+  awayAttack *= wx.attack
+  homeDefend *= wx.defend
+  awayDefend *= wx.defend
 
   let homeRating = (homeAttack + homeDefend) / 2
   let awayRating = (awayAttack + awayDefend) / 2
@@ -523,7 +530,12 @@ export function simulateFixture(
   }
 }
 
-export function applyMatchFatigue(players: Player[], tactics: Tactics, played: boolean): Player[] {
+export function applyMatchFatigue(
+  players: Player[],
+  tactics: Tactics,
+  played: boolean,
+  injuryMult = 1,
+): Player[] {
   if (!played) return players
   const xi = new Set(tactics.startingXi)
   const used = new Set([...tactics.startingXi, ...tactics.bench.slice(0, 3)])
@@ -553,7 +565,7 @@ export function applyMatchFatigue(players: Player[], tactics: Tactics, played: b
       (p.illnessDays ?? 0) <= 0 &&
       (p.banMatches ?? 0) <= 0 &&
       next.condition < 60 &&
-      Math.random() < 0.02 + p.hidden.injuryProneness / 400 + wearBonus
+      Math.random() < (0.02 + p.hidden.injuryProneness / 400 + wearBonus) * injuryMult
     ) {
       next = applyInjury(next, 'match')
     }

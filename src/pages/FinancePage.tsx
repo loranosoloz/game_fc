@@ -142,13 +142,14 @@ export function FinancePage() {
         ) : (
           <p className="mt-2 text-xs text-slate-500">{facilities.lastNote}</p>
         )}
-        <dl className="mt-3 grid grid-cols-2 gap-2 text-center text-xs sm:grid-cols-4">
+        <dl className="mt-3 grid grid-cols-2 gap-2 text-center text-xs sm:grid-cols-3 lg:grid-cols-5">
           {(
             [
               'stadium',
               'training',
               'medical',
               'commercial',
+              'youth',
             ] as FacilityKind[]
           ).map((kind) => {
             const tier = facilityCurrentTier(facilities, kind)

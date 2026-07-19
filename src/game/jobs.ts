@@ -7,6 +7,7 @@ import { createTalksState } from './playerTalks'
 import { createTakeoverState } from './takeover'
 import { createClubIncome } from './clubIncome'
 import { createFacilitiesState } from './facilities'
+import { createAffiliates } from './affiliates'
 import { autoPickTactics } from './seed'
 
 function uid(prefix: string) {
@@ -220,7 +221,9 @@ export function acceptJobOffer(
       club.stadiumCapacity,
       club.reputation,
       club.division ?? 1,
+      save.youth?.academyLevel ?? 8,
     ),
+    affiliates: createAffiliates(club.reputation, save.season * 99 + offer.clubId.length),
     pressConference: null,
     managerReputation: clamp(rep + 4),
     career: {

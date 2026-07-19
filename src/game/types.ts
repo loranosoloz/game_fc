@@ -262,11 +262,15 @@ export interface Fixture {
   cupRound?: string
   /** Assigned match official */
   refereeId?: string
+  /** สภาพอากาศนัดนี้ */
+  weather?: MatchWeather
   /** สองนัด: 1 = ขาแรก, 2 = ขากลับ */
   leg?: 1 | 2
   /** ผูกคู่สองนัด */
   tieId?: string
 }
+
+export type MatchWeather = 'clear' | 'rain' | 'wind' | 'cold' | 'hot'
 
 export interface Referee {
   id: string
@@ -744,6 +748,19 @@ export interface YouthState {
   lastIntakeNote: string
 }
 
+export interface FeederClub {
+  id: string
+  name: string
+  nation: string
+  /** ระดับความสัมพันธ์/คุณภาพ 1–5 */
+  level: number
+}
+
+export interface AffiliatesState {
+  feeders: FeederClub[]
+  lastNote: string
+}
+
 export interface ScoutFormSighting {
   id: string
   playerId: string
@@ -1114,13 +1131,15 @@ export interface GameSave {
   career: CareerState
   /** สนาม + สิ่งอำนวยความสะดวก */
   facilities: FacilitiesState
+  /** สโมสรพันธมิตร / feeder */
+  affiliates: AffiliatesState
   /** เจรจาสัญญาหลายรอบ */
   contractTalks: ContractTalkState
   /** สรุปลีกอื่นในโลก (เบา) */
   worldPulse: WorldPulseState
 }
 
-export type FacilityKind = 'stadium' | 'training' | 'medical' | 'commercial'
+export type FacilityKind = 'stadium' | 'training' | 'medical' | 'commercial' | 'youth'
 
 export interface FacilityProject {
   kind: FacilityKind
@@ -1154,6 +1173,8 @@ export interface FacilitiesState {
   maxMedicalTier: number
   commercialTier: number
   maxCommercialTier: number
+  youthTier: number
+  maxYouthTier: number
   project: FacilityProject | null
   pendingProposal: FacilityProposal | null
   lastProposalMatchday: number

@@ -36,6 +36,7 @@ import { createClubIncome, ensureClubIncome } from './clubIncome'
 import { createTakeoverState, ensureTakeover } from './takeover'
 import { createCareerState, ensureCareer } from './jobs'
 import { createFacilitiesState, ensureFacilities } from './facilities'
+import { createAffiliates, ensureAffiliates } from './affiliates'
 import { createContractTalks, ensureContractTalks } from './transfer'
 import { createWorldPulse, ensureWorldPulse } from './worldPulse'
 import { ensureAllSocial } from './social'
@@ -176,7 +177,9 @@ export function createNewGame(
       human.stadiumCapacity,
       human.reputation,
       human.division ?? 1,
+      8,
     ),
+    affiliates: createAffiliates(human.reputation, 2026 + humanClubId.length),
     contractTalks: createContractTalks(),
     worldPulse: createWorldPulse(leagueId),
   }
@@ -227,9 +230,16 @@ export function ensurePhase5(save: GameSave): GameSave {
         h?.stadiumCapacity ?? 25_000,
         h?.reputation ?? 50,
         h?.division ?? 1,
+        next.youth?.academyLevel ?? 8,
       ),
     }
   } else next = { ...next, facilities: ensureFacilities(next) }
+  if (!next.affiliates) {
+    next = {
+      ...next,
+      affiliates: createAffiliates(human.reputation, next.season * 97 + human.id.length),
+    }
+  } else next = { ...next, affiliates: ensureAffiliates(next) }
   if (!next.contractTalks) next = { ...next, contractTalks: ensureContractTalks(next) }
   if (!next.worldPulse) next = { ...next, worldPulse: createWorldPulse(next.leagueId || 'eng') }
   else next = { ...next, worldPulse: ensureWorldPulse(next) }
@@ -512,7 +522,11 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
         human.stadiumCapacity,
         human.reputation,
         (human as { division?: 1 | 2 }).division ?? 1,
+        ((raw.youth as GameSave['youth'])?.academyLevel) ?? 8,
       ),
+    affiliates:
+      (raw.affiliates as GameSave['affiliates']) ??
+      createAffiliates(human.reputation, ((raw.season as number) ?? 2026) * 97),
     contractTalks:
       (raw.contractTalks as GameSave['contractTalks']) ?? createContractTalks(),
     worldPulse:
