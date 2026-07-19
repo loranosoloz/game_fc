@@ -23,7 +23,7 @@ import {
 } from '@/game/simulate'
 import { autoPickTactics } from '@/game/seed'
 import { FORMATION_SLOTS } from '@/game/types'
-import { buyPlayerFromAi, sellPlayerToAi, renewContract } from '@/game/transfer'
+import { buyPlayerFromAi, sellPlayerToAi, renewContract, triggerReleaseClause as triggerReleaseClauseFn } from '@/game/transfer'
 import {
   submitNegotiatedBuy,
   acceptCounterOffer,
@@ -34,6 +34,7 @@ import { arrangeLoan, recallLoan, exerciseLoanOption } from '@/game/loans'
 import { toggleShortlist } from '@/game/shortlist'
 import type { OppositionInstructions, TeamTalkKind } from '@/game/types'
 import { applyTrainingWeek, recoverInjuriesOneDay } from '@/game/training'
+import { trainingFacilityBonus } from '@/game/facilities'
 import { setPlayerTreatment } from '@/game/medical'
 import { upgradeStaff, staffUpgradeCost, staffLevel, hireStaff, convertPlayerToStaff, promoteStaffToCoach } from '@/game/staff'
 import { boostAffiliateRelations as boostAffiliateRelationsFn } from '@/game/affiliates'
@@ -118,6 +119,8 @@ interface GameStore {
   startPlayerAuction: (playerId: string, minBid?: number) => boolean
   offerSellPlayer: (playerId: string, fee: number) => boolean
   renewPlayerContract: (playerId: string, wage: number, years: number) => boolean
+  triggerReleaseClause: (playerId: string, wage?: number, years?: number) => boolean
+  setLifestyleOrder: (playerId: string, order: import('@/game/types').LifestyleOrder) => void
   loanInPlayer: (playerId: string) => boolean
   loanOutPlayer: (playerId: string, toClubId: string) => boolean
   recallLoanDeal: (dealId: string) => boolean
@@ -377,7 +380,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
         .filter((p) => p.clubId === save.humanClubId && p.injuryDays > 0)
         .map((p) => p.id),
     )
-    const { players, note } = applyTrainingWeek(save.players, save.humanClubId, save.training)
+    const { players, note } = applyTrainingWeek(
+      save.players,
+      save.humanClubId,
+      save.training,
+      trainingFacilityBonus(save),
+    )
     const physio = staffLevel(save.staff, 'physio')
     const nextPlayers = players.map((p) => {
       if (!previouslyInjured.has(p.id)) return p
@@ -630,6 +638,30 @@ export const useGameStore = create<GameStore>((set, get) => ({
       set({ save: result.save })
     }
     return result.ok
+  },
+
+  triggerReleaseClause: (playerId, wage, years = 3) => {
+    const { save } = get()
+    if (!save) return false
+    const result = triggerReleaseClauseFn(save, playerId, wage, years)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  setLifestyleOrder: (playerId, order) => {
+    const { save } = get()
+    if (!save) return
+    const next = {
+      ...save,
+      players: save.players.map((p) =>
+        p.id === playerId ? { ...p, lifestyleOrder: order === 'none' ? null : order } : p,
+      ),
+    }
+    saveToStorage(next)
+    set({ save: next, status: `ตั้งคำสั่งไลฟ์สไตล์: ${order}` })
   },
 
   loanInPlayer: (playerId) => {

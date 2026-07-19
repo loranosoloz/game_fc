@@ -168,9 +168,19 @@ export interface Player {
   skills: string[]
   /** Last lifestyle activity id */
   lastActivityId?: string | null
+  /** คำสั่งไลฟ์สไตล์จากผู้จัดการ */
+  lifestyleOrder?: LifestyleOrder | null
+  /** บุคลิกเอเยนต์ (seed ถ้าไม่มี) */
+  agentStyle?: AgentStyle
   /** บัญชีโซเชียลส่วนตัว */
   social: PlayerSocial
+  /** ประวัติ FM26 / SortItOutSI (ถ้ามีใน data pack) */
+  bio?: PlayerBio | null
 }
+
+export type LifestyleOrder = 'none' | 'curfew' | 'extra_gym' | 'rest' | 'media_quiet'
+
+export type AgentStyle = 'greedy' | 'loyal' | 'aggressive' | 'balanced'
 
 export interface PlayerSocial {
   handle: string
@@ -179,6 +189,29 @@ export interface PlayerSocial {
   heat: number
   postsWeek: number
   verified: boolean
+}
+
+/** ประวัติจาก SortItOutSI FM26 (เงินเป็น GBP) */
+export interface PlayerBio {
+  fmId?: string | null
+  dob?: string | null
+  gender?: string | null
+  nationality?: string | null
+  contractType?: string | null
+  wageWeeklyGbp?: number | null
+  contractExpires?: string | null
+  contractSigned?: string | null
+  valueGbp?: number | null
+  estimatedCostGbp?: number | null
+  fmPos?: string | null
+  starRating?: number | null
+  caRemaining?: number | null
+  peaked?: boolean
+  fixedPotential?: boolean | null
+  injuryProne?: boolean | null
+  releaseClauseGbp?: number | null
+  developNote?: string | null
+  sourceUrl?: string | null
 }
 
 export interface Club {
@@ -1066,6 +1099,25 @@ export interface TransferDeskState {
     currentBidderId: string | null
     endsMatchday: number
   }>
+  /** เงื่อนไขพิเศษที่ยังค้าง (add-on / sell-on) */
+  clauses?: TransferClause[]
+}
+
+export interface TransferClause {
+  id: string
+  kind: 'appearance' | 'sell_on'
+  playerId: string
+  playerName: string
+  /** คลับที่ต้องจ่าย (มักเป็นผู้ซื้อ) */
+  fromClubId: string
+  /** คลับที่รับเงิน (ผู้ขายเดิม) */
+  toClubId: string
+  amount: number
+  appearancesNeeded: number
+  appearancesSoFar: number
+  sellOnPercent: number
+  status: 'active' | 'paid' | 'void'
+  note: string
 }
 
 export interface SponsorDeal {

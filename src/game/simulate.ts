@@ -7,7 +7,7 @@ import { applyMatchToOwner, ensureOwner } from './owner'
 import { processStadiumPresence } from './clubAtmosphere'
 import { scanTakeoverMarket } from './takeover'
 import { enterUnemployment, refreshJobMarket } from './jobs'
-import { processFacilities, medicalFacilityBonus, commercialGateBonus } from './facilities'
+import { processFacilities, medicalFacilityBonus, commercialGateBonus, trainingFacilityBonus } from './facilities'
 import { tickSocialAfterMatchday } from './social'
 import { transferWindowKind } from './transferWindow'
 import { tickWorldPulse } from './worldPulse'
@@ -565,7 +565,12 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     clubFinance = next.clubFinance
   }
 
-  const trained = applyTrainingWeek(next.players, next.humanClubId, next.training)
+  const trained = applyTrainingWeek(
+    next.players,
+    next.humanClubId,
+    next.training,
+    trainingFacilityBonus(next),
+  )
   const coachBoost = staffLevel(next.staff, 'coach') / 40
   const trainingInjuries = detectNewInjuries(injuryBefore, trained.players, next.humanClubId)
   // Also catch match injuries (compare mid-state before training)

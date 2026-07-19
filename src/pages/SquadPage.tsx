@@ -3,7 +3,7 @@ import { useGameStore } from '@/store/gameStore'
 import { roleLabel, roleShort, squadRoleLabel } from '@/game/positions'
 import { formatMoney } from '@/lib/format'
 import { cn } from '@/lib/cn'
-import type { Player, SquadRole } from '@/game/types'
+import type { LifestyleOrder, Player, SquadRole } from '@/game/types'
 import { knowledgeOf, revealPa, revealGrowth, revealHidden, visibleAttrsDetailed } from '@/game/scouting'
 import { personalitiesDb } from '@/game/attributes'
 import {
@@ -14,16 +14,25 @@ import {
 import { BODY_PART_LABEL } from '@/game/bodyMap'
 import { formatIllnessStatus, ILLNESS_TYPE_LABEL } from '@/game/illness'
 import { BodyMapFigure } from '@/components/BodyMapFigure'
-import { getActivity } from '@/game/dailyLife'
+import { getActivity, recentLogsForPlayer } from '@/game/dailyLife'
 import { formatBanStatus } from '@/game/discipline'
 import { ensurePlayerSkills, skillLabel } from '@/game/playerSkills'
 import { ensurePlayerSocial, formatFollowers } from '@/game/social'
 
 const ROLES: SquadRole[] = ['key', 'regular', 'squad', 'prospect']
 
+const LIFESTYLE_OPTS: { id: LifestyleOrder; label: string }[] = [
+  { id: 'none', label: 'ปล่อยอิสระ' },
+  { id: 'curfew', label: 'เคอร์ฟิว' },
+  { id: 'extra_gym', label: 'ยิมเพิ่ม' },
+  { id: 'rest', label: 'พักฟื้น' },
+  { id: 'media_quiet', label: 'เงียบสื่อ' },
+]
+
 export function SquadPage() {
   const save = useGameStore((s) => s.save)!
   const setSquadRole = useGameStore((s) => s.setSquadRole)
+  const setLifestyleOrder = useGameStore((s) => s.setLifestyleOrder)
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const squad = save.players
     .filter((p) => p.clubId === save.humanClubId)
@@ -109,6 +118,8 @@ export function SquadPage() {
             ? (squad.find((p) => p.id === selected.mentorId)?.name ?? null)
             : null
         }
+        diary={selected ? recentLogsForPlayer(save, selected.id, 10) : []}
+        onLifestyleOrder={setLifestyleOrder}
       />
     </div>
   )
@@ -133,10 +144,14 @@ function PlayerDetailPanel({
   player,
   knowledge,
   mentorName,
+  diary,
+  onLifestyleOrder,
 }: {
   player: Player | null
   knowledge: number
   mentorName: string | null
+  diary: { date: string; labelTh: string; category: string; missTraining: boolean }[]
+  onLifestyleOrder: (playerId: string, order: LifestyleOrder) => void
 }) {
   if (!player) {
     return (
@@ -154,6 +169,7 @@ function PlayerDetailPanel({
   const history = player.injuryHistory ?? []
   const lastAct = player.lastActivityId ? getActivity(player.lastActivityId) : null
   const ban = formatBanStatus(player)
+  const lifeOrder = (player.lifestyleOrder ?? 'none') as LifestyleOrder
 
   return (
     <aside className="space-y-4 rounded-xl border border-slate-200 bg-white/80 p-5">
@@ -184,6 +200,41 @@ function PlayerDetailPanel({
           </p>
         ) : null}
       </div>
+
+      <div>
+        <h4 className="text-sm font-semibold">คำสั่งไลฟ์สไตล์</h4>
+        <select
+          className="mt-1 w-full rounded-md border border-slate-300 px-2 py-1.5 text-sm"
+          value={lifeOrder}
+          onChange={(e) => onLifestyleOrder(player.id, e.target.value as LifestyleOrder)}
+        >
+          {LIFESTYLE_OPTS.map((o) => (
+            <option key={o.id} value={o.id}>
+              {o.label}
+            </option>
+          ))}
+        </select>
+        <p className="mt-1 text-xs text-slate-500">
+          เคอร์ฟิวลดผับ · ยิมเพิ่มซ้อม · พักฟื้นเน้นฟื้น · เงียบสื่อลดดราม่า
+        </p>
+      </div>
+
+      {diary.length > 0 ? (
+        <div>
+          <h4 className="text-sm font-semibold">ไดอารี่ล่าสุด</h4>
+          <ul className="mt-2 max-h-36 space-y-1 overflow-y-auto text-xs text-slate-700">
+            {diary.map((row) => (
+              <li key={`${row.date}-${row.labelTh}`} className="flex gap-2 border-b border-slate-50 pb-1">
+                <span className="shrink-0 text-slate-400">{row.date.slice(5)}</span>
+                <span className="min-w-0 flex-1">
+                  {row.labelTh}
+                  {row.missTraining ? <span className="ml-1 text-rose-600">· ขาดซ้อม</span> : null}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
 
       <div>
         <h4 className="text-sm font-semibold">Status</h4>

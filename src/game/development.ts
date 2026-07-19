@@ -9,6 +9,8 @@ import type {
   Tactics,
 } from './types'
 import { overallFromCa } from './attributes'
+import { FOCUS_ATTRS, focusMatchesRole } from './focusAttrs'
+import { trainingFacilityBonus } from './facilities'
 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.round(n)))
@@ -53,15 +55,6 @@ function mentorBonus(player: Player, allPlayers: Player[], xiMates: Player[]): n
   return best
 }
 
-const FOCUS_ATTRS: Record<IndividualFocus, (keyof PlayerAttributes)[]> = {
-  finishing: ['finishing', 'composure'],
-  passing: ['passing', 'vision', 'technique'],
-  defending: ['tackling', 'positioning', 'heading'],
-  athleticism: ['pace', 'stamina', 'agility', 'strength'],
-  goalkeeping: ['handling', 'reflexes', 'aerialReach'],
-  none: [],
-}
-
 export function createDevelopmentState(): DevelopmentState {
   return { lastMentorNote: 'ยังไม่ได้จัดคู่ mentoring', personalityLog: [] }
 }
@@ -72,6 +65,7 @@ export function applyDevelopmentTick(
   tacticsByClub: Record<string, Tactics>,
   individual: Record<string, IndividualFocus>,
   clubFilter?: string,
+  facilityBonus = 0,
 ): { players: Player[]; notes: string[]; mentorNotes: string[] } {
   const notes: string[] = []
   const mentorNotes: string[] = []
@@ -96,14 +90,42 @@ export function applyDevelopmentTick(
     const det = p.growth.determination / 20
     const pro = p.growth.professionalism / 20
     const ment = mentorBonus(p, players, xiMates)
-    if (ment > 0.5 && p.mentorId && (!clubFilter || p.clubId === clubFilter)) {
+    let growth = { ...p.growth }
+    let personalityId = p.personalityId
+    if (ment > 0.5 && p.mentorId) {
       const mentor = players.find((x) => x.id === p.mentorId)
-      if (mentor) mentorNotes.push(`${p.name} ← mentor ${mentor.name}`)
+      if (mentor) {
+        mentorNotes.push(`${p.name} ← mentor ${mentor.name}`)
+        // ส่งต่อ growth เล็กน้อย
+        growth = {
+          ...growth,
+          determination: Math.min(20, growth.determination + (Math.random() < 0.08 ? 1 : 0)),
+          professionalism: Math.min(
+            20,
+            growth.professionalism + (Math.random() < 0.06 ? 1 : 0),
+          ),
+          learningRate: Math.min(20, growth.learningRate + (Math.random() < 0.05 ? 1 : 0)),
+        }
+        if (Math.random() < 0.03 && mentor.personalityId !== personalityId) {
+          personalityId = mentor.personalityId
+          notes.push(`${p.name} รับบุคลิกจาก mentor ${mentor.name}`)
+        }
+      }
+    }
+
+    const focus = individual[p.id] ?? 'none'
+    const focusFit = focusMatchesRole(focus, p.position)
+    const focusMul = focus === 'none' ? 1 : focusFit ? 1.15 : 0.85
+    if (focus !== 'none' && !focusFit && (!clubFilter || p.clubId === clubFilter) && Math.random() < 0.12) {
+      notes.push(`${p.name}: โฟกัส ${focus} ไม่ค่อยเข้ากับตำแหน่ง ${p.position}`)
     }
 
     let caDelta = 0
     if (curve.growth > 0 && learn > 0.15) {
-      const chance = 0.12 * curve.growth * learn * (0.5 + playFactor) * (0.6 + det) + ment * 0.1
+      const chance =
+        0.12 * curve.growth * learn * (0.5 + playFactor) * (0.6 + det) * focusMul *
+          (1 + facilityBonus) +
+        ment * 0.1
       if (Math.random() < chance && p.ca < p.pa) {
         caDelta = 1
         if (Math.random() < learn * 0.25 && p.ca + 1 < p.pa) caDelta = 2
@@ -116,12 +138,12 @@ export function applyDevelopmentTick(
 
     if (p.growth.learningRate <= 5 && caDelta > 0 && Math.random() > 0.15) caDelta = 0
 
-    const focus = individual[p.id] ?? 'none'
     const focusKeys = FOCUS_ATTRS[focus]
     let attrs = { ...p.attrs }
 
     // Individual training nudge even without CA change
-    if (focusKeys.length && Math.random() < 0.18 * learn) {
+    const focusChance = 0.18 * learn * focusMul * (1 + facilityBonus * 0.5)
+    if (focusKeys.length && Math.random() < focusChance) {
       const k = focusKeys[Math.floor(Math.random() * focusKeys.length)]
       attrs[k] = clamp(attrs[k] + 1, 1, 20)
       if (!clubFilter || p.clubId === clubFilter) {
@@ -130,7 +152,7 @@ export function applyDevelopmentTick(
     }
 
     if (caDelta === 0) {
-      return { ...p, attrs }
+      return { ...p, attrs, growth, personalityId }
     }
 
     const ca = clamp(p.ca + caDelta, 40, Math.max(p.pa, p.ca))
@@ -151,7 +173,7 @@ export function applyDevelopmentTick(
       attrs[k] = clamp(attrs[k] + bump, 1, 20)
     }
 
-    return { ...p, ca, overall, attrs }
+    return { ...p, ca, overall, attrs, growth, personalityId }
   })
 
   return {
@@ -260,13 +282,15 @@ export function applyPersonalityEvents(save: GameSave): GameSave {
 
 export function applyDevelopmentForSave(save: GameSave): GameSave {
   const individual = save.training.individual ?? {}
+  const facBonus = trainingFacilityBonus(save)
   const { players, notes, mentorNotes } = applyDevelopmentTick(
     save.players,
     save.tacticsByClub,
     individual,
     save.humanClubId,
+    facBonus,
   )
-  const all = applyDevelopmentTick(players, save.tacticsByClub, individual)
+  const all = applyDevelopmentTick(players, save.tacticsByClub, individual, undefined, facBonus)
   const mentorLine =
     mentorNotes.length > 0 ? `Mentoring: ${mentorNotes.join(' · ')}` : save.development?.lastMentorNote
 

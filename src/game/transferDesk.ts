@@ -2,17 +2,19 @@ import type { GameSave, PendingTransferOffer, TransferDeskState } from './types'
 import { buyPlayerFromAi, estimatedValue, sellPlayerToAi } from './transfer'
 import { formatMoney } from '@/lib/format'
 import { isTransferWindowOpen, transferWindowLabel } from './transferWindow'
+import { attachClausesAfterBuy, tickAppearanceClauses } from './transferClauses'
 
 function uid(prefix: string) {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`
 }
 
 export function createTransferDesk(): TransferDeskState {
-  return { offers: [], auctions: [] }
+  return { offers: [], auctions: [], clauses: [] }
 }
 
 export function ensureTransferDesk(save: GameSave): TransferDeskState {
-  return save.transferDesk ?? createTransferDesk()
+  const d = save.transferDesk ?? createTransferDesk()
+  return { ...d, clauses: d.clauses ?? [] }
 }
 
 export type DeskResult =
@@ -42,28 +44,15 @@ export function submitNegotiatedBuy(
   if (fee >= want * 0.97 && wage >= player.wage * 1.05) {
     const closed = buyPlayerFromAi(save, playerId, fee, wage, contractYears)
     if (!closed.ok) return closed
-    let next = closed.save
-    if (appearanceAddon > 0 || sellOnPercent > 0) {
-      next = {
-        ...next,
-        inbox: [
-          {
-            id: uid('msg'),
-            date: save.currentDate,
-            title: 'เงื่อนไขพิเศษในสัญญา',
-            body: [
-              appearanceAddon > 0 ? `Add-on ลงเล่น ${formatMoney(appearanceAddon)}` : '',
-              sellOnPercent > 0 ? `Sell-on ${sellOnPercent}%` : '',
-            ]
-              .filter(Boolean)
-              .join(' · '),
-            read: false,
-          },
-          ...next.inbox,
-        ].slice(0, 40),
-      }
-    }
-    return { ok: true, message: closed.message + ' (ปิดดีลทันที)', save: next }
+    const withClauses = attachClausesAfterBuy(closed.save, {
+      playerId,
+      playerName: player.name,
+      buyerClubId: save.humanClubId,
+      sellerClubId: seller.id,
+      appearanceAddon,
+      sellOnPercent,
+    })
+    return { ok: true, message: closed.message + ' (ปิดดีลทันที)', save: withClauses }
   }
 
   // counter หรือปฏิเสธ
@@ -127,14 +116,24 @@ export function acceptCounterOffer(save: GameSave, offerId: string): DeskResult 
     offer.contractYears,
   )
   if (!closed.ok) return closed
+  const player = save.players.find((p) => p.id === offer.playerId)
+  let next = closed.save
+  next = attachClausesAfterBuy(next, {
+    playerId: offer.playerId,
+    playerName: player?.name ?? offer.playerId,
+    buyerClubId: offer.toClubId,
+    sellerClubId: offer.fromClubId,
+    appearanceAddon: offer.appearanceAddon,
+    sellOnPercent: offer.sellOnPercent,
+  })
   return {
     ok: true,
     message: closed.message,
     save: {
-      ...closed.save,
+      ...next,
       transferDesk: {
-        ...desk,
-        offers: desk.offers.map((o) =>
+        ...ensureTransferDesk(next),
+        offers: ensureTransferDesk(next).offers.map((o) =>
           o.id === offerId ? { ...o, status: 'accepted' as const } : o,
         ),
       },
@@ -220,7 +219,7 @@ export function startAuction(save: GameSave, playerId: string, minBid?: number):
   }
 }
 
-/** AI ประมูล + ปิดดีลเมื่อครบ */
+/** AI ประมูล + ปิดดีลเมื่อครบ + clauses + shortlist rival bids */
 export function processTransferDeskMatchday(save: GameSave): GameSave {
   let desk = ensureTransferDesk(save)
   let next = save
@@ -290,6 +289,37 @@ export function processTransferDeskMatchday(save: GameSave): GameSave {
       : o,
   )
 
-  desk = { offers, auctions: still }
-  return { ...next, transferDesk: desk }
+  desk = { ...desk, offers, auctions: still, clauses: desk.clauses ?? [] }
+  next = { ...next, transferDesk: desk }
+  next = tickAppearanceClauses(next)
+
+  // Shortlist rival interest — AI กดดันค่าตัว
+  const shortlist = next.shortlist?.entries ?? []
+  if (shortlist.length && Math.random() < 0.35) {
+    const entry = shortlist[Math.floor(Math.random() * shortlist.length)]
+    const target = next.players.find((p) => p.id === entry.playerId)
+    if (target && target.clubId !== next.humanClubId) {
+      const rival = next.clubs
+        .filter((c) => c.controlledBy === 'ai' && c.id !== target.clubId)
+        .sort((a, b) => b.reputation - a.reputation)[0]
+      if (rival) {
+        const bump = Math.round(estimatedValue(target) * (1.05 + Math.random() * 0.12))
+        next = {
+          ...next,
+          inbox: [
+            {
+              id: uid('msg-sl'),
+              date: next.currentDate,
+              title: 'คู่แข่งสนใจ Shortlist',
+              body: `${rival.name} สนใจ ${target.name} — ตลาดประเมินแรงขึ้น ~${formatMoney(bump)} · รีบเจรจาก่อนโดนแย่ง`,
+              read: false,
+            },
+            ...next.inbox,
+          ].slice(0, 40),
+        }
+      }
+    }
+  }
+
+  return next
 }

@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useGameStore } from '@/store/gameStore'
 import { estimatedValue, listMarketPlayers, minAcceptableFee } from '@/game/transfer'
+import { agentStyleFor, AGENT_STYLE_LABEL, AGENT_STYLE_DESC } from '@/game/agents'
 import { analyzeBuy, analyzeSell } from '@/game/transferIntel'
 import { roleLabel, roleShort } from '@/game/positions'
 import { formatMoney } from '@/lib/format'
@@ -14,6 +15,7 @@ import { isShortlisted } from '@/game/shortlist'
 import { activeLoansForClub } from '@/game/loans'
 import { isTransferWindowOpen, transferWindowLabel, transferWindowKind } from '@/game/transferWindow'
 import { Link } from 'react-router-dom'
+import { PlayerFace } from '@/components/PlayerFace'
 
 type Tab = 'buy' | 'sell'
 
@@ -22,12 +24,14 @@ export function TransfersPage() {
   const save = ensureFans(saveRaw)
   const offerBuyPlayer = useGameStore((s) => s.offerBuyPlayer)
   const offerBuyNegotiated = useGameStore((s) => s.offerBuyNegotiated)
+  const offerExchange = useGameStore((s) => s.offerExchange)
   const offerSellPlayer = useGameStore((s) => s.offerSellPlayer)
   const loanInPlayer = useGameStore((s) => s.loanInPlayer)
   const startPlayerAuction = useGameStore((s) => s.startPlayerAuction)
   const togglePlayerShortlist = useGameStore((s) => s.togglePlayerShortlist)
   const acceptTransferCounter = useGameStore((s) => s.acceptTransferCounter)
   const renewPlayerContract = useGameStore((s) => s.renewPlayerContract)
+  const triggerClause = useGameStore((s) => s.triggerReleaseClause)
   const runScout = useGameStore((s) => s.runScout)
 
   const [tab, setTab] = useState<Tab>('buy')
@@ -37,6 +41,10 @@ export function TransfersPage() {
   const [fee, setFee] = useState(0)
   const [wage, setWage] = useState(0)
   const [years, setYears] = useState(3)
+  const [addon, setAddon] = useState(50_000)
+  const [sellOn, setSellOn] = useState(10)
+  const [exchangeOurId, setExchangeOurId] = useState('')
+  const [exchangeCash, setExchangeCash] = useState(0)
 
   const human = save.clubs.find((c) => c.id === save.humanClubId)!
   const scouting = ensureScouting(save)
@@ -197,19 +205,22 @@ export function TransfersPage() {
                     type="button"
                     onClick={() => pickBuy(p.id)}
                     className={cn(
-                      'flex w-full items-center justify-between rounded-md border px-3 py-2 text-left',
+                      'flex w-full items-center justify-between gap-2 rounded-md border px-3 py-2 text-left',
                       selectedId === p.id
                         ? 'border-sky-300 bg-sky-50'
                         : 'border-slate-100 bg-slate-50 hover:bg-slate-100',
                     )}
                   >
-                    <span>
-<span className="font-semibold" title={roleLabel(p.role)}>
-                        {roleShort(p.role)}
-                      </span>{' '}
-                      {p.name}
-                      <span className="mt-0.5 block text-xs text-slate-500">
-                        {p.clubName} · อายุ {p.age}
+                    <span className="flex min-w-0 items-center gap-2">
+                      <PlayerFace name={p.name} size="xs" />
+                      <span className="min-w-0">
+                        <span className="font-semibold" title={roleLabel(p.role)}>
+                          {roleShort(p.role)}
+                        </span>{' '}
+                        {p.name}
+                        <span className="mt-0.5 block text-xs text-slate-500">
+                          {p.clubName} · อายุ {p.age}
+                        </span>
                       </span>
                     </span>
                     <span className="text-right">
@@ -233,18 +244,21 @@ export function TransfersPage() {
                   type="button"
                   onClick={() => pickSell(p.id)}
                   className={cn(
-                    'flex w-full items-center justify-between rounded-md border px-3 py-2 text-left',
+                    'flex w-full items-center justify-between gap-2 rounded-md border px-3 py-2 text-left',
                     selectedId === p.id
                       ? 'border-sky-300 bg-sky-50'
                       : 'border-slate-100 bg-slate-50 hover:bg-slate-100',
                   )}
                 >
-                  <span>
-                    <span className="font-semibold" title={roleLabel(p.role)}>
-                      {roleShort(p.role)}
-                    </span>{' '}
-                    {p.name}
-                    <span className="mt-0.5 block text-xs text-slate-500">อายุ {p.age}</span>
+                  <span className="flex min-w-0 items-center gap-2">
+                    <PlayerFace name={p.name} size="xs" />
+                    <span className="min-w-0">
+                      <span className="font-semibold" title={roleLabel(p.role)}>
+                        {roleShort(p.role)}
+                      </span>{' '}
+                      {p.name}
+                      <span className="mt-0.5 block text-xs text-slate-500">อายุ {p.age}</span>
+                    </span>
                   </span>
                   <span className="text-right">
                     <span className="block font-bold">{p.overall}</span>
@@ -261,9 +275,12 @@ export function TransfersPage() {
         <h3 className="text-lg font-semibold">ต่อรอง + เหตุผล AI</h3>
         {tab === 'buy' && selectedBuy && sellerClub ? (
           <div className="mt-3 space-y-3 text-sm">
-            <p>
-              <strong>{selectedBuy.name}</strong> · {roleShort(selectedBuy.role)} · OVR{' '}
-              {revealOverall(selectedBuy.overall, knowledgeOf(scouting, selectedBuy.id))}
+            <p className="flex items-center gap-2">
+              <PlayerFace name={selectedBuy.name} size="md" />
+              <span>
+                <strong>{selectedBuy.name}</strong> · {roleShort(selectedBuy.role)} · OVR{' '}
+                {revealOverall(selectedBuy.overall, knowledgeOf(scouting, selectedBuy.id))}
+              </span>
             </p>
             <p className="text-slate-600">
               สังกัด: {selectedBuy.clubName} (AI)
@@ -337,20 +354,89 @@ export function TransfersPage() {
                 onChange={(e) => setYears(Number(e.target.value))}
               />
             </label>
+            <div className="grid grid-cols-2 gap-2">
+              <label className="grid gap-1">
+                <span>Add-on ลงแข่ง</span>
+                <input
+                  type="number"
+                  className="rounded-md border border-slate-300 px-3 py-2"
+                  value={addon}
+                  onChange={(e) => setAddon(Number(e.target.value))}
+                />
+              </label>
+              <label className="grid gap-1">
+                <span>Sell-on %</span>
+                <input
+                  type="number"
+                  min={0}
+                  max={25}
+                  className="rounded-md border border-slate-300 px-3 py-2"
+                  value={sellOn}
+                  onChange={(e) => setSellOn(Number(e.target.value))}
+                />
+              </label>
+            </div>
+            <p className="text-xs text-slate-500">
+              เอเยนต์: {AGENT_STYLE_LABEL[agentStyleFor(selectedBuy)]} · เจรจาจะใช้ add-on/sell-on
+              จริง (จ่ายทีหลัง)
+            </p>
             <button
               type="button"
               className="w-full rounded-md bg-slate-900 px-4 py-2.5 font-semibold text-lime-300 hover:bg-slate-800"
               onClick={() => offerBuyPlayer(selectedBuy.id, fee, wage, years)}
             >
-              ส่งข้อเสนอซื้อ (ทันที)
+              1) ส่งค่าตัวทันที
             </button>
             <button
               type="button"
               className="w-full rounded-md border border-slate-300 bg-white px-4 py-2 font-semibold hover:bg-slate-50"
-              onClick={() => offerBuyNegotiated(selectedBuy.id, fee, wage, years, 50_000, 10)}
+              onClick={() =>
+                offerBuyNegotiated(selectedBuy.id, fee, wage, years, addon, sellOn)
+              }
             >
-              เจรจา (+add-on / sell-on 10%)
+              1) เจรจาค่าตัว (+เงื่อนไข)
             </button>
+            {selectedBuy.releaseClause ? (
+              <button
+                type="button"
+                className="w-full rounded-md border border-violet-400 bg-violet-50 px-4 py-2 font-semibold text-violet-950 hover:bg-violet-100"
+                onClick={() => triggerClause(selectedBuy.id, wage, years)}
+              >
+                กดเงื่อนไขซื้อขาด · {formatMoney(selectedBuy.releaseClause)}
+              </button>
+            ) : null}
+            <div className="rounded-md border border-slate-200 bg-slate-50 p-3 space-y-2">
+              <p className="text-xs font-semibold text-slate-600">แลกตัว + เงินปรับ</p>
+              <select
+                className="w-full rounded-md border border-slate-300 px-2 py-1.5 text-sm"
+                value={exchangeOurId}
+                onChange={(e) => setExchangeOurId(e.target.value)}
+              >
+                <option value="">— เลือกนักเตะในทีมคุณ —</option>
+                {mySquad.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name} · {formatMoney(p.value)}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="number"
+                className="w-full rounded-md border border-slate-300 px-2 py-1.5 text-sm"
+                placeholder="เงินเพิ่ม"
+                value={exchangeCash}
+                onChange={(e) => setExchangeCash(Number(e.target.value))}
+              />
+              <button
+                type="button"
+                className="w-full rounded-md border border-slate-400 bg-white px-3 py-1.5 text-sm font-semibold"
+                disabled={!exchangeOurId}
+                onClick={() =>
+                  offerExchange(selectedBuy.id, exchangeOurId, exchangeCash)
+                }
+              >
+                แลกตัว
+              </button>
+            </div>
             <button
               type="button"
               className="w-full rounded-md border border-sky-300 bg-sky-50 px-4 py-2 font-semibold text-sky-950 hover:bg-sky-100"
@@ -370,9 +456,12 @@ export function TransfersPage() {
 
         {tab === 'sell' && selectedSell ? (
           <div className="mt-3 space-y-3 text-sm">
-            <p>
-              <strong>{selectedSell.name}</strong> · {roleShort(selectedSell.role)} · OVR{' '}
-              {selectedSell.overall}
+            <p className="flex items-center gap-2">
+              <PlayerFace name={selectedSell.name} size="md" />
+              <span>
+                <strong>{selectedSell.name}</strong> · {roleShort(selectedSell.role)} · OVR{' '}
+                {selectedSell.overall}
+              </span>
             </p>
             <p className="text-slate-600">
               มูลค่าประเมิน: {formatMoney(selectedSell.value)}
@@ -383,6 +472,9 @@ export function TransfersPage() {
               {selectedSell.releaseClause
                 ? ` · เงื่อนไขซื้อขาด ${formatMoney(selectedSell.releaseClause)}`
                 : ''}
+              <br />
+              เอเยนต์: {AGENT_STYLE_LABEL[agentStyleFor(selectedSell)]} ·{' '}
+              {AGENT_STYLE_DESC[agentStyleFor(selectedSell)]}
             </p>
             <label className="grid gap-1">
               <span>ตั้งราคาขาย</span>

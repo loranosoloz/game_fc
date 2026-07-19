@@ -1,8 +1,10 @@
 import mentoringDb from '@/data/mentoring.json'
-import type { GameSave, IndividualFocus, Player, PlayerAttributes, TrainingFocus, TrainingState } from './types'
+import type { GameSave, Player, TrainingFocus, TrainingState } from './types'
 import { overallFromCa } from './attributes'
 import { applyInjury, tickPlayerInjury } from './medical'
 import { applyTrainingWear, bodyWearInjuryBonus } from './bodyMap'
+import { FOCUS_ATTRS } from './focusAttrs'
+import { trainingFacilityBonus } from './facilities'
 
 export function defaultTraining(): TrainingState {
   return { focus: 'tactics', intensity: 'medium', individual: {} }
@@ -10,15 +12,6 @@ export function defaultTraining(): TrainingState {
 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.round(n)))
-}
-
-const FOCUS_ATTRS: Record<IndividualFocus, (keyof PlayerAttributes)[]> = {
-  finishing: ['finishing', 'composure'],
-  passing: ['passing', 'vision', 'technique'],
-  defending: ['tackling', 'positioning', 'heading'],
-  athleticism: ['pace', 'stamina', 'agility', 'strength'],
-  goalkeeping: ['handling', 'reflexes', 'aerialReach'],
-  none: [],
 }
 
 export function individualFocusOptions() {
@@ -30,8 +23,10 @@ export function applyTrainingWeek(
   players: Player[],
   humanClubId: string,
   training: TrainingState,
+  facilityBonus = 0,
 ): { players: Player[]; note: string; injuries: string[] } {
   const intensityMul = training.intensity === 'high' ? 1.35 : training.intensity === 'low' ? 0.7 : 1
+  const facMul = 1 + facilityBonus
   const injuries: string[] = []
   const individual = training.individual ?? {}
   const next = players.map((p) => {
@@ -60,13 +55,13 @@ export function applyTrainingWeek(
       if (training.focus === 'fitness') condition = clamp(condition + 1, 40, 100)
       if (training.focus === 'tactics') form = clamp(form + (Math.random() > 0.6 ? 1 : 0), 1, 20)
       if (training.focus === 'attacking' && (p.position === 'FW' || p.role === 'CAM')) {
-        if (Math.random() < 0.06 * intensityMul * (p.growth.learningRate / 20)) {
+        if (Math.random() < 0.06 * intensityMul * facMul * (p.growth.learningRate / 20)) {
           ca = Math.min(p.pa, ca + 1)
           overall = overallFromCa(ca)
         }
       }
       if (training.focus === 'defending' && p.position === 'DF') {
-        if (Math.random() < 0.06 * intensityMul * (p.growth.learningRate / 20)) {
+        if (Math.random() < 0.06 * intensityMul * facMul * (p.growth.learningRate / 20)) {
           ca = Math.min(p.pa, ca + 1)
           overall = overallFromCa(ca)
         }
@@ -75,7 +70,7 @@ export function applyTrainingWeek(
 
     const ind = individual[p.id] ?? 'none'
     const keys = FOCUS_ATTRS[ind]
-    if (keys.length && training.focus !== 'rest' && Math.random() < 0.22 * intensityMul) {
+    if (keys.length && training.focus !== 'rest' && Math.random() < 0.22 * intensityMul * facMul) {
       const k = keys[Math.floor(Math.random() * keys.length)]
       const learnMul = p.growth.learningRate / 20
       if (learnMul > 0.2 || Math.random() < 0.2) {

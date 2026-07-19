@@ -742,6 +742,13 @@ Data: `src/data/world/` · New game เลือกลีก+สโมสร · 
 ### Match weather (เบา) ✅
 - สภาพอากาศต่อนัด · กระทบเรตติ้ง + เจ็บเล็กน้อย · UI บน Portal/Match
 
+### Player Depth Pack ✅
+- **Transfer clauses**: appearance add-on จ่ายเมื่อลงสนามครบ · sell-on % เมื่อขายต่อ (`transferDesk.clauses`)
+- **เอเยนต์**: บุคลิก greedy/loyal/aggressive/balanced กระทบต่อสัญญาและค่าเหนื่อย
+- **ตลาด**: แลกตัว · กดเงื่อนไขซื้อขาด · shortlist มีคู่แข่งกดดัน inbox
+- **พัฒนา**: mentor ส่งต่อ growth/บุคลิก · โฟกัสซ้อมเข้า/ไม่เข้าตำแหน่ง · `trainingFacilityBonus`
+- **ไลฟ์สไตล์**: คำสั่งเคอร์ฟิว/ยิม/พัก/เงียบสื่อ + ไดอารี่บนหน้า Squad
+
 ### ตลาดงานผู้จัดการ ✅
 - ถูกปลด → ว่างงาน + สุ่มข้อเสนองานจากคลับ AI (ตามชื่อเสียงผู้จัดการ)
 - รับงาน → สลับ `humanClubId` · บอร์ด/เจ้าของ/แฟนใหม่ · คลับเก่าเป็น AI

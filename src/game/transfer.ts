@@ -13,6 +13,14 @@ import { injuryHistoryPenalty } from './medical'
 import { ensureScouting, markPlayerAsAlumni } from './scouting'
 import { isTransferFrozen } from './clubAtmosphere'
 import { isTransferWindowOpen, transferWindowLabel } from './transferWindow'
+import { settleSellOnClauses } from './transferClauses'
+import {
+  agentAskMul,
+  agentFeeMul,
+  agentStyleFor,
+  agentWalkHarder,
+  AGENT_STYLE_LABEL,
+} from './agents'
 
 export function estimatedValue(player: Player): number {
   const ageFactor = player.age <= 24 ? 1.25 : player.age <= 29 ? 1.0 : player.age <= 32 ? 0.7 : 0.45
@@ -317,6 +325,7 @@ export function sellPlayerToAi(save: GameSave, playerId: string, askFee: number)
     scouting: markPlayerAsAlumni(ensureScouting(save), playerId),
   }
   next = pushNews(next, newsAfterTransfer(next, player.name, false))
+  next = settleSellOnClauses(next, playerId, askFee)
 
   return {
     ok: true,
@@ -358,12 +367,17 @@ export function renewContract(
 
   const talks = save.contractTalks?.talks ?? []
   let talk = talks.find((t) => t.playerId === playerId && t.status === 'open')
+  const style = agentStyleFor(player)
   const ambitionBump = player.overall >= 78 ? 1.12 : player.overall >= 72 ? 1.06 : 1.02
   const ageBump = player.age <= 24 ? 1.05 : player.age >= 32 ? 0.97 : 1
-  let askWage = talk?.askWage ?? Math.round(player.wage * ambitionBump * ageBump)
-  let askYears = talk?.askYears ?? Math.max(2, Math.min(4, years))
-  const agentRate = 0.06 + (player.overall >= 80 ? 0.04 : player.overall >= 74 ? 0.02 : 0)
+  let askWage =
+    talk?.askWage ??
+    Math.round(player.wage * ambitionBump * ageBump * agentAskMul(style))
+  let askYears = talk?.askYears ?? Math.max(2, Math.min(4, years + (style === 'aggressive' ? 1 : 0)))
+  const agentRate =
+    (0.06 + (player.overall >= 80 ? 0.04 : player.overall >= 74 ? 0.02 : 0)) * agentFeeMul(style)
   const agentFee = Math.round(newWage * 52 * years * agentRate)
+  const maxRounds = talk?.maxRounds ?? (agentWalkHarder(style) ? 2 : 3)
 
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
   const otherWages = save.players
@@ -380,7 +394,6 @@ export function renewContract(
   }
 
   const round = (talk?.round ?? 0) + 1
-  const maxRounds = talk?.maxRounds ?? 3
   const wageOk = newWage >= askWage * 0.97
   const yearsOk = years >= askYears || newWage >= askWage * 1.08
 
@@ -398,7 +411,7 @@ export function renewContract(
         askYears,
         agentFee,
         status: 'walked',
-        note: 'เจรจาล้ม — เอเยนต์พานักเตะออกจากโต๊ะ',
+        note: `เจรจาล้ม — เอเยนต์(${AGENT_STYLE_LABEL[style]}) พานักเตะออกจากโต๊ะ`,
       }
       return {
         ok: false,
@@ -429,7 +442,7 @@ export function renewContract(
       askYears,
       agentFee: Math.round(askWage * 52 * askYears * agentRate),
       status: 'open',
-      note: `รอบ ${round}/${maxRounds}: เอเยนต์ขอ ~${formatMoney(askWage)}/สัปดาห์ · ${askYears} ปี · ค่าเอเยนต์ประมาณ ${formatMoney(Math.round(askWage * 52 * askYears * agentRate))}`,
+      note: `รอบ ${round}/${maxRounds}: เอเยนต์(${AGENT_STYLE_LABEL[style]}) ขอ ~${formatMoney(askWage)}/สัปดาห์ · ${askYears} ปี · ค่าเอเยนต์ประมาณ ${formatMoney(Math.round(askWage * 52 * askYears * agentRate))}`,
     }
     return {
       ok: false,
@@ -472,16 +485,18 @@ export function renewContract(
     askYears,
     agentFee,
     status: 'signed',
-    note: `เซ็นแล้ว · ค่าเอเยนต์ ${formatMoney(agentFee)}`,
+    note: `เซ็นแล้ว · เอเยนต์(${AGENT_STYLE_LABEL[style]}) ${formatMoney(agentFee)}`,
   }
 
   return {
     ok: true,
-    message: `ต่อสัญญา ${player.name} สำเร็จ · ${years} ปี · ${formatMoney(newWage)}/สัปดาห์ · เอเยนต์ ${formatMoney(agentFee)}`,
+    message: `ต่อสัญญา ${player.name} สำเร็จ · ${years} ปี · ${formatMoney(newWage)}/สัปดาห์ · เอเยนต์(${AGENT_STYLE_LABEL[style]}) ${formatMoney(agentFee)}`,
     save: pushNews(
       {
         ...save,
-        players,
+        players: players.map((p) =>
+          p.id === playerId ? { ...p, agentStyle: style } : p,
+        ),
         clubs: save.clubs.map((c) =>
           c.id === club.id ? { ...c, balance: c.balance - agentFee } : c,
         ),
@@ -496,7 +511,7 @@ export function renewContract(
             id: `msg-renew-${Date.now()}`,
             date: save.currentDate,
             title: `ต่อสัญญา: ${player.name}`,
-            body: `สัญญาใหม่ ${years} ปี หมดฤดูกาล ${save.season + years} · ค่าเหนื่อย ${formatMoney(newWage)}/สัปดาห์ · จ่ายเอเยนต์ ${formatMoney(agentFee)}`,
+            body: `สัญญาใหม่ ${years} ปี หมดฤดูกาล ${save.season + years} · ค่าเหนื่อย ${formatMoney(newWage)}/สัปดาห์ · จ่ายเอเยนต์(${AGENT_STYLE_LABEL[style]}) ${formatMoney(agentFee)}`,
             read: false,
           },
           ...save.inbox,
@@ -513,4 +528,22 @@ export function createContractTalks(): ContractTalkState {
 
 export function ensureContractTalks(save: GameSave): ContractTalkState {
   return save.contractTalks ?? createContractTalks()
+}
+
+/** กดเงื่อนไขซื้อขาด — จ่ายตาม releaseClause แล้วได้ตัวทันที */
+export function triggerReleaseClause(
+  save: GameSave,
+  playerId: string,
+  wage?: number,
+  years = 3,
+): OfferResult {
+  if (!isTransferWindowOpen(save)) return { ok: false, message: transferWindowLabel(save) }
+  const player = save.players.find((p) => p.id === playerId)
+  if (!player) return { ok: false, message: 'ไม่พบนักเตะ' }
+  if (player.clubId === save.humanClubId) return { ok: false, message: 'อยู่ในทีมแล้ว' }
+  if (!player.releaseClause || player.releaseClause <= 0) {
+    return { ok: false, message: 'นักเตะคนนี้ไม่มีเงื่อนไขซื้อขาด' }
+  }
+  const offerWage = wage ?? Math.round(player.wage * 1.12)
+  return buyPlayerFromAi(save, playerId, player.releaseClause, offerWage, years)
 }

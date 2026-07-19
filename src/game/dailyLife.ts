@@ -3,6 +3,7 @@ import type {
   DailyActivityDef,
   DailyActivityLog,
   GameSave,
+  LifestyleOrder,
   Player,
   StaffPerson,
 } from './types'
@@ -39,10 +40,16 @@ type LifeStats = {
   role?: string
 }
 
-function pickWeightedActivity(stats: LifeStats, rng: () => number, staffMode: boolean): DailyActivityDef {
+function pickWeightedActivity(
+  stats: LifeStats,
+  rng: () => number,
+  staffMode: boolean,
+  lifestyleOrder?: LifestyleOrder | null,
+): DailyActivityDef {
   const pro = stats.professionalism
   const amb = stats.ambition
   const det = stats.determination
+  const order = lifestyleOrder && lifestyleOrder !== 'none' ? lifestyleOrder : null
   const temp =
     stats.personalityId === 'temperamental'
       ? 14
@@ -80,6 +87,25 @@ function pickWeightedActivity(stats: LifeStats, rng: () => number, staffMode: bo
     if (pro >= 16 && act.category === 'lapse') w *= 0.35
     if (pro >= 14 && act.category === 'training') w += 3
 
+    // คำสั่งไลฟ์สไตล์จากผู้จัดการ
+    if (order === 'curfew') {
+      if (act.category === 'discipline' || act.id === 'early_sleep') w += 5
+      if (act.missTraining || act.category === 'lapse') w *= 0.25
+      if (act.id === 'pub_night' || act.id === 'club_party') w *= 0.1
+    } else if (order === 'extra_gym') {
+      if (act.category === 'training') w += 4
+      if (act.id === 'dawn_gym' || act.id === 'extra_shooting' || act.id === 'compete_rondo') w += 3
+      if (act.category === 'rest' && !act.missTraining) w *= 0.7
+    } else if (order === 'rest') {
+      if (act.category === 'recovery' || act.category === 'rest') w += 5
+      if (act.category === 'training') w *= 0.55
+      if (act.missTraining) w *= 0.4
+    } else if (order === 'media_quiet') {
+      if (act.category === 'media') w *= 0.2
+      if (act.id === 'social_drama') w *= 0.1
+      if (act.category === 'discipline' || act.category === 'training') w += 1.5
+    }
+
     w = Math.max(0.05, w)
     weighted.push({ act, w })
   }
@@ -107,6 +133,7 @@ export function pickDailyActivity(player: Player, rng: () => number): DailyActiv
     },
     rng,
     false,
+    player.lifestyleOrder,
   )
 }
 
