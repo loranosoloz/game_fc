@@ -96,27 +96,41 @@ export function CompetitionsPage() {
       .filter((f) => f.competition === comp)
       .sort((a, b) => a.matchday - b.matchday)
 
+  const uclFx = byComp('ucl')
+  const hasUcl = uclFx.length > 0
+
   return (
     <div className="space-y-8">
-      <RoundBlock
-        title={save.ucl?.name ?? 'UEFA Champions League'}
-        rounds={uclFormat.rounds.map((r) => ({
-          id: r.id,
-          label: r.label,
-          matchdayOffset: (r as { matchdayOffset?: number }).matchdayOffset,
-        }))}
-        fixtures={byComp('ucl')}
-        nameOf={nameOf}
-        tone="amber"
-      />
-      {save.ucl?.championClubId ? (
-        <p className="-mt-6 text-sm font-semibold text-emerald-800">
-          แชมป์ยุโรป: {nameOf(save.ucl.championClubId)}
-        </p>
+      {hasUcl ? (
+        <>
+          <RoundBlock
+            title={save.ucl?.name ?? 'UEFA Champions League'}
+            rounds={uclFormat.rounds.map((r) => ({
+              id: r.id,
+              label: r.label,
+              matchdayOffset: (r as { matchdayOffset?: number }).matchdayOffset,
+            }))}
+            fixtures={uclFx}
+            nameOf={nameOf}
+            tone="amber"
+          />
+          {save.ucl?.championClubId ? (
+            <p className="-mt-6 text-sm font-semibold text-emerald-800">
+              แชมป์ยุโรป: {nameOf(save.ucl.championClubId)}
+            </p>
+          ) : (
+            <p className="-mt-6 text-sm text-slate-600">
+              League phase → Top 8 → QF/SF/Final · เฉพาะ 5 ลีกยุโรป (ไม่มีไทย)
+            </p>
+          )}
+        </>
       ) : (
-        <p className="-mt-6 text-sm text-slate-600">
-          League phase → Top 8 → QF/SF/Final
-        </p>
+        <section className="rounded-xl border border-amber-100 bg-amber-50/60 p-5 text-sm text-amber-950">
+          <h2 className="text-lg font-semibold">UEFA Champions League</h2>
+          <p className="mt-1 text-slate-700">
+            เซฟนี้เล่นลีกนอกยุโรป — ไม่มีโควตา UCL (ไทยเล่นในประเทศอย่างเดียว)
+          </p>
+        </section>
       )}
 
       <RoundBlock

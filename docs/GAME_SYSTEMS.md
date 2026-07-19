@@ -650,7 +650,8 @@ Data: `src/data/world/` · New game เลือกลีก+สโมสร · 
 
 ### Phase UCL + Full real names ✅
 - **ทุกคนในสควอดใช้ชื่อนักเตะจริง** (stars + ธนาคารชื่อต่อลีก + overflow โลก) — ไม่สุ่ม First+Last
-- **UEFA Champions League**: Top 4 ลีกในประเทศ (ทีมผู้เล่นติดเสมอ) + 12 สโมสรเชิญจากลีกอื่น → R16 → QF → SF → Final
+- **UEFA Champions League**: เฉพาะ **5 ลีกยุโรป** (ENG/ESP/GER/FRA/ITA) — **ไทยไม่เข้า UCL** (เล่นในประเทศอย่างเดียว)
+- Top 4 ลีกบ้าน + เชิญจากลีกยุโรปอื่น → League phase → QF → SF → Final
 - หน้า `/competitions` แสดง UCL + ถ้วยในประเทศ · ไม่มีเสมอใน UCL/ถ้วย · Save **v6** (`fc-manager-save-v6`)
 
 ### Referees ✅

@@ -4,6 +4,9 @@ import { createTacticsForAll } from './seed'
 import { createClubsFromLeague, createPlayersFromLeague } from './worldSeed'
 import { getLeague, type LeagueId } from '@/data/world'
 import { crestKeyForShortName } from '@/lib/crests'
+import { bioForPlayerName } from '@/data/world/playerBios'
+import { fmInsideForPlayerName } from '@/data/world/fmInsidePlayers'
+import { playerAttrsFromFmInside } from '@/game/fmInside'
 import { blankTable, generateSeasonFixtures } from './fixtures'
 import { createFanState, ensureFans } from './fans'
 import { createBoardState, ensureBoard } from './board'
@@ -110,6 +113,7 @@ export function createNewGame(
     invite.clubs,
     humanClubId,
     seasonStart,
+    leagueId,
   )
   const fixtures = assignRefereesToFixtures([
     ...leagueFx,
@@ -365,7 +369,21 @@ export function ensurePhase5(save: GameSave): GameSave {
   if (!next.leagueId) next = { ...next, leagueId: 'eng', leagueName: next.leagueName ?? 'Premier League' }
   if (!next.leagueName) next = { ...next, leagueName: 'World League' }
 
-  const players = next.players.map((p) => ensurePlayerV3Fields(p))
+  const players = next.players.map((p) => {
+    const base = ensurePlayerV3Fields(p)
+    const bio = base.bio ?? bioForPlayerName(base.name)
+    const fmInside = base.fmInside ?? fmInsideForPlayerName(base.name)
+    let nextP = base
+    if (!base.bio && bio) nextP = { ...nextP, bio }
+    if (!base.fmInside && fmInside) {
+      nextP = {
+        ...nextP,
+        fmInside,
+        attrs: playerAttrsFromFmInside(fmInside),
+      }
+    }
+    return nextP
+  })
   if (!next.scouting?.byPlayer) {
     next = { ...next, scouting: createScouting(players, next.humanClubId) }
   } else {

@@ -7,6 +7,13 @@ import { createClubSocial } from './social'
 
 export type UclState = CupState
 
+/** ลีกยุโรปที่แข่ง UCL ได้ — ไทยไม่เข้าร่วม (เล่นในประเทศอย่างเดียว) */
+export const EUROPE_LEAGUE_IDS: LeagueId[] = ['eng', 'esp', 'ger', 'fra', 'ita']
+
+export function isEuropeLeague(id: LeagueId | string): boolean {
+  return (EUROPE_LEAGUE_IDS as string[]).includes(id)
+}
+
 export function createUclState(): UclState {
   return {
     name: uclFormat.name,
@@ -21,13 +28,22 @@ function addDays(iso: string, days: number) {
   return d.toISOString().slice(0, 10)
 }
 
-/** Top clubs from other leagues → invite AI clubs (ucl-*). */
+/**
+ * เชิญคลับจากลีกยุโรปอื่น (ไม่รวมไทย · ไม่รวมลีกบ้าน)
+ * ถ้าเล่นไทย → ไม่มี UCL
+ */
 export function createUclInviteClubs(homeLeagueId: LeagueId): {
   clubs: Club[]
   players: Player[]
   tactics: Record<string, Tactics>
 } {
-  const others = ALL_LEAGUES.filter((l) => l.id !== homeLeagueId)
+  if (!isEuropeLeague(homeLeagueId)) {
+    return { clubs: [], players: [], tactics: {} }
+  }
+
+  const others = ALL_LEAGUES.filter(
+    (l) => isEuropeLeague(l.id) && l.id !== homeLeagueId,
+  )
   const candidates: Array<{ leagueId: LeagueId; clubIndex: number; rep: number }> = []
   for (const league of others) {
     league.clubs.forEach((c, i) => {
@@ -95,7 +111,11 @@ export function generateUclFixtures(
   inviteClubs: Club[],
   humanClubId: string,
   seasonStartDate: string,
+  homeLeagueId?: LeagueId,
 ): Fixture[] {
+  if (homeLeagueId && !isEuropeLeague(homeLeagueId)) return []
+  if (!inviteClubs.length) return []
+
   const domesticSlots = uclFormat.domesticSlots
   let domestic = domesticClubs
     .slice()

@@ -269,6 +269,7 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
     invite.clubs,
     save.humanClubId,
     startDate,
+    leagueId,
   )
   const fixtures = assignRefereesToFixtures([
     ...leagueFx,
