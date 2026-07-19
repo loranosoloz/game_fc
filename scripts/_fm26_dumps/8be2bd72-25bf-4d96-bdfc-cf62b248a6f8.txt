@@ -1,0 +1,653 @@
+FM26 New Features Guide: Everything New in Football Manager 2026 | FM Scout
+
+Search
+
+Search fmscout.com
+
+On FM Scout you can chat about Football Manager in real time since 2011. Here are 10 reasons to join!
+
+Sports Interactive confirmed Football Manager 2026 on August 13th, 2025, in a teaser that briefly revealed actual game footage. FM26 represents the most ambitious evolution in the series' history, marking the transition to the Unity engine and introducing transformative features that fundamentally change how you manage. After the cancellation of FM25, the development team had two full years to reimagine Football Manager from the ground up.
+
+| https://www.fmscout.com/a-football-manager-2026-steam-key.html | Pre-Purchase FM26 from FM Scout Start playing 2 weeks early with advanced access, and enter a special giveaway for 5 chances to win GS26g. |
+| --- | --- |
+
+This extended development cycle has resulted in the most feature-rich release in decades. This article provides a complete, regularly updated list of all confirmed features and improvements in Football Manager 2026. Updated: 13 October 2025
+
+### FM26 Headline Features - Quick Navigation
+
+✔️ Premier League License ✔️ Dual Formations: In & Out of Possession ✔️ Tactical Visualiser ✔️ Reimagined User Interface ✔️ Match Day Experience Revolution ✔️ Recruitment Revamp ✔️ Team Instructions: Visual & Intuitive ✔️ Women's Football ✔️ New Tech for Newgens ✔️ Removed Features ✔️ Save Game Compatibility
+
+| https://www.fmscout.com/a-football-manager-2026-screenshots.html | Football Manager 2026 Screenshots |
+| --- | --- |
+
+### PREMIER LEAGUE LICENSE
+
+Key new addition
+
+On June 10th, 2024, the Premier League and Sports Interactive signed a multi-year licensing partnership bringing official logos, kits, and player photos to future FM releases. This deal started at the beginning of the 2024/25 season and will be valid for at least 4 years. All 20 Premier League clubs will be fully licensed across all versions of Football Manager. Whether you're attempting to win the Premier League Trophy, chase European football, or maximize a newly promoted club, you'll be immersed in English top-flight action like never before. The partnership also provides opportunities to support the Premier League's community and charitable work.
+
+| https://www.fmscout.com/a-premier-league-and-football-manager-sign-multi-year-partnership.html | FM26 Gets Full Premier League License |
+| --- | --- |
+
+### DUAL FORMATIONS: IN & OUT OF POSSESSION
+
+Revolutionary Tactical Innovation
+
+The biggest tactical change in Football Manager history. FM26 introduces separate formations for attacking and defending, mirroring how modern football actually works.
+
+#### How It Works
+
+In Possession Formation: Defines how your team positions itself when you have the ball. This is your attacking shape, your creative structure for breaking down opponents. Out of Possession Formation: Shows how your team defends in a settled block, whether pressing high, holding a mid-block, or sitting deep. For example, a team using a 4-3-3 when attacking might shift to a 4-1-4-1 when defending, compressing the midfield to deny space. The transition between these shapes happens organically based on ball possession.
+
+#### Why This Changes Everything
+
+Previously, if you wanted a player to push high as an Attacking Midfielder when attacking, they would also be stuck in that advanced position when defending. Now, that same player can be an AM in possession and drop to a Defensive Midfielder out of possession. This tactical depth allows you to truly replicate the systems of elite managers like Pep Guardiola, Mikel Arteta, and Jürgen Klopp, who constantly shift their team's shape based on possession.
+
+#### Four Tactical Views
+
+The redesigned Tactics menu features four distinct views:
+
+1. In Possession: Your attacking formation and roles
+2. Out of Possession: Your defensive formation and roles
+3. Both: Side-by-side comparison showing transitions
+4. Combined: Average player positions between both formations; your hub for team selection
+
+Any personnel changes made in Combined View automatically apply across both formations.
+
+#### Assistant Manager Support
+
+Worried about the complexity? When you select your In Possession formation, the game suggests three Out of Possession formations that naturally complement your attacking shape. You choose which works best for your system. Your backroom staff will flag if your dual-formation approach carries excessive risk, but ultimately you decide how bold to be.
+
+| https://www.fmscout.com/a-fm26-tactics-overhaul.html | FM26 Tactics Evolved |
+| --- | --- |
+
+### COMPLETE PLAYER ROLE OVERHAUL
+
+Modern, Clearer, More Authentic
+
+To support dual formations, FM26 completely overhauls player roles with clearer naming, modern functionality, and separate In Possession and Out of Possession role sets.
+
+#### What's Been Removed
+
+FM26 says goodbye to confusing legacy role names:
+
+- Mezzala - Gone
+- Enganche - Gone
+- Trequartista - Gone
+- Segundo Volante - Gone
+
+Their functionality has been integrated into new, clearly named roles or split between In Possession and Out of Possession variants.
+
+#### Major New In Possession Roles
+
+35+ new roles introduced, including:
+
+- No-Nonsense Goalkeeper - Safety-first approach
+- Ball-Playing Goalkeeper - Joins buildup play
+- Overlapping Centre-Back - Advances wide to deliver crosses
+- Advanced Centre-Back - Transitions into DM during buildup
+- Inside Full-Back - Tucks into CB line during buildup
+- Pressing Full-Back - Engages high to support press
+- Holding Full-Back - Stays deeper while team presses
+- Playmaking Wing-Back - Creative hub for attacks
+- Advanced Wing-Back - Stays high and wide
+- Inside Wing-Back - Moves centrally to support midfield
+- Midfield Playmaker - Dictates tempo centrally
+- Wide Central Midfielder - Covers wide areas from center
+- Box-to-Box Playmaker - Creative engine with energy
+- Channel Midfielder - Makes direct runs into channels
+- Dropping DM - Drops into backline under pressure
+- Screening DM - Blocks central passing lanes
+- Pressing DM - Steps forward to press high
+- Wide Forward - Striker operating in wide channels
+- Channel Forward - Runs between defenders
+- Half-Space Forward - Wide attacker drifting inside
+- Second Striker - Drops early, pushes up to score
+
+#### Entirely New Out of Possession Roles
+
+FM26 introduces a completely new set of roles specifically for defending. These define how players operate when your team doesn't have the ball. A creative Midfield Playmaker in possession might become a Screening CM out of possession (sitting deep to block space) or a Pressing CM (winning the ball high). The same player, two distinct roles based on match phase.
+
+#### Goodbye to Duties
+
+The Attack/Support/Defend duty system has been removed. The flexibility of dual formations and dual roles now gives you a far clearer picture of what your players will do in every phase of play.
+
+#### Greater Customization Freedom
+
+FM26 has stripped back the number of hardcoded instructions tied to each role, giving you more freedom than ever to customize—or even micro-manage—exactly how you want your players to act on Match Day.
+
+### TACTICAL VISUALISER
+
+See Your Tactics Come to Life
+
+The Tactical Visualiser is a powerful new tool that shows exactly how your formations and tactics play out on the pitch. This is game-changing for tactical understanding.
+
+#### How It Works
+
+Found in the Team Instructions menu, the Visualiser divides the pitch into three vertical zones (defensive third, middle third, final third). You can view separate visualizations for both In Possession and Out of Possession. Clicking on any of the nine grid squares reveals how your team's shape shifts as the ball moves across the pitch. Because it's powered by training match scenarios, you see an authentic preview of how your tactical ideas translate in practice.
+
+#### Real Example: Position Changes
+
+Manchester City - Nico O'Reilly as Inside Wing-Back:
+
+- Defensive third (IP): Takes up traditional left-back position
+- Middle third (IP): Drifts inside into Defensive Midfield position
+- Final third (IP): Continues central movement to support attacks
+
+The Visualiser captures these transitions perfectly, giving you unprecedented insight into player behavior before you even play a match. Brighton - Carlos Baleba as Pressing Defensive Midfielder:
+
+- Defensive third (OOP): Holds usual position at base of midfield
+- [*] Pushes forward to actively support the high press
+
+#### Why It Matters
+
+Previously, you could only guess how players would position themselves. Now you see exactly where everyone will be in each pitch zone, allowing you to identify gaps, overlaps, or tactical issues before they cost you points. This tool transforms tactical planning from guesswork to precision.
+
+### REIMAGINED USER INTERFACE
+
+Efficiency, Familiarity, Predictability
+
+FM26's reimagined UI is built on three core principles from the Design Team: Efficiency (faster access to information), Familiarity (still feels like FM), and Predictability (easy to learn and master). The result is an interface that's more intuitive, faster to navigate, and provides more contextual information than ever before.
+
+#### The Portal: Your Command Center
+
+The old-school Inbox has been completely replaced by the Portal - a true home screen combining messages, fixtures, calendar, news, and more in one place.
+
+##### Key Features:
+
+- 4 Message Filters: All, New, Tasks, Unread
+- Improved Action Panel: Clearer when decisions are needed
+- Advice Dropdown: Quick access to backroom guidance (Coaching, Recruitment, Development, Staffing)
+- Integrated Fixtures: Upcoming matches visible at a glance
+- Two-Week Calendar Snapshot: Plan training and team selection
+- Global News Feed: Relevant stories from around your football world
+- Results Hub: Quick access to league standings and match results
+
+The Portal is more than messages—it's your gateway to everything that matters in your save.
+
+#### Tiles and Cards System
+
+Every screen in FM26 uses a unified tile-and-card system:
+
+- Tiles: Provide key snapshots of information at a glance
+- Cards: Click any tile to reveal detailed information
+
+This system reduces screen clutter, makes navigation faster, and serves you more contextual data earlier than previous editions. You're more plugged into your club than ever before.
+
+#### Top Navigation Bar
+
+Navigation has moved from the sidebar to the top of the screen with consolidated categories for faster access. Clean, streamlined design with extensive sub-menus when you need to dig deeper.
+
+#### Revolutionary Search
+
+Previously, you could only search for entities (players, clubs, nations). FM26's search now includes:
+
+- Entities: Players, clubs, nations (as before)
+- Objects: Contracts, tactics, training schedules
+- Information: Statistics, news, reports
+- Navigation: Search for any game area like "Training" and get relevant results
+
+Search for any football-related term and you'll see relevant tiles, messages, news items, and guides instantly.
+
+#### FMPedia: Your In-Game Encyclopedia
+
+Meet FMPedia, a glossary and user guide brought to life within your career. FMPedia provides explanations for everything from Financial Fair Play and Board Confidence to FM26's new tactical changes. All in a simple, easy-to-use system accessible anytime through either the ribbon icon at the top of the screen or by searching. Perfect for newcomers or managers returning after time away from the dugout. FMPedia helps you learn more about every aspect of the beautiful game without leaving your save.
+
+#### Bookmarks: Customize Your Experience
+
+Bookmarks are quick, direct links to specific parts of your game universe. You start with 6 curated bookmarks based on the most-visited areas of the game. But you have 24 total bookmark options to choose from. Whether your passion is developing Wonderkids, innovating on the tactics board, or dominating the transfer market, bookmarks allow you to customize your managerial world and tailor your game to your priorities. Change your Bookmarks. Change the game.
+
+#### Accessibility Improvements
+
+Across everything in the UI, there's been a focus on raising the bar for accessibility:
+
+- Correcting unreadable font sizes
+- Defining color contrasts to prevent illegibility
+- Making information clearer and easier to digest
+
+| https://www.fmscout.com/a-fm26-reimagined-ui.html | Football Manager 26 New UI Revealed |
+| --- | --- |
+
+### MATCH DAY EXPERIENCE REVOLUTION
+
+Where Your Stories Come to Life
+
+Match Days in FM26 have been elevated across every dimension: visuals, animations, audio, presentation, and immersion. This is the future of football storytelling.
+
+#### Unity Engine: Visual Overhaul
+
+The switch to Unity delivers the highest level of graphical fidelity in FM history:
+
+##### Lighting Revolution:
+
+- Dramatic lighting revamp with time-of-day effects
+- New sky effects adding depth and realism
+- Dynamic brightness, contrasts, and shadows based on kickoff time and season
+- Every match feels visually distinct
+
+##### On-Pitch Detail:
+
+- New pitch shader creating more detailed, authentic surfaces
+- Weather effects (rain, snow) far more evident and realistic
+- Grass quality and pitch wear visible
+
+##### Stadium & Environment Upgrades:
+
+- New approach to stadium design bringing grounds to life
+- Environments around stadiums significantly elevated
+- Your home ground now better reflects location, stature, and club standing
+- From elite arenas to lower-league grounds, everything looks better
+
+#### Hawk-Eye Animations: Real Football Movement
+
+FM26 features hundreds of new volumetric animations captured by Hawk-Eye Innovations from real stadiums with real players. These on-the-ball movements - including dribbles, passes, and shots - are powered by data from actual matches, then seamlessly blended with FM's existing animation system.
+
+##### Dribbling Enhancements:
+
+- Players adjust running style more naturally
+- Smoother footwork transitions
+- Attackers can stand up defenders, bait them, then burst past
+- Inside-footed wingers cut inside more authentically
+- Variable carrying speed to unbalance opponents
+
+##### Goalkeeper Physics:
+
+- Motion capture mixed with real-world physics modeling
+- More lifelike, varied motion between the posts
+- Improved save animations, cross claiming, and distribution
+
+##### Women's Football Integration:
+
+- Bespoke motion capture with female footballers
+- New character models reflecting how women move differently
+- Unique hair textures, styles, and kit settings
+- Authentic representation of the women's game
+
+#### Match Engine Intelligence Upgrades
+
+Beyond visuals, FM26's Match AI has been significantly enhanced:
+
+##### Rewritten Pass Risk Assessment:
+
+- Players now better judge the danger of potential passes based on attributes
+- More incisive line-breaking passes through the middle
+- Greater creativity bypassing defenders
+- Sliding passes around legs, delicate chips over outstretched feet
+- Passing patterns feel sharper, smarter, more varied
+
+##### Advanced Dribbling Logic:
+
+- Players stand up markers, bait challenges, burst past at the right moment
+- Inside-footed wingers cut inside naturally to create shooting/crossing angles
+- All dribblers vary carrying speed to unbalance opponents
+
+##### Smarter Attacking Movement:
+
+- Midfielders time half-space runs more intelligently
+- Forwards sharper at spotting and executing cutback opportunities
+- Better positioning in dangerous crossing areas
+
+##### Defensive Refinements:
+
+- Team structures and pressing shapes refined across the pitch
+- Reworked interception logic (defenders stretch, lunge, improvise)
+- Improved defensive headers
+- Enhanced covering and marking logic
+- Better doubling up on dangerous attackers
+- New player 'look at' system
+- Improved stepping up logic
+- Better near-post defending at corners
+
+##### Goalkeeper Dependability:
+
+- Significant upgrades to save logic
+- Better cross claiming
+- Improved blocks and spread saves
+- Enhanced distribution
+
+New Team Instruction: Pass to Feet gives additional control over build-up phase And More: Countless AI improvements you'll only fully appreciate once you're in the dugout.
+
+#### Camera System Rebuild
+
+A completely rebuilt camera system covers a wider range of angles across the pitch, bringing you closer to the action.
+
+##### Broadcast Mode:
+
+Inspired by real-life TV coverage, Broadcast Mode combines multiple camera points and all-new cinematic angles to give you the best view of the action every time.
+
+##### Smarter Replays:
+
+Replays have been significantly revamped. FM26 now analyzes the type of goal scored to provide the most appropriate and bespoke replay angle, guaranteeing the perfect perspective on every stunning breakthrough.
+
+#### Dynamic Highlight Mode
+
+An innovative new highlight option that adapts in real-time to match context and drama:
+
+- Tense, crucial, close matches: Highlights increase as full-time approaches
+- Comfortable victories: If you're cruising 4-0, highlight frequency drops accordingly
+
+This system delivers more suspense, better reflects match flow, and ensures the viewing experience is always exciting and appropriate to the situation.
+
+#### Audio Overhaul
+
+Major audio improvements add more real sounds:
+
+- Feel the rush of anticipation during attacks
+- Experience the elation of scoring
+- Crowd reactions more dynamic and contextual
+- Better atmosphere across different stadium sizes
+
+#### Match Overview Screen: Your Decision-Making Hub
+
+Between highlights, a brand-new Match Overview screen serves as your managerial command center.
+
+##### Features:
+
+> Example: "Lower your tempo late in the game to conserve energy and take the sting out of the match" if winning comfortably
+
+- Classic 2D Pitch View: Built-in for transparent team performance picture
+- Intelligent Assistant Advice: Enhanced real-time guidance factoring in xG (expected goals) and xA (expected assists)
+- Contextual Pointers: Advice is smarter and situation-aware
+- Expandable Data Cards: Deeper, actionable insights powering informed tactical tweaks
+- League Updates: Latest results from around your competition
+
+#### Cutscenes Reimagined
+
+Wholesale changes to pre-match and post-match cutscenes:
+
+- Host of new additions
+- Improved visuals with depth of field and Steadicam cinematography
+- Visually vivid representations of match balls and trophies for licensed competitions (Premier League, UEFA Club Competitions)
+- Big occasions feel truly special
+
+| https://www.fmscout.com/a-fm26-match-day-experience.html | FM26 Match Day Experience |
+| --- | --- |
+
+### RECRUITMENT REVAMP - Powered by TransferRoom
+
+Key improvement
+
+FM26 introduces a comprehensive overhaul of the recruitment system, consolidating scouting and transfers into a single intuitive Recruitment hub within the navigation bar. The new system is powered by a deeper integration with TransferRoom, the real-world online transfer marketplace used by professional clubs worldwide.
+
+#### New Recruitment Hub Features
+
+The Recruitment home screen includes several smart additions to help you prioritize and plan effectively:
+
+- Recruitment Objectives tile - Quick snapshot of board and fan expectations in the transfer market
+- Immediate Needs & Squad Planner - Direct link identifying depth issues in your squad
+- Contracts Overview - Visual breakdown of contract lengths with automatic highlighting of players with less than 12 months remaining
+- Backroom Staff Management - All tools for shaping your backroom team in one place
+
+#### TransferRoom Integration: Requirements
+
+Requirements allow you to communicate directly with every club in your game world, broadcasting your specific transfer needs. When creating an advert, you can specify:
+
+- Position and player roles (both In and Out of Possession)
+- Expected playing time (from star player to squad depth)
+- Transfer type (permanent or loan)
+- Age profile
+
+Your ad circulates to every club, and they respond with suitable players. Your Director of Football makes recommendations, allowing you to scout, approach agents, make offers, or wait for more options.
+
+#### TransferRoom Integration: Pitch Opportunities
+
+The counterpart to Requirements, Pitch Opportunities let you see what other clubs are actively searching for in the transfer market. The TransferRoom Out card displays requirements from other clubs with full details. You can filter by transfer or loan opportunities and directly offer surplus players when you find a match. The Pitch Activity tab tracks everyone you've offered out and any resulting bids. This gives you more autonomy in player sales and makes it easier to find suitable destinations for your players.
+
+#### Smarter Scouting
+
+- Use In and Out of Possession roles in Recruitment Focuses and general scouting searches
+- New color-coding functionality to track active Focuses
+- Enhanced scout reports that tell you whether a target player naturally fits your current formations
+
+#### Under-the-Hood Improvements
+
+Numerous improvements designed to elevate realism and improve AI behavior:
+
+- Changes to how clubs sign younger players to satisfy Club Visions
+- Further tweaks to AI squad building
+- FFP having more impact on AI recruitment decisions
+- New transfer clauses for individual player awards (Ballon d'Or, Golden Boot, etc.)
+- Better logic for preferred positions in loan negotiations
+- More loans with future fees and buyback clauses
+- Improvements to when and why AI clubs recall players from loans early
+
+| https://www.fmscout.com/a-fm26-recruitment-revamp.html | FM26 Recruitment Revamp |
+| --- | --- |
+
+### TEAM INSTRUCTIONS: VISUAL & INTUITIVE
+
+Complete Overhaul
+
+To support dual formations and tactical depth, Team Instructions have been completely revamped.
+
+#### New Visual Display
+
+Instructions are now far more visual and context-sensitive. The display only shows instruction areas relevant to:
+
+- The third of the pitch you're viewing (defensive/middle/final)
+- Whether you're viewing In Possession or Out of Possession formations
+
+The layout is intuitive, making it immediately clear what each instruction affects as you craft your tactics.
+
+#### New Instruction Categories
+
+FM26 introduces slider-based controls and new categories: In Possession:
+
+- Passing Directness (Shorter/Balanced/Direct)
+- Tempo (slider)
+- Risk-Taking (slider)
+- Attacking Width (slider)
+- Patience (slider)
+- Build-Up Strategy
+- Goal Kicks (Short/Standard)
+- Pass Reception (Balanced/Overlapped)
+- Crossing Style (Balanced/Standard/Reduced)
+- Dribbling (Balanced/Reduced)
+- Work From Distance
+- Attacking Transitions (Counter-Attack/Standard)
+
+Out of Possession:
+
+- Defensive structure settings
+- Pressing intensity and triggers
+- Defensive transitions (counter-press behavior)
+
+#### Real-Time Visualiser Integration
+
+Instructions now integrate directly with the Tactical Visualiser. Adjust Width or Tempo and watch in real-time how your changes shape team positioning and movement.
+
+#### Direct Link to Data Hub
+
+The Team Instructions section now has a direct link to the Data Hub, integrating data more closely to where you can maximize it. Make more informed decisions about your team more easily.
+
+#### Transitions Reorganized
+
+Transition instructions haven't been removed—they've been logically moved:
+
+- Attacking Transitions: Now in In Possession section (what happens when you win the ball)
+- Defensive Transitions: Now in Out of Possession section (what happens when you lose the ball)
+
+| https://www.fmscout.com/a-fm26-tactics-overhaul.html | FM26 Tactics Evolved |
+| --- | --- |
+
+### INTRODUCING WOMEN'S FOOTBALL
+
+One Game, One Ecosystem
+
+First announced in 2021, women's football finally arrives in FM26 as a fully integrated part of the Football Manager ecosystem.
+
+#### Database Scale
+
+- 36,000+ female players
+- 5,000+ non-players (staff, officials)
+- 4,000+ teams
+- 14 playable leagues across 11 nations and 3 continents
+
+#### Licensed Competitions at Launch
+
+- Barclays Women's Super League (England)
+- Barclays Women's Super League 2 (England)
+- National Women's Soccer League (USA)
+- Google Pixel Frauen-Bundesliga (Germany)
+- WE League (Japan)
+- Serie A Femminile (Italy)
+- OBOS Damallsvenskan (Sweden)
+- Elitettan (Sweden)
+- A-Liga (Denmark)
+- A-League Women (Australia)
+- Adran Premier (Wales)
+- UEFA Women's Champions League (Europe)
+- Top division France (unlicensed)
+- Top two divisions Spain (unlicensed)
+
+#### Authentic Representation
+
+##### Attribute System:
+
+- Same 20-point scale as men's database
+- Scale is relative to each database (20 Pace for a female player = peak speed in women's game)
+- No direct comparisons between men's and women's databases (can't play matches between them)
+
+##### Motion Capture:
+
+- Bespoke motion capture sessions with female footballers
+- New character models
+- Unique hair textures and styles
+- Specific kit settings
+- Authentic representation of how women move differently from men
+
+##### Gameplay Differences:
+
+- Shorter contracts (reflecting real-world women's football)
+- Release clauses far less common
+- Transfer market dominated by free transfers
+- End-of-contract compensation fees match real-life levels
+- Club revenues and wage expenditures adjusted for accuracy
+- Injury prevalence and recovery rates reflect real-world data where differences exist
+
+#### Career Integration
+
+When starting FM26:
+
+- Choose men's team, women's team, or start unemployed
+- Create save database with mix of men's and women's leagues, just men's, or just women's
+- Seamlessly move between managing men's and women's teams throughout your career
+- One game, one ecosystem—just like real football management
+
+Note: In FM26 Console, Touch, and Mobile, loading men's and women's leagues from the same country counts as 2 nations toward your save limit.
+
+#### Newgen Generation Adapted
+
+- Some generated staff only work in women's game, some only in men's, some work across both
+- Existing and generated owners have data reflecting likelihood of hiring across men's and women's football
+- More movement of coaches and managers between games creates depth and originality in every career
+
+#### Future Expansion
+
+FM26 is just the start. The women's football Research team now numbers 40 and already has sights set on new playable competitions to further capture the global scale of the women's game.
+
+| https://www.fmscout.com/a-fm26-womens-football.html | Women's Football coming to FM26 |
+| --- | --- |
+
+### NEW TECH FOR NEWGENS
+
+Key improvement New technology for Newgens (generated players) and manager creation is one of the major benefits of switching to the Unity game engine. Early tests of this new tech from summer 2023 looked extremely promising, and expectations are high after two years of refinement. This likely means abandoning the FaceGen tech which powered 3D faces of generated players and managers in recent iterations (which frankly hasn't looked great). More specific details on the new Newgen system are expected closer to release, but expect a significant visual upgrade for all generated people in your saves.
+
+### REMOVED SCREENS & MODULES
+
+Streamlining the Experience The developers reviewed every single feature and screen in FM and made strategic cuts. Certain features and modes won't be available in Football Manager 26:
+
+| Feature | Status | Future Plan |
+| --- | --- | --- |
+| Touchline Shouts | Removed | Not returning in foreseeable future |
+| Create-A-Club Mode | Disabled | Returning vastly improved in FM27 |
+| International Management | Disabled | Returning feature-rich in FM27 (playable on FM26 Mobile) |
+| Challenge Mode | Disabled | Scheduled return revamped in FM27/FM28 |
+| Versus Mode | Disabled | May return in different form |
+| Fantasy Draft Mode | Possibly Disabled | May return with main data update |
+| Social Media Screen | Removed | Key info appears in other areas; supporters still integral |
+| Data Chalkboard Tab | Removed | Made redundant by Data Hub |
+| Player Weight Info | Hidden | Still calculated but not displayed |
+
+Note: Some of these were announced before FM25's cancellation. Final status may have changed for FM26.
+
+| https://www.fmscout.com/a-things-removed-in-fm26.html | Things Removed or Disabled in FM26 |
+| --- | --- |
+
+### FM24 & FM23 SAVE GAME COMPATIBILITY
+
+Continue Your Story
+
+Anyone not ready to step away from their existing save in Football Manager 2024 or Football Manager 2023 can continue that career into FM26 and benefit from this year's new additions.
+
+#### How It Works
+
+When you load FM26 for the first time, you'll see a panel directly above 'Start a New Game' that reads 'Load FM24/FM23 Saved Games.' This panel contains details about how transferring saves works and allows you to begin the process. All relevant new features in FM26 will be present in saves you bring over. In some cases, items or tutorials will trigger immediately after conversion; you'll need to set other things up from scratch (like dual formations for your existing tactics). The panel won't appear again on subsequent launches, but you'll still be able to load old saves. Go into the Load Game menu and follow the instructions for finding and bringing across old saves.
+
+---
+
+### Frequently Asked Questions About FM26
+
+#### What is the biggest new feature in Football Manager 2026?
+
+Dual formations (In Possession and Out of Possession) is the most revolutionary change. You create separate tactical setups for when you have the ball versus when you're defending, mirroring how modern football actually works.
+
+#### Does FM26 include women's football?
+
+Yes! FM26 features 36,000+ female players across 14 playable leagues in 11 nations, fully integrated into one unified ecosystem. You can seamlessly switch between managing men's and women's teams.
+
+#### Can I import my FM24 or FM23 save to FM26?
+
+Yes, FM26 supports save game compatibility from both FM24 and FM23. All new features will be present in your transferred save, though you'll need to set up some things like dual formations for existing tactics.
+
+#### What is the Unity engine in FM26?
+
+FM26 is the first Football Manager to use the Unity game engine, delivering: - Highest graphics quality in FM history - Hundreds of new Hawk-Eye captured animations - Enhanced lighting and weather effects - Better stadiums and environments
+
+#### Does FM26 have the Premier League license?
+
+Yes! All 20 Premier League clubs are fully licensed with official logos, kits, and player photos thanks to a multi-year partnership signed in June 2024.
+
+#### What features were removed from FM26?
+
+Removed features include: - Touchline Shouts (not returning) - Create-A-Club Mode (returns in FM27) - International Management (returns in FM27) - Challenge Mode (returns in FM27/FM28) - Social Media Screen (not returning) Most removed features will return improved in FM27.
+
+#### How much does FM26 cost?
+
+FM26 costs £38.94 (UK), €46.73 (Europe), or $46.73 (elsewhere) - cheaper than Steam's official price. Pre-purchase includes 2 weeks early access starting October 21, 2025.
+
+#### What's the difference between FM26 and FM24?
+
+Major differences: - Tactics: Dual formations vs single formation - Engine: Unity vs legacy engine - Women's football: Included vs not available - Licenses: Premier League fully licensed - UI: Complete redesign with Portal and FMPedia - Player roles: 35+ new roles with dual-phase system
+
+### The Future of Football Manager Begins late October, 2025
+
+For the first time in decades, FM26 is a true sequel and not just an iteration. The switch to Unity game engine enabled the developers to deliver:
+
+- Revolutionary dual-formation tactical system
+- Vastly improved UI with Portal, FMPedia, and tiles/cards
+- New tech for Newgens with better visuals
+- Hundreds of new real-life animations via Hawk-Eye partnership
+- Graphical upgrades across stadiums, pitches, and environments
+- Women's football fully integrated into one ecosystem
+- Match Engine intelligence improvements across the board
+
+This is FM26: the starting point for the studio's next 20 years. We can't wait to see it all in action.
+
+### Get Early Access to FM26
+
+https://www.fmscout.com/a-football-manager-2026-steam-key.html
+
+> Purchase FM26 through fmscout.com- Much cheaper than Steam store, enjoy early access 2 weeks sooner, get 5x chance to win a key for Genie Scout 26g, and our gratitude for supporting our community financially.
+
+##### Your content on FM Scout
+
+We are always looking for quality content creators, capable of producing insightful articles. Being published here means more exposure and recognition for you.
+
+Do YOU have what it takes?
+
+###### FMS Chat–
+
+Stam hey, just wanted to let you know that we have a fb style chat for our members. login or sign up to start chatting.
+
+↑

@@ -1,0 +1,1381 @@
+{
+  "source": "fmtransferupdate K League 1",
+  "matched": 275,
+  "byName": {
+    "Kang Hyeon-Mu": {
+      "fmId": "66031997",
+      "clubKey": "sel",
+      "slug": "kang-hyeon-mu"
+    },
+    "Gu Sung-Yun": {
+      "fmId": "45061593",
+      "clubKey": "sel",
+      "slug": "gu-sung-yun"
+    },
+    "Yun Ki-Wook": {
+      "fmId": "2000438428",
+      "clubKey": "sel",
+      "slug": "yun-ki-wook"
+    },
+    "Yazan Al-Arab": {
+      "fmId": "23238345",
+      "clubKey": "sel",
+      "slug": "yazan-al-arab"
+    },
+    "Kim Jin-Su": {
+      "fmId": "45052601",
+      "clubKey": "sel",
+      "slug": "kim-jin-su"
+    },
+    "Juan Antonio Ros": {
+      "fmId": "67200243",
+      "clubKey": "sel",
+      "slug": "juan-antonio-ros"
+    },
+    "Lee Han-Do": {
+      "fmId": "66037315",
+      "clubKey": "sel",
+      "slug": "lee-han-do"
+    },
+    "Choi Jun": {
+      "fmId": "66047065",
+      "clubKey": "sel",
+      "slug": "choi-jun"
+    },
+    "Lee Sang-Min": {
+      "fmId": "66040807",
+      "clubKey": "sel",
+      "slug": "lee-sang-min"
+    },
+    "Park Soo-Il": {
+      "fmId": "66042550",
+      "clubKey": "sel",
+      "slug": "park-soo-il"
+    },
+    "Park Seong-Hoon": {
+      "fmId": "2000205545",
+      "clubKey": "sel",
+      "slug": "park-seong-hoon"
+    },
+    "Hrvoje Babec": {
+      "fmId": "48043956",
+      "clubKey": "sel",
+      "slug": "hrvoje-babec"
+    },
+    "Lee Seung-Mo": {
+      "fmId": "66039786",
+      "clubKey": "sel",
+      "slug": "lee-seung-mo"
+    },
+    "Hwang Do-Yoon": {
+      "fmId": "2000240488",
+      "clubKey": "sel",
+      "slug": "hwang-do-yoon"
+    },
+    "Park Janghangyeol": {
+      "fmId": "2000160982",
+      "clubKey": "sel",
+      "slug": "park-janghangyeol"
+    },
+    "Anderson Oliveira": {
+      "fmId": "19319454",
+      "clubKey": "sel",
+      "slug": "anderson-oliveira"
+    },
+    "Song Min-Kyu": {
+      "fmId": "66040880",
+      "clubKey": "sel",
+      "slug": "song-min-kyu"
+    },
+    "Leonardo Ruiz": {
+      "fmId": "76040641",
+      "clubKey": "sel",
+      "slug": "leonardo-ruiz"
+    },
+    "Aleksandar Paločević": {
+      "fmId": "62056890",
+      "clubKey": "sel",
+      "slug": "aleksandar-palocevic"
+    },
+    "Moon Seon-Min": {
+      "fmId": "93038577",
+      "clubKey": "sel",
+      "slug": "moon-seon-min"
+    },
+    "Jeong Seung-Won": {
+      "fmId": "66037084",
+      "clubKey": "sel",
+      "slug": "jeong-seung-won"
+    },
+    "Cho Young-Wook": {
+      "fmId": "66040958",
+      "clubKey": "sel",
+      "slug": "cho-young-wook"
+    },
+    "Patryk Klimala": {
+      "fmId": "96079921",
+      "clubKey": "sel",
+      "slug": "patryk-klimala"
+    },
+    "Jo Hyeon-Woo": {
+      "fmId": "66029214",
+      "clubKey": "uls",
+      "slug": "jo-hyeon-woo"
+    },
+    "Moon Jung-In": {
+      "fmId": "66039856",
+      "clubKey": "uls",
+      "slug": "moon-jung-in"
+    },
+    "Ryu Seong-Min": {
+      "fmId": "2000438443",
+      "clubKey": "uls",
+      "slug": "ryu-seong-min"
+    },
+    "Jung Seung-Hyeon": {
+      "fmId": "66034916",
+      "clubKey": "uls",
+      "slug": "jung-seung-hyeon"
+    },
+    "Kang Sang-Woo": {
+      "fmId": "66031995",
+      "clubKey": "uls",
+      "slug": "kang-sang-woo"
+    },
+    "Cho Hyun-Taek": {
+      "fmId": "66047071",
+      "clubKey": "uls",
+      "slug": "cho-hyun-taek"
+    },
+    "Kim Young-Gwon": {
+      "fmId": "45030305",
+      "clubKey": "uls",
+      "slug": "kim-young-gwon"
+    },
+    "Miłosz Trojak": {
+      "fmId": "96067598",
+      "clubKey": "uls",
+      "slug": "milosz-trojak"
+    },
+    "Heo Yool": {
+      "fmId": "66045856",
+      "clubKey": "uls",
+      "slug": "heo-yool"
+    },
+    "Seo Myeong-Kwan": {
+      "fmId": "2000294835",
+      "clubKey": "uls",
+      "slug": "seo-myeong-kwan"
+    },
+    "Yoon Jong-Gyu": {
+      "fmId": "66039806",
+      "clubKey": "uls",
+      "slug": "yoon-jong-gyu"
+    },
+    "Darijan Bojanić": {
+      "fmId": "93031463",
+      "clubKey": "uls",
+      "slug": "darijan-bojanic"
+    },
+    "Lee Gyu-Sung": {
+      "fmId": "66035266",
+      "clubKey": "uls",
+      "slug": "lee-gyu-sung"
+    },
+    "Park Woo-Jin": {
+      "fmId": "2000387183",
+      "clubKey": "uls",
+      "slug": "park-woo-jin"
+    },
+    "Lee Dong-Geong": {
+      "fmId": "66040809",
+      "clubKey": "uls",
+      "slug": "lee-dong-geong"
+    },
+    "Marcão": {
+      "fmId": "19200869",
+      "clubKey": "uls",
+      "slug": "marcao"
+    },
+    "Erick Farias": {
+      "fmId": "19250487",
+      "clubKey": "uls",
+      "slug": "erick-farias"
+    },
+    "Lee Min-Hyuk": {
+      "fmId": "2000246573",
+      "clubKey": "uls",
+      "slug": "lee-min-hyuk"
+    },
+    "Lee Jin-Hyun": {
+      "fmId": "16252156",
+      "clubKey": "uls",
+      "slug": "lee-jin-hyun"
+    },
+    "Lee Hui-Gyun": {
+      "fmId": "66044552",
+      "clubKey": "uls",
+      "slug": "lee-hui-gyun"
+    },
+    "Pedrinho": {
+      "fmId": "2000048411",
+      "clubKey": "uls",
+      "slug": "pedrinho"
+    },
+    "Yago Cariello": {
+      "fmId": "19355429",
+      "clubKey": "uls",
+      "slug": "yago-cariello"
+    },
+    "Park Cheong-Hyo": {
+      "fmId": "66027946",
+      "clubKey": "gwn",
+      "slug": "park-cheong-hyo"
+    },
+    "Cho Min-Gyu": {
+      "fmId": "2000240500",
+      "clubKey": "gwn",
+      "slug": "cho-min-gyu"
+    },
+    "Kim Yu-Seong": {
+      "fmId": "2000333182",
+      "clubKey": "gwn",
+      "slug": "kim-yu-seong"
+    },
+    "Hong Chul": {
+      "fmId": "66010018",
+      "clubKey": "gwn",
+      "slug": "hong-chul"
+    },
+    "Lee You-Hyeon": {
+      "fmId": "66042583",
+      "clubKey": "gwn",
+      "slug": "lee-you-hyeon"
+    },
+    "Lee Gi-Hyeok": {
+      "fmId": "2000083282",
+      "clubKey": "gwn",
+      "slug": "lee-gi-hyeok"
+    },
+    "Marko Tući": {
+      "fmId": "62181861",
+      "clubKey": "gwn",
+      "slug": "marko-tuci"
+    },
+    "Shin Min-Ha": {
+      "fmId": "2000333273",
+      "clubKey": "gwn",
+      "slug": "shin-min-ha"
+    },
+    "Song Jun-Seok": {
+      "fmId": "2000091117",
+      "clubKey": "gwn",
+      "slug": "song-jun-seok"
+    },
+    "Kang Jun-Hyuk": {
+      "fmId": "2000294854",
+      "clubKey": "gwn",
+      "slug": "kang-jun-hyuk"
+    },
+    "Park Ho-Young": {
+      "fmId": "66042178",
+      "clubKey": "gwn",
+      "slug": "park-ho-young"
+    },
+    "Kim Dong-Hyun": {
+      "fmId": "66040885",
+      "clubKey": "gwn",
+      "slug": "kim-dong-hyun"
+    },
+    "Seo Min-Woo": {
+      "fmId": "66047096",
+      "clubKey": "gwn",
+      "slug": "seo-min-woo"
+    },
+    "Kim Kang-Kook": {
+      "fmId": "66044488",
+      "clubKey": "gwn",
+      "slug": "kim-kang-kook"
+    },
+    "Hwang Eun-Chong": {
+      "fmId": "2000438864",
+      "clubKey": "gwn",
+      "slug": "hwang-eun-chong"
+    },
+    "Kim Tae-Hwan": {
+      "fmId": "66043042",
+      "clubKey": "gms",
+      "slug": "kim-tae-hwan"
+    },
+    "Kim Dae-Won": {
+      "fmId": "66037076",
+      "clubKey": "gwn",
+      "slug": "kim-dae-won"
+    },
+    "Goh Young-Joon": {
+      "fmId": "66047103",
+      "clubKey": "gwn",
+      "slug": "goh-young-joon"
+    },
+    "Mo Jae-Hyeon": {
+      "fmId": "66039817",
+      "clubKey": "gwn",
+      "slug": "mo-jae-hyeon"
+    },
+    "Kim Gunhee": {
+      "fmId": "66037380",
+      "clubKey": "gwn",
+      "slug": "kim-gunhee"
+    },
+    "Lee Seung-Won": {
+      "fmId": "2000240498",
+      "clubKey": "gwn",
+      "slug": "lee-seung-won"
+    },
+    "Kang Yun-Gu": {
+      "fmId": "2000082767",
+      "clubKey": "gwn",
+      "slug": "kang-yun-gu"
+    },
+    "Park Sang-Hyeok": {
+      "fmId": "2000083075",
+      "clubKey": "gwn",
+      "slug": "park-sang-hyeok"
+    },
+    "Lee Ji-Ho": {
+      "fmId": "2000438862",
+      "clubKey": "gwn",
+      "slug": "lee-ji-ho"
+    },
+    "Song Bumkeun": {
+      "fmId": "66040782",
+      "clubKey": "jbk",
+      "slug": "song-bumkeun"
+    },
+    "Lee Ju-Hyun": {
+      "fmId": "66044532",
+      "clubKey": "jbk",
+      "slug": "lee-ju-hyun"
+    },
+    "Gong Si-Hyeon": {
+      "fmId": "2000254978",
+      "clubKey": "jbk",
+      "slug": "gong-si-hyeon"
+    },
+    "Park Ji-Soo": {
+      "fmId": "66029657",
+      "clubKey": "jbk",
+      "slug": "park-ji-soo"
+    },
+    "Kim Seung-Sub": {
+      "fmId": "66042110",
+      "clubKey": "jbk",
+      "slug": "kim-seung-sub"
+    },
+    "Kim Tae-Hyun": {
+      "fmId": "66040976",
+      "clubKey": "jbk",
+      "slug": "kim-tae-hyun"
+    },
+    "Kim Yeong-Bin": {
+      "fmId": "66032272",
+      "clubKey": "jbk",
+      "slug": "kim-yeong-bin"
+    },
+    "Yeon Je-Woon": {
+      "fmId": "66038123",
+      "clubKey": "jbk",
+      "slug": "yeon-je-woon"
+    },
+    "Maeng Seong-Ung": {
+      "fmId": "66044537",
+      "clubKey": "jbk",
+      "slug": "maeng-seong-ung"
+    },
+    "Cho Wi-Je": {
+      "fmId": "2000161798",
+      "clubKey": "jbk",
+      "slug": "cho-wi-je"
+    },
+    "Oberdan": {
+      "fmId": "19273534",
+      "clubKey": "jbk",
+      "slug": "oberdan"
+    },
+    "Kim Jin-Gyu": {
+      "fmId": "66035358",
+      "clubKey": "jbk",
+      "slug": "kim-jin-gyu"
+    },
+    "Kang Sang-Yoon": {
+      "fmId": "2000205553",
+      "clubKey": "jbk",
+      "slug": "kang-sang-yoon"
+    },
+    "João Gamboa": {
+      "fmId": "55041777",
+      "clubKey": "jbk",
+      "slug": "joao-gamboa"
+    },
+    "Andrea Compagno": {
+      "fmId": "43108998",
+      "clubKey": "jbk",
+      "slug": "andrea-compagno"
+    },
+    "Lee Dong-jun": {
+      "fmId": "66040716",
+      "clubKey": "jbk",
+      "slug": "lee-dong-jun"
+    },
+    "Tiago Orobó": {
+      "fmId": "19308307",
+      "clubKey": "jbk",
+      "slug": "tiago-orobo"
+    },
+    "Patrick Twumasi": {
+      "fmId": "13117439",
+      "clubKey": "jbk",
+      "slug": "patrick-twumasi"
+    },
+    "Lee Yeong-Jae": {
+      "fmId": "66034913",
+      "clubKey": "jbk",
+      "slug": "lee-yeong-jae"
+    },
+    "Lee Seung-Woo": {
+      "fmId": "67207191",
+      "clubKey": "jbk",
+      "slug": "lee-seung-woo"
+    },
+    "Bruno Mota": {
+      "fmId": "19394216",
+      "clubKey": "jbk",
+      "slug": "bruno-mota"
+    },
+    "Jin Tae-Ho": {
+      "fmId": "2000497705",
+      "clubKey": "jbk",
+      "slug": "jin-tae-ho"
+    },
+    "Hwang In-Jae": {
+      "fmId": "66037331",
+      "clubKey": "poh",
+      "slug": "hwang-in-jae"
+    },
+    "Hong Sung-Min": {
+      "fmId": "2000403356",
+      "clubKey": "poh",
+      "slug": "hong-sung-min"
+    },
+    "Yun Pyeong-Gook": {
+      "fmId": "66029664",
+      "clubKey": "poh",
+      "slug": "yun-pyeong-gook"
+    },
+    "Park Seung-Uk": {
+      "fmId": "2000106817",
+      "clubKey": "poh",
+      "slug": "park-seung-uk"
+    },
+    "Ki Sung-Yueng": {
+      "fmId": "66000674",
+      "clubKey": "poh",
+      "slug": "ki-sung-yueng"
+    },
+    "Eo Jeong-Won": {
+      "fmId": "2000083289",
+      "clubKey": "poh",
+      "slug": "eo-jeong-won"
+    },
+    "Jeon Min-Gwang": {
+      "fmId": "66036037",
+      "clubKey": "poh",
+      "slug": "jeon-min-gwang"
+    },
+    "Park Chan-Yong": {
+      "fmId": "45096417",
+      "clubKey": "poh",
+      "slug": "park-chan-yong"
+    },
+    "Wanderson": {
+      "fmId": "19146082",
+      "clubKey": "poh",
+      "slug": "wanderson"
+    },
+    "Shin Kwang-Hoon": {
+      "fmId": "66000889",
+      "clubKey": "poh",
+      "slug": "shin-kwang-hoon"
+    },
+    "Jo Sung-Wook": {
+      "fmId": "66040866",
+      "clubKey": "poh",
+      "slug": "jo-sung-wook"
+    },
+    "Kim Dong-Jin": {
+      "fmId": "2000332540",
+      "clubKey": "poh",
+      "slug": "kim-dong-jin"
+    },
+    "Kim Joon-Ho": {
+      "fmId": "2000076071",
+      "clubKey": "poh",
+      "slug": "kim-joon-ho"
+    },
+    "Kento Nishiya": {
+      "fmId": "2000252428",
+      "clubKey": "poh",
+      "slug": "kento-nishiya"
+    },
+    "Kim Dong-Min": {
+      "fmId": "2000332537",
+      "clubKey": "poh",
+      "slug": "kim-dong-min"
+    },
+    "Jorge Teixeira": {
+      "fmId": "2000020012",
+      "clubKey": "poh",
+      "slug": "jorge-teixeira"
+    },
+    "Lee Ho-Jae": {
+      "fmId": "88027343",
+      "clubKey": "poh",
+      "slug": "lee-ho-jae"
+    },
+    "Juninho Rocha": {
+      "fmId": "78087721",
+      "clubKey": "poh",
+      "slug": "juninho-rocha"
+    },
+    "An Jae-Jun": {
+      "fmId": "2000023067",
+      "clubKey": "poh",
+      "slug": "an-jae-jun"
+    },
+    "Kim In-Sung": {
+      "fmId": "66012903",
+      "clubKey": "poh",
+      "slug": "kim-in-sung"
+    },
+    "Hwang Jae-Hwan": {
+      "fmId": "91207696",
+      "clubKey": "poh",
+      "slug": "hwang-jae-hwan"
+    },
+    "Jakob Tranziska": {
+      "fmId": "2000160827",
+      "clubKey": "poh",
+      "slug": "jakob-tranziska"
+    },
+    "Kim Yong-Hak": {
+      "fmId": "2000160751",
+      "clubKey": "poh",
+      "slug": "kim-yong-hak"
+    },
+    "Kim Dong-Heon": {
+      "fmId": "66044486",
+      "clubKey": "icn",
+      "slug": "kim-dong-heon"
+    },
+    "Lee Tae-Hui": {
+      "fmId": "66032836",
+      "clubKey": "icn",
+      "slug": "lee-tae-hui"
+    },
+    "Lee Sang-Hyun": {
+      "fmId": "2000439341",
+      "clubKey": "icn",
+      "slug": "lee-sang-hyun"
+    },
+    "Mun Ji-Hwan": {
+      "fmId": "66039835",
+      "clubKey": "icn",
+      "slug": "mun-ji-hwan"
+    },
+    "Kim Myung-Sun": {
+      "fmId": "2000110133",
+      "clubKey": "icn",
+      "slug": "kim-myung-sun"
+    },
+    "Jeong Tae-Wook": {
+      "fmId": "66042590",
+      "clubKey": "icn",
+      "slug": "jeong-tae-wook"
+    },
+    "Lee Ju-Yong": {
+      "fmId": "66032160",
+      "clubKey": "icn",
+      "slug": "lee-ju-yong"
+    },
+    "Kim Geon-Hee": {
+      "fmId": "2000291999",
+      "clubKey": "icn",
+      "slug": "kim-geon-hee"
+    },
+    "Kim Yeon-Soo": {
+      "fmId": "66040295",
+      "clubKey": "icn",
+      "slug": "kim-yeon-soo"
+    },
+    "Lee Sang-Gi": {
+      "fmId": "66039785",
+      "clubKey": "icn",
+      "slug": "lee-sang-gi"
+    },
+    "Kim Seong-Min": {
+      "fmId": "2000229797",
+      "clubKey": "icn",
+      "slug": "kim-seong-min"
+    },
+    "Iker Undabarrena": {
+      "fmId": "67142068",
+      "clubKey": "icn",
+      "slug": "iker-undabarrena"
+    },
+    "Lee Myung-Joo": {
+      "fmId": "66014497",
+      "clubKey": "icn",
+      "slug": "lee-myung-joo"
+    },
+    "Jung Won-Jin": {
+      "fmId": "66037142",
+      "clubKey": "icn",
+      "slug": "jung-won-jin"
+    },
+    "Stefan Mugoša": {
+      "fmId": "62061319",
+      "clubKey": "icn",
+      "slug": "stefan-mugosa"
+    },
+    "Gerso Fernandes": {
+      "fmId": "55024975",
+      "clubKey": "icn",
+      "slug": "gerso-fernandes"
+    },
+    "Jeong Chi-In": {
+      "fmId": "66037082",
+      "clubKey": "icn",
+      "slug": "jeong-chi-in"
+    },
+    "Morgan Ferrier": {
+      "fmId": "29087994",
+      "clubKey": "icn",
+      "slug": "morgan-ferrier"
+    },
+    "Park Seung-Ho": {
+      "fmId": "2000260344",
+      "clubKey": "icn",
+      "slug": "park-seung-ho"
+    },
+    "Oh Hu-Seong": {
+      "fmId": "66040822",
+      "clubKey": "icn",
+      "slug": "oh-hu-seong"
+    },
+    "Lee Dong-Ryul": {
+      "fmId": "66044559",
+      "clubKey": "icn",
+      "slug": "lee-dong-ryul"
+    },
+    "Seo Jae-Min": {
+      "fmId": "2000205549",
+      "clubKey": "icn",
+      "slug": "seo-jae-min"
+    },
+    "Kim Jeong-Hoon": {
+      "fmId": "66044510",
+      "clubKey": "any",
+      "slug": "kim-jeong-hoon"
+    },
+    "Kim Da-Sol": {
+      "fmId": "66010024",
+      "clubKey": "any",
+      "slug": "kim-da-sol"
+    },
+    "Kim Tae-Hoon": {
+      "fmId": "66044538",
+      "clubKey": "any",
+      "slug": "kim-tae-hoon"
+    },
+    "Kwon Kyung Won": {
+      "fmId": "66029295",
+      "clubKey": "any",
+      "slug": "kwon-kyung-won"
+    },
+    "Lee Jin-Yong": {
+      "fmId": "66047120",
+      "clubKey": "any",
+      "slug": "lee-jin-yong"
+    },
+    "Lee Chang-Yong": {
+      "fmId": "66028495",
+      "clubKey": "any",
+      "slug": "lee-chang-yong"
+    },
+    "Lee Tae-Hee": {
+      "fmId": "66034878",
+      "clubKey": "any",
+      "slug": "lee-tae-hee"
+    },
+    "Kim Young-Chan": {
+      "fmId": "66029294",
+      "clubKey": "any",
+      "slug": "kim-young-chan"
+    },
+    "Thomas Oude Kotte": {
+      "fmId": "37046478",
+      "clubKey": "any",
+      "slug": "thomas-oude-kotte"
+    },
+    "Hong Jae-Seok": {
+      "fmId": "2000331497",
+      "clubKey": "any",
+      "slug": "hong-jae-seok"
+    },
+    "York Rafael": {
+      "fmId": "93065020",
+      "clubKey": "any",
+      "slug": "york-rafael"
+    },
+    "Kim Jeong-Hyeon": {
+      "fmId": "45052608",
+      "clubKey": "any",
+      "slug": "kim-jeong-hyeon"
+    },
+    "Moon Seong-Woo": {
+      "fmId": "2000294859",
+      "clubKey": "any",
+      "slug": "moon-seong-woo"
+    },
+    "Han Ka-Ram": {
+      "fmId": "2000047964",
+      "clubKey": "any",
+      "slug": "han-ka-ram"
+    },
+    "Kim Rae-Woo": {
+      "fmId": "2000246566",
+      "clubKey": "any",
+      "slug": "kim-rae-woo"
+    },
+    "Jang Jung-Woo": {
+      "fmId": "2000439331",
+      "clubKey": "any",
+      "slug": "jang-jung-woo"
+    },
+    "Matheus Oliveira": {
+      "fmId": "19306010",
+      "clubKey": "any",
+      "slug": "matheus-oliveira"
+    },
+    "Choi Geon-Ju": {
+      "fmId": "66047029",
+      "clubKey": "any",
+      "slug": "choi-geon-ju"
+    },
+    "Breno Herculano": {
+      "fmId": "19354889",
+      "clubKey": "any",
+      "slug": "breno-herculano"
+    },
+    "Kim Bo-Kyung": {
+      "fmId": "66010001",
+      "clubKey": "any",
+      "slug": "kim-bo-kyung"
+    },
+    "Ivan Jukić": {
+      "fmId": "24049105",
+      "clubKey": "any",
+      "slug": "ivan-jukic"
+    },
+    "Yu Jeong-Wan": {
+      "fmId": "66040964",
+      "clubKey": "any",
+      "slug": "yu-jeong-wan"
+    },
+    "Hong Hyeon-Ho": {
+      "fmId": "2000083101",
+      "clubKey": "any",
+      "slug": "hong-hyeon-ho"
+    },
+    "Kim Dong-Jun": {
+      "fmId": "66037117",
+      "clubKey": "jju",
+      "slug": "kim-dong-jun"
+    },
+    "An Chan-Gi": {
+      "fmId": "2000010877",
+      "clubKey": "jju",
+      "slug": "an-chan-gi"
+    },
+    "Joo Seung-Min": {
+      "fmId": "2000438853",
+      "clubKey": "jju",
+      "slug": "joo-seung-min"
+    },
+    "Tobias Figueiredo": {
+      "fmId": "55022465",
+      "clubKey": "jju",
+      "slug": "tobias-figueiredo"
+    },
+    "Kim Geon-Woong": {
+      "fmId": "66037054",
+      "clubKey": "jju",
+      "slug": "kim-geon-woong"
+    },
+    "Julien Célestine": {
+      "fmId": "48037015",
+      "clubKey": "jju",
+      "slug": "julien-celestine"
+    },
+    "Rim Chang-Woo": {
+      "fmId": "66010090",
+      "clubKey": "jju",
+      "slug": "rim-chang-woo"
+    },
+    "Kim Jae-Woo": {
+      "fmId": "16204298",
+      "clubKey": "jju",
+      "slug": "kim-jae-woo"
+    },
+    "Yu In-Soo": {
+      "fmId": "45100844",
+      "clubKey": "jju",
+      "slug": "yu-in-soo"
+    },
+    "Chung Woon": {
+      "fmId": "66014120",
+      "clubKey": "jju",
+      "slug": "chung-woon"
+    },
+    "Kim Ryun-Sung": {
+      "fmId": "2000076070",
+      "clubKey": "jju",
+      "slug": "kim-ryun-sung"
+    },
+    "Italo": {
+      "fmId": "2000136155",
+      "clubKey": "jju",
+      "slug": "italo"
+    },
+    "Lee Chang-Min": {
+      "fmId": "66034941",
+      "clubKey": "jju",
+      "slug": "lee-chang-min"
+    },
+    "Oh Jae-Hyeok": {
+      "fmId": "2000078998",
+      "clubKey": "jju",
+      "slug": "oh-jae-hyeok"
+    },
+    "Kim Jae-Min": {
+      "fmId": "2000353062",
+      "clubKey": "jju",
+      "slug": "kim-jae-min"
+    },
+    "Nam Tae-Hee": {
+      "fmId": "28016969",
+      "clubKey": "jju",
+      "slug": "nam-tae-hee"
+    },
+    "Kwon Chang-Hoon": {
+      "fmId": "66028999",
+      "clubKey": "jju",
+      "slug": "kwon-chang-hoon"
+    },
+    "Gytis Paulauskas": {
+      "fmId": "47075014",
+      "clubKey": "jju",
+      "slug": "gytis-paulauskas"
+    },
+    "Émerson Ramon": {
+      "fmId": "19366604",
+      "clubKey": "jju",
+      "slug": "emerson-ramon"
+    },
+    "Kim Jun-Ha": {
+      "fmId": "2000438852",
+      "clubKey": "jju",
+      "slug": "kim-jun-ha"
+    },
+    "Choi Byung-Wook": {
+      "fmId": "2000438851",
+      "clubKey": "jju",
+      "slug": "choi-byung-wook"
+    },
+    "Shin Sang-Eun": {
+      "fmId": "2000083262",
+      "clubKey": "jju",
+      "slug": "shin-sang-eun"
+    },
+    "Kim Hyeon-U": {
+      "fmId": "66046973",
+      "clubKey": "jju",
+      "slug": "kim-hyeon-u"
+    },
+    "Lee Chang-Geun": {
+      "fmId": "66014317",
+      "clubKey": "djc",
+      "slug": "lee-chang-geun"
+    },
+    "Lee Jun-Seo": {
+      "fmId": "2000083267",
+      "clubKey": "djc",
+      "slug": "lee-jun-seo"
+    },
+    "Lee Kyung-Tae": {
+      "fmId": "45104048",
+      "clubKey": "djc",
+      "slug": "lee-kyung-tae"
+    },
+    "Lee Myung-Jae": {
+      "fmId": "66032045",
+      "clubKey": "djc",
+      "slug": "lee-myung-jae"
+    },
+    "Kim Moon-Hwan": {
+      "fmId": "66039778",
+      "clubKey": "djc",
+      "slug": "kim-moon-hwan"
+    },
+    "Oh Jae-Suk": {
+      "fmId": "66010100",
+      "clubKey": "djc",
+      "slug": "oh-jae-suk"
+    },
+    "Lim Jong-Eun": {
+      "fmId": "66006740",
+      "clubKey": "djc",
+      "slug": "lim-jong-eun"
+    },
+    "Anton Krivotsyuk": {
+      "fmId": "71096232",
+      "clubKey": "djc",
+      "slug": "anton-krivotsyuk"
+    },
+    "Ha Changrae": {
+      "fmId": "66039844",
+      "clubKey": "djc",
+      "slug": "ha-changrae"
+    },
+    "Kim Min-Duk": {
+      "fmId": "66044495",
+      "clubKey": "djc",
+      "slug": "kim-min-duk"
+    },
+    "Seo Young-Jae": {
+      "fmId": "91173317",
+      "clubKey": "djc",
+      "slug": "seo-young-jae"
+    },
+    "Victor Bobsin": {
+      "fmId": "19302918",
+      "clubKey": "djc",
+      "slug": "victor-bobsin"
+    },
+    "Kim Jun-Beom": {
+      "fmId": "66040897",
+      "clubKey": "djc",
+      "slug": "kim-jun-beom"
+    },
+    "Kim Bong-Soo": {
+      "fmId": "2000083112",
+      "clubKey": "djc",
+      "slug": "kim-bong-soo"
+    },
+    "Joo Min-Kyu": {
+      "fmId": "66029696",
+      "clubKey": "djc",
+      "slug": "joo-min-kyu"
+    },
+    "Gustav Ludwigson": {
+      "fmId": "93067261",
+      "clubKey": "djc",
+      "slug": "gustav-ludwigson"
+    },
+    "Um Won-Sang": {
+      "fmId": "66044551",
+      "clubKey": "djc",
+      "slug": "um-won-sang"
+    },
+    "Masatoshi Ishida": {
+      "fmId": "45087257",
+      "clubKey": "djc",
+      "slug": "masatoshi-ishida"
+    },
+    "João Victor": {
+      "fmId": "19270823",
+      "clubKey": "djc",
+      "slug": "joao-victor"
+    },
+    "Diogo Oliveira": {
+      "fmId": "78106096",
+      "clubKey": "djc",
+      "slug": "diogo-oliveira"
+    },
+    "Kim Hyeon-Ug": {
+      "fmId": "66039826",
+      "clubKey": "djc",
+      "slug": "kim-hyeon-ug"
+    },
+    "Yoo Kang-Hyun": {
+      "fmId": "66034868",
+      "clubKey": "djc",
+      "slug": "yoo-kang-hyun"
+    },
+    "Seol Hyeon-Bin": {
+      "fmId": "2000161702",
+      "clubKey": "buc",
+      "slug": "seol-hyeon-bin"
+    },
+    "Kim Hyeon-Yeop": {
+      "fmId": "2000294832",
+      "clubKey": "buc",
+      "slug": "kim-hyeon-yeop"
+    },
+    "Kim Hyung-Geun": {
+      "fmId": "66038055",
+      "clubKey": "buc",
+      "slug": "kim-hyung-geun"
+    },
+    "Patrick William": {
+      "fmId": "19261528",
+      "clubKey": "buc",
+      "slug": "patrick-william"
+    },
+    "Ahn Tae-Hyun": {
+      "fmId": "66038070",
+      "clubKey": "buc",
+      "slug": "ahn-tae-hyun"
+    },
+    "Shin Jae-Won": {
+      "fmId": "66044542",
+      "clubKey": "buc",
+      "slug": "shin-jae-won"
+    },
+    "Baek Dong-Gyu": {
+      "fmId": "66032262",
+      "clubKey": "buc",
+      "slug": "baek-dong-gyu"
+    },
+    "Lee Jae-Won": {
+      "fmId": "2000271870",
+      "clubKey": "buc",
+      "slug": "lee-jae-won"
+    },
+    "Lee Ye-Chan": {
+      "fmId": "2000291388",
+      "clubKey": "buc",
+      "slug": "lee-ye-chan"
+    },
+    "Lee Sang-Hyeok": {
+      "fmId": "2000243163",
+      "clubKey": "buc",
+      "slug": "lee-sang-hyeok"
+    },
+    "Hong Sung-Wook": {
+      "fmId": "2000083108",
+      "clubKey": "buc",
+      "slug": "hong-sung-wook"
+    },
+    "Kim Sang-Jun": {
+      "fmId": "66044735",
+      "clubKey": "buc",
+      "slug": "kim-sang-jun"
+    },
+    "Jeong Ho-Jin": {
+      "fmId": "66045851",
+      "clubKey": "buc",
+      "slug": "jeong-ho-jin"
+    },
+    "Kazuki Takahashi": {
+      "fmId": "33076649",
+      "clubKey": "buc",
+      "slug": "kazuki-takahashi"
+    },
+    "Choi Won-Chul": {
+      "fmId": "66040305",
+      "clubKey": "buc",
+      "slug": "choi-won-chul"
+    },
+    "Kang Jae-Woo": {
+      "fmId": "2000083179",
+      "clubKey": "buc",
+      "slug": "kang-jae-woo"
+    },
+    "Lee Dong-Geon": {
+      "fmId": "2000082604",
+      "clubKey": "buc",
+      "slug": "lee-dong-geon"
+    },
+    "Hong Ki-Wook": {
+      "fmId": "2000438320",
+      "clubKey": "buc",
+      "slug": "hong-ki-wook"
+    },
+    "Lee Hyun-Ki": {
+      "fmId": "2000161717",
+      "clubKey": "buc",
+      "slug": "lee-hyun-ki"
+    },
+    "Vitor Gabriel": {
+      "fmId": "19348887",
+      "clubKey": "buc",
+      "slug": "vitor-gabriel"
+    },
+    "Kim Seung-Bin": {
+      "fmId": "2000054111",
+      "clubKey": "buc",
+      "slug": "kim-seung-bin"
+    },
+    "Yoon Bit-Garam": {
+      "fmId": "66001252",
+      "clubKey": "buc",
+      "slug": "yoon-bit-garam"
+    },
+    "Galego": {
+      "fmId": "19364092",
+      "clubKey": "buc",
+      "slug": "galego"
+    },
+    "Kim Gyu-Min": {
+      "fmId": "2000161710",
+      "clubKey": "buc",
+      "slug": "kim-gyu-min"
+    },
+    "Kim Jong-Woo": {
+      "fmId": "66034875",
+      "clubKey": "buc",
+      "slug": "kim-jong-woo"
+    },
+    "Kim Min-Jun": {
+      "fmId": "66047069",
+      "clubKey": "buc",
+      "slug": "kim-min-jun"
+    },
+    "Bassani": {
+      "fmId": "19249346",
+      "clubKey": "buc",
+      "slug": "bassani"
+    },
+    "Ahn Joon-Soo": {
+      "fmId": "45104329",
+      "clubKey": "gms",
+      "slug": "ahn-joon-soo"
+    },
+    "Baek Jong-Beom": {
+      "fmId": "66044548",
+      "clubKey": "gms",
+      "slug": "baek-jong-beom"
+    },
+    "Park Man-Ho": {
+      "fmId": "2000438439",
+      "clubKey": "gms",
+      "slug": "park-man-ho"
+    },
+    "Park Cheol-Woo": {
+      "fmId": "2000161531",
+      "clubKey": "gms",
+      "slug": "park-cheol-woo"
+    },
+    "Kim In-Gyun": {
+      "fmId": "66047015",
+      "clubKey": "gms",
+      "slug": "kim-in-gyun"
+    },
+    "Byeon Jun-Soo": {
+      "fmId": "2000026967",
+      "clubKey": "gms",
+      "slug": "byeon-jun-soo"
+    },
+    "Yoon Jae-Seok": {
+      "fmId": "2000331503",
+      "clubKey": "gms",
+      "slug": "yoon-jae-seok"
+    },
+    "Park Min-Seo": {
+      "fmId": "66044442",
+      "clubKey": "gms",
+      "slug": "park-min-seo"
+    },
+    "Kim Hyun-Woo": {
+      "fmId": "66042119",
+      "clubKey": "gms",
+      "slug": "kim-hyun-woo"
+    },
+    "Park Jin-Sung": {
+      "fmId": "2000083268",
+      "clubKey": "gms",
+      "slug": "park-jin-sung"
+    },
+    "Lee Soo-Bin": {
+      "fmId": "66044415",
+      "clubKey": "gms",
+      "slug": "lee-soo-bin"
+    },
+    "Lee Kang-Hyun": {
+      "fmId": "2000105038",
+      "clubKey": "gms",
+      "slug": "lee-kang-hyun"
+    },
+    "Roh Kyung-Ho": {
+      "fmId": "2000079009",
+      "clubKey": "gms",
+      "slug": "roh-kyung-ho"
+    },
+    "Kim Yi-Seok": {
+      "fmId": "2000061714",
+      "clubKey": "gms",
+      "slug": "kim-yi-seok"
+    },
+    "Hong Yun-Sang": {
+      "fmId": "2000079007",
+      "clubKey": "gms",
+      "slug": "hong-yun-sang"
+    },
+    "Go Jae-Hyeon": {
+      "fmId": "66040823",
+      "clubKey": "gms",
+      "slug": "go-jae-hyeon"
+    },
+    "Jeon Byeong-Gwan": {
+      "fmId": "2000083264",
+      "clubKey": "gms",
+      "slug": "jeon-byeong-gwan"
+    },
+    "Lee Sang-Heon": {
+      "fmId": "66039855",
+      "clubKey": "gms",
+      "slug": "lee-sang-heon"
+    },
+    "Park Tae-Jun": {
+      "fmId": "66040862",
+      "clubKey": "gms",
+      "slug": "park-tae-jun"
+    },
+    "Park Sae-Jin": {
+      "fmId": "2000240484",
+      "clubKey": "gms",
+      "slug": "park-sae-jin"
+    },
+    "Kim Joo-Chan": {
+      "fmId": "2000240474",
+      "clubKey": "gms",
+      "slug": "kim-joo-chan"
+    },
+    "Lee Kun-hee": {
+      "fmId": "2000041936",
+      "clubKey": "gms",
+      "slug": "lee-kun-hee"
+    },
+    "Kim Kyeong-Min": {
+      "fmId": "66032251",
+      "clubKey": "gwj",
+      "slug": "kim-kyeong-min"
+    },
+    "Roh Hee-Dong": {
+      "fmId": "2000161758",
+      "clubKey": "gwj",
+      "slug": "roh-hee-dong"
+    },
+    "Kim Dong-Hwa": {
+      "fmId": "2000438311",
+      "clubKey": "gwj",
+      "slug": "kim-dong-hwa"
+    },
+    "Teun van Grunsven": {
+      "fmId": "37079465",
+      "clubKey": "gwj",
+      "slug": "teun-van-grunsven"
+    },
+    "Kim Jin-Ho": {
+      "fmId": "2000205008",
+      "clubKey": "gwj",
+      "slug": "kim-jin-ho"
+    },
+    "Ahn Young-Kyu": {
+      "fmId": "66014226",
+      "clubKey": "gwj",
+      "slug": "ahn-young-kyu"
+    },
+    "Lee Min-Gi": {
+      "fmId": "66037324",
+      "clubKey": "gwj",
+      "slug": "lee-min-gi"
+    },
+    "Min Sang-Gi": {
+      "fmId": "66010104",
+      "clubKey": "gwj",
+      "slug": "min-sang-gi"
+    },
+    "Shin Chang-Moo": {
+      "fmId": "66032074",
+      "clubKey": "gwj",
+      "slug": "shin-chang-moo"
+    },
+    "Kim Han-Gil": {
+      "fmId": "66039807",
+      "clubKey": "gwj",
+      "slug": "kim-han-gil"
+    },
+    "Kwak Sung-Hoon": {
+      "fmId": "2000276952",
+      "clubKey": "gwj",
+      "slug": "kwak-sung-hoon"
+    },
+    "Ju Se-Jong": {
+      "fmId": "66014321",
+      "clubKey": "gwj",
+      "slug": "ju-se-jong"
+    },
+    "Yu Je-Ho": {
+      "fmId": "2000161298",
+      "clubKey": "gwj",
+      "slug": "yu-je-ho"
+    },
+    "Kang Hui-Su": {
+      "fmId": "2000438310",
+      "clubKey": "gwj",
+      "slug": "kang-hui-su"
+    },
+    "Hólmbert Aron Friðjónsson": {
+      "fmId": "39016521",
+      "clubKey": "gwj",
+      "slug": "holmbert-aron-fridjonsson"
+    },
+    "Choi Kyoung-Rok": {
+      "fmId": "92065520",
+      "clubKey": "gwj",
+      "slug": "choi-kyoung-rok"
+    },
+    "Moon Min-Seo": {
+      "fmId": "2000332574",
+      "clubKey": "gwj",
+      "slug": "moon-min-seo"
+    },
+    "Jung Ji-Hoon": {
+      "fmId": "2000240487",
+      "clubKey": "gwj",
+      "slug": "jung-ji-hoon"
+    },
+    "Park Jeong-In": {
+      "fmId": "66044497",
+      "clubKey": "gwj",
+      "slug": "park-jeong-in"
+    },
+    "Ahn Hyeok-Ju": {
+      "fmId": "2000332576",
+      "clubKey": "gwj",
+      "slug": "ahn-hyeok-ju"
+    },
+    "Ha Seung-Un": {
+      "fmId": "66044406",
+      "clubKey": "gwj",
+      "slug": "ha-seung-un"
+    },
+    "Gwon Seong-Yun": {
+      "fmId": "66046986",
+      "clubKey": "gwj",
+      "slug": "gwon-seong-yun"
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "_meta": {
+    "source": "FMInside FM26.2 + FMTU club URLs + Wikipedia 2026 season lists",
+    "date": "2026-07-19",
+    "notes": [
+      "Club lists = latest real-world seasons (J1/J2/K1/K2/BRA 2026, TUR 2025/26).",
+      "fmClubId from FMInside URL unique ID (stable across promotions).",
+      "FM26.2 DB may still place some clubs in prior division; IDs remain valid for FMTU/FMInside squad pulls.",
+      "suggestedRep is game-scale 60-90 (Thai Buriram≈82), NOT raw FMInside reputation.",
+      "Keys checked against fmClubIds.json + div2Clubs + leagues* — avoided por/bru/chi/int/mil/bar/etc.",
+      "K League 2 expanded to 17 clubs in 2026 (user asked ~14); full list included."
+    ],
+    "existingKeyCollisionsAvoided": ["por", "bru", "chi", "int", "mil", "bar", "rea", "bay", "mun", "liv", "che", "ars", "tot", "mci", "atm", "pal", "gre", "cor", "mir", "ala", "sam", "scp"]
+  },
+  "jpn1": {
+    "label": "Japan J1 League 2026",
+    "count": 20,
+    "clubs": [
+      { "key": "kas", "name": "Kashima Antlers", "fmClubId": 1189, "shortName": "KAS", "suggestedRep": 82, "fmRep": 60, "source": "https://fminside.net/clubs/1189-kashima-antlers" },
+      { "key": "rey", "name": "Kashiwa Reysol", "fmClubId": 1190, "shortName": "REY", "suggestedRep": 80, "fmRep": 57, "source": "https://fminside.net/clubs/1190-kashiwa-reysol" },
+      { "key": "kyo", "name": "Kyoto Sanga", "fmClubId": 1192, "shortName": "KYO", "suggestedRep": 78, "fmRep": 55, "source": "https://fminside.net/clubs/1192-kyoto-sanga" },
+      { "key": "san", "name": "Sanfrecce Hiroshima", "fmClubId": 1193, "shortName": "SAN", "suggestedRep": 80, "fmRep": 61, "source": "https://fminside.net/clubs/1193-sanfrecce-hiroshima" },
+      { "key": "vsk", "name": "Vissel Kobe", "fmClubId": 106844, "shortName": "VSK", "suggestedRep": 83, "fmRep": 63, "source": "https://fminside.net/clubs/106844-vissel-kobe" },
+      { "key": "mdz", "name": "Machida Zelvia", "fmClubId": 788837, "shortName": "MDZ", "suggestedRep": 76, "fmRep": 58, "source": "https://fminside.net/clubs/788837-machida-zelvia" },
+      { "key": "ura", "name": "Urawa Red Diamonds", "fmClubId": 1195, "shortName": "URA", "suggestedRep": 79, "fmRep": 59, "source": "https://fminside.net/clubs/1195-urawa-red-diamonds" },
+      { "key": "kaw", "name": "Kawasaki Frontale", "fmClubId": 107296, "shortName": "KAW", "suggestedRep": 81, "fmRep": 61, "source": "https://fminside.net/clubs/107296-kawasaki-frontale" },
+      { "key": "gam", "name": "Gamba Osaka", "fmClubId": 1186, "shortName": "GAM", "suggestedRep": 77, "fmRep": 60, "source": "https://fminside.net/clubs/1186-gamba-osaka" },
+      { "key": "cer", "name": "Cerezo Osaka", "fmClubId": 1185, "shortName": "CER", "suggestedRep": 75, "fmRep": 57, "source": "https://fminside.net/clubs/1185-cerezo-osaka" },
+      { "key": "fct", "name": "FC Tokyo", "fmClubId": 107313, "shortName": "FCT", "suggestedRep": 74, "fmRep": 58, "source": "https://fminside.net/clubs/107313-fc-tokyo" },
+      { "key": "avi", "name": "Avispa Fukuoka", "fmClubId": 1183, "shortName": "AVI", "suggestedRep": 72, "fmRep": 57, "source": "https://fminside.net/clubs/1183-avispa-fukuoka" },
+      { "key": "fag", "name": "Fagiano Okayama", "fmClubId": 786547, "shortName": "FAG", "suggestedRep": 68, "fmRep": 52, "source": "https://fminside.net/clubs/786547-fagiano-okayama" },
+      { "key": "ssp", "name": "Shimizu S-Pulse", "fmClubId": 1194, "shortName": "SSP", "suggestedRep": 70, "fmRep": 55, "source": "https://fminside.net/clubs/1194-shimizu-s-pulse" },
+      { "key": "yfm", "name": "Yokohama F. Marinos", "fmClubId": 1198, "shortName": "YFM", "suggestedRep": 78, "fmRep": 60, "source": "https://fminside.net/clubs/1198-yokohama-f-marinos" },
+      { "key": "ngg", "name": "Nagoya Grampus", "fmClubId": 1191, "shortName": "NGG", "suggestedRep": 73, "fmRep": 58, "source": "https://fminside.net/clubs/1191-nagoya-grampus" },
+      { "key": "tvr", "name": "Tokyo Verdy", "fmClubId": 1196, "shortName": "TVR", "suggestedRep": 69, "fmRep": 52, "source": "https://fminside.net/clubs/1196-tokyo-verdy" },
+      { "key": "jef", "name": "JEF United Chiba", "fmClubId": 1187, "shortName": "JEF", "suggestedRep": 67, "fmRep": 46, "source": "https://fminside.net/clubs/1187-jef-united-chiba", "note": "Promoted for 2026; FM26.2 may still list as J2" },
+      { "key": "vvn", "name": "V-Varen Nagasaki", "fmClubId": 786559, "shortName": "VVN", "suggestedRep": 66, "fmRep": 49, "source": "https://fminside.net/clubs/786559-v-varen-nagasaki", "note": "Promoted for 2026; FM26.2 may still list as J2" },
+      { "key": "mit", "name": "Mito HollyHock", "fmClubId": 107289, "shortName": "MIT", "suggestedRep": 64, "fmRep": 43, "source": "https://fminside.net/clubs/107289-mito-hollyhock", "note": "Promoted for 2026; FM26.2 may still list as J2" }
+    ]
+  },
+  "jpn2": {
+    "label": "Japan J2 League 2026",
+    "count": 20,
+    "clubs": [
+      { "key": "sap", "name": "Hokkaido Consadole Sapporo", "fmClubId": 107285, "shortName": "SAP", "suggestedRep": 68, "fmRep": 48, "source": "https://fminside.net/clubs/107285-hokkaido-sapporo" },
+      { "key": "vgs", "name": "Vegalta Sendai", "fmClubId": 107283, "shortName": "VGS", "suggestedRep": 67, "fmRep": 48, "source": "https://fminside.net/clubs/107283-vegalta-sendai" },
+      { "key": "bla", "name": "Blaublitz Akita", "fmClubId": 107328, "shortName": "BLA", "suggestedRep": 61, "fmRep": 42, "source": "https://fminside.net/clubs/107328-blaublitz-akita" },
+      { "key": "yam", "name": "Montedio Yamagata", "fmClubId": 107301, "shortName": "YAM", "suggestedRep": 64, "fmRep": 47, "source": "https://fminside.net/clubs/107301-montedio-yamagata" },
+      { "key": "iwk", "name": "Iwaki FC", "fmClubId": 792248, "shortName": "IWK", "suggestedRep": 62, "fmRep": 43, "source": "https://fminside.net/clubs/792248-iwaki" },
+      { "key": "omi", "name": "Omiya Ardija", "fmClubId": 107305, "shortName": "OMI", "suggestedRep": 66, "fmRep": 49, "source": "https://fminside.net/clubs/107305-omiya-ardija" },
+      { "key": "yfc", "name": "Yokohama FC", "fmClubId": 7100042, "shortName": "YFC", "suggestedRep": 70, "fmRep": 54, "source": "https://fminside.net/clubs/7100042-yokohama-fc", "note": "Relegated from J1 2025" },
+      { "key": "sho", "name": "Shonan Bellmare", "fmClubId": 1184, "shortName": "SHO", "suggestedRep": 69, "fmRep": 55, "source": "https://fminside.net/clubs/1184-shonan-bellmare", "note": "Relegated from J1 2025" },
+      { "key": "kof", "name": "Ventforet Kofu", "fmClubId": 107314, "shortName": "KOF", "suggestedRep": 63, "fmRep": 45, "source": "https://fminside.net/clubs/107314-ventforet-kofu" },
+      { "key": "nig", "name": "Albirex Niigata", "fmClubId": 107280, "shortName": "NIG", "suggestedRep": 68, "fmRep": 53, "source": "https://fminside.net/clubs/107280-albirex-niigata", "note": "Relegated from J1 2025" },
+      { "key": "toy", "name": "Kataller Toyama", "fmClubId": 107342, "shortName": "TOY", "suggestedRep": 60, "fmRep": 41, "source": "https://fminside.net/clubs/107342-kataller-toyama" },
+      { "key": "jub", "name": "Júbilo Iwata", "fmClubId": 1188, "shortName": "JUB", "suggestedRep": 66, "fmRep": 48, "source": "https://fminside.net/clubs/1188-jubilo-iwata" },
+      { "key": "fuj", "name": "Fujieda MYFC", "fmClubId": 788854, "shortName": "FUJ", "suggestedRep": 60, "fmRep": 41, "source": "https://fminside.net/clubs/788854-fujieda" },
+      { "key": "tos", "name": "Tokushima Vortis", "fmClubId": 786384, "shortName": "TOS", "suggestedRep": 65, "fmRep": 49, "source": "https://fminside.net/clubs/786384-tokushima-vortis" },
+      { "key": "ima", "name": "FC Imabari", "fmClubId": 788904, "shortName": "IMA", "suggestedRep": 60, "fmRep": 41, "source": "https://fminside.net/clubs/788904-imabari" },
+      { "key": "sgt", "name": "Sagan Tosu", "fmClubId": 107309, "shortName": "SGT", "suggestedRep": 64, "fmRep": 47, "source": "https://fminside.net/clubs/107309-sagan-tosu" },
+      { "key": "oit", "name": "Oita Trinita", "fmClubId": 107303, "shortName": "OIT", "suggestedRep": 62, "fmRep": 43, "source": "https://fminside.net/clubs/107303-oita-trinita" },
+      { "key": "vnh", "name": "Vanraure Hachinohe", "fmClubId": "NEED_LOOKUP", "shortName": "VNH", "suggestedRep": 60, "searchUrl": "https://fminside.net/clubs?q=Vanraure+Hachinohe", "note": "Avoid key hac (Le Havre)" },
+      { "key": "tcc", "name": "Tochigi City", "fmClubId": "NEED_LOOKUP", "shortName": "TCC", "suggestedRep": 60, "searchUrl": "https://fminside.net/clubs?q=Tochigi+City" },
+      { "key": "tgm", "name": "Tegevajaro Miyazaki", "fmClubId": "NEED_LOOKUP", "shortName": "TGM", "suggestedRep": 60, "searchUrl": "https://fminside.net/clubs?q=Tegevajaro+Miyazaki" }
+    ]
+  },
+  "kor1": {
+    "label": "South Korea K League 1 2026",
+    "count": 12,
+    "clubs": [
+      { "key": "sel", "name": "FC Seoul", "fmClubId": 130777, "shortName": "SEL", "suggestedRep": 78, "fmRep": 55, "source": "https://fminside.net/clubs/130777-seoul" },
+      { "key": "uls", "name": "Ulsan HD", "fmClubId": 106808, "shortName": "ULS", "suggestedRep": 82, "fmRep": 62, "source": "https://fminside.net/clubs/106808-ulsan" },
+      { "key": "gwn", "name": "Gangwon FC", "fmClubId": 66006663, "shortName": "GWN", "suggestedRep": 74, "fmRep": 54, "source": "https://fminside.net/clubs/66006663-gangwon" },
+      { "key": "jbk", "name": "Jeonbuk Hyundai Motors", "fmClubId": 130776, "shortName": "JBK", "suggestedRep": 84, "fmRep": 63, "source": "https://fminside.net/clubs/130776-jeonbuk" },
+      { "key": "poh", "name": "Pohang Steelers", "fmClubId": 106818, "shortName": "POH", "suggestedRep": 77, "fmRep": 56, "source": "https://fminside.net/clubs/106818-pohang" },
+      { "key": "icn", "name": "Incheon United", "fmClubId": 5709008, "shortName": "ICN", "suggestedRep": 72, "fmRep": 50, "source": "https://fminside.net/clubs/5709008-incheon", "note": "Promoted for 2026; FM may still show K2" },
+      { "key": "any", "name": "FC Anyang", "fmClubId": 66029603, "shortName": "ANY", "suggestedRep": 68, "fmRep": 48, "source": "https://fminside.net/clubs/66029603-anyang" },
+      { "key": "jju", "name": "Jeju SK", "fmClubId": 106817, "shortName": "JJU", "suggestedRep": 70, "fmRep": 49, "source": "https://fminside.net/clubs/106817-jeju" },
+      { "key": "djc", "name": "Daejeon Hana Citizen", "fmClubId": 130774, "shortName": "DJC", "suggestedRep": 71, "fmRep": 51, "source": "https://fminside.net/clubs/130774-daejeon-hana" },
+      { "key": "buc", "name": "Bucheon FC 1995", "fmClubId": 66010556, "shortName": "BUC", "suggestedRep": 67, "fmRep": 44, "source": "https://fminside.net/clubs/66010556-bucheon", "note": "Promoted for 2026; FM may still show K2" },
+      { "key": "gms", "name": "Gimcheon Sangmu", "fmClubId": 106809, "shortName": "GMS", "suggestedRep": 66, "fmRep": 48, "source": "https://fminside.net/clubs/106809-gimcheon" },
+      { "key": "gwj", "name": "Gwangju FC", "fmClubId": 66011708, "shortName": "GWJ", "suggestedRep": 69, "fmRep": 52, "source": "https://fminside.net/clubs/66011708-gwangju" }
+    ]
+  },
+  "kor2": {
+    "label": "South Korea K League 2 2026 (17 clubs — expanded)",
+    "count": 17,
+    "clubs": [
+      { "key": "bsi", "name": "Busan IPark", "fmClubId": 130775, "shortName": "BSI", "suggestedRep": 68, "fmRep": 46, "source": "https://fminside.net/clubs/130775-busan" },
+      { "key": "ssb", "name": "Suwon Samsung Bluewings", "fmClubId": 106813, "shortName": "SSB", "suggestedRep": 72, "fmRep": 53, "source": "https://fminside.net/clubs/106813-suwon", "note": "FMInside name: Suwon (founded 1995)" },
+      { "key": "dgf", "name": "Daegu FC", "fmClubId": 5705626, "shortName": "DGF", "suggestedRep": 70, "fmRep": 57, "source": "https://fminside.net/clubs/5705626-daegu", "note": "Relegated from K1 2025" },
+      { "key": "swf", "name": "Suwon FC", "fmClubId": 5707530, "shortName": "SWF", "suggestedRep": 69, "fmRep": 49, "source": "https://fminside.net/clubs/5707530-suwon-fc", "note": "Relegated from K1 2025" },
+      { "key": "eel", "name": "Seoul E-Land", "fmClubId": 66034891, "shortName": "EEL", "suggestedRep": 64, "fmRep": 43, "source": "https://fminside.net/clubs/66034891-seoul-e-land" },
+      { "key": "hwa", "name": "Hwaseong FC", "fmClubId": "NEED_LOOKUP", "shortName": "HWA", "suggestedRep": 62, "searchUrl": "https://fminside.net/clubs?q=Hwaseong" },
+      { "key": "gpo", "name": "Gimpo FC", "fmClubId": "NEED_LOOKUP", "shortName": "GPO", "suggestedRep": 62, "searchUrl": "https://fminside.net/clubs?q=Gimpo" },
+      { "key": "cna", "name": "Chungnam Asan", "fmClubId": 136423, "shortName": "CNA", "suggestedRep": 61, "fmRep": 40, "source": "https://fminside.net/clubs/136423-chungnam-asan" },
+      { "key": "gyn", "name": "Gyeongnam FC", "fmClubId": 5710867, "shortName": "GYN", "suggestedRep": 63, "fmRep": 45, "source": "https://fminside.net/clubs/5710867-gyeongnam" },
+      { "key": "snm", "name": "Seongnam FC", "fmClubId": 200373, "shortName": "SNM", "suggestedRep": 65, "fmRep": 48, "source": "https://fminside.net/clubs/200373-seongnam" },
+      { "key": "chn", "name": "Cheonan City", "fmClubId": 66002956, "shortName": "CHN", "suggestedRep": 60, "fmRep": 36, "source": "https://fminside.net/clubs/66002956-cheonan" },
+      { "key": "pjf", "name": "Paju Frontier", "fmClubId": "NEED_LOOKUP", "shortName": "PJF", "suggestedRep": 60, "searchUrl": "https://fminside.net/clubs?q=Paju+Frontier", "note": "New/promoted from K3 2026" },
+      { "key": "yoi", "name": "Yongin FC", "fmClubId": "NEED_LOOKUP", "shortName": "YOI", "suggestedRep": 60, "searchUrl": "https://fminside.net/clubs?q=Yongin", "note": "New club 2026" },
+      { "key": "cbj", "name": "Chungbuk Cheongju", "fmClubId": 66010583, "shortName": "CBJ", "suggestedRep": 60, "fmRep": 36, "source": "https://fminside.net/clubs/66010583-chungbuk-cheongju" },
+      { "key": "asn", "name": "Ansan Greeners", "fmClubId": 66039783, "shortName": "ASN", "suggestedRep": 60, "fmRep": 37, "source": "https://fminside.net/clubs/66039783-ansan" },
+      { "key": "jnd", "name": "Jeonnam Dragons", "fmClubId": 106812, "shortName": "JND", "suggestedRep": 63, "fmRep": 45, "source": "https://fminside.net/clubs/106812-jeonnam" },
+      { "key": "gmh", "name": "Gimhae FC 2008", "fmClubId": "NEED_LOOKUP", "shortName": "GMH", "suggestedRep": 60, "searchUrl": "https://fminside.net/clubs?q=Gimhae", "note": "Promoted from K3 2026" }
+    ]
+  },
+  "bra": {
+    "label": "Brazil Série A 2026",
+    "count": 20,
+    "clubs": [
+      { "key": "fla", "name": "Flamengo", "fmClubId": 322, "shortName": "FLA", "suggestedRep": 90, "fmRep": 77, "source": "https://fminside.net/clubs/322-flamengo", "fmtu": "https://fmtransferupdate.com/clubs/322" },
+      { "key": "plm", "name": "Palmeiras", "fmClubId": 329, "shortName": "PLM", "suggestedRep": 89, "fmRep": 77, "source": "https://fminside.net/clubs/329-palmeiras", "fmtu": "https://fmtransferupdate.com/clubs/329", "note": "key plm — pal taken by Palermo" },
+      { "key": "flu", "name": "Fluminense", "fmClubId": 323, "shortName": "FLU", "suggestedRep": 84, "fmRep": null, "source": "https://fminside.net/clubs/323-fluminense", "fmtu": "https://fmtransferupdate.com/clubs/323" },
+      { "key": "sao", "name": "São Paulo", "fmClubId": 337, "shortName": "SAO", "suggestedRep": 85, "fmRep": 72, "source": "https://fminside.net/clubs/337-sao-paulo", "fmtu": "https://fmtransferupdate.com/clubs/337" },
+      { "key": "bah", "name": "Bahia", "fmClubId": 315, "shortName": "BAH", "suggestedRep": 80, "fmRep": 67, "source": "https://fminside.net/clubs/315-bahia" },
+      { "key": "cap", "name": "Athletico Paranaense", "fmClubId": 107206, "shortName": "CAP", "suggestedRep": 78, "fmRep": 64, "source": "https://fminside.net/clubs/107206-athletico-paranaense", "note": "Promoted for 2026; FM may still show Série B" },
+      { "key": "cfc", "name": "Coritiba", "fmClubId": 104776, "shortName": "CFC", "suggestedRep": 74, "fmRep": 59, "source": "https://fminside.net/clubs/104776-coritiba", "note": "Promoted for 2026" },
+      { "key": "cam", "name": "Atlético Mineiro", "fmClubId": 314, "shortName": "CAM", "suggestedRep": 86, "fmRep": 73, "source": "https://fminside.net/clubs/314-atletico-mineiro", "fmtu": "https://fmtransferupdate.com/clubs/314" },
+      { "key": "rbb", "name": "Red Bull Bragantino", "fmClubId": 317, "shortName": "RBB", "suggestedRep": 79, "fmRep": 66, "source": "https://fminside.net/clubs/317-bragantino" },
+      { "key": "vit", "name": "Vitória", "fmClubId": 340, "shortName": "VIT", "suggestedRep": 74, "fmRep": 63, "source": "https://fminside.net/clubs/340-vitoria" },
+      { "key": "bot", "name": "Botafogo", "fmClubId": 316, "shortName": "BOT", "suggestedRep": 85, "fmRep": 75, "source": "https://fminside.net/clubs/316-botafogo" },
+      { "key": "gfb", "name": "Grêmio", "fmClubId": 324, "shortName": "GFB", "suggestedRep": 82, "fmRep": 69, "source": "https://fminside.net/clubs/324-gremio", "note": "key gfb — gre taken by Grenoble" },
+      { "key": "vas", "name": "Vasco da Gama", "fmClubId": 339, "shortName": "VAS", "suggestedRep": 80, "fmRep": 68, "source": "https://fminside.net/clubs/339-vasco-da-gama" },
+      { "key": "sci", "name": "Internacional", "fmClubId": 326, "shortName": "SCI", "suggestedRep": 83, "fmRep": 72, "source": "https://fminside.net/clubs/326-internacional", "fmtu": "https://fmtransferupdate.com/clubs/326", "note": "key sci — int taken by Inter Milan" },
+      { "key": "sts", "name": "Santos", "fmClubId": 335, "shortName": "STS", "suggestedRep": 81, "fmRep": 67, "source": "https://fminside.net/clubs/335-santos", "fmtu": "https://fmtransferupdate.com/clubs/335" },
+      { "key": "scc", "name": "Corinthians", "fmClubId": 319, "shortName": "SCC", "suggestedRep": 84, "fmRep": 74, "source": "https://fminside.net/clubs/319-corinthians", "note": "key scc — cor taken by Córdoba" },
+      { "key": "cru", "name": "Cruzeiro", "fmClubId": 321, "shortName": "CRU", "suggestedRep": 83, "fmRep": 69, "source": "https://fminside.net/clubs/321-cruzeiro" },
+      { "key": "rem", "name": "Remo", "fmClubId": 334, "shortName": "REM", "suggestedRep": 66, "fmRep": 53, "source": "https://fminside.net/clubs/334-remo", "note": "Promoted for 2026" },
+      { "key": "cha", "name": "Chapecoense", "fmClubId": 301304, "shortName": "CHA", "suggestedRep": 67, "fmRep": 56, "source": "https://fminside.net/clubs/301304-chapecoense", "note": "Promoted for 2026" },
+      { "key": "mrs", "name": "Mirassol", "fmClubId": 301344, "shortName": "MRS", "suggestedRep": 72, "fmRep": 59, "source": "https://fminside.net/clubs/301344-mirassol", "note": "key mrs — mir taken by Mirandés" }
+    ]
+  },
+  "tur": {
+    "label": "Turkey Süper Lig 2025/26",
+    "count": 18,
+    "clubs": [
+      { "key": "gal", "name": "Galatasaray", "fmClubId": 1871, "shortName": "GAL", "suggestedRep": 88, "fmRep": 79, "source": "https://fminside.net/clubs/1871-galatasaray", "fmtu": "https://fmtransferupdate.com/clubs/1871" },
+      { "key": "fen", "name": "Fenerbahçe", "fmClubId": 1870, "shortName": "FEN", "suggestedRep": 87, "fmRep": 75, "source": "https://fminside.net/clubs/1870-fenerbahce" },
+      { "key": "trb", "name": "Trabzonspor", "fmClubId": 1879, "shortName": "TRB", "suggestedRep": 82, "fmRep": 70, "source": "https://fminside.net/clubs/1879-trabzonspor" },
+      { "key": "bjk", "name": "Beşiktaş", "fmClubId": 1866, "shortName": "BJK", "suggestedRep": 84, "fmRep": 73, "source": "https://fminside.net/clubs/1866-besiktas" },
+      { "key": "ibs", "name": "İstanbul Başakşehir", "fmClubId": 130343, "shortName": "IBS", "suggestedRep": 76, "fmRep": 62, "source": "https://fminside.net/clubs/130343-istanbul-basaksehir" },
+      { "key": "goz", "name": "Göztepe", "fmClubId": 130338, "shortName": "GOZ", "suggestedRep": 74, "fmRep": 61, "source": "https://fminside.net/clubs/130338-goztepe" },
+      { "key": "sms", "name": "Samsunspor", "fmClubId": 1878, "shortName": "SMS", "suggestedRep": 72, "fmRep": 58, "source": "https://fminside.net/clubs/1878-samsunspor", "note": "key sms — sam taken by Sampdoria" },
+      { "key": "riz", "name": "Çaykur Rizespor", "fmClubId": 130366, "shortName": "RIZ", "suggestedRep": 70, "fmRep": 59, "source": "https://fminside.net/clubs/130366-caykur-rizespor" },
+      { "key": "kon", "name": "Konyaspor", "fmClubId": 130344, "shortName": "KON", "suggestedRep": 73, "fmRep": 64, "source": "https://fminside.net/clubs/130344-konyaspor" },
+      { "key": "aly", "name": "Alanyaspor", "fmClubId": 458718, "shortName": "ALY", "suggestedRep": 69, "fmRep": 58, "source": "https://fminside.net/clubs/458718-alanyaspor", "note": "key aly — ala taken by Alavés" },
+      { "key": "gaz", "name": "Gaziantep FK", "fmClubId": 130341, "shortName": "GAZ", "suggestedRep": 68, "fmRep": 58, "source": "https://fminside.net/clubs/130341-gaziantep" },
+      { "key": "ksp", "name": "Kasımpaşa", "fmClubId": 130360, "shortName": "KSP", "suggestedRep": 70, "fmRep": 59, "source": "https://fminside.net/clubs/130360-kasimpasa", "note": "key ksp — kas used for Kashima in this pack" },
+      { "key": "gnc", "name": "Gençlerbirliği", "fmClubId": 1873, "shortName": "GNC", "suggestedRep": 66, "fmRep": 54, "source": "https://fminside.net/clubs/1873-genclerbirligi" },
+      { "key": "koc", "name": "Kocaelispor", "fmClubId": 1876, "shortName": "KOC", "suggestedRep": 65, "fmRep": 54, "source": "https://fminside.net/clubs/1876-kocaelispor" },
+      { "key": "ant", "name": "Antalyaspor", "fmClubId": 1865, "shortName": "ANT", "suggestedRep": 69, "fmRep": 59, "source": "https://fminside.net/clubs/1865-antalyaspor" },
+      { "key": "eyu", "name": "Eyüpspor", "fmClubId": 130289, "shortName": "EYU", "suggestedRep": 64, "fmRep": 54, "source": "https://fminside.net/clubs/130289-eyupspor" },
+      { "key": "kay", "name": "Kayserispor", "fmClubId": 1875, "shortName": "KAY", "suggestedRep": 66, "fmRep": 55, "source": "https://fminside.net/clubs/1875-kayserispor" },
+      { "key": "fkg", "name": "Fatih Karagümrük", "fmClubId": 458631, "shortName": "FKG", "suggestedRep": 64, "fmRep": 54, "source": "https://fminside.net/clubs/458631-fatih-karagumruk" }
+    ]
+  },
+  "needLookup": [
+    { "league": "jpn2", "name": "Vanraure Hachinohe", "key": "vnh", "url": "https://fminside.net/clubs?q=Vanraure+Hachinohe" },
+    { "league": "jpn2", "name": "Tochigi City", "key": "tcc", "url": "https://fminside.net/clubs?q=Tochigi+City" },
+    { "league": "jpn2", "name": "Tegevajaro Miyazaki", "key": "tgm", "url": "https://fminside.net/clubs?q=Tegevajaro+Miyazaki" },
+    { "league": "kor2", "name": "Hwaseong FC", "key": "hwa", "url": "https://fminside.net/clubs?q=Hwaseong" },
+    { "league": "kor2", "name": "Gimpo FC", "key": "gpo", "url": "https://fminside.net/clubs?q=Gimpo" },
+    { "league": "kor2", "name": "Paju Frontier", "key": "pjf", "url": "https://fminside.net/clubs?q=Paju+Frontier" },
+    { "league": "kor2", "name": "Yongin FC", "key": "yoi", "url": "https://fminside.net/clubs?q=Yongin" },
+    { "league": "kor2", "name": "Gimhae FC 2008", "key": "gmh", "url": "https://fminside.net/clubs?q=Gimhae" }
+  ]
+}

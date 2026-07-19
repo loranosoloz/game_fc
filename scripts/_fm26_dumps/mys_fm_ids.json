@@ -1,0 +1,1571 @@
+{
+  "source": "fmtransferupdate Malaysia Super League",
+  "matched": 313,
+  "byName": {
+    "Andoni Zubiaurre": {
+      "fmId": "67248322",
+      "clubKey": "jdt",
+      "slug": "andoni-zubiaurre"
+    },
+    "Ahmad Syihan Hazmi Mohamed": {
+      "fmId": "23201328",
+      "clubKey": "jdt",
+      "slug": "ahmad-syihan-hazmi-mohamed"
+    },
+    "Christian Abad": {
+      "fmId": "2000438490",
+      "clubKey": "jdt",
+      "slug": "christian-abad"
+    },
+    "Jonathan Silva": {
+      "fmId": "14026625",
+      "clubKey": "jdt",
+      "slug": "jonathan-silva"
+    },
+    "Jon Irazábal": {
+      "fmId": "67245669",
+      "clubKey": "jdt",
+      "slug": "jon-irazabal"
+    },
+    "Cristian Glauder": {
+      "fmId": "67216773",
+      "clubKey": "jdt",
+      "slug": "cristian-glauder"
+    },
+    "Raúl Parra": {
+      "fmId": "67287574",
+      "clubKey": "jdt",
+      "slug": "raul-parra"
+    },
+    "La'Vere Corbin-Ong": {
+      "fmId": "20015321",
+      "clubKey": "jdt",
+      "slug": "lavere-corbin-ong"
+    },
+    "Romel Morales": {
+      "fmId": "14196683",
+      "clubKey": "jdt",
+      "slug": "romel-morales"
+    },
+    "Park Jun-Heong": {
+      "fmId": "84105505",
+      "clubKey": "jdt",
+      "slug": "park-jun-heong"
+    },
+    "Shane Lowry": {
+      "fmId": "28000416",
+      "clubKey": "jdt",
+      "slug": "shane-lowry"
+    },
+    "Dejan Petrovič": {
+      "fmId": "62176071",
+      "clubKey": "jdt",
+      "slug": "dejan-petrovic"
+    },
+    "Nené": {
+      "fmId": "55082918",
+      "clubKey": "jdt",
+      "slug": "nene"
+    },
+    "Bradley Tapp": {
+      "fmId": "2000088294",
+      "clubKey": "jdt",
+      "slug": "bradley-tapp"
+    },
+    "Natxo Insa": {
+      "fmId": "67004763",
+      "clubKey": "jdt",
+      "slug": "natxo-insa"
+    },
+    "Mohd Syamer Kutty Abba": {
+      "fmId": "23268446",
+      "clubKey": "jdt",
+      "slug": "mohd-syamer-kutty-abba"
+    },
+    "Mohd Afiq Fazail": {
+      "fmId": "23204224",
+      "clubKey": "jdt",
+      "slug": "mohd-afiq-fazail"
+    },
+    "Nathaniel Wan": {
+      "fmId": "29177372",
+      "clubKey": "jdt",
+      "slug": "nathaniel-wan"
+    },
+    "Muhd Nazmi Faiz Mansor": {
+      "fmId": "23136982",
+      "clubKey": "jdt",
+      "slug": "muhd-nazmi-faiz-mansor"
+    },
+    "Nacho Méndez": {
+      "fmId": "67248345",
+      "clubKey": "jdt",
+      "slug": "nacho-mendez"
+    },
+    "Samu Castillejo": {
+      "fmId": "67142868",
+      "clubKey": "jdt",
+      "slug": "samu-castillejo"
+    },
+    "Bérgson": {
+      "fmId": "19111294",
+      "clubKey": "jdt",
+      "slug": "bergson"
+    },
+    "Ager Aketxe": {
+      "fmId": "67150948",
+      "clubKey": "jdt",
+      "slug": "ager-aketxe"
+    },
+    "João Figueiredo": {
+      "fmId": "19296886",
+      "clubKey": "jdt",
+      "slug": "joao-figueiredo"
+    },
+    "Heberty": {
+      "fmId": "45038692",
+      "clubKey": "jdt",
+      "slug": "heberty"
+    },
+    "Jairo": {
+      "fmId": "19162449",
+      "clubKey": "jdt",
+      "slug": "jairo"
+    },
+    "Óscar Arribas": {
+      "fmId": "67248166",
+      "clubKey": "jdt",
+      "slug": "oscar-arribas"
+    },
+    "Kalamullah Al-Hafiz Mat Rowi": {
+      "fmId": "23268693",
+      "clubKey": "slg",
+      "slug": "kalamullah-al-hafiz-mat-rowi"
+    },
+    "Sikh Izhan Nazrel Sikh Azman": {
+      "fmId": "2000024996",
+      "clubKey": "slg",
+      "slug": "sikh-izhan-nazrel-sikh-azman"
+    },
+    "Muhd Azim Al-Amin Kamaruddin": {
+      "fmId": "2000074571",
+      "clubKey": "slg",
+      "slug": "muhd-azim-al-amin-kamaruddin"
+    },
+    "Mamadou Diarra": {
+      "fmId": "70104416",
+      "clubKey": "slg",
+      "slug": "mamadou-diarra"
+    },
+    "Richmond Tetteh": {
+      "fmId": "2000124970",
+      "clubKey": "slg",
+      "slug": "richmond-tetteh"
+    },
+    "Mo Abualnadi": {
+      "fmId": "2000274678",
+      "clubKey": "slg",
+      "slug": "mo-abualnadi"
+    },
+    "Safuwan Baharudin": {
+      "fmId": "23083845",
+      "clubKey": "slg",
+      "slug": "safuwan-baharudin"
+    },
+    "Quentin Cheng": {
+      "fmId": "15086556",
+      "clubKey": "slg",
+      "slug": "quentin-cheng"
+    },
+    "Harith Haiqal Adam Afkar": {
+      "fmId": "2000024965",
+      "clubKey": "slg",
+      "slug": "harith-haiqal-adam-afkar"
+    },
+    "Sharul Nazeem Zulpakar": {
+      "fmId": "2000024964",
+      "clubKey": "slg",
+      "slug": "sharul-nazeem-zulpakar"
+    },
+    "Ahmad Zikri Mohd Khalili": {
+      "fmId": "2000025005",
+      "clubKey": "slg",
+      "slug": "ahmad-zikri-mohd-khalili"
+    },
+    "Mahamé Siby": {
+      "fmId": "49059843",
+      "clubKey": "slg",
+      "slug": "mahame-siby"
+    },
+    "Noor Al-Rawabdeh": {
+      "fmId": "64042085",
+      "clubKey": "slg",
+      "slug": "noor-al-rawabdeh"
+    },
+    "Jeon Seung-Min": {
+      "fmId": "2000013784",
+      "clubKey": "slg",
+      "slug": "jeon-seung-min"
+    },
+    "Nooa Laine": {
+      "fmId": "33078265",
+      "clubKey": "slg",
+      "slug": "nooa-laine"
+    },
+    "Alexander Agyarkwa": {
+      "fmId": "2000077868",
+      "clubKey": "slg",
+      "slug": "alexander-agyarkwa"
+    },
+    "Muhamad Abu Khalil": {
+      "fmId": "2000232876",
+      "clubKey": "slg",
+      "slug": "muhamad-abu-khalil"
+    },
+    "S. Thaanush": {
+      "fmId": "2000233001",
+      "clubKey": "slg",
+      "slug": "s-thaanush"
+    },
+    "Muhd Danish Iskandar Marzizul": {
+      "fmId": "2000233068",
+      "clubKey": "slg",
+      "slug": "muhd-danish-iskandar-marzizul"
+    },
+    "Hugo Boumous": {
+      "fmId": "85125011",
+      "clubKey": "slg",
+      "slug": "hugo-boumous"
+    },
+    "Pernambuco": {
+      "fmId": "71108765",
+      "clubKey": "slg",
+      "slug": "pernambuco"
+    },
+    "Chrigor": {
+      "fmId": "19352237",
+      "clubKey": "slg",
+      "slug": "chrigor"
+    },
+    "Alvin Fortes": {
+      "fmId": "37052456",
+      "clubKey": "slg",
+      "slug": "alvin-fortes"
+    },
+    "Kim Ji-Ho": {
+      "fmId": "2000385292",
+      "clubKey": "slg",
+      "slug": "kim-ji-ho"
+    },
+    "Mohd Faisal Abdul Halim": {
+      "fmId": "23324659",
+      "clubKey": "slg",
+      "slug": "mohd-faisal-abdul-halim"
+    },
+    "Mukhairi Ajmal": {
+      "fmId": "23494758",
+      "clubKey": "slg",
+      "slug": "mukhairi-ajmal"
+    },
+    "Aliff Haiqal Lokman Hakim Lau": {
+      "fmId": "23494871",
+      "clubKey": "slg",
+      "slug": "aliff-haiqal-lokman-hakim-lau"
+    },
+    "Damien Lim": {
+      "fmId": "23270908",
+      "clubKey": "sab",
+      "slug": "damien-lim"
+    },
+    "Khairul Fahmie Che Mat": {
+      "fmId": "23043240",
+      "clubKey": "sab",
+      "slug": "khairul-fahmie-che-mat"
+    },
+    "Mohd Ramzi Mustakim": {
+      "fmId": "23406105",
+      "clubKey": "sab",
+      "slug": "mohd-ramzi-mustakim"
+    },
+    "Cifu": {
+      "fmId": "67127223",
+      "clubKey": "sab",
+      "slug": "cifu"
+    },
+    "José Ángel": {
+      "fmId": "67096811",
+      "clubKey": "sab",
+      "slug": "jose-angel"
+    },
+    "Dane Ingham": {
+      "fmId": "15069695",
+      "clubKey": "sab",
+      "slug": "dane-ingham"
+    },
+    "Gabriel Peres": {
+      "fmId": "19340224",
+      "clubKey": "sab",
+      "slug": "gabriel-peres"
+    },
+    "Dominic Tan": {
+      "fmId": "23267418",
+      "clubKey": "sab",
+      "slug": "dominic-tan"
+    },
+    "Ernesto": {
+      "fmId": "67101760",
+      "clubKey": "sab",
+      "slug": "ernesto"
+    },
+    "Rawilson Batuil": {
+      "fmId": "23257981",
+      "clubKey": "sab",
+      "slug": "rawilson-batuil"
+    },
+    "R. Dinesh": {
+      "fmId": "23318900",
+      "clubKey": "sab",
+      "slug": "r-dinesh"
+    },
+    "Duje Ljubić": {
+      "fmId": "2000265657",
+      "clubKey": "sab",
+      "slug": "duje-ljubic"
+    },
+    "Dean Pelekanos": {
+      "fmId": "2000021590",
+      "clubKey": "sab",
+      "slug": "dean-pelekanos"
+    },
+    "R. Gary Steven": {
+      "fmId": "23034817",
+      "clubKey": "sab",
+      "slug": "r-gary-steven"
+    },
+    "Rusdi Roslan": {
+      "fmId": "2000093925",
+      "clubKey": "sab",
+      "slug": "rusdi-roslan"
+    },
+    "Mohd Saifuddin Abdullah": {
+      "fmId": "2000203374",
+      "clubKey": "sab",
+      "slug": "mohd-saifuddin-abdullah"
+    },
+    "Fazli Yasnie": {
+      "fmId": "2000400615",
+      "clubKey": "sab",
+      "slug": "fazli-yasnie"
+    },
+    "Muhd Faheed Naqqeu Ishak": {
+      "fmId": "2000233400",
+      "clubKey": "sab",
+      "slug": "muhd-faheed-naqqeu-ishak"
+    },
+    "Ahmad Adam Haris Jumri": {
+      "fmId": "2000307372",
+      "clubKey": "sab",
+      "slug": "ahmad-adam-haris-jumri"
+    },
+    "Kervens Belfort": {
+      "fmId": "85091724",
+      "clubKey": "sab",
+      "slug": "kervens-belfort"
+    },
+    "Chris-Marlon Ondong-Mba": {
+      "fmId": "18094605",
+      "clubKey": "sab",
+      "slug": "chris-marlon-ondong-mba"
+    },
+    "Darren Lok": {
+      "fmId": "29038229",
+      "clubKey": "sab",
+      "slug": "darren-lok"
+    },
+    "Muhd Jafri Muhd Firdaus Chew": {
+      "fmId": "23318966",
+      "clubKey": "sab",
+      "slug": "muhd-jafri-muhd-firdaus-chew"
+    },
+    "Muhd Farhan Roslan": {
+      "fmId": "23268561",
+      "clubKey": "sab",
+      "slug": "muhd-farhan-roslan"
+    },
+    "Fergus Tierney": {
+      "fmId": "2000256671",
+      "clubKey": "sab",
+      "slug": "fergus-tierney"
+    },
+    "S. Kumaahran": {
+      "fmId": "23204151",
+      "clubKey": "sab",
+      "slug": "s-kumaahran"
+    },
+    "Azhad Harraz Arman": {
+      "fmId": "2000093188",
+      "clubKey": "sab",
+      "slug": "azhad-harraz-arman"
+    },
+    "Mohd Suhaimi Husin": {
+      "fmId": "23267306",
+      "clubKey": "trg",
+      "slug": "mohd-suhaimi-husin"
+    },
+    "Syed Muhd Nasrulhaq Syed Bidin": {
+      "fmId": "23425055",
+      "clubKey": "trg",
+      "slug": "syed-muhd-nasrulhaq-syed-bidin"
+    },
+    "Muhd Rahadiazli Rahalim": {
+      "fmId": "2000025093",
+      "clubKey": "trg",
+      "slug": "muhd-rahadiazli-rahalim"
+    },
+    "Diego Landis": {
+      "fmId": "83254088",
+      "clubKey": "trg",
+      "slug": "diego-landis"
+    },
+    "Muhd Azam Azmi Murad": {
+      "fmId": "2000025101",
+      "clubKey": "trg",
+      "slug": "muhd-azam-azmi-murad"
+    },
+    "Muhd Shahrul Nizam Ros Hasni": {
+      "fmId": "23378412",
+      "clubKey": "trg",
+      "slug": "muhd-shahrul-nizam-ros-hasni"
+    },
+    "Muhd Safwan Mazlan": {
+      "fmId": "2000094002",
+      "clubKey": "trg",
+      "slug": "muhd-safwan-mazlan"
+    },
+    "Muhd Ubaidullah Shamsul Fazili": {
+      "fmId": "2000185540",
+      "clubKey": "trg",
+      "slug": "muhd-ubaidullah-shamsul-fazili"
+    },
+    "Muhd Alif Zakaria": {
+      "fmId": "23411571",
+      "clubKey": "trg",
+      "slug": "muhd-alif-zakaria"
+    },
+    "Muhd Faris Rifqi Abdul Rashid": {
+      "fmId": "2000093278",
+      "clubKey": "trg",
+      "slug": "muhd-faris-rifqi-abdul-rashid"
+    },
+    "Muhd Hairiey Hakim Mamat": {
+      "fmId": "2000025094",
+      "clubKey": "trg",
+      "slug": "muhd-hairiey-hakim-mamat"
+    },
+    "Kyaw Min Oo": {
+      "fmId": "23298170",
+      "clubKey": "trg",
+      "slug": "kyaw-min-oo"
+    },
+    "Muhd Akram Mahinan": {
+      "fmId": "23136966",
+      "clubKey": "trg",
+      "slug": "muhd-akram-mahinan"
+    },
+    "Mohd Saiful Jamaluddin": {
+      "fmId": "2000093216",
+      "clubKey": "trg",
+      "slug": "mohd-saiful-jamaluddin"
+    },
+    "Arman Dhani Mohd Faizul Fakharudin": {
+      "fmId": "2000400668",
+      "clubKey": "trg",
+      "slug": "arman-dhani-mohd-faizul-fakharudin"
+    },
+    "Muhd Aiman Hakim Mohd Azli": {
+      "fmId": "2000307438",
+      "clubKey": "trg",
+      "slug": "muhd-aiman-hakim-mohd-azli"
+    },
+    "Ehson Panjshanbe": {
+      "fmId": "59130383",
+      "clubKey": "trg",
+      "slug": "ehson-panjshanbe"
+    },
+    "Gervane Kastaneer": {
+      "fmId": "37041863",
+      "clubKey": "trg",
+      "slug": "gervane-kastaneer"
+    },
+    "Yann Mabella": {
+      "fmId": "48031035",
+      "clubKey": "trg",
+      "slug": "yann-mabella"
+    },
+    "Shervoni Mabatshoev": {
+      "fmId": "59145164",
+      "clubKey": "trg",
+      "slug": "shervoni-mabatshoev"
+    },
+    "Careca": {
+      "fmId": "19302928",
+      "clubKey": "trg",
+      "slug": "careca"
+    },
+    "Muhd Akhyar Abdul Rashid": {
+      "fmId": "23320020",
+      "clubKey": "trg",
+      "slug": "muhd-akhyar-abdul-rashid"
+    },
+    "Muhd Haqimi Azim Rosli": {
+      "fmId": "2000199088",
+      "clubKey": "trg",
+      "slug": "muhd-haqimi-azim-rosli"
+    },
+    "Junior Ngong Sam": {
+      "fmId": "23391054",
+      "clubKey": "trg",
+      "slug": "junior-ngong-sam"
+    },
+    "Muhd Haziq Nadzli": {
+      "fmId": "23377970",
+      "clubKey": "kuc",
+      "slug": "muhd-haziq-nadzli"
+    },
+    "Wan Muhd Azraie Wan Teh": {
+      "fmId": "23071327",
+      "clubKey": "kuc",
+      "slug": "wan-muhd-azraie-wan-teh"
+    },
+    "Mohd Shahril Sa'ari": {
+      "fmId": "1037696",
+      "clubKey": "kuc",
+      "slug": "mohd-shahril-saari"
+    },
+    "James Okwuosa": {
+      "fmId": "65025802",
+      "clubKey": "kuc",
+      "slug": "james-okwuosa"
+    },
+    "Gabri Palmero": {
+      "fmId": "2000147505",
+      "clubKey": "kuc",
+      "slug": "gabri-palmero"
+    },
+    "Yuki Tanigawa": {
+      "fmId": "2000026762",
+      "clubKey": "kuc",
+      "slug": "yuki-tanigawa"
+    },
+    "Scott Philip Woods": {
+      "fmId": "53169164",
+      "clubKey": "kuc",
+      "slug": "scott-philip-woods"
+    },
+    "Jimmy Raymond": {
+      "fmId": "23377787",
+      "clubKey": "kuc",
+      "slug": "jimmy-raymond"
+    },
+    "Mohd Ariff Farhan Mohd Isa": {
+      "fmId": "23171253",
+      "clubKey": "kuc",
+      "slug": "mohd-ariff-farhan-mohd-isa"
+    },
+    "Mohd Arif Fadzilah Abu Bakar": {
+      "fmId": "23201344",
+      "clubKey": "kuc",
+      "slug": "mohd-arif-fadzilah-abu-bakar"
+    },
+    "Rodney Akwensivie": {
+      "fmId": "23270513",
+      "clubKey": "kuc",
+      "slug": "rodney-akwensivie"
+    },
+    "Moses Atede Jona": {
+      "fmId": "2000011239",
+      "clubKey": "kuc",
+      "slug": "moses-atede-jona"
+    },
+    "Mohd Alif Hassan": {
+      "fmId": "23322404",
+      "clubKey": "kuc",
+      "slug": "mohd-alif-hassan"
+    },
+    "Muhd Danial Amier Norhisham": {
+      "fmId": "23426519",
+      "clubKey": "kuc",
+      "slug": "muhd-danial-amier-norhisham"
+    },
+    "Diego Baggio Test": {
+      "fmId": "2000074755",
+      "clubKey": "kuc",
+      "slug": "diego-baggio-test"
+    },
+    "Alif Aiman Mohamad": {
+      "fmId": "2000232861",
+      "clubKey": "kuc",
+      "slug": "alif-aiman-mohamad"
+    },
+    "Amierul Safwan Hasdi Susalman": {
+      "fmId": "2000266983",
+      "clubKey": "kuc",
+      "slug": "amierul-safwan-hasdi-susalman"
+    },
+    "Petrus Shitembi": {
+      "fmId": "13104115",
+      "clubKey": "kuc",
+      "slug": "petrus-shitembi"
+    },
+    "Ahmed Israiwah": {
+      "fmId": "23237520",
+      "clubKey": "kuc",
+      "slug": "ahmed-israiwah"
+    },
+    "Ronald Ngah": {
+      "fmId": "13177209",
+      "clubKey": "kuc",
+      "slug": "ronald-ngah"
+    },
+    "Jordan Mintah": {
+      "fmId": "23393695",
+      "clubKey": "kuc",
+      "slug": "jordan-mintah"
+    },
+    "Jerome Mpacko-Etame": {
+      "fmId": "2000166150",
+      "clubKey": "kuc",
+      "slug": "jerome-mpacko-etame"
+    },
+    "João Pedro": {
+      "fmId": "23396789",
+      "clubKey": "kuc",
+      "slug": "joao-pedro"
+    },
+    "Muhd Ramadhan Saifullah Usman": {
+      "fmId": "23495557",
+      "clubKey": "kuc",
+      "slug": "muhd-ramadhan-saifullah-usman"
+    },
+    "Zahrul Nizwan Zulkeflee": {
+      "fmId": "23323477",
+      "clubKey": "kuc",
+      "slug": "zahrul-nizwan-zulkeflee"
+    },
+    "Quincy Kammeraad": {
+      "fmId": "23429259",
+      "clubKey": "klc",
+      "slug": "quincy-kammeraad"
+    },
+    "Ahmad Asyraaf Omar": {
+      "fmId": "23322154",
+      "clubKey": "klc",
+      "slug": "ahmad-asyraaf-omar"
+    },
+    "Muhd Hafizul Hakim Khairul Nizam Jothy": {
+      "fmId": "23137138",
+      "clubKey": "klc",
+      "slug": "muhd-hafizul-hakim-khairul-nizam-jothy"
+    },
+    "Gorka Larrucea": {
+      "fmId": "67225431",
+      "clubKey": "klc",
+      "slug": "gorka-larrucea"
+    },
+    "Dmytro Lytvyn": {
+      "fmId": "71080901",
+      "clubKey": "klc",
+      "slug": "dmytro-lytvyn"
+    },
+    "Giancarlo Gallifuoco": {
+      "fmId": "15019145",
+      "clubKey": "klc",
+      "slug": "giancarlo-gallifuoco"
+    },
+    "Declan Lambert": {
+      "fmId": "15072130",
+      "clubKey": "klc",
+      "slug": "declan-lambert"
+    },
+    "Mohd Kamal Azizi Mohd Zabri": {
+      "fmId": "23270133",
+      "clubKey": "klc",
+      "slug": "mohd-kamal-azizi-mohd-zabri"
+    },
+    "D. Kenny Pallraj": {
+      "fmId": "23137149",
+      "clubKey": "klc",
+      "slug": "d-kenny-pallraj"
+    },
+    "Mohd Azrif Nasrulhaq Badrul Hisham": {
+      "fmId": "23119948",
+      "clubKey": "klc",
+      "slug": "mohd-azrif-nasrulhaq-badrul-hisham"
+    },
+    "Adam Nor Azlin": {
+      "fmId": "23201346",
+      "clubKey": "klc",
+      "slug": "adam-nor-azlin"
+    },
+    "Madger Gomes": {
+      "fmId": "67196203",
+      "clubKey": "klc",
+      "slug": "madger-gomes"
+    },
+    "Ryan Lambert": {
+      "fmId": "15058819",
+      "clubKey": "klc",
+      "slug": "ryan-lambert"
+    },
+    "S. Sharvin": {
+      "fmId": "2000024966",
+      "clubKey": "klc",
+      "slug": "s-sharvin"
+    },
+    "Amirul Aiman Ibrahim": {
+      "fmId": "23495204",
+      "clubKey": "klc",
+      "slug": "amirul-aiman-ibrahim"
+    },
+    "Megat Aniq Muqri Megat Azlan": {
+      "fmId": "2000400068",
+      "clubKey": "klc",
+      "slug": "megat-aniq-muqri-megat-azlan"
+    },
+    "Muhd Aliff Imran Rostam": {
+      "fmId": "2000400063",
+      "clubKey": "klc",
+      "slug": "muhd-aliff-imran-rostam"
+    },
+    "Muhd Danish Asraf Mohd Noor Azli": {
+      "fmId": "2000307403",
+      "clubKey": "klc",
+      "slug": "muhd-danish-asraf-mohd-noor-azli"
+    },
+    "Muhd Nabil Zakwan Mohd Zaki": {
+      "fmId": "2000233116",
+      "clubKey": "klc",
+      "slug": "muhd-nabil-zakwan-mohd-zaki"
+    },
+    "Víctor Ruiz": {
+      "fmId": "67210998",
+      "clubKey": "klc",
+      "slug": "victor-ruiz"
+    },
+    "Nicolao Dumitru": {
+      "fmId": "43002188",
+      "clubKey": "klc",
+      "slug": "nicolao-dumitru"
+    },
+    "Kpah Sherman": {
+      "fmId": "13114858",
+      "clubKey": "klc",
+      "slug": "kpah-sherman"
+    },
+    "Paulo Josué": {
+      "fmId": "19241899",
+      "clubKey": "klc",
+      "slug": "paulo-josue"
+    },
+    "Muhd Safawi Rasid": {
+      "fmId": "23270148",
+      "clubKey": "klc",
+      "slug": "muhd-safawi-rasid"
+    },
+    "Zhafri Yahya": {
+      "fmId": "23202356",
+      "clubKey": "klc",
+      "slug": "zhafri-yahya"
+    },
+    "J. Partiban": {
+      "fmId": "23258251",
+      "clubKey": "klc",
+      "slug": "j-partiban"
+    },
+    "Enzo Cora": {
+      "fmId": "2000509074",
+      "clubKey": "klc",
+      "slug": "enzo-cora"
+    },
+    "Michel": {
+      "fmId": "2000212726",
+      "clubKey": "dpm",
+      "slug": "michel"
+    },
+    "Muhd Haimie Nyaring": {
+      "fmId": "23342389",
+      "clubKey": "dpm",
+      "slug": "muhd-haimie-nyaring"
+    },
+    "Muhd Ishyra Asmin Mohd Jabidi": {
+      "fmId": "23494355",
+      "clubKey": "dpm",
+      "slug": "muhd-ishyra-asmin-mohd-jabidi"
+    },
+    "Miguel Oliveira": {
+      "fmId": "55075056",
+      "clubKey": "dpm",
+      "slug": "miguel-oliveira"
+    },
+    "Jordan": {
+      "fmId": "19382150",
+      "clubKey": "dpm",
+      "slug": "jordan"
+    },
+    "Amani Aguinaldo": {
+      "fmId": "23352780",
+      "clubKey": "dpm",
+      "slug": "amani-aguinaldo"
+    },
+    "Tommy Mawat Bada": {
+      "fmId": "23270436",
+      "clubKey": "dpm",
+      "slug": "tommy-mawat-bada"
+    },
+    "Muhd Fairuz Zakaria": {
+      "fmId": "23320018",
+      "clubKey": "dpm",
+      "slug": "muhd-fairuz-zakaria"
+    },
+    "Muhd Nur Ikhwan Othman": {
+      "fmId": "23342500",
+      "clubKey": "dpm",
+      "slug": "muhd-nur-ikhwan-othman"
+    },
+    "Yura Indera Putera Yunos": {
+      "fmId": "23320330",
+      "clubKey": "dpm",
+      "slug": "yura-indera-putera-yunos"
+    },
+    "Muhd Syafiq Safiuddin Abdul Shariff": {
+      "fmId": "2000286611",
+      "clubKey": "dpm",
+      "slug": "muhd-syafiq-safiuddin-abdul-shariff"
+    },
+    "Prosper Boakye Owusu": {
+      "fmId": "2000290722",
+      "clubKey": "dpm",
+      "slug": "prosper-boakye-owusu"
+    },
+    "Mohd Najib Tarif": {
+      "fmId": "1038457",
+      "clubKey": "dpm",
+      "slug": "mohd-najib-tarif"
+    },
+    "Mohd Nazry Aiman Azaman": {
+      "fmId": "2000371399",
+      "clubKey": "dpm",
+      "slug": "mohd-nazry-aiman-azaman"
+    },
+    "Muhd Hanif Farhan Azman": {
+      "fmId": "2000059223",
+      "clubKey": "dpm",
+      "slug": "muhd-hanif-farhan-azman"
+    },
+    "Jordan Murray": {
+      "fmId": "15054343",
+      "clubKey": "dpm",
+      "slug": "jordan-murray"
+    },
+    "Ramadhan Sananta": {
+      "fmId": "2000161170",
+      "clubKey": "dpm",
+      "slug": "ramadhan-sananta"
+    },
+    "Muhd Syafiq Ahmad": {
+      "fmId": "23228086",
+      "clubKey": "dpm",
+      "slug": "muhd-syafiq-ahmad"
+    },
+    "Muhd Hakeme Yazid Said": {
+      "fmId": "23494370",
+      "clubKey": "dpm",
+      "slug": "muhd-hakeme-yazid-said"
+    },
+    "Ibrahim Sulley": {
+      "fmId": "13193986",
+      "clubKey": "dpm",
+      "slug": "ibrahim-sulley"
+    },
+    "Muhd Azwan Ali Rahman": {
+      "fmId": "23223095",
+      "clubKey": "dpm",
+      "slug": "muhd-azwan-ali-rahman"
+    },
+    "Nazirrudin Ismail": {
+      "fmId": "23342353",
+      "clubKey": "dpm",
+      "slug": "nazirrudin-ismail"
+    },
+    "Abdul Hariz Herman": {
+      "fmId": "23427188",
+      "clubKey": "dpm",
+      "slug": "abdul-hariz-herman"
+    },
+    "Mohd Khairul Azhan Mohd Khalid": {
+      "fmId": "23120157",
+      "clubKey": "png",
+      "slug": "mohd-khairul-azhan-mohd-khalid"
+    },
+    "Mohd Ramdhan Abdul Hamid": {
+      "fmId": "23172022",
+      "clubKey": "png",
+      "slug": "mohd-ramdhan-abdul-hamid"
+    },
+    "Khatul Anuar Mohd Jalil": {
+      "fmId": "23318897",
+      "clubKey": "png",
+      "slug": "khatul-anuar-mohd-jalil"
+    },
+    "Stefano Brundo": {
+      "fmId": "14063270",
+      "clubKey": "png",
+      "slug": "stefano-brundo"
+    },
+    "Faith Friday Obilor": {
+      "fmId": "33028811",
+      "clubKey": "png",
+      "slug": "faith-friday-obilor"
+    },
+    "Muhd Adib Abdul Ra'op": {
+      "fmId": "23425327",
+      "clubKey": "png",
+      "slug": "muhd-adib-abdul-raop"
+    },
+    "Mohd Akmal Mohd Zahir": {
+      "fmId": "23321383",
+      "clubKey": "png",
+      "slug": "mohd-akmal-mohd-zahir"
+    },
+    "Ahmad Irfan Mohd Noor": {
+      "fmId": "2000093658",
+      "clubKey": "png",
+      "slug": "ahmad-irfan-mohd-noor"
+    },
+    "Mohd Khairul Akmal Rokisham": {
+      "fmId": "23377438",
+      "clubKey": "png",
+      "slug": "mohd-khairul-akmal-rokisham"
+    },
+    "Muhd Iman Rafaei Abdul Razak": {
+      "fmId": "2000093444",
+      "clubKey": "png",
+      "slug": "muhd-iman-rafaei-abdul-razak"
+    },
+    "Muhd Aidil Wafiy Yusri": {
+      "fmId": "2000400152",
+      "clubKey": "png",
+      "slug": "muhd-aidil-wafiy-yusri"
+    },
+    "Erick Brendon Pinheiro da Silva": {
+      "fmId": "19225445",
+      "clubKey": "png",
+      "slug": "erick-brendon-pinheiro-da-silva"
+    },
+    "Mohd Hasbullah Abu Bakar": {
+      "fmId": "23203970",
+      "clubKey": "png",
+      "slug": "mohd-hasbullah-abu-bakar"
+    },
+    "Muhd Izzat Zikri Iziruddin": {
+      "fmId": "2000093716",
+      "clubKey": "png",
+      "slug": "muhd-izzat-zikri-iziruddin"
+    },
+    "Chia Ruo Han": {
+      "fmId": "2000015793",
+      "clubKey": "png",
+      "slug": "chia-ruo-han"
+    },
+    "Ahmad Haziq Kutty Abba": {
+      "fmId": "2000233333",
+      "clubKey": "png",
+      "slug": "ahmad-haziq-kutty-abba"
+    },
+    "Adib Iqbal Mohd Hairi Ainuar": {
+      "fmId": "2000400635",
+      "clubKey": "png",
+      "slug": "adib-iqbal-mohd-hairi-ainuar"
+    },
+    "Muhd Adam Furqan Noor Azrul": {
+      "fmId": "2000400568",
+      "clubKey": "png",
+      "slug": "muhd-adam-furqan-noor-azrul"
+    },
+    "Harith Iskandar Masri": {
+      "fmId": "2000307152",
+      "clubKey": "png",
+      "slug": "harith-iskandar-masri"
+    },
+    "Douglas Coutinho": {
+      "fmId": "19200861",
+      "clubKey": "png",
+      "slug": "douglas-coutinho"
+    },
+    "Dylan Wenzel-Halls": {
+      "fmId": "15053066",
+      "clubKey": "png",
+      "slug": "dylan-wenzel-halls"
+    },
+    "Kipré Tchétché": {
+      "fmId": "23411550",
+      "clubKey": "png",
+      "slug": "kipre-tchetche"
+    },
+    "Bruno Castanheira": {
+      "fmId": "45028253",
+      "clubKey": "png",
+      "slug": "bruno-castanheira"
+    },
+    "O. J. Porteria": {
+      "fmId": "43009698",
+      "clubKey": "png",
+      "slug": "o-j-porteria"
+    },
+    "Omid Musawi": {
+      "fmId": "37070386",
+      "clubKey": "png",
+      "slug": "omid-musawi"
+    },
+    "Nur Shamie Iszuan Amin": {
+      "fmId": "23267433",
+      "clubKey": "png",
+      "slug": "nur-shamie-iszuan-amin"
+    },
+    "Muhd Firdaus Saiyadi": {
+      "fmId": "23270441",
+      "clubKey": "png",
+      "slug": "muhd-firdaus-saiyadi"
+    },
+    "Mohd Ifwat Akmal Che Kassim": {
+      "fmId": "23257995",
+      "clubKey": "pdr",
+      "slug": "mohd-ifwat-akmal-che-kassim"
+    },
+    "Nor Hakeem Hamidun": {
+      "fmId": "2000093245",
+      "clubKey": "pdr",
+      "slug": "nor-hakeem-hamidun"
+    },
+    "Muhd Asri Muhamad": {
+      "fmId": "23378568",
+      "clubKey": "pdr",
+      "slug": "muhd-asri-muhamad"
+    },
+    "Park Tae-Su": {
+      "fmId": "66011952",
+      "clubKey": "pdr",
+      "slug": "park-tae-su"
+    },
+    "Mohd Safiee Ahmad": {
+      "fmId": "23321980",
+      "clubKey": "pdr",
+      "slug": "mohd-safiee-ahmad"
+    },
+    "Amir Saiful Badeli": {
+      "fmId": "23258045",
+      "clubKey": "pdr",
+      "slug": "amir-saiful-badeli"
+    },
+    "Alif Naqiuddin Mohd Shouffi": {
+      "fmId": "23426529",
+      "clubKey": "pdr",
+      "slug": "alif-naqiuddin-mohd-shouffi"
+    },
+    "Mohd Badrul Affendy Mohd Fadzli": {
+      "fmId": "23257977",
+      "clubKey": "pdr",
+      "slug": "mohd-badrul-affendy-mohd-fadzli"
+    },
+    "Mohd Zazrir Naim Abdul Rani": {
+      "fmId": "23426762",
+      "clubKey": "pdr",
+      "slug": "mohd-zazrir-naim-abdul-rani"
+    },
+    "Mohd Fakhrullah Mohd Yusoff": {
+      "fmId": "2000093272",
+      "clubKey": "pdr",
+      "slug": "mohd-fakhrullah-mohd-yusoff"
+    },
+    "Muhd Haikal Jefri": {
+      "fmId": "2000400312",
+      "clubKey": "pdr",
+      "slug": "muhd-haikal-jefri"
+    },
+    "Fadi Mahmoud Awad": {
+      "fmId": "23238339",
+      "clubKey": "pdr",
+      "slug": "fadi-mahmoud-awad"
+    },
+    "Mohd Irfan Fazail": {
+      "fmId": "23075174",
+      "clubKey": "pdr",
+      "slug": "mohd-irfan-fazail"
+    },
+    "Muhd Aiman Naufal Khalil": {
+      "fmId": "2000400273",
+      "clubKey": "pdr",
+      "slug": "muhd-aiman-naufal-khalil"
+    },
+    "Muhd Hasanudin Abdul Hadi": {
+      "fmId": "2000400140",
+      "clubKey": "pdr",
+      "slug": "muhd-hasanudin-abdul-hadi"
+    },
+    "Muhd Aiman Haikal Che Azizan": {
+      "fmId": "2000400284",
+      "clubKey": "pdr",
+      "slug": "muhd-aiman-haikal-che-azizan"
+    },
+    "Mikhaiel Ahmad Mokhtar": {
+      "fmId": "2000400141",
+      "clubKey": "pdr",
+      "slug": "mikhaiel-ahmad-mokhtar"
+    },
+    "Muhd Aufa Safwan Sabaruddin": {
+      "fmId": "2000392335",
+      "clubKey": "pdr",
+      "slug": "muhd-aufa-safwan-sabaruddin"
+    },
+    "Christian Irobiso": {
+      "fmId": "55046907",
+      "clubKey": "pdr",
+      "slug": "christian-irobiso"
+    },
+    "Elisha Kashim": {
+      "fmId": "2000511654",
+      "clubKey": "pdr",
+      "slug": "elisha-kashim"
+    },
+    "Muhd Fakhrul Azim Mohd Zulphatah": {
+      "fmId": "2000093382",
+      "clubKey": "pdr",
+      "slug": "muhd-fakhrul-azim-mohd-zulphatah"
+    },
+    "Muhd Eizrul Ashraf Nor Effendy": {
+      "fmId": "23425164",
+      "clubKey": "pdr",
+      "slug": "muhd-eizrul-ashraf-nor-effendy"
+    },
+    "Muhd Hadi Fayyadh Abdul Razak": {
+      "fmId": "23376132",
+      "clubKey": "pdr",
+      "slug": "muhd-hadi-fayyadh-abdul-razak"
+    },
+    "Mohd Aiman Sufi Radzai": {
+      "fmId": "2000093424",
+      "clubKey": "pdr",
+      "slug": "mohd-aiman-sufi-radzai"
+    },
+    "Mohd Imran Samso": {
+      "fmId": "23378421",
+      "clubKey": "pdr",
+      "slug": "mohd-imran-samso"
+    },
+    "Muhd Amirul Wa'ie Ya'acob": {
+      "fmId": "23322215",
+      "clubKey": "pdr",
+      "slug": "muhd-amirul-waie-yaacob"
+    },
+    "Muhd Azri Abdul Ghani": {
+      "fmId": "23426562",
+      "clubKey": "ngs",
+      "slug": "muhd-azri-abdul-ghani"
+    },
+    "Muhd Aqil Abdul Razak": {
+      "fmId": "23378629",
+      "clubKey": "ngs",
+      "slug": "muhd-aqil-abdul-razak"
+    },
+    "Syahmi Adib Haikal Mohd Shukri": {
+      "fmId": "2000093191",
+      "clubKey": "ngs",
+      "slug": "syahmi-adib-haikal-mohd-shukri"
+    },
+    "Luis Enrique Nsue": {
+      "fmId": "2000161062",
+      "clubKey": "ngs",
+      "slug": "luis-enrique-nsue"
+    },
+    "Kei Oshiro": {
+      "fmId": "45112272",
+      "clubKey": "ngs",
+      "slug": "kei-oshiro"
+    },
+    "Amirul Adli": {
+      "fmId": "23222811",
+      "clubKey": "ngs",
+      "slug": "amirul-adli"
+    },
+    "Ahmad Khuzaimi Piee": {
+      "fmId": "23204335",
+      "clubKey": "ngs",
+      "slug": "ahmad-khuzaimi-piee"
+    },
+    "Filip Andersen": {
+      "fmId": "27164257",
+      "clubKey": "ngs",
+      "slug": "filip-andersen"
+    },
+    "Ariff Ar-Rasyid Ariffin": {
+      "fmId": "23376364",
+      "clubKey": "ngs",
+      "slug": "ariff-ar-rasyid-ariffin"
+    },
+    "Zainal Abidin Jamil": {
+      "fmId": "23426568",
+      "clubKey": "ngs",
+      "slug": "zainal-abidin-jamil"
+    },
+    "Muhd Harith Samsuri": {
+      "fmId": "2000093239",
+      "clubKey": "ngs",
+      "slug": "muhd-harith-samsuri"
+    },
+    "Yuichi Hirano": {
+      "fmId": "45109278",
+      "clubKey": "ngs",
+      "slug": "yuichi-hirano"
+    },
+    "Odai Kharoub": {
+      "fmId": "2000027328",
+      "clubKey": "ngs",
+      "slug": "odai-kharoub"
+    },
+    "An Sang-Su": {
+      "fmId": "2000363638",
+      "clubKey": "ngs",
+      "slug": "an-sang-su"
+    },
+    "Wai Lin Aung": {
+      "fmId": "2000018192",
+      "clubKey": "ngs",
+      "slug": "wai-lin-aung"
+    },
+    "Muhd Zahril Azri Zabri": {
+      "fmId": "23426574",
+      "clubKey": "ngs",
+      "slug": "muhd-zahril-azri-zabri"
+    },
+    "Muhd Adam Haris Hamizon": {
+      "fmId": "2000232862",
+      "clubKey": "ngs",
+      "slug": "muhd-adam-haris-hamizon"
+    },
+    "Muhd Afiq Fitri Mohd Jefry": {
+      "fmId": "2000093776",
+      "clubKey": "ngs",
+      "slug": "muhd-afiq-fitri-mohd-jefry"
+    },
+    "Muhd Muhaimin Nor Azri": {
+      "fmId": "2000307279",
+      "clubKey": "ngs",
+      "slug": "muhd-muhaimin-nor-azri"
+    },
+    "Jovan Motika": {
+      "fmId": "21034734",
+      "clubKey": "ngs",
+      "slug": "jovan-motika"
+    },
+    "Joseph Esso": {
+      "fmId": "13194658",
+      "clubKey": "ngs",
+      "slug": "joseph-esso"
+    },
+    "Takumi Sasaki": {
+      "fmId": "45096089",
+      "clubKey": "ngs",
+      "slug": "takumi-sasaki"
+    },
+    "Luqman Hakim Shamsudin": {
+      "fmId": "23502563",
+      "clubKey": "ngs",
+      "slug": "luqman-hakim-shamsudin"
+    },
+    "Mio Tsuneyasu": {
+      "fmId": "2000319173",
+      "clubKey": "ngs",
+      "slug": "mio-tsuneyasu"
+    },
+    "Muhd Hakimi Abdullah": {
+      "fmId": "23495708",
+      "clubKey": "ngs",
+      "slug": "muhd-hakimi-abdullah"
+    },
+    "A. Selvan": {
+      "fmId": "2000028548",
+      "clubKey": "ngs",
+      "slug": "a-selvan"
+    },
+    "Anuar Ceesay": {
+      "fmId": "2000482979",
+      "clubKey": "ngs",
+      "slug": "anuar-ceesay"
+    },
+    "Sam Somerville": {
+      "fmId": "89022726",
+      "clubKey": "mlk",
+      "slug": "sam-somerville"
+    },
+    "Muhd Firdaus Irman Mohd Fadhil": {
+      "fmId": "2000024969",
+      "clubKey": "mlk",
+      "slug": "muhd-firdaus-irman-mohd-fadhil"
+    },
+    "Muhd Aqiel Danish Mohd Nasir": {
+      "fmId": "2000400373",
+      "clubKey": "mlk",
+      "slug": "muhd-aqiel-danish-mohd-nasir"
+    },
+    "Noël Agbré": {
+      "fmId": "2000141829",
+      "clubKey": "mlk",
+      "slug": "noel-agbre"
+    },
+    "Gu Dae-Yeob": {
+      "fmId": "66036042",
+      "clubKey": "mlk",
+      "slug": "gu-dae-yeob"
+    },
+    "Argzim Redžović": {
+      "fmId": "62061378",
+      "clubKey": "mlk",
+      "slug": "argzim-redzovic"
+    },
+    "Pak Kwang-Il": {
+      "fmId": "45077113",
+      "clubKey": "mlk",
+      "slug": "pak-kwang-il"
+    },
+    "V. Ruventhiran": {
+      "fmId": "2000093433",
+      "clubKey": "mlk",
+      "slug": "v-ruventhiran"
+    },
+    "Muhd Zulkhairi Zulkeply": {
+      "fmId": "23171241",
+      "clubKey": "mlk",
+      "slug": "muhd-zulkhairi-zulkeply"
+    },
+    "Khairul Anuwar Shahrudin": {
+      "fmId": "23107510",
+      "clubKey": "mlk",
+      "slug": "khairul-anuwar-shahrudin"
+    },
+    "Ahmad Haziq Ahmad Puad": {
+      "fmId": "23203190",
+      "clubKey": "mlk",
+      "slug": "ahmad-haziq-ahmad-puad"
+    },
+    "Do Dong-Hyun": {
+      "fmId": "15038086",
+      "clubKey": "mlk",
+      "slug": "do-dong-hyun"
+    },
+    "Michael Onyekachi": {
+      "fmId": "2000373777",
+      "clubKey": "mlk",
+      "slug": "michael-onyekachi"
+    },
+    "Mohd Nasir Basharudin": {
+      "fmId": "23120422",
+      "clubKey": "mlk",
+      "slug": "mohd-nasir-basharudin"
+    },
+    "Muhd Nizarruddin Jazi": {
+      "fmId": "23493589",
+      "clubKey": "mlk",
+      "slug": "muhd-nizarruddin-jazi"
+    },
+    "Mohd Fahmi Faizal": {
+      "fmId": "23269906",
+      "clubKey": "mlk",
+      "slug": "mohd-fahmi-faizal"
+    },
+    "Muhd Hakimie Helmy": {
+      "fmId": "2000307291",
+      "clubKey": "mlk",
+      "slug": "muhd-hakimie-helmy"
+    },
+    "Muhd Adib Irfan Zulkefli": {
+      "fmId": "2000400375",
+      "clubKey": "mlk",
+      "slug": "muhd-adib-irfan-zulkefli"
+    },
+    "Muhd Aiman Danish Azli Abdul Azim": {
+      "fmId": "2000073938",
+      "clubKey": "mlk",
+      "slug": "muhd-aiman-danish-azli-abdul-azim"
+    },
+    "Ahmed Shamsaldin": {
+      "fmId": "23487753",
+      "clubKey": "mlk",
+      "slug": "ahmed-shamsaldin"
+    },
+    "Dino Kalesić": {
+      "fmId": "21033694",
+      "clubKey": "mlk",
+      "slug": "dino-kalesic"
+    },
+    "Bernard Arthur": {
+      "fmId": "13128634",
+      "clubKey": "mlk",
+      "slug": "bernard-arthur"
+    },
+    "Abdul Azim Rahim": {
+      "fmId": "23321974",
+      "clubKey": "mlk",
+      "slug": "abdul-azim-rahim"
+    },
+    "Muhd Shahrel Fikri Mohd Fauzi": {
+      "fmId": "23258253",
+      "clubKey": "mlk",
+      "slug": "muhd-shahrel-fikri-mohd-fauzi"
+    },
+    "G. Durrkeswaran": {
+      "fmId": "23365931",
+      "clubKey": "mlk",
+      "slug": "g-durrkeswaran"
+    },
+    "Ahmad Musawwir Hasif Ahmad Zaidi": {
+      "fmId": "2000307290",
+      "clubKey": "mlk",
+      "slug": "ahmad-musawwir-hasif-ahmad-zaidi"
+    },
+    "Saffy Zikry Ndongo": {
+      "fmId": "2000233225",
+      "clubKey": "mlk",
+      "slug": "saffy-zikry-ndongo"
+    },
+    "Damyan Damyanov": {
+      "fmId": "22071402",
+      "clubKey": "klw",
+      "slug": "damyan-damyanov"
+    },
+    "Muhd Azfar Arif Mohd Sukri": {
+      "fmId": "23455018",
+      "clubKey": "klw",
+      "slug": "muhd-azfar-arif-mohd-sukri"
+    },
+    "Mohd Fikri Che Soh": {
+      "fmId": "23378403",
+      "clubKey": "klw",
+      "slug": "mohd-fikri-che-soh"
+    },
+    "Alexandre Yéhoulé": {
+      "fmId": "13175678",
+      "clubKey": "klw",
+      "slug": "alexandre-yehoule"
+    },
+    "Yohanes Kandaimu": {
+      "fmId": "2000120395",
+      "clubKey": "klw",
+      "slug": "yohanes-kandaimu"
+    },
+    "Yusuf Sesay": {
+      "fmId": "2000406220",
+      "clubKey": "klw",
+      "slug": "yusuf-sesay"
+    },
+    "Wan Amirul Afiq Wan Abdul Rahman": {
+      "fmId": "23258474",
+      "clubKey": "klw",
+      "slug": "wan-amirul-afiq-wan-abdul-rahman"
+    },
+    "Mohd Azwan Aripin": {
+      "fmId": "23270374",
+      "clubKey": "klw",
+      "slug": "mohd-azwan-aripin"
+    },
+    "Mohd Faris Shah Mohd Rosli": {
+      "fmId": "23171236",
+      "clubKey": "klw",
+      "slug": "mohd-faris-shah-mohd-rosli"
+    },
+    "M. Rakesh": {
+      "fmId": "2000232998",
+      "clubKey": "klw",
+      "slug": "m-rakesh"
+    },
+    "Nik Umar Nik Aziz": {
+      "fmId": "23493577",
+      "clubKey": "klw",
+      "slug": "nik-umar-nik-aziz"
+    },
+    "Sebastian Avanzini": {
+      "fmId": "27111081",
+      "clubKey": "klw",
+      "slug": "sebastian-avanzini"
+    },
+    "Habib Haroon": {
+      "fmId": "64047104",
+      "clubKey": "klw",
+      "slug": "habib-haroon"
+    },
+    "Albert Kang": {
+      "fmId": "2000439722",
+      "clubKey": "klw",
+      "slug": "albert-kang"
+    },
+    "Muhd Nor Azam Abdul Azih": {
+      "fmId": "23258400",
+      "clubKey": "klw",
+      "slug": "muhd-nor-azam-abdul-azih"
+    },
+    "Muhd Syahir Abdul Rashid": {
+      "fmId": "2000093688",
+      "clubKey": "klw",
+      "slug": "muhd-syahir-abdul-rashid"
+    },
+    "Muhd Faris Izdiham Awang Kechik": {
+      "fmId": "2000074432",
+      "clubKey": "klw",
+      "slug": "muhd-faris-izdiham-awang-kechik"
+    },
+    "Mohd Danial Haqim Deraman": {
+      "fmId": "23322364",
+      "clubKey": "klw",
+      "slug": "mohd-danial-haqim-deraman"
+    },
+    "Ifedayo Olusegun": {
+      "fmId": "23340995",
+      "clubKey": "klw",
+      "slug": "ifedayo-olusegun"
+    },
+    "Enzo Célestine": {
+      "fmId": "50051111",
+      "clubKey": "klw",
+      "slug": "enzo-celestine"
+    },
+    "Hein Htet Aung": {
+      "fmId": "97206110",
+      "clubKey": "klw",
+      "slug": "hein-htet-aung"
+    },
+    "Gnohoré Krizo": {
+      "fmId": "17033344",
+      "clubKey": "klw",
+      "slug": "gnohore-krizo"
+    },
+    "Abdul Sesay": {
+      "fmId": "2000196505",
+      "clubKey": "klw",
+      "slug": "abdul-sesay"
+    },
+    "T. Saravanan": {
+      "fmId": "2000024967",
+      "clubKey": "klw",
+      "slug": "t-saravanan"
+    },
+    "Sean Eugene Selvaraj": {
+      "fmId": "23267426",
+      "clubKey": "klw",
+      "slug": "sean-eugene-selvaraj"
+    },
+    "Muhd Syafik Ismail": {
+      "fmId": "2000025104",
+      "clubKey": "klw",
+      "slug": "muhd-syafik-ismail"
+    }
+  }
+}

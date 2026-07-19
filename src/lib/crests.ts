@@ -112,7 +112,7 @@ const BY_SHORT: Record<string, string> = {
   RCS: 'str',
   TFC: 'tou',
   SB29: 'sbr',
-  AJA: 'aux',
+  AJA: 'auxerre',
   SCO: 'ang',
   HAC: 'hac',
   FCL: 'lor',

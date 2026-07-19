@@ -5,7 +5,8 @@
 import type { GameSave, InboxMessage, PendingTransferOffer, TransferDeadlineState } from './types'
 import { processTransferDeskMatchday } from './transferDesk'
 import { processWantAwayAiBids, tickWantAwayDrama } from './wantAway'
-import { advanceMediaWeek, maybeAiRomanoPlants, pushNews } from './media'
+import { advanceMediaWeek, pushNews } from './media'
+import { maybeAiRomanoPlants } from './romanoPlant'
 import { simulateDailyLife } from './dailyLife'
 import {
   isTransferWindowOpen,

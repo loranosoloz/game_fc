@@ -855,7 +855,11 @@ export function loadFromStorage(): GameSave | null {
 
   try {
     const raw = localStorage.getItem(SAVE_KEY)
-    if (raw) return tryParse(raw)
+    if (raw) {
+      const peek = JSON.parse(raw) as Record<string, unknown>
+      if (peek.__idbOnly) return null
+      return tryParse(raw)
+    }
     for (const key of [
       'fc-manager-save-v5',
       'fc-manager-save-v4',

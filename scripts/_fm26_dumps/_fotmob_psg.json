@@ -1,0 +1,89 @@
+{
+  "took": 1,
+  "total": 5,
+  "matchSuggest": [
+    {
+      "text": "PSG",
+      "offset": 0,
+      "length": 3,
+      "options": [
+        {
+          "text": "Mallorca - Paris Saint-Germain",
+          "score": 0.0,
+          "payload": {
+            "matchDate": "2026-08-05T18:00:00Z",
+            "leagueId": 489,
+            "id": "5874665",
+            "homeTeamId": "8661",
+            "awayTeamId": "9847",
+            "homeName": "Mallorca",
+            "awayName": "Paris Saint-Germain",
+            "leagueName": "Club Friendlies",
+            "statusId": 1
+          }
+        },
+        {
+          "text": "Manchester United - Paris Saint-Germain",
+          "score": -6.0,
+          "payload": {
+            "matchDate": "2026-08-08T15:00:00Z",
+            "leagueId": 489,
+            "id": "5449684",
+            "homeTeamId": "10260",
+            "awayTeamId": "9847",
+            "homeName": "Manchester United",
+            "awayName": "Paris Saint-Germain",
+            "leagueName": "Club Friendlies",
+            "statusId": 1
+          }
+        },
+        {
+          "text": "Lens - Paris Saint-Germain",
+          "score": -28.0,
+          "payload": {
+            "matchDate": "2026-08-16T18:45:00Z",
+            "leagueId": 207,
+            "id": "5740646",
+            "homeTeamId": "8588",
+            "awayTeamId": "9847",
+            "homeName": "Lens",
+            "awayName": "Paris Saint-Germain",
+            "leagueName": "Super Cup",
+            "statusId": 1
+          }
+        }
+      ]
+    }
+  ],
+  "teamSuggest": [
+    {
+      "text": "PSG",
+      "offset": 0,
+      "length": 3,
+      "options": [
+        {
+          "text": "Paris Saint-Germain|9847",
+          "score": 300994.0,
+          "payload": {
+            "matchDate": "0001-01-01T00:00:00",
+            "leagueId": 53,
+            "id": "9847",
+            "newsLanguages": [],
+            "leagueName": "Ligue 1"
+          }
+        },
+        {
+          "text": "Paris Saint Germain (W)|294858",
+          "score": 300011.0,
+          "payload": {
+            "matchDate": "0001-01-01T00:00:00",
+            "leagueId": 9677,
+            "id": "294858",
+            "newsLanguages": [],
+            "leagueName": "Premiere Ligue"
+          }
+        }
+      ]
+    }
+  ]
+}

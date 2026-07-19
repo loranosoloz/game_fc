@@ -1,0 +1,2366 @@
+{
+  "source": "fmtransferupdate Serie B",
+  "matched": 472,
+  "byName": {
+    "Sebastiano Desplanches": {
+      "fmId": "43500211",
+      "clubKey": "pal",
+      "slug": "sebastiano-desplanches"
+    },
+    "Alfred Gomis": {
+      "fmId": "43077666",
+      "clubKey": "pal",
+      "slug": "alfred-gomis"
+    },
+    "Francesco Bardi": {
+      "fmId": "43044146",
+      "clubKey": "pal",
+      "slug": "francesco-bardi"
+    },
+    "Tommaso Augello": {
+      "fmId": "43096264",
+      "clubKey": "pal",
+      "slug": "tommaso-augello"
+    },
+    "Mattia Bani": {
+      "fmId": "43091093",
+      "clubKey": "pal",
+      "slug": "mattia-bani"
+    },
+    "Pietro Ceccaroni": {
+      "fmId": "43113705",
+      "clubKey": "pal",
+      "slug": "pietro-ceccaroni"
+    },
+    "Kristoffer Lund": {
+      "fmId": "27139789",
+      "clubKey": "pal",
+      "slug": "kristoffer-lund"
+    },
+    "Giangiacomo Magnani": {
+      "fmId": "43125080",
+      "clubKey": "pal",
+      "slug": "giangiacomo-magnani"
+    },
+    "Niccolò Pierozzi": {
+      "fmId": "43392081",
+      "clubKey": "pal",
+      "slug": "niccolo-pierozzi"
+    },
+    "Salim Diakité": {
+      "fmId": "43609601",
+      "clubKey": "pal",
+      "slug": "salim-diakite"
+    },
+    "Bartosz Bereszyński": {
+      "fmId": "96011201",
+      "clubKey": "pal",
+      "slug": "bartosz-bereszynski"
+    },
+    "Antonio Palumbo": {
+      "fmId": "43161989",
+      "clubKey": "pal",
+      "slug": "antonio-palumbo"
+    },
+    "Jacopo Segre": {
+      "fmId": "43153083",
+      "clubKey": "pal",
+      "slug": "jacopo-segre"
+    },
+    "Filippo Ranocchia": {
+      "fmId": "43375253",
+      "clubKey": "pal",
+      "slug": "filippo-ranocchia"
+    },
+    "Claudio Gomes": {
+      "fmId": "49037592",
+      "clubKey": "pal",
+      "slug": "claudio-gomes"
+    },
+    "Hernâni": {
+      "fmId": "19163503",
+      "clubKey": "pal",
+      "slug": "hernani"
+    },
+    "Alexis Blin": {
+      "fmId": "85144161",
+      "clubKey": "pal",
+      "slug": "alexis-blin"
+    },
+    "Giosuè Grippa": {
+      "fmId": "2000295911",
+      "clubKey": "pal",
+      "slug": "giosue-grippa"
+    },
+    "Hugo Leonardo De Oliveira": {
+      "fmId": "2000267808",
+      "clubKey": "pal",
+      "slug": "hugo-leonardo-de-oliveira"
+    },
+    "Joel Pohjanpalo": {
+      "fmId": "33027508",
+      "clubKey": "pal",
+      "slug": "joel-pohjanpalo"
+    },
+    "Dennis Johnsen": {
+      "fmId": "53116120",
+      "clubKey": "pal",
+      "slug": "dennis-johnsen"
+    },
+    "Matteo Brunori": {
+      "fmId": "43091100",
+      "clubKey": "pal",
+      "slug": "matteo-brunori"
+    },
+    "Jérémy Le Douaron": {
+      "fmId": "50071707",
+      "clubKey": "pal",
+      "slug": "jeremy-le-douaron"
+    },
+    "Aljoša Vasić": {
+      "fmId": "43486027",
+      "clubKey": "pal",
+      "slug": "aljosa-vasic"
+    },
+    "Federico Di Francesco": {
+      "fmId": "43087308",
+      "clubKey": "pal",
+      "slug": "federico-di-francesco"
+    },
+    "Stredair Appuah Owusu": {
+      "fmId": "2000122796",
+      "clubKey": "pal",
+      "slug": "stredair-appuah-owusu"
+    },
+    "Giacomo Corona": {
+      "fmId": "2000104707",
+      "clubKey": "pal",
+      "slug": "giacomo-corona"
+    },
+    "Mirko Pigliacelli": {
+      "fmId": "43061419",
+      "clubKey": "caz",
+      "slug": "mirko-pigliacelli"
+    },
+    "Christian Marietta": {
+      "fmId": "43485956",
+      "clubKey": "caz",
+      "slug": "christian-marietta"
+    },
+    "Edoardo Borrelli": {
+      "fmId": "2000124215",
+      "clubKey": "caz",
+      "slug": "edoardo-borrelli"
+    },
+    "Nicolò Brighenti": {
+      "fmId": "1401346",
+      "clubKey": "caz",
+      "slug": "nicolo-brighenti"
+    },
+    "Matias Antonini": {
+      "fmId": "43192191",
+      "clubKey": "caz",
+      "slug": "matias-antonini"
+    },
+    "Costantino Favasuli": {
+      "fmId": "2000025313",
+      "clubKey": "caz",
+      "slug": "costantino-favasuli"
+    },
+    "Marco D'Alessandro": {
+      "fmId": "43013928",
+      "clubKey": "caz",
+      "slug": "marco-dalessandro"
+    },
+    "Ruggero Frosinini": {
+      "fmId": "2000039650",
+      "clubKey": "caz",
+      "slug": "ruggero-frosinini"
+    },
+    "Gonçalo Esteves": {
+      "fmId": "2000016400",
+      "clubKey": "caz",
+      "slug": "goncalo-esteves"
+    },
+    "Bruno Verrengia": {
+      "fmId": "2000046105",
+      "clubKey": "caz",
+      "slug": "bruno-verrengia"
+    },
+    "Ervin Bashi": {
+      "fmId": "2000216199",
+      "clubKey": "caz",
+      "slug": "ervin-bashi"
+    },
+    "Simone Pontisso": {
+      "fmId": "43140336",
+      "clubKey": "caz",
+      "slug": "simone-pontisso"
+    },
+    "Marco Pompetti": {
+      "fmId": "43298996",
+      "clubKey": "caz",
+      "slug": "marco-pompetti"
+    },
+    "Jacopo Petriccione": {
+      "fmId": "43067919",
+      "clubKey": "caz",
+      "slug": "jacopo-petriccione"
+    },
+    "Rémi Oudin": {
+      "fmId": "48033600",
+      "clubKey": "caz",
+      "slug": "remi-oudin"
+    },
+    "Gabriele Alesi": {
+      "fmId": "2000018196",
+      "clubKey": "caz",
+      "slug": "gabriele-alesi"
+    },
+    "Francesco Karol Maiolo": {
+      "fmId": "2000267233",
+      "clubKey": "caz",
+      "slug": "francesco-karol-maiolo"
+    },
+    "Edoardo Vascotto": {
+      "fmId": "2000241010",
+      "clubKey": "caz",
+      "slug": "edoardo-vascotto"
+    },
+    "Giuseppe Federico": {
+      "fmId": "2000410231",
+      "clubKey": "caz",
+      "slug": "giuseppe-federico"
+    },
+    "Pietro Iemmello": {
+      "fmId": "43009077",
+      "clubKey": "caz",
+      "slug": "pietro-iemmello"
+    },
+    "Filippo Pittarello": {
+      "fmId": "43160128",
+      "clubKey": "caz",
+      "slug": "filippo-pittarello"
+    },
+    "Nicolò Buso": {
+      "fmId": "43298000",
+      "clubKey": "caz",
+      "slug": "nicolo-buso"
+    },
+    "Mattia Liberali": {
+      "fmId": "2000252799",
+      "clubKey": "caz",
+      "slug": "mattia-liberali"
+    },
+    "Giovanni Volpe": {
+      "fmId": "43426111",
+      "clubKey": "caz",
+      "slug": "giovanni-volpe"
+    },
+    "N'dri Philippe Koffi": {
+      "fmId": "49062609",
+      "clubKey": "caz",
+      "slug": "ndri-philippe-koffi"
+    },
+    "Gabriel Arditi": {
+      "fmId": "2000223157",
+      "clubKey": "caz",
+      "slug": "gabriel-arditi"
+    },
+    "Sayha Seha": {
+      "fmId": "2000113673",
+      "clubKey": "caz",
+      "slug": "sayha-seha"
+    },
+    "Thomas Vettorel": {
+      "fmId": "43318810",
+      "clubKey": "cos",
+      "slug": "thomas-vettorel"
+    },
+    "Thomas Pompei": {
+      "fmId": "2000222780",
+      "clubKey": "cos",
+      "slug": "thomas-pompei"
+    },
+    "Alessandro Caporale": {
+      "fmId": "43130432",
+      "clubKey": "cos",
+      "slug": "alessandro-caporale"
+    },
+    "Tommaso D'Orazio": {
+      "fmId": "43036634",
+      "clubKey": "cos",
+      "slug": "tommaso-dorazio"
+    },
+    "Manuel Ricciardi": {
+      "fmId": "43339730",
+      "clubKey": "cos",
+      "slug": "manuel-ricciardi"
+    },
+    "Baldovino Cimino": {
+      "fmId": "2000023799",
+      "clubKey": "cos",
+      "slug": "baldovino-cimino"
+    },
+    "Pietro Ciotti": {
+      "fmId": "43316086",
+      "clubKey": "cos",
+      "slug": "pietro-ciotti"
+    },
+    "Paolo Dametto": {
+      "fmId": "43054609",
+      "clubKey": "cos",
+      "slug": "paolo-dametto"
+    },
+    "Antonio Barone": {
+      "fmId": "2000187703",
+      "clubKey": "cos",
+      "slug": "antonio-barone"
+    },
+    "Alessandro Valente": {
+      "fmId": "2000465408",
+      "clubKey": "cos",
+      "slug": "alessandro-valente"
+    },
+    "Aldo Florenzi": {
+      "fmId": "43425127",
+      "clubKey": "cos",
+      "slug": "aldo-florenzi"
+    },
+    "Andrea Rizzo Pinna": {
+      "fmId": "43295808",
+      "clubKey": "cos",
+      "slug": "andrea-rizzo-pinna"
+    },
+    "Christian Langella": {
+      "fmId": "43339495",
+      "clubKey": "cos",
+      "slug": "christian-langella"
+    },
+    "Riccardo Palmieri": {
+      "fmId": "43123527",
+      "clubKey": "cos",
+      "slug": "riccardo-palmieri"
+    },
+    "Christos Kourfalidis": {
+      "fmId": "43591464",
+      "clubKey": "cos",
+      "slug": "christos-kourfalidis"
+    },
+    "Nicolò Contiliano": {
+      "fmId": "2000024663",
+      "clubKey": "cos",
+      "slug": "nicolo-contiliano"
+    },
+    "Racine Ba": {
+      "fmId": "2000144859",
+      "clubKey": "cos",
+      "slug": "racine-ba"
+    },
+    "Diego Ragone": {
+      "fmId": "2000241398",
+      "clubKey": "cos",
+      "slug": "diego-ragone"
+    },
+    "Jaime Báez": {
+      "fmId": "78059416",
+      "clubKey": "cos",
+      "slug": "jaime-baez"
+    },
+    "Simone Mazzocchi": {
+      "fmId": "43191418",
+      "clubKey": "cos",
+      "slug": "simone-mazzocchi"
+    },
+    "Luca Garritano": {
+      "fmId": "43055073",
+      "clubKey": "cos",
+      "slug": "luca-garritano"
+    },
+    "Massimo Zilli": {
+      "fmId": "43426136",
+      "clubKey": "cos",
+      "slug": "massimo-zilli"
+    },
+    "Michele Emmausso": {
+      "fmId": "43318455",
+      "clubKey": "cos",
+      "slug": "michele-emmausso"
+    },
+    "Giacomo Beretta": {
+      "fmId": "43036495",
+      "clubKey": "cos",
+      "slug": "giacomo-beretta"
+    },
+    "Alessandro Arioli": {
+      "fmId": "43611619",
+      "clubKey": "cos",
+      "slug": "alessandro-arioli"
+    },
+    "Jahce Novello": {
+      "fmId": "2000021206",
+      "clubKey": "cos",
+      "slug": "jahce-novello"
+    },
+    "Leandro Chichizola": {
+      "fmId": "14000746",
+      "clubKey": "mod",
+      "slug": "leandro-chichizola"
+    },
+    "Abdullah Laidani": {
+      "fmId": "2000048671",
+      "clubKey": "mod",
+      "slug": "abdullah-laidani"
+    },
+    "Leonardo Consiglio": {
+      "fmId": "2000222922",
+      "clubKey": "mod",
+      "slug": "leonardo-consiglio"
+    },
+    "Paulo Azzi": {
+      "fmId": "19219300",
+      "clubKey": "mod",
+      "slug": "paulo-azzi"
+    },
+    "Francesco Zampano": {
+      "fmId": "43072156",
+      "clubKey": "mod",
+      "slug": "francesco-zampano"
+    },
+    "Daniel Tonoli": {
+      "fmId": "43612275",
+      "clubKey": "mod",
+      "slug": "daniel-tonoli"
+    },
+    "Davide Adorni": {
+      "fmId": "43078070",
+      "clubKey": "mod",
+      "slug": "davide-adorni"
+    },
+    "Bryant Nieling": {
+      "fmId": "2000017548",
+      "clubKey": "mod",
+      "slug": "bryant-nieling"
+    },
+    "Matteo Cotali": {
+      "fmId": "43161671",
+      "clubKey": "mod",
+      "slug": "matteo-cotali"
+    },
+    "Cristian Cauz": {
+      "fmId": "43116676",
+      "clubKey": "mod",
+      "slug": "cristian-cauz"
+    },
+    "Gady Beyuku": {
+      "fmId": "2000381776",
+      "clubKey": "mod",
+      "slug": "gady-beyuku"
+    },
+    "Alessandro Sersanti": {
+      "fmId": "43425924",
+      "clubKey": "mod",
+      "slug": "alessandro-sersanti"
+    },
+    "Fabio Gerli": {
+      "fmId": "43152459",
+      "clubKey": "mod",
+      "slug": "fabio-gerli"
+    },
+    "Simone Santoro": {
+      "fmId": "43252727",
+      "clubKey": "mod",
+      "slug": "simone-santoro"
+    },
+    "Ousmane Niang": {
+      "fmId": "43425576",
+      "clubKey": "mod",
+      "slug": "ousmane-niang"
+    },
+    "Christian Molara": {
+      "fmId": "2000287159",
+      "clubKey": "mod",
+      "slug": "christian-molara"
+    },
+    "Giuseppe Caso": {
+      "fmId": "43212339",
+      "clubKey": "mod",
+      "slug": "giuseppe-caso"
+    },
+    "Pedro Mendes": {
+      "fmId": "83209474",
+      "clubKey": "mod",
+      "slug": "pedro-mendes"
+    },
+    "Kleis Bozhanaj": {
+      "fmId": "43474398",
+      "clubKey": "mod",
+      "slug": "kleis-bozhanaj"
+    },
+    "Daniele Montevago": {
+      "fmId": "43500517",
+      "clubKey": "mod",
+      "slug": "daniele-montevago"
+    },
+    "Luca Strizzolo": {
+      "fmId": "43074228",
+      "clubKey": "mod",
+      "slug": "luca-strizzolo"
+    },
+    "Antonio Imputato": {
+      "fmId": "2000185795",
+      "clubKey": "mod",
+      "slug": "antonio-imputato"
+    },
+    "Taha Zidouh": {
+      "fmId": "2000375062",
+      "clubKey": "mod",
+      "slug": "taha-zidouh"
+    },
+    "Carlo Carreri": {
+      "fmId": "2000295067",
+      "clubKey": "mod",
+      "slug": "carlo-carreri"
+    },
+    "Demba Thiam": {
+      "fmId": "43304017",
+      "clubKey": "mnz",
+      "slug": "demba-thiam"
+    },
+    "Semuel Pizzignacco": {
+      "fmId": "43392090",
+      "clubKey": "mnz",
+      "slug": "semuel-pizzignacco"
+    },
+    "Alessandro Sorrentino": {
+      "fmId": "43408389",
+      "clubKey": "mnz",
+      "slug": "alessandro-sorrentino"
+    },
+    "Andrea Carboni": {
+      "fmId": "43391662",
+      "clubKey": "mnz",
+      "slug": "andrea-carboni"
+    },
+    "Luca Ravanelli": {
+      "fmId": "43096680",
+      "clubKey": "mnz",
+      "slug": "luca-ravanelli"
+    },
+    "Valentin Antov": {
+      "fmId": "22067326",
+      "clubKey": "mnz",
+      "slug": "valentin-antov"
+    },
+    "Samuele Birindelli": {
+      "fmId": "43274094",
+      "clubKey": "mnz",
+      "slug": "samuele-birindelli"
+    },
+    "Patrick Ciurria": {
+      "fmId": "43115532",
+      "clubKey": "mnz",
+      "slug": "patrick-ciurria"
+    },
+    "Filippo Delli Carri": {
+      "fmId": "43254335",
+      "clubKey": "mnz",
+      "slug": "filippo-delli-carri"
+    },
+    "Arvid Brorsson": {
+      "fmId": "93081642",
+      "clubKey": "mnz",
+      "slug": "arvid-brorsson"
+    },
+    "Lorenzo Lucchesi": {
+      "fmId": "43500433",
+      "clubKey": "mnz",
+      "slug": "lorenzo-lucchesi"
+    },
+    "Matteo Pessina": {
+      "fmId": "43155796",
+      "clubKey": "mnz",
+      "slug": "matteo-pessina"
+    },
+    "Pedro Obiang": {
+      "fmId": "43036651",
+      "clubKey": "mnz",
+      "slug": "pedro-obiang"
+    },
+    "Manga Foé Ondoa": {
+      "fmId": "2000311282",
+      "clubKey": "mnz",
+      "slug": "manga-foe-ondoa"
+    },
+    "Alessandro Berretta": {
+      "fmId": "2000205855",
+      "clubKey": "mnz",
+      "slug": "alessandro-berretta"
+    },
+    "Andrea Romanini": {
+      "fmId": "2000334048",
+      "clubKey": "mnz",
+      "slug": "andrea-romanini"
+    },
+    "Luca Rossini": {
+      "fmId": "2000334051",
+      "clubKey": "mnz",
+      "slug": "luca-rossini"
+    },
+    "Marco Buonaiuto": {
+      "fmId": "2000298524",
+      "clubKey": "mnz",
+      "slug": "marco-buonaiuto"
+    },
+    "Abdou Diene": {
+      "fmId": "2000334046",
+      "clubKey": "mnz",
+      "slug": "abdou-diene"
+    },
+    "Andrea Colpani": {
+      "fmId": "43252476",
+      "clubKey": "mnz",
+      "slug": "andrea-colpani"
+    },
+    "Patrick Cutrone": {
+      "fmId": "43167351",
+      "clubKey": "mnz",
+      "slug": "patrick-cutrone"
+    },
+    "Dany Mota": {
+      "fmId": "43257364",
+      "clubKey": "mnz",
+      "slug": "dany-mota"
+    },
+    "Keita Baldé": {
+      "fmId": "43093942",
+      "clubKey": "mnz",
+      "slug": "keita-balde"
+    },
+    "Andrea Petagna": {
+      "fmId": "43091160",
+      "clubKey": "mnz",
+      "slug": "andrea-petagna"
+    },
+    "Nicolas Galazzi": {
+      "fmId": "43353701",
+      "clubKey": "mnz",
+      "slug": "nicolas-galazzi"
+    },
+    "Mirko Marić": {
+      "fmId": "21021289",
+      "clubKey": "mnz",
+      "slug": "mirko-maric"
+    },
+    "Omari Forson": {
+      "fmId": "2000017597",
+      "clubKey": "mnz",
+      "slug": "omari-forson"
+    },
+    "Samuele Vitale": {
+      "fmId": "43426104",
+      "clubKey": "asc",
+      "slug": "samuele-vitale"
+    },
+    "Davide Barosi": {
+      "fmId": "43296749",
+      "clubKey": "asc",
+      "slug": "davide-barosi"
+    },
+    "Matteo Raffaelli": {
+      "fmId": "2000098318",
+      "clubKey": "asc",
+      "slug": "matteo-raffaelli"
+    },
+    "Abdoul Guiebré": {
+      "fmId": "43350422",
+      "clubKey": "asc",
+      "slug": "abdoul-guiebre"
+    },
+    "Gabriele Pagliai": {
+      "fmId": "43425621",
+      "clubKey": "asc",
+      "slug": "gabriele-pagliai"
+    },
+    "Marcos Curado": {
+      "fmId": "14117387",
+      "clubKey": "asc",
+      "slug": "marcos-curado"
+    },
+    "Manuel Alagna": {
+      "fmId": "43616995",
+      "clubKey": "asc",
+      "slug": "manuel-alagna"
+    },
+    "Damiano Menna": {
+      "fmId": "43104954",
+      "clubKey": "asc",
+      "slug": "damiano-menna"
+    },
+    "Nicholas Rizzo": {
+      "fmId": "43317888",
+      "clubKey": "asc",
+      "slug": "nicholas-rizzo"
+    },
+    "Manuel Nicoletti": {
+      "fmId": "43194231",
+      "clubKey": "asc",
+      "slug": "manuel-nicoletti"
+    },
+    "Aljaž Tavčar": {
+      "fmId": "2000027735",
+      "clubKey": "asc",
+      "slug": "aljaz-tavcar"
+    },
+    "Tommaso Milanese": {
+      "fmId": "43425493",
+      "clubKey": "asc",
+      "slug": "tommaso-milanese"
+    },
+    "Giovanni Corradini": {
+      "fmId": "43424913",
+      "clubKey": "asc",
+      "slug": "giovanni-corradini"
+    },
+    "Sergiu Perciun": {
+      "fmId": "2000199410",
+      "clubKey": "asc",
+      "slug": "sergiu-perciun"
+    },
+    "Samuele Damiani": {
+      "fmId": "43206182",
+      "clubKey": "asc",
+      "slug": "samuele-damiani"
+    },
+    "Emanuele Ndoj": {
+      "fmId": "43124843",
+      "clubKey": "asc",
+      "slug": "emanuele-ndoj"
+    },
+    "Matteo Malafronte": {
+      "fmId": "2000330597",
+      "clubKey": "asc",
+      "slug": "matteo-malafronte"
+    },
+    "Nicolò Vischia": {
+      "fmId": "2000465414",
+      "clubKey": "asc",
+      "slug": "nicolo-vischia"
+    },
+    "Mouhamadou Mbaye": {
+      "fmId": "2000510008",
+      "clubKey": "asc",
+      "slug": "mouhamadou-mbaye"
+    },
+    "Francesco Galuppini": {
+      "fmId": "43072151",
+      "clubKey": "asc",
+      "slug": "francesco-galuppini"
+    },
+    "Gabriele Gori": {
+      "fmId": "43252195",
+      "clubKey": "asc",
+      "slug": "gabriele-gori"
+    },
+    "Simone Corazza": {
+      "fmId": "43048984",
+      "clubKey": "asc",
+      "slug": "simone-corazza"
+    },
+    "Francesco Forte": {
+      "fmId": "43110377",
+      "clubKey": "asc",
+      "slug": "francesco-forte"
+    },
+    "Enrico Oviszach": {
+      "fmId": "43373622",
+      "clubKey": "asc",
+      "slug": "enrico-oviszach"
+    },
+    "Giacomo De Pieri": {
+      "fmId": "2000269262",
+      "clubKey": "asc",
+      "slug": "giacomo-de-pieri"
+    },
+    "Ferdinando Del Sole": {
+      "fmId": "43194324",
+      "clubKey": "asc",
+      "slug": "ferdinando-del-sole"
+    },
+    "Simone D'Uffizi": {
+      "fmId": "2000101713",
+      "clubKey": "asc",
+      "slug": "simone-duffizi"
+    },
+    "Alessandro Zanellati": {
+      "fmId": "43270719",
+      "clubKey": "ctd",
+      "slug": "alessandro-zanellati"
+    },
+    "Luca Maniero": {
+      "fmId": "43086991",
+      "clubKey": "ctd",
+      "slug": "luca-maniero"
+    },
+    "Giordano Turrini": {
+      "fmId": "2000330939",
+      "clubKey": "ctd",
+      "slug": "giordano-turrini"
+    },
+    "Lorenzo Carissoni": {
+      "fmId": "43215187",
+      "clubKey": "ctd",
+      "slug": "lorenzo-carissoni"
+    },
+    "Alex Redolfi": {
+      "fmId": "43050840",
+      "clubKey": "ctd",
+      "slug": "alex-redolfi"
+    },
+    "Matteo Angeli": {
+      "fmId": "43433616",
+      "clubKey": "ctd",
+      "slug": "matteo-angeli"
+    },
+    "Alessandro Salvi": {
+      "fmId": "43006533",
+      "clubKey": "ctd",
+      "slug": "alessandro-salvi"
+    },
+    "Francesco D'Alessio": {
+      "fmId": "2000024751",
+      "clubKey": "ctd",
+      "slug": "francesco-dalessio"
+    },
+    "Carlo Crialese": {
+      "fmId": "43054189",
+      "clubKey": "ctd",
+      "slug": "carlo-crialese"
+    },
+    "Stefano Piccinini": {
+      "fmId": "43425703",
+      "clubKey": "ctd",
+      "slug": "stefano-piccinini"
+    },
+    "Riccardo Gatti": {
+      "fmId": "43139326",
+      "clubKey": "ctd",
+      "slug": "riccardo-gatti"
+    },
+    "Francesco Amatucci": {
+      "fmId": "43407340",
+      "clubKey": "ctd",
+      "slug": "francesco-amatucci"
+    },
+    "Nicola Pavan": {
+      "fmId": "43093376",
+      "clubKey": "ctd",
+      "slug": "nicola-pavan"
+    },
+    "Federico Casolari": {
+      "fmId": "43500067",
+      "clubKey": "ctd",
+      "slug": "federico-casolari"
+    },
+    "Andrea Barberis": {
+      "fmId": "43078258",
+      "clubKey": "ctd",
+      "slug": "andrea-barberis"
+    },
+    "Akim Djibril": {
+      "fmId": "2000136279",
+      "clubKey": "ctd",
+      "slug": "akim-djibril"
+    },
+    "Alex Giacometti": {
+      "fmId": "2000267456",
+      "clubKey": "ctd",
+      "slug": "alex-giacometti"
+    },
+    "Riccardo Steffani": {
+      "fmId": "2000265584",
+      "clubKey": "ctd",
+      "slug": "riccardo-steffani"
+    },
+    "Alessio Vita": {
+      "fmId": "43077741",
+      "clubKey": "ctd",
+      "slug": "alessio-vita"
+    },
+    "Diego Falcinelli": {
+      "fmId": "43029898",
+      "clubKey": "ctd",
+      "slug": "diego-falcinelli"
+    },
+    "Simone Rabbi": {
+      "fmId": "43392873",
+      "clubKey": "ctd",
+      "slug": "simone-rabbi"
+    },
+    "Davide Diaw": {
+      "fmId": "43079675",
+      "clubKey": "ctd",
+      "slug": "davide-diaw"
+    },
+    "Jacopo Desogus": {
+      "fmId": "43425008",
+      "clubKey": "ctd",
+      "slug": "jacopo-desogus"
+    },
+    "Destiny Efosa Egharevba": {
+      "fmId": "43591538",
+      "clubKey": "ctd",
+      "slug": "destiny-efosa-egharevba"
+    },
+    "Emanuele Anastasia": {
+      "fmId": "43140919",
+      "clubKey": "ctd",
+      "slug": "emanuele-anastasia"
+    },
+    "Andrea Ghezzi": {
+      "fmId": "43407813",
+      "clubKey": "ctd",
+      "slug": "andrea-ghezzi"
+    },
+    "Alessandro Micai": {
+      "fmId": "43022306",
+      "clubKey": "rgn",
+      "slug": "alessandro-micai"
+    },
+    "Andrea Seculin": {
+      "fmId": "43007283",
+      "clubKey": "rgn",
+      "slug": "andrea-seculin"
+    },
+    "Matteo Cardinali": {
+      "fmId": "43372028",
+      "clubKey": "rgn",
+      "slug": "matteo-cardinali"
+    },
+    "Paolo Rozzio": {
+      "fmId": "43077907",
+      "clubKey": "rgn",
+      "slug": "paolo-rozzio"
+    },
+    "Andrea Papetti": {
+      "fmId": "43425644",
+      "clubKey": "rgn",
+      "slug": "andrea-papetti"
+    },
+    "Mario Sampirisi": {
+      "fmId": "43061338",
+      "clubKey": "rgn",
+      "slug": "mario-sampirisi"
+    },
+    "Lorenzo Libutti": {
+      "fmId": "43204023",
+      "clubKey": "rgn",
+      "slug": "lorenzo-libutti"
+    },
+    "Danilo Quaranta": {
+      "fmId": "43162313",
+      "clubKey": "rgn",
+      "slug": "danilo-quaranta"
+    },
+    "Alessandro Tripaldelli": {
+      "fmId": "43266802",
+      "clubKey": "rgn",
+      "slug": "alessandro-tripaldelli"
+    },
+    "Oliver Urso": {
+      "fmId": "43252160",
+      "clubKey": "rgn",
+      "slug": "oliver-urso"
+    },
+    "Tomas Lepri": {
+      "fmId": "43617412",
+      "clubKey": "rgn",
+      "slug": "tomas-lepri"
+    },
+    "Tobías Reinhart": {
+      "fmId": "14186343",
+      "clubKey": "rgn",
+      "slug": "tobias-reinhart"
+    },
+    "Massimo Bertagnoli": {
+      "fmId": "43252684",
+      "clubKey": "rgn",
+      "slug": "massimo-bertagnoli"
+    },
+    "Martín Suárez": {
+      "fmId": "2000086454",
+      "clubKey": "rgn",
+      "slug": "martin-suarez"
+    },
+    "Roque Maisterra": {
+      "fmId": "2000245935",
+      "clubKey": "rgn",
+      "slug": "roque-maisterra"
+    },
+    "Matteo Tessitori": {
+      "fmId": "2000294432",
+      "clubKey": "rgn",
+      "slug": "matteo-tessitori"
+    },
+    "Nuhu Shaibu": {
+      "fmId": "2000245038",
+      "clubKey": "rgn",
+      "slug": "nuhu-shaibu"
+    },
+    "Renato Piga": {
+      "fmId": "2000295887",
+      "clubKey": "rgn",
+      "slug": "renato-piga"
+    },
+    "Manolo Portanova": {
+      "fmId": "43297054",
+      "clubKey": "rgn",
+      "slug": "manolo-portanova"
+    },
+    "Matteo Rover": {
+      "fmId": "43270444",
+      "clubKey": "rgn",
+      "slug": "matteo-rover"
+    },
+    "Cedric Gondo": {
+      "fmId": "43093499",
+      "clubKey": "rgn",
+      "slug": "cedric-gondo"
+    },
+    "Natan Girma": {
+      "fmId": "84161913",
+      "clubKey": "rgn",
+      "slug": "natan-girma"
+    },
+    "Matteo Maggio": {
+      "fmId": "43425371",
+      "clubKey": "rgn",
+      "slug": "matteo-maggio"
+    },
+    "Damiano Basili": {
+      "fmId": "2000021389",
+      "clubKey": "rgn",
+      "slug": "damiano-basili"
+    },
+    "Francesco Vallarelli": {
+      "fmId": "2000105264",
+      "clubKey": "rgn",
+      "slug": "francesco-vallarelli"
+    },
+    "Oumar Conté": {
+      "fmId": "2000438260",
+      "clubKey": "rgn",
+      "slug": "oumar-conte"
+    },
+    "Gaëtan Coucke": {
+      "fmId": "18089396",
+      "clubKey": "sam",
+      "slug": "gaetan-coucke"
+    },
+    "Simone Ghidotti": {
+      "fmId": "43316795",
+      "clubKey": "sam",
+      "slug": "simone-ghidotti"
+    },
+    "Nicola Ravaglia": {
+      "fmId": "43002866",
+      "clubKey": "sam",
+      "slug": "nicola-ravaglia"
+    },
+    "Manuel Cicconi": {
+      "fmId": "43140539",
+      "clubKey": "sam",
+      "slug": "manuel-cicconi"
+    },
+    "Fabio Depaoli": {
+      "fmId": "43161628",
+      "clubKey": "sam",
+      "slug": "fabio-depaoli"
+    },
+    "Lorenzo Venuti": {
+      "fmId": "43093519",
+      "clubKey": "sam",
+      "slug": "lorenzo-venuti"
+    },
+    "Alessandro Riccio": {
+      "fmId": "43425790",
+      "clubKey": "sam",
+      "slug": "alessandro-riccio"
+    },
+    "Simone Giordano": {
+      "fmId": "43392847",
+      "clubKey": "sam",
+      "slug": "simone-giordano"
+    },
+    "Alessandro Di Pardo": {
+      "fmId": "43303684",
+      "clubKey": "sam",
+      "slug": "alessandro-di-pardo"
+    },
+    "Stefan Gartenmann": {
+      "fmId": "27092473",
+      "clubKey": "sam",
+      "slug": "stefan-gartenmann"
+    },
+    "Alex Ferrari": {
+      "fmId": "43093049",
+      "clubKey": "sam",
+      "slug": "alex-ferrari"
+    },
+    "Salvatore Esposito": {
+      "fmId": "43317730",
+      "clubKey": "sam",
+      "slug": "salvatore-esposito"
+    },
+    "Liam Henderson": {
+      "fmId": "61058564",
+      "clubKey": "sam",
+      "slug": "liam-henderson"
+    },
+    "Oliver Abildgaard": {
+      "fmId": "27093157",
+      "clubKey": "sam",
+      "slug": "oliver-abildgaard"
+    },
+    "Jordan Ferri": {
+      "fmId": "85003943",
+      "clubKey": "sam",
+      "slug": "jordan-ferri"
+    },
+    "Alessandro Bellemo": {
+      "fmId": "43204338",
+      "clubKey": "sam",
+      "slug": "alessandro-bellemo"
+    },
+    "Matteo Ricci": {
+      "fmId": "43093394",
+      "clubKey": "sam",
+      "slug": "matteo-ricci"
+    },
+    "Stefano Girelli": {
+      "fmId": "43390445",
+      "clubKey": "sam",
+      "slug": "stefano-girelli"
+    },
+    "Francesco Conti": {
+      "fmId": "2000024680",
+      "clubKey": "sam",
+      "slug": "francesco-conti"
+    },
+    "Lorenzo Insigne": {
+      "fmId": "43043933",
+      "clubKey": "sam",
+      "slug": "lorenzo-insigne"
+    },
+    "Tobias Lauritsen": {
+      "fmId": "53126892",
+      "clubKey": "sam",
+      "slug": "tobias-lauritsen"
+    },
+    "Gennaro Tutino": {
+      "fmId": "43112505",
+      "clubKey": "sam",
+      "slug": "gennaro-tutino"
+    },
+    "Massimo Coda": {
+      "fmId": "5729054",
+      "clubKey": "sam",
+      "slug": "massimo-coda"
+    },
+    "Estanis Pedrola": {
+      "fmId": "2000100315",
+      "clubKey": "sam",
+      "slug": "estanis-pedrola"
+    },
+    "Tjaš Begić": {
+      "fmId": "2000029892",
+      "clubKey": "sam",
+      "slug": "tjas-begic"
+    },
+    "Nikola Sekulov": {
+      "fmId": "43425915",
+      "clubKey": "sam",
+      "slug": "nikola-sekulov"
+    },
+    "Antonino La Gumina": {
+      "fmId": "43124602",
+      "clubKey": "sam",
+      "slug": "antonino-la-gumina"
+    },
+    "Mouhamadou Sarr": {
+      "fmId": "43161573",
+      "clubKey": "spe",
+      "slug": "mouhamadou-sarr"
+    },
+    "Diego Mascardi": {
+      "fmId": "2000266424",
+      "clubKey": "spe",
+      "slug": "diego-mascardi"
+    },
+    "Petko Hristov": {
+      "fmId": "22064932",
+      "clubKey": "spe",
+      "slug": "petko-hristov"
+    },
+    "Aleš Matějů": {
+      "fmId": "25041780",
+      "clubKey": "spe",
+      "slug": "ales-mateju"
+    },
+    "Antonio Candela": {
+      "fmId": "43300251",
+      "clubKey": "spe",
+      "slug": "antonio-candela"
+    },
+    "Marco Ruggero": {
+      "fmId": "43301765",
+      "clubKey": "spe",
+      "slug": "marco-ruggero"
+    },
+    "Emanuele Adamo": {
+      "fmId": "43272168",
+      "clubKey": "spe",
+      "slug": "emanuele-adamo"
+    },
+    "Luca Vignali": {
+      "fmId": "43124947",
+      "clubKey": "spe",
+      "slug": "luca-vignali"
+    },
+    "Giuseppe Aurelio": {
+      "fmId": "43323039",
+      "clubKey": "spe",
+      "slug": "giuseppe-aurelio"
+    },
+    "Andrea Cistana": {
+      "fmId": "43154724",
+      "clubKey": "spe",
+      "slug": "andrea-cistana"
+    },
+    "Ádám Nagy": {
+      "fmId": "38037976",
+      "clubKey": "spe",
+      "slug": "adam-nagy"
+    },
+    "Szymon Żurkowski": {
+      "fmId": "96110489",
+      "clubKey": "spe",
+      "slug": "szymon-zurkowski"
+    },
+    "Filippo Bandinelli": {
+      "fmId": "43093472",
+      "clubKey": "spe",
+      "slug": "filippo-bandinelli"
+    },
+    "Francesco Cassata": {
+      "fmId": "43141850",
+      "clubKey": "spe",
+      "slug": "francesco-cassata"
+    },
+    "Giuseppe Felici": {
+      "fmId": "2000409208",
+      "clubKey": "spe",
+      "slug": "giuseppe-felici"
+    },
+    "Matteo Lontani": {
+      "fmId": "2000294241",
+      "clubKey": "spe",
+      "slug": "matteo-lontani"
+    },
+    "Hamse Shagaxle": {
+      "fmId": "2000183258",
+      "clubKey": "spe",
+      "slug": "hamse-shagaxle"
+    },
+    "Emanuele Lorenzelli": {
+      "fmId": "2000266421",
+      "clubKey": "spe",
+      "slug": "emanuele-lorenzelli"
+    },
+    "Mirko Antonucci": {
+      "fmId": "43252225",
+      "clubKey": "spe",
+      "slug": "mirko-antonucci"
+    },
+    "Edoardo Soleri": {
+      "fmId": "43190949",
+      "clubKey": "spe",
+      "slug": "edoardo-soleri"
+    },
+    "Pietro Candelari": {
+      "fmId": "2000099623",
+      "clubKey": "spe",
+      "slug": "pietro-candelari"
+    },
+    "Mattia Valoti": {
+      "fmId": "43050913",
+      "clubKey": "spe",
+      "slug": "mattia-valoti"
+    },
+    "Giuseppe Di Serio": {
+      "fmId": "43347677",
+      "clubKey": "spe",
+      "slug": "giuseppe-di-serio"
+    },
+    "Halid Djankpata": {
+      "fmId": "2000134429",
+      "clubKey": "spe",
+      "slug": "halid-djankpata"
+    },
+    "Diego Ferrazza": {
+      "fmId": "2000295040",
+      "clubKey": "spe",
+      "slug": "diego-ferrazza"
+    },
+    "Lorenzo Lischetti": {
+      "fmId": "2000199065",
+      "clubKey": "spe",
+      "slug": "lorenzo-lischetti"
+    },
+    "Michele Cerofolini": {
+      "fmId": "43252199",
+      "clubKey": "bri",
+      "slug": "michele-cerofolini"
+    },
+    "Marco Pissardo": {
+      "fmId": "43207182",
+      "clubKey": "bri",
+      "slug": "marco-pissardo"
+    },
+    "Davide Marfella": {
+      "fmId": "43373207",
+      "clubKey": "bri",
+      "slug": "davide-marfella"
+    },
+    "Mehdi Dorval": {
+      "fmId": "49048899",
+      "clubKey": "bri",
+      "slug": "mehdi-dorval"
+    },
+    "Valerio Mantovani": {
+      "fmId": "43094093",
+      "clubKey": "bri",
+      "slug": "valerio-mantovani"
+    },
+    "Francesco Vicari": {
+      "fmId": "43115048",
+      "clubKey": "bri",
+      "slug": "francesco-vicari"
+    },
+    "Raffaele Pucino": {
+      "fmId": "43057439",
+      "clubKey": "bri",
+      "slug": "raffaele-pucino"
+    },
+    "Lorenzo Dickmann": {
+      "fmId": "43124199",
+      "clubKey": "bri",
+      "slug": "lorenzo-dickmann"
+    },
+    "Riccardo Burgio": {
+      "fmId": "43393567",
+      "clubKey": "bri",
+      "slug": "riccardo-burgio"
+    },
+    "Moussa Manè": {
+      "fmId": "43619322",
+      "clubKey": "bri",
+      "slug": "moussa-mane"
+    },
+    "Vitantonio Carrieri": {
+      "fmId": "2000374030",
+      "clubKey": "bri",
+      "slug": "vitantonio-carrieri"
+    },
+    "Ebrima Darboe": {
+      "fmId": "43617224",
+      "clubKey": "bri",
+      "slug": "ebrima-darboe"
+    },
+    "Giulio Maggiore": {
+      "fmId": "43207148",
+      "clubKey": "bri",
+      "slug": "giulio-maggiore"
+    },
+    "Filippo Faggi": {
+      "fmId": "43617297",
+      "clubKey": "bri",
+      "slug": "filippo-faggi"
+    },
+    "Steliyan Stoyanov": {
+      "fmId": "2000366049",
+      "clubKey": "bri",
+      "slug": "steliyan-stoyanov"
+    },
+    "Fabio Polito": {
+      "fmId": "2000374040",
+      "clubKey": "bri",
+      "slug": "fabio-polito"
+    },
+    "Giuseppe Sibilli": {
+      "fmId": "43318769",
+      "clubKey": "bri",
+      "slug": "giuseppe-sibilli"
+    },
+    "Matthias Verreth": {
+      "fmId": "18083626",
+      "clubKey": "bri",
+      "slug": "matthias-verreth"
+    },
+    "Christian Gytkjær": {
+      "fmId": "27000596",
+      "clubKey": "bri",
+      "slug": "christian-gytkjaer"
+    },
+    "Gabriele Moncini": {
+      "fmId": "43093100",
+      "clubKey": "bri",
+      "slug": "gabriele-moncini"
+    },
+    "Giacomo Manzari": {
+      "fmId": "43318577",
+      "clubKey": "bri",
+      "slug": "giacomo-manzari"
+    },
+    "Nicola Bellomo": {
+      "fmId": "43041139",
+      "clubKey": "bri",
+      "slug": "nicola-bellomo"
+    },
+    "Vincenzo Colangiuli": {
+      "fmId": "2000244511",
+      "clubKey": "bri",
+      "slug": "vincenzo-colangiuli"
+    },
+    "Fodé Sidibé": {
+      "fmId": "2000422993",
+      "clubKey": "bri",
+      "slug": "fode-sidibe"
+    },
+    "Alessio Cragno": {
+      "fmId": "43092903",
+      "clubKey": "sud",
+      "slug": "alessio-cragno"
+    },
+    "Marius Adamonis": {
+      "fmId": "47055920",
+      "clubKey": "sud",
+      "slug": "marius-adamonis"
+    },
+    "Giacomo Drago": {
+      "fmId": "43391805",
+      "clubKey": "sud",
+      "slug": "giacomo-drago"
+    },
+    "Salvatore Molina": {
+      "fmId": "43058970",
+      "clubKey": "sud",
+      "slug": "salvatore-molina"
+    },
+    "Andrea Giorgini": {
+      "fmId": "43425225",
+      "clubKey": "sud",
+      "slug": "andrea-giorgini"
+    },
+    "Nicola Pietrangeli": {
+      "fmId": "43339693",
+      "clubKey": "sud",
+      "slug": "nicola-pietrangeli"
+    },
+    "Frédéric Veseli": {
+      "fmId": "28047503",
+      "clubKey": "sud",
+      "slug": "frederic-veseli"
+    },
+    "Simone Davi": {
+      "fmId": "43271865",
+      "clubKey": "sud",
+      "slug": "simone-davi"
+    },
+    "Andrea Masiello": {
+      "fmId": "7984549",
+      "clubKey": "sud",
+      "slug": "andrea-masiello"
+    },
+    "Raphael Kofler": {
+      "fmId": "2000164358",
+      "clubKey": "sud",
+      "slug": "raphael-kofler"
+    },
+    "Karim Zedadka": {
+      "fmId": "49047042",
+      "clubKey": "sud",
+      "slug": "karim-zedadka"
+    },
+    "Simone Tronchin": {
+      "fmId": "43599491",
+      "clubKey": "sud",
+      "slug": "simone-tronchin"
+    },
+    "Mamadou Coulibaly": {
+      "fmId": "43357002",
+      "clubKey": "sud",
+      "slug": "mamadou-coulibaly"
+    },
+    "Marco Frigerio": {
+      "fmId": "43371889",
+      "clubKey": "sud",
+      "slug": "marco-frigerio"
+    },
+    "Jacopo Martini": {
+      "fmId": "2000098337",
+      "clubKey": "sud",
+      "slug": "jacopo-martini"
+    },
+    "Daniel Fois": {
+      "fmId": "2000269263",
+      "clubKey": "sud",
+      "slug": "daniel-fois"
+    },
+    "Matteo Fugaro": {
+      "fmId": "2000223201",
+      "clubKey": "sud",
+      "slug": "matteo-fugaro"
+    },
+    "Daniele Casiraghi": {
+      "fmId": "43079174",
+      "clubKey": "sud",
+      "slug": "daniele-casiraghi"
+    },
+    "Raphael Odogwu": {
+      "fmId": "43073576",
+      "clubKey": "sud",
+      "slug": "raphael-odogwu"
+    },
+    "Simone Verdi": {
+      "fmId": "43061356",
+      "clubKey": "sud",
+      "slug": "simone-verdi"
+    },
+    "Silvio Merkaj": {
+      "fmId": "43322289",
+      "clubKey": "sud",
+      "slug": "silvio-merkaj"
+    },
+    "Alessandro Mallamo": {
+      "fmId": "43252461",
+      "clubKey": "sud",
+      "slug": "alessandro-mallamo"
+    },
+    "Vasco Lopes": {
+      "fmId": "83304309",
+      "clubKey": "sud",
+      "slug": "vasco-lopes"
+    },
+    "Domen Črnigoj": {
+      "fmId": "62123347",
+      "clubKey": "sud",
+      "slug": "domen-crnigoj"
+    },
+    "Felix Mahlknecht": {
+      "fmId": "2000465285",
+      "clubKey": "sud",
+      "slug": "felix-mahlknecht"
+    },
+    "Francesco D'Alterio": {
+      "fmId": "43485901",
+      "clubKey": "trn",
+      "slug": "francesco-dalterio"
+    },
+    "Denis Franchi": {
+      "fmId": "43425143",
+      "clubKey": "trn",
+      "slug": "denis-franchi"
+    },
+    "Tommaso Vitali": {
+      "fmId": "43273325",
+      "clubKey": "trn",
+      "slug": "tommaso-vitali"
+    },
+    "Marco Capuano": {
+      "fmId": "43036505",
+      "clubKey": "trn",
+      "slug": "marco-capuano"
+    },
+    "Francesco Donati": {
+      "fmId": "43391796",
+      "clubKey": "trn",
+      "slug": "francesco-donati"
+    },
+    "Bruno Martella": {
+      "fmId": "43061296",
+      "clubKey": "trn",
+      "slug": "bruno-martella"
+    },
+    "Marco Pagliari": {
+      "fmId": "2000098878",
+      "clubKey": "trn",
+      "slug": "marco-pagliari"
+    },
+    "Angelo Ndrecka": {
+      "fmId": "43393604",
+      "clubKey": "trn",
+      "slug": "angelo-ndrecka"
+    },
+    "Alessio Maestrelli": {
+      "fmId": "43617439",
+      "clubKey": "trn",
+      "slug": "alessio-maestrelli"
+    },
+    "Biagio Meccariello": {
+      "fmId": "43073530",
+      "clubKey": "trn",
+      "slug": "biagio-meccariello"
+    },
+    "Marco Bonugli": {
+      "fmId": "2000136165",
+      "clubKey": "trn",
+      "slug": "marco-bonugli"
+    },
+    "Andrea Vallocchia": {
+      "fmId": "43162391",
+      "clubKey": "trn",
+      "slug": "andrea-vallocchia"
+    },
+    "Marco Garetto": {
+      "fmId": "43391870",
+      "clubKey": "trn",
+      "slug": "marco-garetto"
+    },
+    "Mattia Proietti": {
+      "fmId": "43080407",
+      "clubKey": "trn",
+      "slug": "mattia-proietti"
+    },
+    "Federico Viviani": {
+      "fmId": "43061431",
+      "clubKey": "trn",
+      "slug": "federico-viviani"
+    },
+    "Filippo Tripi": {
+      "fmId": "43426033",
+      "clubKey": "trn",
+      "slug": "filippo-tripi"
+    },
+    "Corrado Fulga": {
+      "fmId": "2000218342",
+      "clubKey": "trn",
+      "slug": "corrado-fulga"
+    },
+    "Serigne Sow": {
+      "fmId": "2000278384",
+      "clubKey": "trn",
+      "slug": "serigne-sow"
+    },
+    "Nicolò Ferlicca": {
+      "fmId": "2000373821",
+      "clubKey": "trn",
+      "slug": "nicolo-ferlicca"
+    },
+    "Mattia Aramu": {
+      "fmId": "43094535",
+      "clubKey": "trn",
+      "slug": "mattia-aramu"
+    },
+    "Federico Romeo": {
+      "fmId": "43425812",
+      "clubKey": "trn",
+      "slug": "federico-romeo"
+    },
+    "Enrico Brignola": {
+      "fmId": "43268649",
+      "clubKey": "trn",
+      "slug": "enrico-brignola"
+    },
+    "Alexis Ferrante": {
+      "fmId": "43087611",
+      "clubKey": "trn",
+      "slug": "alexis-ferrante"
+    },
+    "Stefano Pettinari": {
+      "fmId": "43013957",
+      "clubKey": "trn",
+      "slug": "stefano-pettinari"
+    },
+    "Alfredo Donnarumma": {
+      "fmId": "43008875",
+      "clubKey": "trn",
+      "slug": "alfredo-donnarumma"
+    },
+    "Liam Kerrigan": {
+      "fmId": "52090555",
+      "clubKey": "trn",
+      "slug": "liam-kerrigan"
+    },
+    "Edgaras Dubickas": {
+      "fmId": "43215544",
+      "clubKey": "trn",
+      "slug": "edgaras-dubickas"
+    },
+    "Jacopo Furlan": {
+      "fmId": "43079200",
+      "clubKey": "lco",
+      "slug": "jacopo-furlan"
+    },
+    "Joaquin Dalmasso": {
+      "fmId": "2000005852",
+      "clubKey": "lco",
+      "slug": "joaquin-dalmasso"
+    },
+    "Jakob Tschöll": {
+      "fmId": "2000223208",
+      "clubKey": "lco",
+      "slug": "jakob-tscholl"
+    },
+    "Matteo Battistini": {
+      "fmId": "43131114",
+      "clubKey": "lco",
+      "slug": "matteo-battistini"
+    },
+    "Luca Marrone": {
+      "fmId": "43025940",
+      "clubKey": "lco",
+      "slug": "luca-marrone"
+    },
+    "Marwane Kritta": {
+      "fmId": "43433755",
+      "clubKey": "lco",
+      "slug": "marwane-kritta"
+    },
+    "Manuel Ferrini": {
+      "fmId": "43207110",
+      "clubKey": "lco",
+      "slug": "manuel-ferrini"
+    },
+    "Davide Grassini": {
+      "fmId": "43317783",
+      "clubKey": "lco",
+      "slug": "davide-grassini"
+    },
+    "Gregorio Tanco": {
+      "fmId": "14244917",
+      "clubKey": "lco",
+      "slug": "gregorio-tanco"
+    },
+    "Noah Lovisa": {
+      "fmId": "84153415",
+      "clubKey": "lco",
+      "slug": "noah-lovisa"
+    },
+    "Leonardo Frugnoli": {
+      "fmId": "2000209245",
+      "clubKey": "lco",
+      "slug": "leonardo-frugnoli"
+    },
+    "Antonio Metlika": {
+      "fmId": "43393513",
+      "clubKey": "lco",
+      "slug": "antonio-metlika"
+    },
+    "Niccolò Zanellato": {
+      "fmId": "43190482",
+      "clubKey": "lco",
+      "slug": "niccolo-zanellato"
+    },
+    "Stefano Bonaiti": {
+      "fmId": "43207685",
+      "clubKey": "lco",
+      "slug": "stefano-bonaiti"
+    },
+    "Enrico Di Gesù": {
+      "fmId": "43425018",
+      "clubKey": "lco",
+      "slug": "enrico-di-gesu"
+    },
+    "Gabriel Pellegrino": {
+      "fmId": "2000197336",
+      "clubKey": "lco",
+      "slug": "gabriel-pellegrino"
+    },
+    "Andrea Mallamo": {
+      "fmId": "43425384",
+      "clubKey": "lco",
+      "slug": "andrea-mallamo"
+    },
+    "Giuseppe Mazzola": {
+      "fmId": "2000136267",
+      "clubKey": "lco",
+      "slug": "giuseppe-mazzola"
+    },
+    "Filippo Monguzzi": {
+      "fmId": "2000298525",
+      "clubKey": "lco",
+      "slug": "filippo-monguzzi"
+    },
+    "Leon Šipoš": {
+      "fmId": "24057485",
+      "clubKey": "lco",
+      "slug": "leon-sipos"
+    },
+    "Guillaume Furrer": {
+      "fmId": "84151694",
+      "clubKey": "lco",
+      "slug": "guillaume-furrer"
+    },
+    "Alessandro Galeandro": {
+      "fmId": "43301068",
+      "clubKey": "lco",
+      "slug": "alessandro-galeandro"
+    },
+    "Sean Parker": {
+      "fmId": "43206233",
+      "clubKey": "lco",
+      "slug": "sean-parker"
+    },
+    "Davide Voltan": {
+      "fmId": "43087011",
+      "clubKey": "lco",
+      "slug": "davide-voltan"
+    },
+    "Anas Alaoui": {
+      "fmId": "2000212734",
+      "clubKey": "lco",
+      "slug": "anas-alaoui"
+    },
+    "Lorenzo Mihali": {
+      "fmId": "2000271074",
+      "clubKey": "lco",
+      "slug": "lorenzo-mihali"
+    },
+    "Alejandro Mendoza": {
+      "fmId": "2000104809",
+      "clubKey": "lco",
+      "slug": "alejandro-mendoza"
+    },
+    "Samuele Perisan": {
+      "fmId": "43140327",
+      "clubKey": "emp",
+      "slug": "samuele-perisan"
+    },
+    "Jacopo Seghetti": {
+      "fmId": "2000145085",
+      "clubKey": "emp",
+      "slug": "jacopo-seghetti"
+    },
+    "Federico Brancolini": {
+      "fmId": "43357008",
+      "clubKey": "emp",
+      "slug": "federico-brancolini"
+    },
+    "Emmanuel Gyasi": {
+      "fmId": "43112998",
+      "clubKey": "emp",
+      "slug": "emmanuel-gyasi"
+    },
+    "Salvatore Elia": {
+      "fmId": "43252459",
+      "clubKey": "emp",
+      "slug": "salvatore-elia"
+    },
+    "Tyronne Ebuehi": {
+      "fmId": "37047573",
+      "clubKey": "emp",
+      "slug": "tyronne-ebuehi"
+    },
+    "Joseph Ceesay": {
+      "fmId": "93059608",
+      "clubKey": "emp",
+      "slug": "joseph-ceesay"
+    },
+    "Marco Curto": {
+      "fmId": "43266762",
+      "clubKey": "emp",
+      "slug": "marco-curto"
+    },
+    "Simone Romagnoli": {
+      "fmId": "43017209",
+      "clubKey": "emp",
+      "slug": "simone-romagnoli"
+    },
+    "Gabriele Guarino": {
+      "fmId": "2000024722",
+      "clubKey": "emp",
+      "slug": "gabriele-guarino"
+    },
+    "Lorenzo Tosto": {
+      "fmId": "2000184816",
+      "clubKey": "emp",
+      "slug": "lorenzo-tosto"
+    },
+    "Nicolas Haas": {
+      "fmId": "98033333",
+      "clubKey": "emp",
+      "slug": "nicolas-haas"
+    },
+    "Gerard Yepes": {
+      "fmId": "43479358",
+      "clubKey": "emp",
+      "slug": "gerard-yepes"
+    },
+    "Duccio Degli Innocenti": {
+      "fmId": "43500200",
+      "clubKey": "emp",
+      "slug": "duccio-degli-innocenti"
+    },
+    "Lorenzo Ignacchiti": {
+      "fmId": "2000024723",
+      "clubKey": "emp",
+      "slug": "lorenzo-ignacchiti"
+    },
+    "Luca Belardinelli": {
+      "fmId": "43390125",
+      "clubKey": "emp",
+      "slug": "luca-belardinelli"
+    },
+    "Luca Magnino": {
+      "fmId": "43140334",
+      "clubKey": "emp",
+      "slug": "luca-magnino"
+    },
+    "Iwo Kaczmarski": {
+      "fmId": "2000012809",
+      "clubKey": "emp",
+      "slug": "iwo-kaczmarski"
+    },
+    "Ernesto Perin": {
+      "fmId": "2000264935",
+      "clubKey": "emp",
+      "slug": "ernesto-perin"
+    },
+    "Stiven Shpendi": {
+      "fmId": "43616542",
+      "clubKey": "emp",
+      "slug": "stiven-shpendi"
+    },
+    "Bogdan Popov": {
+      "fmId": "2000328963",
+      "clubKey": "emp",
+      "slug": "bogdan-popov"
+    },
+    "Flavio Junior Bianchi": {
+      "fmId": "43318305",
+      "clubKey": "emp",
+      "slug": "flavio-junior-bianchi"
+    },
+    "Ismaël Konaté": {
+      "fmId": "2000204675",
+      "clubKey": "emp",
+      "slug": "ismael-konate"
+    },
+    "Edoardo Saporiti": {
+      "fmId": "43425876",
+      "clubKey": "emp",
+      "slug": "edoardo-saporiti"
+    },
+    "Herculano Nabian": {
+      "fmId": "83337931",
+      "clubKey": "emp",
+      "slug": "herculano-nabian"
+    },
+    "Maj Blažič": {
+      "fmId": "2000296473",
+      "clubKey": "emp",
+      "slug": "maj-blazic"
+    },
+    "Andrea Sodero": {
+      "fmId": "2000024742",
+      "clubKey": "emp",
+      "slug": "andrea-sodero"
+    },
+    "Filip Stanković": {
+      "fmId": "43425978",
+      "clubKey": "ven",
+      "slug": "filip-stankovic"
+    },
+    "Alessandro Plizzari": {
+      "fmId": "43295108",
+      "clubKey": "ven",
+      "slug": "alessandro-plizzari"
+    },
+    "Stefano Minelli": {
+      "fmId": "43067879",
+      "clubKey": "ven",
+      "slug": "stefano-minelli"
+    },
+    "Thierry Rendall Correia": {
+      "fmId": "83111501",
+      "clubKey": "ven",
+      "slug": "thierry-rendall-correia"
+    },
+    "Armel Bella-Kotchap": {
+      "fmId": "92102718",
+      "clubKey": "ven",
+      "slug": "armel-bella-kotchap"
+    },
+    "Antoine Hainaut": {
+      "fmId": "2000045509",
+      "clubKey": "ven",
+      "slug": "antoine-hainaut"
+    },
+    "Marin Šverko": {
+      "fmId": "92084893",
+      "clubKey": "ven",
+      "slug": "marin-sverko"
+    },
+    "Bartol Franjić": {
+      "fmId": "24058104",
+      "clubKey": "ven",
+      "slug": "bartol-franjic"
+    },
+    "Giorgio Altare": {
+      "fmId": "43206161",
+      "clubKey": "ven",
+      "slug": "giorgio-altare"
+    },
+    "Ridgeciano Haps": {
+      "fmId": "37020712",
+      "clubKey": "ven",
+      "slug": "ridgeciano-haps"
+    },
+    "Michael Venturi": {
+      "fmId": "43379213",
+      "clubKey": "ven",
+      "slug": "michael-venturi"
+    },
+    "Toma Bašić": {
+      "fmId": "24047067",
+      "clubKey": "ven",
+      "slug": "toma-basic"
+    },
+    "Gianluca Busio": {
+      "fmId": "72049787",
+      "clubKey": "ven",
+      "slug": "gianluca-busio"
+    },
+    "Alfred Duncan": {
+      "fmId": "43084308",
+      "clubKey": "ven",
+      "slug": "alfred-duncan"
+    },
+    "Emil Bohinen": {
+      "fmId": "53126104",
+      "clubKey": "ven",
+      "slug": "emil-bohinen"
+    },
+    "Þórir Jóhann Helgason": {
+      "fmId": "39053303",
+      "clubKey": "ven",
+      "slug": "thorir-johann-helgason"
+    },
+    "Lamine Fanne": {
+      "fmId": "2000252921",
+      "clubKey": "ven",
+      "slug": "lamine-fanne"
+    },
+    "Matteo Dagasso": {
+      "fmId": "2000024390",
+      "clubKey": "ven",
+      "slug": "matteo-dagasso"
+    },
+    "Nunzio Lella": {
+      "fmId": "43318549",
+      "clubKey": "ven",
+      "slug": "nunzio-lella"
+    },
+    "Kike Pérez": {
+      "fmId": "67213140",
+      "clubKey": "ven",
+      "slug": "kike-perez"
+    },
+    "Andrea Adorante": {
+      "fmId": "43317605",
+      "clubKey": "ven",
+      "slug": "andrea-adorante"
+    },
+    "Lion Lauberbach": {
+      "fmId": "92090401",
+      "clubKey": "ven",
+      "slug": "lion-lauberbach"
+    },
+    "Daniel Fila": {
+      "fmId": "2000055710",
+      "clubKey": "ven",
+      "slug": "daniel-fila"
+    },
+    "John Yeboah": {
+      "fmId": "91175880",
+      "clubKey": "ven",
+      "slug": "john-yeboah"
+    },
+    "Antonio Casas": {
+      "fmId": "67277820",
+      "clubKey": "ven",
+      "slug": "antonio-casas"
+    },
+    "Marko Farji": {
+      "fmId": "2000065330",
+      "clubKey": "ven",
+      "slug": "marko-farji"
+    },
+    "Mattia Compagnon": {
+      "fmId": "43424898",
+      "clubKey": "ven",
+      "slug": "mattia-compagnon"
+    },
+    "Jonathan Klinsmann": {
+      "fmId": "92090865",
+      "clubKey": "ces",
+      "slug": "jonathan-klinsmann"
+    },
+    "Alessandro Siano": {
+      "fmId": "43372960",
+      "clubKey": "ces",
+      "slug": "alessandro-siano"
+    },
+    "Luca Ferretti": {
+      "fmId": "43500269",
+      "clubKey": "ces",
+      "slug": "luca-ferretti"
+    },
+    "Giovanni Zaro": {
+      "fmId": "43091186",
+      "clubKey": "ces",
+      "slug": "giovanni-zaro"
+    },
+    "Andrea Ciofi": {
+      "fmId": "43252230",
+      "clubKey": "ces",
+      "slug": "andrea-ciofi"
+    },
+    "Massimiliano Mangraviti": {
+      "fmId": "43193710",
+      "clubKey": "ces",
+      "slug": "massimiliano-mangraviti"
+    },
+    "Gianluca Frabotta": {
+      "fmId": "43271155",
+      "clubKey": "ces",
+      "slug": "gianluca-frabotta"
+    },
+    "Simone Pieraccini": {
+      "fmId": "43617607",
+      "clubKey": "ces",
+      "slug": "simone-pieraccini"
+    },
+    "Matteo Guidi": {
+      "fmId": "43617380",
+      "clubKey": "ces",
+      "slug": "matteo-guidi"
+    },
+    "Matteo Piacentini": {
+      "fmId": "43268686",
+      "clubKey": "ces",
+      "slug": "matteo-piacentini"
+    },
+    "Vittorio Magni": {
+      "fmId": "2000209240",
+      "clubKey": "ces",
+      "slug": "vittorio-magni"
+    },
+    "Michele Castagnetti": {
+      "fmId": "43009694",
+      "clubKey": "ces",
+      "slug": "michele-castagnetti"
+    },
+    "Giacomo Calò": {
+      "fmId": "43154747",
+      "clubKey": "ces",
+      "slug": "giacomo-calo"
+    },
+    "Dimitri Bisoli": {
+      "fmId": "43078224",
+      "clubKey": "ces",
+      "slug": "dimitri-bisoli"
+    },
+    "Simone Bastoni": {
+      "fmId": "43124937",
+      "clubKey": "ces",
+      "slug": "simone-bastoni"
+    },
+    "Matteo Francesconi": {
+      "fmId": "2000021283",
+      "clubKey": "ces",
+      "slug": "matteo-francesconi"
+    },
+    "Tommaso Arrigoni": {
+      "fmId": "43082780",
+      "clubKey": "ces",
+      "slug": "tommaso-arrigoni"
+    },
+    "Riccardo Campedelli": {
+      "fmId": "2000130063",
+      "clubKey": "ces",
+      "slug": "riccardo-campedelli"
+    },
+    "Filippo Bertaccini": {
+      "fmId": "2000284343",
+      "clubKey": "ces",
+      "slug": "filippo-bertaccini"
+    },
+    "Cristian Shpendi": {
+      "fmId": "43616541",
+      "clubKey": "ces",
+      "slug": "cristian-shpendi"
+    },
+    "Gaetano Castrovilli": {
+      "fmId": "43206176",
+      "clubKey": "ces",
+      "slug": "gaetano-castrovilli"
+    },
+    "Tommaso Berti": {
+      "fmId": "2000099661",
+      "clubKey": "ces",
+      "slug": "tommaso-berti"
+    },
+    "Alberto Cerri": {
+      "fmId": "43094070",
+      "clubKey": "ces",
+      "slug": "alberto-cerri"
+    },
+    "Marco Olivieri": {
+      "fmId": "43266791",
+      "clubKey": "ces",
+      "slug": "marco-olivieri"
+    },
+    "Roberto Ogunseye": {
+      "fmId": "43093928",
+      "clubKey": "ces",
+      "slug": "roberto-ogunseye"
+    },
+    "Valentino Coveri": {
+      "fmId": "2000130073",
+      "clubKey": "ces",
+      "slug": "valentino-coveri"
+    },
+    "Alessandro Giovannini": {
+      "fmId": "2000130076",
+      "clubKey": "ces",
+      "slug": "alessandro-giovannini"
+    },
+    "Antonio Donnarumma": {
+      "fmId": "43028661",
+      "clubKey": "sal",
+      "slug": "antonio-donnarumma"
+    },
+    "Francesco Gisondi": {
+      "fmId": "2000269085",
+      "clubKey": "sal",
+      "slug": "francesco-gisondi"
+    },
+    "Leonards Čevers": {
+      "fmId": "2000117254",
+      "clubKey": "sal",
+      "slug": "leonards-cevers"
+    },
+    "Matteo Lovato": {
+      "fmId": "43318558",
+      "clubKey": "sal",
+      "slug": "matteo-lovato"
+    },
+    "Paolo Ghiglione": {
+      "fmId": "43140923",
+      "clubKey": "sal",
+      "slug": "paolo-ghiglione"
+    },
+    "Galo Capomaggio": {
+      "fmId": "14186731",
+      "clubKey": "sal",
+      "slug": "galo-capomaggio"
+    },
+    "Luca Villa": {
+      "fmId": "43302551",
+      "clubKey": "sal",
+      "slug": "luca-villa"
+    },
+    "Filippo Berra": {
+      "fmId": "43114149",
+      "clubKey": "sal",
+      "slug": "filippo-berra"
+    },
+    "Armando Anastasio": {
+      "fmId": "43159521",
+      "clubKey": "sal",
+      "slug": "armando-anastasio"
+    },
+    "Vladimir Golemić": {
+      "fmId": "91100148",
+      "clubKey": "sal",
+      "slug": "vladimir-golemic"
+    },
+    "Ettore Quirini": {
+      "fmId": "43500675",
+      "clubKey": "sal",
+      "slug": "ettore-quirini"
+    },
+    "Kees de Boer": {
+      "fmId": "37065695",
+      "clubKey": "sal",
+      "slug": "kees-de-boer"
+    },
+    "Mattia Tascone": {
+      "fmId": "43344039",
+      "clubKey": "sal",
+      "slug": "mattia-tascone"
+    },
+    "Ivan Varone": {
+      "fmId": "43074244",
+      "clubKey": "sal",
+      "slug": "ivan-varone"
+    },
+    "Giuseppe Carriero": {
+      "fmId": "43162689",
+      "clubKey": "sal",
+      "slug": "giuseppe-carriero"
+    },
+    "Antonio Pio Iervolino": {
+      "fmId": "43591755",
+      "clubKey": "sal",
+      "slug": "antonio-pio-iervolino"
+    },
+    "Rocco Di Vico": {
+      "fmId": "2000331752",
+      "clubKey": "sal",
+      "slug": "rocco-di-vico"
+    },
+    "Roberto Inglese": {
+      "fmId": "43036644",
+      "clubKey": "sal",
+      "slug": "roberto-inglese"
+    },
+    "Facundo Lescano": {
+      "fmId": "43118091",
+      "clubKey": "sal",
+      "slug": "facundo-lescano"
+    },
+    "Ismail Achik": {
+      "fmId": "43409122",
+      "clubKey": "sal",
+      "slug": "ismail-achik"
+    },
+    "Franco Ferrari": {
+      "fmId": "43206945",
+      "clubKey": "sal",
+      "slug": "franco-ferrari"
+    },
+    "Juan Ignacio Molina": {
+      "fmId": "14150913",
+      "clubKey": "sal",
+      "slug": "juan-ignacio-molina"
+    },
+    "Lorenzo Lombardi": {
+      "fmId": "2000302989",
+      "clubKey": "sal",
+      "slug": "lorenzo-lombardi"
+    },
+    "Luca Boncori": {
+      "fmId": "2000278407",
+      "clubKey": "sal",
+      "slug": "luca-boncori"
+    },
+    "Giovanni Di Lelio": {
+      "fmId": "2000409604",
+      "clubKey": "sal",
+      "slug": "giovanni-di-lelio"
+    }
+  }
+}

@@ -1,0 +1,1705 @@
+Manchester City - Football Manager Data Update
+
+FM26 Challenges FM24 Challenges
+
+# Football Manager Data Update
+
+Football Manager Transfer Update for Football Manager with Latest Transfers and Updated Leagues for FM24 and FM26 including Promotions, Relegations, January Winter Transfer Window and Summer Transfer Window. Our Football Manager Data Update is the biggest Football Manager Update with hundreds of contributors and you can get involved and submit transfers yourself. Every real life transfer can be added to Football Manager with our Collaborative Football Manager Editor, what are you waiting for? Get editing!
+
+FM26 Data Update FM24 Data Update
+
+Queue 81
+
+Submissions 52 Ability Submissions 8 New Players 21 Possible Duplicates 1
+
+Submissions
+
+# Manchester City - Football Manager Data Update
+
+You can now edit player attributes on this page. Click to scroll down to the Attributes Form.
+
+# New Youth Players
+
+Share your thoughts on what the new youth players abilities should be. Simply fill in the two columns below. Alternatively click on the players name to edit more details about an individual player. All submissions are subject to moderation.
+
+Not sure how players ratings are calculated? Check out our guide to player ratings in Football Manager
+
+CA
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+CA
+
+80
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-85
+
+CA
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+CA
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+CA
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+CA
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+CA
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+CA
+
+65
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-8
+
+CA
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+CA
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+CA
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+CA
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+CA
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-8
+
+| Name | Date of Birth | Nation | Position | Current Ability | Potential Ability | TF |
+| --- | --- | --- | --- | --- | --- | --- |
+| Archie Thornton Enabled | 28 Sep 2009 | England |
+| Caelan Cadamarteri Enabled | 03 Nov 2009 | England |
+| David Eze Enabled | 08 Mar 2010 | England |
+| Dexter Oliver Enabled | 02 Dec 2008 | England |
+| Freddie Lawrie Enabled | 17 Mar 2009 | England |
+| Hamza Swed Enabled | 05 Apr 2009 | The United Arab Emirates |
+| Karim Cassim Enabled | 12 Sep 2009 | England |
+| Kaylum Moss Enabled | 20 Oct 2010 | England |
+| Lucas Alvarado Enabled | 28 Nov 2009 | England |
+| Marlow Barrett Enabled | 09 Dec 2009 | England |
+| Theo Carrington Enabled | 13 Jun 2010 |
+| Tyrone Samba Enabled | 31 Dec 2007 | England |
+| Xavier Parker Enabled | 09 May 2010 | England |
+
+You can now add new youth players to our data update, use the button below to get started.
+
+Add New Youth Player
+
+# Transfers and Contracts
+
+#2000168014
+
+#28125148
+
+#28107607
+
+#5100568
+
+#28126248
+
+#28109879
+
+#30031035
+
+#28125149
+
+#29194724
+
+#28111433
+
+#28111430
+
+#2000508642
+
+#5119887
+
+#2000296461
+
+#14238169
+
+#2000436720
+
+#2000191862
+
+#2000511345
+
+#5102412
+
+#28123155
+
+#2000531671
+
+#2000165742
+
+#28067435
+
+#2000094152
+
+#28123164
+
+#2000102634
+
+#2000503433
+
+#5200208
+
+#2000118386
+
+#2000325860
+
+#18089952
+
+#2000225711
+
+#29179241
+
+#28111435
+
+#2000283424
+
+#67036443
+
+#2000498739
+
+#28126244
+
+#2000506287
+
+#2000511340
+
+#67052704
+
+#2006021
+
+#29176378
+
+#43252073
+
+#2000222069
+
+#2000438102
+
+#2000272785
+
+#28111273
+
+#727976
+
+#2000109354
+
+#2000185040
+
+#13196665
+
+#2000065787
+
+#28067800
+
+#2000282495
+
+#2000185230
+
+#29177142
+
+#2000511324
+
+#28037245
+
+#292380059
+
+#28108447
+
+#2000124173
+
+#28123158
+
+#28126242
+
+#894611
+
+#28129158
+
+#18106083
+
+#28118465
+
+#2000184217
+
+#2014540
+
+#28109878
+
+#2000377972
+
+#28127192
+
+#24060473
+
+#2000399711
+
+#2000415453
+
+#29113879
+
+#61084215
+
+#29041735
+
+#2000282868
+
+#2000437793
+
+#2000184227
+
+#2000277515
+
+#2000283864
+
+#2000014931
+
+#2000288733
+
+#28108033
+
+#28021778
+
+#28123136
+
+#28111112
+
+#28033667
+
+#24016925
+
+#83188780
+
+#28060125
+
+#2000296039
+
+#28116448
+
+#2000293366
+
+#2000112986
+
+#2000436959
+
+#29011225
+
+#28121461
+
+#28123141
+
+#2000511329
+
+#37025551
+
+#29007319
+
+#67276127
+
+#2000101285
+
+#2000220715
+
+#2000282906
+
+#2000417087
+
+#91205962
+
+#2000442068
+
+#29139061
+
+#28108494
+
+#2005366
+
+#49047581
+
+#49056279
+
+#2000416048
+
+#2000282899
+
+#2014389
+
+#2006037
+
+#2000098727
+
+#2000011083
+
+#67217524
+
+#4211221
+
+#55070299
+
+#67108366
+
+#2000123298
+
+#2000416598
+
+#28093438
+
+#2000510938
+
+#2000011972
+
+#29125323
+
+#2000065792
+
+#28029480
+
+#28033666
+
+#2000266542
+
+#2000404708
+
+#29176620
+
+#2000254793
+
+#2000511353
+
+#91121280
+
+#37071126
+
+#2000511337
+
+#2000023942
+
+#2000101281
+
+#2000221609
+
+#2000135056
+
+#2000510837
+
+#915875
+
+| Ben Vickery now has a contract starting on 2nd June 2026. |
+| --- |
+| Charlie Holt now has a contract starting on 3rd April 2026. |
+| Claudio Echeverri has had his loan terminated. |
+| Dante Headley now has a contract starting on 18th September 2025. |
+| Divin Mubama has had his loan terminated. |
+| Divine Mukasa now has a contract until 30th June 2030 starting on 9th June 2026. Divine Mukasa has had his loan terminated. |
+| Emilio Lawrence has had his loan terminated. |
+| Finlay Gorman now has a contract starting on 20th September 2025. |
+| Finley Burns has had his loan terminated. |
+| Finley Grigg now has a contract starting on 11th February 2026. |
+| Floyd Samba now has a contract starting on 15th January 2026. |
+| Harrison Miles now has a contract starting on 28th July 2025. |
+| Hugo Viana now has a role as Director of Football. |
+| Issa Kaboré has had his loan terminated. |
+| Jack Grealish has had his loan terminated. |
+| Jaden Heskey has had his loan terminated. |
+| Jake Wain now has a contract starting on 29th January 2026. |
+| Joel Ndala has had his loan terminated. |
+| Josh Wilson-Esbrand has had his loan terminated. |
+| Joško Gvardiol now has a contract until 30th June 2031. |
+| Juma Bah has had his loan terminated. |
+| Kalvin Phillips has had his loan terminated. |
+| Lakyle Samuel has had his loan terminated. |
+| Marcus Bettinelli now has a contract until 30th June 2027. |
+| Milo Martin now has a contract starting on 19th November 2025. |
+| Oliver Whatmuff has had his loan terminated. |
+| Sam Wadsworth now has a contract starting on 4th September 2025. |
+| Stephen Mfuni has had his loan terminated. |
+| Timeo Whisker now has a contract starting on 18th October 2025. |
+| Tom Noon has been transferred to Manchester City. Tom Noon now has a role as Fitness Coach U21 Team. Tom Noon now has a contract starting on 1st January 2026. |
+| Tomas Galvez has had his loan terminated. |
+| Vitor Reis has had his loan terminated. |
+| Yohann Obin now has a contract starting on 29th October 2025. |
+
+# Edit Player Attributes
+
+CA
+
+150
+
+PA
+
+173
+
+CA
+
+158
+
+PA
+
+161
+
+CA
+
+70
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-8
+
+CA
+
+82
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+63
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+87
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+69
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+CA
+
+93
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-8
+
+CA
+
+123
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-85
+
+CA
+
+70
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-75
+
+CA
+
+118
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-75
+
+CA
+
+115
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-8
+
+CA
+
+110
+
+PA
+
+145
+
+CA
+
+184
+
+PA
+
+195
+
+CA
+
+84
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+75
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-75
+
+CA
+
+99
+
+PA
+
+130
+
+CA
+
+70
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+76
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-75
+
+CA
+
+170
+
+PA
+
+170
+
+CA
+
+75
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+71
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-75
+
+CA
+
+76
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-65
+
+CA
+
+90
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+86
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-75
+
+CA
+
+128
+
+PA
+
+135
+
+CA
+
+150
+
+PA
+
+175
+
+CA
+
+80
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+100
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+65
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+138
+
+PA
+
+154
+
+CA
+
+110
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-75
+
+CA
+
+114
+
+PA
+
+137
+
+CA
+
+159
+
+PA
+
+180
+
+CA
+
+122
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-85
+
+CA
+
+166
+
+PA
+
+175
+
+CA
+
+78
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+133
+
+PA
+
+156
+
+CA
+
+84
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+68
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+90
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-75
+
+CA
+
+75
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-8
+
+CA
+
+89
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+88
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+165
+
+PA
+
+168
+
+CA
+
+117
+
+PA
+
+130
+
+CA
+
+151
+
+PA
+
+172
+
+CA
+
+157
+
+PA
+
+157
+
+CA
+
+82
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+82
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-65
+
+CA
+
+132
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-8
+
+CA
+
+66
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+67
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+153
+
+PA
+
+164
+
+CA
+
+155
+
+PA
+
+166
+
+CA
+
+149
+
+PA
+
+165
+
+CA
+
+63
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+86
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+163
+
+PA
+
+168
+
+CA
+
+169
+
+PA
+
+180
+
+CA
+
+141
+
+PA
+
+153
+
+CA
+
+160
+
+PA
+
+174
+
+CA
+
+90
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+68
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+145
+
+PA
+
+155
+
+CA
+
+180
+
+PA
+
+180
+
+CA
+
+107
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-8
+
+CA
+
+168
+
+PA
+
+177
+
+CA
+
+68
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+151
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-9
+
+CA
+
+76
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-75
+
+CA
+
+111
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-8
+
+CA
+
+118
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-85
+
+CA
+
+75
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-75
+
+CA
+
+158
+
+PA
+
+165
+
+CA
+
+72
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-75
+
+CA
+
+98
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-7
+
+CA
+
+124
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-85
+
+CA
+
+70
+
+PA
+
+Not Set -10 (170-200) -95 (160-190) -9 (150-180) -85 (140-170) -8 (130-160) -75 (120-150) -7 (110-140) -65 (100-130) -6 (90-120) -55 (80-110) -5 (70-100) -45 (60-90) -4 (50-80) -35 (40-70) -3 (30-60) -25 (20-50) -2 (10-40) -15 (0-30) -1 (-5-25) 0 (Random)
+
+-75
+
+| Name | Date of Birth | Nation | Position | Current Ability | Potential Ability | TF |
+| --- | --- | --- | --- | --- | --- | --- |
+| Abdukodir Khusanov | 29 Feb 2004 | Uzbekistan | D RC |
+| Antoine Semenyo | 07 Jan 2000 | Ghana | AM RL, ST |
+| Ben Vickery | 02 Jun 2009 | England | GK |
+| Brooklyn Nfonkeu | 01 Jul 2007 | England | D/WB R |
+| Charlie Courtman | 14 Oct 2007 | England | D R, DM |
+| Charlie Gray | 22 Feb 2006 | England | DM |
+| Charlie Holt | 03 Apr 2009 | England | M C |
+| Christian Dunbar-McDonald | 29 Oct 2007 | England |
+| Christian McFarlane | 25 Jan 2007 | England | D/WB L |
+| Claudio Echeverri | 02 Jan 2006 | Argentina | AM LC |
+| Dante Headley | 18 Sep 2008 | England | D/WB RL |
+| Divin Mubama | 25 Oct 2004 | England | ST |
+| Divine Mukasa | 22 Aug 2007 | England | AM C |
+| Emilio Lawrence | 20 Sep 2005 | Scotland | AM RLC, F C |
+| Erling Haaland | 21 Jul 2000 | Norway | ST |
+| Femi Fapetu | 04 Aug 2007 | England | DM |
+| Finlay Gorman | 20 Sep 2008 | England | AM C |
+| Finley Burns | 17 Jun 2003 | England | D C, DM |
+| Finley Grigg | 11 Feb 2009 | England | GK |
+| Floyd Samba | 15 Jan 2009 | England | DM |
+| Gianluigi Donnarumma | 25 Feb 1999 | Italy | GK |
+| Han Willhoft-King | 24 Jan 2006 | England | DM |
+| Harrison Miles | 28 Jul 2008 | England | DM |
+| Harrison Parker | 22 Sep 2006 | England | D RC |
+| Isaac Smith | 26 Jul 2005 | England | D C |
+| Isaiah Dada-Mascoll | 24 May 2006 | England | D C, DM |
+| Issa Kaboré | 12 May 2001 | Burkina Faso | D/WB RL |
+| Jack Grealish | 10 Sep 1995 | England | AM RLC |
+| Jack Wint | 08 Oct 2006 | England | GK |
+| Jaden Heskey | 17 Dec 2005 | England | AM C |
+| Jake Wain | 29 Jan 2009 | England | D R |
+| James Trafford | 10 Oct 2002 | England | GK |
+| Joel Ndala | 31 May 2006 | England | AM RL |
+| Josh Wilson-Esbrand | 26 Dec 2002 | England | D/WB L |
+| Joško Gvardiol | 23 Jan 2002 | Croatia | D LC |
+| Juma Bah | 11 Apr 2006 | Sierra Leone | D C |
+| Jérémy Doku | 27 May 2002 | Belgium | AM RL, ST |
+| Kaden Braithwaite | 08 Feb 2008 | England | D LC, DM |
+| Kalvin Phillips | 02 Dec 1995 | England | DM |
+| Kian Noble | 26 Feb 2007 | England | D C |
+| Kylan Midwood | 21 May 2008 | England | AM L, ST |
+| Lakyle Samuel | 06 May 2006 | England | D RC |
+| Leke Drake | 25 Nov 2007 | England | D C |
+| Luke Mbete | 18 Sep 2003 | England | D LC |
+| Mahamadou Sangaré | 06 Mar 2007 | France | ST |
+| Marc Guéhi | 13 Jul 2000 | England | D C |
+| Marcus Bettinelli | 24 May 1992 | England | GK |
+| Mateo Kovačić | 06 May 1994 | Croatia | DM |
+| Matheus Nunes | 27 Aug 1998 | Portugal | D/WB R, AM RC |
+| Matthew Henderson-Hall | 08 Dec 2006 | England | AM RL |
+| Matty Warhurst | 25 Sep 2006 | England | AM R, ST |
+| Max Alleyne | 21 Jul 2005 | England | D C |
+| Max Hudson | 20 Sep 2007 | Wales | GK |
+| Milo Martin | 19 Nov 2008 | England | AM RC |
+| Nathan Aké | 18 Feb 1995 | The Netherlands | D LC, DM |
+| Nico González | 03 Jan 2002 | Spain | DM, AM C |
+| Nico O'Reilly | 21 Mar 2005 | England | D L, AM C |
+| Oliver Tevenan | 12 Dec 2007 | The Republic of Ireland | D L |
+| Oliver Whatmuff | 06 Nov 2007 | England | GK |
+| Omar Marmoush | 07 Feb 1999 | Egypt | AM RLC, F C |
+| Phil Foden | 28 May 2000 | England | AM RLC |
+| Rayan Aït-Nouri | 06 Jun 2001 | Algeria | D/WB L |
+| Rayan Cherki | 17 Aug 2003 | France | AM RLC, F C |
+| Reigan Heskey | 18 Jan 2008 | England | AM RL, ST |
+| Rhys Thomas | 05 Nov 2006 | Wales | D R |
+| Rico Lewis | 21 Nov 2004 | England | D/WB R, DM |
+| Rodri | 22 Jun 1996 | Spain | D C, DM |
+| Ryan McAidoo | 24 Jun 2008 | England | AM RLC |
+| Rúben Dias | 14 May 1997 | Portugal | D C |
+| Sam Wadsworth | 04 Sep 2008 | England | AM C |
+| Savinho | 10 Apr 2004 | Brazil | AM RL |
+| Spike Brits | 24 Jun 2007 | England | GK |
+| Stephen Mfuni | 12 Feb 2008 | England | D C |
+| Sverre Nypan | 19 Dec 2006 | Norway | AM C |
+| Teddie Lamb | 02 Jul 2009 | England | ST |
+| Tijjani Reijnders | 29 Jul 1998 | The Netherlands | DM, AM C |
+| Timeo Whisker | 18 Oct 2008 | England | AM RL, ST |
+| Tomas Galvez | 28 Jan 2005 | Finland | D/WB L |
+| Vitor Reis | 12 Jan 2006 | Brazil | D C |
+| Yohann Obin | 29 Oct 2008 | England | D C |
+
+# Latest Submissions
+
+Enabled
+
+##### Joško Gvardiol
+
+15 Jun 2026 12:35:31
+
+Joško Gvardiol now has a contract until 30th June 2031.
+
+Submitted by Kirukato Kashiarikutomorukimi 15 Jun 2026 12:35:31 (Kirukato Kashiarikutomorukimi Submissions) Last Moderated by Silkmen89 15 Jun 2026 16:52:13
+
+Enabled
+
+##### Stephen Mfuni
+
+10 Jun 2026 01:02:25
+
+Stephen Mfuni has had his loan terminated.
+
+Submitted by Susie Bot 10 Jun 2026 01:02:25 (Susie Bot Submissions)
+
+Enabled
+
+##### Divine Mukasa
+
+10 Jun 2026 01:02:12
+
+Divine Mukasa now has a contract until 30th June 2030 starting on 9th June 2026. Divine Mukasa has had his loan terminated.
+
+Submitted by Susie Bot 10 Jun 2026 01:02:12 (Susie Bot Submissions)
+
+Disabled
+
+##### Divine Mukasa
+
+09 Jun 2026 14:53:58
+
+Divine Mukasa now has a contract until 30th June 2030 starting on 9th June 2026. Divine Mukasa has had his loan terminated.
+
+Submitted by P.T.P 09 Jun 2026 14:53:58 (P.T.P Submissions)
+
+Unconfirmed
+
+##### Joško Gvardiol
+
+06 Jun 2026 09:05:55
+
+Joško Gvardiol has as future transfer to Real Madrid C.F.. Joško Gvardiol future role is as Player.The transfer will go through on 01-07-2026 for a fee of £110m. With a contract until 1st July 2031.
+
+Submitted by alon34 06 Jun 2026 09:05:55 (alon34 Submissions) Last Moderated by Club Almagro 06 Jun 2026 10:36:38
+
+Enabled
+
+##### Juma Bah
+
+01 Jun 2026 01:45:14
+
+Juma Bah has had his loan terminated.
+
+Submitted by Susie Bot 01 Jun 2026 01:45:14 (Susie Bot Submissions)
+
+Enabled
+
+##### Claudio Echeverri
+
+01 Jun 2026 01:32:09
+
+Claudio Echeverri has had his loan terminated.
+
+Submitted by Susie Bot 01 Jun 2026 01:32:09 (Susie Bot Submissions)
+
+Enabled
+
+##### Vitor Reis
+
+01 Jun 2026 01:28:58
+
+Vitor Reis has had his loan terminated.
+
+Submitted by Susie Bot 01 Jun 2026 01:28:58 (Susie Bot Submissions)
+
+Enabled
+
+##### Tomas Galvez
+
+01 Jun 2026 01:27:41
+
+Tomas Galvez has had his loan terminated.
+
+Submitted by Susie Bot 01 Jun 2026 01:27:41 (Susie Bot Submissions)
+
+Enabled
+
+##### Josh Wilson-Esbrand
+
+01 Jun 2026 01:23:29
+
+Josh Wilson-Esbrand has had his loan terminated.
+
+Submitted by Susie Bot 01 Jun 2026 01:23:29 (Susie Bot Submissions)
+
+Enabled
+
+##### Ben Vickery
+
+01 Jun 2026 01:19:23
+
+Ben Vickery now has a contract starting on 2nd June 2026.
+
+Submitted by Susie Bot 01 Jun 2026 01:19:23 (Susie Bot Submissions)
+
+Enabled
+
+##### Oliver Whatmuff
+
+31 May 2026 01:07:15
+
+Oliver Whatmuff has had his loan terminated.
+
+Submitted by Susie Bot 31 May 2026 01:07:15 (Susie Bot Submissions)
+
+Disabled
+
+##### Divine Mukasa
+
+31 May 2026 01:06:11
+
+Divine Mukasa has had his loan terminated.
+
+Submitted by Susie Bot 31 May 2026 01:06:11 (Susie Bot Submissions) Last Moderated by Silkmen89 09 Jun 2026 15:20:47
+
+Enabled
+
+##### Joel Ndala
+
+31 May 2026 01:05:16
+
+Joel Ndala has had his loan terminated.
+
+Submitted by Susie Bot 31 May 2026 01:05:16 (Susie Bot Submissions)
+
+Enabled
+
+##### Lakyle Samuel
+
+31 May 2026 01:05:16
+
+Lakyle Samuel has had his loan terminated.
+
+Submitted by Susie Bot 31 May 2026 01:05:16 (Susie Bot Submissions)
+
+Enabled
+
+##### Jaden Heskey
+
+31 May 2026 01:05:14
+
+Jaden Heskey has had his loan terminated.
+
+Submitted by Susie Bot 31 May 2026 01:05:14 (Susie Bot Submissions)
+
+Enabled
+
+##### Emilio Lawrence
+
+31 May 2026 01:04:47
+
+Emilio Lawrence has had his loan terminated.
+
+Submitted by Susie Bot 31 May 2026 01:04:47 (Susie Bot Submissions)
+
+Enabled
+
+##### Divin Mubama
+
+31 May 2026 01:04:24
+
+Divin Mubama has had his loan terminated.
+
+Submitted by Susie Bot 31 May 2026 01:04:24 (Susie Bot Submissions)
+
+Enabled
+
+##### Finley Burns
+
+31 May 2026 01:03:42
+
+Finley Burns has had his loan terminated.
+
+Submitted by Susie Bot 31 May 2026 01:03:42 (Susie Bot Submissions)
+
+Enabled
+
+##### Issa Kaboré
+
+31 May 2026 01:03:39
+
+Issa Kaboré has had his loan terminated.
+
+Submitted by Susie Bot 31 May 2026 01:03:39 (Susie Bot Submissions)
+
+Enabled
+
+##### Kalvin Phillips
+
+31 May 2026 01:02:53
+
+Kalvin Phillips has had his loan terminated.
+
+Submitted by Susie Bot 31 May 2026 01:02:53 (Susie Bot Submissions)
+
+Enabled
+
+##### Jack Grealish
+
+31 May 2026 01:02:45
+
+Jack Grealish has had his loan terminated.
+
+Submitted by Susie Bot 31 May 2026 01:02:45 (Susie Bot Submissions)
+
+Enabled
+
+##### Hugo Viana
+
+03 May 2026 15:28:14
+
+Hugo Viana now has a role as Director of Football.
+
+Submitted by Jackie Boi 03 May 2026 15:28:14 (Jackie Boi Submissions) Last Moderated by Club Almagro 03 May 2026 21:23:34
+
+Enabled
+
+##### Tom Noon
+
+01 May 2026 16:53:35
+
+Tom Noon has been transferred to Manchester City. Tom Noon now has a role as Fitness Coach U21 Team. Tom Noon now has a contract starting on 1st January 2026.
+
+Submitted by LBOW6 01 May 2026 16:53:35 (LBOW6 Submissions) Last Moderated by LBOW6 01 May 2026 16:53:35
+
+Enabled
+
+##### Marcus Bettinelli
+
+10 Apr 2026 17:54:19
+
+Marcus Bettinelli now has a contract until 30th June 2027.
+
+Submitted by Frederik Holst 10 Apr 2026 17:54:19 (Frederik Holst Submissions) Last Moderated by M.C 10 Apr 2026 20:01:16
+
+Disabled
+
+##### Stephen Mfuni
+
+05 Apr 2026 11:00:17
+
+Stephen Mfuni has had his loan terminated.
+
+Submitted by yuvi.010 05 Apr 2026 11:00:17 (yuvi.010 Submissions)
+
+Disabled
+
+##### Stephen Mfuni
+
+04 Apr 2026 20:23:11
+
+Stephen Mfuni is now on loan to Manchester City.
+
+Submitted by yuvi.010 04 Apr 2026 20:23:11 (yuvi.010 Submissions) Last Moderated by Club Almagro 05 Apr 2026 03:56:47
+
+Enabled
+
+##### Floyd Samba
+
+03 Apr 2026 01:00:46
+
+Floyd Samba now has a contract starting on 15th January 2026.
+
+Submitted by Susie Bot 03 Apr 2026 01:00:46 (Susie Bot Submissions)
+
+Enabled
+
+##### Yohann Obin
+
+03 Apr 2026 01:00:46
+
+Yohann Obin now has a contract starting on 29th October 2025.
+
+Submitted by Susie Bot 03 Apr 2026 01:00:46 (Susie Bot Submissions)
+
+Enabled
+
+##### Dante Headley
+
+03 Apr 2026 01:00:46
+
+Dante Headley now has a contract starting on 18th September 2025.
+
+Submitted by Susie Bot 03 Apr 2026 01:00:46 (Susie Bot Submissions)
+
+Enabled
+
+##### Harrison Miles
+
+03 Apr 2026 01:00:45
+
+Harrison Miles now has a contract starting on 28th July 2025.
+
+Submitted by Susie Bot 03 Apr 2026 01:00:45 (Susie Bot Submissions)
+
+Enabled
+
+##### Finlay Gorman
+
+03 Apr 2026 01:00:45
+
+Finlay Gorman now has a contract starting on 20th September 2025.
+
+Submitted by Susie Bot 03 Apr 2026 01:00:45 (Susie Bot Submissions)
+
+Enabled
+
+##### Timeo Whisker
+
+03 Apr 2026 01:00:45
+
+Timeo Whisker now has a contract starting on 18th October 2025.
+
+Submitted by Susie Bot 03 Apr 2026 01:00:45 (Susie Bot Submissions)
+
+Enabled
+
+##### Sam Wadsworth
+
+03 Apr 2026 01:00:37
+
+Sam Wadsworth now has a contract starting on 4th September 2025.
+
+Submitted by Susie Bot 03 Apr 2026 01:00:37 (Susie Bot Submissions)
+
+Enabled
+
+##### Charlie Holt
+
+03 Apr 2026 01:00:37
+
+Charlie Holt now has a contract starting on 3rd April 2026.
+
+Submitted by Susie Bot 03 Apr 2026 01:00:37 (Susie Bot Submissions)
+
+Enabled
+
+##### Milo Martin
+
+03 Apr 2026 01:00:37
+
+Milo Martin now has a contract starting on 19th November 2025.
+
+Submitted by Susie Bot 03 Apr 2026 01:00:37 (Susie Bot Submissions)
+
+Enabled
+
+##### Jake Wain
+
+03 Apr 2026 01:00:36
+
+Jake Wain now has a contract starting on 29th January 2026.
+
+Submitted by Susie Bot 03 Apr 2026 01:00:36 (Susie Bot Submissions)
+
+Enabled
+
+##### Finley Grigg
+
+03 Apr 2026 01:00:36
+
+Finley Grigg now has a contract starting on 11th February 2026.
+
+Submitted by Susie Bot 03 Apr 2026 01:00:36 (Susie Bot Submissions)
+
+##### sortitoutsi
+
+##### Football Manager Graphics
+
+##### Football Manager Guides Database
+
+- FM26 Guides Database
+- FM24 Update Guides Database
+- FM24 Guides Database
+
+##### Football Manager Data Update
+
+- FM26 Updated Database with latest transfers
+
+##### Football Manager Shortlists
+
+##### Football Manager Downloads
+
+##### Football Manager Tactics
+
+- Download Football Manager 26 Tactics
+- Watch Football Manager 26 Tactic Video
+- Tactics Forum
+
+##### Football Manager Add Ons
+
+This site is not endorsed by Sports Interactive or SEGA and is intended for entertainment purposes only. The views expressed on this site are the views of the individual contributors and not those of Sports Interactive or SEGA.

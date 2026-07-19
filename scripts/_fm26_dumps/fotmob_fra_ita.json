@@ -1,0 +1,192 @@
+{
+  "psg": {
+    "id": 9847,
+    "name": "Paris Saint-Germain",
+    "league": "Ligue 1"
+  },
+  "om": {
+    "id": 8592,
+    "name": "Marseille",
+    "league": "Ligue 1"
+  },
+  "ol": {
+    "id": 9748,
+    "name": "Lyon",
+    "league": "Ligue 1"
+  },
+  "asm": {
+    "id": 9829,
+    "name": "Monaco",
+    "league": "Ligue 1"
+  },
+  "lil": {
+    "id": 8639,
+    "name": "Lille",
+    "league": "Ligue 1"
+  },
+  "ren": {
+    "id": 9851,
+    "name": "Rennes",
+    "league": "Ligue 1"
+  },
+  "nic": {
+    "id": 9831,
+    "name": "Nice",
+    "league": "Ligue 1"
+  },
+  "rcl": {
+    "id": 8588,
+    "name": "Lens",
+    "league": "Ligue 1"
+  },
+  "nte": {
+    "id": 9830,
+    "name": "Nantes",
+    "league": "Ligue 2"
+  },
+  "str": {
+    "id": 9848,
+    "name": "Strasbourg",
+    "league": "Ligue 1"
+  },
+  "tou": {
+    "id": 9941,
+    "name": "Toulouse",
+    "league": "Ligue 1"
+  },
+  "sbr": {
+    "id": 8521,
+    "name": "Brest",
+    "league": "Ligue 1"
+  },
+  "aux": {
+    "id": 8583,
+    "name": "Auxerre",
+    "league": "Ligue 1"
+  },
+  "ang": {
+    "id": 8121,
+    "name": "Angers",
+    "league": "Ligue 1"
+  },
+  "hac": {
+    "id": 9746,
+    "name": "Le Havre",
+    "league": "Ligue 1"
+  },
+  "lor": {
+    "id": 8689,
+    "name": "Lorient",
+    "league": "Ligue 1"
+  },
+  "pfc": {
+    "id": 6379,
+    "name": "Paris FC",
+    "league": "Ligue 1"
+  },
+  "met": {
+    "id": 8550,
+    "name": "Metz",
+    "league": "Ligue 2"
+  },
+  "int": {
+    "id": 8636,
+    "name": "Inter",
+    "league": "Serie A"
+  },
+  "mil": {
+    "id": 8564,
+    "name": "Milan",
+    "league": "Serie A"
+  },
+  "juv": {
+    "id": 9885,
+    "name": "Juventus",
+    "league": "Serie A"
+  },
+  "nap": {
+    "id": 9875,
+    "name": "Napoli",
+    "league": "Serie A"
+  },
+  "ata": {
+    "id": 8524,
+    "name": "Atalanta",
+    "league": "Serie A"
+  },
+  "rom": {
+    "id": 8686,
+    "name": "Roma",
+    "league": "Serie A"
+  },
+  "laz": {
+    "id": 8543,
+    "name": "Lazio",
+    "league": "Serie A"
+  },
+  "fio": {
+    "id": 8535,
+    "name": "Fiorentina",
+    "league": "Serie A"
+  },
+  "bol": {
+    "id": 9857,
+    "name": "Bologna",
+    "league": "Serie A"
+  },
+  "tor": {
+    "id": 9804,
+    "name": "Torino",
+    "league": "Serie A"
+  },
+  "udi": {
+    "id": 8600,
+    "name": "Udinese",
+    "league": "Serie A"
+  },
+  "gen": {
+    "id": 10233,
+    "name": "Genoa",
+    "league": "Serie A"
+  },
+  "cag": {
+    "id": 8529,
+    "name": "Cagliari",
+    "league": "Serie A"
+  },
+  "lec": {
+    "id": 9888,
+    "name": "Lecce",
+    "league": "Serie A"
+  },
+  "ver": {
+    "id": 9876,
+    "name": "Hellas Verona",
+    "league": "Serie A"
+  },
+  "par": {
+    "id": 10167,
+    "name": "Parma",
+    "league": "Serie A"
+  },
+  "com": {
+    "id": 10171,
+    "name": "Como",
+    "league": "Serie A"
+  },
+  "sas": {
+    "id": 7943,
+    "name": "Sassuolo",
+    "league": "Serie A"
+  },
+  "pis": {
+    "id": 6479,
+    "name": "Pisa",
+    "league": "Serie A"
+  },
+  "cre": {
+    "id": 7801,
+    "name": "Cremonese",
+    "league": "Serie A"
+  }
+}

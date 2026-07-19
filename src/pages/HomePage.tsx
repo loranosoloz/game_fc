@@ -1,9 +1,9 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { listClubOptionsForLeague } from '@/game/worldSeed'
 import { listLeagues, type LeagueId } from '@/data/world'
 import { useGameStore } from '@/store/gameStore'
-import { loadFromStorage } from '@/game/save'
+import { loadFromStorage, loadFromStorageAsync } from '@/game/save'
 import { ClubCrest } from '@/components/ClubCrest'
 import { cn } from '@/lib/cn'
 import {
@@ -77,8 +77,14 @@ function AttrRow({
 export function HomePage() {
   const navigate = useNavigate()
   const newGame = useGameStore((s) => s.newGame)
-  const continueGame = useGameStore((s) => s.continueGame)
-  const hasSave = useMemo(() => Boolean(loadFromStorage()), [])
+  const continueGameAsync = useGameStore((s) => s.continueGameAsync)
+  const [hasSave, setHasSave] = useState(() => Boolean(loadFromStorage()))
+  useEffect(() => {
+    if (hasSave) return
+    void loadFromStorageAsync().then((s) => {
+      if (s) setHasSave(true)
+    })
+  }, [hasSave])
   const leagues = listLeagues()
   const nations = useMemo(() => listManagerNations(), [])
   const [step, setStep] = useState(0)
@@ -112,7 +118,9 @@ export function HomePage() {
   }
 
   const resume = () => {
-    if (continueGame()) navigate('/portal')
+    void continueGameAsync().then((ok) => {
+      if (ok) navigate('/portal')
+    })
   }
 
   const leagueMeta = leagues.find((l) => l.id === leagueId)

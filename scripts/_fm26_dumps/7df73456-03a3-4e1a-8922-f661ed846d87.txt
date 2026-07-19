@@ -1,0 +1,277 @@
+Football Manager Training Facilities & Its Levels • Passion4FM.com
+
+# Football Manager Training Facilities & Its Levels
+
+## An Ultimate Guide to Junior Coaching, Youth- and Training Facilities in Football Manager
+
+Understanding the Football Manager training facilities levels and how they influence current and potential ability is an important factor to get the most out of player development, especially considering youth development and their ability progression.
+
+From training facilities to youth recruitment – here you’ll get a closer insight into the levels of the training facilities and how they work in Football Manager.
+
+All in all, it gives you a basic understanding of the underlying factors on how to succeed with player progression and youth development in Football Manager.
+
+Coming to grips with the level of training facilities in Football Manager immediately when taking over a new club is an essential day one task. For the long term planning of your club, it’s important to know which training facilities to upgrade to not only develop the players at a faster rate but also to improve the quality of the youth intake and the overall abilities and potential levels of incoming Juniors.
+
+#### Editor’s Pick
+
+- 11 Reasons Why Your Players Won’t Develop in Football Manager
+- Implementing Twente’s Academy Vision and Recruitment Strategy in Football Manager
+- How to Find the Best Coaches in Football Manager
+- How to Find the Best Hidden Gems: Wonderkids and Newgens
+
+In Football Manager, club’s facilities are split between corporate facilities and training facilities.
+
+The corporate facilities determine the quality of technology, facilities, and equipment available to the board and staff, along with the types of rooms available, such as VIP boxes, press conference rooms, board rooms and other similar facilities relating to the organization.
+
+The training facilities are divided into senior training facilities, youth facilities, youth recruitment, and junior coaching.
+
+The overview of the club’s facilities will also show a club’s youth level (English clubs) and the training ground and stadium for the first team, reserves, or youth sides.
+
+But how do these training facilities and specific youth facilities impact the development of players; e.g their influence on current ability and potential ability progression?
+
+In this article I will examine the Football Manager Training Facilities Levels and how they influence youth and player development as thoroughly as possible. We will define the different Football Manager training facilities – a knowledge you will definitely favor by when building a club dynasty – taking your amateur club to a professional level.
+
+### Training Facilities – The Rate of Player Development
+
+The Training Facilities relate to the quality of the facilities at the training ground; whether it’s the equipment used in training sessions or the overall standard of the existing training ground. This applies to all visible players within the club, regardless of age.
+
+The quality of the training facilities is essentials for the development of current abilities. Since all the players within the club spent most of the time on the training ground, the higher quality of the training facilities, the better for them!
+
+In plain terms, the level of training facilities will determine how effective training is. Top training facilities will ensure that players will develop quicker and at a better rate than at a club with basic facilities. The result is that it provides a better foundation for player’s to reach their potential ability – growing the current ability star ratings into superb ratings for the senior team.
+
+In Football Manager 2021, the training facility levels are as follows, from worst to best;
+
+- 0-3 Poor
+- 4-5 Basic
+- 6-7 Below Average
+- 8-9 Adequate
+- 10-11 Average
+- 12-13 Good
+- 14-15 Great
+- 16-17 Excellent
+- 18-19 Superb
+- 20 State of the Art
+
+What it basically does under the hood is to determine and increase the development rate of your players. This means that players in a club with State of the Art Training facilities might develop and reach their fullest potential at a faster rate than if the same player was at a club with a ‘Basic’ Training Facility.
+
+Depending on the clubs level of training facilities, player development will vary according to the level of coaches, training facilities, and his individual current ability, personality, and determination. It is quite easy to imagine that if a player is provided with the very best quality of training facilities, his abilities as a footballer are more likely to increase.
+
+What’s important in regard to this matter is the importance of the quality of the coaches.
+
+With better training facilities the player attributes are more likely to increase under the ideal circumstances as they will have the right tools and equipment to develop but without quality coaches, the development ratio will be hampered.
+
+For the fullest effect, it’s necessary to both upgrade the training facilities and the quality of coaches. You need expertise and coaching experience on the training ground to improve player’s abilities.
+
+Below we will go through the different other facilities which are related to the current and potential ability progression rate.
+
+It’s essential to upgrade the training facilities whenever possible in order to ensure the player’s got the foundation to reach their fullest potential at a faster rate. To upgrade the training facilities make a board request within the Club Vision screen;
+
+`Club Vision > Make Board Request > `
+
+### Youth Facilities
+
+The youth facilities in Football Manager is one of two factors that contribute to the production of current and potential abilities for newgens. THe other being the Junior Coaching.
+
+The youth facilities describe the level of training facilities for the Academy. That means the training facilities of your Juniors, which aren’t visible in the game until they enter the game at youth intakes.
+
+The youth facility levels are as follows from worst to best:
+
+- Poor
+- 0-3 Poor
+- 4-5 Basic
+- 6-7 Below Average
+- 8-9 Adequate
+- 10-11 Average
+- 12-13 Good
+- 14-15 Great
+- 16-17 Excellent
+- 18-19 Superb
+- 20 State of the Art
+
+While we can only speculate, better youth facilities will ensure that Juniors improve their current abilities at a greater rate – meaning it will be more likely to see Youth Candidates with higher current abilities coming through the Academy.
+
+READ MORE | Football Manager 2021 Youth Intake Dates – When Nations Produce Newgens in FM21
+
+#### Junior Coaching
+
+Junior Coaching in Football Manager describes the quality and quantity of your coaching team at your Academy. These Junior Coaches will work on developing the Under-16 players that are coming through at youth intakes. They will affect the production of current and potential ability of your Juniors in combination with the Youth Facilities.
+
+There are 7 levels of the Junior Coaching:
+
+- 0-2 Basic
+- 3-5 Fairly Basic
+- 6-9 Average
+- 10-13 Adequate
+- 14-16 Good
+- 17-19 Excellent
+- 20 Exceptional
+
+With more quality Junior coaches you’ll ensure that more players can improve their abilities and quickly reach their potential ability once entering the club at youth intakes.
+
+A club with State of the Art youth facilities and Exceptional Junior coaching will more likely produce newgens with a higher current and potential ability than one with minimal youth facilities.
+
+### Youth Recruitment
+
+The Football Manager youth recruitment describes how wide-reach your Academy is and how likely the club is to recruit players of home and foreign origin.
+
+In regard to the youth intake, the level of youth recruitment determines the club’s position in the pecking order a club finds itself at. If two clubs got a similar level of youth recruitment, then reputation will be taken into account.
+
+A club with Exceptional youth recruitment will not only have access to a larger pool of Juniors to potentially recruit players from, but also be able to pick the best players within the nation first. Similarly, a club with limited youth recruitment will be at the bottom of the pecking order, meaning they will have fewer chances of recruiting excellent players.
+
+The clubs’ youth recruitment system is very much tied to its reputation. Better reputation will not only make it more likely that better newgens will like to join the Academy, but also that players from all over the world will look to it as the main option to reach world-class standard.
+
+The level of youth recruitment and reputation will also be contributing factors to the frequency of Junior Poaching. More on this in this guide to youth intakes.
+
+There are eight levels of youth recruitment:
+
+- 0-2 Limited
+- 3-5 Basic
+- 6-8 Fairly Basic
+- 9-11 Adequate
+- 12-14 Average
+- 15-16 Good
+- 17-18 Excellent
+- 19-20 Exceptional
+
+---
+
+#### Conclusion
+
+A club’s training facilities and how they may affect current and potential ability progression must be related to the quality of your coaching staff and level of competitiveness. For a successful youth intake with Junior Candidates of higher current and potential abilities, where the club is based and its nation’s importance will be contributing factors. It’s not enough to upgrade the training facilities if a nation’s youth rating is poor. You can get a closer insight into this in our overview of the Football Manager scouting regions and nation’s youth rating.
+
+Then, as explained in our guide to youth intake dates the youth rating and game importance set on Nations will also affect the number of quality newgens produced within a nation. This means that it’s a higher chance of finding more wonderkids in particular nations with a historical tradition of playing football compared to a smaller nation where football is less important.
+
+Having the best youth facilities simply increases the chance of producing Juniors with higher abilities and potential, just like the training facilities increases the chance of players reaching their fullest potential. Then, a number of other factors will be decisive and affect that matter (like your portion of luck within the save, injury proneness, quality of your coaching staff, the quality of your Head of youth development and youth coaches for youth intakes and coaching staff’s personality and media handling style.
+
+---
+
+### Football Manager Youth Levels (English Tiers Only)
+
+While the training facilities are important for the level of current ability and potential ability progress and the overall player development, we can’t hide the fact that match experience and match training is as important as individual training. Related to this issue, we like to talk a bit about the English Youth Setup Categories labeled as Youth Level. An English club’s Youth Level for their youth sides are visible within: Club Information > Facilities.
+
+When managing an English club you may have noticed the Level of Youth Setup Category. This feature is part of the Elite Player Performance Plan via the Professional Development League introduced by FA in 2012 and controlled by Premier League.
+
+The Professional Development League is a league structure that is a direct successor of the former Reserves League. There are 3 Youth Setup categories, where level 1 is the best and 3 is the lowest. Clubs in level 1 will get better competition facing clubs with similar reputations.
+
+With more competitiveness by facing better opponents, it may increase the development rate and progression ratio of your youth players.
+
+In real life there are different youth setup levels for Under-21 and Under-18, but in Football Manager it ranges from level 1 to level 4, where the Under-23 setup exists of four groups, while the Under-18 consists of 8 groups divided by different leagues.
+
+##### Youth Level 1 Clubs 2020/21
+
+North division: Blackburn, Burnley, Derby, Everton, Leeds, Liverpool, Manchester City, Manchester United, Middlesbrough, Newcastle United, Stoke City and Sunderland and West Brom
+
+South Division: Arsenal, Aston Villa, Brighton & Hove Albion, Chelsea, Crystal Palace, Fulham, Leicester City, Norwich City, Reading, Southampton, Tottenham and Wolverhampton Wanderers
+
+##### Youth Level 2 Clubs’ 2020/21
+
+North Division: Barnsley, Birmingham City, Coventry City, Crewe Alexandra, Hull, Nottingham Forest, Sheffield United, Sheffield Wednesday and Wigan
+
+South Division: Bristol City, Cardiff City, Charlton Athletic, Colchester United, Ipswich Town, Millwall, Queens Park Rangers, Swansea City and Watford
+
+Youth Level 3 Clubs 2020/21
+
+North West Conference: Accrington Stanley, Blackpool, Bolton, Carlisle United, Fleetwood Town, Morecambe, Oldham Athletic, Port Vale, Preston North End, Rochdale, Salford, Shrewsbury, Tranmere Rovers and Walsall
+
+North East Conference: Bradford City, Burton Albion, Doncaster Rovers, Grimsby Town, Huddersfield, Lincoln City, Mansfield Town, Notts County, Rotherham United, and Scunthorpe United
+
+South West Conference: AFC Bournemouth, Bristol Rovers, Cheltenham Town, Exeter City, Forest Green, Newport County, Oxford United, Plymouth Argyle, Portsmouth, Swindon Town and Yeovil
+
+South East Conference: Cambridge United, Gillingham, Leyton Orient, Luton Town, MK Dons, Northampton Town, Peterborough United, Southend United, Stevenage, and AFC Wimbledon
+
+The youth setup category can also be requested enhanced. An upgrade here will happen when a new season starts as the club is bound to play in the division and specific youth level briefly mentioned above. This will be similar to the unavailability to promote your current club to a higher division just by a click of a button.
+
+Promoting your club to a higher youth setup level will ensure improved competition which often ensures a better development rate for the players, as facing better players will provide more experience related to tactical knowledge and finally getting used to playing against more technical players at a higher match tempo.
+
+For English clubs, this will be an important facility to upgrade in order to develop better youngsters as the players will face better opponents.
+
+---
+
+### How to upgrade Your Training and Youth Facilities in Football Manager
+
+Having a brief overview of your training and youth facilities is essential for the long-term planning of building a dynasty. It’s essential to improve your facilities as often as you can to increase the probability of developing your players and get better newgens at youth intakes.
+
+Upgrading your facilities can be done by making a board request. All facilities, except corporate facilities, can be upgraded.
+
+Making a board request to upgrade facilities is available at`Club Vision > Board Requests` or at`Finances`.
+
+##### Where to find the upgrades
+
+Facilities: Training and Youth Facilities * Includes Youth Level for English clubs
+
+Networking: Youth Recruitment
+
+Finances: Junior Coaching
+
+##### Board Meetings & Board Requests
+
+At board meetings, you’ll have different options to convince the board about the necessity of an improvement or expansion. The way you talk to your chairman and board may affect how likely they are to grant permission for improvements. Whether or not they accept your requests depends on how long you’ve been at the club, your reputation, the club’s finances, and the board’s willingness to improve facilities (e.g Youth Importance, which is a static attribute).
+
+Most often the case isn’t about demanding but convincing them of the benefits of improving the current level of facilities.
+
+##### Upgrades
+
+Planned expansions and the ability to request upgrades are done in the boardroom overview panel. To improve your current facilities, you’ll need to ask your board to schedule an upgrade. Alternatively, you can wait for your board to do it themselves. Upgrading your facilities will usually start immediately, but can also be scheduled for after the season is over depending on the board. It takes about some months to half a year depending on the level of expansions – how big the upgrade is and which department you improve.
+
+Upgrading isn’t as easy as it sounds though, and you should look at your finances and reputation before you ask your board for improving facilities. If the board thinks it’s too expensive they will not upgrade them, as you haven’t the funds for it, or because the board has another philosophy, such as signing players for the first team only.
+
+Remember, even when you finally build the best facilities, you’ll have to upgrade them every now and then (every few seasons), due to technological advancements in the world. This means that it’s a continuous process to reach and then keep a professional stature – something that can be quite expensive. But as I see it, I would rather spend money on player development rather than buying an ‘expensive’ player who has already fulfilled his potential ability – over the age of 23.
+
+READ MORE | Best Youth Facilities in Football Manager
+
+### The Benefits of Improving The Club Facilities
+
+The club facilities – hereby described as a training and youth facilities are some of the most important parts of your club. Depending on the level of your training facilities, you’re more likely to improve your players no matter what training you instruct them to do. Higher quality levels will have greater effects in terms of attribute improvement and general development. This applies especially to younger players in your senior team, who haven’t yet reached their full potential. For example, an 18-year old player will eventually become a much better player if he’s in Barcelona than in AFC Wimbledon, just through training facilities alone. His development will be quicker, and his attributes will increase by individual training.
+
+Investing in your Training facilities are beneficial for two major purposes:
+
+1. 1. For clubs with poor training facilities will “Off the ball”, “Marking” and “Positioning” be unavailable to select from the individual training specific attribute
+2. 2. Increasing the progress rate of a player’s ability – ensuring a player’s current ability will close in on their potential ability.
+
+Investing in your training facilities is also very beneficial from a long-term financial point of view. A facility upgrade is as expensive as a new player but will relate directly to your football philosophies agreed under the job interview. Hypothetically, you can revert from signing expensive, established players and in turn look for cheap, young players with potential. Signing undeveloped players for low prices, developing them into much better players thanks to your superior training facilities is an easy way to make loads of money. When a given player develops, his value increases. Before he’s sold, he will benefit your team with his improved skills, granting you better results in the process. Eventually, your club will become a much better, richer, and a more reputable institution.
+
+Another point of upgrading the training facilities is the enhanced ability to attract better players. By continuously improving clubs’ training facilities, there will be far more players who want to look at the possibilities of putting pen on paper for your club.
+
+We hope this short overview will convince you the importance of investing in your training facilities, and always reach for the best facilities in order to get players with higher current and potential ability or simply develop better players. In the long term, it’s an absolute must for any aspiring club to have the highest quality of facilities possible, both to attract better players but also to succeed with the development plan.
+
+Have you ever done a Football Manager Challenge focusing on youth development and constantly upgrading training facilities over buying (youth) players?
+
+## Related Posts
+
+### About The Author
+
+#### Passion4FM
+
+Owner of Passion4FM since 2012. Football Manager content creator with a special love for tactics, wonderkids and player development.
+
+#### Football Manager 2026 Best Assistant Managers
+
+#### FM26 NextGen Wonderkids Database | Your source to Potential FM27 Wonderkids
+
+#### Best Football Manager 2026 Wonderkids | Ultimate FM26 Wonderkids List
+
+#### Football Manager 2026 Transfer Budgets | Top 100 Clubs’ With Highest Budgets in FM26
+
+#### New FM26 Wonderkids in The Winter Transfer Update | The Most Upgraded Talents in FM26.2 Update
+
+#### FM26 4-2-4 Ultimate Lower League Tactic By BenDoesFM
+
+BenDoesFM April 9, 2026
+
+#### FM26 Hulk 4-3-1-2 Tactic by GYR | An UNSTOPPABLE Plug & Play Tactic for Football Manager 26
+
+GYR March 31, 2026
+
+#### FM26 4-3-3 Attack Tactic – Possession & Control Masterclass
+
+FM DNA March 24, 2026
+
+#### FM Value Scout: Your Free Moneyball Scouting Tool That Changes How You Recruit in Football Manager
+
+#### The Powerful Overlapping Centre-Back Role | FM26 Best Player Roles
+
+#### How to Scout Wonderkids & Newgens in Football Manager 26 | Ultimate Guide To Youth Recruitment
+
+### Start typing and press enter to search
+
+Change privacy settings

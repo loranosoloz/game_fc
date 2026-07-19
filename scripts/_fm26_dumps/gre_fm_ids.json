@@ -1,0 +1,1576 @@
+{
+  "source": "fmtransferupdate Super League Greece",
+  "matched": 314,
+  "byName": {
+    "Kostantis Tzolakis": {
+      "fmId": "36149384",
+      "clubKey": "oly",
+      "slug": "kostantis-tzolakis"
+    },
+    "Balša Popović": {
+      "fmId": "62217642",
+      "clubKey": "oly",
+      "slug": "balsa-popovic"
+    },
+    "Dimitris Stournaras": {
+      "fmId": "2000062131",
+      "clubKey": "oly",
+      "slug": "dimitris-stournaras"
+    },
+    "Pablo Maffeo": {
+      "fmId": "28095341",
+      "clubKey": "oly",
+      "slug": "pablo-maffeo"
+    },
+    "David Carmo": {
+      "fmId": "83111598",
+      "clubKey": "oly",
+      "slug": "david-carmo"
+    },
+    "Panagiotis Retsos": {
+      "fmId": "36105386",
+      "clubKey": "oly",
+      "slug": "panagiotis-retsos"
+    },
+    "Lorenzo Pirola": {
+      "fmId": "43425720",
+      "clubKey": "oly",
+      "slug": "lorenzo-pirola"
+    },
+    "Rodinei": {
+      "fmId": "19161089",
+      "clubKey": "oly",
+      "slug": "rodinei"
+    },
+    "Bruno Onyemaechi": {
+      "fmId": "83259113",
+      "clubKey": "oly",
+      "slug": "bruno-onyemaechi"
+    },
+    "Francisco Ortega": {
+      "fmId": "14186538",
+      "clubKey": "oly",
+      "slug": "francisco-ortega"
+    },
+    "Rúben Vezo": {
+      "fmId": "55067158",
+      "clubKey": "oly",
+      "slug": "ruben-vezo"
+    },
+    "Chiquinho": {
+      "fmId": "55082827",
+      "clubKey": "oly",
+      "slug": "chiquinho"
+    },
+    "Santiago Hezze": {
+      "fmId": "14226789",
+      "clubKey": "oly",
+      "slug": "santiago-hezze"
+    },
+    "Christos Mouzakitis": {
+      "fmId": "2000273835",
+      "clubKey": "oly",
+      "slug": "christos-mouzakitis"
+    },
+    "Lorenzo Scipioni": {
+      "fmId": "2000145998",
+      "clubKey": "oly",
+      "slug": "lorenzo-scipioni"
+    },
+    "Dani García": {
+      "fmId": "67104797",
+      "clubKey": "oly",
+      "slug": "dani-garcia"
+    },
+    "Fanis Bakoulas": {
+      "fmId": "2000222543",
+      "clubKey": "oly",
+      "slug": "fanis-bakoulas"
+    },
+    "Argyris Liatsikouras": {
+      "fmId": "2000300583",
+      "clubKey": "oly",
+      "slug": "argyris-liatsikouras"
+    },
+    "Konstantin Plish": {
+      "fmId": "2000416510",
+      "clubKey": "oly",
+      "slug": "konstantin-plish"
+    },
+    "Ayoub El Kaabi": {
+      "fmId": "13197862",
+      "clubKey": "oly",
+      "slug": "ayoub-el-kaabi"
+    },
+    "Kostas Fortounis": {
+      "fmId": "36042095",
+      "clubKey": "oly",
+      "slug": "kostas-fortounis"
+    },
+    "Mehdi Taremi": {
+      "fmId": "23127918",
+      "clubKey": "oly",
+      "slug": "mehdi-taremi"
+    },
+    "Jota Silva": {
+      "fmId": "83192919",
+      "clubKey": "oly",
+      "slug": "jota-silva"
+    },
+    "Gelson Martins": {
+      "fmId": "55063369",
+      "clubKey": "oly",
+      "slug": "gelson-martins"
+    },
+    "Clayton": {
+      "fmId": "19410458",
+      "clubKey": "oly",
+      "slug": "clayton"
+    },
+    "Roman Yaremchuk": {
+      "fmId": "71068795",
+      "clubKey": "oly",
+      "slug": "roman-yaremchuk"
+    },
+    "André Luiz": {
+      "fmId": "2000118079",
+      "clubKey": "oly",
+      "slug": "andre-luiz"
+    },
+    "Jiří Pavlenka": {
+      "fmId": "25039108",
+      "clubKey": "pao",
+      "slug": "jiri-pavlenka"
+    },
+    "Antonis Tsiftsis": {
+      "fmId": "36125848",
+      "clubKey": "pao",
+      "slug": "antonis-tsiftsis"
+    },
+    "Luka Gugeshashvili": {
+      "fmId": "59115641",
+      "clubKey": "pao",
+      "slug": "luka-gugeshashvili"
+    },
+    "Aritz Elustondo": {
+      "fmId": "67190072",
+      "clubKey": "pao",
+      "slug": "aritz-elustondo"
+    },
+    "Baba Rahman": {
+      "fmId": "13117442",
+      "clubKey": "pao",
+      "slug": "baba-rahman"
+    },
+    "Jonjoe Kenny": {
+      "fmId": "28090682",
+      "clubKey": "pao",
+      "slug": "jonjoe-kenny"
+    },
+    "Greg Taylor": {
+      "fmId": "61074608",
+      "clubKey": "pao",
+      "slug": "greg-taylor"
+    },
+    "Giannis Michailidis": {
+      "fmId": "36136426",
+      "clubKey": "pao",
+      "slug": "giannis-michailidis"
+    },
+    "Pantelis Hatzidiakos": {
+      "fmId": "37053040",
+      "clubKey": "pao",
+      "slug": "pantelis-hatzidiakos"
+    },
+    "Jonathan Gómez": {
+      "fmId": "2000035523",
+      "clubKey": "pao",
+      "slug": "jonathan-gomez"
+    },
+    "Lefteris Lyratzis": {
+      "fmId": "36127169",
+      "clubKey": "pao",
+      "slug": "lefteris-lyratzis"
+    },
+    "Christos Zafeiris": {
+      "fmId": "53180825",
+      "clubKey": "pao",
+      "slug": "christos-zafeiris"
+    },
+    "Baptiste Santamaria": {
+      "fmId": "211515",
+      "clubKey": "pao",
+      "slug": "baptiste-santamaria"
+    },
+    "Soualiho Meïté": {
+      "fmId": "85049379",
+      "clubKey": "pao",
+      "slug": "soualiho-meite"
+    },
+    "Mady Camara": {
+      "fmId": "89058721",
+      "clubKey": "pao",
+      "slug": "mady-camara"
+    },
+    "Nasos Leonidopoulos": {
+      "fmId": "36159916",
+      "clubKey": "pao",
+      "slug": "nasos-leonidopoulos"
+    },
+    "Pedro Biasotto": {
+      "fmId": "2000393233",
+      "clubKey": "pao",
+      "slug": "pedro-biasotto"
+    },
+    "Abasiekeme Ikobong": {
+      "fmId": "2000483607",
+      "clubKey": "pao",
+      "slug": "abasiekeme-ikobong"
+    },
+    "Giannis Sarris": {
+      "fmId": "2000375066",
+      "clubKey": "pao",
+      "slug": "giannis-sarris"
+    },
+    "Giannis Konstantelias": {
+      "fmId": "36159280",
+      "clubKey": "pao",
+      "slug": "giannis-konstantelias"
+    },
+    "Andrija Živković": {
+      "fmId": "62082823",
+      "clubKey": "pao",
+      "slug": "andrija-zivkovic"
+    },
+    "Taison": {
+      "fmId": "19010481",
+      "clubKey": "pao",
+      "slug": "taison"
+    },
+    "Kiril Despodov": {
+      "fmId": "22051266",
+      "clubKey": "pao",
+      "slug": "kiril-despodov"
+    },
+    "Taha Ali": {
+      "fmId": "93086625",
+      "clubKey": "pao",
+      "slug": "taha-ali"
+    },
+    "Fedor Chalov": {
+      "fmId": "58123846",
+      "clubKey": "pao",
+      "slug": "fedor-chalov"
+    },
+    "Dimitris Pelkas": {
+      "fmId": "36058048",
+      "clubKey": "pao",
+      "slug": "dimitris-pelkas"
+    },
+    "Alexander Jeremejeff": {
+      "fmId": "93038087",
+      "clubKey": "pao",
+      "slug": "alexander-jeremejeff"
+    },
+    "Iñaki Peña": {
+      "fmId": "67221484",
+      "clubKey": "pan",
+      "slug": "inaki-pena"
+    },
+    "Lucas Chaves": {
+      "fmId": "14121997",
+      "clubKey": "pan",
+      "slug": "lucas-chaves"
+    },
+    "Kostas Kotsaris": {
+      "fmId": "36086810",
+      "clubKey": "pan",
+      "slug": "kostas-kotsaris"
+    },
+    "Stefan de Vrij": {
+      "fmId": "37001814",
+      "clubKey": "pan",
+      "slug": "stefan-de-vrij"
+    },
+    "Davide Calabria": {
+      "fmId": "43123020",
+      "clubKey": "pan",
+      "slug": "davide-calabria"
+    },
+    "Giorgos Kyriakopoulos": {
+      "fmId": "36090959",
+      "clubKey": "pan",
+      "slug": "giorgos-kyriakopoulos"
+    },
+    "Erik Palmer-Brown": {
+      "fmId": "72040029",
+      "clubKey": "pan",
+      "slug": "erik-palmer-brown"
+    },
+    "Victor Kristiansen": {
+      "fmId": "27161400",
+      "clubKey": "pan",
+      "slug": "victor-kristiansen"
+    },
+    "Sverrir Ingi Ingason": {
+      "fmId": "39017860",
+      "clubKey": "pan",
+      "slug": "sverrir-ingi-ingason"
+    },
+    "Triantafyllos Tsapras": {
+      "fmId": "36159913",
+      "clubKey": "pan",
+      "slug": "triantafyllos-tsapras"
+    },
+    "Tin Jedvaj": {
+      "fmId": "24026928",
+      "clubKey": "pan",
+      "slug": "tin-jedvaj"
+    },
+    "Pedro Chirivella": {
+      "fmId": "67185037",
+      "clubKey": "pan",
+      "slug": "pedro-chirivella"
+    },
+    "Moussa Sissoko": {
+      "fmId": "8448722",
+      "clubKey": "pan",
+      "slug": "moussa-sissoko"
+    },
+    "Manolis Siopis": {
+      "fmId": "36045569",
+      "clubKey": "pan",
+      "slug": "manolis-siopis"
+    },
+    "Adam Gnezda Čerin": {
+      "fmId": "62216277",
+      "clubKey": "pan",
+      "slug": "adam-gnezda-cerin"
+    },
+    "Étienne Camara": {
+      "fmId": "2000066403",
+      "clubKey": "pan",
+      "slug": "etienne-camara"
+    },
+    "Tonny Vilhena": {
+      "fmId": "168335",
+      "clubKey": "pan",
+      "slug": "tonny-vilhena"
+    },
+    "Sotiris Kontouris": {
+      "fmId": "2000222248",
+      "clubKey": "pan",
+      "slug": "sotiris-kontouris"
+    },
+    "Rushit Zeka": {
+      "fmId": "2000422353",
+      "clubKey": "pan",
+      "slug": "rushit-zeka"
+    },
+    "Facundo Pellistri": {
+      "fmId": "78095389",
+      "clubKey": "pan",
+      "slug": "facundo-pellistri"
+    },
+    "Andrews Tetteh": {
+      "fmId": "2000106860",
+      "clubKey": "pan",
+      "slug": "andrews-tetteh"
+    },
+    "Cyriel Dessers": {
+      "fmId": "18083867",
+      "clubKey": "pan",
+      "slug": "cyriel-dessers"
+    },
+    "Tasos Bakasetas": {
+      "fmId": "36039032",
+      "clubKey": "pan",
+      "slug": "tasos-bakasetas"
+    },
+    "Anass Zaroury": {
+      "fmId": "18106037",
+      "clubKey": "pan",
+      "slug": "anass-zaroury"
+    },
+    "Vicente Taborda": {
+      "fmId": "14223073",
+      "clubKey": "pan",
+      "slug": "vicente-taborda"
+    },
+    "Adriano Jagušić": {
+      "fmId": "2000224700",
+      "clubKey": "pan",
+      "slug": "adriano-jagusic"
+    },
+    "Elmin Rastoder": {
+      "fmId": "84162132",
+      "clubKey": "pan",
+      "slug": "elmin-rastoder"
+    },
+    "Thomas Strakosha": {
+      "fmId": "43115047",
+      "clubKey": "aek",
+      "slug": "thomas-strakosha"
+    },
+    "Alberto Brignoli": {
+      "fmId": "43038613",
+      "clubKey": "aek",
+      "slug": "alberto-brignoli"
+    },
+    "Angelos Angelopoulos": {
+      "fmId": "2000054029",
+      "clubKey": "aek",
+      "slug": "angelos-angelopoulos"
+    },
+    "Harold Moukoudi": {
+      "fmId": "85133797",
+      "clubKey": "aek",
+      "slug": "harold-moukoudi"
+    },
+    "Lazaros Rota": {
+      "fmId": "36126363",
+      "clubKey": "aek",
+      "slug": "lazaros-rota"
+    },
+    "Filipe Relvas": {
+      "fmId": "83261445",
+      "clubKey": "aek",
+      "slug": "filipe-relvas"
+    },
+    "Domagoj Vida": {
+      "fmId": "24003525",
+      "clubKey": "aek",
+      "slug": "domagoj-vida"
+    },
+    "James Penrice": {
+      "fmId": "61073156",
+      "clubKey": "aek",
+      "slug": "james-penrice"
+    },
+    "Stavros Pilios": {
+      "fmId": "36151960",
+      "clubKey": "aek",
+      "slug": "stavros-pilios"
+    },
+    "Martin Georgiev": {
+      "fmId": "2000155490",
+      "clubKey": "aek",
+      "slug": "martin-georgiev"
+    },
+    "Christos Alexiou": {
+      "fmId": "2000123937",
+      "clubKey": "aek",
+      "slug": "christos-alexiou"
+    },
+    "Kaan Kairinen": {
+      "fmId": "33057521",
+      "clubKey": "aek",
+      "slug": "kaan-kairinen"
+    },
+    "Răzvan Marin": {
+      "fmId": "57113505",
+      "clubKey": "aek",
+      "slug": "razvan-marin"
+    },
+    "Petros Mantalos": {
+      "fmId": "36035173",
+      "clubKey": "aek",
+      "slug": "petros-mantalos"
+    },
+    "Robert Ljubičić": {
+      "fmId": "16184704",
+      "clubKey": "aek",
+      "slug": "robert-ljubicic"
+    },
+    "Hakim Sahabo": {
+      "fmId": "2000208403",
+      "clubKey": "aek",
+      "slug": "hakim-sahabo"
+    },
+    "Hamed Fofana": {
+      "fmId": "2000291072",
+      "clubKey": "aek",
+      "slug": "hamed-fofana"
+    },
+    "Christoforos Kolimatsis": {
+      "fmId": "2000206929",
+      "clubKey": "aek",
+      "slug": "christoforos-kolimatsis"
+    },
+    "Isaac Ayuba": {
+      "fmId": "2000503694",
+      "clubKey": "aek",
+      "slug": "isaac-ayuba"
+    },
+    "Luka Jović": {
+      "fmId": "62113639",
+      "clubKey": "aek",
+      "slug": "luka-jovic"
+    },
+    "Oleksandr Zubkov": {
+      "fmId": "71081398",
+      "clubKey": "aek",
+      "slug": "oleksandr-zubkov"
+    },
+    "Niclas Eliasson": {
+      "fmId": "93052049",
+      "clubKey": "aek",
+      "slug": "niclas-eliasson"
+    },
+    "Barnabás Varga": {
+      "fmId": "16159906",
+      "clubKey": "aek",
+      "slug": "barnabas-varga"
+    },
+    "Aboubakary Koita": {
+      "fmId": "18101721",
+      "clubKey": "aek",
+      "slug": "aboubakary-koita"
+    },
+    "Paolo Fernandes": {
+      "fmId": "28100241",
+      "clubKey": "aek",
+      "slug": "paolo-fernandes"
+    },
+    "Dereck Kutesa": {
+      "fmId": "98035163",
+      "clubKey": "aek",
+      "slug": "dereck-kutesa"
+    },
+    "Mijat Gaćinović": {
+      "fmId": "62096212",
+      "clubKey": "aek",
+      "slug": "mijat-gacinovic"
+    },
+    "Sokratis Dioudis": {
+      "fmId": "36046045",
+      "clubKey": "ari",
+      "slug": "sokratis-dioudis"
+    },
+    "Lovro Majkić": {
+      "fmId": "24054986",
+      "clubKey": "ari",
+      "slug": "lovro-majkic"
+    },
+    "Emiliano Karaj": {
+      "fmId": "2000490705",
+      "clubKey": "ari",
+      "slug": "emiliano-karaj"
+    },
+    "Martin Hongla": {
+      "fmId": "13157239",
+      "clubKey": "ari",
+      "slug": "martin-hongla"
+    },
+    "Fabiano": {
+      "fmId": "19159428",
+      "clubKey": "ari",
+      "slug": "fabiano"
+    },
+    "Noah Fadiga": {
+      "fmId": "18092701",
+      "clubKey": "ari",
+      "slug": "noah-fadiga"
+    },
+    "Marko Kerkez": {
+      "fmId": "2000304114",
+      "clubKey": "ari",
+      "slug": "marko-kerkez"
+    },
+    "Uroš Račić": {
+      "fmId": "62189039",
+      "clubKey": "ari",
+      "slug": "uros-racic"
+    },
+    "Kostas Galanopoulos": {
+      "fmId": "36112833",
+      "clubKey": "ari",
+      "slug": "kostas-galanopoulos"
+    },
+    "Michalis Voriazidis": {
+      "fmId": "2000105977",
+      "clubKey": "ari",
+      "slug": "michalis-voriazidis"
+    },
+    "Christian Kouamé": {
+      "fmId": "43201838",
+      "clubKey": "ari",
+      "slug": "christian-kouame"
+    },
+    "Fredrik Jensen": {
+      "fmId": "33049957",
+      "clubKey": "ari",
+      "slug": "fredrik-jensen"
+    },
+    "Othmane Boussaid": {
+      "fmId": "18089619",
+      "clubKey": "ari",
+      "slug": "othmane-boussaid"
+    },
+    "Loren Morón": {
+      "fmId": "67181072",
+      "clubKey": "ari",
+      "slug": "loren-moron"
+    },
+    "Benjamín Garré": {
+      "fmId": "28110305",
+      "clubKey": "ari",
+      "slug": "benjamin-garre"
+    },
+    "Tino Kadewere": {
+      "fmId": "93070869",
+      "clubKey": "ari",
+      "slug": "tino-kadewere"
+    },
+    "Migouel Alfarela": {
+      "fmId": "48036197",
+      "clubKey": "ari",
+      "slug": "migouel-alfarela"
+    },
+    "Giannis Gianniotas": {
+      "fmId": "36046047",
+      "clubKey": "ari",
+      "slug": "giannis-gianniotas"
+    },
+    "Nikos Christogeorgos": {
+      "fmId": "36148732",
+      "clubKey": "ofi",
+      "slug": "nikos-christogeorgos"
+    },
+    "Klidman Lilo": {
+      "fmId": "2000140027",
+      "clubKey": "ofi",
+      "slug": "klidman-lilo"
+    },
+    "Panagiotis Katsikas": {
+      "fmId": "36138657",
+      "clubKey": "ofi",
+      "slug": "panagiotis-katsikas"
+    },
+    "Nikos Athanasiou": {
+      "fmId": "36158513",
+      "clubKey": "ofi",
+      "slug": "nikos-athanasiou"
+    },
+    "Krešimir Krizmanić": {
+      "fmId": "24061102",
+      "clubKey": "ofi",
+      "slug": "kresimir-krizmanic"
+    },
+    "Borja González": {
+      "fmId": "67210748",
+      "clubKey": "ofi",
+      "slug": "borja-gonzalez"
+    },
+    "Thanasis Androutsos": {
+      "fmId": "36106448",
+      "clubKey": "ofi",
+      "slug": "thanasis-androutsos"
+    },
+    "Kostas Kostoulas": {
+      "fmId": "2000312877",
+      "clubKey": "ofi",
+      "slug": "kostas-kostoulas"
+    },
+    "Christos Sielis": {
+      "fmId": "23226014",
+      "clubKey": "ofi",
+      "slug": "christos-sielis"
+    },
+    "Nikos Marinakis": {
+      "fmId": "36045547",
+      "clubKey": "ofi",
+      "slug": "nikos-marinakis"
+    },
+    "Achilleas Poungouras": {
+      "fmId": "36077347",
+      "clubKey": "ofi",
+      "slug": "achilleas-poungouras"
+    },
+    "Andreas Bouchalakis": {
+      "fmId": "36044956",
+      "clubKey": "ofi",
+      "slug": "andreas-bouchalakis"
+    },
+    "Giannis Apostolakis": {
+      "fmId": "2000158667",
+      "clubKey": "ofi",
+      "slug": "giannis-apostolakis"
+    },
+    "Zisis Karachalios": {
+      "fmId": "36085997",
+      "clubKey": "ofi",
+      "slug": "zisis-karachalios"
+    },
+    "Ilija Vukotić": {
+      "fmId": "62178166",
+      "clubKey": "ofi",
+      "slug": "ilija-vukotic"
+    },
+    "Giorgos Kanellopoulos": {
+      "fmId": "36137168",
+      "clubKey": "ofi",
+      "slug": "giorgos-kanellopoulos"
+    },
+    "Thiago Nuss": {
+      "fmId": "14230557",
+      "clubKey": "ofi",
+      "slug": "thiago-nuss"
+    },
+    "Giannis Theodosoulakis": {
+      "fmId": "2000164227",
+      "clubKey": "ofi",
+      "slug": "giannis-theodosoulakis"
+    },
+    "Taxiarchis Fountas": {
+      "fmId": "36055197",
+      "clubKey": "ofi",
+      "slug": "taxiarchis-fountas"
+    },
+    "Marko Rakonjac": {
+      "fmId": "62199775",
+      "clubKey": "ofi",
+      "slug": "marko-rakonjac"
+    },
+    "Aaron Leya Iseka": {
+      "fmId": "18083597",
+      "clubKey": "ofi",
+      "slug": "aaron-leya-iseka"
+    },
+    "Thiago Romano": {
+      "fmId": "2000214248",
+      "clubKey": "ofi",
+      "slug": "thiago-romano"
+    },
+    "Manos Faitakis": {
+      "fmId": "2000164228",
+      "clubKey": "ofi",
+      "slug": "manos-faitakis"
+    },
+    "Lefteris Choutesiotis": {
+      "fmId": "36077956",
+      "clubKey": "atr",
+      "slug": "lefteris-choutesiotis"
+    },
+    "Vasilis Athanasiou": {
+      "fmId": "36127943",
+      "clubKey": "atr",
+      "slug": "vasilis-athanasiou"
+    },
+    "Hörður Magnússon": {
+      "fmId": "39014574",
+      "clubKey": "atr",
+      "slug": "hordur-magnusson"
+    },
+    "Simos Mitoglou": {
+      "fmId": "36158472",
+      "clubKey": "atr",
+      "slug": "simos-mitoglou"
+    },
+    "Dimitris Stavropoulos": {
+      "fmId": "36125561",
+      "clubKey": "atr",
+      "slug": "dimitris-stavropoulos"
+    },
+    "Jere Uronen": {
+      "fmId": "167261",
+      "clubKey": "atr",
+      "slug": "jere-uronen"
+    },
+    "Giorgos Tzovaras": {
+      "fmId": "36126269",
+      "clubKey": "atr",
+      "slug": "giorgos-tzovaras"
+    },
+    "Dimitris Tsakmakis": {
+      "fmId": "36150253",
+      "clubKey": "atr",
+      "slug": "dimitris-tsakmakis"
+    },
+    "Matthaios Mountes": {
+      "fmId": "2000188591",
+      "clubKey": "atr",
+      "slug": "matthaios-mountes"
+    },
+    "Giorgos Papadopoulos": {
+      "fmId": "2000136093",
+      "clubKey": "atr",
+      "slug": "giorgos-papadopoulos"
+    },
+    "Samuel Moutoussamy": {
+      "fmId": "85125689",
+      "clubKey": "atr",
+      "slug": "samuel-moutoussamy"
+    },
+    "Charis Tsingaras": {
+      "fmId": "36136429",
+      "clubKey": "atr",
+      "slug": "charis-tsingaras"
+    },
+    "Thanasis Karamanis": {
+      "fmId": "2000068035",
+      "clubKey": "atr",
+      "slug": "thanasis-karamanis"
+    },
+    "Steven Zuber": {
+      "fmId": "69004250",
+      "clubKey": "atr",
+      "slug": "steven-zuber"
+    },
+    "Sotiris Tsiloulis": {
+      "fmId": "36097490",
+      "clubKey": "atr",
+      "slug": "sotiris-tsiloulis"
+    },
+    "Stavros Pnevmonidis": {
+      "fmId": "2000300563",
+      "clubKey": "atr",
+      "slug": "stavros-pnevmonidis"
+    },
+    "Panagiotis Tsantilas": {
+      "fmId": "2000184723",
+      "clubKey": "atr",
+      "slug": "panagiotis-tsantilas"
+    },
+    "Spyros Abartzidis": {
+      "fmId": "2000247810",
+      "clubKey": "atr",
+      "slug": "spyros-abartzidis"
+    },
+    "Kostas Batos": {
+      "fmId": "2000491309",
+      "clubKey": "atr",
+      "slug": "kostas-batos"
+    },
+    "Elton Hoxha": {
+      "fmId": "2000375837",
+      "clubKey": "atr",
+      "slug": "elton-hoxha"
+    },
+    "Nikos Papadopoulos": {
+      "fmId": "36037468",
+      "clubKey": "ast",
+      "slug": "nikos-papadopoulos"
+    },
+    "Giannis Nikopolidis": {
+      "fmId": "36131412",
+      "clubKey": "ast",
+      "slug": "giannis-nikopolidis"
+    },
+    "Spyros Angelidis": {
+      "fmId": "2000217893",
+      "clubKey": "ast",
+      "slug": "spyros-angelidis"
+    },
+    "Dimitris Kourbelis": {
+      "fmId": "36039037",
+      "clubKey": "ast",
+      "slug": "dimitris-kourbelis"
+    },
+    "Nikola Šipčić": {
+      "fmId": "62144924",
+      "clubKey": "ast",
+      "slug": "nikola-sipcic"
+    },
+    "Issiaga Sylla": {
+      "fmId": "85125565",
+      "clubKey": "ast",
+      "slug": "issiaga-sylla"
+    },
+    "Giannis Kotsiras": {
+      "fmId": "36108530",
+      "clubKey": "ast",
+      "slug": "giannis-kotsiras"
+    },
+    "Robert Ivanov": {
+      "fmId": "33061077",
+      "clubKey": "ast",
+      "slug": "robert-ivanov"
+    },
+    "Jordan Silva": {
+      "fmId": "51031050",
+      "clubKey": "ast",
+      "slug": "jordan-silva"
+    },
+    "Panagiotis Deligiannidis": {
+      "fmId": "36077346",
+      "clubKey": "ast",
+      "slug": "panagiotis-deligiannidis"
+    },
+    "Álex Méndez": {
+      "fmId": "2000056643",
+      "clubKey": "ast",
+      "slug": "alex-mendez"
+    },
+    "Julián Chicco": {
+      "fmId": "14107685",
+      "clubKey": "ast",
+      "slug": "julian-chicco"
+    },
+    "Evgeniy Yablonskiy": {
+      "fmId": "17027717",
+      "clubKey": "ast",
+      "slug": "evgeniy-yablonskiy"
+    },
+    "Giannis Bouzoukis": {
+      "fmId": "36105388",
+      "clubKey": "ast",
+      "slug": "giannis-bouzoukis"
+    },
+    "Christos Almyras": {
+      "fmId": "2000247793",
+      "clubKey": "ast",
+      "slug": "christos-almyras"
+    },
+    "Denis Kala": {
+      "fmId": "2000276745",
+      "clubKey": "ast",
+      "slug": "denis-kala"
+    },
+    "Franco Orozco": {
+      "fmId": "14221877",
+      "clubKey": "ast",
+      "slug": "franco-orozco"
+    },
+    "Julián Bartolo": {
+      "fmId": "14110264",
+      "clubKey": "ast",
+      "slug": "julian-bartolo"
+    },
+    "Ricardinho": {
+      "fmId": "19363232",
+      "clubKey": "ast",
+      "slug": "ricardinho"
+    },
+    "Nikos Kaltsas": {
+      "fmId": "36020100",
+      "clubKey": "ast",
+      "slug": "nikos-kaltsas"
+    },
+    "Adrián Riera": {
+      "fmId": "67222498",
+      "clubKey": "ast",
+      "slug": "adrian-riera"
+    },
+    "Federico Macheda": {
+      "fmId": "5006431",
+      "clubKey": "ast",
+      "slug": "federico-macheda"
+    },
+    "Bruno Pérez": {
+      "fmId": "2000250136",
+      "clubKey": "ast",
+      "slug": "bruno-perez"
+    },
+    "Alberto Simoni": {
+      "fmId": "36158914",
+      "clubKey": "ast",
+      "slug": "alberto-simoni"
+    },
+    "Lucas": {
+      "fmId": "67263833",
+      "clubKey": "lvd",
+      "slug": "lucas"
+    },
+    "Stelios Vallindras": {
+      "fmId": "2000136497",
+      "clubKey": "lvd",
+      "slug": "stelios-vallindras"
+    },
+    "Marios Vichos": {
+      "fmId": "36149067",
+      "clubKey": "lvd",
+      "slug": "marios-vichos"
+    },
+    "Panagiotis Liagas": {
+      "fmId": "36138797",
+      "clubKey": "lvd",
+      "slug": "panagiotis-liagas"
+    },
+    "Alexandru Pantea": {
+      "fmId": "57199147",
+      "clubKey": "lvd",
+      "slug": "alexandru-pantea"
+    },
+    "Giorgos Kornezos": {
+      "fmId": "36128187",
+      "clubKey": "lvd",
+      "slug": "giorgos-kornezos"
+    },
+    "Giorgos Manthatis": {
+      "fmId": "36097566",
+      "clubKey": "lvd",
+      "slug": "giorgos-manthatis"
+    },
+    "Giannis Tsivelekidis": {
+      "fmId": "36139188",
+      "clubKey": "lvd",
+      "slug": "giannis-tsivelekidis"
+    },
+    "Taxiarchis Filon": {
+      "fmId": "2000217891",
+      "clubKey": "lvd",
+      "slug": "taxiarchis-filon"
+    },
+    "Giannis Kosti": {
+      "fmId": "26038902",
+      "clubKey": "lvd",
+      "slug": "giannis-kosti"
+    },
+    "Giorgos Nikas": {
+      "fmId": "36138791",
+      "clubKey": "lvd",
+      "slug": "giorgos-nikas"
+    },
+    "Lamarana Jallow": {
+      "fmId": "2000084721",
+      "clubKey": "lvd",
+      "slug": "lamarana-jallow"
+    },
+    "Agustín Urzi": {
+      "fmId": "14219443",
+      "clubKey": "lvd",
+      "slug": "agustin-urzi"
+    },
+    "Ognjen Ožegović": {
+      "fmId": "62075347",
+      "clubKey": "lvd",
+      "slug": "ognjen-ozegovic"
+    },
+    "Dimitris Emmanouilidis": {
+      "fmId": "36131416",
+      "clubKey": "lvd",
+      "slug": "dimitris-emmanouilidis"
+    },
+    "Panagiotis Symelidis": {
+      "fmId": "36060604",
+      "clubKey": "lvd",
+      "slug": "panagiotis-symelidis"
+    },
+    "Kostas Goumas": {
+      "fmId": "2000217905",
+      "clubKey": "lvd",
+      "slug": "kostas-goumas"
+    },
+    "Giorgos Vrakas": {
+      "fmId": "36139649",
+      "clubKey": "lvd",
+      "slug": "giorgos-vrakas"
+    },
+    "Christos Papadopoulos": {
+      "fmId": "2000199928",
+      "clubKey": "lvd",
+      "slug": "christos-papadopoulos"
+    },
+    "Marios Siabanis": {
+      "fmId": "36112659",
+      "clubKey": "vlo",
+      "slug": "marios-siabanis"
+    },
+    "Alexei Koșelev": {
+      "fmId": "57105134",
+      "clubKey": "vlo",
+      "slug": "alexei-koselev"
+    },
+    "Nikos Grammatikakis": {
+      "fmId": "2000136589",
+      "clubKey": "vlo",
+      "slug": "nikos-grammatikakis"
+    },
+    "Hamza Mendyl": {
+      "fmId": "48043729",
+      "clubKey": "vlo",
+      "slug": "hamza-mendyl"
+    },
+    "Hatim Es-Saouabi": {
+      "fmId": "2000212920",
+      "clubKey": "vlo",
+      "slug": "hatim-es-saouabi"
+    },
+    "Giorgos Mygas": {
+      "fmId": "36078069",
+      "clubKey": "vlo",
+      "slug": "giorgos-mygas"
+    },
+    "Giannis Kargas": {
+      "fmId": "36063330",
+      "clubKey": "vlo",
+      "slug": "giannis-kargas"
+    },
+    "Derek Agyakwa": {
+      "fmId": "37084871",
+      "clubKey": "vlo",
+      "slug": "derek-agyakwa"
+    },
+    "Lefteris Tasiouras": {
+      "fmId": "2000054013",
+      "clubKey": "vlo",
+      "slug": "lefteris-tasiouras"
+    },
+    "Stefanos Katsikas": {
+      "fmId": "36161686",
+      "clubKey": "vlo",
+      "slug": "stefanos-katsikas"
+    },
+    "Kostas Lykourinos": {
+      "fmId": "2000384170",
+      "clubKey": "vlo",
+      "slug": "kostas-lykourinos"
+    },
+    "Maximiliano Comba": {
+      "fmId": "14179796",
+      "clubKey": "vlo",
+      "slug": "maximiliano-comba"
+    },
+    "Tasos Tsokanis": {
+      "fmId": "36044016",
+      "clubKey": "vlo",
+      "slug": "tasos-tsokanis"
+    },
+    "Klearchos Vainopoulos": {
+      "fmId": "2000492419",
+      "clubKey": "vlo",
+      "slug": "klearchos-vainopoulos"
+    },
+    "Gustavo Santos": {
+      "fmId": "83223646",
+      "clubKey": "vlo",
+      "slug": "gustavo-santos"
+    },
+    "Lazaros Lamprou": {
+      "fmId": "36090992",
+      "clubKey": "vlo",
+      "slug": "lazaros-lamprou"
+    },
+    "Matías González": {
+      "fmId": "14244919",
+      "clubKey": "vlo",
+      "slug": "matias-gonzalez"
+    },
+    "Jan Hurtado": {
+      "fmId": "86059427",
+      "clubKey": "vlo",
+      "slug": "jan-hurtado"
+    },
+    "Joca": {
+      "fmId": "55082919",
+      "clubKey": "vlo",
+      "slug": "joca"
+    },
+    "Nabil Makni": {
+      "fmId": "43617449",
+      "clubKey": "vlo",
+      "slug": "nabil-makni"
+    },
+    "Yevhenii Kucherenko": {
+      "fmId": "71099088",
+      "clubKey": "ptk",
+      "slug": "yevhenii-kucherenko"
+    },
+    "Vasilis Xenopoulos": {
+      "fmId": "36125508",
+      "clubKey": "ptk",
+      "slug": "vasilis-xenopoulos"
+    },
+    "Michalis Pardalos": {
+      "fmId": "2000123982",
+      "clubKey": "ptk",
+      "slug": "michalis-pardalos"
+    },
+    "Charis Mavrias": {
+      "fmId": "36037880",
+      "clubKey": "ptk",
+      "slug": "charis-mavrias"
+    },
+    "Nikola Stajić": {
+      "fmId": "2000038045",
+      "clubKey": "ptk",
+      "slug": "nikola-stajic"
+    },
+    "Christian Manrique": {
+      "fmId": "67232110",
+      "clubKey": "ptk",
+      "slug": "christian-manrique"
+    },
+    "Elias Olsson": {
+      "fmId": "93140655",
+      "clubKey": "ptk",
+      "slug": "elias-olsson"
+    },
+    "Apostolos Apostolopoulos": {
+      "fmId": "2000005762",
+      "clubKey": "ptk",
+      "slug": "apostolos-apostolopoulos"
+    },
+    "Gustav Granath": {
+      "fmId": "93061271",
+      "clubKey": "ptk",
+      "slug": "gustav-granath"
+    },
+    "Thanos Prodromitis": {
+      "fmId": "2000140045",
+      "clubKey": "ptk",
+      "slug": "thanos-prodromitis"
+    },
+    "David Galiatsos": {
+      "fmId": "2000391226",
+      "clubKey": "ptk",
+      "slug": "david-galiatsos"
+    },
+    "Lazar Kojić": {
+      "fmId": "62207467",
+      "clubKey": "ptk",
+      "slug": "lazar-kojic"
+    },
+    "Amine Bassi": {
+      "fmId": "48038738",
+      "clubKey": "ptk",
+      "slug": "amine-bassi"
+    },
+    "Kwadwo Opoku": {
+      "fmId": "13193935",
+      "clubKey": "ptk",
+      "slug": "kwadwo-opoku"
+    },
+    "Lenny Lobato": {
+      "fmId": "14222111",
+      "clubKey": "ptk",
+      "slug": "lenny-lobato"
+    },
+    "Diego Esteban": {
+      "fmId": "2000116056",
+      "clubKey": "ptk",
+      "slug": "diego-esteban"
+    },
+    "Kosta Aleksić": {
+      "fmId": "62231943",
+      "clubKey": "ptk",
+      "slug": "kosta-aleksic"
+    },
+    "Giannis Satsias": {
+      "fmId": "2000039660",
+      "clubKey": "ptk",
+      "slug": "giannis-satsias"
+    },
+    "Labros Smyrlis": {
+      "fmId": "2000053998",
+      "clubKey": "ptk",
+      "slug": "labros-smyrlis"
+    },
+    "Adriano Bregu": {
+      "fmId": "2000282041",
+      "clubKey": "ptk",
+      "slug": "adriano-bregu"
+    },
+    "Francisco Tinaglini": {
+      "fmId": "78070112",
+      "clubKey": "psr",
+      "slug": "francisco-tinaglini"
+    },
+    "Stefanos Souloukos": {
+      "fmId": "36141617",
+      "clubKey": "psr",
+      "slug": "stefanos-souloukos"
+    },
+    "Viktor Sakalidis": {
+      "fmId": "2000300904",
+      "clubKey": "psr",
+      "slug": "viktor-sakalidis"
+    },
+    "Vernon de Marco": {
+      "fmId": "63024218",
+      "clubKey": "psr",
+      "slug": "vernon-de-marco"
+    },
+    "Maximiliano Moreira": {
+      "fmId": "78043788",
+      "clubKey": "psr",
+      "slug": "maximiliano-moreira"
+    },
+    "Nontas Pantelakis": {
+      "fmId": "36086901",
+      "clubKey": "psr",
+      "slug": "nontas-pantelakis"
+    },
+    "Yoël Armougom": {
+      "fmId": "48044378",
+      "clubKey": "psr",
+      "slug": "yoel-armougom"
+    },
+    "Iva Gelashvili": {
+      "fmId": "2000014214",
+      "clubKey": "psr",
+      "slug": "iva-gelashvili"
+    },
+    "Marios Tsaousis": {
+      "fmId": "36127506",
+      "clubKey": "psr",
+      "slug": "marios-tsaousis"
+    },
+    "Charis Iliadis": {
+      "fmId": "36157670",
+      "clubKey": "psr",
+      "slug": "charis-iliadis"
+    },
+    "Stathis Tachatos": {
+      "fmId": "36160669",
+      "clubKey": "psr",
+      "slug": "stathis-tachatos"
+    },
+    "Ethan Brooks": {
+      "fmId": "2000034559",
+      "clubKey": "psr",
+      "slug": "ethan-brooks"
+    },
+    "Giannis Doiranlis": {
+      "fmId": "2000162778",
+      "clubKey": "psr",
+      "slug": "giannis-doiranlis"
+    },
+    "Samir Ben Sallam": {
+      "fmId": "37075214",
+      "clubKey": "psr",
+      "slug": "samir-ben-sallam"
+    },
+    "Angelos Oikonomou": {
+      "fmId": "91138137",
+      "clubKey": "psr",
+      "slug": "angelos-oikonomou"
+    },
+    "Viktor Rumyantsev": {
+      "fmId": "2000162759",
+      "clubKey": "psr",
+      "slug": "viktor-rumyantsev"
+    },
+    "Alex Teixeira": {
+      "fmId": "19007730",
+      "clubKey": "psr",
+      "slug": "alex-teixeira"
+    },
+    "Giannis Pasas": {
+      "fmId": "36036672",
+      "clubKey": "psr",
+      "slug": "giannis-pasas"
+    },
+    "Ilias Tselios": {
+      "fmId": "36095671",
+      "clubKey": "psr",
+      "slug": "ilias-tselios"
+    },
+    "Kostas Kotsopoulos": {
+      "fmId": "36141622",
+      "clubKey": "psr",
+      "slug": "kostas-kotsopoulos"
+    },
+    "Thodoris Vernardos": {
+      "fmId": "36118010",
+      "clubKey": "psr",
+      "slug": "thodoris-vernardos"
+    },
+    "Jean-Baptiste Léo": {
+      "fmId": "48037830",
+      "clubKey": "psr",
+      "slug": "jean-baptiste-leo"
+    },
+    "Alexandros Maskanakis": {
+      "fmId": "2000016937",
+      "clubKey": "psr",
+      "slug": "alexandros-maskanakis"
+    },
+    "Darnell Bile": {
+      "fmId": "2000208458",
+      "clubKey": "psr",
+      "slug": "darnell-bile"
+    },
+    "Nikos Melissas": {
+      "fmId": "36047451",
+      "clubKey": "ael",
+      "slug": "nikos-melissas"
+    },
+    "Thodoros Venetikidis": {
+      "fmId": "36128045",
+      "clubKey": "ael",
+      "slug": "thodoros-venetikidis"
+    },
+    "Dylan Batubinsika": {
+      "fmId": "85121090",
+      "clubKey": "ael",
+      "slug": "dylan-batubinsika"
+    },
+    "Yvann Maçon": {
+      "fmId": "48046006",
+      "clubKey": "ael",
+      "slug": "yvann-macon"
+    },
+    "Erick Ferigra": {
+      "fmId": "43323077",
+      "clubKey": "ael",
+      "slug": "erick-ferigra"
+    },
+    "Ahmed Kossonou": {
+      "fmId": "2000222430",
+      "clubKey": "ael",
+      "slug": "ahmed-kossonou"
+    },
+    "Thanasis Papageorgiou": {
+      "fmId": "1804955",
+      "clubKey": "ael",
+      "slug": "thanasis-papageorgiou"
+    },
+    "Kostas Grozos": {
+      "fmId": "2000372867",
+      "clubKey": "ael",
+      "slug": "kostas-grozos"
+    },
+    "Jani Atanasov": {
+      "fmId": "47076833",
+      "clubKey": "ael",
+      "slug": "jani-atanasov"
+    },
+    "Paschalis Staikos": {
+      "fmId": "36077223",
+      "clubKey": "ael",
+      "slug": "paschalis-staikos"
+    },
+    "Luca Andrada": {
+      "fmId": "14224752",
+      "clubKey": "ael",
+      "slug": "luca-andrada"
+    },
+    "Pione Sisto": {
+      "fmId": "27058550",
+      "clubKey": "ael",
+      "slug": "pione-sisto"
+    },
+    "Angelo Sagal": {
+      "fmId": "75029739",
+      "clubKey": "ael",
+      "slug": "angelo-sagal"
+    },
+    "Julien Ngoy": {
+      "fmId": "28100977",
+      "clubKey": "ael",
+      "slug": "julien-ngoy"
+    },
+    "Thierry Moutinho": {
+      "fmId": "69010922",
+      "clubKey": "ael",
+      "slug": "thierry-moutinho"
+    },
+    "King Faisal Owusu": {
+      "fmId": "2000246893",
+      "clubKey": "ael",
+      "slug": "king-faisal-owusu"
+    },
+    "Moisés Ramírez": {
+      "fmId": "86066843",
+      "clubKey": "kif",
+      "slug": "moises-ramirez"
+    },
+    "Alexandros Anagnostopoulos": {
+      "fmId": "36086801",
+      "clubKey": "kif",
+      "slug": "alexandros-anagnostopoulos"
+    },
+    "Tiago Manso": {
+      "fmId": "83169433",
+      "clubKey": "kif",
+      "slug": "tiago-manso"
+    },
+    "Aleks Petkov": {
+      "fmId": "61078168",
+      "clubKey": "kif",
+      "slug": "aleks-petkov"
+    },
+    "Jon De Luis": {
+      "fmId": "2000121909",
+      "clubKey": "kif",
+      "slug": "jon-de-luis"
+    },
+    "Konstantinos Apostolakis": {
+      "fmId": "36115063",
+      "clubKey": "kif",
+      "slug": "konstantinos-apostolakis"
+    },
+    "Kostas Polykratis": {
+      "fmId": "2000282014",
+      "clubKey": "kif",
+      "slug": "kostas-polykratis"
+    },
+    "Nektarios Kaloskamis": {
+      "fmId": "2000467558",
+      "clubKey": "kif",
+      "slug": "nektarios-kaloskamis"
+    },
+    "Thodoris Faitakis": {
+      "fmId": "2000408222",
+      "clubKey": "kif",
+      "slug": "thodoris-faitakis"
+    },
+    "Fotis Chachoulis": {
+      "fmId": "2000140063",
+      "clubKey": "kif",
+      "slug": "fotis-chachoulis"
+    },
+    "Johnson Eboh": {
+      "fmId": "2000064961",
+      "clubKey": "kif",
+      "slug": "johnson-eboh"
+    },
+    "Kostas Roukounakis": {
+      "fmId": "36160686",
+      "clubKey": "kif",
+      "slug": "kostas-roukounakis"
+    },
+    "Pavlos Mavroudis": {
+      "fmId": "36138856",
+      "clubKey": "kif",
+      "slug": "pavlos-mavroudis"
+    },
+    "Alexandros Pothas": {
+      "fmId": "2000480013",
+      "clubKey": "kif",
+      "slug": "alexandros-pothas"
+    },
+    "Jorge Pombo": {
+      "fmId": "67175261",
+      "clubKey": "kif",
+      "slug": "jorge-pombo"
+    },
+    "Benny": {
+      "fmId": "83152869",
+      "clubKey": "kif",
+      "slug": "benny"
+    },
+    "Jeremy Antonisse": {
+      "fmId": "37078348",
+      "clubKey": "kif",
+      "slug": "jeremy-antonisse"
+    },
+    "Jordi Mboula": {
+      "fmId": "67231279",
+      "clubKey": "kif",
+      "slug": "jordi-mboula"
+    },
+    "Imam Jagne": {
+      "fmId": "93144730",
+      "clubKey": "kif",
+      "slug": "imam-jagne"
+    },
+    "Gerson Sousa": {
+      "fmId": "83243061",
+      "clubKey": "kif",
+      "slug": "gerson-sousa"
+    },
+    "Dimitris Theodoridis": {
+      "fmId": "2000064078",
+      "clubKey": "kif",
+      "slug": "dimitris-theodoridis"
+    },
+    "Apostolis Christopoulos": {
+      "fmId": "2000110747",
+      "clubKey": "kif",
+      "slug": "apostolis-christopoulos"
+    }
+  }
+}

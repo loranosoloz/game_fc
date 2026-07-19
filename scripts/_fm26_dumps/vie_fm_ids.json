@@ -1,0 +1,1676 @@
+{
+  "source": "fmtransferupdate V.League 1",
+  "matched": 334,
+  "byName": {
+    "Nguyen Filip": {
+      "fmId": "25052501",
+      "clubKey": "cah",
+      "slug": "nguyen-filip"
+    },
+    "Tran Dinh Minh Hoang": {
+      "fmId": "23296748",
+      "clubKey": "cah",
+      "slug": "tran-dinh-minh-hoang"
+    },
+    "Vu Tuyen Quang": {
+      "fmId": "23365410",
+      "clubKey": "cah",
+      "slug": "vu-tuyen-quang"
+    },
+    "Cao Quang Vinh": {
+      "fmId": "48037802",
+      "clubKey": "cah",
+      "slug": "cao-quang-vinh"
+    },
+    "Vu Van Thanh": {
+      "fmId": "23303646",
+      "clubKey": "cah",
+      "slug": "vu-van-thanh"
+    },
+    "Bui Hoang Viet Anh": {
+      "fmId": "23462805",
+      "clubKey": "cah",
+      "slug": "bui-hoang-viet-anh"
+    },
+    "Leygley Adou": {
+      "fmId": "50038245",
+      "clubKey": "cah",
+      "slug": "leygley-adou"
+    },
+    "Doan Van Hau": {
+      "fmId": "23401153",
+      "clubKey": "cah",
+      "slug": "doan-van-hau"
+    },
+    "Nguyen Van Duc": {
+      "fmId": "23462804",
+      "clubKey": "cah",
+      "slug": "nguyen-van-duc"
+    },
+    "Brandon Ly": {
+      "fmId": "2000199178",
+      "clubKey": "cah",
+      "slug": "brandon-ly"
+    },
+    "Giap Tuan Duong": {
+      "fmId": "2000212664",
+      "clubKey": "cah",
+      "slug": "giap-tuan-duong"
+    },
+    "Vitão": {
+      "fmId": "2000034835",
+      "clubKey": "cah",
+      "slug": "vitao"
+    },
+    "Hoang Van Toan": {
+      "fmId": "2000090531",
+      "clubKey": "cah",
+      "slug": "hoang-van-toan"
+    },
+    "Bui Xuan Thinh": {
+      "fmId": "2000090536",
+      "clubKey": "cah",
+      "slug": "bui-xuan-thinh"
+    },
+    "Pham Minh Phuc": {
+      "fmId": "2000401004",
+      "clubKey": "cah",
+      "slug": "pham-minh-phuc"
+    },
+    "Nguyen Hoang Dung": {
+      "fmId": "2000401020",
+      "clubKey": "cah",
+      "slug": "nguyen-hoang-dung"
+    },
+    "Tran Hong Minh": {
+      "fmId": "2000401030",
+      "clubKey": "cah",
+      "slug": "tran-hong-minh"
+    },
+    "Hoang Tung Duong": {
+      "fmId": "2000401023",
+      "clubKey": "cah",
+      "slug": "hoang-tung-duong"
+    },
+    "Hoang Manh Hung": {
+      "fmId": "2000401019",
+      "clubKey": "cah",
+      "slug": "hoang-manh-hung"
+    },
+    "Léo Artur": {
+      "fmId": "19165967",
+      "clubKey": "cah",
+      "slug": "leo-artur"
+    },
+    "Alan Grafite": {
+      "fmId": "19333408",
+      "clubKey": "cah",
+      "slug": "alan-grafite"
+    },
+    "Stefan Mauk": {
+      "fmId": "15023767",
+      "clubKey": "cah",
+      "slug": "stefan-mauk"
+    },
+    "China": {
+      "fmId": "71100098",
+      "clubKey": "cah",
+      "slug": "china"
+    },
+    "Nguyen Quang Hai": {
+      "fmId": "23303678",
+      "clubKey": "cah",
+      "slug": "nguyen-quang-hai"
+    },
+    "Phan Van Duc": {
+      "fmId": "23339420",
+      "clubKey": "cah",
+      "slug": "phan-van-duc"
+    },
+    "Le Pham Thanh Long": {
+      "fmId": "23303727",
+      "clubKey": "cah",
+      "slug": "le-pham-thanh-long"
+    },
+    "Nguyen Dinh Bac": {
+      "fmId": "2000288356",
+      "clubKey": "cah",
+      "slug": "nguyen-dinh-bac"
+    },
+    "Nguyen Van Hoang": {
+      "fmId": "23303680",
+      "clubKey": "hno",
+      "slug": "nguyen-van-hoang"
+    },
+    "Quan Van Chuan": {
+      "fmId": "97205112",
+      "clubKey": "hno",
+      "slug": "quan-van-chuan"
+    },
+    "Nguyen Duy Dung": {
+      "fmId": "97205125",
+      "clubKey": "hno",
+      "slug": "nguyen-duy-dung"
+    },
+    "Adriel": {
+      "fmId": "19297054",
+      "clubKey": "hno",
+      "slug": "adriel"
+    },
+    "Nguyen Thanh Chung": {
+      "fmId": "23303751",
+      "clubKey": "hno",
+      "slug": "nguyen-thanh-chung"
+    },
+    "Pham Xuan Manh": {
+      "fmId": "23303740",
+      "clubKey": "hno",
+      "slug": "pham-xuan-manh"
+    },
+    "Do Duy Manh": {
+      "fmId": "23303624",
+      "clubKey": "hno",
+      "slug": "do-duy-manh"
+    },
+    "Le Van Xuan": {
+      "fmId": "23462807",
+      "clubKey": "hno",
+      "slug": "le-van-xuan"
+    },
+    "Dau Van Toan": {
+      "fmId": "23303758",
+      "clubKey": "hno",
+      "slug": "dau-van-toan"
+    },
+    "Nguyen Cong Nhat": {
+      "fmId": "23302413",
+      "clubKey": "hno",
+      "slug": "nguyen-cong-nhat"
+    },
+    "Vu Tien Long": {
+      "fmId": "97205105",
+      "clubKey": "hno",
+      "slug": "vu-tien-long"
+    },
+    "Do Hung Dung": {
+      "fmId": "23299484",
+      "clubKey": "hno",
+      "slug": "do-hung-dung"
+    },
+    "Ngo Duc Hoang": {
+      "fmId": "97205115",
+      "clubKey": "hno",
+      "slug": "ngo-duc-hoang"
+    },
+    "Dang Tuan Minh": {
+      "fmId": "2000283849",
+      "clubKey": "hno",
+      "slug": "dang-tuan-minh"
+    },
+    "Do Dinh Son": {
+      "fmId": "2000283836",
+      "clubKey": "hno",
+      "slug": "do-dinh-son"
+    },
+    "Luong Ngoc Cuong": {
+      "fmId": "2000283813",
+      "clubKey": "hno",
+      "slug": "luong-ngoc-cuong"
+    },
+    "Le Tuan Kiet": {
+      "fmId": "2000283812",
+      "clubKey": "hno",
+      "slug": "le-tuan-kiet"
+    },
+    "Nguyen Van Nam": {
+      "fmId": "2000283830",
+      "clubKey": "hno",
+      "slug": "nguyen-van-nam"
+    },
+    "Daniel Passira": {
+      "fmId": "2000024076",
+      "clubKey": "hno",
+      "slug": "daniel-passira"
+    },
+    "Luiz Fernando": {
+      "fmId": "20041860",
+      "clubKey": "hno",
+      "slug": "luiz-fernando"
+    },
+    "Pham Tuan Hai": {
+      "fmId": "23462796",
+      "clubKey": "hno",
+      "slug": "pham-tuan-hai"
+    },
+    "Do Hoang Hen": {
+      "fmId": "67184126",
+      "clubKey": "hno",
+      "slug": "do-hoang-hen"
+    },
+    "Nguyen Van Quyet": {
+      "fmId": "23140080",
+      "clubKey": "hno",
+      "slug": "nguyen-van-quyet"
+    },
+    "David Fisher": {
+      "fmId": "29217120",
+      "clubKey": "hno",
+      "slug": "david-fisher"
+    },
+    "Nguyen Hai Long": {
+      "fmId": "2000030246",
+      "clubKey": "hno",
+      "slug": "nguyen-hai-long"
+    },
+    "Nguyen Van Truong": {
+      "fmId": "2000212813",
+      "clubKey": "hno",
+      "slug": "nguyen-van-truong"
+    },
+    "Tran Nguyen Manh": {
+      "fmId": "23048582",
+      "clubKey": "ndf",
+      "slug": "tran-nguyen-manh"
+    },
+    "Tran Liem Dieu": {
+      "fmId": "97203593",
+      "clubKey": "ndf",
+      "slug": "tran-liem-dieu"
+    },
+    "Le Vu Phong": {
+      "fmId": "2000213864",
+      "clubKey": "ndf",
+      "slug": "le-vu-phong"
+    },
+    "Mitchell Dijks": {
+      "fmId": "37025511",
+      "clubKey": "ndf",
+      "slug": "mitchell-dijks"
+    },
+    "Lucão": {
+      "fmId": "19158379",
+      "clubKey": "ndf",
+      "slug": "lucao"
+    },
+    "Kévin Pham Ba": {
+      "fmId": "85081103",
+      "clubKey": "ndf",
+      "slug": "kevin-pham-ba"
+    },
+    "Nguyen Phong Hong Duy": {
+      "fmId": "23303644",
+      "clubKey": "ndf",
+      "slug": "nguyen-phong-hong-duy"
+    },
+    "Nguyen Van Vi": {
+      "fmId": "23303737",
+      "clubKey": "ndf",
+      "slug": "nguyen-van-vi"
+    },
+    "Tran Van Kien": {
+      "fmId": "23303685",
+      "clubKey": "ndf",
+      "slug": "tran-van-kien"
+    },
+    "Dang Van Toi": {
+      "fmId": "23401154",
+      "clubKey": "ndf",
+      "slug": "dang-van-toi"
+    },
+    "Duong Thanh Hao": {
+      "fmId": "23295987",
+      "clubKey": "ndf",
+      "slug": "duong-thanh-hao"
+    },
+    "Rômulo": {
+      "fmId": "19310728",
+      "clubKey": "ndf",
+      "slug": "romulo"
+    },
+    "Arnaud Lusamba": {
+      "fmId": "85140186",
+      "clubKey": "ndf",
+      "slug": "arnaud-lusamba"
+    },
+    "Caio César": {
+      "fmId": "19249917",
+      "clubKey": "ndf",
+      "slug": "caio-cesar"
+    },
+    "Nguyen Tuan Anh": {
+      "fmId": "23303642",
+      "clubKey": "ndf",
+      "slug": "nguyen-tuan-anh"
+    },
+    "Tran Van Cong": {
+      "fmId": "23462810",
+      "clubKey": "ndf",
+      "slug": "tran-van-cong"
+    },
+    "Nguyen Dinh Son": {
+      "fmId": "2000084838",
+      "clubKey": "ndf",
+      "slug": "nguyen-dinh-son"
+    },
+    "Doan Van Nam": {
+      "fmId": "2000090541",
+      "clubKey": "ndf",
+      "slug": "doan-van-nam"
+    },
+    "Brenner": {
+      "fmId": "19194971",
+      "clubKey": "ndf",
+      "slug": "brenner"
+    },
+    "Nguyen Xuan Son": {
+      "fmId": "19231090",
+      "clubKey": "ndf",
+      "slug": "nguyen-xuan-son"
+    },
+    "Mahmoud Eid": {
+      "fmId": "93020875",
+      "clubKey": "ndf",
+      "slug": "mahmoud-eid"
+    },
+    "Nguyen Van Toan": {
+      "fmId": "97203512",
+      "clubKey": "hpf",
+      "slug": "nguyen-van-toan"
+    },
+    "Ly Cong Hoang Anh": {
+      "fmId": "23462803",
+      "clubKey": "ndf",
+      "slug": "ly-cong-hoang-anh"
+    },
+    "To Van Vu": {
+      "fmId": "23365456",
+      "clubKey": "ndf",
+      "slug": "to-van-vu"
+    },
+    "A Mit": {
+      "fmId": "23356985",
+      "clubKey": "ndf",
+      "slug": "a-mit"
+    },
+    "Lam Ti Phong": {
+      "fmId": "23302430",
+      "clubKey": "ndf",
+      "slug": "lam-ti-phong"
+    },
+    "Nguyen Van Viet": {
+      "fmId": "2000214424",
+      "clubKey": "vtt",
+      "slug": "nguyen-van-viet"
+    },
+    "Pham Van Phong": {
+      "fmId": "23302372",
+      "clubKey": "vtt",
+      "slug": "pham-van-phong"
+    },
+    "Ngo Xuan Son": {
+      "fmId": "23365423",
+      "clubKey": "vtt",
+      "slug": "ngo-xuan-son"
+    },
+    "Bui Tien Dung": {
+      "fmId": "23401150",
+      "clubKey": "dna",
+      "slug": "bui-tien-dung"
+    },
+    "Kyle Colonna": {
+      "fmId": "2000251442",
+      "clubKey": "vtt",
+      "slug": "kyle-colonna"
+    },
+    "Nguyen Thanh Binh": {
+      "fmId": "97208328",
+      "clubKey": "vtt",
+      "slug": "nguyen-thanh-binh"
+    },
+    "Phan Tuan Tai": {
+      "fmId": "2000090471",
+      "clubKey": "vtt",
+      "slug": "phan-tuan-tai"
+    },
+    "Nguyen Minh Tung": {
+      "fmId": "23048531",
+      "clubKey": "vtt",
+      "slug": "nguyen-minh-tung"
+    },
+    "Dinh Viet Tu": {
+      "fmId": "23048525",
+      "clubKey": "vtt",
+      "slug": "dinh-viet-tu"
+    },
+    "Bui Van Duc": {
+      "fmId": "23462852",
+      "clubKey": "vtt",
+      "slug": "bui-van-duc"
+    },
+    "Dao Van Nam": {
+      "fmId": "23462802",
+      "clubKey": "vtt",
+      "slug": "dao-van-nam"
+    },
+    "Wesley Natã": {
+      "fmId": "19256908",
+      "clubKey": "vtt",
+      "slug": "wesley-nata"
+    },
+    "Paulinho Curuá": {
+      "fmId": "19355362",
+      "clubKey": "vtt",
+      "slug": "paulinho-curua"
+    },
+    "Vu Thanh An": {
+      "fmId": "2000268566",
+      "clubKey": "vtt",
+      "slug": "vu-thanh-an"
+    },
+    "Nguyen Van Tu": {
+      "fmId": "2000287362",
+      "clubKey": "vtt",
+      "slug": "nguyen-van-tu"
+    },
+    "Nguyen Duc Hoang Minh": {
+      "fmId": "23446643",
+      "clubKey": "vtt",
+      "slug": "nguyen-duc-hoang-minh"
+    },
+    "Le Quoc Nhat Nam": {
+      "fmId": "2000090478",
+      "clubKey": "vtt",
+      "slug": "le-quoc-nhat-nam"
+    },
+    "Ho Van An": {
+      "fmId": "2000324399",
+      "clubKey": "vtt",
+      "slug": "ho-van-an"
+    },
+    "Do Van Chi": {
+      "fmId": "2000283142",
+      "clubKey": "vtt",
+      "slug": "do-van-chi"
+    },
+    "Lucão do Break": {
+      "fmId": "45035269",
+      "clubKey": "vtt",
+      "slug": "lucao-do-break"
+    },
+    "Pedro Henrique": {
+      "fmId": "2000354202",
+      "clubKey": "vtt",
+      "slug": "pedro-henrique"
+    },
+    "Khuat Van Khang": {
+      "fmId": "2000214447",
+      "clubKey": "vtt",
+      "slug": "khuat-van-khang"
+    },
+    "Dinh Xuan Tien": {
+      "fmId": "2000214429",
+      "clubKey": "vtt",
+      "slug": "dinh-xuan-tien"
+    },
+    "Nham Manh Dung": {
+      "fmId": "97205183",
+      "clubKey": "vtt",
+      "slug": "nham-manh-dung"
+    },
+    "Nguyen Huu Thang": {
+      "fmId": "97208333",
+      "clubKey": "vtt",
+      "slug": "nguyen-huu-thang"
+    },
+    "Tran Danh Trung": {
+      "fmId": "97208332",
+      "clubKey": "vtt",
+      "slug": "tran-danh-trung"
+    },
+    "Nguyen Cong Phuong": {
+      "fmId": "2000324538",
+      "clubKey": "vtt",
+      "slug": "nguyen-cong-phuong"
+    },
+    "Patrik Le Giang": {
+      "fmId": "63012840",
+      "clubKey": "cat",
+      "slug": "patrik-le-giang"
+    },
+    "Nguyen Manh Cuong": {
+      "fmId": "97208081",
+      "clubKey": "cat",
+      "slug": "nguyen-manh-cuong"
+    },
+    "Tran Van Tien": {
+      "fmId": "23401146",
+      "clubKey": "cat",
+      "slug": "tran-van-tien"
+    },
+    "Vo Minh Trong": {
+      "fmId": "2000030285",
+      "clubKey": "cat",
+      "slug": "vo-minh-trong"
+    },
+    "Tran Hoang Phuc": {
+      "fmId": "2000031338",
+      "clubKey": "cat",
+      "slug": "tran-hoang-phuc"
+    },
+    "Tran Manh Cuong": {
+      "fmId": "23303711",
+      "clubKey": "cat",
+      "slug": "tran-manh-cuong"
+    },
+    "Le Quang Hung": {
+      "fmId": "23296846",
+      "clubKey": "cat",
+      "slug": "le-quang-hung"
+    },
+    "Khong Minh Gia Bao": {
+      "fmId": "23462860",
+      "clubKey": "cat",
+      "slug": "khong-minh-gia-bao"
+    },
+    "Vo Huu Viet Hoang": {
+      "fmId": "2000084873",
+      "clubKey": "cat",
+      "slug": "vo-huu-viet-hoang"
+    },
+    "Nguyen Huu Truong": {
+      "fmId": "2000163244",
+      "clubKey": "cat",
+      "slug": "nguyen-huu-truong"
+    },
+    "Peter Makrillos": {
+      "fmId": "28085946",
+      "clubKey": "cat",
+      "slug": "peter-makrillos"
+    },
+    "Pham Van Luan": {
+      "fmId": "97203513",
+      "clubKey": "hpf",
+      "slug": "pham-van-luan"
+    },
+    "Pham Duc Huy": {
+      "fmId": "23302367",
+      "clubKey": "cat",
+      "slug": "pham-duc-huy"
+    },
+    "Nguyen Duc Phu": {
+      "fmId": "2000213874",
+      "clubKey": "cat",
+      "slug": "nguyen-duc-phu"
+    },
+    "Mach Ngoc Ha": {
+      "fmId": "97203465",
+      "clubKey": "cat",
+      "slug": "mach-ngoc-ha"
+    },
+    "Dang Van Lam": {
+      "fmId": "23296841",
+      "clubKey": "nbh",
+      "slug": "dang-van-lam"
+    },
+    "Raphael Utzig": {
+      "fmId": "19283609",
+      "clubKey": "cat",
+      "slug": "raphael-utzig"
+    },
+    "Endrick": {
+      "fmId": "19256400",
+      "clubKey": "cat",
+      "slug": "endrick"
+    },
+    "Nguyen Tien Linh": {
+      "fmId": "23339415",
+      "clubKey": "cat",
+      "slug": "nguyen-tien-linh"
+    },
+    "Dinh Thanh Binh": {
+      "fmId": "23339417",
+      "clubKey": "cat",
+      "slug": "dinh-thanh-binh"
+    },
+    "Bui Ngoc Long": {
+      "fmId": "2000084860",
+      "clubKey": "cat",
+      "slug": "bui-ngoc-long"
+    },
+    "Dao Quoc Gia": {
+      "fmId": "23446645",
+      "clubKey": "cat",
+      "slug": "dao-quoc-gia"
+    },
+    "Duong Van Hao": {
+      "fmId": "23365438",
+      "clubKey": "cat",
+      "slug": "duong-van-hao"
+    },
+    "Vo Huy Toan": {
+      "fmId": "23292127",
+      "clubKey": "cat",
+      "slug": "vo-huy-toan"
+    },
+    "Tran Minh Toan": {
+      "fmId": "23302365",
+      "clubKey": "bxh",
+      "slug": "tran-minh-toan"
+    },
+    "Nguyen Van Cong": {
+      "fmId": "23296006",
+      "clubKey": "bxh",
+      "slug": "nguyen-van-cong"
+    },
+    "Tran Nhat Ha": {
+      "fmId": "2000031318",
+      "clubKey": "bxh",
+      "slug": "tran-nhat-ha"
+    },
+    "Miloš Zlatković": {
+      "fmId": "62143072",
+      "clubKey": "bxh",
+      "slug": "milos-zlatkovic"
+    },
+    "Ho Tan Tai": {
+      "fmId": "23458989",
+      "clubKey": "bxh",
+      "slug": "ho-tan-tai"
+    },
+    "Adriano Schmidt": {
+      "fmId": "23488200",
+      "clubKey": "bxh",
+      "slug": "adriano-schmidt"
+    },
+    "Ngo Tung Quoc": {
+      "fmId": "23385234",
+      "clubKey": "bxh",
+      "slug": "ngo-tung-quoc"
+    },
+    "Tran Dinh Khuong": {
+      "fmId": "23339421",
+      "clubKey": "bxh",
+      "slug": "tran-dinh-khuong"
+    },
+    "Tran Hoang Hung": {
+      "fmId": "23365466",
+      "clubKey": "bxh",
+      "slug": "tran-hoang-hung"
+    },
+    "Nguyen Khac Vu": {
+      "fmId": "97208284",
+      "clubKey": "bxh",
+      "slug": "nguyen-khac-vu"
+    },
+    "Nguyen Thanh Kien": {
+      "fmId": "2000212627",
+      "clubKey": "bxh",
+      "slug": "nguyen-thanh-kien"
+    },
+    "Hugo Alves": {
+      "fmId": "83281125",
+      "clubKey": "bxh",
+      "slug": "hugo-alves"
+    },
+    "Vo Hoang Minh Khoa": {
+      "fmId": "2000030104",
+      "clubKey": "bxh",
+      "slug": "vo-hoang-minh-khoa"
+    },
+    "Doan Tuan Canh": {
+      "fmId": "23414615",
+      "clubKey": "bxh",
+      "slug": "doan-tuan-canh"
+    },
+    "Nguyen Trong Phu": {
+      "fmId": "97208383",
+      "clubKey": "bxh",
+      "slug": "nguyen-trong-phu"
+    },
+    "Ugochukwu Oduenyi": {
+      "fmId": "24060889",
+      "clubKey": "bxh",
+      "slug": "ugochukwu-oduenyi"
+    },
+    "Tran Trung Hieu": {
+      "fmId": "13129106",
+      "clubKey": "bxh",
+      "slug": "tran-trung-hieu"
+    },
+    "Elisha Sam": {
+      "fmId": "18089528",
+      "clubKey": "bxh",
+      "slug": "elisha-sam"
+    },
+    "Ismaila Origbaajo": {
+      "fmId": "45119794",
+      "clubKey": "bxh",
+      "slug": "ismaila-origbaajo"
+    },
+    "Bui Vi Hao": {
+      "fmId": "2000212625",
+      "clubKey": "bxh",
+      "slug": "bui-vi-hao"
+    },
+    "Nguyen Tran Viet Cuong": {
+      "fmId": "23414616",
+      "clubKey": "bxh",
+      "slug": "nguyen-tran-viet-cuong"
+    },
+    "Nguyen Thanh Nhan": {
+      "fmId": "2000030252",
+      "clubKey": "hag",
+      "slug": "nguyen-thanh-nhan"
+    },
+    "Phan Thanh Hau": {
+      "fmId": "23303648",
+      "clubKey": "bxh",
+      "slug": "phan-thanh-hau"
+    },
+    "Nguyen Dinh Trieu": {
+      "fmId": "23299491",
+      "clubKey": "hpf",
+      "slug": "nguyen-dinh-trieu"
+    },
+    "Pham Trung Hieu": {
+      "fmId": "23458993",
+      "clubKey": "hpf",
+      "slug": "pham-trung-hieu"
+    },
+    "Nguyen Nhat Minh": {
+      "fmId": "2000247331",
+      "clubKey": "hpf",
+      "slug": "nguyen-nhat-minh"
+    },
+    "Dam Tien Dung": {
+      "fmId": "23365430",
+      "clubKey": "hpf",
+      "slug": "dam-tien-dung"
+    },
+    "Nguyen Van Minh": {
+      "fmId": "2000030250",
+      "clubKey": "hpf",
+      "slug": "nguyen-van-minh"
+    },
+    "Pham Hoai Duong": {
+      "fmId": "23365435",
+      "clubKey": "hpf",
+      "slug": "pham-hoai-duong"
+    },
+    "Nguyen Trong Hieu": {
+      "fmId": "97208212",
+      "clubKey": "hpf",
+      "slug": "nguyen-trong-hieu"
+    },
+    "Nguyen Thai Hoc": {
+      "fmId": "97205126",
+      "clubKey": "hpf",
+      "slug": "nguyen-thai-hoc"
+    },
+    "Luiz Antônio": {
+      "fmId": "19055097",
+      "clubKey": "hpf",
+      "slug": "luiz-antonio"
+    },
+    "Bicou Bissainthe": {
+      "fmId": "20048852",
+      "clubKey": "hpf",
+      "slug": "bicou-bissainthe"
+    },
+    "Moses Oloya": {
+      "fmId": "13102046",
+      "clubKey": "hpf",
+      "slug": "moses-oloya"
+    },
+    "Trieu Viet Hung": {
+      "fmId": "23303720",
+      "clubKey": "hpf",
+      "slug": "trieu-viet-hung"
+    },
+    "Le Manh Dung": {
+      "fmId": "23303745",
+      "clubKey": "hpf",
+      "slug": "le-manh-dung"
+    },
+    "Nguyen Thanh Dong": {
+      "fmId": "23303721",
+      "clubKey": "hpf",
+      "slug": "nguyen-thanh-dong"
+    },
+    "Joël Tagueu": {
+      "fmId": "19154516",
+      "clubKey": "hpf",
+      "slug": "joel-tagueu"
+    },
+    "Fred Friday": {
+      "fmId": "53097026",
+      "clubKey": "hpf",
+      "slug": "fred-friday"
+    },
+    "Lupeta": {
+      "fmId": "55038669",
+      "clubKey": "hpf",
+      "slug": "lupeta"
+    },
+    "Jourdain Fletcher": {
+      "fmId": "81042672",
+      "clubKey": "hpf",
+      "slug": "jourdain-fletcher"
+    },
+    "Nguyen Huu Son": {
+      "fmId": "23303743",
+      "clubKey": "hpf",
+      "slug": "nguyen-huu-son"
+    },
+    "Luong Hoang Nam": {
+      "fmId": "23303652",
+      "clubKey": "hpf",
+      "slug": "luong-hoang-nam"
+    },
+    "Camilo Vasconcelos": {
+      "fmId": "2000389306",
+      "clubKey": "hpf",
+      "slug": "camilo-vasconcelos"
+    },
+    "Nguyen Xuan Nam": {
+      "fmId": "23300118",
+      "clubKey": "hpf",
+      "slug": "nguyen-xuan-nam"
+    },
+    "Quang The Tai": {
+      "fmId": "23365437",
+      "clubKey": "nbh",
+      "slug": "quang-the-tai"
+    },
+    "Nguyen Minh Duc": {
+      "fmId": "2000363355",
+      "clubKey": "nbh",
+      "slug": "nguyen-minh-duc"
+    },
+    "Patrick": {
+      "fmId": "83212607",
+      "clubKey": "nbh",
+      "slug": "patrick"
+    },
+    "Janclésio": {
+      "fmId": "19291520",
+      "clubKey": "nbh",
+      "slug": "janclesio"
+    },
+    "Nguyen Duc Chien": {
+      "fmId": "23365436",
+      "clubKey": "nbh",
+      "slug": "nguyen-duc-chien"
+    },
+    "Truong Tien Anh": {
+      "fmId": "23462784",
+      "clubKey": "nbh",
+      "slug": "truong-tien-anh"
+    },
+    "Hoang Thai Binh": {
+      "fmId": "97203778",
+      "clubKey": "nbh",
+      "slug": "hoang-thai-binh"
+    },
+    "Dung Quang Nho": {
+      "fmId": "97203557",
+      "clubKey": "nbh",
+      "slug": "dung-quang-nho"
+    },
+    "Do Thanh Thinh": {
+      "fmId": "23356987",
+      "clubKey": "nbh",
+      "slug": "do-thanh-thinh"
+    },
+    "Le Ngoc Bao": {
+      "fmId": "23357000",
+      "clubKey": "nbh",
+      "slug": "le-ngoc-bao"
+    },
+    "Chung Do": {
+      "fmId": "2000087470",
+      "clubKey": "nbh",
+      "slug": "chung-do"
+    },
+    "Nguyen Thai Son": {
+      "fmId": "2000214434",
+      "clubKey": "nbh",
+      "slug": "nguyen-thai-son"
+    },
+    "Nguyen Trong Long": {
+      "fmId": "97208379",
+      "clubKey": "nbh",
+      "slug": "nguyen-trong-long"
+    },
+    "Le Van Thuan": {
+      "fmId": "2000401063",
+      "clubKey": "nbh",
+      "slug": "le-van-thuan"
+    },
+    "Gustavo Henrique": {
+      "fmId": "19339289",
+      "clubKey": "nbh",
+      "slug": "gustavo-henrique"
+    },
+    "Nguyen Hoang Duc": {
+      "fmId": "23365449",
+      "clubKey": "nbh",
+      "slug": "nguyen-hoang-duc"
+    },
+    "Geovane Magno": {
+      "fmId": "97205224",
+      "clubKey": "nbh",
+      "slug": "geovane-magno"
+    },
+    "Chau Ngoc Quang": {
+      "fmId": "23303729",
+      "clubKey": "nbh",
+      "slug": "chau-ngoc-quang"
+    },
+    "Tran Bao Toan": {
+      "fmId": "97203555",
+      "clubKey": "nbh",
+      "slug": "tran-bao-toan"
+    },
+    "Nguyen Quoc Viet": {
+      "fmId": "2000244310",
+      "clubKey": "nbh",
+      "slug": "nguyen-quoc-viet"
+    },
+    "Pham Gia Hung": {
+      "fmId": "2000090470",
+      "clubKey": "nbh",
+      "slug": "pham-gia-hung"
+    },
+    "Nguyen Le Phat": {
+      "fmId": "2000456108",
+      "clubKey": "nbh",
+      "slug": "nguyen-le-phat"
+    },
+    "Cao Van Binh": {
+      "fmId": "2000247420",
+      "clubKey": "sln",
+      "slug": "cao-van-binh"
+    },
+    "Nguyen Huu Hau": {
+      "fmId": "2000288365",
+      "clubKey": "sln",
+      "slug": "nguyen-huu-hau"
+    },
+    "Chu Van Tan": {
+      "fmId": "2000247421",
+      "clubKey": "sln",
+      "slug": "chu-van-tan"
+    },
+    "Justin Garcia": {
+      "fmId": "2000087290",
+      "clubKey": "sln",
+      "slug": "justin-garcia"
+    },
+    "Ho Van Cuong": {
+      "fmId": "2000214431",
+      "clubKey": "sln",
+      "slug": "ho-van-cuong"
+    },
+    "Vuong Van Huy": {
+      "fmId": "2000213661",
+      "clubKey": "sln",
+      "slug": "vuong-van-huy"
+    },
+    "Hoang Van Khanh": {
+      "fmId": "23303634",
+      "clubKey": "sln",
+      "slug": "hoang-van-khanh"
+    },
+    "Phan Ba Quyen": {
+      "fmId": "2000212651",
+      "clubKey": "sln",
+      "slug": "phan-ba-quyen"
+    },
+    "Le Van Thanh": {
+      "fmId": "2000090466",
+      "clubKey": "sln",
+      "slug": "le-van-thanh"
+    },
+    "Ho Khac Luong": {
+      "fmId": "2000090490",
+      "clubKey": "sln",
+      "slug": "ho-khac-luong"
+    },
+    "Le Nguyen Hoang": {
+      "fmId": "2000247413",
+      "clubKey": "sln",
+      "slug": "le-nguyen-hoang"
+    },
+    "Nguyen Quang Vinh": {
+      "fmId": "2000247346",
+      "clubKey": "sln",
+      "slug": "nguyen-quang-vinh"
+    },
+    "Dang Quang Tu": {
+      "fmId": "2000287353",
+      "clubKey": "sln",
+      "slug": "dang-quang-tu"
+    },
+    "Nguyen Xuan Binh": {
+      "fmId": "2000084855",
+      "clubKey": "sln",
+      "slug": "nguyen-xuan-binh"
+    },
+    "Nguyen Trong Tuan": {
+      "fmId": "2000363357",
+      "clubKey": "sln",
+      "slug": "nguyen-trong-tuan"
+    },
+    "Pham Nguyen Quoc Trung": {
+      "fmId": "2000363453",
+      "clubKey": "sln",
+      "slug": "pham-nguyen-quoc-trung"
+    },
+    "Nguyen Van Hien": {
+      "fmId": "2000247408",
+      "clubKey": "sln",
+      "slug": "nguyen-van-hien"
+    },
+    "Dau Quang Tu": {
+      "fmId": "2000084858",
+      "clubKey": "sln",
+      "slug": "dau-quang-tu"
+    },
+    "Tran Van Dat": {
+      "fmId": "2000247348",
+      "clubKey": "sln",
+      "slug": "tran-van-dat"
+    },
+    "Carlos Fortes": {
+      "fmId": "55068401",
+      "clubKey": "sln",
+      "slug": "carlos-fortes"
+    },
+    "Reon Moore": {
+      "fmId": "2000087302",
+      "clubKey": "sln",
+      "slug": "reon-moore"
+    },
+    "Michael Olaha": {
+      "fmId": "23401147",
+      "clubKey": "sln",
+      "slug": "michael-olaha"
+    },
+    "Tran Nam Hai": {
+      "fmId": "2000214425",
+      "clubKey": "sln",
+      "slug": "tran-nam-hai"
+    },
+    "Le Dinh Long Vu": {
+      "fmId": "2000247336",
+      "clubKey": "sln",
+      "slug": "le-dinh-long-vu"
+    },
+    "Tran Manh Quynh": {
+      "fmId": "2000084854",
+      "clubKey": "sln",
+      "slug": "tran-manh-quynh"
+    },
+    "Ngo Van Luong": {
+      "fmId": "2000247334",
+      "clubKey": "sln",
+      "slug": "ngo-van-luong"
+    },
+    "Phi-Long Tran": {
+      "fmId": "2000507179",
+      "clubKey": "sln",
+      "slug": "phi-long-tran"
+    },
+    "Trinh Xuan Hoang": {
+      "fmId": "97203781",
+      "clubKey": "tho",
+      "slug": "trinh-xuan-hoang"
+    },
+    "Y Eli Nie": {
+      "fmId": "97208214",
+      "clubKey": "tho",
+      "slug": "y-eli-nie"
+    },
+    "Le Anh Tuan": {
+      "fmId": "2000288370",
+      "clubKey": "tho",
+      "slug": "le-anh-tuan"
+    },
+    "Amar Catic": {
+      "fmId": "37064614",
+      "clubKey": "tho",
+      "slug": "amar-catic"
+    },
+    "Trinh Van Loi": {
+      "fmId": "23303637",
+      "clubKey": "tho",
+      "slug": "trinh-van-loi"
+    },
+    "Luc Xuan Hung": {
+      "fmId": "23303636",
+      "clubKey": "tho",
+      "slug": "luc-xuan-hung"
+    },
+    "Truong Thanh Nam": {
+      "fmId": "2000288371",
+      "clubKey": "tho",
+      "slug": "truong-thanh-nam"
+    },
+    "Huynh Minh Doan": {
+      "fmId": "2000084847",
+      "clubKey": "tho",
+      "slug": "huynh-minh-doan"
+    },
+    "Nguyen Dinh Huyen": {
+      "fmId": "97203784",
+      "clubKey": "tho",
+      "slug": "nguyen-dinh-huyen"
+    },
+    "Nguyen Ba Tien": {
+      "fmId": "2000324375",
+      "clubKey": "tho",
+      "slug": "nguyen-ba-tien"
+    },
+    "Nguyen Ngoc Cuong": {
+      "fmId": "2000288372",
+      "clubKey": "tho",
+      "slug": "nguyen-ngoc-cuong"
+    },
+    "Odiljon Abdurahmonov": {
+      "fmId": "59096086",
+      "clubKey": "tho",
+      "slug": "odiljon-abdurahmonov"
+    },
+    "Doan Ngoc Tan": {
+      "fmId": "23303626",
+      "clubKey": "tho",
+      "slug": "doan-ngoc-tan"
+    },
+    "Nguyen Huu Dung": {
+      "fmId": "23302390",
+      "clubKey": "tho",
+      "slug": "nguyen-huu-dung"
+    },
+    "Tran Ngoc Quy": {
+      "fmId": "2000213650",
+      "clubKey": "tho",
+      "slug": "tran-ngoc-quy"
+    },
+    "Damoth Thongkhamsavath": {
+      "fmId": "2000199678",
+      "clubKey": "tho",
+      "slug": "damoth-thongkhamsavath"
+    },
+    "Nguyen Cong Son": {
+      "fmId": "2000283137",
+      "clubKey": "tho",
+      "slug": "nguyen-cong-son"
+    },
+    "Trinh Van San": {
+      "fmId": "2000288373",
+      "clubKey": "tho",
+      "slug": "trinh-van-san"
+    },
+    "Rimario": {
+      "fmId": "23488198",
+      "clubKey": "tho",
+      "slug": "rimario"
+    },
+    "Matias Belli Moldskred": {
+      "fmId": "53140931",
+      "clubKey": "tho",
+      "slug": "matias-belli-moldskred"
+    },
+    "Le Van Thang": {
+      "fmId": "23047102",
+      "clubKey": "tho",
+      "slug": "le-van-thang"
+    },
+    "Doan Ngoc Ha": {
+      "fmId": "2000214439",
+      "clubKey": "tho",
+      "slug": "doan-ngoc-ha"
+    },
+    "Pham Trum Tinh": {
+      "fmId": "23357005",
+      "clubKey": "tho",
+      "slug": "pham-trum-tinh"
+    },
+    "Le Quoc Phuong": {
+      "fmId": "23082146",
+      "clubKey": "tho",
+      "slug": "le-quoc-phuong"
+    },
+    "Nguyen Ngoc My": {
+      "fmId": "2000288347",
+      "clubKey": "tho",
+      "slug": "nguyen-ngoc-my"
+    },
+    "Nguyen Van Tung": {
+      "fmId": "2000090491",
+      "clubKey": "tho",
+      "slug": "nguyen-van-tung"
+    },
+    "Phan Van Bieu": {
+      "fmId": "23462817",
+      "clubKey": "dna",
+      "slug": "phan-van-bieu"
+    },
+    "Dang Tuan Hung": {
+      "fmId": "2000163257",
+      "clubKey": "dna",
+      "slug": "dang-tuan-hung"
+    },
+    "Do Phi Long": {
+      "fmId": "19264971",
+      "clubKey": "dna",
+      "slug": "do-phi-long"
+    },
+    "Que Ngoc Hai": {
+      "fmId": "23292091",
+      "clubKey": "dna",
+      "slug": "que-ngoc-hai"
+    },
+    "Luong Duy Cuong": {
+      "fmId": "2000030234",
+      "clubKey": "dna",
+      "slug": "luong-duy-cuong"
+    },
+    "Nguyen Duy Duong": {
+      "fmId": "23446657",
+      "clubKey": "dna",
+      "slug": "nguyen-duy-duong"
+    },
+    "Tran Ngoc Son": {
+      "fmId": "2000213881",
+      "clubKey": "dna",
+      "slug": "tran-ngoc-son"
+    },
+    "Nguyen Duc Anh": {
+      "fmId": "2000212816",
+      "clubKey": "dna",
+      "slug": "nguyen-duc-anh"
+    },
+    "Tran Ngoc Hiep": {
+      "fmId": "97208211",
+      "clubKey": "dna",
+      "slug": "tran-ngoc-hiep"
+    },
+    "Nguyen Duy Thang": {
+      "fmId": "2000031321",
+      "clubKey": "dna",
+      "slug": "nguyen-duy-thang"
+    },
+    "Dang Anh Tuan": {
+      "fmId": "23299445",
+      "clubKey": "dna",
+      "slug": "dang-anh-tuan"
+    },
+    "Pham Van Huu": {
+      "fmId": "2000163255",
+      "clubKey": "dna",
+      "slug": "pham-van-huu"
+    },
+    "Tran Van Hoa": {
+      "fmId": "97208378",
+      "clubKey": "dna",
+      "slug": "tran-van-hoa"
+    },
+    "Vo Ngoc Toan": {
+      "fmId": "23303635",
+      "clubKey": "dna",
+      "slug": "vo-ngoc-toan"
+    },
+    "Vadim Nguyen": {
+      "fmId": "2000425385",
+      "clubKey": "dna",
+      "slug": "vadim-nguyen"
+    },
+    "Nguyen Kim Quang": {
+      "fmId": "2000288344",
+      "clubKey": "dna",
+      "slug": "nguyen-kim-quang"
+    },
+    "Tran Van Quang Huy": {
+      "fmId": "2000363382",
+      "clubKey": "dna",
+      "slug": "tran-van-quang-huy"
+    },
+    "Le Nguyen Van Tho": {
+      "fmId": "2000282877",
+      "clubKey": "dna",
+      "slug": "le-nguyen-van-tho"
+    },
+    "Lucas Ribamar": {
+      "fmId": "19286841",
+      "clubKey": "dna",
+      "slug": "lucas-ribamar"
+    },
+    "Joel López Pissano": {
+      "fmId": "14186006",
+      "clubKey": "dna",
+      "slug": "joel-lopez-pissano"
+    },
+    "David Henen": {
+      "fmId": "18056184",
+      "clubKey": "dna",
+      "slug": "david-henen"
+    },
+    "Milan Makarić": {
+      "fmId": "62083263",
+      "clubKey": "dna",
+      "slug": "milan-makaric"
+    },
+    "Pierre Lamothe": {
+      "fmId": "20042269",
+      "clubKey": "dna",
+      "slug": "pierre-lamothe"
+    },
+    "Phan Van Long": {
+      "fmId": "23303615",
+      "clubKey": "dna",
+      "slug": "phan-van-long"
+    },
+    "Pham Dinh Duy": {
+      "fmId": "2000163256",
+      "clubKey": "dna",
+      "slug": "pham-dinh-duy"
+    },
+    "Ngo Hong Phuoc": {
+      "fmId": "97208087",
+      "clubKey": "dna",
+      "slug": "ngo-hong-phuoc"
+    },
+    "Vo Ngoc Cuong": {
+      "fmId": "23302431",
+      "clubKey": "hlt",
+      "slug": "vo-ngoc-cuong"
+    },
+    "Nguyen Thanh Tung": {
+      "fmId": "23047119",
+      "clubKey": "hlt",
+      "slug": "nguyen-thanh-tung"
+    },
+    "Duong Tung Lam": {
+      "fmId": "23462809",
+      "clubKey": "hlt",
+      "slug": "duong-tung-lam"
+    },
+    "Helerson": {
+      "fmId": "19320815",
+      "clubKey": "hlt",
+      "slug": "helerson"
+    },
+    "Bui Duy Thuong": {
+      "fmId": "23365425",
+      "clubKey": "hlt",
+      "slug": "bui-duy-thuong"
+    },
+    "Mai Sy Hoang": {
+      "fmId": "2000030235",
+      "clubKey": "hlt",
+      "slug": "mai-sy-hoang"
+    },
+    "Pham Van Long": {
+      "fmId": "23303744",
+      "clubKey": "hlt",
+      "slug": "pham-van-long"
+    },
+    "Vu Viet Trieu": {
+      "fmId": "23303741",
+      "clubKey": "hlt",
+      "slug": "vu-viet-trieu"
+    },
+    "Nguyen Trong Hoang": {
+      "fmId": "23048619",
+      "clubKey": "hlt",
+      "slug": "nguyen-trong-hoang"
+    },
+    "Nguyen Van Hanh": {
+      "fmId": "23458994",
+      "clubKey": "hlt",
+      "slug": "nguyen-van-hanh"
+    },
+    "Doan Cong Thanh": {
+      "fmId": "23401143",
+      "clubKey": "hlt",
+      "slug": "doan-cong-thanh"
+    },
+    "Joseph Onoja": {
+      "fmId": "2000036804",
+      "clubKey": "hlt",
+      "slug": "joseph-onoja"
+    },
+    "Tran Van Buu": {
+      "fmId": "97204464",
+      "clubKey": "hlt",
+      "slug": "tran-van-buu"
+    },
+    "Dinh Tuan Tai": {
+      "fmId": "2000031307",
+      "clubKey": "hlt",
+      "slug": "dinh-tuan-tai"
+    },
+    "Nguyen The Hung": {
+      "fmId": "2000084874",
+      "clubKey": "hlt",
+      "slug": "nguyen-the-hung"
+    },
+    "Nguyen Van Huy": {
+      "fmId": "23462799",
+      "clubKey": "hlt",
+      "slug": "nguyen-van-huy"
+    },
+    "Trinh Minh Khoi": {
+      "fmId": "2000213692",
+      "clubKey": "hlt",
+      "slug": "trinh-minh-khoi"
+    },
+    "Welder": {
+      "fmId": "19338875",
+      "clubKey": "hlt",
+      "slug": "welder"
+    },
+    "Balotelli": {
+      "fmId": "83282230",
+      "clubKey": "hlt",
+      "slug": "balotelli"
+    },
+    "Charles Atshimene": {
+      "fmId": "2000043254",
+      "clubKey": "hlt",
+      "slug": "charles-atshimene"
+    },
+    "Viktor Le": {
+      "fmId": "2000133911",
+      "clubKey": "hlt",
+      "slug": "viktor-le"
+    },
+    "Vu Quang Nam": {
+      "fmId": "23299465",
+      "clubKey": "hlt",
+      "slug": "vu-quang-nam"
+    },
+    "Nguyen Van Hiep": {
+      "fmId": "23303683",
+      "clubKey": "hlt",
+      "slug": "nguyen-van-hiep"
+    },
+    "Huynh Tan Tai": {
+      "fmId": "23299455",
+      "clubKey": "hlt",
+      "slug": "huynh-tan-tai"
+    },
+    "Huynh Tien Dat": {
+      "fmId": "97208390",
+      "clubKey": "hlt",
+      "slug": "huynh-tien-dat"
+    },
+    "Tran Trung Kien": {
+      "fmId": "2000213681",
+      "clubKey": "hag",
+      "slug": "tran-trung-kien"
+    },
+    "Huynh Tran Bao Duy": {
+      "fmId": "2000247332",
+      "clubKey": "hag",
+      "slug": "huynh-tran-bao-duy"
+    },
+    "Nguyen Vu Khang": {
+      "fmId": "2000363448",
+      "clubKey": "hag",
+      "slug": "nguyen-vu-khang"
+    },
+    "Marciel": {
+      "fmId": "19250590",
+      "clubKey": "hag",
+      "slug": "marciel"
+    },
+    "Jairo": {
+      "fmId": "19046031",
+      "clubKey": "hag",
+      "slug": "jairo"
+    },
+    "Phan Du Hoc": {
+      "fmId": "97208279",
+      "clubKey": "hag",
+      "slug": "phan-du-hoc"
+    },
+    "Nguyen Van Trieu": {
+      "fmId": "2000213685",
+      "clubKey": "hag",
+      "slug": "nguyen-van-trieu"
+    },
+    "Nguyen Huu Anh Tai": {
+      "fmId": "23303653",
+      "clubKey": "hag",
+      "slug": "nguyen-huu-anh-tai"
+    },
+    "Ho Minh Quyen": {
+      "fmId": "2000090532",
+      "clubKey": "hag",
+      "slug": "ho-minh-quyen"
+    },
+    "Dinh Quang Kiet": {
+      "fmId": "2000244311",
+      "clubKey": "hag",
+      "slug": "dinh-quang-kiet"
+    },
+    "Khevin": {
+      "fmId": "19261502",
+      "clubKey": "hag",
+      "slug": "khevin"
+    },
+    "Tran Thanh Son": {
+      "fmId": "97203554",
+      "clubKey": "hag",
+      "slug": "tran-thanh-son"
+    },
+    "Hoang Vinh Nguyen": {
+      "fmId": "2000090480",
+      "clubKey": "hag",
+      "slug": "hoang-vinh-nguyen"
+    },
+    "Cao Hoang Minh": {
+      "fmId": "2000244338",
+      "clubKey": "hag",
+      "slug": "cao-hoang-minh"
+    },
+    "Moi Se": {
+      "fmId": "2000324434",
+      "clubKey": "hag",
+      "slug": "moi-se"
+    },
+    "Gabriel Conceição": {
+      "fmId": "2000119547",
+      "clubKey": "hag",
+      "slug": "gabriel-conceicao"
+    },
+    "Luong Thanh Ngoc Lam": {
+      "fmId": "23462824",
+      "clubKey": "hag",
+      "slug": "luong-thanh-ngoc-lam"
+    },
+    "Ryan Ha": {
+      "fmId": "2000244345",
+      "clubKey": "hag",
+      "slug": "ryan-ha"
+    },
+    "Nguyen Duy Tam": {
+      "fmId": "2000163247",
+      "clubKey": "hag",
+      "slug": "nguyen-duy-tam"
+    },
+    "Le Huy Kiet": {
+      "fmId": "2000213669",
+      "clubKey": "hag",
+      "slug": "le-huy-kiet"
+    },
+    "Nguyen Minh Tam": {
+      "fmId": "2000324426",
+      "clubKey": "hag",
+      "slug": "nguyen-minh-tam"
+    },
+    "Tran Huu Dang": {
+      "fmId": "2000324404",
+      "clubKey": "hag",
+      "slug": "tran-huu-dang"
+    },
+    "Nguyen Minh Kha": {
+      "fmId": "2000324529",
+      "clubKey": "pvc",
+      "slug": "nguyen-minh-kha"
+    },
+    "Pham Huy Hoang": {
+      "fmId": "2000500153",
+      "clubKey": "pvc",
+      "slug": "pham-huy-hoang"
+    },
+    "Bui Viet Thang": {
+      "fmId": "2000288145",
+      "clubKey": "pvc",
+      "slug": "bui-viet-thang"
+    },
+    "Bui Anh Quan": {
+      "fmId": "2000214145",
+      "clubKey": "pvc",
+      "slug": "bui-anh-quan"
+    },
+    "Le Nguyen Quoc Trung": {
+      "fmId": "2000500181",
+      "clubKey": "pvc",
+      "slug": "le-nguyen-quoc-trung"
+    },
+    "Le Nguyen Quoc Kien": {
+      "fmId": "2000500182",
+      "clubKey": "pvc",
+      "slug": "le-nguyen-quoc-kien"
+    },
+    "Luong Van Phuong": {
+      "fmId": "2000500149",
+      "clubKey": "pvc",
+      "slug": "luong-van-phuong"
+    },
+    "Tran Vu Ngoc Tai": {
+      "fmId": "2000213885",
+      "clubKey": "pvc",
+      "slug": "tran-vu-ngoc-tai"
+    },
+    "Nguyen Hoang Chien": {
+      "fmId": "2000363335",
+      "clubKey": "pvc",
+      "slug": "nguyen-hoang-chien"
+    },
+    "Phung Quang Tu": {
+      "fmId": "2000500160",
+      "clubKey": "pvc",
+      "slug": "phung-quang-tu"
+    },
+    "Le Ngoc Hung": {
+      "fmId": "2000456107",
+      "clubKey": "pvc",
+      "slug": "le-ngoc-hung"
+    }
+  }
+}

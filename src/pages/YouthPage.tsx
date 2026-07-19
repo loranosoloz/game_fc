@@ -87,60 +87,62 @@ export function YouthPage() {
           {youth.length === 0 ? (
             <p className="mt-3 text-sm text-slate-500">ยังไม่มี — รอ intake หรือเริ่มอาชีพใหม่หลังอัปเดต pack</p>
           ) : (
-            <table className="data mt-3">
-              <thead>
-                <tr>
-                  <th>ชื่อ</th>
-                  <th>กลุ่ม</th>
-                  <th>อายุ</th>
-                  <th>OVR</th>
-                  <th>PA</th>
-                  <th>นาที</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {youth.map((p) => {
-                  const ready = youthReady(p)
-                  return (
-                    <tr key={p.id}>
-                      <td>
-                        <span className="text-slate-400">{roleShort(p.role)}</span> {p.name}
-                      </td>
-                      <td className="text-xs text-slate-500">
-                        {p.age <= 16 ? 'U16' : p.age <= 18 ? 'U18' : p.age <= 21 ? 'U21' : 'U23'}
-                      </td>
-                      <td>{p.age}</td>
-                      <td className="font-semibold">{p.overall}</td>
-                      <td>{p.pa}</td>
-                      <td className="tabular-nums text-xs">{p.minutesPlayed}</td>
-                      <td>
-                        <button
-                          type="button"
-                          disabled={!ready}
-                          onClick={() => graduateYouth(p.id)}
-                          className={
-                            ready
-                              ? 'rounded bg-slate-900 px-2 py-1 text-[10px] font-semibold text-lime-300'
-                              : 'cursor-not-allowed rounded bg-slate-100 px-2 py-1 text-[10px] text-slate-400'
-                          }
-                          title={
-                            ready
-                              ? 'ขึ้นชุดใหญ่'
-                              : 'ต้องการอายุ≥17 และ (นาที≥180 หรือ อายุ≥19 หรือ OVR≥68)'
-                          }
-                        >
-                          {ready ? 'ขึ้นชุดใหญ่' : 'ยังไม่พร้อม'}
-                        </button>
-                      </td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-            <p className="mt-2 text-[11px] text-slate-500">
-              ขึ้นชุดใหญ่: อายุ ≥ 17 และ (นาที ≥ 180 หรือ อายุ ≥ 19 หรือ OVR ≥ 68)
-            </p>
+            <>
+              <table className="data mt-3">
+                <thead>
+                  <tr>
+                    <th>ชื่อ</th>
+                    <th>กลุ่ม</th>
+                    <th>อายุ</th>
+                    <th>OVR</th>
+                    <th>PA</th>
+                    <th>นาที</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {youth.map((p) => {
+                    const ready = youthReady(p)
+                    return (
+                      <tr key={p.id}>
+                        <td>
+                          <span className="text-slate-400">{roleShort(p.role)}</span> {p.name}
+                        </td>
+                        <td className="text-xs text-slate-500">
+                          {p.age <= 16 ? 'U16' : p.age <= 18 ? 'U18' : p.age <= 21 ? 'U21' : 'U23'}
+                        </td>
+                        <td>{p.age}</td>
+                        <td className="font-semibold">{p.overall}</td>
+                        <td>{p.pa}</td>
+                        <td className="tabular-nums text-xs">{p.minutesPlayed}</td>
+                        <td>
+                          <button
+                            type="button"
+                            disabled={!ready}
+                            onClick={() => graduateYouth(p.id)}
+                            className={
+                              ready
+                                ? 'rounded bg-slate-900 px-2 py-1 text-[10px] font-semibold text-lime-300'
+                                : 'cursor-not-allowed rounded bg-slate-100 px-2 py-1 text-[10px] text-slate-400'
+                            }
+                            title={
+                              ready
+                                ? 'ขึ้นชุดใหญ่'
+                                : 'ต้องการอายุ≥17 และ (นาที≥180 หรือ อายุ≥19 หรือ OVR≥68)'
+                            }
+                          >
+                            {ready ? 'ขึ้นชุดใหญ่' : 'ยังไม่พร้อม'}
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+              <p className="mt-2 text-[11px] text-slate-500">
+                ขึ้นชุดใหญ่: อายุ ≥ 17 และ (นาที ≥ 180 หรือ อายุ ≥ 19 หรือ OVR ≥ 68)
+              </p>
+            </>
           )}
         </Panel>
       </div>

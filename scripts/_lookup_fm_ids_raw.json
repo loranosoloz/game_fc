@@ -1,0 +1,3036 @@
+{
+  "vie": [
+    {
+      "name": "Becamex Ho Chi Minh City FC",
+      "query": "Becamex Ho Chi Minh",
+      "candidates": [
+        {
+          "id": "2000483919",
+          "slug": "becamex-ho-chi-minh-city-fc"
+        },
+        {
+          "id": "2000324306",
+          "slug": "tre-binh-duong"
+        },
+        {
+          "id": "5627109",
+          "slug": "ho-chi-minh-city-fc"
+        },
+        {
+          "id": "135394",
+          "slug": "cong-an-thanh-pho-ho-chi-minh"
+        },
+        {
+          "id": "97207972",
+          "slug": "tre-ho-chi-minh-city-fc"
+        },
+        {
+          "id": "1917",
+          "slug": "club-atletico-cerro"
+        },
+        {
+          "id": "2000318929",
+          "slug": "futbolellas-cff-torrejon-b"
+        },
+        {
+          "id": "2000520499",
+          "slug": "boyne-rovers"
+        }
+      ],
+      "fmClubId": 2000483919,
+      "slug": "becamex-ho-chi-minh-city-fc",
+      "source": "https://fminside.net/clubs/2000483919-becamex-ho-chi-minh-city-fc",
+      "fmRep": null
+    },
+    {
+      "name": "CLB Megastar Nam Dinh",
+      "query": "Nam Dinh",
+      "candidates": [
+        {
+          "id": "5622886",
+          "slug": "nam-dinh"
+        },
+        {
+          "id": "2000483925",
+          "slug": "tt-dong-nai"
+        },
+        {
+          "id": "135394",
+          "slug": "cong-an-thanh-pho-ho-chi-minh"
+        },
+        {
+          "id": "135395",
+          "slug": "cong-an-ha-noi"
+        },
+        {
+          "id": "5627098",
+          "slug": "hai-phong"
+        },
+        {
+          "id": "97207972",
+          "slug": "tre-ho-chi-minh-city-fc"
+        },
+        {
+          "id": "2000379761",
+          "slug": "dorking-wanderers"
+        },
+        {
+          "id": "23160144",
+          "slug": "ha-noi-fc"
+        }
+      ],
+      "fmClubId": 5622886,
+      "slug": "nam-dinh",
+      "source": "https://fminside.net/clubs/5622886-nam-dinh",
+      "fmRep": null
+    },
+    {
+      "name": "Cong An Ha Noi",
+      "query": "Cong An Ha Noi",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Cong An Thanh Pho Ho Chi Minh",
+      "query": "Cong An Thanh Pho",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Da Nang",
+      "query": "Da Nang",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Ha Noi FC",
+      "query": "Ha Noi FC",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Hai Phong",
+      "query": "Hai Phong",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Hoang Anh Gia Lai",
+      "query": "Hoang Anh Gia Lai",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Hong Linh Ha Tinh",
+      "query": "Hong Linh Ha Tinh",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Ninh Binh",
+      "query": "Ninh Binh",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "PVF Cong An Nhan Dan",
+      "query": "PVF Cong An",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Song Lam Nghe An",
+      "query": "Song Lam Nghe An",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Thanh Hoa",
+      "query": "Thanh Hoa",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "The Cong-Viettel FC",
+      "query": "The Cong-Viettel",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    }
+  ],
+  "idn": [
+    {
+      "name": "Arema FC",
+      "query": "Arema",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Bali United FC",
+      "query": "Bali United",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 680,
+      "slug": "manchester-united",
+      "source": "https://fminside.net/clubs/680-manchester-united",
+      "fmRep": null
+    },
+    {
+      "name": "Bhayangkara Presisi Lampung FC",
+      "query": "Bhayangkara",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Borneo FC Samarinda",
+      "query": "Borneo",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Dewa United Banten FC",
+      "query": "Dewa United",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 680,
+      "slug": "manchester-united",
+      "source": "https://fminside.net/clubs/680-manchester-united",
+      "fmRep": null
+    },
+    {
+      "name": "Madura United FC",
+      "query": "Madura United",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 680,
+      "slug": "manchester-united",
+      "source": "https://fminside.net/clubs/680-manchester-united",
+      "fmRep": null
+    },
+    {
+      "name": "Maluku Utara United FC",
+      "query": "Maluku Utara",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 680,
+      "slug": "manchester-united",
+      "source": "https://fminside.net/clubs/680-manchester-united",
+      "fmRep": null
+    },
+    {
+      "name": "Persebaya Surabaya",
+      "query": "Persebaya",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Persib Bandung",
+      "query": "Persib Bandung",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Persija Jakarta",
+      "query": "Persija Jakarta",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Persijap Jepara",
+      "query": "Persijap",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Persik Kediri",
+      "query": "Persik Kediri",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Persis Solo",
+      "query": "Persis Solo",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Persita Tangerang",
+      "query": "Persita",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "PSBS Biak",
+      "query": "PSBS Biak",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "PSIM Yogyakarta",
+      "query": "PSIM Yogyakarta",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "PSM Makassar",
+      "query": "PSM Makassar",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Semen Padang FC",
+      "query": "Semen Padang",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    }
+  ],
+  "mys": [
+    {
+      "name": "Duli Pengiran Muda Mahkota FC",
+      "query": "DPMM",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Imigresen FC",
+      "query": "Imigresen",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Johor Darul Ta'zim FC",
+      "query": "Johor Darul",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Kelantan The Real Warriors FC",
+      "query": "Kelantan",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 1736,
+      "slug": "real-madrid",
+      "source": "https://fminside.net/clubs/1736-real-madrid",
+      "fmRep": null
+    },
+    {
+      "name": "Kuala Lumpur City FC",
+      "query": "Kuala Lumpur City",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Kuching City FC",
+      "query": "Kuching City",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Melaka FC",
+      "query": "Melaka FC",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Negeri Sembilan FC",
+      "query": "Negeri Sembilan",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Penang FC",
+      "query": "Penang FC",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Polis Di Raja Malaysia FC",
+      "query": "PDRM",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Sabah FC",
+      "query": "Sabah FC",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Selangor FC",
+      "query": "Selangor FC",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Terengganu FC",
+      "query": "Terengganu FC",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    }
+  ],
+  "sgp": [
+    {
+      "name": "Lion City Sailors FC",
+      "query": "Lion City Sailors",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Tampines Rovers FC",
+      "query": "Tampines Rovers",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Tanjong Pagar United FC",
+      "query": "Tanjong Pagar",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 680,
+      "slug": "manchester-united",
+      "source": "https://fminside.net/clubs/680-manchester-united",
+      "fmRep": null
+    },
+    {
+      "name": "Geylang International FC",
+      "query": "Geylang International",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Hougang United FC",
+      "query": "Hougang United",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 680,
+      "slug": "manchester-united",
+      "source": "https://fminside.net/clubs/680-manchester-united",
+      "fmRep": null
+    },
+    {
+      "name": "Balestier Khalsa FC",
+      "query": "Balestier Khalsa",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Albirex Niigata (S)",
+      "query": "Albirex Niigata Singapore",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Young Lions",
+      "query": "Young Lions Singapore",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "BG Tampines Rovers",
+      "query": "BG Tampines",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    }
+  ],
+  "sau": [
+    {
+      "name": "Al-Ahli Saudi Football Club",
+      "query": "Al-Ahli Saudi",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Al-Ettifaq Club",
+      "query": "Al-Ettifaq",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Al-Fateh Sports Club",
+      "query": "Al-Fateh",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Al-Fayha Club",
+      "query": "Al-Fayha",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Al-Hazem Saudi Club",
+      "query": "Al-Hazem",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Al-Hilal Saudi Football Club",
+      "query": "Al-Hilal Saudi",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Al-Ittihad Club",
+      "query": "Al-Ittihad Club",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Al-Khaleej FC",
+      "query": "Al-Khaleej",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Al-Kholood Club",
+      "query": "Al-Kholood",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Al-Najmah Saudi Club",
+      "query": "Al-Najmah",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Al-Nassr Football Club",
+      "query": "Al-Nassr",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Al-Okhdood Club",
+      "query": "Al-Okhdood",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Al-Qadsiah Football Club",
+      "query": "Al-Qadsiah",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Al-Riyadh Saudi Club",
+      "query": "Al-Riyadh",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Al-Shabab Football Club",
+      "query": "Al-Shabab Football",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Al-Taawoun Football Club",
+      "query": "Al-Taawoun",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Damac Club",
+      "query": "Damac",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    },
+    {
+      "name": "Neom Sports Club",
+      "query": "Neom Sports",
+      "candidates": [
+        {
+          "id": "679",
+          "slug": "manchester-city"
+        },
+        {
+          "id": "1708",
+          "slug": "fc-barcelona"
+        },
+        {
+          "id": "1736",
+          "slug": "real-madrid"
+        },
+        {
+          "id": "2000167899",
+          "slug": "barcelona"
+        },
+        {
+          "id": "2000149869",
+          "slug": "ol-lyonnes"
+        },
+        {
+          "id": "2000099871",
+          "slug": "chelsea"
+        },
+        {
+          "id": "676",
+          "slug": "liverpool"
+        },
+        {
+          "id": "2000104296",
+          "slug": "arsenal"
+        }
+      ],
+      "fmClubId": 679,
+      "slug": "manchester-city",
+      "source": "https://fminside.net/clubs/679-manchester-city",
+      "fmRep": null
+    }
+  ]
+}

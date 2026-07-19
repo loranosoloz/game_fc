@@ -1,0 +1,2111 @@
+{
+  "source": "fmtransferupdate Süper Lig",
+  "matched": 421,
+  "byName": {
+    "Uğurcan Çakır": {
+      "fmId": "70097314",
+      "clubKey": "gal",
+      "slug": "ugurcan-cakir"
+    },
+    "Günay Güvenç": {
+      "fmId": "92017254",
+      "clubKey": "gal",
+      "slug": "gunay-guvenc"
+    },
+    "Enes Büyük": {
+      "fmId": "2000482715",
+      "clubKey": "gal",
+      "slug": "enes-buyuk"
+    },
+    "Davinson Sánchez": {
+      "fmId": "76023027",
+      "clubKey": "gal",
+      "slug": "davinson-sanchez"
+    },
+    "Wilfried Singo": {
+      "fmId": "12078947",
+      "clubKey": "gal",
+      "slug": "wilfried-singo"
+    },
+    "Roland Sallai": {
+      "fmId": "38039385",
+      "clubKey": "gal",
+      "slug": "roland-sallai"
+    },
+    "Abdülkerim Bardakcı": {
+      "fmId": "70062993",
+      "clubKey": "gal",
+      "slug": "abdulkerim-bardakci"
+    },
+    "Victor Nelsson": {
+      "fmId": "27107366",
+      "clubKey": "gal",
+      "slug": "victor-nelsson"
+    },
+    "Eren Elmalı": {
+      "fmId": "70123223",
+      "clubKey": "gal",
+      "slug": "eren-elmali"
+    },
+    "Ismail Jakobs": {
+      "fmId": "91184349",
+      "clubKey": "gal",
+      "slug": "ismail-jakobs"
+    },
+    "Kaan Ayhan": {
+      "fmId": "91100534",
+      "clubKey": "gal",
+      "slug": "kaan-ayhan"
+    },
+    "Lucas Torreira": {
+      "fmId": "43201830",
+      "clubKey": "gal",
+      "slug": "lucas-torreira"
+    },
+    "İlkay Gündoğan": {
+      "fmId": "91003875",
+      "clubKey": "gal",
+      "slug": "ilkay-gundogan"
+    },
+    "Gabriel Sara": {
+      "fmId": "19290889",
+      "clubKey": "gal",
+      "slug": "gabriel-sara"
+    },
+    "Mario Lemina": {
+      "fmId": "85104273",
+      "clubKey": "gal",
+      "slug": "mario-lemina"
+    },
+    "Lesley Ugochukwu": {
+      "fmId": "2000006186",
+      "clubKey": "gal",
+      "slug": "lesley-ugochukwu"
+    },
+    "Renato Nhaga": {
+      "fmId": "2000384911",
+      "clubKey": "gal",
+      "slug": "renato-nhaga"
+    },
+    "Gökdeniz Gürpüz": {
+      "fmId": "2000180873",
+      "clubKey": "gal",
+      "slug": "gokdeniz-gurpuz"
+    },
+    "Ege Araç": {
+      "fmId": "2000241618",
+      "clubKey": "gal",
+      "slug": "ege-arac"
+    },
+    "Victor Osimhen": {
+      "fmId": "13158205",
+      "clubKey": "gal",
+      "slug": "victor-osimhen"
+    },
+    "Leroy Sané": {
+      "fmId": "91138280",
+      "clubKey": "gal",
+      "slug": "leroy-sane"
+    },
+    "Barış Alper Yılmaz": {
+      "fmId": "70112874",
+      "clubKey": "gal",
+      "slug": "baris-alper-yilmaz"
+    },
+    "Yunus Akgün": {
+      "fmId": "70110533",
+      "clubKey": "gal",
+      "slug": "yunus-akgun"
+    },
+    "Ahmed Kutucu": {
+      "fmId": "91177154",
+      "clubKey": "gal",
+      "slug": "ahmed-kutucu"
+    },
+    "Can Armando Güner": {
+      "fmId": "2000331100",
+      "clubKey": "gal",
+      "slug": "can-armando-guner"
+    },
+    "Yalın Dilek": {
+      "fmId": "2000237708",
+      "clubKey": "gal",
+      "slug": "yalin-dilek"
+    },
+    "Ederson": {
+      "fmId": "55057659",
+      "clubKey": "fen",
+      "slug": "ederson"
+    },
+    "Mert Günok": {
+      "fmId": "70005951",
+      "clubKey": "fen",
+      "slug": "mert-gunok"
+    },
+    "Tarık Çetin": {
+      "fmId": "70110776",
+      "clubKey": "fen",
+      "slug": "tarik-cetin"
+    },
+    "Milan Škriniar": {
+      "fmId": "63013145",
+      "clubKey": "fen",
+      "slug": "milan-skriniar"
+    },
+    "Nathan Aké": {
+      "fmId": "37025551",
+      "clubKey": "fen",
+      "slug": "nathan-ake"
+    },
+    "Nélson Semedo": {
+      "fmId": "55061470",
+      "clubKey": "fen",
+      "slug": "nelson-semedo"
+    },
+    "Jayden Oosterwolde": {
+      "fmId": "37084869",
+      "clubKey": "fen",
+      "slug": "jayden-oosterwolde"
+    },
+    "Diego Carlos": {
+      "fmId": "19188567",
+      "clubKey": "fen",
+      "slug": "diego-carlos"
+    },
+    "Archie Brown": {
+      "fmId": "29217603",
+      "clubKey": "fen",
+      "slug": "archie-brown"
+    },
+    "Çağlar Söyüncü": {
+      "fmId": "70093800",
+      "clubKey": "fen",
+      "slug": "caglar-soyuncu"
+    },
+    "Mert Müldür": {
+      "fmId": "16184687",
+      "clubKey": "fen",
+      "slug": "mert-muldur"
+    },
+    "N'Golo Kanté": {
+      "fmId": "85081880",
+      "clubKey": "fen",
+      "slug": "ngolo-kante"
+    },
+    "Mattéo Guendouzi": {
+      "fmId": "48037391",
+      "clubKey": "fen",
+      "slug": "matteo-guendouzi"
+    },
+    "Sofyan Amrabat": {
+      "fmId": "37045879",
+      "clubKey": "fen",
+      "slug": "sofyan-amrabat"
+    },
+    "Fred": {
+      "fmId": "19159362",
+      "clubKey": "fen",
+      "slug": "fred"
+    },
+    "İsmail Yüksek": {
+      "fmId": "70118983",
+      "clubKey": "fen",
+      "slug": "ismail-yuksek"
+    },
+    "Abdou Fall": {
+      "fmId": "2000482701",
+      "clubKey": "fen",
+      "slug": "abdou-fall"
+    },
+    "Mason Greenwood": {
+      "fmId": "28121564",
+      "clubKey": "fen",
+      "slug": "mason-greenwood"
+    },
+    "Marco Asensio": {
+      "fmId": "67197125",
+      "clubKey": "fen",
+      "slug": "marco-asensio"
+    },
+    "Vedat Muriqi": {
+      "fmId": "11022221",
+      "clubKey": "fen",
+      "slug": "vedat-muriqi"
+    },
+    "Kerem Aktürkoğlu": {
+      "fmId": "70099785",
+      "clubKey": "fen",
+      "slug": "kerem-akturkoglu"
+    },
+    "Talisca": {
+      "fmId": "19189145",
+      "clubKey": "fen",
+      "slug": "talisca"
+    },
+    "Anthony Musaba": {
+      "fmId": "37066566",
+      "clubKey": "fen",
+      "slug": "anthony-musaba"
+    },
+    "Dorgéles Néné": {
+      "fmId": "12088462",
+      "clubKey": "fen",
+      "slug": "dorgeles-nene"
+    },
+    "Sidiki Chérif": {
+      "fmId": "2000271175",
+      "clubKey": "fen",
+      "slug": "sidiki-cherif"
+    },
+    "André Onana": {
+      "fmId": "67201634",
+      "clubKey": "trb",
+      "slug": "andre-onana"
+    },
+    "Onuralp Çevikkan": {
+      "fmId": "2000241582",
+      "clubKey": "trb",
+      "slug": "onuralp-cevikkan"
+    },
+    "Ahmet Doğan Yıldırım": {
+      "fmId": "2000389457",
+      "clubKey": "trb",
+      "slug": "ahmet-dogan-yildirim"
+    },
+    "Arsenii Batahov": {
+      "fmId": "71110353",
+      "clubKey": "trb",
+      "slug": "arsenii-batahov"
+    },
+    "Sidny Lopes Cabral": {
+      "fmId": "37079110",
+      "clubKey": "trb",
+      "slug": "sidny-lopes-cabral"
+    },
+    "Mustafa Eskihellaç": {
+      "fmId": "70099923",
+      "clubKey": "trb",
+      "slug": "mustafa-eskihellac"
+    },
+    "Wagner Pina": {
+      "fmId": "2000122654",
+      "clubKey": "trb",
+      "slug": "wagner-pina"
+    },
+    "Stefan Savić": {
+      "fmId": "62012567",
+      "clubKey": "trb",
+      "slug": "stefan-savic"
+    },
+    "Ozan Tufan": {
+      "fmId": "70076282",
+      "clubKey": "trb",
+      "slug": "ozan-tufan"
+    },
+    "Chibuike Nwaiwu": {
+      "fmId": "2000155308",
+      "clubKey": "trb",
+      "slug": "chibuike-nwaiwu"
+    },
+    "Samet Akaydin": {
+      "fmId": "70079807",
+      "clubKey": "trb",
+      "slug": "samet-akaydin"
+    },
+    "Batista Mendy": {
+      "fmId": "48043868",
+      "clubKey": "trb",
+      "slug": "batista-mendy"
+    },
+    "Tim Jabol-Folcarelli": {
+      "fmId": "49061151",
+      "clubKey": "trb",
+      "slug": "tim-jabol-folcarelli"
+    },
+    "Christ Inao Oulaï": {
+      "fmId": "2000381116",
+      "clubKey": "trb",
+      "slug": "christ-inao-oulai"
+    },
+    "Benjamin Bouchouari": {
+      "fmId": "2000018847",
+      "clubKey": "trb",
+      "slug": "benjamin-bouchouari"
+    },
+    "John Lundstram": {
+      "fmId": "28058230",
+      "clubKey": "trb",
+      "slug": "john-lundstram"
+    },
+    "Boran Başkan": {
+      "fmId": "2000458085",
+      "clubKey": "trb",
+      "slug": "boran-baskan"
+    },
+    "Paul Onuachu": {
+      "fmId": "27091941",
+      "clubKey": "trb",
+      "slug": "paul-onuachu"
+    },
+    "Ernest Muçi": {
+      "fmId": "11035674",
+      "clubKey": "trb",
+      "slug": "ernest-muci"
+    },
+    "Ruslan Malinovskyi": {
+      "fmId": "71048716",
+      "clubKey": "trb",
+      "slug": "ruslan-malinovskyi"
+    },
+    "Aral Şimşir": {
+      "fmId": "27139795",
+      "clubKey": "trb",
+      "slug": "aral-simsir"
+    },
+    "Umut Nayir": {
+      "fmId": "70080426",
+      "clubKey": "trb",
+      "slug": "umut-nayir"
+    },
+    "Edin Višća": {
+      "fmId": "62027632",
+      "clubKey": "trb",
+      "slug": "edin-visca"
+    },
+    "Noah Saviolo": {
+      "fmId": "2000103267",
+      "clubKey": "trb",
+      "slug": "noah-saviolo"
+    },
+    "Tony Nwakaeme": {
+      "fmId": "57070194",
+      "clubKey": "trb",
+      "slug": "tony-nwakaeme"
+    },
+    "Alexander Nübel": {
+      "fmId": "92071707",
+      "clubKey": "bjk",
+      "slug": "alexander-nubel"
+    },
+    "Ersin Destanoğlu": {
+      "fmId": "70112946",
+      "clubKey": "bjk",
+      "slug": "ersin-destanoglu"
+    },
+    "Emre Bilgin": {
+      "fmId": "2000038269",
+      "clubKey": "bjk",
+      "slug": "emre-bilgin"
+    },
+    "Emmanuel Agbadou": {
+      "fmId": "12078577",
+      "clubKey": "bjk",
+      "slug": "emmanuel-agbadou"
+    },
+    "Amir Murillo": {
+      "fmId": "80028885",
+      "clubKey": "bjk",
+      "slug": "amir-murillo"
+    },
+    "Felix Uduokhai": {
+      "fmId": "91144514",
+      "clubKey": "bjk",
+      "slug": "felix-uduokhai"
+    },
+    "Tiago Djaló": {
+      "fmId": "83169969",
+      "clubKey": "bjk",
+      "slug": "tiago-djalo"
+    },
+    "Emirhan Topçu": {
+      "fmId": "70111181",
+      "clubKey": "bjk",
+      "slug": "emirhan-topcu"
+    },
+    "Rıdvan Yılmaz": {
+      "fmId": "70121604",
+      "clubKey": "bjk",
+      "slug": "ridvan-yilmaz"
+    },
+    "Kassoum Ouattara": {
+      "fmId": "2000138872",
+      "clubKey": "bjk",
+      "slug": "kassoum-ouattara"
+    },
+    "Taylan Bulut": {
+      "fmId": "2000218213",
+      "clubKey": "bjk",
+      "slug": "taylan-bulut"
+    },
+    "Orkun Kökçü": {
+      "fmId": "37061602",
+      "clubKey": "bjk",
+      "slug": "orkun-kokcu"
+    },
+    "Salih Özcan": {
+      "fmId": "91139869",
+      "clubKey": "bjk",
+      "slug": "salih-ozcan"
+    },
+    "Ali Al Musrati": {
+      "fmId": "83190945",
+      "clubKey": "bjk",
+      "slug": "ali-al-musrati"
+    },
+    "Wilfred Ndidi": {
+      "fmId": "18091791",
+      "clubKey": "bjk",
+      "slug": "wilfred-ndidi"
+    },
+    "Kartal Kayra Yılmaz": {
+      "fmId": "70121601",
+      "clubKey": "bjk",
+      "slug": "kartal-kayra-yilmaz"
+    },
+    "Junior Onana": {
+      "fmId": "83313842",
+      "clubKey": "bjk",
+      "slug": "junior-onana"
+    },
+    "Amir Hadžiahmetović": {
+      "fmId": "21026981",
+      "clubKey": "bjk",
+      "slug": "amir-hadziahmetovic"
+    },
+    "Salih Uçan": {
+      "fmId": "70058786",
+      "clubKey": "bjk",
+      "slug": "salih-ucan"
+    },
+    "Leandro Trossard": {
+      "fmId": "18054004",
+      "clubKey": "bjk",
+      "slug": "leandro-trossard"
+    },
+    "Václav Černý": {
+      "fmId": "25036275",
+      "clubKey": "bjk",
+      "slug": "vaclav-cerny"
+    },
+    "Milot Rashica": {
+      "fmId": "11024791",
+      "clubKey": "bjk",
+      "slug": "milot-rashica"
+    },
+    "Cengiz Ünder": {
+      "fmId": "70096289",
+      "clubKey": "bjk",
+      "slug": "cengiz-under"
+    },
+    "Semih Kılıçsoy": {
+      "fmId": "2000154217",
+      "clubKey": "bjk",
+      "slug": "semih-kilicsoy"
+    },
+    "João Mário": {
+      "fmId": "55022391",
+      "clubKey": "bjk",
+      "slug": "joao-mario"
+    },
+    "Oh Hyeon-Gyu": {
+      "fmId": "66044734",
+      "clubKey": "bjk",
+      "slug": "oh-hyeon-gyu"
+    },
+    "Junior Olaitan": {
+      "fmId": "2000124946",
+      "clubKey": "bjk",
+      "slug": "junior-olaitan"
+    },
+    "Muhammed Şengezer": {
+      "fmId": "70097801",
+      "clubKey": "ibs",
+      "slug": "muhammed-sengezer"
+    },
+    "Doğan Alemdar": {
+      "fmId": "70117167",
+      "clubKey": "ibs",
+      "slug": "dogan-alemdar"
+    },
+    "Volkan Babacan": {
+      "fmId": "8485477",
+      "clubKey": "ibs",
+      "slug": "volkan-babacan"
+    },
+    "Christopher Opéri": {
+      "fmId": "85136679",
+      "clubKey": "ibs",
+      "slug": "christopher-operi"
+    },
+    "Festy Ebosele": {
+      "fmId": "29216094",
+      "clubKey": "ibs",
+      "slug": "festy-ebosele"
+    },
+    "Jerome Opoku": {
+      "fmId": "29162925",
+      "clubKey": "ibs",
+      "slug": "jerome-opoku"
+    },
+    "Michał Karbownik": {
+      "fmId": "96122114",
+      "clubKey": "ibs",
+      "slug": "michal-karbownik"
+    },
+    "Ousseynou Ba": {
+      "fmId": "49045682",
+      "clubKey": "ibs",
+      "slug": "ousseynou-ba"
+    },
+    "Onur Bulut": {
+      "fmId": "91104802",
+      "clubKey": "ibs",
+      "slug": "onur-bulut"
+    },
+    "Ömer Ali Şahiner": {
+      "fmId": "29040332",
+      "clubKey": "ibs",
+      "slug": "omer-ali-sahiner"
+    },
+    "Kazımcan Karataş": {
+      "fmId": "70131625",
+      "clubKey": "ibs",
+      "slug": "kazimcan-karatas"
+    },
+    "Olivier Kemen": {
+      "fmId": "85117457",
+      "clubKey": "ibs",
+      "slug": "olivier-kemen"
+    },
+    "Umut Güneş": {
+      "fmId": "91172592",
+      "clubKey": "ibs",
+      "slug": "umut-gunes"
+    },
+    "Jakub Kałuziński": {
+      "fmId": "96132920",
+      "clubKey": "ibs",
+      "slug": "jakub-kaluzinski"
+    },
+    "Berat Özdemir": {
+      "fmId": "70107299",
+      "clubKey": "ibs",
+      "slug": "berat-ozdemir"
+    },
+    "Onur Ergün": {
+      "fmId": "70052963",
+      "clubKey": "ibs",
+      "slug": "onur-ergun"
+    },
+    "Eldor Shomurodov": {
+      "fmId": "59061760",
+      "clubKey": "ibs",
+      "slug": "eldor-shomurodov"
+    },
+    "Abbosbek Fayzullayev": {
+      "fmId": "2000022271",
+      "clubKey": "ibs",
+      "slug": "abbosbek-fayzullayev"
+    },
+    "Nuno Da Costa": {
+      "fmId": "48037370",
+      "clubKey": "ibs",
+      "slug": "nuno-da-costa"
+    },
+    "Yusuf Sarı": {
+      "fmId": "48037903",
+      "clubKey": "ibs",
+      "slug": "yusuf-sari"
+    },
+    "Davie Selke": {
+      "fmId": "91108866",
+      "clubKey": "ibs",
+      "slug": "davie-selke"
+    },
+    "Bertuğ Yıldırım": {
+      "fmId": "70123237",
+      "clubKey": "ibs",
+      "slug": "bertug-yildirim"
+    },
+    "Ivan Brnić": {
+      "fmId": "24057527",
+      "clubKey": "ibs",
+      "slug": "ivan-brnic"
+    },
+    "Tugra Turhan": {
+      "fmId": "2000260099",
+      "clubKey": "ibs",
+      "slug": "tugra-turhan"
+    },
+    "Ekrem Kılıçarslan": {
+      "fmId": "70106705",
+      "clubKey": "goz",
+      "slug": "ekrem-kilicarslan"
+    },
+    "Şamil Öztürk": {
+      "fmId": "2000204341",
+      "clubKey": "goz",
+      "slug": "samil-ozturk"
+    },
+    "Nevzat Üzel": {
+      "fmId": "2000483312",
+      "clubKey": "goz",
+      "slug": "nevzat-uzel"
+    },
+    "Arda Okan Kurtulan": {
+      "fmId": "2000096497",
+      "clubKey": "goz",
+      "slug": "arda-okan-kurtulan"
+    },
+    "Malcom Bokélé": {
+      "fmId": "49061892",
+      "clubKey": "goz",
+      "slug": "malcom-bokele"
+    },
+    "Taha Altıkardeş": {
+      "fmId": "2000096481",
+      "clubKey": "goz",
+      "slug": "taha-altikardes"
+    },
+    "Allan Godói": {
+      "fmId": "2000212613",
+      "clubKey": "goz",
+      "slug": "allan-godoi"
+    },
+    "Amin Cherni": {
+      "fmId": "2000023519",
+      "clubKey": "goz",
+      "slug": "amin-cherni"
+    },
+    "Furkan Bayır": {
+      "fmId": "70111586",
+      "clubKey": "goz",
+      "slug": "furkan-bayir"
+    },
+    "Ogün Bayrak": {
+      "fmId": "70111198",
+      "clubKey": "goz",
+      "slug": "ogun-bayrak"
+    },
+    "Noah Sonko Sundberg": {
+      "fmId": "93049245",
+      "clubKey": "goz",
+      "slug": "noah-sonko-sundberg"
+    },
+    "Anthony Dennis": {
+      "fmId": "2000246085",
+      "clubKey": "goz",
+      "slug": "anthony-dennis"
+    },
+    "Rhaldney": {
+      "fmId": "19352598",
+      "clubKey": "goz",
+      "slug": "rhaldney"
+    },
+    "Alex Matos": {
+      "fmId": "2000117851",
+      "clubKey": "goz",
+      "slug": "alex-matos"
+    },
+    "Musah Mohammed": {
+      "fmId": "2000081832",
+      "clubKey": "goz",
+      "slug": "musah-mohammed"
+    },
+    "Juan Santos": {
+      "fmId": "19393597",
+      "clubKey": "goz",
+      "slug": "juan-santos"
+    },
+    "Janderson": {
+      "fmId": "2000237881",
+      "clubKey": "goz",
+      "slug": "janderson"
+    },
+    "Alexis Antunes": {
+      "fmId": "98041796",
+      "clubKey": "goz",
+      "slug": "alexis-antunes"
+    },
+    "André Henrique": {
+      "fmId": "2000034893",
+      "clubKey": "goz",
+      "slug": "andre-henrique"
+    },
+    "Efkan Bekiroğlu": {
+      "fmId": "91180065",
+      "clubKey": "goz",
+      "slug": "efkan-bekiroglu"
+    },
+    "Sinclair Armstrong": {
+      "fmId": "52094938",
+      "clubKey": "goz",
+      "slug": "sinclair-armstrong"
+    },
+    "Jeh": {
+      "fmId": "2000061080",
+      "clubKey": "goz",
+      "slug": "jeh"
+    },
+    "Guilherme Luiz": {
+      "fmId": "2000453287",
+      "clubKey": "goz",
+      "slug": "guilherme-luiz"
+    },
+    "Okan Kocuk": {
+      "fmId": "70063195",
+      "clubKey": "sms",
+      "slug": "okan-kocuk"
+    },
+    "İrfan Can Eğribayat": {
+      "fmId": "70093833",
+      "clubKey": "sms",
+      "slug": "irfan-can-egribayat"
+    },
+    "Efe Töruz": {
+      "fmId": "2000241612",
+      "clubKey": "sms",
+      "slug": "efe-toruz"
+    },
+    "Rick van Drongelen": {
+      "fmId": "37058873",
+      "clubKey": "sms",
+      "slug": "rick-van-drongelen"
+    },
+    "Joe Mendes": {
+      "fmId": "93123160",
+      "clubKey": "sms",
+      "slug": "joe-mendes"
+    },
+    "Logi Tómasson": {
+      "fmId": "39053479",
+      "clubKey": "sms",
+      "slug": "logi-tomasson"
+    },
+    "Toni Borevković": {
+      "fmId": "24048102",
+      "clubKey": "sms",
+      "slug": "toni-borevkovic"
+    },
+    "Zeki Yavru": {
+      "fmId": "70053355",
+      "clubKey": "sms",
+      "slug": "zeki-yavru"
+    },
+    "Ľubomír Šatka": {
+      "fmId": "28084596",
+      "clubKey": "sms",
+      "slug": "lubomir-satka"
+    },
+    "Yunus Emre Çift": {
+      "fmId": "2000048031",
+      "clubKey": "sms",
+      "slug": "yunus-emre-cift"
+    },
+    "Soner Gönül": {
+      "fmId": "70107292",
+      "clubKey": "sms",
+      "slug": "soner-gonul"
+    },
+    "Antoine Makoumbou": {
+      "fmId": "85144802",
+      "clubKey": "sms",
+      "slug": "antoine-makoumbou"
+    },
+    "Elliot Watt": {
+      "fmId": "29175742",
+      "clubKey": "sms",
+      "slug": "elliot-watt"
+    },
+    "Celil Yüksel": {
+      "fmId": "70113866",
+      "clubKey": "sms",
+      "slug": "celil-yuksel"
+    },
+    "Yalçın Kayan": {
+      "fmId": "70117584",
+      "clubKey": "sms",
+      "slug": "yalcin-kayan"
+    },
+    "Eyüp Değirmenci": {
+      "fmId": "2000482706",
+      "clubKey": "sms",
+      "slug": "eyup-degirmenci"
+    },
+    "Carlo Holse": {
+      "fmId": "27132704",
+      "clubKey": "sms",
+      "slug": "carlo-holse"
+    },
+    "Chérif N'Diaye": {
+      "fmId": "18102747",
+      "clubKey": "sms",
+      "slug": "cherif-ndiaye"
+    },
+    "Emre Kılınç": {
+      "fmId": "70056734",
+      "clubKey": "sms",
+      "slug": "emre-kilinc"
+    },
+    "Afonso Sousa": {
+      "fmId": "83174788",
+      "clubKey": "sms",
+      "slug": "afonso-sousa"
+    },
+    "Tanguy Coulibaly": {
+      "fmId": "49039276",
+      "clubKey": "sms",
+      "slug": "tanguy-coulibaly"
+    },
+    "Marius Mouandilmadji": {
+      "fmId": "83254092",
+      "clubKey": "sms",
+      "slug": "marius-mouandilmadji"
+    },
+    "Elayis Tavşan": {
+      "fmId": "37065568",
+      "clubKey": "sms",
+      "slug": "elayis-tavsan"
+    },
+    "Arbnor Muja": {
+      "fmId": "30034782",
+      "clubKey": "sms",
+      "slug": "arbnor-muja"
+    },
+    "Yahia Fofana": {
+      "fmId": "48043476",
+      "clubKey": "riz",
+      "slug": "yahia-fofana"
+    },
+    "Erdem Canpolat": {
+      "fmId": "91204847",
+      "clubKey": "riz",
+      "slug": "erdem-canpolat"
+    },
+    "Efe Doğan": {
+      "fmId": "2000156965",
+      "clubKey": "riz",
+      "slug": "efe-dogan"
+    },
+    "Husniddin Aliqulov": {
+      "fmId": "59144930",
+      "clubKey": "riz",
+      "slug": "husniddin-aliqulov"
+    },
+    "Casper Højer": {
+      "fmId": "27045624",
+      "clubKey": "riz",
+      "slug": "casper-hojer"
+    },
+    "Attila Mocsi": {
+      "fmId": "38048144",
+      "clubKey": "riz",
+      "slug": "attila-mocsi"
+    },
+    "Taha Şahin": {
+      "fmId": "70132244",
+      "clubKey": "riz",
+      "slug": "taha-sahin"
+    },
+    "Mithat Pala": {
+      "fmId": "70134572",
+      "clubKey": "riz",
+      "slug": "mithat-pala"
+    },
+    "Emir Ortakaya": {
+      "fmId": "2000065919",
+      "clubKey": "riz",
+      "slug": "emir-ortakaya"
+    },
+    "Zakaria Ariss": {
+      "fmId": "2000193662",
+      "clubKey": "riz",
+      "slug": "zakaria-ariss"
+    },
+    "Siaka Bakayoko": {
+      "fmId": "2000166461",
+      "clubKey": "riz",
+      "slug": "siaka-bakayoko"
+    },
+    "Qazim Laci": {
+      "fmId": "36099968",
+      "clubKey": "riz",
+      "slug": "qazim-laci"
+    },
+    "Muhamed Buljubašić": {
+      "fmId": "2000271566",
+      "clubKey": "riz",
+      "slug": "muhamed-buljubasic"
+    },
+    "Taylan Antalyalı": {
+      "fmId": "70075966",
+      "clubKey": "riz",
+      "slug": "taylan-antalyali"
+    },
+    "Giannis Papanikolaou": {
+      "fmId": "36125593",
+      "clubKey": "riz",
+      "slug": "giannis-papanikolaou"
+    },
+    "Ibrahim Olawoyin": {
+      "fmId": "13223983",
+      "clubKey": "riz",
+      "slug": "ibrahim-olawoyin"
+    },
+    "Ali Sowe": {
+      "fmId": "43131104",
+      "clubKey": "riz",
+      "slug": "ali-sowe"
+    },
+    "Valentin Mihăilă": {
+      "fmId": "57168149",
+      "clubKey": "riz",
+      "slug": "valentin-mihaila"
+    },
+    "Altin Zeqiri": {
+      "fmId": "33082825",
+      "clubKey": "riz",
+      "slug": "altin-zeqiri"
+    },
+    "Loide Augusto": {
+      "fmId": "83335583",
+      "clubKey": "riz",
+      "slug": "loide-augusto"
+    },
+    "Adedire Mebude": {
+      "fmId": "61094109",
+      "clubKey": "riz",
+      "slug": "adedire-mebude"
+    },
+    "Emrecan Bulut": {
+      "fmId": "2000205129",
+      "clubKey": "riz",
+      "slug": "emrecan-bulut"
+    },
+    "Halil Dervişoğlu": {
+      "fmId": "37071106",
+      "clubKey": "riz",
+      "slug": "halil-dervisoglu"
+    },
+    "Deniz Ertaş": {
+      "fmId": "2000164984",
+      "clubKey": "kon",
+      "slug": "deniz-ertas"
+    },
+    "Bahadır Güngördü": {
+      "fmId": "70099803",
+      "clubKey": "kon",
+      "slug": "bahadir-gungordu"
+    },
+    "Egemen Aydın": {
+      "fmId": "2000439939",
+      "clubKey": "kon",
+      "slug": "egemen-aydin"
+    },
+    "Guilherme": {
+      "fmId": "57089698",
+      "clubKey": "kon",
+      "slug": "guilherme"
+    },
+    "Riechedly Bazoer": {
+      "fmId": "37041762",
+      "clubKey": "kon",
+      "slug": "riechedly-bazoer"
+    },
+    "Adil Demirbağ": {
+      "fmId": "70097235",
+      "clubKey": "kon",
+      "slug": "adil-demirbag"
+    },
+    "Berkan Kutlu": {
+      "fmId": "84153377",
+      "clubKey": "kon",
+      "slug": "berkan-kutlu"
+    },
+    "Yhoan Andzouana": {
+      "fmId": "85128684",
+      "clubKey": "kon",
+      "slug": "yhoan-andzouana"
+    },
+    "Rayyan Baniya": {
+      "fmId": "43272427",
+      "clubKey": "kon",
+      "slug": "rayyan-baniya"
+    },
+    "Uğurcan Yazğılı": {
+      "fmId": "70107268",
+      "clubKey": "kon",
+      "slug": "ugurcan-yazgili"
+    },
+    "Arif Boşluk": {
+      "fmId": "2000038247",
+      "clubKey": "kon",
+      "slug": "arif-bosluk"
+    },
+    "Marko Jevtović": {
+      "fmId": "62080168",
+      "clubKey": "kon",
+      "slug": "marko-jevtovic"
+    },
+    "Jo Jin-Ho": {
+      "fmId": "2000242267",
+      "clubKey": "kon",
+      "slug": "jo-jin-ho"
+    },
+    "Ufuk Akyol": {
+      "fmId": "70104560",
+      "clubKey": "kon",
+      "slug": "ufuk-akyol"
+    },
+    "İsmail Buğa": {
+      "fmId": "2000513280",
+      "clubKey": "kon",
+      "slug": "ismail-buga"
+    },
+    "Diogo Gonçalves": {
+      "fmId": "55070292",
+      "clubKey": "kon",
+      "slug": "diogo-goncalves"
+    },
+    "Enis Bardhi": {
+      "fmId": "27102027",
+      "clubKey": "kon",
+      "slug": "enis-bardhi"
+    },
+    "Jackson Muleka": {
+      "fmId": "13187384",
+      "clubKey": "kon",
+      "slug": "jackson-muleka"
+    },
+    "Deniz Türüç": {
+      "fmId": "168236",
+      "clubKey": "kon",
+      "slug": "deniz-turuc"
+    },
+    "Sander Svendsen": {
+      "fmId": "53084469",
+      "clubKey": "kon",
+      "slug": "sander-svendsen"
+    },
+    "Marius Ştefănescu": {
+      "fmId": "57163533",
+      "clubKey": "kon",
+      "slug": "marius-stefanescu"
+    },
+    "Melih İbrahimoğlu": {
+      "fmId": "16191676",
+      "clubKey": "kon",
+      "slug": "melih-ibrahimoglu"
+    },
+    "Pedrinho": {
+      "fmId": "19401113",
+      "clubKey": "kon",
+      "slug": "pedrinho"
+    },
+    "Ertuğrul Taşkıran": {
+      "fmId": "70002701",
+      "clubKey": "aly",
+      "slug": "ertugrul-taskiran"
+    },
+    "Paulo Victor": {
+      "fmId": "19014205",
+      "clubKey": "aly",
+      "slug": "paulo-victor"
+    },
+    "Ruan": {
+      "fmId": "2000209146",
+      "clubKey": "aly",
+      "slug": "ruan"
+    },
+    "Yusuf Özdemir": {
+      "fmId": "2000048032",
+      "clubKey": "aly",
+      "slug": "yusuf-ozdemir"
+    },
+    "Florent Hadergjonaj": {
+      "fmId": "98031298",
+      "clubKey": "aly",
+      "slug": "florent-hadergjonaj"
+    },
+    "Ümit Akdağ": {
+      "fmId": "2000204335",
+      "clubKey": "aly",
+      "slug": "umit-akdag"
+    },
+    "Fidan Aliti": {
+      "fmId": "98033030",
+      "clubKey": "aly",
+      "slug": "fidan-aliti"
+    },
+    "Nuno Lima": {
+      "fmId": "2000013437",
+      "clubKey": "aly",
+      "slug": "nuno-lima"
+    },
+    "Bruno Viana": {
+      "fmId": "19197239",
+      "clubKey": "aly",
+      "slug": "bruno-viana"
+    },
+    "Fatih Aksoy": {
+      "fmId": "70102606",
+      "clubKey": "aly",
+      "slug": "fatih-aksoy"
+    },
+    "Gaïus Makouta": {
+      "fmId": "52082234",
+      "clubKey": "aly",
+      "slug": "gaius-makouta"
+    },
+    "Maestro": {
+      "fmId": "95079788",
+      "clubKey": "aly",
+      "slug": "maestro"
+    },
+    "Nicolas Janvier": {
+      "fmId": "85145182",
+      "clubKey": "aly",
+      "slug": "nicolas-janvier"
+    },
+    "Enes Keskin": {
+      "fmId": "70137975",
+      "clubKey": "aly",
+      "slug": "enes-keskin"
+    },
+    "Buluthan Bulut": {
+      "fmId": "2000028101",
+      "clubKey": "aly",
+      "slug": "buluthan-bulut"
+    },
+    "Souleymane Keita": {
+      "fmId": "2000504932",
+      "clubKey": "aly",
+      "slug": "souleymane-keita"
+    },
+    "Ianis Hagi": {
+      "fmId": "57122678",
+      "clubKey": "aly",
+      "slug": "ianis-hagi"
+    },
+    "Hwang Ui-Jo": {
+      "fmId": "66029640",
+      "clubKey": "aly",
+      "slug": "hwang-ui-jo"
+    },
+    "İbrahim Kaya": {
+      "fmId": "70137170",
+      "clubKey": "aly",
+      "slug": "ibrahim-kaya"
+    },
+    "Güven Yalçın": {
+      "fmId": "92090147",
+      "clubKey": "aly",
+      "slug": "guven-yalcin"
+    },
+    "Meschack Elia": {
+      "fmId": "13173388",
+      "clubKey": "aly",
+      "slug": "meschack-elia"
+    },
+    "Efecan Karaca": {
+      "fmId": "70013738",
+      "clubKey": "aly",
+      "slug": "efecan-karaca"
+    },
+    "İzzet Çelik": {
+      "fmId": "2000038211",
+      "clubKey": "aly",
+      "slug": "izzet-celik"
+    },
+    "Zafer Görgen": {
+      "fmId": "70116146",
+      "clubKey": "gaz",
+      "slug": "zafer-gorgen"
+    },
+    "Yusuf Nacar": {
+      "fmId": "2000327874",
+      "clubKey": "gaz",
+      "slug": "yusuf-nacar"
+    },
+    "Luis Pérez": {
+      "fmId": "67199621",
+      "clubKey": "gaz",
+      "slug": "luis-perez"
+    },
+    "Kévin Rodrigues": {
+      "fmId": "85119246",
+      "clubKey": "gaz",
+      "slug": "kevin-rodrigues"
+    },
+    "Arda Kızıldağ": {
+      "fmId": "70111560",
+      "clubKey": "gaz",
+      "slug": "arda-kizildag"
+    },
+    "Deian Sorescu": {
+      "fmId": "57137479",
+      "clubKey": "gaz",
+      "slug": "deian-sorescu"
+    },
+    "Nihad Mujakić": {
+      "fmId": "21028829",
+      "clubKey": "gaz",
+      "slug": "nihad-mujakic"
+    },
+    "Myenty Abena": {
+      "fmId": "37028457",
+      "clubKey": "gaz",
+      "slug": "myenty-abena"
+    },
+    "Tayyip Talha Sanuç": {
+      "fmId": "70104072",
+      "clubKey": "gaz",
+      "slug": "tayyip-talha-sanuc"
+    },
+    "Nazım Sangaré": {
+      "fmId": "91137278",
+      "clubKey": "gaz",
+      "slug": "nazim-sangare"
+    },
+    "Drissa Camara": {
+      "fmId": "43424748",
+      "clubKey": "gaz",
+      "slug": "drissa-camara"
+    },
+    "Ogün Özçiçek": {
+      "fmId": "70132461",
+      "clubKey": "gaz",
+      "slug": "ogun-ozcicek"
+    },
+    "Denis Drăguş": {
+      "fmId": "57147835",
+      "clubKey": "gaz",
+      "slug": "denis-dragus"
+    },
+    "Alexandru Maxim": {
+      "fmId": "57024538",
+      "clubKey": "gaz",
+      "slug": "alexandru-maxim"
+    },
+    "Juninho Bacuna": {
+      "fmId": "37046963",
+      "clubKey": "gaz",
+      "slug": "juninho-bacuna"
+    },
+    "Christopher Lungoyi": {
+      "fmId": "98041794",
+      "clubKey": "gaz",
+      "slug": "christopher-lungoyi"
+    },
+    "Kacper Kozłowski": {
+      "fmId": "96145145",
+      "clubKey": "gaz",
+      "slug": "kacper-kozlowski"
+    },
+    "Victor Gidado": {
+      "fmId": "2000331331",
+      "clubKey": "gaz",
+      "slug": "victor-gidado"
+    },
+    "Karamba Gassama": {
+      "fmId": "2000221402",
+      "clubKey": "gaz",
+      "slug": "karamba-gassama"
+    },
+    "Mevran Ablak": {
+      "fmId": "2000079725",
+      "clubKey": "gaz",
+      "slug": "mevran-ablak"
+    },
+    "Andreas Gianniotis": {
+      "fmId": "36060255",
+      "clubKey": "ksp",
+      "slug": "andreas-gianniotis"
+    },
+    "Ali Emre Yanar": {
+      "fmId": "70104044",
+      "clubKey": "ksp",
+      "slug": "ali-emre-yanar"
+    },
+    "Mortadha Ben Ouannes": {
+      "fmId": "12063540",
+      "clubKey": "ksp",
+      "slug": "mortadha-ben-ouannes"
+    },
+    "Nicholas Opoku": {
+      "fmId": "13169837",
+      "clubKey": "ksp",
+      "slug": "nicholas-opoku"
+    },
+    "Cláudio Winck": {
+      "fmId": "19159360",
+      "clubKey": "ksp",
+      "slug": "claudio-winck"
+    },
+    "Godfried Frimpong": {
+      "fmId": "37058783",
+      "clubKey": "ksp",
+      "slug": "godfried-frimpong"
+    },
+    "Rodrigo Becão": {
+      "fmId": "19249501",
+      "clubKey": "ksp",
+      "slug": "rodrigo-becao"
+    },
+    "Matei Ilie": {
+      "fmId": "57168862",
+      "clubKey": "ksp",
+      "slug": "matei-ilie"
+    },
+    "Adem Arous": {
+      "fmId": "2000219151",
+      "clubKey": "ksp",
+      "slug": "adem-arous"
+    },
+    "Kamil Ahmet Çörekçi": {
+      "fmId": "28020212",
+      "clubKey": "ksp",
+      "slug": "kamil-ahmet-corekci"
+    },
+    "Kerem Demirbay": {
+      "fmId": "91104583",
+      "clubKey": "ksp",
+      "slug": "kerem-demirbay"
+    },
+    "Andri Fannar Baldursson": {
+      "fmId": "39056706",
+      "clubKey": "ksp",
+      "slug": "andri-fannar-baldursson"
+    },
+    "Cafú": {
+      "fmId": "55022455",
+      "clubKey": "ksp",
+      "slug": "cafu"
+    },
+    "Eyüp Aydın": {
+      "fmId": "2000111718",
+      "clubKey": "ksp",
+      "slug": "eyup-aydin"
+    },
+    "Burak Gültekin": {
+      "fmId": "2000334743",
+      "clubKey": "ksp",
+      "slug": "burak-gultekin"
+    },
+    "İrfan Can Kahveci": {
+      "fmId": "70075229",
+      "clubKey": "ksp",
+      "slug": "irfan-can-kahveci"
+    },
+    "Haris Hajradinović": {
+      "fmId": "21020532",
+      "clubKey": "ksp",
+      "slug": "haris-hajradinovic"
+    },
+    "Cenk Tosun": {
+      "fmId": "91001078",
+      "clubKey": "ksp",
+      "slug": "cenk-tosun"
+    },
+    "Fousseni Diabaté": {
+      "fmId": "85121414",
+      "clubKey": "ksp",
+      "slug": "fousseni-diabate"
+    },
+    "Pape Habib Guèye": {
+      "fmId": "13191648",
+      "clubKey": "ksp",
+      "slug": "pape-habib-gueye"
+    },
+    "Ali Yavuz Kol": {
+      "fmId": "70121040",
+      "clubKey": "ksp",
+      "slug": "ali-yavuz-kol"
+    },
+    "Kubilay Kanatsızkuş": {
+      "fmId": "70103134",
+      "clubKey": "ksp",
+      "slug": "kubilay-kanatsizkus"
+    },
+    "Yusuf Barasi": {
+      "fmId": "37079095",
+      "clubKey": "ksp",
+      "slug": "yusuf-barasi"
+    },
+    "Erhan Erentürk": {
+      "fmId": "70094079",
+      "clubKey": "gnc",
+      "slug": "erhan-erenturk"
+    },
+    "Ebrar Aydın": {
+      "fmId": "70117576",
+      "clubKey": "gnc",
+      "slug": "ebrar-aydin"
+    },
+    "Dimitris Goutas": {
+      "fmId": "36057480",
+      "clubKey": "gnc",
+      "slug": "dimitris-goutas"
+    },
+    "Pedro Pereira": {
+      "fmId": "55082273",
+      "clubKey": "gnc",
+      "slug": "pedro-pereira"
+    },
+    "Matěj Hanousek": {
+      "fmId": "25022382",
+      "clubKey": "gnc",
+      "slug": "matej-hanousek"
+    },
+    "Thalisson Kelven": {
+      "fmId": "19260150",
+      "clubKey": "gnc",
+      "slug": "thalisson-kelven"
+    },
+    "Žan Žužek": {
+      "fmId": "62154475",
+      "clubKey": "gnc",
+      "slug": "zan-zuzek"
+    },
+    "Fıratcan Üzüm": {
+      "fmId": "70109065",
+      "clubKey": "gnc",
+      "slug": "firatcan-uzum"
+    },
+    "Abdurrahim Dursun": {
+      "fmId": "70109088",
+      "clubKey": "gnc",
+      "slug": "abdurrahim-dursun"
+    },
+    "Abdullah Şahindere": {
+      "fmId": "70121897",
+      "clubKey": "gnc",
+      "slug": "abdullah-sahindere"
+    },
+    "Oğulcan Ülgün": {
+      "fmId": "70104042",
+      "clubKey": "gnc",
+      "slug": "ogulcan-ulgun"
+    },
+    "Peter Etebo": {
+      "fmId": "13162731",
+      "clubKey": "gnc",
+      "slug": "peter-etebo"
+    },
+    "Moussa Kyabou": {
+      "fmId": "12091591",
+      "clubKey": "gnc",
+      "slug": "moussa-kyabou"
+    },
+    "Samed Onur": {
+      "fmId": "2000065771",
+      "clubKey": "gnc",
+      "slug": "samed-onur"
+    },
+    "Franco Tongya": {
+      "fmId": "43426015",
+      "clubKey": "gnc",
+      "slug": "franco-tongya"
+    },
+    "Adama Traoré": {
+      "fmId": "13165848",
+      "clubKey": "gnc",
+      "slug": "adama-traore"
+    },
+    "Metehan Mimaroğlu": {
+      "fmId": "70079683",
+      "clubKey": "gnc",
+      "slug": "metehan-mimaroglu"
+    },
+    "Göktan Gürpüz": {
+      "fmId": "2000069558",
+      "clubKey": "gnc",
+      "slug": "goktan-gurpuz"
+    },
+    "Sékou Koïta": {
+      "fmId": "13157142",
+      "clubKey": "gnc",
+      "slug": "sekou-koita"
+    },
+    "Henry Onyekuru": {
+      "fmId": "18093594",
+      "clubKey": "gnc",
+      "slug": "henry-onyekuru"
+    },
+    "Dal Varešanović": {
+      "fmId": "28115472",
+      "clubKey": "gnc",
+      "slug": "dal-varesanovic"
+    },
+    "M’Baye Niang": {
+      "fmId": "85051236",
+      "clubKey": "gnc",
+      "slug": "mbaye-niang"
+    },
+    "Aleksandar Jovanović": {
+      "fmId": "62056825",
+      "clubKey": "koc",
+      "slug": "aleksandar-jovanovic"
+    },
+    "Gökhan Değirmenci": {
+      "fmId": "70006779",
+      "clubKey": "koc",
+      "slug": "gokhan-degirmenci"
+    },
+    "Serhat Öztaşdelen": {
+      "fmId": "2000096505",
+      "clubKey": "koc",
+      "slug": "serhat-oztasdelen"
+    },
+    "Anfernee Dijksteel": {
+      "fmId": "29164971",
+      "clubKey": "koc",
+      "slug": "anfernee-dijksteel"
+    },
+    "Massadio Haïdara": {
+      "fmId": "85078879",
+      "clubKey": "koc",
+      "slug": "massadio-haidara"
+    },
+    "Ahmet Oğuz": {
+      "fmId": "70065888",
+      "clubKey": "koc",
+      "slug": "ahmet-oguz"
+    },
+    "Tayfur Bingöl": {
+      "fmId": "70058751",
+      "clubKey": "koc",
+      "slug": "tayfur-bingol"
+    },
+    "Rigoberto Rivas": {
+      "fmId": "43269246",
+      "clubKey": "koc",
+      "slug": "rigoberto-rivas"
+    },
+    "Muharrem Cinan": {
+      "fmId": "70119672",
+      "clubKey": "koc",
+      "slug": "muharrem-cinan"
+    },
+    "Karol Linetty": {
+      "fmId": "96032464",
+      "clubKey": "koc",
+      "slug": "karol-linetty"
+    },
+    "Habib Keïta": {
+      "fmId": "2000049935",
+      "clubKey": "koc",
+      "slug": "habib-keita"
+    },
+    "Joseph Nonge": {
+      "fmId": "2000103266",
+      "clubKey": "koc",
+      "slug": "joseph-nonge"
+    },
+    "Samet Yalçın": {
+      "fmId": "70098124",
+      "clubKey": "koc",
+      "slug": "samet-yalcin"
+    },
+    "Mahamadou Susoho": {
+      "fmId": "2000102545",
+      "clubKey": "koc",
+      "slug": "mahamadou-susoho"
+    },
+    "Bruno Petković": {
+      "fmId": "43130133",
+      "clubKey": "koc",
+      "slug": "bruno-petkovic"
+    },
+    "Dan Agyei": {
+      "fmId": "29128854",
+      "clubKey": "koc",
+      "slug": "dan-agyei"
+    },
+    "Darko Churlinov": {
+      "fmId": "91178617",
+      "clubKey": "koc",
+      "slug": "darko-churlinov"
+    },
+    "Can Keleş": {
+      "fmId": "16202246",
+      "clubKey": "koc",
+      "slug": "can-keles"
+    },
+    "Makana Baku": {
+      "fmId": "92091314",
+      "clubKey": "koc",
+      "slug": "makana-baku"
+    },
+    "Serdar Dursun": {
+      "fmId": "92025557",
+      "clubKey": "koc",
+      "slug": "serdar-dursun"
+    },
+    "Furkan Gedik": {
+      "fmId": "2000077212",
+      "clubKey": "koc",
+      "slug": "furkan-gedik"
+    },
+    "Ahmet Sağat": {
+      "fmId": "91209621",
+      "clubKey": "koc",
+      "slug": "ahmet-sagat"
+    },
+    "Julián Cuesta": {
+      "fmId": "67150300",
+      "clubKey": "aty",
+      "slug": "julian-cuesta"
+    },
+    "Abdullah Yiğiter": {
+      "fmId": "70101589",
+      "clubKey": "aty",
+      "slug": "abdullah-yigiter"
+    },
+    "Kağan Arıcan": {
+      "fmId": "2000255040",
+      "clubKey": "aty",
+      "slug": "kagan-arican"
+    },
+    "Lautaro Giannetti": {
+      "fmId": "14047176",
+      "clubKey": "aty",
+      "slug": "lautaro-giannetti"
+    },
+    "Kenneth Paal": {
+      "fmId": "29129460",
+      "clubKey": "aty",
+      "slug": "kenneth-paal"
+    },
+    "Bünyamin Balcı": {
+      "fmId": "70121574",
+      "clubKey": "aty",
+      "slug": "bunyamin-balci"
+    },
+    "Veysel Sarı": {
+      "fmId": "29040335",
+      "clubKey": "aty",
+      "slug": "veysel-sari"
+    },
+    "Georgy Djikia": {
+      "fmId": "58069276",
+      "clubKey": "aty",
+      "slug": "georgy-djikia"
+    },
+    "Erdoğan Yeşilyurt": {
+      "fmId": "92056511",
+      "clubKey": "aty",
+      "slug": "erdogan-yesilyurt"
+    },
+    "Hüseyin Türkmen": {
+      "fmId": "70114484",
+      "clubKey": "aty",
+      "slug": "huseyin-turkmen"
+    },
+    "Samet Karakoç": {
+      "fmId": "2000038890",
+      "clubKey": "aty",
+      "slug": "samet-karakoc"
+    },
+    "Dario Šarić": {
+      "fmId": "43141700",
+      "clubKey": "aty",
+      "slug": "dario-saric"
+    },
+    "Soner Dikmen": {
+      "fmId": "70079631",
+      "clubKey": "aty",
+      "slug": "soner-dikmen"
+    },
+    "Jesper Ceesay": {
+      "fmId": "93100468",
+      "clubKey": "aty",
+      "slug": "jesper-ceesay"
+    },
+    "Yannick Nkurunziza": {
+      "fmId": "2000244704",
+      "clubKey": "aty",
+      "slug": "yannick-nkurunziza"
+    },
+    "Ismaël Taieb": {
+      "fmId": "2000327390",
+      "clubKey": "aty",
+      "slug": "ismael-taieb"
+    },
+    "Shanazar Muhammetnazarov": {
+      "fmId": "2000504939",
+      "clubKey": "aty",
+      "slug": "shanazar-muhammetnazarov"
+    },
+    "Nikola Storm": {
+      "fmId": "18059923",
+      "clubKey": "aty",
+      "slug": "nikola-storm"
+    },
+    "Sander van de Streek": {
+      "fmId": "37027437",
+      "clubKey": "aty",
+      "slug": "sander-van-de-streek"
+    },
+    "Samuel Ballet": {
+      "fmId": "84154186",
+      "clubKey": "aty",
+      "slug": "samuel-ballet"
+    },
+    "Ramzi Safouri": {
+      "fmId": "212072",
+      "clubKey": "aty",
+      "slug": "ramzi-safouri"
+    },
+    "Doğukan Sinik": {
+      "fmId": "70099193",
+      "clubKey": "aty",
+      "slug": "dogukan-sinik"
+    },
+    "Yohan Boli": {
+      "fmId": "85086629",
+      "clubKey": "aty",
+      "slug": "yohan-boli"
+    },
+    "Mouhamed Gueye": {
+      "fmId": "2000504938",
+      "clubKey": "aty",
+      "slug": "mouhamed-gueye"
+    },
+    "Kerem Kayaarası": {
+      "fmId": "2000395246",
+      "clubKey": "aty",
+      "slug": "kerem-kayaarasi"
+    },
+    "Horaţiu Moldovan": {
+      "fmId": "57150378",
+      "clubKey": "eyu",
+      "slug": "horatiu-moldovan"
+    },
+    "Jankat Yılmaz": {
+      "fmId": "2000038460",
+      "clubKey": "eyu",
+      "slug": "jankat-yilmaz"
+    },
+    "Umut Keseci": {
+      "fmId": "2000096507",
+      "clubKey": "eyu",
+      "slug": "umut-keseci"
+    },
+    "Lucas Calegari": {
+      "fmId": "19392884",
+      "clubKey": "eyu",
+      "slug": "lucas-calegari"
+    },
+    "Luccas Claro": {
+      "fmId": "19096976",
+      "clubKey": "eyu",
+      "slug": "luccas-claro"
+    },
+    "Umut Meraş": {
+      "fmId": "70093046",
+      "clubKey": "eyu",
+      "slug": "umut-meras"
+    },
+    "Jérôme Onguéné": {
+      "fmId": "85135912",
+      "clubKey": "eyu",
+      "slug": "jerome-onguene"
+    },
+    "Denis Radu": {
+      "fmId": "57181675",
+      "clubKey": "eyu",
+      "slug": "denis-radu"
+    },
+    "Talha Ülvan": {
+      "fmId": "18116054",
+      "clubKey": "eyu",
+      "slug": "talha-ulvan"
+    },
+    "Anıl Yaşar": {
+      "fmId": "70121799",
+      "clubKey": "eyu",
+      "slug": "anil-yasar"
+    },
+    "Gilbert Mendy": {
+      "fmId": "2000275298",
+      "clubKey": "eyu",
+      "slug": "gilbert-mendy"
+    },
+    "Taşkın İlter": {
+      "fmId": "91147352",
+      "clubKey": "eyu",
+      "slug": "taskin-ilter"
+    },
+    "Baran Gezek": {
+      "fmId": "2000204338",
+      "clubKey": "eyu",
+      "slug": "baran-gezek"
+    },
+    "Umut Bozok": {
+      "fmId": "85138169",
+      "clubKey": "eyu",
+      "slug": "umut-bozok"
+    },
+    "Emre Akbaba": {
+      "fmId": "70085757",
+      "clubKey": "eyu",
+      "slug": "emre-akbaba"
+    },
+    "Konrad Michalak": {
+      "fmId": "96079911",
+      "clubKey": "eyu",
+      "slug": "konrad-michalak"
+    },
+    "Dorin Rotariu": {
+      "fmId": "57084632",
+      "clubKey": "eyu",
+      "slug": "dorin-rotariu"
+    },
+    "Ángel Torres": {
+      "fmId": "83261700",
+      "clubKey": "eyu",
+      "slug": "angel-torres"
+    },
+    "David Costa": {
+      "fmId": "2000047429",
+      "clubKey": "eyu",
+      "slug": "david-costa"
+    },
+    "Lenny Pintor": {
+      "fmId": "49038337",
+      "clubKey": "eyu",
+      "slug": "lenny-pintor"
+    },
+    "Charles-André Raux-Yao": {
+      "fmId": "2000234274",
+      "clubKey": "eyu",
+      "slug": "charles-andre-raux-yao"
+    },
+    "Bilal Bayazıt": {
+      "fmId": "37058302",
+      "clubKey": "kay",
+      "slug": "bilal-bayazit"
+    },
+    "Onurcan Piri": {
+      "fmId": "70063244",
+      "clubKey": "kay",
+      "slug": "onurcan-piri"
+    },
+    "Stefano Denswil": {
+      "fmId": "37018392",
+      "clubKey": "kay",
+      "slug": "stefano-denswil"
+    },
+    "Joshua Brenet": {
+      "fmId": "37044524",
+      "clubKey": "kay",
+      "slug": "joshua-brenet"
+    },
+    "Semih Güler": {
+      "fmId": "70093959",
+      "clubKey": "kay",
+      "slug": "semih-guler"
+    },
+    "Lionel Carole": {
+      "fmId": "85033648",
+      "clubKey": "kay",
+      "slug": "lionel-carole"
+    },
+    "Burak Kapacak": {
+      "fmId": "70116131",
+      "clubKey": "kay",
+      "slug": "burak-kapacak"
+    },
+    "Majid Hosseini": {
+      "fmId": "23260467",
+      "clubKey": "kay",
+      "slug": "majid-hosseini"
+    },
+    "Jadel Katongo": {
+      "fmId": "2000096840",
+      "clubKey": "kay",
+      "slug": "jadel-katongo"
+    },
+    "Abdulsamet Burak": {
+      "fmId": "37046729",
+      "clubKey": "kay",
+      "slug": "abdulsamet-burak"
+    },
+    "Youssef Aït Bennasser": {
+      "fmId": "85137293",
+      "clubKey": "kay",
+      "slug": "youssef-ait-bennasser"
+    },
+    "Görkem Sağlam": {
+      "fmId": "91143502",
+      "clubKey": "kay",
+      "slug": "gorkem-saglam"
+    },
+    "Dorukhan Toköz": {
+      "fmId": "70097267",
+      "clubKey": "kay",
+      "slug": "dorukhan-tokoz"
+    },
+    "Berat Eskin": {
+      "fmId": "2000327876",
+      "clubKey": "kay",
+      "slug": "berat-eskin"
+    },
+    "Necip Özer": {
+      "fmId": "2000483288",
+      "clubKey": "kay",
+      "slug": "necip-ozer"
+    },
+    "Miguel Cardoso": {
+      "fmId": "67203879",
+      "clubKey": "kay",
+      "slug": "miguel-cardoso"
+    },
+    "Denis Makarov": {
+      "fmId": "58137149",
+      "clubKey": "kay",
+      "slug": "denis-makarov"
+    },
+    "German Onugkha": {
+      "fmId": "58141075",
+      "clubKey": "kay",
+      "slug": "german-onugkha"
+    },
+    "João Mendes": {
+      "fmId": "83110874",
+      "clubKey": "kay",
+      "slug": "joao-mendes"
+    },
+    "Carlos Mané": {
+      "fmId": "55024894",
+      "clubKey": "kay",
+      "slug": "carlos-mane"
+    },
+    "Indrit Tuci": {
+      "fmId": "24063545",
+      "clubKey": "kay",
+      "slug": "indrit-tuci"
+    },
+    "Furkan Soyalp": {
+      "fmId": "70076281",
+      "clubKey": "kay",
+      "slug": "furkan-soyalp"
+    },
+    "Ramazan Civelek": {
+      "fmId": "70087694",
+      "clubKey": "kay",
+      "slug": "ramazan-civelek"
+    },
+    "Batuhan Şen": {
+      "fmId": "70104379",
+      "clubKey": "fkg",
+      "slug": "batuhan-sen"
+    },
+    "Furkan Bekleviç": {
+      "fmId": "70110791",
+      "clubKey": "fkg",
+      "slug": "furkan-beklevic"
+    },
+    "Kerem Yandal": {
+      "fmId": "2000387308",
+      "clubKey": "fkg",
+      "slug": "kerem-yandal"
+    },
+    "Igor Lichnovsky": {
+      "fmId": "75017685",
+      "clubKey": "fkg",
+      "slug": "igor-lichnovsky"
+    },
+    "Davide Biraschi": {
+      "fmId": "43094277",
+      "clubKey": "fkg",
+      "slug": "davide-biraschi"
+    },
+    "Çağtay Kurukalıp": {
+      "fmId": "70120172",
+      "clubKey": "fkg",
+      "slug": "cagtay-kurukalip"
+    },
+    "Anıl Yiğit Çınar": {
+      "fmId": "2000165816",
+      "clubKey": "fkg",
+      "slug": "anil-yigit-cinar"
+    },
+    "Fatih Kuruçuk": {
+      "fmId": "70099775",
+      "clubKey": "fkg",
+      "slug": "fatih-kurucuk"
+    },
+    "Muhammed Kadıoğlu": {
+      "fmId": "2000441246",
+      "clubKey": "fkg",
+      "slug": "muhammed-kadioglu"
+    },
+    "Burhan Ersoy": {
+      "fmId": "2000080132",
+      "clubKey": "fkg",
+      "slug": "burhan-ersoy"
+    },
+    "Berkay Özcan": {
+      "fmId": "92071861",
+      "clubKey": "fkg",
+      "slug": "berkay-ozcan"
+    },
+    "Matías Kranevitter": {
+      "fmId": "14043247",
+      "clubKey": "fkg",
+      "slug": "matias-kranevitter"
+    },
+    "Bartuğ Elmaz": {
+      "fmId": "70137157",
+      "clubKey": "fkg",
+      "slug": "bartug-elmaz"
+    },
+    "Tuğbey Akgün": {
+      "fmId": "2000038228",
+      "clubKey": "fkg",
+      "slug": "tugbey-akgun"
+    },
+    "Shavy Babicka": {
+      "fmId": "13225585",
+      "clubKey": "fkg",
+      "slug": "shavy-babicka"
+    },
+    "Daniele Verde": {
+      "fmId": "43094108",
+      "clubKey": "fkg",
+      "slug": "daniele-verde"
+    },
+    "Daniel Johnson": {
+      "fmId": "28048721",
+      "clubKey": "fkg",
+      "slug": "daniel-johnson"
+    },
+    "João Camacho": {
+      "fmId": "55067150",
+      "clubKey": "fkg",
+      "slug": "joao-camacho"
+    },
+    "Serginho": {
+      "fmId": "11027761",
+      "clubKey": "fkg",
+      "slug": "serginho"
+    },
+    "Sam Larsson": {
+      "fmId": "93020727",
+      "clubKey": "fkg",
+      "slug": "sam-larsson"
+    },
+    "Tiago Çukur": {
+      "fmId": "37079096",
+      "clubKey": "fkg",
+      "slug": "tiago-cukur"
+    },
+    "Bariş Kalaycı": {
+      "fmId": "2000194083",
+      "clubKey": "fkg",
+      "slug": "baris-kalayci"
+    }
+  }
+}

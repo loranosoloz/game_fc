@@ -1,0 +1,2301 @@
+{
+  "source": "fmtransferupdate J1 League",
+  "matched": 459,
+  "byName": {
+    "Tomoki Hayakawa": {
+      "fmId": "2000088692",
+      "clubKey": "kas",
+      "slug": "tomoki-hayakawa"
+    },
+    "Yuji Kajikawa": {
+      "fmId": "45087809",
+      "clubKey": "kas",
+      "slug": "yuji-kajikawa"
+    },
+    "Taiki Yamada": {
+      "fmId": "45111874",
+      "clubKey": "kas",
+      "slug": "taiki-yamada"
+    },
+    "Naomichi Ueda": {
+      "fmId": "45077880",
+      "clubKey": "kas",
+      "slug": "naomichi-ueda"
+    },
+    "Kimito Nono": {
+      "fmId": "2000334534",
+      "clubKey": "kas",
+      "slug": "kimito-nono"
+    },
+    "Kento Misao": {
+      "fmId": "45093508",
+      "clubKey": "kas",
+      "slug": "kento-misao"
+    },
+    "Ikuma Sekigawa": {
+      "fmId": "45111862",
+      "clubKey": "kas",
+      "slug": "ikuma-sekigawa"
+    },
+    "Koki Anzai": {
+      "fmId": "45088077",
+      "clubKey": "kas",
+      "slug": "koki-anzai"
+    },
+    "Kim Tae Hyeon": {
+      "fmId": "66044498",
+      "clubKey": "kas",
+      "slug": "kim-tae-hyeon"
+    },
+    "Ryuta Koike": {
+      "fmId": "45086555",
+      "clubKey": "kas",
+      "slug": "ryuta-koike"
+    },
+    "Ryoya Ogawa": {
+      "fmId": "45092573",
+      "clubKey": "kas",
+      "slug": "ryoya-ogawa"
+    },
+    "Kei Chinen": {
+      "fmId": "45106250",
+      "clubKey": "kas",
+      "slug": "kei-chinen"
+    },
+    "Yuta Higuchi": {
+      "fmId": "45112014",
+      "clubKey": "kas",
+      "slug": "yuta-higuchi"
+    },
+    "Gaku Shibasaki": {
+      "fmId": "45030130",
+      "clubKey": "kas",
+      "slug": "gaku-shibasaki"
+    },
+    "Yoshihiro Shimoda": {
+      "fmId": "2000238834",
+      "clubKey": "kas",
+      "slug": "yoshihiro-shimoda"
+    },
+    "Leo Ceara": {
+      "fmId": "19219772",
+      "clubKey": "kas",
+      "slug": "leo-ceara"
+    },
+    "Yuma Suzuki": {
+      "fmId": "45092622",
+      "clubKey": "kas",
+      "slug": "yuma-suzuki"
+    },
+    "Aleksandar Cavric": {
+      "fmId": "62076131",
+      "clubKey": "kas",
+      "slug": "aleksandar-cavric"
+    },
+    "Elber": {
+      "fmId": "19122788",
+      "clubKey": "kas",
+      "slug": "elber"
+    },
+    "Ryotaro Araki": {
+      "fmId": "2000062101",
+      "clubKey": "kas",
+      "slug": "ryotaro-araki"
+    },
+    "Shu Morooka": {
+      "fmId": "2000238846",
+      "clubKey": "kas",
+      "slug": "shu-morooka"
+    },
+    "Yu Funabashi": {
+      "fmId": "2000062109",
+      "clubKey": "kas",
+      "slug": "yu-funabashi"
+    },
+    "Yuta Matsumura": {
+      "fmId": "2000062104",
+      "clubKey": "kas",
+      "slug": "yuta-matsumura"
+    },
+    "Ryosuke Kojima": {
+      "fmId": "45083842",
+      "clubKey": "rey",
+      "slug": "ryosuke-kojima"
+    },
+    "Kenta Matsumoto": {
+      "fmId": "45114013",
+      "clubKey": "rey",
+      "slug": "kenta-matsumoto"
+    },
+    "Kengo Nagai": {
+      "fmId": "45078020",
+      "clubKey": "rey",
+      "slug": "kengo-nagai"
+    },
+    "Taiyo Koga": {
+      "fmId": "45102427",
+      "clubKey": "rey",
+      "slug": "taiyo-koga"
+    },
+    "Tojiro Kubo": {
+      "fmId": "2000234532",
+      "clubKey": "rey",
+      "slug": "tojiro-kubo"
+    },
+    "Wataru Harada": {
+      "fmId": "45116289",
+      "clubKey": "rey",
+      "slug": "wataru-harada"
+    },
+    "Hayato Tanaka": {
+      "fmId": "2000062446",
+      "clubKey": "rey",
+      "slug": "hayato-tanaka"
+    },
+    "Daiki Sugioka": {
+      "fmId": "45106808",
+      "clubKey": "rey",
+      "slug": "daiki-sugioka"
+    },
+    "Diego": {
+      "fmId": "19257336",
+      "clubKey": "rey",
+      "slug": "diego"
+    },
+    "Hiromu Mitsumaru": {
+      "fmId": "45104263",
+      "clubKey": "rey",
+      "slug": "hiromu-mitsumaru"
+    },
+    "Shumpei Naruse": {
+      "fmId": "45111316",
+      "clubKey": "rey",
+      "slug": "shumpei-naruse"
+    },
+    "Koki Kumasaka": {
+      "fmId": "2000334536",
+      "clubKey": "rey",
+      "slug": "koki-kumasaka"
+    },
+    "Nobuteru Nakagawa": {
+      "fmId": "2000381650",
+      "clubKey": "rey",
+      "slug": "nobuteru-nakagawa"
+    },
+    "Yuto Yamada": {
+      "fmId": "45113997",
+      "clubKey": "rey",
+      "slug": "yuto-yamada"
+    },
+    "Yudai Konishi": {
+      "fmId": "45104649",
+      "clubKey": "rey",
+      "slug": "yudai-konishi"
+    },
+    "Tomoya Koyamatsu": {
+      "fmId": "45087493",
+      "clubKey": "rey",
+      "slug": "tomoya-koyamatsu"
+    },
+    "Riki Harakawa": {
+      "fmId": "45035344",
+      "clubKey": "rey",
+      "slug": "riki-harakawa"
+    },
+    "Sachiro Toshima": {
+      "fmId": "45108459",
+      "clubKey": "rey",
+      "slug": "sachiro-toshima"
+    },
+    "Kohei Tezuka": {
+      "fmId": "45102428",
+      "clubKey": "rey",
+      "slug": "kohei-tezuka"
+    },
+    "Mao Hosoya": {
+      "fmId": "45114005",
+      "clubKey": "rey",
+      "slug": "mao-hosoya"
+    },
+    "Yuki Kakita": {
+      "fmId": "45100977",
+      "clubKey": "rey",
+      "slug": "yuki-kakita"
+    },
+    "Yusuke Segawa": {
+      "fmId": "45101880",
+      "clubKey": "rey",
+      "slug": "yusuke-segawa"
+    },
+    "Makoto Mitsuta": {
+      "fmId": "2000169160",
+      "clubKey": "rey",
+      "slug": "makoto-mitsuta"
+    },
+    "Yoshio Koizumi": {
+      "fmId": "45113739",
+      "clubKey": "rey",
+      "slug": "yoshio-koizumi"
+    },
+    "Yota Komi": {
+      "fmId": "2000088971",
+      "clubKey": "rey",
+      "slug": "yota-komi"
+    },
+    "Hayato Nakama": {
+      "fmId": "45035449",
+      "clubKey": "rey",
+      "slug": "hayato-nakama"
+    },
+    "Masaki Watai": {
+      "fmId": "45109701",
+      "clubKey": "rey",
+      "slug": "masaki-watai"
+    },
+    "Gakuji Ota": {
+      "fmId": "45077484",
+      "clubKey": "kyo",
+      "slug": "gakuji-ota"
+    },
+    "Kentaro Kakoi": {
+      "fmId": "45086515",
+      "clubKey": "kyo",
+      "slug": "kentaro-kakoi"
+    },
+    "Marc Vito": {
+      "fmId": "67222631",
+      "clubKey": "kyo",
+      "slug": "marc-vito"
+    },
+    "Yoshinori Suzuki": {
+      "fmId": "45090179",
+      "clubKey": "kyo",
+      "slug": "yoshinori-suzuki"
+    },
+    "Yuta Miyamoto": {
+      "fmId": "2000167710",
+      "clubKey": "kyo",
+      "slug": "yuta-miyamoto"
+    },
+    "Shinnosuke Fukuda": {
+      "fmId": "2000239906",
+      "clubKey": "kyo",
+      "slug": "shinnosuke-fukuda"
+    },
+    "Ren Kato": {
+      "fmId": "2000174572",
+      "clubKey": "kyo",
+      "slug": "ren-kato"
+    },
+    "João Pedro": {
+      "fmId": "19363102",
+      "clubKey": "kyo",
+      "slug": "joao-pedro"
+    },
+    "Kyo Sato": {
+      "fmId": "2000239732",
+      "clubKey": "kyo",
+      "slug": "kyo-sato"
+    },
+    "Hisashi Appiah Tawiah": {
+      "fmId": "2000064541",
+      "clubKey": "kyo",
+      "slug": "hisashi-appiah-tawiah"
+    },
+    "Shogo Asada": {
+      "fmId": "45106299",
+      "clubKey": "kyo",
+      "slug": "shogo-asada"
+    },
+    "Shimpei Fukuoka": {
+      "fmId": "45111294",
+      "clubKey": "kyo",
+      "slug": "shimpei-fukuoka"
+    },
+    "Mitsuki Saito": {
+      "fmId": "45096001",
+      "clubKey": "kyo",
+      "slug": "mitsuki-saito"
+    },
+    "Gustavo Barreto": {
+      "fmId": "19216900",
+      "clubKey": "kyo",
+      "slug": "gustavo-barreto"
+    },
+    "Takuji Yonemoto": {
+      "fmId": "45015444",
+      "clubKey": "kyo",
+      "slug": "takuji-yonemoto"
+    },
+    "Shohei Takeda": {
+      "fmId": "45105522",
+      "clubKey": "kyo",
+      "slug": "shohei-takeda"
+    },
+    "Rafael Elias": {
+      "fmId": "19335633",
+      "clubKey": "kyo",
+      "slug": "rafael-elias"
+    },
+    "Marco Túlio": {
+      "fmId": "19260170",
+      "clubKey": "kyo",
+      "slug": "marco-tulio"
+    },
+    "Masaya Okugawa": {
+      "fmId": "45090076",
+      "clubKey": "kyo",
+      "slug": "masaya-okugawa"
+    },
+    "Taiki Hirato": {
+      "fmId": "45100975",
+      "clubKey": "kyo",
+      "slug": "taiki-hirato"
+    },
+    "Temma Matsuda": {
+      "fmId": "45107932",
+      "clubKey": "kyo",
+      "slug": "temma-matsuda"
+    },
+    "Fuki Yamada": {
+      "fmId": "2000065964",
+      "clubKey": "kyo",
+      "slug": "fuki-yamada"
+    },
+    "Shun Nagasawa": {
+      "fmId": "790252",
+      "clubKey": "kyo",
+      "slug": "shun-nagasawa"
+    },
+    "Sora Hiraga": {
+      "fmId": "2000239901",
+      "clubKey": "kyo",
+      "slug": "sora-hiraga"
+    },
+    "Keisuke Osako": {
+      "fmId": "45112057",
+      "clubKey": "san",
+      "slug": "keisuke-osako"
+    },
+    "Jeong Min Ki": {
+      "fmId": "66042087",
+      "clubKey": "san",
+      "slug": "jeong-min-ki"
+    },
+    "Yudai Tanaka": {
+      "fmId": "45110623",
+      "clubKey": "san",
+      "slug": "yudai-tanaka"
+    },
+    "Hayato Araki": {
+      "fmId": "45112047",
+      "clubKey": "san",
+      "slug": "hayato-araki"
+    },
+    "Sho Sasaki": {
+      "fmId": "45060093",
+      "clubKey": "san",
+      "slug": "sho-sasaki"
+    },
+    "Tsukasa Shiotani": {
+      "fmId": "45035127",
+      "clubKey": "san",
+      "slug": "tsukasa-shiotani"
+    },
+    "Shuto Nakano": {
+      "fmId": "2000238820",
+      "clubKey": "san",
+      "slug": "shuto-nakano"
+    },
+    "Shunki Higashi": {
+      "fmId": "45111404",
+      "clubKey": "san",
+      "slug": "shunki-higashi"
+    },
+    "Naoto Arai": {
+      "fmId": "45112388",
+      "clubKey": "san",
+      "slug": "naoto-arai"
+    },
+    "Kim Jusung": {
+      "fmId": "66044544",
+      "clubKey": "san",
+      "slug": "kim-jusung"
+    },
+    "Daiki Suga": {
+      "fmId": "45104410",
+      "clubKey": "san",
+      "slug": "daiki-suga"
+    },
+    "Hayao Kawabe": {
+      "fmId": "45081352",
+      "clubKey": "san",
+      "slug": "hayao-kawabe"
+    },
+    "Yotaro Nakajima": {
+      "fmId": "2000288236",
+      "clubKey": "san",
+      "slug": "yotaro-nakajima"
+    },
+    "Takuma Asano": {
+      "fmId": "45078327",
+      "clubKey": "san",
+      "slug": "takuma-asano"
+    },
+    "Mutsuki Kato": {
+      "fmId": "2000067081",
+      "clubKey": "san",
+      "slug": "mutsuki-kato"
+    },
+    "Sota Nakamura": {
+      "fmId": "2000369623",
+      "clubKey": "san",
+      "slug": "sota-nakamura"
+    },
+    "Ryo Germain": {
+      "fmId": "45108079",
+      "clubKey": "san",
+      "slug": "ryo-germain"
+    },
+    "Sébastien Haller": {
+      "fmId": "85051578",
+      "clubKey": "san",
+      "slug": "sebastien-haller"
+    },
+    "Naoki Maeda": {
+      "fmId": "45065335",
+      "clubKey": "san",
+      "slug": "naoki-maeda"
+    },
+    "Aren Inoue": {
+      "fmId": "2000288248",
+      "clubKey": "san",
+      "slug": "aren-inoue"
+    },
+    "Daiya Maekawa": {
+      "fmId": "45096288",
+      "clubKey": "vsk",
+      "slug": "daiya-maekawa"
+    },
+    "Powell Obinna Obi": {
+      "fmId": "45112355",
+      "clubKey": "vsk",
+      "slug": "powell-obinna-obi"
+    },
+    "Shota Arai": {
+      "fmId": "45035219",
+      "clubKey": "vsk",
+      "slug": "shota-arai"
+    },
+    "Gotoku Sakai": {
+      "fmId": "45015318",
+      "clubKey": "vsk",
+      "slug": "gotoku-sakai"
+    },
+    "Tetsushi Yamakawa": {
+      "fmId": "45096169",
+      "clubKey": "vsk",
+      "slug": "tetsushi-yamakawa"
+    },
+    "Matheus Thuler": {
+      "fmId": "19270227",
+      "clubKey": "vsk",
+      "slug": "matheus-thuler"
+    },
+    "Rikuto Hirose": {
+      "fmId": "45087438",
+      "clubKey": "vsk",
+      "slug": "rikuto-hirose"
+    },
+    "Takuya Iwanami": {
+      "fmId": "45035843",
+      "clubKey": "vsk",
+      "slug": "takuya-iwanami"
+    },
+    "Katsuya Nagato": {
+      "fmId": "45107070",
+      "clubKey": "vsk",
+      "slug": "katsuya-nagato"
+    },
+    "Caetano": {
+      "fmId": "19362907",
+      "clubKey": "vsk",
+      "slug": "caetano"
+    },
+    "Yuya Kuwasaki": {
+      "fmId": "2000091409",
+      "clubKey": "vsk",
+      "slug": "yuya-kuwasaki"
+    },
+    "Takahiro Ohgihara": {
+      "fmId": "45030495",
+      "clubKey": "vsk",
+      "slug": "takahiro-ohgihara"
+    },
+    "Yosuke Ideguchi": {
+      "fmId": "45081542",
+      "clubKey": "vsk",
+      "slug": "yosuke-ideguchi"
+    },
+    "Yoshinori Muto": {
+      "fmId": "45030287",
+      "clubKey": "vsk",
+      "slug": "yoshinori-muto"
+    },
+    "Yuya Osako": {
+      "fmId": "45021707",
+      "clubKey": "vsk",
+      "slug": "yuya-osako"
+    },
+    "Erik": {
+      "fmId": "19189922",
+      "clubKey": "vsk",
+      "slug": "erik"
+    },
+    "Jean Patric": {
+      "fmId": "19261077",
+      "clubKey": "vsk",
+      "slug": "jean-patric"
+    },
+    "Anderson Lopes": {
+      "fmId": "19190441",
+      "clubKey": "vsk",
+      "slug": "anderson-lopes"
+    },
+    "Daiju Sasaki": {
+      "fmId": "45109909",
+      "clubKey": "vsk",
+      "slug": "daiju-sasaki"
+    },
+    "Koya Yuruki": {
+      "fmId": "45084216",
+      "clubKey": "vsk",
+      "slug": "koya-yuruki"
+    },
+    "Ren Komatsu": {
+      "fmId": "45109244",
+      "clubKey": "vsk",
+      "slug": "ren-komatsu"
+    },
+    "Kosei Tani": {
+      "fmId": "45107642",
+      "clubKey": "mdz",
+      "slug": "kosei-tani"
+    },
+    "Tatsuya Morita": {
+      "fmId": "45025995",
+      "clubKey": "mdz",
+      "slug": "tatsuya-morita"
+    },
+    "Aki Koch": {
+      "fmId": "2000175083",
+      "clubKey": "mdz",
+      "slug": "aki-koch"
+    },
+    "Gen Shoji": {
+      "fmId": "45035554",
+      "clubKey": "mdz",
+      "slug": "gen-shoji"
+    },
+    "Henry Heroki Mochizuki": {
+      "fmId": "2000334636",
+      "clubKey": "mdz",
+      "slug": "henry-heroki-mochizuki"
+    },
+    "Daihachi Okamura": {
+      "fmId": "45114481",
+      "clubKey": "mdz",
+      "slug": "daihachi-okamura"
+    },
+    "Kotaro Hayashi": {
+      "fmId": "2000240431",
+      "clubKey": "mdz",
+      "slug": "kotaro-hayashi"
+    },
+    "Dresevic": {
+      "fmId": "93057525",
+      "clubKey": "mdz",
+      "slug": "dresevic"
+    },
+    "Neta Lavi": {
+      "fmId": "42058467",
+      "clubKey": "mdz",
+      "slug": "neta-lavi"
+    },
+    "Yuta Nakayama": {
+      "fmId": "45083656",
+      "clubKey": "mdz",
+      "slug": "yuta-nakayama"
+    },
+    "Ryuho Kikuchi": {
+      "fmId": "45117067",
+      "clubKey": "mdz",
+      "slug": "ryuho-kikuchi"
+    },
+    "Hiroyuki Mae": {
+      "fmId": "45086190",
+      "clubKey": "mdz",
+      "slug": "hiroyuki-mae"
+    },
+    "Hokuto Shimoda": {
+      "fmId": "45088315",
+      "clubKey": "mdz",
+      "slug": "hokuto-shimoda"
+    },
+    "Keiya Sento": {
+      "fmId": "45106296",
+      "clubKey": "mdz",
+      "slug": "keiya-sento"
+    },
+    "Ryohei Shirasaki": {
+      "fmId": "45046859",
+      "clubKey": "mdz",
+      "slug": "ryohei-shirasaki"
+    },
+    "Tenshiro Takasaki": {
+      "fmId": "2000283688",
+      "clubKey": "mdz",
+      "slug": "tenshiro-takasaki"
+    },
+    "Cha Je Hoon": {
+      "fmId": "2000429248",
+      "clubKey": "mdz",
+      "slug": "cha-je-hoon"
+    },
+    "Chui Hiromu Mayaka": {
+      "fmId": "2000406003",
+      "clubKey": "mdz",
+      "slug": "chui-hiromu-mayaka"
+    },
+    "Ken Higuchi": {
+      "fmId": "2000181865",
+      "clubKey": "mdz",
+      "slug": "ken-higuchi"
+    },
+    "Yuki Soma": {
+      "fmId": "45111315",
+      "clubKey": "mdz",
+      "slug": "yuki-soma"
+    },
+    "Asahi Masuyama": {
+      "fmId": "45092830",
+      "clubKey": "mdz",
+      "slug": "asahi-masuyama"
+    },
+    "Yusuke Matsuo": {
+      "fmId": "45114093",
+      "clubKey": "mdz",
+      "slug": "yusuke-matsuo"
+    },
+    "Oh Se Hun": {
+      "fmId": "66040811",
+      "clubKey": "mdz",
+      "slug": "oh-se-hun"
+    },
+    "Takuma Nishimura": {
+      "fmId": "45092791",
+      "clubKey": "mdz",
+      "slug": "takuma-nishimura"
+    },
+    "Shota Fujio": {
+      "fmId": "45111008",
+      "clubKey": "mdz",
+      "slug": "shota-fujio"
+    },
+    "Takaya Numata": {
+      "fmId": "2000172944",
+      "clubKey": "mdz",
+      "slug": "takaya-numata"
+    },
+    "Yuki Nakashima": {
+      "fmId": "783136",
+      "clubKey": "mdz",
+      "slug": "yuki-nakashima"
+    },
+    "Shusaku Nishikawa": {
+      "fmId": "783414",
+      "clubKey": "ura",
+      "slug": "shusaku-nishikawa"
+    },
+    "Ayumi Niekawa": {
+      "fmId": "45058629",
+      "clubKey": "ura",
+      "slug": "ayumi-niekawa"
+    },
+    "Kenta Matsuyama": {
+      "fmId": "2000091531",
+      "clubKey": "ura",
+      "slug": "kenta-matsuyama"
+    },
+    "Danilo Boza": {
+      "fmId": "19354991",
+      "clubKey": "ura",
+      "slug": "danilo-boza"
+    },
+    "Hirokazu Ishihara": {
+      "fmId": "45101198",
+      "clubKey": "ura",
+      "slug": "hirokazu-ishihara"
+    },
+    "Takuya Ogiwara": {
+      "fmId": "45109769",
+      "clubKey": "ura",
+      "slug": "takuya-ogiwara"
+    },
+    "Yoichi Naganuma": {
+      "fmId": "45101164",
+      "clubKey": "ura",
+      "slug": "yoichi-naganuma"
+    },
+    "Kenta Nemoto": {
+      "fmId": "2000329416",
+      "clubKey": "ura",
+      "slug": "kenta-nemoto"
+    },
+    "Kaito Yasui": {
+      "fmId": "45111360",
+      "clubKey": "ura",
+      "slug": "kaito-yasui"
+    },
+    "Samuel Gustafson": {
+      "fmId": "93038219",
+      "clubKey": "ura",
+      "slug": "samuel-gustafson"
+    },
+    "Taishi Matsumoto": {
+      "fmId": "45109550",
+      "clubKey": "ura",
+      "slug": "taishi-matsumoto"
+    },
+    "Kai Shibato": {
+      "fmId": "45109771",
+      "clubKey": "ura",
+      "slug": "kai-shibato"
+    },
+    "Matheus Savio": {
+      "fmId": "19237293",
+      "clubKey": "ura",
+      "slug": "matheus-savio"
+    },
+    "Ryoma Watanabe": {
+      "fmId": "91174812",
+      "clubKey": "ura",
+      "slug": "ryoma-watanabe"
+    },
+    "Takuro Kaneko": {
+      "fmId": "45111724",
+      "clubKey": "ura",
+      "slug": "takuro-kaneko"
+    },
+    "Tomoaki Okubo": {
+      "fmId": "45112274",
+      "clubKey": "ura",
+      "slug": "tomoaki-okubo"
+    },
+    "Thiago Santana": {
+      "fmId": "19261455",
+      "clubKey": "ura",
+      "slug": "thiago-santana"
+    },
+    "Kota Mizunuma": {
+      "fmId": "790435",
+      "clubKey": "ura",
+      "slug": "kota-mizunuma"
+    },
+    "Shoya Nakajima": {
+      "fmId": "45065338",
+      "clubKey": "ura",
+      "slug": "shoya-nakajima"
+    },
+    "Hiiro Komori": {
+      "fmId": "2000242641",
+      "clubKey": "ura",
+      "slug": "hiiro-komori"
+    },
+    "Jung Sung Ryong": {
+      "fmId": "5704105",
+      "clubKey": "kaw",
+      "slug": "jung-sung-ryong"
+    },
+    "Louis Yamaguchi": {
+      "fmId": "48038041",
+      "clubKey": "kaw",
+      "slug": "louis-yamaguchi"
+    },
+    "Shunsuke Ando": {
+      "fmId": "2000151924",
+      "clubKey": "kaw",
+      "slug": "shunsuke-ando"
+    },
+    "Jesiel": {
+      "fmId": "19230045",
+      "clubKey": "kaw",
+      "slug": "jesiel"
+    },
+    "Asahi Sasaki": {
+      "fmId": "2000238713",
+      "clubKey": "kaw",
+      "slug": "asahi-sasaki"
+    },
+    "Shintaro Kurumaya": {
+      "fmId": "45089811",
+      "clubKey": "kaw",
+      "slug": "shintaro-kurumaya"
+    },
+    "Filip Uremovic": {
+      "fmId": "24049323",
+      "clubKey": "kaw",
+      "slug": "filip-uremovic"
+    },
+    "Kento Tachibanada": {
+      "fmId": "2000061728",
+      "clubKey": "kaw",
+      "slug": "kento-tachibanada"
+    },
+    "Sota Miura": {
+      "fmId": "2000186367",
+      "clubKey": "kaw",
+      "slug": "sota-miura"
+    },
+    "Yuichi Maruyama": {
+      "fmId": "45058248",
+      "clubKey": "kaw",
+      "slug": "yuichi-maruyama"
+    },
+    "Sai Van Wermeskerken": {
+      "fmId": "37056921",
+      "clubKey": "kaw",
+      "slug": "sai-van-wermeskerken"
+    },
+    "Yuki Yamamoto": {
+      "fmId": "45112992",
+      "clubKey": "kaw",
+      "slug": "yuki-yamamoto"
+    },
+    "So Kawahara": {
+      "fmId": "2000070476",
+      "clubKey": "kaw",
+      "slug": "so-kawahara"
+    },
+    "Yuto Ozeki": {
+      "fmId": "2000238716",
+      "clubKey": "kaw",
+      "slug": "yuto-ozeki"
+    },
+    "Ryota Oshima": {
+      "fmId": "45035657",
+      "clubKey": "kaw",
+      "slug": "ryota-oshima"
+    },
+    "Yasuto Wakizaka": {
+      "fmId": "45109175",
+      "clubKey": "kaw",
+      "slug": "yasuto-wakizaka"
+    },
+    "Tatsuya Ito": {
+      "fmId": "91177224",
+      "clubKey": "kaw",
+      "slug": "tatsuya-ito"
+    },
+    "Erison": {
+      "fmId": "2000029996",
+      "clubKey": "kaw",
+      "slug": "erison"
+    },
+    "Marcinho": {
+      "fmId": "19317983",
+      "clubKey": "kaw",
+      "slug": "marcinho"
+    },
+    "Akihiro Ienaga": {
+      "fmId": "777264",
+      "clubKey": "kaw",
+      "slug": "akihiro-ienaga"
+    },
+    "Yu Kobayashi": {
+      "fmId": "45016385",
+      "clubKey": "kaw",
+      "slug": "yu-kobayashi"
+    },
+    "Ten Miyagi": {
+      "fmId": "45113100",
+      "clubKey": "kaw",
+      "slug": "ten-miyagi"
+    },
+    "Lazar Romanic": {
+      "fmId": "62166403",
+      "clubKey": "kaw",
+      "slug": "lazar-romanic"
+    },
+    "Jun Ichimori": {
+      "fmId": "45088078",
+      "clubKey": "gam",
+      "slug": "jun-ichimori"
+    },
+    "Masaaki Higashiguchi": {
+      "fmId": "45015322",
+      "clubKey": "gam",
+      "slug": "masaaki-higashiguchi"
+    },
+    "Aolin Zhang": {
+      "fmId": "2000283031",
+      "clubKey": "gam",
+      "slug": "aolin-zhang"
+    },
+    "Shota Fukuoka": {
+      "fmId": "45087808",
+      "clubKey": "gam",
+      "slug": "shota-fukuoka"
+    },
+    "Shinnosuke Nakatani": {
+      "fmId": "45083655",
+      "clubKey": "gam",
+      "slug": "shinnosuke-nakatani"
+    },
+    "Riku Handa": {
+      "fmId": "45116624",
+      "clubKey": "gam",
+      "slug": "riku-handa"
+    },
+    "Genta Miura": {
+      "fmId": "45078349",
+      "clubKey": "gam",
+      "slug": "genta-miura"
+    },
+    "Takeru Kishimoto": {
+      "fmId": "45101412",
+      "clubKey": "gam",
+      "slug": "takeru-kishimoto"
+    },
+    "Shinya Nakano": {
+      "fmId": "2000284027",
+      "clubKey": "gam",
+      "slug": "shinya-nakano"
+    },
+    "Ryo Hatsuse": {
+      "fmId": "45100889",
+      "clubKey": "gam",
+      "slug": "ryo-hatsuse"
+    },
+    "Rin Mito": {
+      "fmId": "2000283671",
+      "clubKey": "gam",
+      "slug": "rin-mito"
+    },
+    "Tokuma Suzuki": {
+      "fmId": "45114200",
+      "clubKey": "gam",
+      "slug": "tokuma-suzuki"
+    },
+    "Shuto Abe": {
+      "fmId": "45111754",
+      "clubKey": "gam",
+      "slug": "shuto-abe"
+    },
+    "Shu Kurata": {
+      "fmId": "45001586",
+      "clubKey": "gam",
+      "slug": "shu-kurata"
+    },
+    "Takashi Usami": {
+      "fmId": "45015407",
+      "clubKey": "gam",
+      "slug": "takashi-usami"
+    },
+    "Ryoya Yamashita": {
+      "fmId": "2000066487",
+      "clubKey": "gam",
+      "slug": "ryoya-yamashita"
+    },
+    "Deniz Hümmet": {
+      "fmId": "93057215",
+      "clubKey": "gam",
+      "slug": "deniz-hummet"
+    },
+    "Kanji Okunuki": {
+      "fmId": "45109422",
+      "clubKey": "gam",
+      "slug": "kanji-okunuki"
+    },
+    "Issam Jebali": {
+      "fmId": "12028960",
+      "clubKey": "gam",
+      "slug": "issam-jebali"
+    },
+    "Ryotaro Meshino": {
+      "fmId": "45104652",
+      "clubKey": "gam",
+      "slug": "ryotaro-meshino"
+    },
+    "Gaku Nawata": {
+      "fmId": "2000292576",
+      "clubKey": "gam",
+      "slug": "gaku-nawata"
+    },
+    "Koki Fukui": {
+      "fmId": "45105592",
+      "clubKey": "cer",
+      "slug": "koki-fukui"
+    },
+    "Go Kambayashi": {
+      "fmId": "45111697",
+      "clubKey": "cer",
+      "slug": "go-kambayashi"
+    },
+    "Kazuma Makiguchi": {
+      "fmId": "2000249584",
+      "clubKey": "cer",
+      "slug": "kazuma-makiguchi"
+    },
+    "Ryuya Nishio": {
+      "fmId": "45111009",
+      "clubKey": "cer",
+      "slug": "ryuya-nishio"
+    },
+    "Hayato Okuda": {
+      "fmId": "45111813",
+      "clubKey": "cer",
+      "slug": "hayato-okuda"
+    },
+    "Ryosuke Shindo": {
+      "fmId": "45092906",
+      "clubKey": "cer",
+      "slug": "ryosuke-shindo"
+    },
+    "Shinnosuke Hatanaka": {
+      "fmId": "45065336",
+      "clubKey": "cer",
+      "slug": "shinnosuke-hatanaka"
+    },
+    "Kyohei Noborizato": {
+      "fmId": "45025836",
+      "clubKey": "cer",
+      "slug": "kyohei-noborizato"
+    },
+    "Dion Cools": {
+      "fmId": "18083972",
+      "clubKey": "cer",
+      "slug": "dion-cools"
+    },
+    "Niko Takahashi": {
+      "fmId": "2000125886",
+      "clubKey": "cer",
+      "slug": "niko-takahashi"
+    },
+    "Ayumu Ohata": {
+      "fmId": "45112036",
+      "clubKey": "cer",
+      "slug": "ayumu-ohata"
+    },
+    "Shinji Kagawa": {
+      "fmId": "45001639",
+      "clubKey": "cer",
+      "slug": "shinji-kagawa"
+    },
+    "Shunta Tanaka": {
+      "fmId": "45111728",
+      "clubKey": "cer",
+      "slug": "shunta-tanaka"
+    },
+    "Lucas Fernandes": {
+      "fmId": "19215958",
+      "clubKey": "cer",
+      "slug": "lucas-fernandes"
+    },
+    "Thiago Andrade": {
+      "fmId": "83282953",
+      "clubKey": "cer",
+      "slug": "thiago-andrade"
+    },
+    "Satoki Uejo": {
+      "fmId": "45102323",
+      "clubKey": "cer",
+      "slug": "satoki-uejo"
+    },
+    "Masaya Shibayama": {
+      "fmId": "2000067601",
+      "clubKey": "cer",
+      "slug": "masaya-shibayama"
+    },
+    "Shion Homma": {
+      "fmId": "45110992",
+      "clubKey": "cer",
+      "slug": "shion-homma"
+    },
+    "Kengo Furuyama": {
+      "fmId": "2000300520",
+      "clubKey": "cer",
+      "slug": "kengo-furuyama"
+    },
+    "Kim Seung Gyu": {
+      "fmId": "66000930",
+      "clubKey": "fct",
+      "slug": "kim-seung-gyu"
+    },
+    "Go Hatano": {
+      "fmId": "45095523",
+      "clubKey": "fct",
+      "slug": "go-hatano"
+    },
+    "Wataru Goto": {
+      "fmId": "2000283682",
+      "clubKey": "fct",
+      "slug": "wataru-goto"
+    },
+    "Yuto Nagatomo": {
+      "fmId": "45005331",
+      "clubKey": "fct",
+      "slug": "yuto-nagatomo"
+    },
+    "Alexander Scholz": {
+      "fmId": "27025428",
+      "clubKey": "fct",
+      "slug": "alexander-scholz"
+    },
+    "Kei Koizumi": {
+      "fmId": "45085971",
+      "clubKey": "fct",
+      "slug": "kei-koizumi"
+    },
+    "Kosuke Shirai": {
+      "fmId": "45078381",
+      "clubKey": "fct",
+      "slug": "kosuke-shirai"
+    },
+    "Masato Morishige": {
+      "fmId": "783418",
+      "clubKey": "fct",
+      "slug": "masato-morishige"
+    },
+    "Sei Muroya": {
+      "fmId": "45095522",
+      "clubKey": "fct",
+      "slug": "sei-muroya"
+    },
+    "Teppei Oka": {
+      "fmId": "45111760",
+      "clubKey": "fct",
+      "slug": "teppei-oka"
+    },
+    "Henrique Trevisan": {
+      "fmId": "19228026",
+      "clubKey": "fct",
+      "slug": "henrique-trevisan"
+    },
+    "Takahiro Ko": {
+      "fmId": "45105817",
+      "clubKey": "fct",
+      "slug": "takahiro-ko"
+    },
+    "Kento Hashimoto": {
+      "fmId": "45030288",
+      "clubKey": "fct",
+      "slug": "kento-hashimoto"
+    },
+    "Keigo Higashi": {
+      "fmId": "45025875",
+      "clubKey": "fct",
+      "slug": "keigo-higashi"
+    },
+    "Kyota Tokiwa": {
+      "fmId": "45111773",
+      "clubKey": "fct",
+      "slug": "kyota-tokiwa"
+    },
+    "Kota Tawaratsumida": {
+      "fmId": "2000238992",
+      "clubKey": "fct",
+      "slug": "kota-tawaratsumida"
+    },
+    "Kein Sato": {
+      "fmId": "2000293353",
+      "clubKey": "fct",
+      "slug": "kein-sato"
+    },
+    "Marcelo Ryan": {
+      "fmId": "19398802",
+      "clubKey": "fct",
+      "slug": "marcelo-ryan"
+    },
+    "Nicolai Vallys": {
+      "fmId": "27111118",
+      "clubKey": "fct",
+      "slug": "nicolai-vallys"
+    },
+    "Teruhito Nakagawa": {
+      "fmId": "45092849",
+      "clubKey": "fct",
+      "slug": "teruhito-nakagawa"
+    },
+    "Soma Anzai": {
+      "fmId": "2000283697",
+      "clubKey": "fct",
+      "slug": "soma-anzai"
+    },
+    "Keita Endo": {
+      "fmId": "45101371",
+      "clubKey": "fct",
+      "slug": "keita-endo"
+    },
+    "Motoki Nagakura": {
+      "fmId": "2000245818",
+      "clubKey": "fct",
+      "slug": "motoki-nagakura"
+    },
+    "Yuma Obata": {
+      "fmId": "45112296",
+      "clubKey": "avi",
+      "slug": "yuma-obata"
+    },
+    "Masaaki Murakami": {
+      "fmId": "45096804",
+      "clubKey": "avi",
+      "slug": "masaaki-murakami"
+    },
+    "Takumi Nagaishi": {
+      "fmId": "45095917",
+      "clubKey": "avi",
+      "slug": "takumi-nagaishi"
+    },
+    "Yota Maejima": {
+      "fmId": "45101991",
+      "clubKey": "avi",
+      "slug": "yota-maejima"
+    },
+    "Kazuki Fujimoto": {
+      "fmId": "2000063086",
+      "clubKey": "avi",
+      "slug": "kazuki-fujimoto"
+    },
+    "Takumi Kamijima": {
+      "fmId": "45113971",
+      "clubKey": "avi",
+      "slug": "takumi-kamijima"
+    },
+    "Masaya Tashiro": {
+      "fmId": "45101508",
+      "clubKey": "avi",
+      "slug": "masaya-tashiro"
+    },
+    "Yu Hashimoto": {
+      "fmId": "2000332496",
+      "clubKey": "avi",
+      "slug": "yu-hashimoto"
+    },
+    "Masato Yuzawa": {
+      "fmId": "45095726",
+      "clubKey": "avi",
+      "slug": "masato-yuzawa"
+    },
+    "Itsuki Oda": {
+      "fmId": "45106152",
+      "clubKey": "avi",
+      "slug": "itsuki-oda"
+    },
+    "Takaaki Shichi": {
+      "fmId": "45096686",
+      "clubKey": "avi",
+      "slug": "takaaki-shichi"
+    },
+    "Oriol Romeu": {
+      "fmId": "67043255",
+      "clubKey": "avi",
+      "slug": "oriol-romeu"
+    },
+    "Keiya Shiihashi": {
+      "fmId": "45101264",
+      "clubKey": "avi",
+      "slug": "keiya-shiihashi"
+    },
+    "Masato Shigemi": {
+      "fmId": "2000283197",
+      "clubKey": "avi",
+      "slug": "masato-shigemi"
+    },
+    "Yuji Kitajima": {
+      "fmId": "45112417",
+      "clubKey": "avi",
+      "slug": "yuji-kitajima"
+    },
+    "Hiroki Akino": {
+      "fmId": "45065021",
+      "clubKey": "avi",
+      "slug": "hiroki-akino"
+    },
+    "Tomoya Miki": {
+      "fmId": "45116919",
+      "clubKey": "avi",
+      "slug": "tomoya-miki"
+    },
+    "Kazuya Konno": {
+      "fmId": "45111756",
+      "clubKey": "avi",
+      "slug": "kazuya-konno"
+    },
+    "Shintaro Nago": {
+      "fmId": "45111284",
+      "clubKey": "avi",
+      "slug": "shintaro-nago"
+    },
+    "Shahab Zahedi": {
+      "fmId": "23349257",
+      "clubKey": "avi",
+      "slug": "shahab-zahedi"
+    },
+    "Yuto Iwasaki": {
+      "fmId": "45106295",
+      "clubKey": "avi",
+      "slug": "yuto-iwasaki"
+    },
+    "Shosei Usui": {
+      "fmId": "2000300859",
+      "clubKey": "avi",
+      "slug": "shosei-usui"
+    },
+    "Nassim Ben Khalifa": {
+      "fmId": "98001753",
+      "clubKey": "avi",
+      "slug": "nassim-ben-khalifa"
+    },
+    "Hisashi Jogo": {
+      "fmId": "788739",
+      "clubKey": "avi",
+      "slug": "hisashi-jogo"
+    },
+    "Svend Brodersen": {
+      "fmId": "91158197",
+      "clubKey": "fag",
+      "slug": "svend-brodersen"
+    },
+    "Goro Kawanami": {
+      "fmId": "45031912",
+      "clubKey": "fag",
+      "slug": "goro-kawanami"
+    },
+    "Junki Kanayama": {
+      "fmId": "790600",
+      "clubKey": "fag",
+      "slug": "junki-kanayama"
+    },
+    "Kota Kudo": {
+      "fmId": "2000167698",
+      "clubKey": "fag",
+      "slug": "kota-kudo"
+    },
+    "Yugo Tatsuta": {
+      "fmId": "45109584",
+      "clubKey": "fag",
+      "slug": "yugo-tatsuta"
+    },
+    "Takahiro Yanagi": {
+      "fmId": "45100845",
+      "clubKey": "fag",
+      "slug": "takahiro-yanagi"
+    },
+    "Hijiri Kato": {
+      "fmId": "2000065730",
+      "clubKey": "fag",
+      "slug": "hijiri-kato"
+    },
+    "Daichi Tagami": {
+      "fmId": "45097482",
+      "clubKey": "fag",
+      "slug": "daichi-tagami"
+    },
+    "Masaya Matsumoto": {
+      "fmId": "45078211",
+      "clubKey": "fag",
+      "slug": "masaya-matsumoto"
+    },
+    "Yoshitake Suzuki": {
+      "fmId": "45104615",
+      "clubKey": "fag",
+      "slug": "yoshitake-suzuki"
+    },
+    "Kaito Abe": {
+      "fmId": "45108615",
+      "clubKey": "fag",
+      "slug": "kaito-abe"
+    },
+    "Ibuki Fujita": {
+      "fmId": "45078351",
+      "clubKey": "fag",
+      "slug": "ibuki-fujita"
+    },
+    "Ryo Tabei": {
+      "fmId": "2000167936",
+      "clubKey": "fag",
+      "slug": "ryo-tabei"
+    },
+    "Eiji Miyamoto": {
+      "fmId": "2000236421",
+      "clubKey": "fag",
+      "slug": "eiji-miyamoto"
+    },
+    "Yuta Kamiya": {
+      "fmId": "45101197",
+      "clubKey": "fag",
+      "slug": "yuta-kamiya"
+    },
+    "Ryo Takeuchi": {
+      "fmId": "45025908",
+      "clubKey": "fag",
+      "slug": "ryo-takeuchi"
+    },
+    "Ataru Esaka": {
+      "fmId": "45093425",
+      "clubKey": "fag",
+      "slug": "ataru-esaka"
+    },
+    "Na Sangho": {
+      "fmId": "66040272",
+      "clubKey": "fag",
+      "slug": "na-sangho"
+    },
+    "Lucao": {
+      "fmId": "47074898",
+      "clubKey": "fag",
+      "slug": "lucao"
+    },
+    "Léo Gaúcho": {
+      "fmId": "19408547",
+      "clubKey": "fag",
+      "slug": "leo-gaucho"
+    },
+    "Werik Popo": {
+      "fmId": "2000115080",
+      "clubKey": "fag",
+      "slug": "werik-popo"
+    },
+    "Hiroto Iwabuchi": {
+      "fmId": "2000072364",
+      "clubKey": "fag",
+      "slug": "hiroto-iwabuchi"
+    },
+    "Kazunari Ichimi": {
+      "fmId": "45100888",
+      "clubKey": "fag",
+      "slug": "kazunari-ichimi"
+    },
+    "Takaya Kimura": {
+      "fmId": "2000090831",
+      "clubKey": "fag",
+      "slug": "takaya-kimura"
+    },
+    "Yuya Oki": {
+      "fmId": "45109093",
+      "clubKey": "ssp",
+      "slug": "yuya-oki"
+    },
+    "Togo Umeda": {
+      "fmId": "45112153",
+      "clubKey": "ssp",
+      "slug": "togo-umeda"
+    },
+    "Tomotaro Sasaki": {
+      "fmId": "2000318832",
+      "clubKey": "ssp",
+      "slug": "tomotaro-sasaki"
+    },
+    "Kim Min Tae": {
+      "fmId": "45092357",
+      "clubKey": "ssp",
+      "slug": "kim-min-tae"
+    },
+    "Hidehiro Sugai": {
+      "fmId": "2000065747",
+      "clubKey": "ssp",
+      "slug": "hidehiro-sugai"
+    },
+    "Reon Yamahara": {
+      "fmId": "2000168253",
+      "clubKey": "ssp",
+      "slug": "reon-yamahara"
+    },
+    "Jelani Reshaun Sumiyoshi": {
+      "fmId": "2000066514",
+      "clubKey": "ssp",
+      "slug": "jelani-reshaun-sumiyoshi"
+    },
+    "Sen Takagi": {
+      "fmId": "2000283661",
+      "clubKey": "ssp",
+      "slug": "sen-takagi"
+    },
+    "Yuji Takahashi": {
+      "fmId": "45035343",
+      "clubKey": "ssp",
+      "slug": "yuji-takahashi"
+    },
+    "Yutaka Yoshida": {
+      "fmId": "45015878",
+      "clubKey": "ssp",
+      "slug": "yutaka-yoshida"
+    },
+    "Sodai Hasukawa": {
+      "fmId": "45104613",
+      "clubKey": "ssp",
+      "slug": "sodai-hasukawa"
+    },
+    "Matheus Bueno": {
+      "fmId": "19353273",
+      "clubKey": "ssp",
+      "slug": "matheus-bueno"
+    },
+    "Won Du-Jae": {
+      "fmId": "45105343",
+      "clubKey": "ssp",
+      "slug": "won-du-jae"
+    },
+    "Kota Miyamoto": {
+      "fmId": "45092743",
+      "clubKey": "ssp",
+      "slug": "kota-miyamoto"
+    },
+    "Masaki Yumiba": {
+      "fmId": "2000063076",
+      "clubKey": "ssp",
+      "slug": "masaki-yumiba"
+    },
+    "Yudai Shimamoto": {
+      "fmId": "2000292472",
+      "clubKey": "ssp",
+      "slug": "yudai-shimamoto"
+    },
+    "Takashi Inui": {
+      "fmId": "45005560",
+      "clubKey": "ssp",
+      "slug": "takashi-inui"
+    },
+    "Koya Kitagawa": {
+      "fmId": "45092742",
+      "clubKey": "ssp",
+      "slug": "koya-kitagawa"
+    },
+    "Capixaba": {
+      "fmId": "19239603",
+      "clubKey": "ssp",
+      "slug": "capixaba"
+    },
+    "Shinya Yajima": {
+      "fmId": "45035614",
+      "clubKey": "ssp",
+      "slug": "shinya-yajima"
+    },
+    "Hikaru Nakahara": {
+      "fmId": "45119249",
+      "clubKey": "ssp",
+      "slug": "hikaru-nakahara"
+    },
+    "Kai Matsuzaki": {
+      "fmId": "2000066515",
+      "clubKey": "ssp",
+      "slug": "kai-matsuzaki"
+    },
+    "Kazuki Kozuka": {
+      "fmId": "45064869",
+      "clubKey": "ssp",
+      "slug": "kazuki-kozuka"
+    },
+    "Kosuke Kinoshita": {
+      "fmId": "45065394",
+      "clubKey": "ssp",
+      "slug": "kosuke-kinoshita"
+    },
+    "Rubén Blanco": {
+      "fmId": "67156610",
+      "clubKey": "yfm",
+      "slug": "ruben-blanco"
+    },
+    "Ilgyu Park": {
+      "fmId": "45053691",
+      "clubKey": "yfm",
+      "slug": "ilgyu-park"
+    },
+    "Hiroki Iikura": {
+      "fmId": "784212",
+      "clubKey": "yfm",
+      "slug": "hiroki-iikura"
+    },
+    "Riku Yamane": {
+      "fmId": "2000164947",
+      "clubKey": "yfm",
+      "slug": "riku-yamane"
+    },
+    "Jeisson Quinones": {
+      "fmId": "76049791",
+      "clubKey": "yfm",
+      "slug": "jeisson-quinones"
+    },
+    "Thomas Jok Deng": {
+      "fmId": "15058043",
+      "clubKey": "yfm",
+      "slug": "thomas-jok-deng"
+    },
+    "Ken Matsubara": {
+      "fmId": "45030041",
+      "clubKey": "yfm",
+      "slug": "ken-matsubara"
+    },
+    "Taiki Watanabe": {
+      "fmId": "45108460",
+      "clubKey": "yfm",
+      "slug": "taiki-watanabe"
+    },
+    "Ryotaro Tsunoda": {
+      "fmId": "2000062147",
+      "clubKey": "yfm",
+      "slug": "ryotaro-tsunoda"
+    },
+    "Kosei Suwama": {
+      "fmId": "2000329417",
+      "clubKey": "yfm",
+      "slug": "kosei-suwama"
+    },
+    "Toichi Suzuki": {
+      "fmId": "45107458",
+      "clubKey": "yfm",
+      "slug": "toichi-suzuki"
+    },
+    "Kota Watanabe": {
+      "fmId": "45104514",
+      "clubKey": "yfm",
+      "slug": "kota-watanabe"
+    },
+    "Takuya Kida": {
+      "fmId": "45060234",
+      "clubKey": "yfm",
+      "slug": "takuya-kida"
+    },
+    "Takuto Kimura": {
+      "fmId": "2000238697",
+      "clubKey": "yfm",
+      "slug": "takuto-kimura"
+    },
+    "Daiya Tono": {
+      "fmId": "45107679",
+      "clubKey": "yfm",
+      "slug": "daiya-tono"
+    },
+    "Asahi Uenaka": {
+      "fmId": "2000065733",
+      "clubKey": "yfm",
+      "slug": "asahi-uenaka"
+    },
+    "Dean David": {
+      "fmId": "42052885",
+      "clubKey": "yfm",
+      "slug": "dean-david"
+    },
+    "Kenta Inoue": {
+      "fmId": "2000063093",
+      "clubKey": "yfm",
+      "slug": "kenta-inoue"
+    },
+    "Jordy Croux": {
+      "fmId": "18046419",
+      "clubKey": "yfm",
+      "slug": "jordy-croux"
+    },
+    "Ryo Miyaichi": {
+      "fmId": "28060849",
+      "clubKey": "yfm",
+      "slug": "ryo-miyaichi"
+    },
+    "Kaina Tanimura": {
+      "fmId": "2000072363",
+      "clubKey": "yfm",
+      "slug": "kaina-tanimura"
+    },
+    "Jun Amano": {
+      "fmId": "45088490",
+      "clubKey": "yfm",
+      "slug": "jun-amano"
+    },
+    "Daniel Schmidt": {
+      "fmId": "45034094",
+      "clubKey": "ngg",
+      "slug": "daniel-schmidt"
+    },
+    "Yohei Takeda": {
+      "fmId": "45001352",
+      "clubKey": "ngg",
+      "slug": "yohei-takeda"
+    },
+    "Alex Kouto Horio Pisano": {
+      "fmId": "2000289566",
+      "clubKey": "ngg",
+      "slug": "alex-kouto-horio-pisano"
+    },
+    "Teruki Hara": {
+      "fmId": "45105306",
+      "clubKey": "ngg",
+      "slug": "teruki-hara"
+    },
+    "Haruya Fujii": {
+      "fmId": "45111953",
+      "clubKey": "ngg",
+      "slug": "haruya-fujii"
+    },
+    "KennedyEgbus Mikuni": {
+      "fmId": "45112410",
+      "clubKey": "ngg",
+      "slug": "kennedyegbus-mikuni"
+    },
+    "Yota Sato": {
+      "fmId": "2000061842",
+      "clubKey": "ngg",
+      "slug": "yota-sato"
+    },
+    "Yuki Nogami": {
+      "fmId": "45065393",
+      "clubKey": "ngg",
+      "slug": "yuki-nogami"
+    },
+    "Akinari Kawazura": {
+      "fmId": "45106579",
+      "clubKey": "ngg",
+      "slug": "akinari-kawazura"
+    },
+    "Katsuhiro Nakayama": {
+      "fmId": "45114065",
+      "clubKey": "ngg",
+      "slug": "katsuhiro-nakayama"
+    },
+    "Takuya Uchida": {
+      "fmId": "45105679",
+      "clubKey": "ngg",
+      "slug": "takuya-uchida"
+    },
+    "Ryuji Izumi": {
+      "fmId": "45101073",
+      "clubKey": "ngg",
+      "slug": "ryuji-izumi"
+    },
+    "Sho Inagaki": {
+      "fmId": "45088313",
+      "clubKey": "ngg",
+      "slug": "sho-inagaki"
+    },
+    "Taichi Kikuchi": {
+      "fmId": "2000239733",
+      "clubKey": "ngg",
+      "slug": "taichi-kikuchi"
+    },
+    "Haruto Suzuki": {
+      "fmId": "2000239679",
+      "clubKey": "ngg",
+      "slug": "haruto-suzuki"
+    },
+    "Mateus Castro": {
+      "fmId": "45090780",
+      "clubKey": "ngg",
+      "slug": "mateus-castro"
+    },
+    "Kensuke Nagai": {
+      "fmId": "45025032",
+      "clubKey": "ngg",
+      "slug": "kensuke-nagai"
+    },
+    "Tsukasa Morishima": {
+      "fmId": "45095954",
+      "clubKey": "ngg",
+      "slug": "tsukasa-morishima"
+    },
+    "Yuya Yamagishi": {
+      "fmId": "45101879",
+      "clubKey": "ngg",
+      "slug": "yuya-yamagishi"
+    },
+    "Yudai Kimura": {
+      "fmId": "2000170769",
+      "clubKey": "ngg",
+      "slug": "yudai-kimura"
+    },
+    "Yuya Asano": {
+      "fmId": "45117505",
+      "clubKey": "ngg",
+      "slug": "yuya-asano"
+    },
+    "Shungo Sugiura": {
+      "fmId": "2000289980",
+      "clubKey": "ngg",
+      "slug": "shungo-sugiura"
+    },
+    "Matheus": {
+      "fmId": "19171003",
+      "clubKey": "tvr",
+      "slug": "matheus"
+    },
+    "Yuya Nagasawa": {
+      "fmId": "45119880",
+      "clubKey": "tvr",
+      "slug": "yuya-nagasawa"
+    },
+    "Keisuke Nakamura": {
+      "fmId": "2000290688",
+      "clubKey": "tvr",
+      "slug": "keisuke-nakamura"
+    },
+    "Hiroto Taniguchi": {
+      "fmId": "2000174576",
+      "clubKey": "tvr",
+      "slug": "hiroto-taniguchi"
+    },
+    "Kazuya Miyahara": {
+      "fmId": "45081351",
+      "clubKey": "tvr",
+      "slug": "kazuya-miyahara"
+    },
+    "Daiki Fukazawa": {
+      "fmId": "2000066483",
+      "clubKey": "tvr",
+      "slug": "daiki-fukazawa"
+    },
+    "Kaito Suzuki": {
+      "fmId": "45111853",
+      "clubKey": "tvr",
+      "slug": "kaito-suzuki"
+    },
+    "Yuan Matsuhashi": {
+      "fmId": "2000066486",
+      "clubKey": "tvr",
+      "slug": "yuan-matsuhashi"
+    },
+    "Naoki Hayashi": {
+      "fmId": "2000088691",
+      "clubKey": "tvr",
+      "slug": "naoki-hayashi"
+    },
+    "Riku Matsuda": {
+      "fmId": "45108806",
+      "clubKey": "tvr",
+      "slug": "riku-matsuda"
+    },
+    "Yosuke Uchida": {
+      "fmId": "2000381901",
+      "clubKey": "tvr",
+      "slug": "yosuke-uchida"
+    },
+    "Koki Morita": {
+      "fmId": "45117120",
+      "clubKey": "tvr",
+      "slug": "koki-morita"
+    },
+    "Rei Hirakawa": {
+      "fmId": "45104607",
+      "clubKey": "tvr",
+      "slug": "rei-hirakawa"
+    },
+    "Kosuke Saito": {
+      "fmId": "45101990",
+      "clubKey": "tvr",
+      "slug": "kosuke-saito"
+    },
+    "Tetsuyuki Inami": {
+      "fmId": "2000174574",
+      "clubKey": "tvr",
+      "slug": "tetsuyuki-inami"
+    },
+    "Joi Yamamoto": {
+      "fmId": "2000284251",
+      "clubKey": "tvr",
+      "slug": "joi-yamamoto"
+    },
+    "Soma Meshino": {
+      "fmId": "45111833",
+      "clubKey": "tvr",
+      "slug": "soma-meshino"
+    },
+    "Hiroto Yamami": {
+      "fmId": "2000168877",
+      "clubKey": "tvr",
+      "slug": "hiroto-yamami"
+    },
+    "Itsuki Someno": {
+      "fmId": "2000062078",
+      "clubKey": "tvr",
+      "slug": "itsuki-someno"
+    },
+    "Yuya Fukuda": {
+      "fmId": "45108804",
+      "clubKey": "tvr",
+      "slug": "yuya-fukuda"
+    },
+    "Gouki Yamada": {
+      "fmId": "2000241853",
+      "clubKey": "tvr",
+      "slug": "gouki-yamada"
+    },
+    "Shimon Teranuma": {
+      "fmId": "2000244151",
+      "clubKey": "tvr",
+      "slug": "shimon-teranuma"
+    },
+    "Yuta Arai": {
+      "fmId": "2000446740",
+      "clubKey": "tvr",
+      "slug": "yuta-arai"
+    },
+    "Shuhei Kawasaki": {
+      "fmId": "45111815",
+      "clubKey": "tvr",
+      "slug": "shuhei-kawasaki"
+    },
+    "Shoji Toyama": {
+      "fmId": "45111823",
+      "clubKey": "tvr",
+      "slug": "shoji-toyama"
+    },
+    "Jose Suarez": {
+      "fmId": "67153377",
+      "clubKey": "jef",
+      "slug": "jose-suarez"
+    },
+    "Tomoya Wakahara": {
+      "fmId": "45109215",
+      "clubKey": "jef",
+      "slug": "tomoya-wakahara"
+    },
+    "Ryota Suzuki": {
+      "fmId": "45028890",
+      "clubKey": "jef",
+      "slug": "ryota-suzuki"
+    },
+    "Koji Toriumi": {
+      "fmId": "45108986",
+      "clubKey": "jef",
+      "slug": "koji-toriumi"
+    },
+    "Daisuke Suzuki": {
+      "fmId": "45005729",
+      "clubKey": "jef",
+      "slug": "daisuke-suzuki"
+    },
+    "Daniel Hall": {
+      "fmId": "15080594",
+      "clubKey": "jef",
+      "slug": "daniel-hall"
+    },
+    "Issei Takahashi": {
+      "fmId": "45106013",
+      "clubKey": "jef",
+      "slug": "issei-takahashi"
+    },
+    "Takayuki Mae": {
+      "fmId": "45035052",
+      "clubKey": "jef",
+      "slug": "takayuki-mae"
+    },
+    "Koki Yonekura": {
+      "fmId": "45005414",
+      "clubKey": "jef",
+      "slug": "koki-yonekura"
+    },
+    "Masaru Hidaka": {
+      "fmId": "45097816",
+      "clubKey": "jef",
+      "slug": "masaru-hidaka"
+    },
+    "Takashi Kawano": {
+      "fmId": "45114398",
+      "clubKey": "jef",
+      "slug": "takashi-kawano"
+    },
+    "Manato Shinada": {
+      "fmId": "45104612",
+      "clubKey": "jef",
+      "slug": "manato-shinada"
+    },
+    "Eduardo": {
+      "fmId": "19139361",
+      "clubKey": "vvn",
+      "slug": "eduardo"
+    },
+    "Naohiro Sugiyama": {
+      "fmId": "2000092230",
+      "clubKey": "jef",
+      "slug": "naohiro-sugiyama"
+    },
+    "Yusuke Kobayashi": {
+      "fmId": "45065022",
+      "clubKey": "jef",
+      "slug": "yusuke-kobayashi"
+    },
+    "Taishi Taguchi": {
+      "fmId": "45026017",
+      "clubKey": "jef",
+      "slug": "taishi-taguchi"
+    },
+    "Yuma Igari": {
+      "fmId": "2000369599",
+      "clubKey": "jef",
+      "slug": "yuma-igari"
+    },
+    "Takuro Iwai": {
+      "fmId": "2000381652",
+      "clubKey": "jef",
+      "slug": "takuro-iwai"
+    },
+    "Carlinhos Junior": {
+      "fmId": "19220948",
+      "clubKey": "jef",
+      "slug": "carlinhos-junior"
+    },
+    "Leonardo Rocha": {
+      "fmId": "85144797",
+      "clubKey": "jef",
+      "slug": "leonardo-rocha"
+    },
+    "Akiyuki Yokoyama": {
+      "fmId": "2000070373",
+      "clubKey": "jef",
+      "slug": "akiyuki-yokoyama"
+    },
+    "Daichi Ishikawa": {
+      "fmId": "45111081",
+      "clubKey": "jef",
+      "slug": "daichi-ishikawa"
+    },
+    "Zain Issaka": {
+      "fmId": "45111896",
+      "clubKey": "jef",
+      "slug": "zain-issaka"
+    },
+    "Naoki Tsubaki": {
+      "fmId": "45112804",
+      "clubKey": "jef",
+      "slug": "naoki-tsubaki"
+    },
+    "Hiroto Goya": {
+      "fmId": "45100887",
+      "clubKey": "jef",
+      "slug": "hiroto-goya"
+    },
+    "Kaito Mori": {
+      "fmId": "2000239640",
+      "clubKey": "jef",
+      "slug": "kaito-mori"
+    },
+    "Masaaki Goto": {
+      "fmId": "45106807",
+      "clubKey": "vvn",
+      "slug": "masaaki-goto"
+    },
+    "Masaya Tomizawa": {
+      "fmId": "45102572",
+      "clubKey": "vvn",
+      "slug": "masaya-tomizawa"
+    },
+    "Gaku Harada": {
+      "fmId": "45107197",
+      "clubKey": "vvn",
+      "slug": "gaku-harada"
+    },
+    "Takuma Ominami": {
+      "fmId": "45100938",
+      "clubKey": "vvn",
+      "slug": "takuma-ominami"
+    },
+    "Kanta Doi": {
+      "fmId": "2000238983",
+      "clubKey": "vvn",
+      "slug": "kanta-doi"
+    },
+    "Ikki Arai": {
+      "fmId": "45101370",
+      "clubKey": "vvn",
+      "slug": "ikki-arai"
+    },
+    "Kazuki Kushibiki": {
+      "fmId": "45035044",
+      "clubKey": "vvn",
+      "slug": "kazuki-kushibiki"
+    },
+    "Masahiro Sekiguchi": {
+      "fmId": "2000065745",
+      "clubKey": "vvn",
+      "slug": "masahiro-sekiguchi"
+    },
+    "Hayato Teruyama": {
+      "fmId": "45112290",
+      "clubKey": "vvn",
+      "slug": "hayato-teruyama"
+    },
+    "Hijiri Onaga": {
+      "fmId": "45107029",
+      "clubKey": "vvn",
+      "slug": "hijiri-onaga"
+    },
+    "Hotaru Yamaguchi": {
+      "fmId": "45025168",
+      "clubKey": "vvn",
+      "slug": "hotaru-yamaguchi"
+    },
+    "Diego Pituca": {
+      "fmId": "19270774",
+      "clubKey": "vvn",
+      "slug": "diego-pituca"
+    },
+    "Tenmu Matsumoto": {
+      "fmId": "2000405993",
+      "clubKey": "vvn",
+      "slug": "tenmu-matsumoto"
+    },
+    "Masaru Kato": {
+      "fmId": "45030861",
+      "clubKey": "vvn",
+      "slug": "masaru-kato"
+    },
+    "Riku Yamada": {
+      "fmId": "45106580",
+      "clubKey": "vvn",
+      "slug": "riku-yamada"
+    },
+    "Matheus Jesus": {
+      "fmId": "19226744",
+      "clubKey": "vvn",
+      "slug": "matheus-jesus"
+    },
+    "Emerson": {
+      "fmId": "24064126",
+      "clubKey": "vvn",
+      "slug": "emerson"
+    },
+    "Takashi Sawada": {
+      "fmId": "45087649",
+      "clubKey": "vvn",
+      "slug": "takashi-sawada"
+    },
+    "Juanma Delgado": {
+      "fmId": "67153792",
+      "clubKey": "vvn",
+      "slug": "juanma-delgado"
+    },
+    "Edigar Junio": {
+      "fmId": "19164155",
+      "clubKey": "vvn",
+      "slug": "edigar-junio"
+    },
+    "Ryogo Yamasaki": {
+      "fmId": "45083899",
+      "clubKey": "vvn",
+      "slug": "ryogo-yamasaki"
+    },
+    "Keita Nakamura": {
+      "fmId": "45097040",
+      "clubKey": "vvn",
+      "slug": "keita-nakamura"
+    },
+    "Tsubasa Kasayanagi": {
+      "fmId": "2000182109",
+      "clubKey": "vvn",
+      "slug": "tsubasa-kasayanagi"
+    },
+    "Konosuke Nishikawa": {
+      "fmId": "2000088967",
+      "clubKey": "mit",
+      "slug": "konosuke-nishikawa"
+    },
+    "Shuhei Matsubara": {
+      "fmId": "45031680",
+      "clubKey": "mit",
+      "slug": "shuhei-matsubara"
+    },
+    "Uwabright Hayakawa": {
+      "fmId": "2000382263",
+      "clubKey": "mit",
+      "slug": "uwabright-hayakawa"
+    },
+    "Kenta Itakura": {
+      "fmId": "2000405754",
+      "clubKey": "mit",
+      "slug": "kenta-itakura"
+    },
+    "Sho Omori": {
+      "fmId": "2000173046",
+      "clubKey": "mit",
+      "slug": "sho-omori"
+    },
+    "Koshi Osaki": {
+      "fmId": "2000089461",
+      "clubKey": "mit",
+      "slug": "koshi-osaki"
+    },
+    "Takahiro Iida": {
+      "fmId": "45109586",
+      "clubKey": "mit",
+      "slug": "takahiro-iida"
+    },
+    "Travis Takahashi": {
+      "fmId": "2000336516",
+      "clubKey": "mit",
+      "slug": "travis-takahashi"
+    },
+    "Koya Okuda": {
+      "fmId": "45107269",
+      "clubKey": "mit",
+      "slug": "koya-okuda"
+    },
+    "Asuma Ikari": {
+      "fmId": "2000284197",
+      "clubKey": "mit",
+      "slug": "asuma-ikari"
+    },
+    "Koichi Murata": {
+      "fmId": "45117381",
+      "clubKey": "mit",
+      "slug": "koichi-murata"
+    },
+    "Yuto Nagao": {
+      "fmId": "45111827",
+      "clubKey": "mit",
+      "slug": "yuto-nagao"
+    },
+    "Shunta Morimura": {
+      "fmId": "2000449980",
+      "clubKey": "mit",
+      "slug": "shunta-morimura"
+    },
+    "Hayata Yamamoto": {
+      "fmId": "2000369596",
+      "clubKey": "mit",
+      "slug": "hayata-yamamoto"
+    },
+    "Kaito Taniguchi": {
+      "fmId": "45110328",
+      "clubKey": "mit",
+      "slug": "kaito-taniguchi"
+    },
+    "Arata Watanabe": {
+      "fmId": "45108461",
+      "clubKey": "mit",
+      "slug": "arata-watanabe"
+    },
+    "Chihiro Kato": {
+      "fmId": "45111356",
+      "clubKey": "mit",
+      "slug": "chihiro-kato"
+    },
+    "Mizuki Ando": {
+      "fmId": "45108533",
+      "clubKey": "mit",
+      "slug": "mizuki-ando"
+    },
+    "Taishi Semba": {
+      "fmId": "2000169159",
+      "clubKey": "mit",
+      "slug": "taishi-semba"
+    },
+    "Kiichi Yamazaki": {
+      "fmId": "2000334942",
+      "clubKey": "mit",
+      "slug": "kiichi-yamazaki"
+    },
+    "Mizuki Arai": {
+      "fmId": "16189778",
+      "clubKey": "mit",
+      "slug": "mizuki-arai"
+    }
+  }
+}

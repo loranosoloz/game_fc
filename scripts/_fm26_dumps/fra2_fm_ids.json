@@ -1,0 +1,2256 @@
+{
+  "source": "fmtransferupdate Ligue 2",
+  "matched": 450,
+  "byName": {
+    "Tom Hülsmann": {
+      "fmId": "2000148193",
+      "clubKey": "rei",
+      "slug": "tom-hulsmann"
+    },
+    "Alexis Sauvage": {
+      "fmId": "85079685",
+      "clubKey": "rei",
+      "slug": "alexis-sauvage"
+    },
+    "Soumaïla Sylla": {
+      "fmId": "2000024503",
+      "clubKey": "rei",
+      "slug": "soumaila-sylla"
+    },
+    "Sergio Akieme": {
+      "fmId": "67213135",
+      "clubKey": "rei",
+      "slug": "sergio-akieme"
+    },
+    "Joseph Okumu": {
+      "fmId": "20046877",
+      "clubKey": "rei",
+      "slug": "joseph-okumu"
+    },
+    "Malcolm Jeng": {
+      "fmId": "2000202178",
+      "clubKey": "rei",
+      "slug": "malcolm-jeng"
+    },
+    "Elie N'Tamon": {
+      "fmId": "2000225039",
+      "clubKey": "rei",
+      "slug": "elie-ntamon"
+    },
+    "Daouda Guindo": {
+      "fmId": "12088452",
+      "clubKey": "rei",
+      "slug": "daouda-guindo"
+    },
+    "Samuel Kotto": {
+      "fmId": "2000097350",
+      "clubKey": "rei",
+      "slug": "samuel-kotto"
+    },
+    "Jean-Philippe Célestin": {
+      "fmId": "2000130412",
+      "clubKey": "rei",
+      "slug": "jean-philippe-celestin"
+    },
+    "Maël Debondt": {
+      "fmId": "2000255955",
+      "clubKey": "rei",
+      "slug": "mael-debondt"
+    },
+    "Mory Gbané": {
+      "fmId": "24066238",
+      "clubKey": "rei",
+      "slug": "mory-gbane"
+    },
+    "Théo Leoni": {
+      "fmId": "18102847",
+      "clubKey": "rei",
+      "slug": "theo-leoni"
+    },
+    "Yohan Demoncy": {
+      "fmId": "85135977",
+      "clubKey": "rei",
+      "slug": "yohan-demoncy"
+    },
+    "John Patrick": {
+      "fmId": "2000096847",
+      "clubKey": "rei",
+      "slug": "john-patrick"
+    },
+    "Ansoumana Dansokho": {
+      "fmId": "2000205069",
+      "clubKey": "rei",
+      "slug": "ansoumana-dansokho"
+    },
+    "Efdon Mahari": {
+      "fmId": "2000170194",
+      "clubKey": "rei",
+      "slug": "efdon-mahari"
+    },
+    "Amara Camara": {
+      "fmId": "2000487888",
+      "clubKey": "rei",
+      "slug": "amara-camara"
+    },
+    "Ouassim Faradji": {
+      "fmId": "2000234270",
+      "clubKey": "rei",
+      "slug": "ouassim-faradji"
+    },
+    "Keito Nakamura": {
+      "fmId": "45108807",
+      "clubKey": "rei",
+      "slug": "keito-nakamura"
+    },
+    "Mohamed Daramy": {
+      "fmId": "27148020",
+      "clubKey": "rei",
+      "slug": "mohamed-daramy"
+    },
+    "Reda Khadra": {
+      "fmId": "91203085",
+      "clubKey": "rei",
+      "slug": "reda-khadra"
+    },
+    "Sambou Soumano": {
+      "fmId": "2000012380",
+      "clubKey": "rei",
+      "slug": "sambou-soumano"
+    },
+    "Jordan": {
+      "fmId": "85128238",
+      "clubKey": "rei",
+      "slug": "jordan"
+    },
+    "Antoine Leautey": {
+      "fmId": "48038951",
+      "clubKey": "rei",
+      "slug": "antoine-leautey"
+    },
+    "Oumar Diakité": {
+      "fmId": "12093352",
+      "clubKey": "rei",
+      "slug": "oumar-diakite"
+    },
+    "Youssef El Kachati": {
+      "fmId": "37064638",
+      "clubKey": "rei",
+      "slug": "youssef-el-kachati"
+    },
+    "Simon Ngapandouetnbu": {
+      "fmId": "73200889",
+      "clubKey": "mtp",
+      "slug": "simon-ngapandouetnbu"
+    },
+    "Mathieu Michel": {
+      "fmId": "29114947",
+      "clubKey": "mtp",
+      "slug": "mathieu-michel"
+    },
+    "Viktor Džodić": {
+      "fmId": "2000294806",
+      "clubKey": "mtp",
+      "slug": "viktor-dzodic"
+    },
+    "Julien Laporte": {
+      "fmId": "85121858",
+      "clubKey": "mtp",
+      "slug": "julien-laporte"
+    },
+    "Modibo Sagnan": {
+      "fmId": "48036568",
+      "clubKey": "mtp",
+      "slug": "modibo-sagnan"
+    },
+    "Enzo Tchato": {
+      "fmId": "49061872",
+      "clubKey": "mtp",
+      "slug": "enzo-tchato"
+    },
+    "Théo Sainte-Luce": {
+      "fmId": "49040824",
+      "clubKey": "mtp",
+      "slug": "theo-sainte-luce"
+    },
+    "Lucas Mincarelli": {
+      "fmId": "2000216313",
+      "clubKey": "mtp",
+      "slug": "lucas-mincarelli"
+    },
+    "Yaël Mouanga": {
+      "fmId": "2000162180",
+      "clubKey": "mtp",
+      "slug": "yael-mouanga"
+    },
+    "Wilfried Ndollo Bille": {
+      "fmId": "2000291042",
+      "clubKey": "mtp",
+      "slug": "wilfried-ndollo-bille"
+    },
+    "Mamadou Bamba Sarr": {
+      "fmId": "2000487228",
+      "clubKey": "mtp",
+      "slug": "mamadou-bamba-sarr"
+    },
+    "Khalil Fayad": {
+      "fmId": "2000006178",
+      "clubKey": "mtp",
+      "slug": "khalil-fayad"
+    },
+    "Théo Chennahi": {
+      "fmId": "2000131100",
+      "clubKey": "mtp",
+      "slug": "theo-chennahi"
+    },
+    "Everson Pereira": {
+      "fmId": "2000125193",
+      "clubKey": "mtp",
+      "slug": "everson-pereira"
+    },
+    "Nabil Homssa": {
+      "fmId": "49062660",
+      "clubKey": "mtp",
+      "slug": "nabil-homssa"
+    },
+    "Kabissan Gomis": {
+      "fmId": "2000294778",
+      "clubKey": "mtp",
+      "slug": "kabissan-gomis"
+    },
+    "Yvan Djemba": {
+      "fmId": "2000294807",
+      "clubKey": "mtp",
+      "slug": "yvan-djemba"
+    },
+    "Lucas Da Silva": {
+      "fmId": "2000216085",
+      "clubKey": "mtp",
+      "slug": "lucas-da-silva"
+    },
+    "Yves-Brice Moussongo Bahel": {
+      "fmId": "2000487246",
+      "clubKey": "mtp",
+      "slug": "yves-brice-moussongo-bahel"
+    },
+    "Alexandre Mendy": {
+      "fmId": "85140143",
+      "clubKey": "mtp",
+      "slug": "alexandre-mendy"
+    },
+    "Nicolas Pays": {
+      "fmId": "2000079270",
+      "clubKey": "mtp",
+      "slug": "nicolas-pays"
+    },
+    "Junior Ndiaye": {
+      "fmId": "2000166496",
+      "clubKey": "mtp",
+      "slug": "junior-ndiaye"
+    },
+    "Yanis Issoufou": {
+      "fmId": "2000279711",
+      "clubKey": "mtp",
+      "slug": "yanis-issoufou"
+    },
+    "Yannick Sidibé": {
+      "fmId": "2000291488",
+      "clubKey": "mtp",
+      "slug": "yannick-sidibe"
+    },
+    "Axel Guéguin": {
+      "fmId": "2000166495",
+      "clubKey": "mtp",
+      "slug": "axel-gueguin"
+    },
+    "Teymour Mohammed": {
+      "fmId": "2000488026",
+      "clubKey": "mtp",
+      "slug": "teymour-mohammed"
+    },
+    "Matisse Kapitza": {
+      "fmId": "2000401217",
+      "clubKey": "mtp",
+      "slug": "matisse-kapitza"
+    },
+    "Gautier Larsonneur": {
+      "fmId": "85133818",
+      "clubKey": "ase",
+      "slug": "gautier-larsonneur"
+    },
+    "Mamour N'Diaye": {
+      "fmId": "12094355",
+      "clubKey": "ase",
+      "slug": "mamour-ndiaye"
+    },
+    "Issiaka Touré": {
+      "fmId": "2000131121",
+      "clubKey": "ase",
+      "slug": "issiaka-toure"
+    },
+    "Julien Le Cardinal": {
+      "fmId": "50044045",
+      "clubKey": "ase",
+      "slug": "julien-le-cardinal"
+    },
+    "João Ferreira": {
+      "fmId": "83257056",
+      "clubKey": "ase",
+      "slug": "joao-ferreira"
+    },
+    "Mickaël Nadé": {
+      "fmId": "48043560",
+      "clubKey": "ase",
+      "slug": "mickael-nade"
+    },
+    "Áron Csongvai": {
+      "fmId": "38059112",
+      "clubKey": "ase",
+      "slug": "aron-csongvai"
+    },
+    "Maxime Bernauer": {
+      "fmId": "85145137",
+      "clubKey": "ase",
+      "slug": "maxime-bernauer"
+    },
+    "Chico Lamba": {
+      "fmId": "83261918",
+      "clubKey": "ase",
+      "slug": "chico-lamba"
+    },
+    "Sohaib Naïr": {
+      "fmId": "49060117",
+      "clubKey": "ase",
+      "slug": "sohaib-nair"
+    },
+    "Ben Old": {
+      "fmId": "88026173",
+      "clubKey": "ase",
+      "slug": "ben-old"
+    },
+    "Mahmoud Jaber": {
+      "fmId": "42100576",
+      "clubKey": "ase",
+      "slug": "mahmoud-jaber"
+    },
+    "Pierre Ekwah": {
+      "fmId": "28121371",
+      "clubKey": "ase",
+      "slug": "pierre-ekwah"
+    },
+    "Aïmen Moueffek": {
+      "fmId": "49039002",
+      "clubKey": "ase",
+      "slug": "aimen-moueffek"
+    },
+    "Luan Gadegbeku": {
+      "fmId": "2000298067",
+      "clubKey": "ase",
+      "slug": "luan-gadegbeku"
+    },
+    "Jebryl Sahraoui": {
+      "fmId": "2000116643",
+      "clubKey": "ase",
+      "slug": "jebryl-sahraoui"
+    },
+    "Adam Baallal": {
+      "fmId": "2000398301",
+      "clubKey": "ase",
+      "slug": "adam-baallal"
+    },
+    "Valentin Depalle": {
+      "fmId": "2000297867",
+      "clubKey": "ase",
+      "slug": "valentin-depalle"
+    },
+    "Maxence Tatuszka": {
+      "fmId": "2000299410",
+      "clubKey": "ase",
+      "slug": "maxence-tatuszka"
+    },
+    "Irvin Cardona": {
+      "fmId": "85141637",
+      "clubKey": "ase",
+      "slug": "irvin-cardona"
+    },
+    "Jakob Breum": {
+      "fmId": "27164267",
+      "clubKey": "ase",
+      "slug": "jakob-breum"
+    },
+    "Lucas Stassin": {
+      "fmId": "2000022188",
+      "clubKey": "ase",
+      "slug": "lucas-stassin"
+    },
+    "Zuriko Davitashvili": {
+      "fmId": "59133252",
+      "clubKey": "ase",
+      "slug": "zuriko-davitashvili"
+    },
+    "Thierno Ballo": {
+      "fmId": "91182678",
+      "clubKey": "ase",
+      "slug": "thierno-ballo"
+    },
+    "Augustine Boakye": {
+      "fmId": "13220365",
+      "clubKey": "ase",
+      "slug": "augustine-boakye"
+    },
+    "Igor Miladinović": {
+      "fmId": "2000120232",
+      "clubKey": "ase",
+      "slug": "igor-miladinovic"
+    },
+    "Joshua Duffus": {
+      "fmId": "2000124284",
+      "clubKey": "ase",
+      "slug": "joshua-duffus"
+    },
+    "Enzo Hoyau": {
+      "fmId": "2000018451",
+      "clubKey": "aca",
+      "slug": "enzo-hoyau"
+    },
+    "Cédric Avinel": {
+      "fmId": "34011525",
+      "clubKey": "aca",
+      "slug": "cedric-avinel"
+    },
+    "Thibault Campanini": {
+      "fmId": "48043189",
+      "clubKey": "aca",
+      "slug": "thibault-campanini"
+    },
+    "Nicolas Borodine": {
+      "fmId": "48040416",
+      "clubKey": "aca",
+      "slug": "nicolas-borodine"
+    },
+    "Jean-Dominique Leca": {
+      "fmId": "2000125183",
+      "clubKey": "aca",
+      "slug": "jean-dominique-leca"
+    },
+    "Adrien Liprandi": {
+      "fmId": "85087989",
+      "clubKey": "aca",
+      "slug": "adrien-liprandi"
+    },
+    "Yohann Campanini": {
+      "fmId": "48041459",
+      "clubKey": "aca",
+      "slug": "yohann-campanini"
+    },
+    "Julien Prenant-Caporossi": {
+      "fmId": "2000397312",
+      "clubKey": "aca",
+      "slug": "julien-prenant-caporossi"
+    },
+    "Rouchidy Mmadi": {
+      "fmId": "2000309237",
+      "clubKey": "aca",
+      "slug": "rouchidy-mmadi"
+    },
+    "Wolo Leblanc Touré": {
+      "fmId": "2000397310",
+      "clubKey": "aca",
+      "slug": "wolo-leblanc-toure"
+    },
+    "Yanis Gouider": {
+      "fmId": "2000499891",
+      "clubKey": "aca",
+      "slug": "yanis-gouider"
+    },
+    "Anthony Fosse": {
+      "fmId": "2000302536",
+      "clubKey": "aca",
+      "slug": "anthony-fosse"
+    },
+    "Riad Nouri": {
+      "fmId": "85063748",
+      "clubKey": "aca",
+      "slug": "riad-nouri"
+    },
+    "Andy Delort": {
+      "fmId": "85059211",
+      "clubKey": "aca",
+      "slug": "andy-delort"
+    },
+    "Pierre-François Moracchini": {
+      "fmId": "85088017",
+      "clubKey": "aca",
+      "slug": "pierre-francois-moracchini"
+    },
+    "Jean-David Uras": {
+      "fmId": "49040770",
+      "clubKey": "aca",
+      "slug": "jean-david-uras"
+    },
+    "Lucas Libbra": {
+      "fmId": "85121969",
+      "clubKey": "aca",
+      "slug": "lucas-libbra"
+    },
+    "Tom Delaurier-Chaubet": {
+      "fmId": "2000294798",
+      "clubKey": "aca",
+      "slug": "tom-delaurier-chaubet"
+    },
+    "Keviriel Massoumou": {
+      "fmId": "2000214414",
+      "clubKey": "aca",
+      "slug": "keviriel-massoumou"
+    },
+    "Anthony Mandréa": {
+      "fmId": "85138732",
+      "clubKey": "cae",
+      "slug": "anthony-mandrea"
+    },
+    "Yannis Clementia": {
+      "fmId": "48044394",
+      "clubKey": "cae",
+      "slug": "yannis-clementia"
+    },
+    "Parfait Mandanda": {
+      "fmId": "34000884",
+      "clubKey": "cae",
+      "slug": "parfait-mandanda"
+    },
+    "Maxime Etuin": {
+      "fmId": "85101528",
+      "clubKey": "cae",
+      "slug": "maxime-etuin"
+    },
+    "Nassim Titebah": {
+      "fmId": "50081983",
+      "clubKey": "cae",
+      "slug": "nassim-titebah"
+    },
+    "Diabé Bolumbu": {
+      "fmId": "2000023337",
+      "clubKey": "cae",
+      "slug": "diabe-bolumbu"
+    },
+    "Sacha M'Baka": {
+      "fmId": "2000044568",
+      "clubKey": "cae",
+      "slug": "sacha-mbaka"
+    },
+    "Nazim Babaï": {
+      "fmId": "49061581",
+      "clubKey": "cae",
+      "slug": "nazim-babai"
+    },
+    "Hugo Lamouliatte": {
+      "fmId": "2000210435",
+      "clubKey": "cae",
+      "slug": "hugo-lamouliatte"
+    },
+    "Mathis Romder": {
+      "fmId": "2000301433",
+      "clubKey": "cae",
+      "slug": "mathis-romder"
+    },
+    "Noha Lapisse": {
+      "fmId": "2000416169",
+      "clubKey": "cae",
+      "slug": "noha-lapisse"
+    },
+    "Freddy Bomo": {
+      "fmId": "2000182073",
+      "clubKey": "cae",
+      "slug": "freddy-bomo"
+    },
+    "Zoumana Bagbema": {
+      "fmId": "2000026489",
+      "clubKey": "cae",
+      "slug": "zoumana-bagbema"
+    },
+    "Gabin Tomé": {
+      "fmId": "2000023348",
+      "clubKey": "cae",
+      "slug": "gabin-tome"
+    },
+    "Daouda Koné": {
+      "fmId": "2000230868",
+      "clubKey": "cae",
+      "slug": "daouda-kone"
+    },
+    "Andréa Vennettilli": {
+      "fmId": "2000301382",
+      "clubKey": "cae",
+      "slug": "andrea-vennettilli"
+    },
+    "Josué Kimboma": {
+      "fmId": "2000327866",
+      "clubKey": "cae",
+      "slug": "josue-kimboma"
+    },
+    "Lorenzo Rajot": {
+      "fmId": "48042635",
+      "clubKey": "cae",
+      "slug": "lorenzo-rajot"
+    },
+    "Ivann Botella": {
+      "fmId": "49045799",
+      "clubKey": "cae",
+      "slug": "ivann-botella"
+    },
+    "Armand Gnanduillet": {
+      "fmId": "85078064",
+      "clubKey": "cae",
+      "slug": "armand-gnanduillet"
+    },
+    "Belkacem Dali-Amar": {
+      "fmId": "50053523",
+      "clubKey": "cae",
+      "slug": "belkacem-dali-amar"
+    },
+    "Adama Diakité": {
+      "fmId": "2000032013",
+      "clubKey": "cae",
+      "slug": "adama-diakite"
+    },
+    "Samuel Noireau-Dauriat": {
+      "fmId": "49060920",
+      "clubKey": "cae",
+      "slug": "samuel-noireau-dauriat"
+    },
+    "Mohamed Hafid": {
+      "fmId": "2000112074",
+      "clubKey": "cae",
+      "slug": "mohamed-hafid"
+    },
+    "Léo Milliner": {
+      "fmId": "2000187488",
+      "clubKey": "cae",
+      "slug": "leo-milliner"
+    },
+    "Alexandre Olliero": {
+      "fmId": "85128716",
+      "clubKey": "gre",
+      "slug": "alexandre-olliero"
+    },
+    "Bobby Allain": {
+      "fmId": "85100192",
+      "clubKey": "gre",
+      "slug": "bobby-allain"
+    },
+    "Edouard Leclerc": {
+      "fmId": "2000416576",
+      "clubKey": "gre",
+      "slug": "edouard-leclerc"
+    },
+    "Yohann Magnin": {
+      "fmId": "48042634",
+      "clubKey": "gre",
+      "slug": "yohann-magnin"
+    },
+    "Clément Vidal": {
+      "fmId": "49038417",
+      "clubKey": "gre",
+      "slug": "clement-vidal"
+    },
+    "Allan Tchaptchet": {
+      "fmId": "49048384",
+      "clubKey": "gre",
+      "slug": "allan-tchaptchet"
+    },
+    "Matthéo Xantippe": {
+      "fmId": "49063061",
+      "clubKey": "gre",
+      "slug": "mattheo-xantippe"
+    },
+    "Loris Mouyokolo": {
+      "fmId": "49050070",
+      "clubKey": "gre",
+      "slug": "loris-mouyokolo"
+    },
+    "Stone Mambo": {
+      "fmId": "48044050",
+      "clubKey": "gre",
+      "slug": "stone-mambo"
+    },
+    "Mathieu Mion": {
+      "fmId": "48046525",
+      "clubKey": "gre",
+      "slug": "mathieu-mion"
+    },
+    "Ange-Loïc N'Gatta": {
+      "fmId": "2000024589",
+      "clubKey": "gre",
+      "slug": "ange-loic-ngatta"
+    },
+    "Mael Corboz": {
+      "fmId": "72045836",
+      "clubKey": "gre",
+      "slug": "mael-corboz"
+    },
+    "Lucas Bernadou": {
+      "fmId": "2000020295",
+      "clubKey": "gre",
+      "slug": "lucas-bernadou"
+    },
+    "Samba Diba": {
+      "fmId": "12094010",
+      "clubKey": "gre",
+      "slug": "samba-diba"
+    },
+    "Yadali Bayo": {
+      "fmId": "2000108579",
+      "clubKey": "gre",
+      "slug": "yadali-bayo"
+    },
+    "Romain Da Silva": {
+      "fmId": "2000047305",
+      "clubKey": "gre",
+      "slug": "romain-da-silva"
+    },
+    "Jules Mouton": {
+      "fmId": "2000208194",
+      "clubKey": "gre",
+      "slug": "jules-mouton"
+    },
+    "Manny Allegret": {
+      "fmId": "2000288927",
+      "clubKey": "gre",
+      "slug": "manny-allegret"
+    },
+    "Mattéo D'Antona": {
+      "fmId": "2000263195",
+      "clubKey": "gre",
+      "slug": "matteo-dantona"
+    },
+    "Zé Leite": {
+      "fmId": "83168094",
+      "clubKey": "gre",
+      "slug": "ze-leite"
+    },
+    "Mamady Bangré": {
+      "fmId": "49052374",
+      "clubKey": "gre",
+      "slug": "mamady-bangre"
+    },
+    "Moussa Djitté": {
+      "fmId": "12079931",
+      "clubKey": "gre",
+      "slug": "moussa-djitte"
+    },
+    "Ugo Bonnet": {
+      "fmId": "50040468",
+      "clubKey": "gre",
+      "slug": "ugo-bonnet"
+    },
+    "Baptiste Mouazan": {
+      "fmId": "49050068",
+      "clubKey": "gre",
+      "slug": "baptiste-mouazan"
+    },
+    "Alan Kérouédan": {
+      "fmId": "48039851",
+      "clubKey": "gre",
+      "slug": "alan-kerouedan"
+    },
+    "Yadaly Diaby": {
+      "fmId": "2000009597",
+      "clubKey": "gre",
+      "slug": "yadaly-diaby"
+    },
+    "Dillon Hoogewerf": {
+      "fmId": "37083114",
+      "clubKey": "gre",
+      "slug": "dillon-hoogewerf"
+    },
+    "Yannick Pandor": {
+      "fmId": "49040181",
+      "clubKey": "ami",
+      "slug": "yannick-pandor"
+    },
+    "Victor Delins": {
+      "fmId": "2000230522",
+      "clubKey": "ami",
+      "slug": "victor-delins"
+    },
+    "Yanis Zirmi": {
+      "fmId": "2000312939",
+      "clubKey": "ami",
+      "slug": "yanis-zirmi"
+    },
+    "Anthony Ribelin": {
+      "fmId": "85140341",
+      "clubKey": "ami",
+      "slug": "anthony-ribelin"
+    },
+    "Adrien Julloux": {
+      "fmId": "48036265",
+      "clubKey": "ami",
+      "slug": "adrien-julloux"
+    },
+    "Amine Chabane": {
+      "fmId": "2000377297",
+      "clubKey": "ami",
+      "slug": "amine-chabane"
+    },
+    "Coleen Louis": {
+      "fmId": "2000113569",
+      "clubKey": "ami",
+      "slug": "coleen-louis"
+    },
+    "Keny Mbala": {
+      "fmId": "2000116919",
+      "clubKey": "ami",
+      "slug": "keny-mbala"
+    },
+    "Lucas Llort": {
+      "fmId": "49037763",
+      "clubKey": "ami",
+      "slug": "lucas-llort"
+    },
+    "Enzo Couto": {
+      "fmId": "49061584",
+      "clubKey": "ami",
+      "slug": "enzo-couto"
+    },
+    "Nolan Hérissé": {
+      "fmId": "2000131263",
+      "clubKey": "ami",
+      "slug": "nolan-herisse"
+    },
+    "Thomas Monconduit": {
+      "fmId": "34012452",
+      "clubKey": "ami",
+      "slug": "thomas-monconduit"
+    },
+    "Rémy Boissier": {
+      "fmId": "50040462",
+      "clubKey": "ami",
+      "slug": "remy-boissier"
+    },
+    "Ibrahim Fofana": {
+      "fmId": "2000197467",
+      "clubKey": "ami",
+      "slug": "ibrahim-fofana"
+    },
+    "Cazim Suljic": {
+      "fmId": "48036072",
+      "clubKey": "ami",
+      "slug": "cazim-suljic"
+    },
+    "Gatien Foll": {
+      "fmId": "2000292216",
+      "clubKey": "ami",
+      "slug": "gatien-foll"
+    },
+    "Ilan Daf": {
+      "fmId": "2000295422",
+      "clubKey": "ami",
+      "slug": "ilan-daf"
+    },
+    "Andréa Parsy-Lucas": {
+      "fmId": "2000166464",
+      "clubKey": "ami",
+      "slug": "andrea-parsy-lucas"
+    },
+    "Ilies Abdelkrim": {
+      "fmId": "2000414140",
+      "clubKey": "ami",
+      "slug": "ilies-abdelkrim"
+    },
+    "Rayan Lutin": {
+      "fmId": "73201853",
+      "clubKey": "ami",
+      "slug": "rayan-lutin"
+    },
+    "Nordine Kandil": {
+      "fmId": "49055078",
+      "clubKey": "ami",
+      "slug": "nordine-kandil"
+    },
+    "Ange Josuè Chibozo": {
+      "fmId": "43617163",
+      "clubKey": "ami",
+      "slug": "ange-josue-chibozo"
+    },
+    "Alexis Giacomini": {
+      "fmId": "48044582",
+      "clubKey": "ami",
+      "slug": "alexis-giacomini"
+    },
+    "Marvin Adélaïde": {
+      "fmId": "2000303823",
+      "clubKey": "ami",
+      "slug": "marvin-adelaide"
+    },
+    "Zourab Sopromadze": {
+      "fmId": "2000191333",
+      "clubKey": "ami",
+      "slug": "zourab-sopromadze"
+    },
+    "Côme Fromager": {
+      "fmId": "2000303029",
+      "clubKey": "ami",
+      "slug": "come-fromager"
+    },
+    "Yanis Rafii": {
+      "fmId": "2000269197",
+      "clubKey": "ami",
+      "slug": "yanis-rafii"
+    },
+    "Sacha Contena": {
+      "fmId": "2000301445",
+      "clubKey": "bas",
+      "slug": "sacha-contena"
+    },
+    "Gustave Akueson": {
+      "fmId": "48043482",
+      "clubKey": "bas",
+      "slug": "gustave-akueson"
+    },
+    "Anthony Roncaglia": {
+      "fmId": "50065541",
+      "clubKey": "bas",
+      "slug": "anthony-roncaglia"
+    },
+    "Tom Meynadier": {
+      "fmId": "2000198060",
+      "clubKey": "bas",
+      "slug": "tom-meynadier"
+    },
+    "Mathéo Moussa": {
+      "fmId": "2000295396",
+      "clubKey": "bas",
+      "slug": "matheo-moussa"
+    },
+    "Yoan Akwa": {
+      "fmId": "2000289201",
+      "clubKey": "bas",
+      "slug": "yoan-akwa"
+    },
+    "Noah Zilliox": {
+      "fmId": "2000024669",
+      "clubKey": "bas",
+      "slug": "noah-zilliox"
+    },
+    "Anthony Gonzalez": {
+      "fmId": "2000128335",
+      "clubKey": "bas",
+      "slug": "anthony-gonzalez"
+    },
+    "Jean Koffi": {
+      "fmId": "2000210716",
+      "clubKey": "bas",
+      "slug": "jean-koffi"
+    },
+    "Tom Ducrocq": {
+      "fmId": "49048419",
+      "clubKey": "bas",
+      "slug": "tom-ducrocq"
+    },
+    "Jocelyn Janneh": {
+      "fmId": "2000164993",
+      "clubKey": "bas",
+      "slug": "jocelyn-janneh"
+    },
+    "Joachim Eickmayer": {
+      "fmId": "85131323",
+      "clubKey": "bas",
+      "slug": "joachim-eickmayer"
+    },
+    "Matéo Loubatières": {
+      "fmId": "2000041840",
+      "clubKey": "bas",
+      "slug": "mateo-loubatieres"
+    },
+    "Yahya Bathily": {
+      "fmId": "2000393445",
+      "clubKey": "bas",
+      "slug": "yahya-bathily"
+    },
+    "Matteo Petrignani": {
+      "fmId": "2000306392",
+      "clubKey": "bas",
+      "slug": "matteo-petrignani"
+    },
+    "Harry Moore": {
+      "fmId": "2000496691",
+      "clubKey": "bas",
+      "slug": "harry-moore"
+    },
+    "Jérémy Sebas": {
+      "fmId": "2000205811",
+      "clubKey": "bas",
+      "slug": "jeremy-sebas"
+    },
+    "Ayman Aiki": {
+      "fmId": "2000166500",
+      "clubKey": "bas",
+      "slug": "ayman-aiki"
+    },
+    "Clément Rodrigues": {
+      "fmId": "2000050233",
+      "clubKey": "bas",
+      "slug": "clement-rodrigues"
+    },
+    "Félix Tomi": {
+      "fmId": "49053030",
+      "clubKey": "bas",
+      "slug": "felix-tomi"
+    },
+    "Maxime Blé": {
+      "fmId": "2000211706",
+      "clubKey": "bas",
+      "slug": "maxime-ble"
+    },
+    "Nicolas Parravicini": {
+      "fmId": "43272461",
+      "clubKey": "bas",
+      "slug": "nicolas-parravicini"
+    },
+    "Lorenzo Depuidt": {
+      "fmId": "49060704",
+      "clubKey": "bas",
+      "slug": "lorenzo-depuidt"
+    },
+    "Mohamed Boumaaoui": {
+      "fmId": "2000306399",
+      "clubKey": "bas",
+      "slug": "mohamed-boumaaoui"
+    },
+    "Brice Maubleu": {
+      "fmId": "34001981",
+      "clubKey": "pau",
+      "slug": "brice-maubleu"
+    },
+    "Esteban Salles": {
+      "fmId": "85144362",
+      "clubKey": "pau",
+      "slug": "esteban-salles"
+    },
+    "Maxime Adam": {
+      "fmId": "2000504731",
+      "clubKey": "pau",
+      "slug": "maxime-adam"
+    },
+    "Anthony Briançon": {
+      "fmId": "48032750",
+      "clubKey": "pau",
+      "slug": "anthony-briancon"
+    },
+    "Gaëtan Paquiez": {
+      "fmId": "85082890",
+      "clubKey": "pau",
+      "slug": "gaetan-paquiez"
+    },
+    "Daylam Meddah": {
+      "fmId": "49061829",
+      "clubKey": "pau",
+      "slug": "daylam-meddah"
+    },
+    "Joseph Kalulu": {
+      "fmId": "2000402614",
+      "clubKey": "pau",
+      "slug": "joseph-kalulu"
+    },
+    "Tom Pouilly": {
+      "fmId": "2000024351",
+      "clubKey": "pau",
+      "slug": "tom-pouilly"
+    },
+    "Axel Bamba": {
+      "fmId": "49036718",
+      "clubKey": "pau",
+      "slug": "axel-bamba"
+    },
+    "Souleymane Basse": {
+      "fmId": "12092909",
+      "clubKey": "pau",
+      "slug": "souleymane-basse"
+    },
+    "Enzo Dos Santos": {
+      "fmId": "2000120093",
+      "clubKey": "pau",
+      "slug": "enzo-dos-santos"
+    },
+    "Clément Pujos": {
+      "fmId": "2000188236",
+      "clubKey": "pau",
+      "slug": "clement-pujos"
+    },
+    "Jason Mosango": {
+      "fmId": "2000117669",
+      "clubKey": "pau",
+      "slug": "jason-mosango"
+    },
+    "Cheikh Sané": {
+      "fmId": "2000335899",
+      "clubKey": "pau",
+      "slug": "cheikh-sane"
+    },
+    "Giovani Versini": {
+      "fmId": "2000047323",
+      "clubKey": "pau",
+      "slug": "giovani-versini"
+    },
+    "Steeve Beusnard": {
+      "fmId": "49036085",
+      "clubKey": "pau",
+      "slug": "steeve-beusnard"
+    },
+    "Rayan Touzghar": {
+      "fmId": "2000111430",
+      "clubKey": "pau",
+      "slug": "rayan-touzghar"
+    },
+    "Alexis Lefebvre": {
+      "fmId": "49060576",
+      "clubKey": "pau",
+      "slug": "alexis-lefebvre"
+    },
+    "Royce Openda": {
+      "fmId": "2000172706",
+      "clubKey": "pau",
+      "slug": "royce-openda"
+    },
+    "Babacar Leye": {
+      "fmId": "2000035999",
+      "clubKey": "pau",
+      "slug": "babacar-leye"
+    },
+    "Cheikh Fall": {
+      "fmId": "2000231165",
+      "clubKey": "pau",
+      "slug": "cheikh-fall"
+    },
+    "Marius Savidan": {
+      "fmId": "2000394912",
+      "clubKey": "pau",
+      "slug": "marius-savidan"
+    },
+    "Quentin Braat": {
+      "fmId": "48036407",
+      "clubKey": "rod",
+      "slug": "quentin-braat"
+    },
+    "Lucas Margueron": {
+      "fmId": "49046141",
+      "clubKey": "rod",
+      "slug": "lucas-margueron"
+    },
+    "Enzo Crombez": {
+      "fmId": "2000128175",
+      "clubKey": "rod",
+      "slug": "enzo-crombez"
+    },
+    "Evan's Jean-Lambert": {
+      "fmId": "48036406",
+      "clubKey": "rod",
+      "slug": "evans-jean-lambert"
+    },
+    "Mathis Magnin": {
+      "fmId": "98046082",
+      "clubKey": "rod",
+      "slug": "mathis-magnin"
+    },
+    "Raphaël Lipinski": {
+      "fmId": "2000125815",
+      "clubKey": "rod",
+      "slug": "raphael-lipinski"
+    },
+    "Clément Jolibois": {
+      "fmId": "2000116200",
+      "clubKey": "rod",
+      "slug": "clement-jolibois"
+    },
+    "Nolan Galves": {
+      "fmId": "49060044",
+      "clubKey": "rod",
+      "slug": "nolan-galves"
+    },
+    "Loni Laurent": {
+      "fmId": "2000279581",
+      "clubKey": "rod",
+      "slug": "loni-laurent"
+    },
+    "Ryan Ponti": {
+      "fmId": "49062372",
+      "clubKey": "rod",
+      "slug": "ryan-ponti"
+    },
+    "Antonin Cartillier": {
+      "fmId": "2000061684",
+      "clubKey": "rod",
+      "slug": "antonin-cartillier"
+    },
+    "Jordan Mendes": {
+      "fmId": "2000288750",
+      "clubKey": "rod",
+      "slug": "jordan-mendes"
+    },
+    "Samy Benchamma": {
+      "fmId": "49048708",
+      "clubKey": "rod",
+      "slug": "samy-benchamma"
+    },
+    "Yanis Dahalani": {
+      "fmId": "2000508109",
+      "clubKey": "rod",
+      "slug": "yanis-dahalani"
+    },
+    "Joshua N'Diefi": {
+      "fmId": "2000401251",
+      "clubKey": "rod",
+      "slug": "joshua-ndiefi"
+    },
+    "Antoine Caubet": {
+      "fmId": "2000335865",
+      "clubKey": "rod",
+      "slug": "antoine-caubet"
+    },
+    "Ibrahima Baldé": {
+      "fmId": "73201857",
+      "clubKey": "rod",
+      "slug": "ibrahima-balde"
+    },
+    "Alexis Trouillet": {
+      "fmId": "49039032",
+      "clubKey": "rod",
+      "slug": "alexis-trouillet"
+    },
+    "Kenny Nagera": {
+      "fmId": "49048449",
+      "clubKey": "rod",
+      "slug": "kenny-nagera"
+    },
+    "Octave Joly": {
+      "fmId": "2000306271",
+      "clubKey": "rod",
+      "slug": "octave-joly"
+    },
+    "Mehdi Baaloudj": {
+      "fmId": "49054624",
+      "clubKey": "rod",
+      "slug": "mehdi-baaloudj"
+    },
+    "Hermann Tebily": {
+      "fmId": "49056285",
+      "clubKey": "rod",
+      "slug": "hermann-tebily"
+    },
+    "Mathis Touho": {
+      "fmId": "2000130998",
+      "clubKey": "rod",
+      "slug": "mathis-touho"
+    },
+    "Louis Bonnieu": {
+      "fmId": "2000516027",
+      "clubKey": "rod",
+      "slug": "louis-bonnieu"
+    },
+    "Adrián Ortolà": {
+      "fmId": "67115824",
+      "clubKey": "gui",
+      "slug": "adrian-ortola"
+    },
+    "Teddy Bartouche-Selbonne": {
+      "fmId": "49047421",
+      "clubKey": "gui",
+      "slug": "teddy-bartouche-selbonne"
+    },
+    "Noah Marec": {
+      "fmId": "2000140030",
+      "clubKey": "gui",
+      "slug": "noah-marec"
+    },
+    "Donatien Gomis": {
+      "fmId": "50078507",
+      "clubKey": "gui",
+      "slug": "donatien-gomis"
+    },
+    "Erwin Koffi": {
+      "fmId": "85139711",
+      "clubKey": "gui",
+      "slug": "erwin-koffi"
+    },
+    "Akim Abdallah": {
+      "fmId": "48037701",
+      "clubKey": "gui",
+      "slug": "akim-abdallah"
+    },
+    "Albin Démouchy": {
+      "fmId": "49055790",
+      "clubKey": "gui",
+      "slug": "albin-demouchy"
+    },
+    "Jérémie Matumona": {
+      "fmId": "2000314978",
+      "clubKey": "gui",
+      "slug": "jeremie-matumona"
+    },
+    "Idriss Planeix": {
+      "fmId": "2000292952",
+      "clubKey": "gui",
+      "slug": "idriss-planeix"
+    },
+    "Vimoj Muntu Wa Mungu": {
+      "fmId": "2000123824",
+      "clubKey": "gui",
+      "slug": "vimoj-muntu-wa-mungu"
+    },
+    "Ibrahima Diakité": {
+      "fmId": "2000293363",
+      "clubKey": "gui",
+      "slug": "ibrahima-diakite"
+    },
+    "Dylan Louiserre": {
+      "fmId": "85133737",
+      "clubKey": "gui",
+      "slug": "dylan-louiserre"
+    },
+    "Darly N'Landu": {
+      "fmId": "49038220",
+      "clubKey": "gui",
+      "slug": "darly-nlandu"
+    },
+    "Tanguy Ahile": {
+      "fmId": "2000201720",
+      "clubKey": "gui",
+      "slug": "tanguy-ahile"
+    },
+    "Trésor Matondo": {
+      "fmId": "2000023194",
+      "clubKey": "gui",
+      "slug": "tresor-matondo"
+    },
+    "Ben Ibrahim Siby": {
+      "fmId": "2000381113",
+      "clubKey": "gui",
+      "slug": "ben-ibrahim-siby"
+    },
+    "Ahmed Bouchoukh": {
+      "fmId": "2000293362",
+      "clubKey": "gui",
+      "slug": "ahmed-bouchoukh"
+    },
+    "Adel Sebihi": {
+      "fmId": "2000293360",
+      "clubKey": "gui",
+      "slug": "adel-sebihi"
+    },
+    "Amine Hemia": {
+      "fmId": "2000103205",
+      "clubKey": "gui",
+      "slug": "amine-hemia"
+    },
+    "Gautier Ott": {
+      "fmId": "49053683",
+      "clubKey": "gui",
+      "slug": "gautier-ott"
+    },
+    "Teddy Averlant": {
+      "fmId": "50081824",
+      "clubKey": "gui",
+      "slug": "teddy-averlant"
+    },
+    "Stanislas Kielt": {
+      "fmId": "2000291961",
+      "clubKey": "gui",
+      "slug": "stanislas-kielt"
+    },
+    "Amadou Samoura": {
+      "fmId": "2000108576",
+      "clubKey": "gui",
+      "slug": "amadou-samoura"
+    },
+    "Samir Ben Brahim": {
+      "fmId": "2000436736",
+      "clubKey": "gui",
+      "slug": "samir-ben-brahim"
+    },
+    "Salatiel Decarpentrie": {
+      "fmId": "49056039",
+      "clubKey": "gui",
+      "slug": "salatiel-decarpentrie"
+    },
+    "Breyton Fougeu": {
+      "fmId": "2000006282",
+      "clubKey": "gui",
+      "slug": "breyton-fougeu"
+    },
+    "Maxence Prévot": {
+      "fmId": "85141367",
+      "clubKey": "dun",
+      "slug": "maxence-prevot"
+    },
+    "Moha Ramos": {
+      "fmId": "67258570",
+      "clubKey": "dun",
+      "slug": "moha-ramos"
+    },
+    "Sébastien Tou": {
+      "fmId": "2000303343",
+      "clubKey": "dun",
+      "slug": "sebastien-tou"
+    },
+    "Opa Sanganté": {
+      "fmId": "49033412",
+      "clubKey": "dun",
+      "slug": "opa-sangante"
+    },
+    "Bram Lagae": {
+      "fmId": "2000006281",
+      "clubKey": "dun",
+      "slug": "bram-lagae"
+    },
+    "Lenny Vallier": {
+      "fmId": "48033598",
+      "clubKey": "dun",
+      "slug": "lenny-vallier"
+    },
+    "Allan Linguet": {
+      "fmId": "48044464",
+      "clubKey": "dun",
+      "slug": "allan-linguet"
+    },
+    "Victor Mayela": {
+      "fmId": "2000125841",
+      "clubKey": "dun",
+      "slug": "victor-mayela"
+    },
+    "Maedine Makhloufi": {
+      "fmId": "2000208105",
+      "clubKey": "dun",
+      "slug": "maedine-makhloufi"
+    },
+    "Rafael Ranschaert": {
+      "fmId": "2000205291",
+      "clubKey": "dun",
+      "slug": "rafael-ranschaert"
+    },
+    "Tiago Le Callet": {
+      "fmId": "2000336479",
+      "clubKey": "dun",
+      "slug": "tiago-le-callet"
+    },
+    "Lenny Dziki": {
+      "fmId": "2000116945",
+      "clubKey": "dun",
+      "slug": "lenny-dziki"
+    },
+    "Elie Kayembe Tete": {
+      "fmId": "2000128953",
+      "clubKey": "dun",
+      "slug": "elie-kayembe-tete"
+    },
+    "Mattéo Bebey Sake": {
+      "fmId": "2000119986",
+      "clubKey": "dun",
+      "slug": "matteo-bebey-sake"
+    },
+    "Timéo Gourlin": {
+      "fmId": "2000416071",
+      "clubKey": "dun",
+      "slug": "timeo-gourlin"
+    },
+    "Franck Atoen": {
+      "fmId": "2000482703",
+      "clubKey": "dun",
+      "slug": "franck-atoen"
+    },
+    "Thomas Robinet": {
+      "fmId": "85140351",
+      "clubKey": "dun",
+      "slug": "thomas-robinet"
+    },
+    "Adrien Lebeau": {
+      "fmId": "49053093",
+      "clubKey": "dun",
+      "slug": "adrien-lebeau"
+    },
+    "Antoine Sekongo": {
+      "fmId": "2000279641",
+      "clubKey": "dun",
+      "slug": "antoine-sekongo"
+    },
+    "Yegor Prutsev": {
+      "fmId": "58158868",
+      "clubKey": "dun",
+      "slug": "yegor-prutsev"
+    },
+    "Alex Daho": {
+      "fmId": "2000268699",
+      "clubKey": "dun",
+      "slug": "alex-daho"
+    },
+    "Zaid Seha": {
+      "fmId": "2000311874",
+      "clubKey": "dun",
+      "slug": "zaid-seha"
+    },
+    "Mamadu Silla": {
+      "fmId": "2000299378",
+      "clubKey": "dun",
+      "slug": "mamadu-silla"
+    },
+    "Ladji Sylla": {
+      "fmId": "2000375520",
+      "clubKey": "dun",
+      "slug": "ladji-sylla"
+    },
+    "Florian Escales": {
+      "fmId": "85103599",
+      "clubKey": "anc",
+      "slug": "florian-escales"
+    },
+    "Thomas Callens": {
+      "fmId": "48038918",
+      "clubKey": "anc",
+      "slug": "thomas-callens"
+    },
+    "Matéo Gonzalez": {
+      "fmId": "2000187514",
+      "clubKey": "anc",
+      "slug": "mateo-gonzalez"
+    },
+    "Axel Drouhin": {
+      "fmId": "2000185044",
+      "clubKey": "anc",
+      "slug": "axel-drouhin"
+    },
+    "Clément Billemaz": {
+      "fmId": "48043509",
+      "clubKey": "anc",
+      "slug": "clement-billemaz"
+    },
+    "François Lajugie": {
+      "fmId": "49033608",
+      "clubKey": "anc",
+      "slug": "francois-lajugie"
+    },
+    "Julien Kouadio": {
+      "fmId": "49038293",
+      "clubKey": "anc",
+      "slug": "julien-kouadio"
+    },
+    "Thibault Delphis": {
+      "fmId": "2000291248",
+      "clubKey": "anc",
+      "slug": "thibault-delphis"
+    },
+    "Mattéo Veillon": {
+      "fmId": "49061461",
+      "clubKey": "anc",
+      "slug": "matteo-veillon"
+    },
+    "Killian Camélé": {
+      "fmId": "49060041",
+      "clubKey": "anc",
+      "slug": "killian-camele"
+    },
+    "Esteban Marre": {
+      "fmId": "2000421947",
+      "clubKey": "anc",
+      "slug": "esteban-marre"
+    },
+    "Ahmed Kashi": {
+      "fmId": "85029687",
+      "clubKey": "anc",
+      "slug": "ahmed-kashi"
+    },
+    "Paul Venot": {
+      "fmId": "50087711",
+      "clubKey": "anc",
+      "slug": "paul-venot"
+    },
+    "Alexis Casadeï": {
+      "fmId": "2000116591",
+      "clubKey": "anc",
+      "slug": "alexis-casadei"
+    },
+    "Nolan Ferro": {
+      "fmId": "2000205550",
+      "clubKey": "anc",
+      "slug": "nolan-ferro"
+    },
+    "Wael Debbiche": {
+      "fmId": "2000388593",
+      "clubKey": "anc",
+      "slug": "wael-debbiche"
+    },
+    "Zépiqueno Redmond": {
+      "fmId": "2000183837",
+      "clubKey": "anc",
+      "slug": "zepiqueno-redmond"
+    },
+    "Antoine Larose": {
+      "fmId": "50050433",
+      "clubKey": "anc",
+      "slug": "antoine-larose"
+    },
+    "Moïse Sahi Dion": {
+      "fmId": "2000091093",
+      "clubKey": "anc",
+      "slug": "moise-sahi-dion"
+    },
+    "Abdel Hbouch": {
+      "fmId": "83241345",
+      "clubKey": "anc",
+      "slug": "abdel-hbouch"
+    },
+    "Kadan Young": {
+      "fmId": "2000198728",
+      "clubKey": "anc",
+      "slug": "kadan-young"
+    },
+    "Ben Hamed Touré": {
+      "fmId": "12094662",
+      "clubKey": "anc",
+      "slug": "ben-hamed-toure"
+    },
+    "Thibault Rambaud": {
+      "fmId": "50042965",
+      "clubKey": "anc",
+      "slug": "thibault-rambaud"
+    },
+    "Yanis Méguirèche": {
+      "fmId": "50036323",
+      "clubKey": "anc",
+      "slug": "yanis-meguireche"
+    },
+    "Zacharie Boucher": {
+      "fmId": "85018050",
+      "clubKey": "try",
+      "slug": "zacharie-boucher"
+    },
+    "Hillel Konaté": {
+      "fmId": "85081097",
+      "clubKey": "try",
+      "slug": "hillel-konate"
+    },
+    "Nino Cornuau Djodjevic": {
+      "fmId": "2000269844",
+      "clubKey": "try",
+      "slug": "nino-cornuau-djodjevic"
+    },
+    "Adrien Monfray": {
+      "fmId": "85146904",
+      "clubKey": "try",
+      "slug": "adrien-monfray"
+    },
+    "Junior Diaz": {
+      "fmId": "49061716",
+      "clubKey": "try",
+      "slug": "junior-diaz"
+    },
+    "Thierno Baldé": {
+      "fmId": "49048440",
+      "clubKey": "try",
+      "slug": "thierno-balde"
+    },
+    "Ismaël Boura": {
+      "fmId": "49041400",
+      "clubKey": "try",
+      "slug": "ismael-boura"
+    },
+    "Paolo Gozzi": {
+      "fmId": "43372951",
+      "clubKey": "try",
+      "slug": "paolo-gozzi"
+    },
+    "Lucas Maronnier": {
+      "fmId": "49037853",
+      "clubKey": "try",
+      "slug": "lucas-maronnier"
+    },
+    "Yvann Titi": {
+      "fmId": "2000187507",
+      "clubKey": "try",
+      "slug": "yvann-titi"
+    },
+    "Anis Ouzenadji": {
+      "fmId": "2000269832",
+      "clubKey": "try",
+      "slug": "anis-ouzenadji"
+    },
+    "Mouhamed Diop": {
+      "fmId": "12092871",
+      "clubKey": "try",
+      "slug": "mouhamed-diop"
+    },
+    "Alexandre Phliponeau": {
+      "fmId": "49040517",
+      "clubKey": "try",
+      "slug": "alexandre-phliponeau"
+    },
+    "Roman Murcy": {
+      "fmId": "2000314829",
+      "clubKey": "try",
+      "slug": "roman-murcy"
+    },
+    "Souleymane Diallo": {
+      "fmId": "2000396660",
+      "clubKey": "try",
+      "slug": "souleymane-diallo"
+    },
+    "Aissa Azehaf": {
+      "fmId": "2000416172",
+      "clubKey": "try",
+      "slug": "aissa-azehaf"
+    },
+    "Karamady Gassama": {
+      "fmId": "2000205084",
+      "clubKey": "try",
+      "slug": "karamady-gassama"
+    },
+    "Salimou Diarra": {
+      "fmId": "2000269851",
+      "clubKey": "try",
+      "slug": "salimou-diarra"
+    },
+    "Antoine Mille": {
+      "fmId": "50070243",
+      "clubKey": "try",
+      "slug": "antoine-mille"
+    },
+    "Martin Adeline": {
+      "fmId": "2000024505",
+      "clubKey": "try",
+      "slug": "martin-adeline"
+    },
+    "Merwan Ifnaoui": {
+      "fmId": "2000234272",
+      "clubKey": "try",
+      "slug": "merwan-ifnaoui"
+    },
+    "Amar Fatah": {
+      "fmId": "2000019686",
+      "clubKey": "try",
+      "slug": "amar-fatah"
+    },
+    "Kandet Diawara": {
+      "fmId": "49048430",
+      "clubKey": "try",
+      "slug": "kandet-diawara"
+    },
+    "Ibrahim Traoré": {
+      "fmId": "2000237616",
+      "clubKey": "try",
+      "slug": "ibrahim-traore"
+    },
+    "Aly Sidibé": {
+      "fmId": "2000269778",
+      "clubKey": "try",
+      "slug": "aly-sidibe"
+    },
+    "Amadou Diakité": {
+      "fmId": "2000396658",
+      "clubKey": "try",
+      "slug": "amadou-diakite"
+    },
+    "Mamadou Samassa": {
+      "fmId": "34008820",
+      "clubKey": "lvl",
+      "slug": "mamadou-samassa"
+    },
+    "Maxime Hautbois": {
+      "fmId": "85045880",
+      "clubKey": "lvl",
+      "slug": "maxime-hautbois"
+    },
+    "Esteban Pourcher": {
+      "fmId": "2000185939",
+      "clubKey": "lvl",
+      "slug": "esteban-pourcher"
+    },
+    "Aboubacar Lô": {
+      "fmId": "12082397",
+      "clubKey": "lvl",
+      "slug": "aboubacar-lo"
+    },
+    "Jules Gaudin": {
+      "fmId": "49038342",
+      "clubKey": "lvl",
+      "slug": "jules-gaudin"
+    },
+    "Layousse Samb": {
+      "fmId": "2000204875",
+      "clubKey": "lvl",
+      "slug": "layousse-samb"
+    },
+    "William Bianda": {
+      "fmId": "49037707",
+      "clubKey": "lvl",
+      "slug": "william-bianda"
+    },
+    "Esteban Mouton": {
+      "fmId": "2000291549",
+      "clubKey": "lvl",
+      "slug": "esteban-mouton"
+    },
+    "Sidi Bane": {
+      "fmId": "2000170118",
+      "clubKey": "lvl",
+      "slug": "sidi-bane"
+    },
+    "Mattéo Commaret": {
+      "fmId": "49056275",
+      "clubKey": "lvl",
+      "slug": "matteo-commaret"
+    },
+    "Mathis Delannay": {
+      "fmId": "2000140026",
+      "clubKey": "lvl",
+      "slug": "mathis-delannay"
+    },
+    "Francis Coquelin": {
+      "fmId": "34012022",
+      "clubKey": "lvl",
+      "slug": "francis-coquelin"
+    },
+    "Sam Sanna": {
+      "fmId": "48043537",
+      "clubKey": "lvl",
+      "slug": "sam-sanna"
+    },
+    "Cyril Mandouki": {
+      "fmId": "49030791",
+      "clubKey": "lvl",
+      "slug": "cyril-mandouki"
+    },
+    "Teddy Bouriaud": {
+      "fmId": "85134388",
+      "clubKey": "lvl",
+      "slug": "teddy-bouriaud"
+    },
+    "Herman Esmel": {
+      "fmId": "49045969",
+      "clubKey": "lvl",
+      "slug": "herman-esmel"
+    },
+    "Mamadou Sidibé": {
+      "fmId": "2000309275",
+      "clubKey": "lvl",
+      "slug": "mamadou-sidibe"
+    },
+    "Mathis Raimbault": {
+      "fmId": "2000311234",
+      "clubKey": "lvl",
+      "slug": "mathis-raimbault"
+    },
+    "Karamba Diaby": {
+      "fmId": "2000415126",
+      "clubKey": "lvl",
+      "slug": "karamba-diaby"
+    },
+    "Julien Maggiotti": {
+      "fmId": "2000015298",
+      "clubKey": "lvl",
+      "slug": "julien-maggiotti"
+    },
+    "Malik Sellouki": {
+      "fmId": "2000031066",
+      "clubKey": "lvl",
+      "slug": "malik-sellouki"
+    },
+    "Mamadou Camara": {
+      "fmId": "49047488",
+      "clubKey": "lvl",
+      "slug": "mamadou-camara"
+    },
+    "Trévis Dago": {
+      "fmId": "2000272924",
+      "clubKey": "lvl",
+      "slug": "trevis-dago"
+    },
+    "Chafik Gourichy": {
+      "fmId": "2000367410",
+      "clubKey": "lvl",
+      "slug": "chafik-gourichy"
+    },
+    "Aboubakary Kanté": {
+      "fmId": "85145202",
+      "clubKey": "lvl",
+      "slug": "aboubakary-kante"
+    },
+    "Ethan Clavreul": {
+      "fmId": "2000418101",
+      "clubKey": "lvl",
+      "slug": "ethan-clavreul"
+    },
+    "Noa Mupemba": {
+      "fmId": "2000214149",
+      "clubKey": "lvl",
+      "slug": "noa-mupemba"
+    },
+    "Ouparine Djoco": {
+      "fmId": "49047081",
+      "clubKey": "qrm",
+      "slug": "ouparine-djoco"
+    },
+    "Mathys Silistrie": {
+      "fmId": "2000201223",
+      "clubKey": "qrm",
+      "slug": "mathys-silistrie"
+    },
+    "Timothé Viel": {
+      "fmId": "2000214605",
+      "clubKey": "qrm",
+      "slug": "timothe-viel"
+    },
+    "Marius Ros": {
+      "fmId": "49061886",
+      "clubKey": "qrm",
+      "slug": "marius-ros"
+    },
+    "Yacine Gaya": {
+      "fmId": "2000113241",
+      "clubKey": "qrm",
+      "slug": "yacine-gaya"
+    },
+    "Mathis Hamdi": {
+      "fmId": "2000023331",
+      "clubKey": "qrm",
+      "slug": "mathis-hamdi"
+    },
+    "Virgil Thérésin": {
+      "fmId": "49040143",
+      "clubKey": "qrm",
+      "slug": "virgil-theresin"
+    },
+    "Théo Pionnier": {
+      "fmId": "49048515",
+      "clubKey": "qrm",
+      "slug": "theo-pionnier"
+    },
+    "Anthony Sifflet": {
+      "fmId": "2000399247",
+      "clubKey": "qrm",
+      "slug": "anthony-sifflet"
+    },
+    "Joseph Tshituka Songwe": {
+      "fmId": "2000218611",
+      "clubKey": "qrm",
+      "slug": "joseph-tshituka-songwe"
+    },
+    "Damien Janela": {
+      "fmId": "2000502630",
+      "clubKey": "qrm",
+      "slug": "damien-janela"
+    },
+    "Natanaël Bouekou": {
+      "fmId": "2000125811",
+      "clubKey": "qrm",
+      "slug": "natanael-bouekou"
+    },
+    "Warren Tchimbembé": {
+      "fmId": "48037719",
+      "clubKey": "qrm",
+      "slug": "warren-tchimbembe"
+    },
+    "Youssef Gazzaoui": {
+      "fmId": "48037252",
+      "clubKey": "qrm",
+      "slug": "youssef-gazzaoui"
+    },
+    "Mehdi Richard": {
+      "fmId": "2000293154",
+      "clubKey": "qrm",
+      "slug": "mehdi-richard"
+    },
+    "Riyad Messaoudi": {
+      "fmId": "2000287968",
+      "clubKey": "qrm",
+      "slug": "riyad-messaoudi"
+    },
+    "Noam Fajr": {
+      "fmId": "2000208860",
+      "clubKey": "qrm",
+      "slug": "noam-fajr"
+    },
+    "Hamidou Kanté": {
+      "fmId": "2000404814",
+      "clubKey": "qrm",
+      "slug": "hamidou-kante"
+    },
+    "William Irnatene": {
+      "fmId": "2000198492",
+      "clubKey": "qrm",
+      "slug": "william-irnatene"
+    },
+    "Berni Kassy Ghoy": {
+      "fmId": "2000403949",
+      "clubKey": "qrm",
+      "slug": "berni-kassy-ghoy"
+    },
+    "Djiby Seck": {
+      "fmId": "2000298887",
+      "clubKey": "qrm",
+      "slug": "djiby-seck"
+    },
+    "Ruben Rosa": {
+      "fmId": "2000293155",
+      "clubKey": "qrm",
+      "slug": "ruben-rosa"
+    },
+    "Hugo Hare": {
+      "fmId": "2000198500",
+      "clubKey": "qrm",
+      "slug": "hugo-hare"
+    },
+    "Sékou Traoré": {
+      "fmId": "2000293158",
+      "clubKey": "qrm",
+      "slug": "sekou-traore"
+    },
+    "Rafael Girot": {
+      "fmId": "2000218601",
+      "clubKey": "qrm",
+      "slug": "rafael-girot"
+    },
+    "Samuel Come Ruiz": {
+      "fmId": "2000311159",
+      "clubKey": "qrm",
+      "slug": "samuel-come-ruiz"
+    },
+    "Simon Legloahec": {
+      "fmId": "2000503023",
+      "clubKey": "qrm",
+      "slug": "simon-legloahec"
+    },
+    "Vincent Viot": {
+      "fmId": "85080419",
+      "clubKey": "cnc",
+      "slug": "vincent-viot"
+    },
+    "Pierre Patron": {
+      "fmId": "48044771",
+      "clubKey": "cnc",
+      "slug": "pierre-patron"
+    },
+    "Valentin Cenatiempo": {
+      "fmId": "2000210712",
+      "clubKey": "cnc",
+      "slug": "valentin-cenatiempo"
+    },
+    "Guillaume Jannez": {
+      "fmId": "50037047",
+      "clubKey": "cnc",
+      "slug": "guillaume-jannez"
+    },
+    "Thibault Sinquin": {
+      "fmId": "50037046",
+      "clubKey": "cnc",
+      "slug": "thibault-sinquin"
+    },
+    "Djessine Seba": {
+      "fmId": "49034897",
+      "clubKey": "cnc",
+      "slug": "djessine-seba"
+    },
+    "Baptiste Etcheverria": {
+      "fmId": "48044358",
+      "clubKey": "cnc",
+      "slug": "baptiste-etcheverria"
+    },
+    "Jimmy Halby-Touré": {
+      "fmId": "48037993",
+      "clubKey": "cnc",
+      "slug": "jimmy-halby-toure"
+    },
+    "Amédé Kabongo": {
+      "fmId": "2000112278",
+      "clubKey": "cnc",
+      "slug": "amede-kabongo"
+    },
+    "Raimane Daou": {
+      "fmId": "2000143548",
+      "clubKey": "cnc",
+      "slug": "raimane-daou"
+    },
+    "Kaïs Benabdelouahed": {
+      "fmId": "2000205294",
+      "clubKey": "cnc",
+      "slug": "kais-benabdelouahed"
+    },
+    "Mathis Picouleau": {
+      "fmId": "47069494",
+      "clubKey": "cnc",
+      "slug": "mathis-picouleau"
+    },
+    "Loïc Goujon": {
+      "fmId": "48030958",
+      "clubKey": "cnc",
+      "slug": "loic-goujon"
+    },
+    "Garland Gbelle": {
+      "fmId": "49033843",
+      "clubKey": "cnc",
+      "slug": "garland-gbelle"
+    },
+    "Glenn Hocquet": {
+      "fmId": "2000476939",
+      "clubKey": "cnc",
+      "slug": "glenn-hocquet"
+    },
+    "Nicolas Mercier": {
+      "fmId": "49056374",
+      "clubKey": "cnc",
+      "slug": "nicolas-mercier"
+    },
+    "Flavio Da Silva": {
+      "fmId": "49043994",
+      "clubKey": "cnc",
+      "slug": "flavio-da-silva"
+    },
+    "Stan Janno": {
+      "fmId": "49060865",
+      "clubKey": "cnc",
+      "slug": "stan-janno"
+    },
+    "Jules Varvat": {
+      "fmId": "2000022542",
+      "clubKey": "cnc",
+      "slug": "jules-varvat"
+    },
+    "Omar Félix Daf": {
+      "fmId": "2000224866",
+      "clubKey": "cnc",
+      "slug": "omar-felix-daf"
+    },
+    "Mathéo Ntumi": {
+      "fmId": "2000292204",
+      "clubKey": "cnc",
+      "slug": "matheo-ntumi"
+    },
+    "Guillaume Le Roux": {
+      "fmId": "2000119996",
+      "clubKey": "cnc",
+      "slug": "guillaume-le-roux"
+    },
+    "Killian Girolet": {
+      "fmId": "2000303635",
+      "clubKey": "cnc",
+      "slug": "killian-girolet"
+    },
+    "Jean Louchet": {
+      "fmId": "85144921",
+      "clubKey": "vac",
+      "slug": "jean-louchet"
+    },
+    "Justin Lacombe": {
+      "fmId": "2000063315",
+      "clubKey": "vac",
+      "slug": "justin-lacombe"
+    },
+    "Ludovic Louis-Marie": {
+      "fmId": "2000311290",
+      "clubKey": "vac",
+      "slug": "ludovic-louis-marie"
+    },
+    "Loïck Landre": {
+      "fmId": "29022617",
+      "clubKey": "vac",
+      "slug": "loick-landre"
+    },
+    "Abdelwahed Wahib": {
+      "fmId": "73201904",
+      "clubKey": "vac",
+      "slug": "abdelwahed-wahib"
+    },
+    "Maël Zogba": {
+      "fmId": "50084433",
+      "clubKey": "vac",
+      "slug": "mael-zogba"
+    },
+    "Dany Goprou": {
+      "fmId": "43207123",
+      "clubKey": "vac",
+      "slug": "dany-goprou"
+    },
+    "Bryan Passi": {
+      "fmId": "85140255",
+      "clubKey": "vac",
+      "slug": "bryan-passi"
+    },
+    "Erin Airhiavbere": {
+      "fmId": "2000510729",
+      "clubKey": "vac",
+      "slug": "erin-airhiavbere"
+    },
+    "Yakine Said M'Madi": {
+      "fmId": "2000045487",
+      "clubKey": "vac",
+      "slug": "yakine-said-mmadi"
+    },
+    "Salif Lebouath": {
+      "fmId": "2000407210",
+      "clubKey": "vac",
+      "slug": "salif-lebouath"
+    },
+    "Mabrouk Rouaï": {
+      "fmId": "83314101",
+      "clubKey": "vac",
+      "slug": "mabrouk-rouai"
+    },
+    "Samir Belloumou": {
+      "fmId": "50065518",
+      "clubKey": "vac",
+      "slug": "samir-belloumou"
+    },
+    "Joël Ngoya": {
+      "fmId": "49061662",
+      "clubKey": "vac",
+      "slug": "joel-ngoya"
+    },
+    "Gianni Schtickzelle": {
+      "fmId": "2000337205",
+      "clubKey": "vac",
+      "slug": "gianni-schtickzelle"
+    },
+    "Emil Mbeng": {
+      "fmId": "2000314421",
+      "clubKey": "vac",
+      "slug": "emil-mbeng"
+    },
+    "Gaëtan Courtet": {
+      "fmId": "85012670",
+      "clubKey": "vac",
+      "slug": "gaetan-courtet"
+    },
+    "Charles Abi": {
+      "fmId": "48043582",
+      "clubKey": "vac",
+      "slug": "charles-abi"
+    },
+    "Vincent Marcel": {
+      "fmId": "48044262",
+      "clubKey": "vac",
+      "slug": "vincent-marcel"
+    },
+    "Daou Diomandé": {
+      "fmId": "2000209753",
+      "clubKey": "vac",
+      "slug": "daou-diomande"
+    },
+    "Zaîd Amir": {
+      "fmId": "2000129710",
+      "clubKey": "vac",
+      "slug": "zaid-amir"
+    },
+    "Hervé Boua Dié": {
+      "fmId": "2000205276",
+      "clubKey": "vac",
+      "slug": "herve-boua-die"
+    },
+    "Luka Boiteau": {
+      "fmId": "2000476944",
+      "clubKey": "vac",
+      "slug": "luka-boiteau"
+    },
+    "Kylian Kouakou": {
+      "fmId": "2000288205",
+      "clubKey": "vac",
+      "slug": "kylian-kouakou"
+    }
+  }
+}

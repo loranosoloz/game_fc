@@ -1,0 +1,138 @@
+{
+  "_meta": {
+    "source": "FMInside FM26.2 + SortItOutSI FM26 team/competition pages + Wikipedia 2025/26 Saudi & 2025–26 ASEAN season lists",
+    "date": "2026-07-20",
+    "notes": [
+      "fmClubId = FMInside / SortItOutSI unique club ID (stable across FM versions).",
+      "suggestedRep is game-scale ~60–94 (Thai Buriram≈82, J1 top≈82–83), NOT raw FMInside reputation.",
+      "Saudi Pro League scaled highest (Hilal/Nassr/Ittihad/Ahli ~88–94) due to SPL/ACL strength.",
+      "ASEAN leagues scaled below SPL; JDT≈80, Persib/Persija≈76–78, Lion City≈74, V.League top≈74–78.",
+      "Keys checked against fmClubIds.json (430 keys) — avoided por/bru/chi/int/mil/gal/sel/nig/alb/etc.",
+      "Selangor key is slg (sel = FC Seoul already used).",
+      "Singapore Premier League in FM26 has 8 clubs listed (small league; full set below).",
+      "Becamex HCMC = FM name 'B. Ho Chi Minh City' (ex-Binh Duong); old shell id 5627025 has no division.",
+      "PVF Cong An Nhan Dan: SIOTI lists in V.League 1; FMInside still shows PVF (97207974) in League 2A — ID kept for FMTU pulls.",
+      "Kelantan The Real Warriors = FM name 'Real Warriors' (23502547); legacy Kelantan 135371 is lower leagues."
+    ],
+    "existingKeyCollisionsAvoided": [
+      "por", "bru", "chi", "int", "mil", "gal", "sel", "nig", "alb", "bar", "bay", "mun",
+      "liv", "che", "ars", "tot", "mci", "atm", "pal", "gre", "cor", "mir", "ala", "sam", "scp"
+    ]
+  },
+
+  "vie": {
+    "label": "Vietnam V.League 1 (FM26 / SIOTI V.League One)",
+    "leagueId": "vie",
+    "competitionId": 8550000,
+    "count": 14,
+    "clubs": [
+      { "key": "cah", "name": "Cong An Ha Noi", "fmClubId": 135395, "shortName": "CAHN", "suggestedRep": 78, "fmRep": 31, "source": "https://fminside.net/clubs/135395-ca-ha-noi" },
+      { "key": "hno", "name": "Ha Noi FC", "fmClubId": 23160144, "shortName": "HNO", "suggestedRep": 76, "fmRep": 31, "source": "https://fminside.net/clubs/23160144-ha-noi-fc" },
+      { "key": "ndf", "name": "CLB Megastar Nam Dinh", "fmClubId": 5622886, "shortName": "NDF", "suggestedRep": 77, "fmRep": 20, "source": "https://fminside.net/clubs/5622886-nam-dinh", "note": "FM name Nam Dinh; SIOTI Megastar Nam Dinh" },
+      { "key": "vtt", "name": "The Cong-Viettel FC", "fmClubId": 97207966, "shortName": "VTT", "suggestedRep": 74, "fmRep": null, "source": "https://sortitoutsi.net/football-manager-2026/team/97207966/the-cong-viettel-fc" },
+      { "key": "cat", "name": "Cong An Thanh Pho Ho Chi Minh", "fmClubId": 135394, "shortName": "CAT", "suggestedRep": 72, "fmRep": 30, "source": "https://fminside.net/clubs/135394-ca-tphcm" },
+      { "key": "bxh", "name": "Becamex Ho Chi Minh City FC", "fmClubId": 2000483919, "shortName": "BXH", "suggestedRep": 71, "fmRep": 29, "source": "https://fminside.net/clubs/2000483919-b-ho-chi-minh-city", "note": "FM name B. Ho Chi Minh City; ex-Becamex Binh Duong (5627025 empty shell)" },
+      { "key": "hpf", "name": "Hai Phong", "fmClubId": 5627098, "shortName": "HPF", "suggestedRep": 70, "fmRep": 24, "source": "https://fminside.net/clubs/5627098-hai-phong" },
+      { "key": "nbh", "name": "Ninh Binh", "fmClubId": 23022461, "shortName": "NBH", "suggestedRep": 69, "fmRep": null, "source": "https://sortitoutsi.net/football-manager-2026/team/23022461/ninh-binh" },
+      { "key": "sln", "name": "Song Lam Nghe An", "fmClubId": 135393, "shortName": "SLNA", "suggestedRep": 68, "fmRep": null, "source": "https://sortitoutsi.net/football-manager-2026/team/135393/song-lam-nghe-an" },
+      { "key": "tho", "name": "Thanh Hoa", "fmClubId": 5627023, "shortName": "THO", "suggestedRep": 67, "fmRep": null, "source": "https://sortitoutsi.net/football-manager-2026/team/5627023/thanh-hoa" },
+      { "key": "dna", "name": "Da Nang", "fmClubId": 5622889, "shortName": "DNA", "suggestedRep": 66, "fmRep": null, "source": "https://sortitoutsi.net/football-manager-2026/team/5622889/da-nang" },
+      { "key": "hlt", "name": "Hong Linh Ha Tinh", "fmClubId": 97207961, "shortName": "HLHT", "suggestedRep": 65, "fmRep": 21, "source": "https://fminside.net/clubs/97207961-hong-linh-ha-tinh" },
+      { "key": "hag", "name": "Hoang Anh Gia Lai", "fmClubId": 5627026, "shortName": "HAGL", "suggestedRep": 64, "fmRep": null, "source": "https://sortitoutsi.net/football-manager-2026/team/5627026/hoang-anh-gia-lai" },
+      { "key": "pvc", "name": "PVF Cong An Nhan Dan", "fmClubId": 97207974, "shortName": "PVC", "suggestedRep": 63, "fmRep": 9, "source": "https://fminside.net/clubs/97207974-pvf", "note": "SIOTI V.League 1 listing; FMInside still League 2A as PVF — verify against FMTU if squad empty" }
+    ]
+  },
+
+  "idn": {
+    "label": "Indonesia Liga 1 / BRI Liga 1 / Indonesian Super League (FM26)",
+    "leagueId": "idn",
+    "competitionId": 41004312,
+    "count": 18,
+    "clubs": [
+      { "key": "psb", "name": "Persib Bandung", "fmClubId": 116140, "shortName": "PSB", "suggestedRep": 78, "fmRep": 42, "source": "https://fminside.net/clubs/116140-persib" },
+      { "key": "psj", "name": "Persija Jakarta", "fmClubId": 116144, "shortName": "PSJ", "suggestedRep": 77, "fmRep": 40, "source": "https://fminside.net/clubs/116144-persija" },
+      { "key": "bor", "name": "Borneo FC Samarinda", "fmClubId": 41021352, "shortName": "BOR", "suggestedRep": 74, "fmRep": 42, "source": "https://fminside.net/clubs/41021352-borneo" },
+      { "key": "bli", "name": "Bali United FC", "fmClubId": 7742801, "shortName": "BLI", "suggestedRep": 73, "fmRep": 41, "source": "https://fminside.net/clubs/7742801-bali-united" },
+      { "key": "psy", "name": "Persebaya Surabaya", "fmClubId": 116145, "shortName": "PSY", "suggestedRep": 73, "fmRep": 41, "source": "https://fminside.net/clubs/116145-persebaya" },
+      { "key": "dwa", "name": "Dewa United Banten FC", "fmClubId": 2000090667, "shortName": "DWA", "suggestedRep": 72, "fmRep": 40, "source": "https://fminside.net/clubs/2000090667-dewa-united" },
+      { "key": "are", "name": "Arema FC", "fmClubId": 5622736, "shortName": "ARE", "suggestedRep": 71, "fmRep": 39, "source": "https://fminside.net/clubs/5622736-arema" },
+      { "key": "psm", "name": "PSM Makassar", "fmClubId": 135494, "shortName": "PSM", "suggestedRep": 70, "fmRep": null, "source": "https://sortitoutsi.net/football-manager-2026/team/135494/psm-makassar" },
+      { "key": "pst", "name": "Persita Tangerang", "fmClubId": 5622746, "shortName": "PST", "suggestedRep": 69, "fmRep": 38, "source": "https://fminside.net/clubs/5622746-persita" },
+      { "key": "psk", "name": "Persik Kediri", "fmClubId": 5622879, "shortName": "PSK", "suggestedRep": 69, "fmRep": 38, "source": "https://fminside.net/clubs/5622879-persik" },
+      { "key": "pso", "name": "Persis Solo", "fmClubId": 5622862, "shortName": "PSO", "suggestedRep": 69, "fmRep": null, "source": "https://sortitoutsi.net/football-manager-2026/team/5622862/persis-solo" },
+      { "key": "mdu", "name": "Madura United FC", "fmClubId": 41051597, "shortName": "MDU", "suggestedRep": 68, "fmRep": 38, "source": "https://fminside.net/clubs/41051597-madura-united" },
+      { "key": "bhy", "name": "Bhayangkara Presisi Lampung FC", "fmClubId": 41053239, "shortName": "BHY", "suggestedRep": 68, "fmRep": 38, "source": "https://fminside.net/clubs/41053239-bhayangkara" },
+      { "key": "spd", "name": "Semen Padang FC", "fmClubId": 135534, "shortName": "SPD", "suggestedRep": 67, "fmRep": 38, "source": "https://fminside.net/clubs/135534-semen-padang" },
+      { "key": "pim", "name": "PSIM Yogyakarta", "fmClubId": 135500, "shortName": "PIM", "suggestedRep": 67, "fmRep": 38, "source": "https://fminside.net/clubs/135500-psim" },
+      { "key": "pbs", "name": "PSBS Biak", "fmClubId": 41001022, "shortName": "PBS", "suggestedRep": 66, "fmRep": 36, "source": "https://fminside.net/clubs/41001022-psbs" },
+      { "key": "pjp", "name": "Persijap Jepara", "fmClubId": 5622745, "shortName": "PJP", "suggestedRep": 65, "fmRep": 31, "source": "https://fminside.net/clubs/5622745-persijap" },
+      { "key": "mlu", "name": "Maluku Utara United FC", "fmClubId": 2000273329, "shortName": "MLU", "suggestedRep": 65, "fmRep": 31, "source": "https://fminside.net/clubs/2000273329-malut-utd", "note": "FM name Malut Utd" }
+    ]
+  },
+
+  "mys": {
+    "label": "Malaysia Super League (FM26)",
+    "leagueId": "mys",
+    "competitionId": 5624536,
+    "count": 13,
+    "clubs": [
+      { "key": "jdt", "name": "Johor Darul Ta'zim FC", "fmClubId": 23195015, "shortName": "JDT", "suggestedRep": 80, "fmRep": 41, "source": "https://fminside.net/clubs/23195015-johor-dt" },
+      { "key": "slg", "name": "Selangor FC", "fmClubId": 106694, "shortName": "SLG", "suggestedRep": 72, "fmRep": 34, "source": "https://fminside.net/clubs/106694-selangor", "note": "Key slg — sel taken by FC Seoul" },
+      { "key": "sab", "name": "Sabah FC", "fmClubId": 106696, "shortName": "SAB", "suggestedRep": 69, "fmRep": 31, "source": "https://fminside.net/clubs/106696-sabah" },
+      { "key": "trg", "name": "Terengganu FC", "fmClubId": 135368, "shortName": "TRG", "suggestedRep": 68, "fmRep": 30, "source": "https://fminside.net/clubs/135368-terengganu" },
+      { "key": "kuc", "name": "Kuching City FC", "fmClubId": 23396078, "shortName": "KUC", "suggestedRep": 67, "fmRep": 29, "source": "https://fminside.net/clubs/23396078-kuching" },
+      { "key": "klc", "name": "Kuala Lumpur City FC", "fmClubId": 135351, "shortName": "KLC", "suggestedRep": 67, "fmRep": null, "source": "https://sortitoutsi.net/football-manager-2026/team/135351/kuala-lumpur-city-fc" },
+      { "key": "dpm", "name": "Duli Pengiran Muda Mahkota FC", "fmClubId": 5626771, "shortName": "DPMM", "suggestedRep": 66, "fmRep": 26, "source": "https://fminside.net/clubs/5626771-dpmm", "note": "Brunei club in MSL; FM nation Malaysia" },
+      { "key": "png", "name": "Penang FC", "fmClubId": 1101511, "shortName": "PNG", "suggestedRep": 65, "fmRep": 25, "source": "https://fminside.net/clubs/1101511-penang" },
+      { "key": "pdr", "name": "Polis Di Raja Malaysia FC", "fmClubId": 5623370, "shortName": "PDRM", "suggestedRep": 64, "fmRep": 27, "source": "https://fminside.net/clubs/5623370-pdrm" },
+      { "key": "ngs", "name": "Negeri Sembilan FC", "fmClubId": 135362, "shortName": "NGS", "suggestedRep": 64, "fmRep": null, "source": "https://sortitoutsi.net/football-manager-2026/team/135362/negeri-sembilan-fc" },
+      { "key": "mlk", "name": "Melaka FC", "fmClubId": 135356, "shortName": "MLK", "suggestedRep": 63, "fmRep": 24, "source": "https://fminside.net/clubs/135356-melaka" },
+      { "key": "klw", "name": "Kelantan The Real Warriors FC", "fmClubId": 23502547, "shortName": "KLW", "suggestedRep": 63, "fmRep": 24, "source": "https://fminside.net/clubs/23502547-real-warriors", "note": "FM name Real Warriors; not legacy Kelantan 135371" },
+      { "key": "img", "name": "Imigresen FC", "fmClubId": 23501107, "shortName": "IMG", "suggestedRep": 62, "fmRep": 23, "source": "https://fminside.net/clubs/23501107-imigresen" }
+    ]
+  },
+
+  "sgp": {
+    "label": "Singapore Premier League / SFL Premier League (FM26)",
+    "leagueId": "sgp",
+    "count": 8,
+    "note": "League is small (~8 clubs in FM26). Full set that exists in FM26.2 / SIOTI below.",
+    "clubs": [
+      { "key": "lcs", "name": "Lion City Sailors FC", "fmClubId": 23501219, "shortName": "LCS", "suggestedRep": 74, "fmRep": 35, "source": "https://fminside.net/clubs/23501219-lc-sailors" },
+      { "key": "tmp", "name": "Tampines Rovers FC", "fmClubId": 1609, "shortName": "TMP", "suggestedRep": 68, "fmRep": null, "source": "https://sortitoutsi.net/football-manager-2026/team/1609/tampines-rovers-fc" },
+      { "key": "gey", "name": "Geylang International FC", "fmClubId": 5395665, "shortName": "GEY", "suggestedRep": 66, "fmRep": 27, "source": "https://fminside.net/clubs/5395665-geylang-int" },
+      { "key": "hgu", "name": "Hougang United FC", "fmClubId": 23136391, "shortName": "HGU", "suggestedRep": 65, "fmRep": null, "source": "https://sortitoutsi.net/football-manager-2026/team/23136391/hougang-united-fc" },
+      { "key": "blk", "name": "Balestier Khalsa FC", "fmClubId": 7800516, "shortName": "BLK", "suggestedRep": 64, "fmRep": 24, "source": "https://fminside.net/clubs/7800516-balestier" },
+      { "key": "tpu", "name": "Tanjong Pagar United FC", "fmClubId": 116303, "shortName": "TPU", "suggestedRep": 63, "fmRep": 19, "source": "https://fminside.net/clubs/116303-tanjong-pagar" },
+      { "key": "axs", "name": "Albirex Niigata (S)", "fmClubId": 1000037, "shortName": "AXS", "suggestedRep": 65, "fmRep": null, "source": "https://sortitoutsi.net/football-manager-2026/team/1000037/albirex-niigata-singapore-fc", "note": "Key axs — nig/alb taken by Japan Albirex Niigata / Athletic Bilbao" },
+      { "key": "yln", "name": "Young Lions", "fmClubId": 7800917, "shortName": "YLN", "suggestedRep": 60, "fmRep": null, "source": "https://sortitoutsi.net/football-manager-2026/team/7800917/young-lions" }
+    ]
+  },
+
+  "sau": {
+    "label": "Saudi Pro League 2025/26 (FM26 Saudi Premier Division)",
+    "leagueId": "sau",
+    "competitionId": 7920263,
+    "count": 18,
+    "clubs": [
+      { "key": "hil", "name": "Al-Hilal", "fmClubId": 102852, "shortName": "HIL", "suggestedRep": 94, "fmRep": 71, "source": "https://fminside.net/clubs/102852-al-hilal" },
+      { "key": "nas", "name": "Al-Nassr", "fmClubId": 102862, "shortName": "NAS", "suggestedRep": 92, "fmRep": 64, "source": "https://fminside.net/clubs/102862-al-nassr" },
+      { "key": "itt", "name": "Al-Ittihad", "fmClubId": 106063, "shortName": "ITT", "suggestedRep": 91, "fmRep": 66, "source": "https://fminside.net/clubs/106063-al-ittihad" },
+      { "key": "ahl", "name": "Al-Ahli", "fmClubId": 102850, "shortName": "AHL", "suggestedRep": 90, "fmRep": 61, "source": "https://fminside.net/clubs/102850-al-ahli", "note": "Jeddah; do NOT use Qatar Al-Ahli 135410" },
+      { "key": "qad", "name": "Al-Qadsiah", "fmClubId": 1104149, "shortName": "QAD", "suggestedRep": 86, "fmRep": 49, "source": "https://fminside.net/clubs/1104149-al-qadsiah" },
+      { "key": "neo", "name": "Neom SC", "fmClubId": 2000326380, "shortName": "NEO", "suggestedRep": 84, "fmRep": 44, "source": "https://fminside.net/clubs/2000326380-neom-sc", "note": "Promoted 2025/26" },
+      { "key": "shb", "name": "Al-Shabab", "fmClubId": 1535, "shortName": "SHB", "suggestedRep": 83, "fmRep": 54, "source": "https://fminside.net/clubs/1535-al-shabab" },
+      { "key": "taa", "name": "Al-Taawoun", "fmClubId": 7920352, "shortName": "TAA", "suggestedRep": 82, "fmRep": 54, "source": "https://fminside.net/clubs/7920352-al-taawoun" },
+      { "key": "etf", "name": "Al-Ettifaq", "fmClubId": 135427, "shortName": "ETF", "suggestedRep": 80, "fmRep": 51, "source": "https://fminside.net/clubs/135427-al-ettifaq" },
+      { "key": "fat", "name": "Al-Fateh", "fmClubId": 7920359, "shortName": "FAT", "suggestedRep": 78, "fmRep": 51, "source": "https://fminside.net/clubs/7920359-al-fateh" },
+      { "key": "fay", "name": "Al-Fayha", "fmClubId": 7920365, "shortName": "FAY", "suggestedRep": 76, "fmRep": 48, "source": "https://fminside.net/clubs/7920365-al-fayha" },
+      { "key": "khj", "name": "Al-Khaleej", "fmClubId": 7920260, "shortName": "KHJ", "suggestedRep": 75, "fmRep": 45, "source": "https://fminside.net/clubs/7920260-al-khaleej" },
+      { "key": "dam", "name": "Damac", "fmClubId": 7920502, "shortName": "DAM", "suggestedRep": 74, "fmRep": 46, "source": "https://fminside.net/clubs/7920502-damac" },
+      { "key": "haz", "name": "Al-Hazem", "fmClubId": 7920356, "shortName": "HAZ", "suggestedRep": 74, "fmRep": 47, "source": "https://fminside.net/clubs/7920356-al-hazem", "note": "Promoted 2025/26" },
+      { "key": "kho", "name": "Al-Kholood", "fmClubId": 1031631, "shortName": "KHO", "suggestedRep": 73, "fmRep": 44, "source": "https://fminside.net/clubs/1031631-al-kholood" },
+      { "key": "riy", "name": "Al-Riyadh", "fmClubId": 135423, "shortName": "RIY", "suggestedRep": 72, "fmRep": 44, "source": "https://fminside.net/clubs/135423-al-riyadh" },
+      { "key": "okh", "name": "Al-Okhdood", "fmClubId": 7920489, "shortName": "OKH", "suggestedRep": 71, "fmRep": 44, "source": "https://fminside.net/clubs/7920489-al-okhdood" },
+      { "key": "njm", "name": "Al-Najmah", "fmClubId": 135425, "shortName": "NJM", "suggestedRep": 70, "fmRep": 44, "source": "https://fminside.net/clubs/135425-al-najmah", "note": "Promoted 2025/26; SIOTI Al-Najmah" }
+    ]
+  }
+}

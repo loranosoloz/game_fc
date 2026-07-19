@@ -1,0 +1,676 @@
+FM26 Team Instructions: Complete Breakdown | FM Scout
+
+Search
+
+Search fmscout.com
+
+On FM Scout you can chat about Football Manager in real time since 2011. Here are 10 reasons to join!
+
+Football Manager 26 has completely redesigned how tactics work. Team Instructions are no longer a simple list of settings - they're now organized by context, split between possession phases, and tied to a revolutionary dual formation system. This guide explains every team instruction in FM26, how they work together, and how to build tactics that actually match what you see in real football. Whether you're new to the game or a veteran adjusting to the changes, this is your complete reference.
+
+What you'll learn:
+
+- How the new dual formation system works
+- Every In Possession and Out of Possession instruction explained
+- Which instructions work together (and which conflict)
+- How to convert your FM24 tactics to FM26
+- Complete tactical examples for different playing styles
+
+This is a comprehensive guide designed for both beginners and experienced players. Each instruction is explained in simple terms, with clear examples of when to use it and what player attributes you need. Use the table of contents below to jump to any section. Guide Contents:
+
+1. Introduction: What Changed in FM26
+2. Understanding the New System
+3. In Possession Instructions
+4. Out of Possession Instructions
+5. Phase Breakdown Reference
+6. Instruction Interactions
+7. Common Mistakes to Avoid
+8. Tactical Examples
+9. Quick Reference: FM24 to FM26 Conversion
+
+---
+
+## What Changed in FM26
+
+Football Manager 26 introduces the biggest tactical overhaul in the game's history. Team Instructions have been completely redesigned to match how modern football actually works.
+
+### The Three Major Changes:
+
+1. Dual Formation System - You now set separate formations for In Possession and Out of Possession. Your team automatically switches between these formations based on whether you have the ball.
+2. Context-Sensitive Instructions - Instructions are organized by the phase of play they affect. In Possession instructions appear in different views (Overview, Buildup, Progression, Final Third) based on which area of the pitch you are focusing on.
+3. Visual Feedback - The new Visualizer shows you exactly how your instructions affect player positioning in each third of the pitch. When you change an instruction, you see the impact immediately.
+
+### Why These Changes Matter:
+
+Modern football teams defend in one shape and attack in another. Think of how Manchester City defends in a compact 4-4-2 but attacks with full-backs pushing into midfield, creating a 2-3-5 shape. FM26 finally lets you replicate this reality. The old system forced you to use workarounds and player instructions to achieve what top teams do naturally. The new system makes it simple and clear.
+
+> For a complete overview of all FM26 changes, see our Football Manager 2026 new features guide.
+
+---
+
+## Understanding the New System
+
+### How Dual Formations Work
+
+Your team now has two formations:
+
+- In Possession Formation - How your team is positioned when you have the ball
+- Out of Possession Formation - How your team is positioned when the opponent has the ball
+
+The game automatically switches between these formations based on ball possession. Both formations use the same 11 players, but each player can have different roles in each formation. For example, your left-back might be a Full-Back (Support) when defending but push forward as a Wing-Back (Attack) when you have the ball.
+
+> The dual formation system fundamentally changes how you build tactics. For a detailed comparison with FM24, check our FM24 vs FM26 comparison guide.
+
+### Understanding Phases and Pitch Areas
+
+FM26 organizes instructions based on where and when they matter.
+
+#### In Possession Phases
+
+- Overview - See all your In Possession instructions at once
+- Buildup - Controls how you start attacks from deep positions (goalkeeper distribution, building from the back)
+- Progression - Controls how you move the ball through midfield
+- Final Third - Controls how you create and finish chances
+
+#### Out of Possession Phases
+
+- Overview - See all your Out of Possession instructions at once
+- High Press - Instructions for when you press high up the pitch (opponent's half)
+- Mid Block - Instructions for when you defend around the halfway line
+- Low Block - Instructions for when you defend deep in your own half
+
+The system automatically shows you only the instructions relevant to each phase. This prevents confusion and keeps your tactical screen clean.
+
+### The Visualizer
+
+The Visualizer is the green pitch display on the left side of your tactics screen. It shows your formation in three views: Defensive Third, Middle Third, and Final Third.
+
+As you change instructions, watch the Visualizer. You will see players moving into new positions, highlighted zones showing affected areas, and movement arrows indicating runs. This helps you spot problems before you play a match.
+
+### Key Principle: Context Over Complexity
+
+The old FM system gave you every instruction all at once. FM26 shows you instructions only when they are relevant. When viewing your Final Third, you see instructions about crossing and shooting. When viewing your Buildup phase, you see instructions about goalkeeper distribution. This context-sensitive approach makes tactics easier to understand and build, even for beginners.
+
+---
+
+## In Possession Instructions
+
+These instructions control what your team does when you have the ball.
+
+### Passing Directness
+
+Appears in: Overview Options: Much Shorter / Shorter / Balanced / More Direct / Much More Direct
+
+Controls the length of your passes and how quickly you try to get the ball forward.
+
+- Much Shorter / Shorter - Many short passes. Players take extra touches. Good for possession-based styles.
+- Balanced - Mix of short and longer passes based on situation.
+- More Direct / Much More Direct - Longer passes to get the ball forward quickly. Good for counter-attacking.
+
+Player Requirements: Shorter passing needs players with good passing, first touch, and composure (13+). More Direct passing needs forwards who can win headers or hold up the ball.
+
+### Tempo
+
+Appears in: Overview Options: Lower / Standard / Higher
+
+Controls how quickly your team moves the ball and makes decisions.
+
+- Lower - Players take more time on the ball. Slower build-up. Good for controlling the game.
+- Higher - Quick passing and decision-making. Fast transitions.
+
+Important: Higher tempo uses more stamina. Your players will tire faster. Works Well With: Lower tempo + shorter passing = patient possession. Higher tempo + more direct = fast counter-attacking.
+
+### Time Wasting
+
+Appears in: Overview Options: Less Often / Standard / More Often
+
+Controls whether your team actively wastes time when winning. Primarily affects the final 15-20 minutes when you are ahead.
+
+### Attacking Transition
+
+Appears in: Overview Options: Counter-Attack / Standard / Patient Build-Up
+
+Controls what happens immediately after you win the ball.
+
+- Counter-Attack - Players immediately look to attack. Fast transitions. Forward runs triggered instantly.
+- Patient Build-Up - Players slow down after winning the ball. Reorganize before attacking.
+
+Use Counter-Attack When: You have fast forwards (pace 14+). You want to catch opponents before they recover shape. Works best with More Direct passing and Higher tempo. Use Patient Build-Up When: You want to maintain possession. Your team lacks pace. Combined with Shorter passing and Lower tempo.
+
+### Attacking Width
+
+Appears in: Overview Options: Much Narrower / Narrower / Standard / Wider / Much Wider
+
+Controls how spread out your team is when attacking.
+
+- Narrower - Players stay central. Good for playing through the center.
+- Wider - Players spread across the pitch. Good for wing play and crossing.
+
+Match to Your Formation: Formations with wingers work with Wider. Formations with inside forwards work with Narrower.
+
+### Creative Freedom
+
+Appears in: Overview Options: More Disciplined / Balanced / More Expressive
+
+Controls how much freedom players have to take risks and try creative actions.
+
+- More Disciplined - Players stick to roles. Less risk-taking. Safer passing.
+- More Expressive - Players encouraged to take risks. More dribbling and creative passes.
+
+Critical: More Expressive only works if your players have high flair, creativity, and dribbling (14+). Average players will just give the ball away.
+
+### Play for Set Pieces
+
+Appears in: Overview Options: Keep Ball in Play / Standard
+
+Controls whether your team tries to win set pieces or keeps possession.
+
+- Keep Ball in Play - Avoid putting ball out. Good when winning and controlling the game.
+- Standard - Normal play. Will try to win corners and free kicks.
+
+### Build-Up Strategy
+
+Appears in: Buildup Options: Play Through Press / Mixed / Direct
+
+Controls your strategy when building from the back, especially against pressing opponents.
+
+- Play Through Press - Pass through opponent pressure. Players drop deep to receive.
+- Direct - Bypass pressure with long balls.
+
+Player Requirements: Play Through Press requires defenders with good passing, composure, and first touch (13+). If your center-backs have passing below 12, they will struggle.
+
+### Goal Kicks
+
+Appears in: Buildup Options: Short / Mixed / Long
+
+Controls how your goalkeeper takes goal kicks.
+
+- Short - Goalkeeper plays short to defenders. Starts attacks from the back.
+- Long - Goalkeeper kicks long to forwards or midfielders.
+
+Interaction: If opponents use "Short Goalkeeper Distribution: Yes" in High Press, they will press your short goal kicks aggressively.
+
+### GK Distribution (Speed)
+
+Appears in: Buildup Options: Slower / Balanced / Faster
+
+Controls how quickly your goalkeeper distributes the ball after collecting it.
+
+- Slower - Goalkeeper waits for teammates to get into position.
+- Faster - Goalkeeper distributes immediately. Quick transitions.
+
+### GK Distribution (Target)
+
+Appears in: Buildup Options: Centre-Backs / Full-Backs / Midfielders / Forwards
+
+Controls where your goalkeeper aims when distributing the ball.
+
+Choose based on your build-up strategy and which players are most comfortable receiving under pressure.
+
+### Pass Reception
+
+Appears in: Progression, Final Third Options: Balanced / Overlapped
+
+Controls how players position themselves to receive passes.
+
+- Balanced - Normal receiving positions.
+- Overlapped - Players move into gaps between opponents to receive with more space.
+
+Use Overlapped When: You face tight man-marking. Your players have good movement and positioning (15+).
+
+### Dribbling
+
+Appears in: Progression, Final Third Options: Reduced / Balanced / Encouraged
+
+Controls how often players try to dribble past opponents.
+
+- Reduced - Players pass more, dribble less. Safer approach.
+- Encouraged - Players take on opponents more often.
+
+Use Encouraged When: You have players with high dribbling, flair, and agility (14+). Works against deep-defending teams that are hard to pass through.
+
+### Supporting Runs
+
+Appears in: Progression Options: Both Flanks / One Flank / Balanced
+
+Controls where supporting players make runs to support attacks.
+
+- Both Flanks - Supporting runs from both wings.
+- One Flank - Focus runs on one side. Creates overloads.
+
+Combine With: Progress Through set to the same side for concentrated attacks down one flank.
+
+### Progress Through
+
+Appears in: Progression Options: Left / Balanced / Right
+
+Controls which side of the pitch your team prefers to progress through.
+
+Focus on one side if you have an exceptional player on that flank or if the opponent has weakness there.
+
+### Patience
+
+Appears in: Final Third Options: Work Ball Into Box / Balanced / Less Often
+
+Controls how patient your team is in the attacking third.
+
+- Work Ball Into Box - Very patient. Pass until clear chance appears. Avoids long shots and early crosses.
+- Less Often - Shoot earlier and cross sooner.
+
+Use Work Ball Into Box When: You face deep-defending opponents. You have technical players. Works with Shorter passing and Lower tempo.
+
+### Shots from Distance
+
+Appears in: Final Third Options: Reduced / Balanced / Encouraged
+
+Controls how often players attempt shots from outside the penalty area.
+
+Use Encouraged When: You have midfielders with high long shot attributes (15+). You face opponents who defend very deep. Can force defenders to close down, creating space. Attribute Check: Players need Long Shots 13+ to be effective. Below that, they waste possession.
+
+### Crossing Style
+
+Appears in: Final Third Options: Low Crosses / Balanced / High Crosses
+
+Controls the type of crosses your team delivers.
+
+- Low Crosses - Driven crosses along the ground. Faster and harder to defend.
+- High Crosses - Lofted crosses into the box. Target tall forwards.
+
+Player Requirements: High Crosses need forwards with Heading 16+, Jumping Reach 14+, and Strength 13+. Otherwise, use Low Crosses.
+
+---
+
+## Out of Possession Instructions
+
+These instructions control how your team defends when the opponent has the ball.
+
+### Line of Engagement
+
+Appears in: Overview Options: High Press / Mid Block / Low Block
+
+Controls where on the pitch your team starts defending and pressing. This is the most important defensive instruction.
+
+- High Press - Press high up the pitch in the opponent's half.
+- Mid Block - Defend around the halfway line.
+- Low Block - Defend deep in your own half.
+
+Player Requirements: High Press needs players with high work rate and stamina (14+). Low Block is safer with slower defenders. Stamina Warning: High Press is exhausting. Rotate heavily.
+
+### Defensive Line
+
+Appears in: Overview Options: Deeper / Standard / Higher / Much Higher
+
+Controls how high up the pitch your defensive line sits.
+
+- Deeper - Defenders sit deep, closer to your goal.
+- Higher / Much Higher - Defenders push up. Compresses space.
+
+Critical: High Press must pair with Higher Defensive Line. Low Block must pair with Deeper Defensive Line. Mismatching creates huge gaps. Speed Matters: If your defenders have Pace below 12, using Higher is risky. Fast opponents will run in behind.
+
+### Defensive Line Behaviour
+
+Appears in: Overview Options: Balanced / Offside Trap / Step Up
+
+Controls how your defensive line moves and responds to attacks.
+
+- Balanced - Standard behavior.
+- Offside Trap - Defenders aggressively step up to catch attackers offside. High-risk, high-reward.
+- Step Up - Defenders push forward to maintain compactness without the risk of offside trap.
+
+Use Offside Trap When: You have defenders with high Anticipation, Positioning, and Teamwork (14+). You use Higher Defensive Line and High Press. Not recommended for beginners.
+
+### Trigger Press
+
+Appears in: Overview Options: Less Often / Balanced / More Often
+
+Controls how frequently your team actively presses the ball carrier.
+
+- Less Often - Passive pressing. Hold shape.
+- More Often - Aggressive pressing. Close down immediately.
+
+Stamina Impact: More Often drains stamina rapidly. Rotate players heavily.
+
+### Defensive Transition
+
+Appears in: Overview Options: Counter-Press / Standard / Regroup
+
+Controls what happens immediately after you lose the ball.
+
+- Counter-Press - Players immediately press to win the ball back within 5-6 seconds. This is Gegenpressing.
+- Regroup - Players drop into defensive shape. Prioritizes organization.
+
+Use Counter-Press When: You have exceptional fitness (stamina 14+, work rate 14+). You play with high possession and lose the ball in advanced positions. This is the key instruction for Klopp-style play. Use Regroup When: Your team lacks fitness. You face fast attackers who punish disorganization. You use Low Block. Energy Cost: Counter-Press is extremely demanding. You need squad depth.
+
+### Tackling
+
+Appears in: Overview Options: Ease Off / Standard / Aggressive
+
+Controls how hard your players tackle.
+
+- Aggressive - Harder tackling. More fouls but more ball wins.
+- Ease Off - Careful tackling. Fewer fouls and cards.
+
+Discipline Warning: Aggressive tackling increases yellow and red card risk, especially with high Aggression players (16+).
+
+### Pressing Trap
+
+Appears in: High Press, Mid Block, Low Block Options: Balanced / Active
+
+Controls whether you create coordinated pressing traps.
+
+- Balanced - Standard pressing.
+- Active - Players coordinate to surround the ball carrier and force mistakes.
+
+Use Active When: You have intelligent players with high teamwork, anticipation, and positioning (13+). Most effective in wide areas where you can trap opponents against the touchline.
+
+### Short Goalkeeper Distribution
+
+Appears in: High Press Options: Yes / No
+
+Controls whether you press the opponent's goalkeeper when they have the ball.
+
+- Yes - Forwards press the goalkeeper. Prevents them from playing short.
+- No - Forwards hold position.
+
+Use Yes When: Combined with High Press. Forces long goal kicks from opponents. You have fast forwards with good work rate.
+
+### Cross Engagement
+
+Appears in: High Press, Mid Block, Low Block Options: Hold Position / Balanced / Contest
+
+Controls how aggressively you defend crosses.
+
+- Hold Position - Defenders maintain positions rather than rushing to contest.
+- Contest - Defenders aggressively close down crossing opportunities.
+
+Use Contest When: You face opponents who cross frequently. You have quick defenders. Use Hold Position when defending deep to maintain shape.
+
+---
+
+## Phase Breakdown Reference
+
+### In Possession Phases
+
+Overview Phase includes:
+
+- Passing Directness
+- Tempo
+- Time Wasting
+- Attacking Transition
+- Attacking Width
+- Creative Freedom
+- Play for Set Pieces
+
+Buildup Phase includes:
+
+- Build-Up Strategy
+- Goal Kicks
+- GK Distribution (Speed)
+- GK Distribution (Target)
+
+Progression Phase includes:
+
+- Pass Reception
+- Dribbling
+- Supporting Runs
+- Progress Through
+
+Final Third Phase includes:
+
+- Dribbling
+- Patience
+- Shots from Distance
+- Crossing Style
+- Pass Reception
+
+### Out of Possession Phases
+
+Overview Phase includes:
+
+- Line of Engagement
+- Defensive Line
+- Defensive Line Behaviour
+- Trigger Press
+- Defensive Transition
+- Tackling
+
+High Press Phase includes:
+
+- Pressing Trap
+- Short Goalkeeper Distribution
+
+Mid Block Phase includes:
+
+- Cross Engagement
+- Pressing Trap
+
+Low Block Phase includes:
+
+- Cross Engagement
+- Pressing Trap
+
+---
+
+## Instruction Interactions
+
+### Instructions That Work Well Together
+
+Possession Style:
+
+- Shorter Passing + Lower Tempo + Play Through Press + Work Ball Into Box + Reduced Shots from Distance
+- Why: Every instruction supports patient possession football
+
+Counter-Attacking Style:
+
+- More Direct Passing + Higher Tempo + Counter-Attack Transition + Low Block + Regroup + Less Often Patience
+- Why: Defend deep and organized, explode forward quickly when winning the ball
+
+High Pressing / Gegenpressing:
+
+- High Press + Higher Defensive Line + More Often Trigger Press + Counter-Press + Active Pressing Traps + Counter-Attack Transition
+- Why: Press high, counter-press when losing the ball, attack quickly when winning it back
+- Warning: Most physically demanding style. Needs exceptional fitness across the squad.
+
+### Conflicting Instructions to Avoid
+
+#### Conflict 1: Direct Passing + Work Ball Into Box
+
+Problem: Direct tells players to go forward quickly. Work Ball Into Box tells them to be patient. These contradict each other. Fix: Use Direct with Less Often patience, or Shorter with Work Ball Into Box.
+
+#### Conflict 2: High Press + Deep Defensive Line
+
+Problem: Creates huge gap between midfield and defense. Fix: High Press must pair with Higher Defensive Line. Low Block must pair with Deeper Defensive Line.
+
+#### Conflict 3: Counter-Press + Low Block + Regroup
+
+Problem: Counter-Press requires players high up to press. Low Block + Regroup tells them to drop deep. Fix: Counter-Press works with High Press and Higher Line. Regroup works with Low Block and Deeper Line.
+
+#### Conflict 4: Play Through Press + Long Goal Kicks
+
+Problem: Strategy is ignored every goal kick. Fix: Play Through Press needs Short Goal Kicks. Direct strategy needs Long Goal Kicks.
+
+#### Conflict 5: More Expressive + Low Quality Players
+
+Problem: Players try fancy skills they cannot execute. Constant turnovers. Fix: Only use More Expressive with Flair 14+, Dribbling 14+, Creativity 14+. Otherwise use Balanced.
+
+### The Golden Rule
+
+Every instruction should support your overall tactical approach. Ask yourself: "What am I trying to do?" Then make sure every instruction supports that goal. If you see conflicting ideas (patient + direct, high press + deep defense), you have a problem.
+
+---
+
+## Common Mistakes to Avoid
+
+### 1. Using "Balanced" for Everything
+
+Problem: Creates a generic team with no identity. Fix: Choose a clear approach (possession, counter-attack, high press) and set instructions to support it.
+
+### 2. Copying Instructions Without Checking Player Attributes
+
+Problem: Instructions that work for someone else fail for you because your players lack the necessary attributes. Fix: Before using High Press, check Work Rate and Stamina (14+). Before using Play Through Press, check defender Passing and Composure (13+). Before using High Crosses, check striker Heading (16+).
+
+### 3. Ignoring the Visualizer
+
+Problem: Creating gaps in formation without realizing it. Fix: Watch the Visualizer after setting each instruction. Look for gaps, overcrowding, or poor positioning.
+
+### 4. Pressing High With Slow Defenders
+
+Problem: Fast opponents run in behind constantly. Fix: High Press + Higher Defensive Line needs defenders with minimum Pace 12, Acceleration 11. If your defenders are slow, use Mid Block or Low Block instead.
+
+### 5. Over-Pressing Without Stamina
+
+Problem: Team exhausted by 60 minutes. Concede late goals. Fix: High Press needs team average Stamina 13+. Counter-Press needs 14+. Both together need 15+. If you lack stamina, use Mid Block and Balanced pressing.
+
+### 6. Changing Everything After One Bad Result
+
+Problem: No idea what caused the problem or what fixed it. Fix: Identify the specific problem (conceding from counters, not creating chances, etc.). Change 1-2 instructions to fix that problem. Test. Then evaluate.
+
+---
+
+## Tactical Examples
+
+### Example 1: High Pressing / Gegenpressing (Klopp / Liverpool Style)
+
+Philosophy: Press aggressively high. Win the ball back within 5-6 seconds. Attack quickly with intensity. Formation In Possession: 4-3-3 Formation Out of Possession: 4-3-3 compact Key Instructions: In Possession:
+
+- Passing Directness: Balanced or More Direct
+- Tempo: Higher
+- Attacking Transition: Counter-Attack
+- Attacking Width: Standard
+
+Out of Possession:
+
+- Line of Engagement: High Press
+- Defensive Line: Higher
+- Trigger Press: More Often
+- Defensive Transition: Counter-Press (This is the key)
+- Tackling: Standard or Aggressive
+- Pressing Trap: Active
+- Short Goalkeeper Distribution: Yes
+
+Player Requirements:
+
+- CRITICAL: Entire team needs Work Rate 14+, Stamina 14+, Teamwork 13+
+- Forwards: Pace 14+, pressing ability
+- Center-Backs: Pace 13+, positioning
+- Goalkeeper: Sweeper keeper
+
+How It Works: Press aggressively everywhere. When you lose the ball, counter-press immediately to win it back. When you win it high, attack before opponents organize. Best Against: Possession teams, teams weak under pressure. Warning: Most physically demanding style. Rotate heavily. Expect tiredness by 65-70 minutes.
+
+### Example 2: Counter-Attacking (Mourinho / Simeone Style)
+
+Philosophy: Defend deep and organized. Absorb pressure. Win the ball. Attack quickly with pace. Formation In Possession: 4-4-2 or 5-3-2 Formation Out of Possession: Same, very compact Key Instructions: In Possession:
+
+- Passing Directness: More Direct
+- Tempo: Higher
+- Attacking Transition: Counter-Attack (Critical)
+- Attacking Width: Standard or Narrower
+- Creative Freedom: More Disciplined
+- Time Wasting: More Often (when winning)
+- Build-Up Strategy: Direct
+- Goal Kicks: Long or Mixed
+- Patience: Less Often
+- Shots from Distance: Encouraged
+
+Out of Possession:
+
+- Line of Engagement: Low Block (Critical)
+- Defensive Line: Deeper
+- Trigger Press: Less Often
+- Defensive Transition: Regroup (Critical)
+- Tackling: Standard
+- Cross Engagement: Hold Position
+
+Player Requirements:
+
+- Forwards: Pace 15+, Acceleration 14+, counter-attacking ability
+- Midfielders: Work rate, stamina, tackling (defensive solidity)
+- Defenders: Positioning 14+, Tackling 14+ (pace less important because you defend deep)
+
+How It Works: Defend with 10 players behind the ball. Frustrate opponents. When you win the ball, fast forwards sprint forward. Quick, direct passes create clear chances from few attacks. Best Against: Possession-heavy teams, stronger teams (underdog situations). Key Principle: Defensive discipline more important than attacking quality. One mistake loses the game.
+
+---
+
+## Quick Reference: FM24 to FM26 Conversion
+
+If you have existing FM24 tactics you want to adapt, this conversion table will help. For step-by-step guidance on converting your specific tactics, see our dedicated guide on converting FM24 tactics to FM26.
+
+| FM24 Instruction | FM26 Equivalent | Where to Find It |
+| --- | --- | --- |
+| Play Out of Defence | Build-Up Strategy: Play Through Press + Goal Kicks: Short + GK Distribution: Centre-Backs | In Possession → Buildup |
+| Higher Tempo | Tempo: Higher | In Possession → Overview |
+| More Direct Passing | Passing Directness: More Direct | In Possession → Overview |
+| Shorter Passing | Passing Directness: Shorter | In Possession → Overview |
+| Work Ball Into Box | Patience: Work Ball Into Box | In Possession → Final Third |
+| Hit Early Crosses | Patience: Less Often + Crossing Style: Standard | In Possession → Final Third |
+| Get Stuck In | Tackling: Aggressive | Out of Possession → Overview |
+| Counter | Attacking Transition: Counter-Attack | In Possession → Overview |
+| Counter-Press | Defensive Transition: Counter-Press | Out of Possession → Overview |
+| Higher Defensive Line | Defensive Line: Higher | Out of Possession → Overview |
+| Lower Defensive Line | Defensive Line: Deeper | Out of Possession → Overview |
+| Higher Line of Engagement | Line of Engagement: High Press | Out of Possession → Overview |
+| Prevent Short GK Distribution | Short Goalkeeper Distribution: Yes | Out of Possession → High Press |
+| Use Offside Trap | Defensive Line Behaviour: Offside Trap | Out of Possession → Overview |
+
+### New and Redesigned FM26 Instructions
+
+- Creative Freedom - Controls player expression (replaces old "risk" concept)
+- Pass Reception - Receiving patterns (Balanced vs Overlapped)
+- Progress Through - Which side you progress through (Left/Balanced/Right)
+- Supporting Runs - Where runs come from (Both Flanks/One Flank/Balanced)
+- Time Wasting - Control tempo when winning
+- Play for Set Pieces - Keep ball in play vs winning set pieces
+- GK Distribution (Speed) - How quickly keeper distributes
+- Line of Engagement - High Press/Mid Block/Low Block (clearer than before)
+- Trigger Press - How often to press (More/Balanced/Less Often)
+- Pressing Trap - Coordinated pressing (Active/Balanced)
+- Cross Engagement - How to defend crosses
+
+### Major Conceptual Changes
+
+Dual Formations: You now set separate In Possession and Out of Possession formations. This lets you replicate how real teams attack in one shape and defend in another. Learn more about the tactics overhaul. Context-Sensitive Organization: Instructions appear only in relevant phases. No more overwhelming long lists. Transitions Relocated: Attacking Transition moved to In Possession. Defensive Transition moved to Out of Possession. More logical organization. Player Roles Revamped: Roles work within the dual formation system. Your left-back can be defensive when out of possession but attacking when in possession.
+
+---
+
+## Final Tips
+
+1. Start simple - Set 5-6 core instructions first. Add complexity as you identify problems.
+2. Watch your matches - Do not just simulate. Watch the first 20 minutes and final 20 minutes to see how your tactic performs.
+3. Use the Data Hub - FM26 links it directly to Team Instructions. Check where you create chances, where you concede, and pressing effectiveness.
+4. Match instructions to your squad - The best tactic is useless if your players cannot execute it. Always check attributes.
+5. Give it time - Do not judge after one match. Give 5-10 matches to see trends.
+6. Adapt to opponents - Make smart adjustments:
+7. - Vs high pressing: Shorter passing, Lower Tempo
+- Vs deep defense: Encouraged Shots from Distance, Wider width
+- Vs counter-attacking: Regroup instead of Counter-Press
+- When winning late: Time Wasting More Often
+8. Rotate for high-intensity tactics - If using High Press and Counter-Press, rotate 3-4 players every match.
+9. Don't copy blindly - Understand WHY instructions work together. Adapt to your squad's strengths.
+
+---
+
+## Conclusion
+
+FM26's Team Instructions represent a major evolution in Football Manager tactics. The dual formation system, context-sensitive organization, and visual feedback make tactics more realistic and intuitive than ever.
+
+### Key takeaways:
+
+- Dual formations let you attack and defend in different shapes
+- Instructions are organized by when and where they matter
+- The Visualizer shows you exactly what your instructions do
+- Instructions must work together to support your tactical approach
+- Player attributes determine if instructions will work
+
+Study the instructions. Match them to your players. Watch your matches. Adapt and improve. Welcome to the new era of Football Manager tactics. This guide covers all team instructions in Football Manager 2026 based on pre-release information. Some details may change in the final release.
+
+##### Your content on FM Scout
+
+We are always looking for quality content creators, capable of producing insightful articles. Being published here means more exposure and recognition for you.
+
+Do YOU have what it takes?
+
+###### FMS Chat–
+
+Stam hey, just wanted to let you know that we have a fb style chat for our members. login or sign up to start chatting.
+
+↑

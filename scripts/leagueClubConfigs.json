@@ -1,0 +1,2333 @@
+{
+  "_meta": {
+    "note": "Consolidated club configs for new leagues. Remaps: chp/aty/ceb/stg/yob/gcz/scb/fsr; jpn2 fill vnh/rnf/ehm; kor2=12 confirmed IDs. ASEAN+Saudi scaffold 2026-07-20 from _research_asean_saudi_fm_ids.json; mys=12 (dropped img).",
+    "date": "2026-07-19",
+    "aseanSaudiDate": "2026-07-20"
+  },
+  "jpn": [
+    {
+      "key": "kas",
+      "name": "Kashima Antlers",
+      "id": 1189,
+      "rep": 82,
+      "shortName": "KAS",
+      "color": "#8B0000"
+    },
+    {
+      "key": "rey",
+      "name": "Kashiwa Reysol",
+      "id": 1190,
+      "rep": 80,
+      "shortName": "REY",
+      "color": "#FFD100"
+    },
+    {
+      "key": "kyo",
+      "name": "Kyoto Sanga",
+      "id": 1192,
+      "rep": 78,
+      "shortName": "KYO",
+      "color": "#6B2D5C"
+    },
+    {
+      "key": "san",
+      "name": "Sanfrecce Hiroshima",
+      "id": 1193,
+      "rep": 80,
+      "shortName": "SAN",
+      "color": "#7A003C"
+    },
+    {
+      "key": "vsk",
+      "name": "Vissel Kobe",
+      "id": 106844,
+      "rep": 83,
+      "shortName": "VSK",
+      "color": "#8B0000"
+    },
+    {
+      "key": "mdz",
+      "name": "Machida Zelvia",
+      "id": 788837,
+      "rep": 76,
+      "shortName": "MDZ",
+      "color": "#0033A0"
+    },
+    {
+      "key": "ura",
+      "name": "Urawa Red Diamonds",
+      "id": 1195,
+      "rep": 79,
+      "shortName": "URA",
+      "color": "#E30613"
+    },
+    {
+      "key": "kaw",
+      "name": "Kawasaki Frontale",
+      "id": 107296,
+      "rep": 81,
+      "shortName": "KAW",
+      "color": "#00A0E9"
+    },
+    {
+      "key": "gam",
+      "name": "Gamba Osaka",
+      "id": 1186,
+      "rep": 77,
+      "shortName": "GAM",
+      "color": "#0033A0"
+    },
+    {
+      "key": "cer",
+      "name": "Cerezo Osaka",
+      "id": 1185,
+      "rep": 75,
+      "shortName": "CER",
+      "color": "#E6007E"
+    },
+    {
+      "key": "fct",
+      "name": "FC Tokyo",
+      "id": 107313,
+      "rep": 74,
+      "shortName": "FCT",
+      "color": "#E30613"
+    },
+    {
+      "key": "avi",
+      "name": "Avispa Fukuoka",
+      "id": 1183,
+      "rep": 72,
+      "shortName": "AVI",
+      "color": "#0033A0"
+    },
+    {
+      "key": "fag",
+      "name": "Fagiano Okayama",
+      "id": 786547,
+      "rep": 68,
+      "shortName": "FAG",
+      "color": "#8B0000"
+    },
+    {
+      "key": "ssp",
+      "name": "Shimizu S-Pulse",
+      "id": 1194,
+      "rep": 70,
+      "shortName": "SSP",
+      "color": "#F5A623"
+    },
+    {
+      "key": "yfm",
+      "name": "Yokohama F. Marinos",
+      "id": 1198,
+      "rep": 78,
+      "shortName": "YFM",
+      "color": "#0033A0"
+    },
+    {
+      "key": "ngg",
+      "name": "Nagoya Grampus",
+      "id": 1191,
+      "rep": 73,
+      "shortName": "NGG",
+      "color": "#E30613"
+    },
+    {
+      "key": "tvr",
+      "name": "Tokyo Verdy",
+      "id": 1196,
+      "rep": 69,
+      "shortName": "TVR",
+      "color": "#008C45"
+    },
+    {
+      "key": "jef",
+      "name": "JEF United Chiba",
+      "id": 1187,
+      "rep": 67,
+      "shortName": "JEF",
+      "color": "#004B9C"
+    },
+    {
+      "key": "vvn",
+      "name": "V-Varen Nagasaki",
+      "id": 786559,
+      "rep": 66,
+      "shortName": "VVN",
+      "color": "#F5A623"
+    },
+    {
+      "key": "mit",
+      "name": "Mito HollyHock",
+      "id": 107289,
+      "rep": 64,
+      "shortName": "MIT",
+      "color": "#0033A0"
+    }
+  ],
+  "jpn2": [
+    {
+      "key": "sap",
+      "name": "Hokkaido Consadole Sapporo",
+      "id": 107285,
+      "rep": 68,
+      "shortName": "SAP",
+      "color": "#E30613"
+    },
+    {
+      "key": "vgs",
+      "name": "Vegalta Sendai",
+      "id": 107283,
+      "rep": 67,
+      "shortName": "VGS",
+      "color": "#F5A623"
+    },
+    {
+      "key": "bla",
+      "name": "Blaublitz Akita",
+      "id": 107328,
+      "rep": 61,
+      "shortName": "BLA",
+      "color": "#0033A0"
+    },
+    {
+      "key": "yam",
+      "name": "Montedio Yamagata",
+      "id": 107301,
+      "rep": 64,
+      "shortName": "YAM",
+      "color": "#0033A0"
+    },
+    {
+      "key": "iwk",
+      "name": "Iwaki FC",
+      "id": 792248,
+      "rep": 62,
+      "shortName": "IWK",
+      "color": "#E30613"
+    },
+    {
+      "key": "omi",
+      "name": "Omiya Ardija",
+      "id": 107305,
+      "rep": 66,
+      "shortName": "OMI",
+      "color": "#F5A623"
+    },
+    {
+      "key": "yfc",
+      "name": "Yokohama FC",
+      "id": 7100042,
+      "rep": 70,
+      "shortName": "YFC",
+      "color": "#0033A0"
+    },
+    {
+      "key": "sho",
+      "name": "Shonan Bellmare",
+      "id": 1184,
+      "rep": 69,
+      "shortName": "SHO",
+      "color": "#008C45"
+    },
+    {
+      "key": "kof",
+      "name": "Ventforet Kofu",
+      "id": 107314,
+      "rep": 63,
+      "shortName": "KOF",
+      "color": "#E30613"
+    },
+    {
+      "key": "nig",
+      "name": "Albirex Niigata",
+      "id": 107280,
+      "rep": 68,
+      "shortName": "NIG",
+      "color": "#F5A623"
+    },
+    {
+      "key": "toy",
+      "name": "Kataller Toyama",
+      "id": 107342,
+      "rep": 60,
+      "shortName": "TOY",
+      "color": "#0033A0"
+    },
+    {
+      "key": "jub",
+      "name": "Júbilo Iwata",
+      "id": 1188,
+      "rep": 66,
+      "shortName": "JUB",
+      "color": "#0033A0"
+    },
+    {
+      "key": "fuj",
+      "name": "Fujieda MYFC",
+      "id": 788854,
+      "rep": 60,
+      "shortName": "FUJ",
+      "color": "#008C45"
+    },
+    {
+      "key": "tos",
+      "name": "Tokushima Vortis",
+      "id": 786384,
+      "rep": 65,
+      "shortName": "TOS",
+      "color": "#0033A0"
+    },
+    {
+      "key": "ima",
+      "name": "FC Imabari",
+      "id": 788904,
+      "rep": 60,
+      "shortName": "IMA",
+      "color": "#E30613"
+    },
+    {
+      "key": "sgt",
+      "name": "Sagan Tosu",
+      "id": 107309,
+      "rep": 64,
+      "shortName": "SGT",
+      "color": "#E30613"
+    },
+    {
+      "key": "oit",
+      "name": "Oita Trinita",
+      "id": 107303,
+      "rep": 62,
+      "shortName": "OIT",
+      "color": "#0033A0"
+    },
+    {
+      "key": "vnh",
+      "name": "Vanraure Hachinohe",
+      "id": 775154,
+      "rep": 60,
+      "shortName": "VNH",
+      "color": "#0033A0"
+    },
+    {
+      "key": "rnf",
+      "name": "Renofa Yamaguchi",
+      "id": 775166,
+      "rep": 60,
+      "shortName": "RNF",
+      "color": "#E30613"
+    },
+    {
+      "key": "ehm",
+      "name": "Ehime FC",
+      "id": 776288,
+      "rep": 60,
+      "shortName": "EHM",
+      "color": "#F5A623"
+    }
+  ],
+  "kor": [
+    {
+      "key": "sel",
+      "name": "FC Seoul",
+      "id": 130777,
+      "rep": 78,
+      "shortName": "SEL",
+      "color": "#E30613"
+    },
+    {
+      "key": "uls",
+      "name": "Ulsan HD",
+      "id": 106808,
+      "rep": 82,
+      "shortName": "ULS",
+      "color": "#0033A0"
+    },
+    {
+      "key": "gwn",
+      "name": "Gangwon FC",
+      "id": 66006663,
+      "rep": 74,
+      "shortName": "GWN",
+      "color": "#F5A623"
+    },
+    {
+      "key": "jbk",
+      "name": "Jeonbuk Hyundai Motors",
+      "id": 130776,
+      "rep": 84,
+      "shortName": "JBK",
+      "color": "#008C45"
+    },
+    {
+      "key": "poh",
+      "name": "Pohang Steelers",
+      "id": 106818,
+      "rep": 77,
+      "shortName": "POH",
+      "color": "#E30613"
+    },
+    {
+      "key": "icn",
+      "name": "Incheon United",
+      "id": 5709008,
+      "rep": 72,
+      "shortName": "ICN",
+      "color": "#0033A0"
+    },
+    {
+      "key": "any",
+      "name": "FC Anyang",
+      "id": 66029603,
+      "rep": 68,
+      "shortName": "ANY",
+      "color": "#6B2D5C"
+    },
+    {
+      "key": "jju",
+      "name": "Jeju SK",
+      "id": 106817,
+      "rep": 70,
+      "shortName": "JJU",
+      "color": "#F5A623"
+    },
+    {
+      "key": "djc",
+      "name": "Daejeon Hana Citizen",
+      "id": 130774,
+      "rep": 71,
+      "shortName": "DJC",
+      "color": "#6B2D5C"
+    },
+    {
+      "key": "buc",
+      "name": "Bucheon FC 1995",
+      "id": 66010556,
+      "rep": 67,
+      "shortName": "BUC",
+      "color": "#E30613"
+    },
+    {
+      "key": "gms",
+      "name": "Gimcheon Sangmu",
+      "id": 106809,
+      "rep": 66,
+      "shortName": "GMS",
+      "color": "#E30613"
+    },
+    {
+      "key": "gwj",
+      "name": "Gwangju FC",
+      "id": 66011708,
+      "rep": 69,
+      "shortName": "GWJ",
+      "color": "#F5A623"
+    }
+  ],
+  "kor2": [
+    {
+      "key": "bsi",
+      "name": "Busan IPark",
+      "id": 130775,
+      "rep": 68,
+      "shortName": "BSI",
+      "color": "#E30613"
+    },
+    {
+      "key": "ssb",
+      "name": "Suwon Samsung Bluewings",
+      "id": 106813,
+      "rep": 72,
+      "shortName": "SSB",
+      "color": "#0033A0"
+    },
+    {
+      "key": "dgf",
+      "name": "Daegu FC",
+      "id": 5705626,
+      "rep": 70,
+      "shortName": "DGF",
+      "color": "#0033A0"
+    },
+    {
+      "key": "swf",
+      "name": "Suwon FC",
+      "id": 5707530,
+      "rep": 69,
+      "shortName": "SWF",
+      "color": "#6B2D5C"
+    },
+    {
+      "key": "eel",
+      "name": "Seoul E-Land",
+      "id": 66034891,
+      "rep": 64,
+      "shortName": "EEL",
+      "color": "#E30613"
+    },
+    {
+      "key": "cna",
+      "name": "Chungnam Asan",
+      "id": 136423,
+      "rep": 61,
+      "shortName": "CNA",
+      "color": "#F5A623"
+    },
+    {
+      "key": "gyn",
+      "name": "Gyeongnam FC",
+      "id": 5710867,
+      "rep": 63,
+      "shortName": "GYN",
+      "color": "#E30613"
+    },
+    {
+      "key": "snm",
+      "name": "Seongnam FC",
+      "id": 200373,
+      "rep": 65,
+      "shortName": "SNM",
+      "color": "#000000"
+    },
+    {
+      "key": "chn",
+      "name": "Cheonan City",
+      "id": 66002956,
+      "rep": 60,
+      "shortName": "CHN",
+      "color": "#0033A0"
+    },
+    {
+      "key": "cbj",
+      "name": "Chungbuk Cheongju",
+      "id": 66010583,
+      "rep": 60,
+      "shortName": "CBJ",
+      "color": "#008C45"
+    },
+    {
+      "key": "asn",
+      "name": "Ansan Greeners",
+      "id": 66039783,
+      "rep": 60,
+      "shortName": "ASN",
+      "color": "#008C45"
+    },
+    {
+      "key": "jnd",
+      "name": "Jeonnam Dragons",
+      "id": 106812,
+      "rep": 63,
+      "shortName": "JND",
+      "color": "#F5A623"
+    }
+  ],
+  "bra": [
+    {
+      "key": "fla",
+      "name": "Flamengo",
+      "id": 322,
+      "rep": 90,
+      "shortName": "FLA",
+      "color": "#E30613"
+    },
+    {
+      "key": "plm",
+      "name": "Palmeiras",
+      "id": 329,
+      "rep": 89,
+      "shortName": "PLM",
+      "color": "#008C45"
+    },
+    {
+      "key": "flu",
+      "name": "Fluminense",
+      "id": 323,
+      "rep": 84,
+      "shortName": "FLU",
+      "color": "#8B0000"
+    },
+    {
+      "key": "sao",
+      "name": "São Paulo",
+      "id": 337,
+      "rep": 85,
+      "shortName": "SAO",
+      "color": "#FFFFFF"
+    },
+    {
+      "key": "bah",
+      "name": "Bahia",
+      "id": 315,
+      "rep": 80,
+      "shortName": "BAH",
+      "color": "#0033A0"
+    },
+    {
+      "key": "cap",
+      "name": "Athletico Paranaense",
+      "id": 107206,
+      "rep": 78,
+      "shortName": "CAP",
+      "color": "#E30613"
+    },
+    {
+      "key": "cfc",
+      "name": "Coritiba",
+      "id": 104776,
+      "rep": 74,
+      "shortName": "CFC",
+      "color": "#008C45"
+    },
+    {
+      "key": "cam",
+      "name": "Atlético Mineiro",
+      "id": 314,
+      "rep": 86,
+      "shortName": "CAM",
+      "color": "#000000"
+    },
+    {
+      "key": "rbb",
+      "name": "Red Bull Bragantino",
+      "id": 317,
+      "rep": 79,
+      "shortName": "RBB",
+      "color": "#FFFFFF"
+    },
+    {
+      "key": "vit",
+      "name": "Vitória",
+      "id": 340,
+      "rep": 74,
+      "shortName": "VIT",
+      "color": "#E30613"
+    },
+    {
+      "key": "bot",
+      "name": "Botafogo",
+      "id": 316,
+      "rep": 85,
+      "shortName": "BOT",
+      "color": "#000000"
+    },
+    {
+      "key": "gfb",
+      "name": "Grêmio",
+      "id": 324,
+      "rep": 82,
+      "shortName": "GFB",
+      "color": "#0033A0"
+    },
+    {
+      "key": "vas",
+      "name": "Vasco da Gama",
+      "id": 339,
+      "rep": 80,
+      "shortName": "VAS",
+      "color": "#000000"
+    },
+    {
+      "key": "sci",
+      "name": "Internacional",
+      "id": 326,
+      "rep": 83,
+      "shortName": "SCI",
+      "color": "#E30613"
+    },
+    {
+      "key": "sts",
+      "name": "Santos",
+      "id": 335,
+      "rep": 81,
+      "shortName": "STS",
+      "color": "#FFFFFF"
+    },
+    {
+      "key": "scc",
+      "name": "Corinthians",
+      "id": 319,
+      "rep": 84,
+      "shortName": "SCC",
+      "color": "#000000"
+    },
+    {
+      "key": "cru",
+      "name": "Cruzeiro",
+      "id": 321,
+      "rep": 83,
+      "shortName": "CRZ",
+      "color": "#0033A0"
+    },
+    {
+      "key": "rem",
+      "name": "Remo",
+      "id": 334,
+      "rep": 66,
+      "shortName": "REM",
+      "color": "#0033A0"
+    },
+    {
+      "key": "chp",
+      "name": "Chapecoense",
+      "id": 301304,
+      "rep": 67,
+      "shortName": "CHP",
+      "color": "#008C45"
+    },
+    {
+      "key": "mrs",
+      "name": "Mirassol",
+      "id": 301344,
+      "rep": 72,
+      "shortName": "MRS",
+      "color": "#F5A623"
+    }
+  ],
+  "tur": [
+    {
+      "key": "gal",
+      "name": "Galatasaray",
+      "id": 1871,
+      "rep": 88,
+      "shortName": "GAL",
+      "color": "#F5A623"
+    },
+    {
+      "key": "fen",
+      "name": "Fenerbahçe",
+      "id": 1870,
+      "rep": 87,
+      "shortName": "FEN",
+      "color": "#0033A0"
+    },
+    {
+      "key": "trb",
+      "name": "Trabzonspor",
+      "id": 1879,
+      "rep": 82,
+      "shortName": "TRB",
+      "color": "#8B0000"
+    },
+    {
+      "key": "bjk",
+      "name": "Beşiktaş",
+      "id": 1866,
+      "rep": 84,
+      "shortName": "BJK",
+      "color": "#000000"
+    },
+    {
+      "key": "ibs",
+      "name": "İstanbul Başakşehir",
+      "id": 130343,
+      "rep": 76,
+      "shortName": "IBS",
+      "color": "#F5A623"
+    },
+    {
+      "key": "goz",
+      "name": "Göztepe",
+      "id": 130338,
+      "rep": 74,
+      "shortName": "GOZ",
+      "color": "#E30613"
+    },
+    {
+      "key": "sms",
+      "name": "Samsunspor",
+      "id": 1878,
+      "rep": 72,
+      "shortName": "SMS",
+      "color": "#E30613"
+    },
+    {
+      "key": "riz",
+      "name": "Çaykur Rizespor",
+      "id": 130366,
+      "rep": 70,
+      "shortName": "RIZ",
+      "color": "#0033A0"
+    },
+    {
+      "key": "kon",
+      "name": "Konyaspor",
+      "id": 130344,
+      "rep": 73,
+      "shortName": "KON",
+      "color": "#008C45"
+    },
+    {
+      "key": "aly",
+      "name": "Alanyaspor",
+      "id": 458718,
+      "rep": 69,
+      "shortName": "ALY",
+      "color": "#F5A623"
+    },
+    {
+      "key": "gaz",
+      "name": "Gaziantep FK",
+      "id": 130341,
+      "rep": 68,
+      "shortName": "GAZ",
+      "color": "#E30613"
+    },
+    {
+      "key": "ksp",
+      "name": "Kasımpaşa",
+      "id": 130360,
+      "rep": 70,
+      "shortName": "KSP",
+      "color": "#0033A0"
+    },
+    {
+      "key": "gnc",
+      "name": "Gençlerbirliği",
+      "id": 1873,
+      "rep": 66,
+      "shortName": "GNC",
+      "color": "#E30613"
+    },
+    {
+      "key": "koc",
+      "name": "Kocaelispor",
+      "id": 1876,
+      "rep": 65,
+      "shortName": "KOC",
+      "color": "#008C45"
+    },
+    {
+      "key": "aty",
+      "name": "Antalyaspor",
+      "id": 1865,
+      "rep": 69,
+      "shortName": "ATY",
+      "color": "#E30613"
+    },
+    {
+      "key": "eyu",
+      "name": "Eyüpspor",
+      "id": 130289,
+      "rep": 64,
+      "shortName": "EYU",
+      "color": "#6B2D5C"
+    },
+    {
+      "key": "kay",
+      "name": "Kayserispor",
+      "id": 1875,
+      "rep": 66,
+      "shortName": "KAY",
+      "color": "#E30613"
+    },
+    {
+      "key": "fkg",
+      "name": "Fatih Karagümrük",
+      "id": 458631,
+      "rep": 64,
+      "shortName": "FKG",
+      "color": "#E30613"
+    }
+  ],
+  "ned": [
+    {
+      "key": "aja",
+      "name": "Ajax",
+      "id": 992,
+      "rep": 88,
+      "shortName": "AJX",
+      "color": "#E30613"
+    },
+    {
+      "key": "psv",
+      "name": "PSV",
+      "id": 1028,
+      "rep": 89,
+      "shortName": "PSV",
+      "color": "#E30613"
+    },
+    {
+      "key": "fey",
+      "name": "Feyenoord",
+      "id": 1013,
+      "rep": 87,
+      "shortName": "FEY",
+      "color": "#E30613"
+    },
+    {
+      "key": "aza",
+      "name": "AZ",
+      "id": 991,
+      "rep": 83,
+      "shortName": "AZ",
+      "color": "#E30613"
+    },
+    {
+      "key": "twe",
+      "name": "FC Twente",
+      "id": 1009,
+      "rep": 79,
+      "shortName": "TWE",
+      "color": "#E30613"
+    },
+    {
+      "key": "utr",
+      "name": "FC Utrecht",
+      "id": 1010,
+      "rep": 77,
+      "shortName": "UTR",
+      "color": "#E30613"
+    },
+    {
+      "key": "nec",
+      "name": "NEC",
+      "id": 1025,
+      "rep": 74,
+      "shortName": "NEC",
+      "color": "#E30613"
+    },
+    {
+      "key": "hee",
+      "name": "Heerenveen",
+      "id": 1036,
+      "rep": 73,
+      "shortName": "HEE",
+      "color": "#0033A0"
+    },
+    {
+      "key": "gae",
+      "name": "Go Ahead Eagles",
+      "id": 1015,
+      "rep": 73,
+      "shortName": "GAE",
+      "color": "#E30613"
+    },
+    {
+      "key": "spr",
+      "name": "Sparta Rotterdam",
+      "id": 1039,
+      "rep": 73,
+      "shortName": "SPR",
+      "color": "#E30613"
+    },
+    {
+      "key": "fsr",
+      "name": "Fortuna Sittard",
+      "id": 1014,
+      "rep": 72,
+      "shortName": "FOR",
+      "color": "#F5A623"
+    },
+    {
+      "key": "gro",
+      "name": "Groningen",
+      "id": 1007,
+      "rep": 71,
+      "shortName": "GRO",
+      "color": "#008C45"
+    },
+    {
+      "key": "zwl",
+      "name": "PEC Zwolle",
+      "id": 1012,
+      "rep": 70,
+      "shortName": "ZWO",
+      "color": "#0033A0"
+    },
+    {
+      "key": "hra",
+      "name": "Heracles",
+      "id": 1037,
+      "rep": 70,
+      "shortName": "HER",
+      "color": "#000000"
+    },
+    {
+      "key": "nac",
+      "name": "NAC Breda",
+      "id": 1024,
+      "rep": 69,
+      "shortName": "NAC",
+      "color": "#F5A623"
+    },
+    {
+      "key": "exc",
+      "name": "Excelsior",
+      "id": 1004,
+      "rep": 67,
+      "shortName": "EXC",
+      "color": "#000000"
+    },
+    {
+      "key": "vld",
+      "name": "FC Volendam",
+      "id": 1011,
+      "rep": 67,
+      "shortName": "VOL",
+      "color": "#F5A623"
+    },
+    {
+      "key": "tel",
+      "name": "Telstar",
+      "id": 1043,
+      "rep": 60,
+      "shortName": "TEL",
+      "color": "#FFFFFF"
+    }
+  ],
+  "prt": [
+    {
+      "key": "ben",
+      "name": "Benfica",
+      "id": 1487,
+      "rep": 90,
+      "shortName": "SLB",
+      "color": "#E30613"
+    },
+    {
+      "key": "fcp",
+      "name": "FC Porto",
+      "id": 1478,
+      "rep": 90,
+      "shortName": "FCP",
+      "color": "#0033A0"
+    },
+    {
+      "key": "spo",
+      "name": "Sporting CP",
+      "id": 1489,
+      "rep": 90,
+      "shortName": "SPO",
+      "color": "#008C45"
+    },
+    {
+      "key": "scb",
+      "name": "Braga",
+      "id": 1488,
+      "rep": 81,
+      "shortName": "SCB",
+      "color": "#E30613"
+    },
+    {
+      "key": "vgu",
+      "name": "Vitória Guimarães",
+      "id": 1494,
+      "rep": 77,
+      "shortName": "VGU",
+      "color": "#FFFFFF"
+    },
+    {
+      "key": "fam",
+      "name": "Famalicão",
+      "id": 2397,
+      "rep": 73,
+      "shortName": "FAM",
+      "color": "#0033A0"
+    },
+    {
+      "key": "est",
+      "name": "Estoril Praia",
+      "id": 2390,
+      "rep": 72,
+      "shortName": "EST",
+      "color": "#F5A623"
+    },
+    {
+      "key": "scl",
+      "name": "Santa Clara",
+      "id": 2448,
+      "rep": 72,
+      "shortName": "SCL",
+      "color": "#E30613"
+    },
+    {
+      "key": "gil",
+      "name": "Gil Vicente",
+      "id": 1481,
+      "rep": 71,
+      "shortName": "GIL",
+      "color": "#E30613"
+    },
+    {
+      "key": "mor",
+      "name": "Moreirense",
+      "id": 2389,
+      "rep": 71,
+      "shortName": "MOR",
+      "color": "#008C45"
+    },
+    {
+      "key": "rav",
+      "name": "Rio Ave",
+      "id": 2383,
+      "rep": 71,
+      "shortName": "RAV",
+      "color": "#008C45"
+    },
+    {
+      "key": "aro",
+      "name": "Arouca",
+      "id": 729500,
+      "rep": 70,
+      "shortName": "ARO",
+      "color": "#F5A623"
+    },
+    {
+      "key": "cpi",
+      "name": "Casa Pia",
+      "id": 2443,
+      "rep": 69,
+      "shortName": "CPI",
+      "color": "#000000"
+    },
+    {
+      "key": "nmd",
+      "name": "Nacional da Madeira",
+      "id": 2433,
+      "rep": 69,
+      "shortName": "NMD",
+      "color": "#000000"
+    },
+    {
+      "key": "esa",
+      "name": "Estrela da Amadora SAD",
+      "id": 2000030636,
+      "rep": 68,
+      "shortName": "ESA",
+      "color": "#E30613"
+    },
+    {
+      "key": "ton",
+      "name": "Tondela",
+      "id": 2424,
+      "rep": 68,
+      "shortName": "TON",
+      "color": "#008C45"
+    },
+    {
+      "key": "alv",
+      "name": "Alverca SAD",
+      "id": 2391,
+      "rep": 67,
+      "shortName": "ALV",
+      "color": "#E30613"
+    },
+    {
+      "key": "avs",
+      "name": "AVS SAD",
+      "id": 2000263090,
+      "rep": 67,
+      "shortName": "AVS",
+      "color": "#FFFFFF"
+    }
+  ],
+  "bel": [
+    {
+      "key": "cbr",
+      "name": "Club Brugge",
+      "id": 186,
+      "rep": 86,
+      "shortName": "CLB",
+      "color": "#0033A0"
+    },
+    {
+      "key": "gnk",
+      "name": "KRC Genk",
+      "id": 258,
+      "rep": 81,
+      "shortName": "GNK",
+      "color": "#0033A0"
+    },
+    {
+      "key": "rsc",
+      "name": "RSC Anderlecht",
+      "id": 256,
+      "rep": 79,
+      "shortName": "RSC",
+      "color": "#6B2D5C"
+    },
+    {
+      "key": "usk",
+      "name": "Union SG",
+      "id": 288,
+      "rep": 79,
+      "shortName": "USG",
+      "color": "#F5A623"
+    },
+    {
+      "key": "ant",
+      "name": "Royal Antwerp",
+      "id": 262,
+      "rep": 78,
+      "shortName": "ANT",
+      "color": "#E30613"
+    },
+    {
+      "key": "kaa",
+      "name": "AA Gent",
+      "id": 168,
+      "rep": 77,
+      "shortName": "GNT",
+      "color": "#0033A0"
+    },
+    {
+      "key": "stl",
+      "name": "Standard Liège",
+      "id": 250,
+      "rep": 74,
+      "shortName": "STD",
+      "color": "#E30613"
+    },
+    {
+      "key": "cha",
+      "name": "Royal Charleroi",
+      "id": 263,
+      "rep": 73,
+      "shortName": "CHA",
+      "color": "#000000"
+    },
+    {
+      "key": "mec",
+      "name": "KV Mechelen",
+      "id": 232,
+      "rep": 72,
+      "shortName": "MEC",
+      "color": "#E30613"
+    },
+    {
+      "key": "wes",
+      "name": "KV Westerlo",
+      "id": 289,
+      "rep": 72,
+      "shortName": "WES",
+      "color": "#F5A623"
+    },
+    {
+      "key": "ohl",
+      "name": "OH Leuven",
+      "id": 280,
+      "rep": 72,
+      "shortName": "OHL",
+      "color": "#FFFFFF"
+    },
+    {
+      "key": "ceb",
+      "name": "Cercle Brugge",
+      "id": 184,
+      "rep": 71,
+      "shortName": "CEB",
+      "color": "#008C45"
+    },
+    {
+      "key": "stv",
+      "name": "Sint-Truiden",
+      "id": 278,
+      "rep": 70,
+      "shortName": "STV",
+      "color": "#F5A623"
+    },
+    {
+      "key": "dnd",
+      "name": "Dender EH",
+      "id": 199,
+      "rep": 70,
+      "shortName": "DEN",
+      "color": "#0033A0"
+    },
+    {
+      "key": "zwg",
+      "name": "Zulte Waregem",
+      "id": 299,
+      "rep": 69,
+      "shortName": "ZWA",
+      "color": "#E30613"
+    },
+    {
+      "key": "lou",
+      "name": "RAAL La Louvière",
+      "id": 169,
+      "rep": 67,
+      "shortName": "LOU",
+      "color": "#FFFFFF"
+    }
+  ],
+  "sco": [
+    {
+      "key": "clt",
+      "name": "Celtic",
+      "id": 1569,
+      "rep": 83,
+      "shortName": "CLT",
+      "color": "#008C45"
+    },
+    {
+      "key": "rfc",
+      "name": "Rangers",
+      "id": 1570,
+      "rep": 80,
+      "shortName": "RAN",
+      "color": "#0033A0"
+    },
+    {
+      "key": "abe",
+      "name": "Aberdeen",
+      "id": 1536,
+      "rep": 72,
+      "shortName": "ABE",
+      "color": "#E30613"
+    },
+    {
+      "key": "hrt",
+      "name": "Hearts",
+      "id": 1573,
+      "rep": 71,
+      "shortName": "HRT",
+      "color": "#8B0000"
+    },
+    {
+      "key": "hib",
+      "name": "Hibernian",
+      "id": 1575,
+      "rep": 71,
+      "shortName": "HIB",
+      "color": "#008C45"
+    },
+    {
+      "key": "duu",
+      "name": "Dundee United",
+      "id": 1556,
+      "rep": 69,
+      "shortName": "DUU",
+      "color": "#F5A623"
+    },
+    {
+      "key": "mot",
+      "name": "Motherwell",
+      "id": 1584,
+      "rep": 68,
+      "shortName": "MOT",
+      "color": "#E30613"
+    },
+    {
+      "key": "dde",
+      "name": "Dundee",
+      "id": 1555,
+      "rep": 67,
+      "shortName": "DDE",
+      "color": "#0033A0"
+    },
+    {
+      "key": "kil",
+      "name": "Kilmarnock",
+      "id": 1580,
+      "rep": 66,
+      "shortName": "KIL",
+      "color": "#0033A0"
+    },
+    {
+      "key": "stm",
+      "name": "St Mirren",
+      "id": 1597,
+      "rep": 66,
+      "shortName": "STM",
+      "color": "#000000"
+    },
+    {
+      "key": "fal",
+      "name": "Falkirk",
+      "id": 1563,
+      "rep": 62,
+      "shortName": "FAL",
+      "color": "#0033A0"
+    },
+    {
+      "key": "lvs",
+      "name": "Livingston",
+      "id": 1581,
+      "rep": 64,
+      "shortName": "LVS",
+      "color": "#F5A623"
+    }
+  ],
+  "aut": [
+    {
+      "key": "rbs",
+      "name": "FC RB Salzburg",
+      "id": 158,
+      "rep": 84,
+      "shortName": "RBS",
+      "color": "#E30613"
+    },
+    {
+      "key": "rap",
+      "name": "SK Rapid",
+      "id": 155,
+      "rep": 82,
+      "shortName": "RAP",
+      "color": "#008C45"
+    },
+    {
+      "key": "sgz",
+      "name": "SK Sturm Graz",
+      "id": 156,
+      "rep": 81,
+      "shortName": "STU",
+      "color": "#000000"
+    },
+    {
+      "key": "auw",
+      "name": "FK Austria Vienna",
+      "id": 152,
+      "rep": 79,
+      "shortName": "AUS",
+      "color": "#6B2D5C"
+    },
+    {
+      "key": "las",
+      "name": "LASK Linz",
+      "id": 154,
+      "rep": 78,
+      "shortName": "LASK",
+      "color": "#000000"
+    },
+    {
+      "key": "wac",
+      "name": "Wolfsberger AC",
+      "id": 16034828,
+      "rep": 78,
+      "shortName": "WAC",
+      "color": "#FFFFFF"
+    },
+    {
+      "key": "wti",
+      "name": "WSG Tirol",
+      "id": 16324690,
+      "rep": 75,
+      "shortName": "WSG",
+      "color": "#008C45"
+    },
+    {
+      "key": "alt",
+      "name": "SCR Altach",
+      "id": 137973,
+      "rep": 75,
+      "shortName": "ALT",
+      "color": "#000000"
+    },
+    {
+      "key": "bwl",
+      "name": "FC Blau-Weiß Linz",
+      "id": 137962,
+      "rep": 74,
+      "shortName": "BWL",
+      "color": "#0033A0"
+    },
+    {
+      "key": "gak",
+      "name": "Grazer AK 1902",
+      "id": 16309710,
+      "rep": 74,
+      "shortName": "GAK",
+      "color": "#E30613"
+    },
+    {
+      "key": "har",
+      "name": "TSV Hartberg",
+      "id": 137959,
+      "rep": 73,
+      "shortName": "HAR",
+      "color": "#0033A0"
+    },
+    {
+      "key": "rie",
+      "name": "SV Ried",
+      "id": 159,
+      "rep": 70,
+      "shortName": "RIE",
+      "color": "#008C45"
+    }
+  ],
+  "sui": [
+    {
+      "key": "yob",
+      "name": "Young Boys",
+      "id": 1847,
+      "rep": 78,
+      "shortName": "YB",
+      "color": "#F5A623"
+    },
+    {
+      "key": "bsl",
+      "name": "FC Basel",
+      "id": 1849,
+      "rep": 78,
+      "shortName": "FCB",
+      "color": "#E30613"
+    },
+    {
+      "key": "srv",
+      "name": "Servette FC",
+      "id": 1858,
+      "rep": 75,
+      "shortName": "SER",
+      "color": "#8B0000"
+    },
+    {
+      "key": "lug",
+      "name": "FC Lugano",
+      "id": 1850,
+      "rep": 74,
+      "shortName": "LUG",
+      "color": "#000000"
+    },
+    {
+      "key": "stg",
+      "name": "FC St. Gallen",
+      "id": 1853,
+      "rep": 74,
+      "shortName": "STG",
+      "color": "#008C45"
+    },
+    {
+      "key": "luz",
+      "name": "FC Luzern",
+      "id": 1851,
+      "rep": 73,
+      "shortName": "LUZ",
+      "color": "#0033A0"
+    },
+    {
+      "key": "fcz",
+      "name": "FC Zürich",
+      "id": 1854,
+      "rep": 73,
+      "shortName": "FCZ",
+      "color": "#0033A0"
+    },
+    {
+      "key": "lau",
+      "name": "FC Lausanne",
+      "id": 1856,
+      "rep": 72,
+      "shortName": "LAU",
+      "color": "#0033A0"
+    },
+    {
+      "key": "sio",
+      "name": "FC Sion",
+      "id": 1852,
+      "rep": 71,
+      "shortName": "SIO",
+      "color": "#E30613"
+    },
+    {
+      "key": "gcz",
+      "name": "Grasshoppers",
+      "id": 1855,
+      "rep": 69,
+      "shortName": "GCZ",
+      "color": "#0033A0"
+    },
+    {
+      "key": "thu",
+      "name": "Thun",
+      "id": 514173,
+      "rep": 68,
+      "shortName": "THU",
+      "color": "#E30613"
+    },
+    {
+      "key": "win",
+      "name": "FC Winterthur",
+      "id": 1200101,
+      "rep": 66,
+      "shortName": "WIN",
+      "color": "#E30613"
+    }
+  ],
+  "den": [
+    {
+      "key": "kop",
+      "name": "FC København",
+      "id": 505,
+      "rep": 82,
+      "shortName": "KOP",
+      "color": "#FFFFFF"
+    },
+    {
+      "key": "fcm",
+      "name": "FC Midtjylland",
+      "id": 526,
+      "rep": 77,
+      "shortName": "MJD",
+      "color": "#000000"
+    },
+    {
+      "key": "bro",
+      "name": "Brøndby IF",
+      "id": 496,
+      "rep": 76,
+      "shortName": "BIF",
+      "color": "#F5A623"
+    },
+    {
+      "key": "nsj",
+      "name": "Nordsjælland",
+      "id": 932443,
+      "rep": 74,
+      "shortName": "NSJ",
+      "color": "#E30613"
+    },
+    {
+      "key": "ran",
+      "name": "Randers",
+      "id": 930621,
+      "rep": 71,
+      "shortName": "RFC",
+      "color": "#0033A0"
+    },
+    {
+      "key": "agf",
+      "name": "Aarhus GF",
+      "id": 482,
+      "rep": 71,
+      "shortName": "AGF",
+      "color": "#FFFFFF"
+    },
+    {
+      "key": "vib",
+      "name": "Viborg",
+      "id": 569,
+      "rep": 69,
+      "shortName": "VFF",
+      "color": "#008C45"
+    },
+    {
+      "key": "sil",
+      "name": "Silkeborg IF",
+      "id": 551,
+      "rep": 69,
+      "shortName": "SIF",
+      "color": "#E30613"
+    },
+    {
+      "key": "obk",
+      "name": "Odense BK",
+      "id": 545,
+      "rep": 69,
+      "shortName": "OB",
+      "color": "#0033A0"
+    },
+    {
+      "key": "vej",
+      "name": "Vejle",
+      "id": 2142,
+      "rep": 67,
+      "shortName": "VB",
+      "color": "#E30613"
+    },
+    {
+      "key": "son",
+      "name": "Sønderjyske",
+      "id": 926867,
+      "rep": 66,
+      "shortName": "SJE",
+      "color": "#0033A0"
+    },
+    {
+      "key": "frd",
+      "name": "Fredericia",
+      "id": 504,
+      "rep": 61,
+      "shortName": "FRE",
+      "color": "#0033A0"
+    }
+  ],
+  "gre": [
+    {
+      "key": "oly",
+      "name": "Olympiacos",
+      "id": 981,
+      "rep": 87,
+      "shortName": "OLY",
+      "color": "#E30613"
+    },
+    {
+      "key": "pao",
+      "name": "PAOK",
+      "id": 982,
+      "rep": 84,
+      "shortName": "PAOK",
+      "color": "#000000"
+    },
+    {
+      "key": "pan",
+      "name": "Panathinaikos",
+      "id": 983,
+      "rep": 84,
+      "shortName": "PAO",
+      "color": "#008C45"
+    },
+    {
+      "key": "aek",
+      "name": "AEK Athens",
+      "id": 967,
+      "rep": 83,
+      "shortName": "AEK",
+      "color": "#F5A623"
+    },
+    {
+      "key": "ari",
+      "name": "Aris Saloniki",
+      "id": 969,
+      "rep": 77,
+      "shortName": "ARIS",
+      "color": "#F5A623"
+    },
+    {
+      "key": "ofi",
+      "name": "OFI Crete",
+      "id": 980,
+      "rep": 70,
+      "shortName": "OFI",
+      "color": "#000000"
+    },
+    {
+      "key": "atr",
+      "name": "Atromitos",
+      "id": 129692,
+      "rep": 69,
+      "shortName": "ATR",
+      "color": "#0033A0"
+    },
+    {
+      "key": "ast",
+      "name": "Asteras Tripolis",
+      "id": 694366,
+      "rep": 69,
+      "shortName": "AST",
+      "color": "#F5A623"
+    },
+    {
+      "key": "lvd",
+      "name": "Levadeiakos",
+      "id": 979,
+      "rep": 67,
+      "shortName": "LVD",
+      "color": "#008C45"
+    },
+    {
+      "key": "vlo",
+      "name": "NPS Volos",
+      "id": 36136195,
+      "rep": 66,
+      "shortName": "VLO",
+      "color": "#0033A0"
+    },
+    {
+      "key": "ptk",
+      "name": "Panetolikos",
+      "id": 129665,
+      "rep": 66,
+      "shortName": "PAN",
+      "color": "#F5A623"
+    },
+    {
+      "key": "psr",
+      "name": "Panserraikos",
+      "id": 129666,
+      "rep": 65,
+      "shortName": "PSE",
+      "color": "#E30613"
+    },
+    {
+      "key": "ael",
+      "name": "AE Larisas",
+      "id": 978,
+      "rep": 68,
+      "shortName": "AEL",
+      "color": "#8B0000"
+    },
+    {
+      "key": "kif",
+      "name": "AE Kifisias",
+      "id": 36077318,
+      "rep": 67,
+      "shortName": "KIF",
+      "color": "#0033A0"
+    }
+  ],
+  "vie": [
+    {
+      "key": "cah",
+      "name": "Cong An Ha Noi",
+      "id": 135395,
+      "rep": 78,
+      "shortName": "CAHN",
+      "color": "#C8102E"
+    },
+    {
+      "key": "hno",
+      "name": "Ha Noi FC",
+      "id": 23160144,
+      "rep": 76,
+      "shortName": "HNO",
+      "color": "#6B2D5C"
+    },
+    {
+      "key": "ndf",
+      "name": "CLB Megastar Nam Dinh",
+      "id": 5622886,
+      "rep": 77,
+      "shortName": "NDF",
+      "color": "#FFD100"
+    },
+    {
+      "key": "vtt",
+      "name": "The Cong-Viettel FC",
+      "id": 97207966,
+      "rep": 74,
+      "shortName": "VTT",
+      "color": "#6B0F1A"
+    },
+    {
+      "key": "cat",
+      "name": "Cong An Thanh Pho Ho Chi Minh",
+      "id": 135394,
+      "rep": 72,
+      "shortName": "CAT",
+      "color": "#0033A0"
+    },
+    {
+      "key": "bxh",
+      "name": "Becamex Ho Chi Minh City FC",
+      "id": 2000483919,
+      "rep": 71,
+      "shortName": "BXH",
+      "color": "#E65C00"
+    },
+    {
+      "key": "hpf",
+      "name": "Hai Phong",
+      "id": 5627098,
+      "rep": 70,
+      "shortName": "HPF",
+      "color": "#F5A623"
+    },
+    {
+      "key": "nbh",
+      "name": "Ninh Binh",
+      "id": 23022461,
+      "rep": 69,
+      "shortName": "NBH",
+      "color": "#006633"
+    },
+    {
+      "key": "sln",
+      "name": "Song Lam Nghe An",
+      "id": 135393,
+      "rep": 68,
+      "shortName": "SLNA",
+      "color": "#FFCC00"
+    },
+    {
+      "key": "tho",
+      "name": "Thanh Hoa",
+      "id": 5627023,
+      "rep": 67,
+      "shortName": "THO",
+      "color": "#4A0080"
+    },
+    {
+      "key": "dna",
+      "name": "Da Nang",
+      "id": 5622889,
+      "rep": 66,
+      "shortName": "DNA",
+      "color": "#FF6600"
+    },
+    {
+      "key": "hlt",
+      "name": "Hong Linh Ha Tinh",
+      "id": 97207961,
+      "rep": 65,
+      "shortName": "HLHT",
+      "color": "#E8B923"
+    },
+    {
+      "key": "hag",
+      "name": "Hoang Anh Gia Lai",
+      "id": 5627026,
+      "rep": 64,
+      "shortName": "HAGL",
+      "color": "#C5A000"
+    },
+    {
+      "key": "pvc",
+      "name": "PVF Cong An Nhan Dan",
+      "id": 97207974,
+      "rep": 63,
+      "shortName": "PVC",
+      "color": "#1B5E20"
+    }
+  ],
+  "idn": [
+    {
+      "key": "psb",
+      "name": "Persib Bandung",
+      "id": 116140,
+      "rep": 78,
+      "shortName": "PSB",
+      "color": "#0057B8"
+    },
+    {
+      "key": "psj",
+      "name": "Persija Jakarta",
+      "id": 116144,
+      "rep": 77,
+      "shortName": "PSJ",
+      "color": "#E30613"
+    },
+    {
+      "key": "bor",
+      "name": "Borneo FC Samarinda",
+      "id": 41021352,
+      "rep": 74,
+      "shortName": "BOR",
+      "color": "#FF6600"
+    },
+    {
+      "key": "bli",
+      "name": "Bali United FC",
+      "id": 7742801,
+      "rep": 73,
+      "shortName": "BLI",
+      "color": "#E30613"
+    },
+    {
+      "key": "psy",
+      "name": "Persebaya Surabaya",
+      "id": 116145,
+      "rep": 73,
+      "shortName": "PSY",
+      "color": "#009639"
+    },
+    {
+      "key": "dwa",
+      "name": "Dewa United Banten FC",
+      "id": 2000090667,
+      "rep": 72,
+      "shortName": "DWA",
+      "color": "#1A1A2E"
+    },
+    {
+      "key": "are",
+      "name": "Arema FC",
+      "id": 5622736,
+      "rep": 71,
+      "shortName": "ARE",
+      "color": "#0033A0"
+    },
+    {
+      "key": "psm",
+      "name": "PSM Makassar",
+      "id": 135494,
+      "rep": 70,
+      "shortName": "PSM",
+      "color": "#E30613"
+    },
+    {
+      "key": "pst",
+      "name": "Persita Tangerang",
+      "id": 5622746,
+      "rep": 69,
+      "shortName": "PST",
+      "color": "#7A0019"
+    },
+    {
+      "key": "psk",
+      "name": "Persik Kediri",
+      "id": 5622879,
+      "rep": 69,
+      "shortName": "PSK",
+      "color": "#6B2D5C"
+    },
+    {
+      "key": "pso",
+      "name": "Persis Solo",
+      "id": 5622862,
+      "rep": 69,
+      "shortName": "PSO",
+      "color": "#E30613"
+    },
+    {
+      "key": "mdu",
+      "name": "Madura United FC",
+      "id": 41051597,
+      "rep": 68,
+      "shortName": "MDU",
+      "color": "#E30613"
+    },
+    {
+      "key": "bhy",
+      "name": "Bhayangkara Presisi Lampung FC",
+      "id": 41053239,
+      "rep": 68,
+      "shortName": "BHY",
+      "color": "#003090"
+    },
+    {
+      "key": "spd",
+      "name": "Semen Padang FC",
+      "id": 135534,
+      "rep": 67,
+      "shortName": "SPD",
+      "color": "#E30613"
+    },
+    {
+      "key": "pim",
+      "name": "PSIM Yogyakarta",
+      "id": 135500,
+      "rep": 67,
+      "shortName": "PIM",
+      "color": "#0033A0"
+    },
+    {
+      "key": "pbs",
+      "name": "PSBS Biak",
+      "id": 41001022,
+      "rep": 66,
+      "shortName": "PBS",
+      "color": "#FF6600"
+    },
+    {
+      "key": "pjp",
+      "name": "Persijap Jepara",
+      "id": 5622745,
+      "rep": 65,
+      "shortName": "PJP",
+      "color": "#E30613"
+    },
+    {
+      "key": "mlu",
+      "name": "Maluku Utara United FC",
+      "id": 2000273329,
+      "rep": 65,
+      "shortName": "MLU",
+      "color": "#1B5E20"
+    }
+  ],
+  "mys": [
+    {
+      "key": "jdt",
+      "name": "Johor Darul Ta'zim FC",
+      "id": 23195015,
+      "rep": 80,
+      "shortName": "JDT",
+      "color": "#0033A0"
+    },
+    {
+      "key": "slg",
+      "name": "Selangor FC",
+      "id": 106694,
+      "rep": 72,
+      "shortName": "SLG",
+      "color": "#E30613"
+    },
+    {
+      "key": "sab",
+      "name": "Sabah FC",
+      "id": 106696,
+      "rep": 69,
+      "shortName": "SAB",
+      "color": "#E30613"
+    },
+    {
+      "key": "trg",
+      "name": "Terengganu FC",
+      "id": 135368,
+      "rep": 68,
+      "shortName": "TRG",
+      "color": "#FFD100"
+    },
+    {
+      "key": "kuc",
+      "name": "Kuching City FC",
+      "id": 23396078,
+      "rep": 67,
+      "shortName": "KUC",
+      "color": "#0033A0"
+    },
+    {
+      "key": "klc",
+      "name": "Kuala Lumpur City FC",
+      "id": 135351,
+      "rep": 67,
+      "shortName": "KLC",
+      "color": "#E30613"
+    },
+    {
+      "key": "dpm",
+      "name": "Duli Pengiran Muda Mahkota FC",
+      "id": 5626771,
+      "rep": 66,
+      "shortName": "DPMM",
+      "color": "#FFD100"
+    },
+    {
+      "key": "png",
+      "name": "Penang FC",
+      "id": 1101511,
+      "rep": 65,
+      "shortName": "PNG",
+      "color": "#0033A0"
+    },
+    {
+      "key": "pdr",
+      "name": "Polis Di Raja Malaysia FC",
+      "id": 5623370,
+      "rep": 64,
+      "shortName": "PDRM",
+      "color": "#003090"
+    },
+    {
+      "key": "ngs",
+      "name": "Negeri Sembilan FC",
+      "id": 135362,
+      "rep": 64,
+      "shortName": "NGS",
+      "color": "#FFD100"
+    },
+    {
+      "key": "mlk",
+      "name": "Melaka FC",
+      "id": 135356,
+      "rep": 63,
+      "shortName": "MLK",
+      "color": "#E30613"
+    },
+    {
+      "key": "klw",
+      "name": "Kelantan The Real Warriors FC",
+      "id": 23502547,
+      "rep": 63,
+      "shortName": "KLW",
+      "color": "#E30613"
+    }
+  ],
+  "sgp": [
+    {
+      "key": "lcs",
+      "name": "Lion City Sailors FC",
+      "id": 23501219,
+      "rep": 74,
+      "shortName": "LCS",
+      "color": "#0033A0"
+    },
+    {
+      "key": "tmp",
+      "name": "Tampines Rovers FC",
+      "id": 1609,
+      "rep": 68,
+      "shortName": "TMP",
+      "color": "#FFD100"
+    },
+    {
+      "key": "gey",
+      "name": "Geylang International FC",
+      "id": 5395665,
+      "rep": 66,
+      "shortName": "GEY",
+      "color": "#009639"
+    },
+    {
+      "key": "hgu",
+      "name": "Hougang United FC",
+      "id": 23136391,
+      "rep": 65,
+      "shortName": "HGU",
+      "color": "#FF6600"
+    },
+    {
+      "key": "blk",
+      "name": "Balestier Khalsa FC",
+      "id": 7800516,
+      "rep": 64,
+      "shortName": "BLK",
+      "color": "#E30613"
+    },
+    {
+      "key": "tpu",
+      "name": "Tanjong Pagar United FC",
+      "id": 116303,
+      "rep": 63,
+      "shortName": "TPU",
+      "color": "#0033A0"
+    },
+    {
+      "key": "axs",
+      "name": "Albirex Niigata (S)",
+      "id": 1000037,
+      "rep": 65,
+      "shortName": "AXS",
+      "color": "#FF6600"
+    },
+    {
+      "key": "yln",
+      "name": "Young Lions",
+      "id": 7800917,
+      "rep": 60,
+      "shortName": "YLN",
+      "color": "#E30613"
+    }
+  ],
+  "sau": [
+    {
+      "key": "hil",
+      "name": "Al-Hilal",
+      "id": 102852,
+      "rep": 94,
+      "shortName": "HIL",
+      "color": "#0033A0"
+    },
+    {
+      "key": "nas",
+      "name": "Al-Nassr",
+      "id": 102862,
+      "rep": 92,
+      "shortName": "NAS",
+      "color": "#FFD100"
+    },
+    {
+      "key": "itt",
+      "name": "Al-Ittihad",
+      "id": 106063,
+      "rep": 91,
+      "shortName": "ITT",
+      "color": "#000000"
+    },
+    {
+      "key": "ahl",
+      "name": "Al-Ahli",
+      "id": 102850,
+      "rep": 90,
+      "shortName": "AHL",
+      "color": "#009639"
+    },
+    {
+      "key": "qad",
+      "name": "Al-Qadsiah",
+      "id": 1104149,
+      "rep": 86,
+      "shortName": "QAD",
+      "color": "#0033A0"
+    },
+    {
+      "key": "neo",
+      "name": "Neom SC",
+      "id": 2000326380,
+      "rep": 84,
+      "shortName": "NEO",
+      "color": "#00A3E0"
+    },
+    {
+      "key": "shb",
+      "name": "Al-Shabab",
+      "id": 1535,
+      "rep": 83,
+      "shortName": "SHB",
+      "color": "#FFFFFF"
+    },
+    {
+      "key": "taa",
+      "name": "Al-Taawoun",
+      "id": 7920352,
+      "rep": 82,
+      "shortName": "TAA",
+      "color": "#FFD100"
+    },
+    {
+      "key": "etf",
+      "name": "Al-Ettifaq",
+      "id": 135427,
+      "rep": 80,
+      "shortName": "ETF",
+      "color": "#009639"
+    },
+    {
+      "key": "fat",
+      "name": "Al-Fateh",
+      "id": 7920359,
+      "rep": 78,
+      "shortName": "FAT",
+      "color": "#0033A0"
+    },
+    {
+      "key": "fay",
+      "name": "Al-Fayha",
+      "id": 7920365,
+      "rep": 76,
+      "shortName": "FAY",
+      "color": "#E30613"
+    },
+    {
+      "key": "khj",
+      "name": "Al-Khaleej",
+      "id": 7920260,
+      "rep": 75,
+      "shortName": "KHJ",
+      "color": "#0033A0"
+    },
+    {
+      "key": "dam",
+      "name": "Damac",
+      "id": 7920502,
+      "rep": 74,
+      "shortName": "DAM",
+      "color": "#E30613"
+    },
+    {
+      "key": "haz",
+      "name": "Al-Hazem",
+      "id": 7920356,
+      "rep": 74,
+      "shortName": "HAZ",
+      "color": "#0033A0"
+    },
+    {
+      "key": "kho",
+      "name": "Al-Kholood",
+      "id": 1031631,
+      "rep": 73,
+      "shortName": "KHO",
+      "color": "#009639"
+    },
+    {
+      "key": "riy",
+      "name": "Al-Riyadh",
+      "id": 135423,
+      "rep": 72,
+      "shortName": "RIY",
+      "color": "#6B2D5C"
+    },
+    {
+      "key": "okh",
+      "name": "Al-Okhdood",
+      "id": 7920489,
+      "rep": 71,
+      "shortName": "OKH",
+      "color": "#E30613"
+    },
+    {
+      "key": "njm",
+      "name": "Al-Najmah",
+      "id": 135425,
+      "rep": 70,
+      "shortName": "NJM",
+      "color": "#0033A0"
+    }
+  ]
+}

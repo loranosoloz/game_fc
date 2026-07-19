@@ -1,0 +1,93 @@
+﻿MISS|Machida Zelvia
+MISS|Tokyo Verdy
+MISS|Kashiwa Reysol
+MISS|Gamba Osaka
+MISS|Cerezo Osaka
+MISS|Kyoto Sanga
+MISS|Avispa Fukuoka
+MISS|Shimizu S-Pulse
+MISS|Fagiano Okayama
+MISS|Shonan Bellmare
+MISS|Yokohama FC
+MISS|Albirex Niigata
+MISS|JEF United
+MISS|V-Varen Nagasaki
+MISS|Mito Hollyhock
+MISS|Consadole Sapporo
+MISS|Vegalta Sendai
+MISS|Jubilo Iwata
+MISS|Sagan Tosu
+MISS|Oita Trinita
+MISS|Montedio Yamagata
+MISS|Roasso Kumamoto
+MISS|Tokushima Vortis
+MISS|Ehime FC
+MISS|Ventforet Kofu
+MISS|Omiya Ardija
+MISS|Blaublitz Akita
+MISS|Iwaki FC
+MISS|Fujieda MYFC
+MISS|Renofa Yamaguchi
+MISS|Ulsan HD
+MISS|Jeonbuk
+MISS|FC Seoul
+MISS|Pohang Steelers
+MISS|Gangwon
+MISS|Daejeon Hana
+MISS|Gwangju FC
+MISS|Suwon FC
+MISS|Daegu FC
+MISS|Incheon United
+MISS|Jeju United
+MISS|Gimcheon Sangmu
+MISS|Anyang
+MISS|Busan IPark
+MISS|Jeonnam Dragons
+MISS|Chungnam Asan
+MISS|Seoul E-Land
+MISS|Gyeongnam
+MISS|Cheonan City
+MISS|Bucheon
+MISS|Ansan Greeners
+MISS|Cheongju
+MISS|Suwon Samsung
+MISS|Seongnam
+MISS|Chungbuk Cheongju
+MISS|Flamengo
+MISS|Palmeiras
+MISS|Cruzeiro
+MISS|Mirassol
+MISS|Fluminense
+MISS|Botafogo
+MISS|Bahia
+MISS|Sao Paulo
+MISS|Gremio
+MISS|Red Bull Bragantino
+MISS|Atletico Mineiro
+MISS|Santos
+MISS|Corinthians
+MISS|Vasco da Gama
+MISS|Vitoria
+MISS|Internacional
+MISS|Ceara
+MISS|Fortaleza
+MISS|Juventude
+MISS|Sport Recife
+MISS|Galatasaray
+MISS|Fenerbahce
+MISS|Besiktas
+MISS|Trabzonspor
+MISS|Basaksehir
+MISS|Goztepe
+MISS|Samsunspor
+MISS|Rizespor
+MISS|Konyaspor
+MISS|Alanyaspor
+MISS|Gaziantep
+MISS|Kasimpasa
+MISS|Genclerbirligi
+MISS|Kocaelispor
+MISS|Antalyaspor
+MISS|Eyupspor
+MISS|Kayserispor
+MISS|Fatih Karagumruk

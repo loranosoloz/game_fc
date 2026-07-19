@@ -10,7 +10,7 @@ import type {
   TeamInstructions,
   TrainingState,
 } from '@/game/types'
-import { createNewGame, loadFromStorage, saveToStorage, clearStorage, ensurePhase5 } from '@/game/save'
+import { createNewGame, loadFromStorage, loadFromStorageAsync, saveToStorage, clearStorage, ensurePhase5 } from '@/game/save'
 import type { LeagueId } from '@/data/world'
 import {
   applyPreparedMatchday,
@@ -137,6 +137,7 @@ interface GameStore {
   liveMatch: PreparedMatchday | null
   newGame: (managerName: string, humanClubId: string, leagueId?: LeagueId, build?: import('@/game/managerProfile').ManagerBuildInput) => void
   continueGame: () => boolean
+  continueGameAsync: () => Promise<boolean>
   persist: () => void
   resetSave: () => void
   setFormation: (formation: FormationId, which?: 'ip' | 'oop') => void
@@ -325,8 +326,23 @@ export const useGameStore = create<GameStore>((set, get) => ({
   },
 
   continueGame: () => {
-    const save = loadFromStorage()
-    if (!save) return false
+    const sync = loadFromStorage()
+    if (!sync) return false
+    set({ save: ensurePhase5(sync), status: null, liveMatch: null })
+    return true
+  },
+
+  continueGameAsync: async () => {
+    const sync = loadFromStorage()
+    if (sync) {
+      set({ save: ensurePhase5(sync), status: null, liveMatch: null })
+      return true
+    }
+    const save = await loadFromStorageAsync()
+    if (!save) {
+      set({ status: 'ไม่พบเซฟในเครื่อง' })
+      return false
+    }
     set({ save: ensurePhase5(save), status: null, liveMatch: null })
     return true
   },

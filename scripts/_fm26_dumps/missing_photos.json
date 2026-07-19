@@ -1,0 +1,872 @@
+[
+  {
+    "league": "esp",
+    "clubKey": "rma",
+    "name": "Pol Durán"
+  },
+  {
+    "league": "esp",
+    "clubKey": "rma",
+    "name": "Marcos Viega"
+  },
+  {
+    "league": "esp",
+    "clubKey": "bar",
+    "name": "Brian Fariñas"
+  },
+  {
+    "league": "esp",
+    "clubKey": "atm",
+    "name": "Jorge Castillo"
+  },
+  {
+    "league": "esp",
+    "clubKey": "ath",
+    "name": "Dani Vivian"
+  },
+  {
+    "league": "esp",
+    "clubKey": "rso",
+    "name": "Tomy Carbonell"
+  },
+  {
+    "league": "esp",
+    "clubKey": "rso",
+    "name": "Ibai Aguirre"
+  },
+  {
+    "league": "esp",
+    "clubKey": "vil",
+    "name": "Pablo Pascual"
+  },
+  {
+    "league": "esp",
+    "clubKey": "vil",
+    "name": "Adrián Ruiz"
+  },
+  {
+    "league": "esp",
+    "clubKey": "bet",
+    "name": "Gnangoro Bouare"
+  },
+  {
+    "league": "esp",
+    "clubKey": "sev",
+    "name": "Lorenzo Luchino"
+  },
+  {
+    "league": "esp",
+    "clubKey": "sev",
+    "name": "Edu Altozano"
+  },
+  {
+    "league": "esp",
+    "clubKey": "sev",
+    "name": "Pablo Rivera"
+  },
+  {
+    "league": "esp",
+    "clubKey": "val",
+    "name": "Javi Navarro"
+  },
+  {
+    "league": "esp",
+    "clubKey": "gir",
+    "name": "Oriol Comas"
+  },
+  {
+    "league": "esp",
+    "clubKey": "gir",
+    "name": "Enric Garcia"
+  },
+  {
+    "league": "esp",
+    "clubKey": "osa",
+    "name": "Flavien-Enzo Boyomo"
+  },
+  {
+    "league": "esp",
+    "clubKey": "osa",
+    "name": "Anton Yefremov"
+  },
+  {
+    "league": "esp",
+    "clubKey": "osa",
+    "name": "Ibai Arrasate"
+  },
+  {
+    "league": "esp",
+    "clubKey": "osa",
+    "name": "Hodei Iriarte"
+  },
+  {
+    "league": "esp",
+    "clubKey": "osa",
+    "name": "Aitor Iguaz"
+  },
+  {
+    "league": "esp",
+    "clubKey": "osa",
+    "name": "Pablo Lambea"
+  },
+  {
+    "league": "esp",
+    "clubKey": "osa",
+    "name": "Miguel Auria"
+  },
+  {
+    "league": "esp",
+    "clubKey": "osa",
+    "name": "Kike Barja"
+  },
+  {
+    "league": "esp",
+    "clubKey": "cel",
+    "name": "Javi Rodríguez"
+  },
+  {
+    "league": "esp",
+    "clubKey": "mal",
+    "name": "Rimvydas Kiriejevas"
+  },
+  {
+    "league": "esp",
+    "clubKey": "mal",
+    "name": "Justin-Noël Kalumba"
+  },
+  {
+    "league": "esp",
+    "clubKey": "mal",
+    "name": "Miquel Jaume"
+  },
+  {
+    "league": "esp",
+    "clubKey": "mal",
+    "name": "Marcos Gorriti"
+  },
+  {
+    "league": "esp",
+    "clubKey": "mal",
+    "name": "Jandro"
+  },
+  {
+    "league": "esp",
+    "clubKey": "mal",
+    "name": "Óscar López"
+  },
+  {
+    "league": "esp",
+    "clubKey": "mal",
+    "name": "Cesc Riba"
+  },
+  {
+    "league": "esp",
+    "clubKey": "mal",
+    "name": "Wilber Hurtado"
+  },
+  {
+    "league": "esp",
+    "clubKey": "get",
+    "name": "Djéné Dakonam"
+  },
+  {
+    "league": "esp",
+    "clubKey": "get",
+    "name": "Kiko Femenía"
+  },
+  {
+    "league": "esp",
+    "clubKey": "get",
+    "name": "Adam Cherradi"
+  },
+  {
+    "league": "esp",
+    "clubKey": "ray",
+    "name": "Juanchi"
+  },
+  {
+    "league": "esp",
+    "clubKey": "ray",
+    "name": "Pablo Prieto"
+  },
+  {
+    "league": "esp",
+    "clubKey": "ray",
+    "name": "Jorge Escobar"
+  },
+  {
+    "league": "esp",
+    "clubKey": "ala",
+    "name": "Yusi"
+  },
+  {
+    "league": "esp",
+    "clubKey": "ala",
+    "name": "Carlos Benavídez"
+  },
+  {
+    "league": "esp",
+    "clubKey": "ala",
+    "name": "Ander Varona"
+  },
+  {
+    "league": "esp",
+    "clubKey": "ala",
+    "name": "Iván Garrido"
+  },
+  {
+    "league": "esp",
+    "clubKey": "elc",
+    "name": "Owen Bosch"
+  },
+  {
+    "league": "esp",
+    "clubKey": "elc",
+    "name": "John Chetauya"
+  },
+  {
+    "league": "esp",
+    "clubKey": "elc",
+    "name": "Josan Ferrández"
+  },
+  {
+    "league": "esp",
+    "clubKey": "lvt",
+    "name": "Borja Cortina"
+  },
+  {
+    "league": "esp",
+    "clubKey": "lvt",
+    "name": "Jon Ander Olasagasti"
+  },
+  {
+    "league": "esp",
+    "clubKey": "lvt",
+    "name": "Alberto Calatrava"
+  },
+  {
+    "league": "esp",
+    "clubKey": "lvt",
+    "name": "Pablo Rosón"
+  },
+  {
+    "league": "esp",
+    "clubKey": "lvt",
+    "name": "Joan Ruiz"
+  },
+  {
+    "league": "esp",
+    "clubKey": "lvt",
+    "name": "Karl Etta Eyong"
+  },
+  {
+    "league": "esp",
+    "clubKey": "ovi",
+    "name": "Mate Sauri"
+  },
+  {
+    "league": "esp",
+    "clubKey": "ovi",
+    "name": "Abdel Rahim Alhassane"
+  },
+  {
+    "league": "esp",
+    "clubKey": "ovi",
+    "name": "Michael Oladipupo"
+  },
+  {
+    "league": "esp",
+    "clubKey": "ovi",
+    "name": "Cheli"
+  },
+  {
+    "league": "esp",
+    "clubKey": "ovi",
+    "name": "Yaya Yakubu"
+  },
+  {
+    "league": "esp",
+    "clubKey": "ovi",
+    "name": "Gerard Màrquez"
+  },
+  {
+    "league": "esp",
+    "clubKey": "ovi",
+    "name": "Joaquín Delgado"
+  },
+  {
+    "league": "ger",
+    "clubKey": "bay",
+    "name": "Kim Min-Jae"
+  },
+  {
+    "league": "ger",
+    "clubKey": "bay",
+    "name": "David Santos Daiber"
+  },
+  {
+    "league": "ger",
+    "clubKey": "bay",
+    "name": "Bogdan Olychenko"
+  },
+  {
+    "league": "ger",
+    "clubKey": "rbl",
+    "name": "Mika Walther"
+  },
+  {
+    "league": "ger",
+    "clubKey": "rbl",
+    "name": "Niko Tomašević"
+  },
+  {
+    "league": "ger",
+    "clubKey": "stu",
+    "name": "Yanik Spalt"
+  },
+  {
+    "league": "ger",
+    "clubKey": "ein",
+    "name": "Kauã Santos"
+  },
+  {
+    "league": "ger",
+    "clubKey": "ein",
+    "name": "Collin Owusu Etse"
+  },
+  {
+    "league": "ger",
+    "clubKey": "fre",
+    "name": "Billal Nuur Mohamed"
+  },
+  {
+    "league": "ger",
+    "clubKey": "wob",
+    "name": "Kostas Koulierakis"
+  },
+  {
+    "league": "ger",
+    "clubKey": "bmg",
+    "name": "Joe Scally"
+  },
+  {
+    "league": "ger",
+    "clubKey": "bmg",
+    "name": "Nico Vidic"
+  },
+  {
+    "league": "ger",
+    "clubKey": "bmg",
+    "name": "Antonio Jozanović"
+  },
+  {
+    "league": "ger",
+    "clubKey": "wer",
+    "name": "Lennart Baum"
+  },
+  {
+    "league": "ger",
+    "clubKey": "wer",
+    "name": "Julius Joas"
+  },
+  {
+    "league": "ger",
+    "clubKey": "m05",
+    "name": "Hong Hyun-Seok"
+  },
+  {
+    "league": "ger",
+    "clubKey": "aug",
+    "name": "Franz Bleicher"
+  },
+  {
+    "league": "ger",
+    "clubKey": "aug",
+    "name": "Dominik Lindermeir"
+  },
+  {
+    "league": "ger",
+    "clubKey": "koe",
+    "name": "Luis Hauer"
+  },
+  {
+    "league": "ger",
+    "clubKey": "koe",
+    "name": "Luca Waldschmidt"
+  },
+  {
+    "league": "ger",
+    "clubKey": "hea",
+    "name": "Marnon Busch"
+  },
+  {
+    "league": "ger",
+    "clubKey": "hea",
+    "name": "Henrik Niggel"
+  },
+  {
+    "league": "ger",
+    "clubKey": "stp",
+    "name": "Juri Behr"
+  },
+  {
+    "league": "ger",
+    "clubKey": "stp",
+    "name": "Samuel Klein"
+  },
+  {
+    "league": "ger",
+    "clubKey": "stp",
+    "name": "Marces Amaniampong"
+  },
+  {
+    "league": "ger",
+    "clubKey": "stp",
+    "name": "Rawley St. John"
+  },
+  {
+    "league": "ger",
+    "clubKey": "stp",
+    "name": "Oleg Skakun"
+  },
+  {
+    "league": "ger",
+    "clubKey": "hsv",
+    "name": "Davis Rath"
+  },
+  {
+    "league": "ger",
+    "clubKey": "hsv",
+    "name": "Alexander Røssing-Lelesiit"
+  },
+  {
+    "league": "fra",
+    "clubKey": "psg",
+    "name": "Illia Zabarnyi"
+  },
+  {
+    "league": "fra",
+    "clubKey": "psg",
+    "name": "Mathieu Oliveira"
+  },
+  {
+    "league": "fra",
+    "clubKey": "om",
+    "name": "Soumaïla Traoré"
+  },
+  {
+    "league": "fra",
+    "clubKey": "om",
+    "name": "Yanis Sellami"
+  },
+  {
+    "league": "fra",
+    "clubKey": "om",
+    "name": "Joris Silvente"
+  },
+  {
+    "league": "fra",
+    "clubKey": "om",
+    "name": "Max Corbon"
+  },
+  {
+    "league": "fra",
+    "clubKey": "ol",
+    "name": "Alejandro Gomes Rodríguez"
+  },
+  {
+    "league": "fra",
+    "clubKey": "asm",
+    "name": "Boubakar Dembaga"
+  },
+  {
+    "league": "fra",
+    "clubKey": "asm",
+    "name": "Alexandr Golovin"
+  },
+  {
+    "league": "fra",
+    "clubKey": "lil",
+    "name": "Ngal&#039;Ayel Mukau"
+  },
+  {
+    "league": "fra",
+    "clubKey": "lil",
+    "name": "Victor Bonnechère"
+  },
+  {
+    "league": "fra",
+    "clubKey": "lil",
+    "name": "Elias Hadiri"
+  },
+  {
+    "league": "fra",
+    "clubKey": "ren",
+    "name": "Musa Al-Tamari"
+  },
+  {
+    "league": "fra",
+    "clubKey": "nic",
+    "name": "Everton Pereira"
+  },
+  {
+    "league": "fra",
+    "clubKey": "nic",
+    "name": "Sami Wattel"
+  },
+  {
+    "league": "fra",
+    "clubKey": "rcl",
+    "name": "Rémy Labeau Lascary"
+  },
+  {
+    "league": "fra",
+    "clubKey": "nte",
+    "name": "Herba Guirassy"
+  },
+  {
+    "league": "fra",
+    "clubKey": "nte",
+    "name": "Maxime Mejjati-Alami"
+  },
+  {
+    "league": "fra",
+    "clubKey": "str",
+    "name": "Hugo Rauch"
+  },
+  {
+    "league": "fra",
+    "clubKey": "str",
+    "name": "Latufe Assoumani"
+  },
+  {
+    "league": "fra",
+    "clubKey": "str",
+    "name": "Sam Amo-Ameyaw"
+  },
+  {
+    "league": "fra",
+    "clubKey": "tou",
+    "name": "Théo Collin"
+  },
+  {
+    "league": "fra",
+    "clubKey": "tou",
+    "name": "Darris Zema"
+  },
+  {
+    "league": "fra",
+    "clubKey": "sbr",
+    "name": "Angelo Bico"
+  },
+  {
+    "league": "fra",
+    "clubKey": "sbr",
+    "name": "Naïm Berbar"
+  },
+  {
+    "league": "fra",
+    "clubKey": "sbr",
+    "name": "Sacha Viel"
+  },
+  {
+    "league": "fra",
+    "clubKey": "sbr",
+    "name": "Paul Roussel"
+  },
+  {
+    "league": "fra",
+    "clubKey": "ang",
+    "name": "Aymeris Ligeon"
+  },
+  {
+    "league": "fra",
+    "clubKey": "ang",
+    "name": "Enzo Bellouti"
+  },
+  {
+    "league": "fra",
+    "clubKey": "hac",
+    "name": "Guy Noël Zohouri"
+  },
+  {
+    "league": "fra",
+    "clubKey": "hac",
+    "name": "Adams Diabaté"
+  },
+  {
+    "league": "fra",
+    "clubKey": "hac",
+    "name": "Malachie Iboko Lisasi"
+  },
+  {
+    "league": "fra",
+    "clubKey": "hac",
+    "name": "Ally Samatta"
+  },
+  {
+    "league": "fra",
+    "clubKey": "hac",
+    "name": "Noam Obougou Jacquet"
+  },
+  {
+    "league": "fra",
+    "clubKey": "lor",
+    "name": "Isaak Touré"
+  },
+  {
+    "league": "fra",
+    "clubKey": "lor",
+    "name": "Arthur Avom Ebong"
+  },
+  {
+    "league": "fra",
+    "clubKey": "lor",
+    "name": "Antton Mouledous"
+  },
+  {
+    "league": "fra",
+    "clubKey": "lor",
+    "name": "Noam Marchal"
+  },
+  {
+    "league": "fra",
+    "clubKey": "lor",
+    "name": "Samba Diop"
+  },
+  {
+    "league": "fra",
+    "clubKey": "lor",
+    "name": "Oussama Lyakoubi"
+  },
+  {
+    "league": "fra",
+    "clubKey": "pfc",
+    "name": "Moustapha Mbow"
+  },
+  {
+    "league": "fra",
+    "clubKey": "pfc",
+    "name": "Matéo Beaslas"
+  },
+  {
+    "league": "fra",
+    "clubKey": "pfc",
+    "name": "Lionel Ekoule"
+  },
+  {
+    "league": "fra",
+    "clubKey": "met",
+    "name": "Michel Mboula"
+  },
+  {
+    "league": "fra",
+    "clubKey": "met",
+    "name": "Moustapha Diop"
+  },
+  {
+    "league": "fra",
+    "clubKey": "met",
+    "name": "Joseph Namatane"
+  },
+  {
+    "league": "fra",
+    "clubKey": "met",
+    "name": "Kimi Gandziri"
+  },
+  {
+    "league": "ita",
+    "clubKey": "int",
+    "name": "Yoan Bonny"
+  },
+  {
+    "league": "ita",
+    "clubKey": "juv",
+    "name": "Juan David Cabal"
+  },
+  {
+    "league": "ita",
+    "clubKey": "juv",
+    "name": "Augusto Seedorf Owusu"
+  },
+  {
+    "league": "ita",
+    "clubKey": "juv",
+    "name": "Enzo Keutgen"
+  },
+  {
+    "league": "ita",
+    "clubKey": "nap",
+    "name": "André-Franck Zambo Anguissa"
+  },
+  {
+    "league": "ita",
+    "clubKey": "nap",
+    "name": "Jens Cajuste"
+  },
+  {
+    "league": "ita",
+    "clubKey": "nap",
+    "name": "Andrea Iovine"
+  },
+  {
+    "league": "ita",
+    "clubKey": "ata",
+    "name": "Digne Pounga"
+  },
+  {
+    "league": "ita",
+    "clubKey": "ata",
+    "name": "Andrea Bonanomi"
+  },
+  {
+    "league": "ita",
+    "clubKey": "rom",
+    "name": "Evan N&#039;Dicka"
+  },
+  {
+    "league": "ita",
+    "clubKey": "rom",
+    "name": "Giacomo Arduini"
+  },
+  {
+    "league": "ita",
+    "clubKey": "rom",
+    "name": "Alessandro Di Nunzio"
+  },
+  {
+    "league": "ita",
+    "clubKey": "rom",
+    "name": "Francesco Panico"
+  },
+  {
+    "league": "ita",
+    "clubKey": "laz",
+    "name": "Antonio Iorio"
+  },
+  {
+    "league": "ita",
+    "clubKey": "laz",
+    "name": "Flavio Milillo"
+  },
+  {
+    "league": "ita",
+    "clubKey": "laz",
+    "name": "Mattia Santagostino Baldi"
+  },
+  {
+    "league": "ita",
+    "clubKey": "fio",
+    "name": "M&#039;Bala Nzola"
+  },
+  {
+    "league": "ita",
+    "clubKey": "bol",
+    "name": "Andrei Toroc"
+  },
+  {
+    "league": "ita",
+    "clubKey": "bol",
+    "name": "Lorenzo Menegazzo"
+  },
+  {
+    "league": "ita",
+    "clubKey": "bol",
+    "name": "Benjamín Domínguez"
+  },
+  {
+    "league": "ita",
+    "clubKey": "tor",
+    "name": "Sandro Nascimento"
+  },
+  {
+    "league": "ita",
+    "clubKey": "tor",
+    "name": "Kenny Olinga"
+  },
+  {
+    "league": "ita",
+    "clubKey": "tor",
+    "name": "Faustino Anjorin"
+  },
+  {
+    "league": "ita",
+    "clubKey": "gen",
+    "name": "Johan Felipe Vásquez"
+  },
+  {
+    "league": "ita",
+    "clubKey": "gen",
+    "name": "Gianluca Rossi"
+  },
+  {
+    "league": "ita",
+    "clubKey": "gen",
+    "name": "Chad Taieb"
+  },
+  {
+    "league": "ita",
+    "clubKey": "gen",
+    "name": "Tommaso Fazio"
+  },
+  {
+    "league": "ita",
+    "clubKey": "gen",
+    "name": "Alex Amorim"
+  },
+  {
+    "league": "ita",
+    "clubKey": "cag",
+    "name": "Roberto Malfitano"
+  },
+  {
+    "league": "ita",
+    "clubKey": "cag",
+    "name": "Alessandro Sabino Russo"
+  },
+  {
+    "league": "ita",
+    "clubKey": "lec",
+    "name": "Konan N&#039;Dri"
+  },
+  {
+    "league": "ita",
+    "clubKey": "par",
+    "name": "Doro Diop"
+  },
+  {
+    "league": "ita",
+    "clubKey": "par",
+    "name": "Dren Terrnava"
+  },
+  {
+    "league": "ita",
+    "clubKey": "com",
+    "name": "Jacopo Simonetta"
+  },
+  {
+    "league": "ita",
+    "clubKey": "com",
+    "name": "Tasos Douvikas"
+  },
+  {
+    "league": "ita",
+    "clubKey": "com",
+    "name": "Nicolas Kühn"
+  },
+  {
+    "league": "ita",
+    "clubKey": "pis",
+    "name": "Jacopo Frosali"
+  },
+  {
+    "league": "ita",
+    "clubKey": "cre",
+    "name": "Alessandro Lamorte"
+  },
+  {
+    "league": "ita",
+    "clubKey": "cre",
+    "name": "Milan Đurić"
+  }
+]
