@@ -1,20 +1,38 @@
 # FC Manager
 
-เกม Football Club Manager (เว็บ) — ออกแบบระบบผสมแนว FM26 + manager อื่นๆ
+เกม Football Club Manager (เว็บ) — ลีก **20 ทีม**: คุณคุม 1 ทีม ที่เหลือ **19 เป็น AI**
+
+## เล่นทันที
+
+```bash
+npm install
+npm run dev
+```
+
+เปิดเบราว์เซอร์ตาม URL ที่ Vite แสดง (ปกติ `http://localhost:5173`)
+
+## โลกเกม (สำคัญ)
+
+- ลีกเดียว 20 สโมสร
+- ผู้เล่น = `controlledBy: 'human'` หนึ่งคลับ
+- อีก 19 = `controlledBy: 'ai'`
+- ปุ่ม **Play next matchday** จะจำลอง **ทุกนัดของวันนั้น** (นัดคุณ + นัด AI vs AI) แล้วอัปเดตตารางเดียวกัน
+
+## สแต็ก
+
+- React 19 + Vite + TypeScript
+- Tailwind CSS v4
+- Zustand + React Router
+- Save ใน `localStorage`
 
 ## เอกสาร
 
-- [ระบบเกมทั้งหมด](docs/GAME_SYSTEMS.md)
-- [Todo list](docs/TODO.md) — ติดตามหลักที่ **[GitHub Issues](https://github.com/loranosoloz/game_fc/issues)** (68 งาน, label ตามเฟส)
-
-## สถานะ
-
-ยังอยู่ขั้นออกแบบเอกสาร + ติดตั้ง UI Skills สำหรับ Cursor  
-ยังไม่เริ่ม scaffold โค้ดเกม
-
-Repo: https://github.com/loranosoloz/game_fc
+- [ระบบเกม](docs/GAME_SYSTEMS.md)
+- [Todo → GitHub Issues](https://github.com/loranosoloz/game_fc/issues)
 
 ## UI Skills
 
-โปรเจกต์ติดตั้ง [ibelick/ui-skills](https://github.com/ibelick/ui-skills) ไว้ที่ `.agents/skills/`  
-ตอนทำ UI ให้รัน `npx ui-skills start` ก่อน
+ติดตั้ง [ibelick/ui-skills](https://github.com/ibelick/ui-skills) ที่ `.agents/skills/`  
+ตอนทำ UI: `npx ui-skills start`
+
+Repo: https://github.com/loranosoloz/game_fc
