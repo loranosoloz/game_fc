@@ -3,7 +3,7 @@ import type { Fixture } from './types'
 /** Round-robin home & away for 20 clubs → 38 matchdays, 10 games each. */
 export function generateSeasonFixtures(clubIds: string[], seasonStart = '2026-08-15'): Fixture[] {
   if (clubIds.length !== 20) {
-    throw new Error('League must have exactly 20 clubs')
+    throw new Error('ลีกต้องมี 20 สโมสร')
   }
 
   const n = clubIds.length

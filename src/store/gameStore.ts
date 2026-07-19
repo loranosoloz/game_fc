@@ -12,6 +12,7 @@ import {
 } from '@/game/simulate'
 import { autoPickTactics } from '@/game/seed'
 import { FORMATION_SLOTS } from '@/game/types'
+import { buyPlayerFromAi, sellPlayerToAi } from '@/game/transfer'
 
 interface GameStore {
   save: GameSave | null
@@ -24,15 +25,15 @@ interface GameStore {
   setFormation: (formation: FormationId) => void
   setStartingXi: (playerIds: string[]) => void
   autoPickHumanXi: () => void
-  /** Instant resolve (no pitch) — also used when human has no fixture that day. */
   playNextMatchday: () => void
-  /** Enter FM-style live pitch + commentary for your fixture. */
   startLiveMatch: () => boolean
   finishLiveMatch: () => void
   abortLiveMatch: () => void
   advanceDay: () => void
   markInboxRead: (id: string) => void
   clearStatus: () => void
+  offerBuyPlayer: (playerId: string, fee: number, wage: number) => boolean
+  offerSellPlayer: (playerId: string, fee: number) => boolean
 }
 
 function finalizeApplied(save: GameSave, matchday: number, resultsCount: number) {
@@ -44,7 +45,7 @@ function finalizeApplied(save: GameSave, matchday: number, resultsCount: number)
   saveToStorage(withRecovery)
   return {
     save: withRecovery,
-    status: `Matchday ${matchday}: ${resultsCount} fixtures resolved (you + AI).`,
+    status: `แมตช์เดย์ ${matchday}: จบนัดครบ ${resultsCount} นัด (คุณ + AI)`,
     liveMatch: null as PreparedMatchday | null,
   }
 }
@@ -57,7 +58,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   newGame: (managerName, humanClubId) => {
     const save = createNewGame(managerName, humanClubId)
     saveToStorage(save)
-    set({ save, status: 'New career started — 19 AI clubs ready.', liveMatch: null })
+    set({ save, status: 'เริ่มอาชีพใหม่แล้ว — มี AI คุมอีก 19 ทีม', liveMatch: null })
   },
 
   continueGame: () => {
@@ -74,7 +75,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
   resetSave: () => {
     clearStorage()
-    set({ save: null, status: 'Save cleared.', liveMatch: null })
+    set({ save: null, status: 'ลบเซฟแล้ว', liveMatch: null })
   },
 
   setFormation: (formation) => {
@@ -82,8 +83,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (!save) return
     const humanId = save.humanClubId
     const picked = autoPickTactics(humanId, save.players, formation)
-    const tacticsByClub = { ...save.tacticsByClub, [humanId]: picked }
-    const next = { ...save, tacticsByClub }
+    const next = { ...save, tacticsByClub: { ...save.tacticsByClub, [humanId]: picked } }
     saveToStorage(next)
     set({ save: next })
   },
@@ -120,7 +120,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       tacticsByClub: { ...save.tacticsByClub, [humanId]: picked },
     }
     saveToStorage(next)
-    set({ save: next, status: 'Best available XI selected.' })
+    set({ save: next, status: 'เลือก XI ที่ดีที่สุดให้อัตโนมัติแล้ว' })
   },
 
   playNextMatchday: () => {
@@ -128,7 +128,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (!save || save.seasonComplete) return
     const md = nextUnplayedMatchday(save)
     if (md == null) {
-      set({ status: 'Season complete.' })
+      set({ status: 'จบฤดูกาลแล้ว' })
       return
     }
     const { save: next, resultsCount } = simulateMatchday(save, md)
@@ -140,23 +140,16 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (!save || save.seasonComplete) return false
     const md = nextUnplayedMatchday(save)
     if (md == null) {
-      set({ status: 'Season complete.' })
+      set({ status: 'จบฤดูกาลแล้ว' })
       return false
     }
     const prepared = prepareMatchday(save, md)
     if (!prepared) return false
 
     if (!prepared.humanFixture || !prepared.humanResult) {
-      // Your club is not playing this matchday — resolve AI-only instantly
       const applied = applyPreparedMatchday(save, prepared)
-      set(
-        finalizeApplied(
-          applied,
-          md,
-          prepared.results.length,
-        ),
-      )
-      set({ status: `Matchday ${md}: your club had no fixture — AI matches resolved.` })
+      set(finalizeApplied(applied, md, prepared.results.length))
+      set({ status: `แมตช์เดย์ ${md}: ทีมคุณไม่มีนัด — จำลองนัด AI ให้แล้ว` })
       return false
     }
 
@@ -172,14 +165,14 @@ export const useGameStore = create<GameStore>((set, get) => ({
   },
 
   abortLiveMatch: () => {
-    set({ liveMatch: null, status: 'Match aborted — matchday not saved.' })
+    set({ liveMatch: null, status: 'ยกเลิกแมตช์ — ยังไม่บันทึกแมตช์เดย์' })
   },
 
   advanceDay: () => {
     const { save } = get()
     if (!save) return
     if (save.seasonComplete) {
-      set({ status: 'Season finished — start a new game when ready.' })
+      set({ status: 'จบฤดูกาลแล้ว — เริ่มเกมใหม่ได้เมื่อพร้อม' })
       return
     }
     get().playNextMatchday()
@@ -197,4 +190,26 @@ export const useGameStore = create<GameStore>((set, get) => ({
   },
 
   clearStatus: () => set({ status: null }),
+
+  offerBuyPlayer: (playerId, fee, wage) => {
+    const { save } = get()
+    if (!save) return false
+    const result = buyPlayerFromAi(save, playerId, fee, wage)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  offerSellPlayer: (playerId, fee) => {
+    const { save } = get()
+    if (!save) return false
+    const result = sellPlayerToAi(save, playerId, fee)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
 }))

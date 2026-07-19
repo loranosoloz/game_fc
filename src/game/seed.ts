@@ -2,35 +2,35 @@ import type { Club, FormationId, Player, PlayerAttributes, Position, Tactics } f
 import { FORMATION_SLOTS } from './types'
 
 const CLUB_DEFS: Array<{ name: string; shortName: string; color: string; rep: number }> = [
-  { name: 'Northgate United', shortName: 'NOR', color: '#1d4ed8', rep: 78 },
-  { name: 'Riverdale FC', shortName: 'RIV', color: '#b91c1c', rep: 76 },
-  { name: 'Eastbridge Athletic', shortName: 'EAS', color: '#047857', rep: 74 },
-  { name: 'Westford Town', shortName: 'WES', color: '#7c3aed', rep: 72 },
-  { name: 'Harbor City', shortName: 'HAR', color: '#0e7490', rep: 70 },
-  { name: 'Milltown Rovers', shortName: 'MIL', color: '#a16207', rep: 68 },
-  { name: 'Oakridge Wanderers', shortName: 'OAK', color: '#166534', rep: 66 },
-  { name: 'Stonehaven FC', shortName: 'STO', color: '#334155', rep: 65 },
-  { name: 'Redcliff Borough', shortName: 'RED', color: '#9f1239', rep: 64 },
-  { name: 'Silverlake United', shortName: 'SIL', color: '#475569', rep: 63 },
-  { name: 'Ashford City', shortName: 'ASH', color: '#c2410c', rep: 62 },
-  { name: 'Bluepeak Rangers', shortName: 'BLU', color: '#1e40af', rep: 60 },
-  { name: 'Greenfield Albion', shortName: 'GRE', color: '#15803d', rep: 58 },
-  { name: 'Ironworks FC', shortName: 'IRO', color: '#44403c', rep: 57 },
-  { name: 'Lakeside Rovers', shortName: 'LAK', color: '#0369a1', rep: 56 },
-  { name: 'Meadow Park', shortName: 'MEA', color: '#4d7c0f', rep: 55 },
-  { name: 'Crown Hill', shortName: 'CRO', color: '#854d0e', rep: 54 },
-  { name: 'Southbay United', shortName: 'SOU', color: '#be123c', rep: 52 },
-  { name: 'Valley Athletic', shortName: 'VAL', color: '#5b21b6', rep: 50 },
-  { name: 'Newbridge Town', shortName: 'NEW', color: '#0f766e', rep: 48 },
+  { name: 'สุริยะ ยูไนเต็ด', shortName: 'SUR', color: '#1d4ed8', rep: 78 },
+  { name: 'แม่น้ำ เอฟซี', shortName: 'RIV', color: '#b91c1c', rep: 76 },
+  { name: 'ตะวันออก แอทเลติก', shortName: 'EAS', color: '#047857', rep: 74 },
+  { name: 'เวสต์ฟอร์ด ทาวน์', shortName: 'WES', color: '#7c3aed', rep: 72 },
+  { name: 'เมืองท่า ซิตี้', shortName: 'HAR', color: '#0e7490', rep: 70 },
+  { name: 'โรงสี โรเวอร์ส', shortName: 'MIL', color: '#a16207', rep: 68 },
+  { name: 'ดงโอ๊ก วันเดอเรอร์ส', shortName: 'OAK', color: '#166534', rep: 66 },
+  { name: 'หินผา เอฟซี', shortName: 'STO', color: '#334155', rep: 65 },
+  { name: 'ผาแดง โบโร่', shortName: 'RED', color: '#9f1239', rep: 64 },
+  { name: 'ทะเลสาบเงิน ยูไนเต็ด', shortName: 'SIL', color: '#475569', rep: 63 },
+  { name: 'เถ้าเมือง ซิตี้', shortName: 'ASH', color: '#c2410c', rep: 62 },
+  { name: 'ยอดฟ้า เรนเจอร์ส', shortName: 'BLU', color: '#1e40af', rep: 60 },
+  { name: 'ทุ่งเขียว อัลเบียน', shortName: 'GRE', color: '#15803d', rep: 58 },
+  { name: 'โรงเหล็ก เอฟซี', shortName: 'IRO', color: '#44403c', rep: 57 },
+  { name: 'ริมทะเลสาบ โรเวอร์ส', shortName: 'LAK', color: '#0369a1', rep: 56 },
+  { name: 'ทุ่งหญ้า พาร์ค', shortName: 'MEA', color: '#4d7c0f', rep: 55 },
+  { name: 'เนินมงกุฎ', shortName: 'CRO', color: '#854d0e', rep: 54 },
+  { name: 'อ่าวใต้ ยูไนเต็ด', shortName: 'SOU', color: '#be123c', rep: 52 },
+  { name: 'หุบเขา แอทเลติก', shortName: 'VAL', color: '#5b21b6', rep: 50 },
+  { name: 'สะพานใหม่ ทาวน์', shortName: 'NEW', color: '#0f766e', rep: 48 },
 ]
 
 const FIRST = [
-  'Alex', 'Jordan', 'Sam', 'Chris', 'Morgan', 'Riley', 'Casey', 'Jamie', 'Taylor', 'Drew',
-  'Kai', 'Noah', 'Leo', 'Omar', 'Felix', 'Hugo', 'Ivan', 'Nico', 'Owen', 'Quinn',
+  'ธนา', 'กิตติ', 'อนันต์', 'สมชาย', 'วีระ', 'พีรพล', 'ชาญ', 'ณัฐ', 'อาร์ม', 'ปิยะ',
+  'ภูมิ', 'ศักดิ์', 'ธีร', 'เมธี', 'วรินทร์', 'อชิร', 'กันต์', 'ณเดช', 'ภาณุ', 'อิทธิ',
 ]
 const LAST = [
-  'Hart', 'Cole', 'Brooks', 'Reed', 'Hayes', 'Ford', 'Blake', 'Shaw', 'Lane', 'West',
-  'Park', 'Stone', 'Cross', 'Wells', 'Grant', 'Frost', 'Nash', 'Quinn', 'Porter', 'Vance',
+  'ใจดี', 'สุขสันต์', 'ทองคำ', 'รักชาติ', 'มั่นคง', 'เจริญ', 'ศรีสุข', 'วัฒนา', 'บุญมี', 'แสงทอง',
+  'พงษ์ไพร', 'อินทร', 'ชัยชนะ', 'รุ่งเรือง', 'นาคินทร์', 'ไชยเดช', 'อมร', 'เกียรติ', 'วิเศษ', 'พรหมมา',
 ]
 
 function mulberry32(seed: number) {
@@ -172,4 +172,17 @@ export function listClubOptions() {
     color: def.color,
     reputation: def.rep,
   }))
+}
+
+export function positionLabel(pos: Position): string {
+  switch (pos) {
+    case 'GK':
+      return 'ผู้รักษาประตู'
+    case 'DF':
+      return 'กองหลัง'
+    case 'MF':
+      return 'กองกลาง'
+    case 'FW':
+      return 'กองหน้า'
+  }
 }

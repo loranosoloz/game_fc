@@ -14,7 +14,7 @@ export function createNewGame(managerName: string, humanClubId: string): GameSav
   return {
     version: 1,
     createdAt: new Date().toISOString(),
-    managerName: managerName.trim() || 'Manager',
+    managerName: managerName.trim() || 'ผู้จัดการ',
     humanClubId,
     currentDate: fixtures[0]?.date ?? '2026-08-15',
     season: 2026,
@@ -28,8 +28,8 @@ export function createNewGame(managerName: string, humanClubId: string): GameSav
       {
         id: 'welcome',
         date: fixtures[0]?.date ?? '2026-08-15',
-        title: `Welcome to ${human.name}`,
-        body: `You manage 1 of 20 clubs. The other 19 are AI. Each matchday simulates every fixture — yours and all AI matches — then updates the league table.`,
+        title: `ยินดีต้อนรับสู่ ${human.name}`,
+        body: `คุณคุม 1 ใน 20 สโมสร ที่เหลืออีก 19 เป็น AI ทุกแมตช์เดย์จะจำลองนัดทั้งหมดของคุณและของ AI แล้วอัปเดตตารางเดียวกัน`,
         read: false,
       },
     ],

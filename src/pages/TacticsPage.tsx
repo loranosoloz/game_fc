@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useGameStore } from '@/store/gameStore'
 import type { FormationId } from '@/game/types'
 import { FORMATION_SLOTS } from '@/game/types'
+import { positionLabel } from '@/game/seed'
 import { cn } from '@/lib/cn'
 
 const FORMATIONS: FormationId[] = ['4-3-3', '4-4-2', '4-2-3-1']
@@ -36,7 +37,7 @@ export function TacticsPage() {
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
       <section className="space-y-4 rounded-xl border border-slate-200 bg-white/80 p-5">
-        <h2 className="text-lg font-semibold">Formation</h2>
+        <h2 className="text-lg font-semibold">แผนการเล่น</h2>
         <div className="flex flex-wrap gap-2">
           {FORMATIONS.map((f) => (
             <button
@@ -59,11 +60,10 @@ export function TacticsPage() {
           onClick={autoPickHumanXi}
           className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold hover:bg-slate-50"
         >
-          Auto-pick best XI
+          เลือก XI อัตโนมัติ
         </button>
         <p className="text-xs text-slate-500">
-          Selected {tactics.startingXi.length}/{slots.length}. AI clubs auto-pick before each
-          matchday.
+          เลือกแล้ว {tactics.startingXi.length}/{slots.length} · ทีม AI เลือก XI เองก่อนทุกแมตช์เดย์
         </p>
         <ol className="space-y-1 text-sm">
           {tactics.startingXi.map((id, i) => {
@@ -71,7 +71,7 @@ export function TacticsPage() {
             return (
               <li key={id} className="flex justify-between rounded bg-slate-50 px-2 py-1">
                 <span>
-                  {slots[i]} · {p?.name}
+                  {positionLabel(slots[i])} · {p?.name}
                 </span>
                 <span className="text-slate-500">{p?.overall}</span>
               </li>
@@ -81,7 +81,7 @@ export function TacticsPage() {
       </section>
 
       <section className="rounded-xl border border-slate-200 bg-white/80 p-5">
-        <h2 className="text-lg font-semibold">Select XI</h2>
+        <h2 className="text-lg font-semibold">เลือกตัวจริง</h2>
         <ul className="mt-3 grid gap-1 sm:grid-cols-2">
           {squad.map((p) => {
             const selected = tactics.startingXi.includes(p.id)
@@ -98,7 +98,7 @@ export function TacticsPage() {
                   )}
                 >
                   <span>
-                    <span className="font-semibold">{p.position}</span> {p.name}
+                    <span className="font-semibold">{positionLabel(p.position)}</span> {p.name}
                   </span>
                   <span className="text-slate-500">{p.overall}</span>
                 </button>

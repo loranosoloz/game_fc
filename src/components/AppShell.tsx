@@ -4,13 +4,14 @@ import { cn } from '@/lib/cn'
 import { sortedTable } from '@/game/simulate'
 
 const links = [
-  { to: '/portal', label: 'Portal' },
-  { to: '/squad', label: 'Squad' },
-  { to: '/tactics', label: 'Tactics' },
-  { to: '/match', label: 'Match' },
-  { to: '/table', label: 'Table' },
-  { to: '/finance', label: 'Finance' },
-  { to: '/save', label: 'Save' },
+  { to: '/portal', label: 'พอร์ทัล' },
+  { to: '/squad', label: 'สควอด' },
+  { to: '/tactics', label: 'แท็กติก' },
+  { to: '/match', label: 'แมตช์' },
+  { to: '/table', label: 'ตาราง' },
+  { to: '/transfers', label: 'ตลาด' },
+  { to: '/finance', label: 'การเงิน' },
+  { to: '/save', label: 'เซฟ' },
 ]
 
 export function AppShell() {
@@ -38,8 +39,8 @@ export function AppShell() {
             {club.name}
           </h1>
           <p className="mt-1 text-sm text-slate-600">
-            {save.managerName} · Season {save.season} · {save.currentDate} · Rank #{rank || '—'} ·{' '}
-            <span className="text-sky-700">You</span> + {aiCount} AI clubs
+            {save.managerName} · ฤดูกาล {save.season} · {save.currentDate} · อันดับ #{rank || '—'} ·{' '}
+            <span className="text-sky-700">คุณ</span> + AI {aiCount} ทีม
           </p>
         </div>
         <button
@@ -50,11 +51,11 @@ export function AppShell() {
           disabled={save.seasonComplete}
           className="rounded-md bg-slate-900 px-4 py-2.5 text-sm font-semibold text-lime-300 transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40"
         >
-          {save.seasonComplete ? 'Season complete' : 'Play next match (pitch)'}
+          {save.seasonComplete ? 'จบฤดูกาลแล้ว' : 'เล่นนัดถัดไป (สนาม)'}
         </button>
       </header>
 
-      <nav className="flex flex-wrap gap-1" aria-label="Main">
+      <nav className="flex flex-wrap gap-1" aria-label="เมนูหลัก">
         {links.map((link) => (
           <NavLink
             key={link.to}
@@ -81,7 +82,7 @@ export function AppShell() {
             type="button"
             className="shrink-0 text-slate-500 hover:text-slate-800"
             onClick={clearStatus}
-            aria-label="Dismiss status"
+            aria-label="ปิดข้อความ"
           >
             ×
           </button>

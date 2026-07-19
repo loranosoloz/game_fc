@@ -141,7 +141,7 @@ export function simulateFixture(
   push(
     0,
     'kickoff',
-    `Kick-off! ${homeClub.name} host ${awayClub.name}. The crowd is ready.`,
+    `เสียงนกหวีด! ${homeClub.name} เปิดบ้านรับ ${awayClub.name} แฟนบอลพร้อมแล้ว`,
     { x: 50, y: 50 },
   )
 
@@ -190,7 +190,7 @@ export function simulateFixture(
       push(
         45,
         'halftime',
-        `Half-time whistle. ${homeClub.shortName} ${hg}–${ag} ${awayClub.shortName}.`,
+        `หมดครึ่งแรก ${homeClub.shortName} ${hg}–${ag} ${awayClub.shortName}`,
         { x: 50, y: 50 },
       )
       halfAnnounced = true
@@ -199,7 +199,7 @@ export function simulateFixture(
       push(
         46,
         'secondhalf',
-        'Second half underway. Both sides look sharp again.',
+        'เริ่มครึ่งหลังแล้ว ทั้งสองทีมกลับมาพร้อมสู้',
         { x: 50, y: 50 },
       )
       secondAnnounced = true
@@ -215,24 +215,24 @@ export function simulateFixture(
       push(
         Math.max(1, beat.minute - 1),
         'chance',
-        `${isHome ? homeClub.shortName : awayClub.shortName} break forward — ${scorer.name} is free!`,
+        `${isHome ? homeClub.shortName : awayClub.shortName} บุกขึ้นหน้า — ${scorer.name} มีพื้นที่!`,
         spot(rng, isHome ? 'away' : 'home'),
         { clubId: isHome ? homeClub.id : awayClub.id, playerName: scorer.name },
       )
       push(
         beat.minute,
         'shot',
-        `${scorer.name} shoots...`,
+        `${scorer.name} ยิง...`,
         s,
         { clubId: isHome ? homeClub.id : awayClub.id, playerName: scorer.name },
       )
       if (isHome) hg += 1
       else ag += 1
-      const assistText = assist ? ` Assist: ${assist.name}.` : ''
+      const assistTh = assist ? ` แอสซิสต์: ${assist.name}` : ''
       push(
         beat.minute,
         'goal',
-        `GOAL! ${scorer.name} finds the net for ${isHome ? homeClub.name : awayClub.name}!${assistText} ${homeClub.shortName} ${hg}–${ag} ${awayClub.shortName}.`,
+        `ประตู! ${scorer.name} ยิงให้ ${isHome ? homeClub.name : awayClub.name}!${assistTh} ${homeClub.shortName} ${hg}–${ag} ${awayClub.shortName}`,
         s,
         {
           clubId: isHome ? homeClub.id : awayClub.id,
@@ -242,7 +242,6 @@ export function simulateFixture(
       continue
     }
 
-    // Filler FM-style lines
     const homeAttack = rng() < homeRating / (homeRating + awayRating)
     const team = homeAttack ? homeClub : awayClub
     const opp = homeAttack ? awayClub : homeClub
@@ -257,7 +256,7 @@ export function simulateFixture(
       push(
         beat.minute,
         'commentary',
-        `${team.shortName} recycle possession patiently through midfield.`,
+        `${team.shortName} ครองบอลผ่านกลางสนามอย่างใจเย็น`,
         spot(rng, 'mid'),
         { clubId: team.id },
       )
@@ -265,7 +264,7 @@ export function simulateFixture(
       push(
         beat.minute,
         'chance',
-        `${actor.name} drives at ${defender.name} — the crowd rises.`,
+        `${actor.name} ดริบเบิลใส่ ${defender.name} — แฟนบอลลุกยืน`,
         spot(rng, homeAttack ? 'away' : 'home'),
         { clubId: team.id, playerName: actor.name },
       )
@@ -274,14 +273,14 @@ export function simulateFixture(
       push(
         beat.minute,
         'shot',
-        `${actor.name} lets fly from the edge of the box!`,
+        `${actor.name} ยิงจากขอบเขตโทษ!`,
         s,
         { clubId: team.id, playerName: actor.name },
       )
       push(
         beat.minute,
         'save',
-        `Saved! ${keeper.name} keeps ${opp.shortName} level for now.`,
+        `เซฟ! ${keeper.name} ปัดลูกออก ช่วย ${opp.shortName} ไว้`,
         s,
         { clubId: opp.id, playerName: keeper.name },
       )
@@ -289,7 +288,7 @@ export function simulateFixture(
       push(
         beat.minute,
         'corner',
-        `Corner to ${team.shortName}. ${actor.name} will deliver.`,
+        `เตะมุมของ ${team.shortName} — ${actor.name} จะเปิดลูก`,
         spot(rng, homeAttack ? 'awayBox' : 'homeBox'),
         { clubId: team.id, playerName: actor.name },
       )
@@ -297,7 +296,7 @@ export function simulateFixture(
       push(
         beat.minute,
         'foul',
-        `Foul by ${defender.name} on ${actor.name}. Free-kick ${team.shortName}.`,
+        `${defender.name} ฟาล์วใส่ ${actor.name} — ฟรีคิกของ ${team.shortName}`,
         spot(rng, 'mid'),
         { clubId: opp.id, playerName: defender.name },
       )
@@ -305,7 +304,7 @@ export function simulateFixture(
       push(
         beat.minute,
         'card',
-        `Yellow card — ${defender.name} (${opp.shortName}) goes into the book.`,
+        `ใบเหลือง! ${defender.name} (${opp.shortName}) โดนจอง`,
         spot(rng, 'mid'),
         { clubId: opp.id, playerName: defender.name },
       )
@@ -313,7 +312,7 @@ export function simulateFixture(
       push(
         beat.minute,
         'commentary',
-        `${opp.shortName} win it back and look for a quick transition.`,
+        `${opp.shortName} แย่งบอลคืน พร้อมโต้กลับ`,
         spot(rng, homeAttack ? 'home' : 'away'),
         { clubId: opp.id },
       )
@@ -321,7 +320,7 @@ export function simulateFixture(
       push(
         beat.minute,
         'commentary',
-        `The tempo drops for a moment as ${team.name} reset their shape.`,
+        `จังหวะชะลอลง ${team.name} จัดรูปทีมใหม่`,
         spot(rng, 'mid'),
         { clubId: team.id },
       )
@@ -329,19 +328,16 @@ export function simulateFixture(
   }
 
   if (!halfAnnounced) {
-    push(45, 'halftime', `Half-time. ${homeClub.shortName} ${hg}–${ag} ${awayClub.shortName}.`, {
+    push(45, 'halftime', `หมดครึ่งแรก ${homeClub.shortName} ${hg}–${ag} ${awayClub.shortName}`, {
       x: 50,
       y: 50,
     })
-  }
-  if (!secondAnnounced && (homeGoals > 0 || awayGoals > 0 || rng() > 0.2)) {
-    // ensure second half marker if we had late events only — already handled usually
   }
 
   push(
     90,
     'fulltime',
-    `Full-time! ${homeClub.name} ${hg}–${ag} ${awayClub.name}.`,
+    `จบเกม! ${homeClub.name} ${hg}–${ag} ${awayClub.name}`,
     { x: 50, y: 50 },
   )
 

@@ -1,5 +1,6 @@
 import { useGameStore } from '@/store/gameStore'
 import { sortedTable } from '@/game/simulate'
+import { formatMoney } from '@/lib/format'
 
 export function PortalPage() {
   const save = useGameStore((s) => s.save)!
@@ -24,18 +25,18 @@ export function PortalPage() {
     <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
       <section className="space-y-4">
         <div className="rounded-xl border border-slate-200 bg-white/80 p-5">
-          <h2 className="text-lg font-semibold">Club pulse</h2>
+          <h2 className="text-lg font-semibold">ชีพจรสโมสร</h2>
           <dl className="mt-3 grid grid-cols-2 gap-3 text-sm md:grid-cols-4">
             <div>
-              <dt className="text-slate-500">Balance</dt>
-              <dd className="font-semibold">£{club.balance.toLocaleString()}</dd>
+              <dt className="text-slate-500">เงินในบัญชี</dt>
+              <dd className="font-semibold">{formatMoney(club.balance)}</dd>
             </div>
             <div>
-              <dt className="text-slate-500">Matchday</dt>
-              <dd className="font-semibold">{save.matchday || 'Pre-season'}</dd>
+              <dt className="text-slate-500">แมตช์เดย์</dt>
+              <dd className="font-semibold">{save.matchday || 'พรีซีซัน'}</dd>
             </div>
             <div>
-              <dt className="text-slate-500">Next vs</dt>
+              <dt className="text-slate-500">นัดถัดไป</dt>
               <dd className="font-semibold">
                 {opp ? (
                   <>
@@ -48,17 +49,17 @@ export function PortalPage() {
               </dd>
             </div>
             <div>
-              <dt className="text-slate-500">World</dt>
-              <dd className="font-semibold">1 human · 19 AI</dd>
+              <dt className="text-slate-500">โลกเกม</dt>
+              <dd className="font-semibold">คุณ 1 · AI 19</dd>
             </div>
           </dl>
         </div>
 
         <div className="rounded-xl border border-slate-200 bg-white/80 p-5">
-          <h2 className="text-lg font-semibold">Inbox</h2>
+          <h2 className="text-lg font-semibold">กล่องข้อความ</h2>
           <ul className="mt-3 space-y-2">
             {save.inbox.length === 0 ? (
-              <li className="text-sm text-slate-500">No messages.</li>
+              <li className="text-sm text-slate-500">ยังไม่มีข้อความ</li>
             ) : (
               save.inbox.map((msg) => (
                 <li key={msg.id}>
@@ -68,7 +69,9 @@ export function PortalPage() {
                     className="w-full rounded-md border border-slate-100 bg-slate-50 px-3 py-2 text-left hover:bg-slate-100"
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <span className={`text-sm font-medium ${msg.read ? 'text-slate-500' : 'text-slate-900'}`}>
+                      <span
+                        className={`text-sm font-medium ${msg.read ? 'text-slate-500' : 'text-slate-900'}`}
+                      >
                         {msg.title}
                       </span>
                       <span className="text-xs text-slate-400">{msg.date}</span>
@@ -83,8 +86,8 @@ export function PortalPage() {
       </section>
 
       <aside className="rounded-xl border border-slate-200 bg-white/80 p-5">
-        <h2 className="text-lg font-semibold">League snapshot</h2>
-        <p className="mt-1 text-xs text-slate-500">Shared table — AI results count too</p>
+        <h2 className="text-lg font-semibold">สรุปตารางลีก</h2>
+        <p className="mt-1 text-xs text-slate-500">ตารางเดียวกัน — ผล AI นับด้วย</p>
         <ol className="mt-3 space-y-1.5 text-sm">
           {top5.map((row, i) => {
             const c = save.clubs.find((x) => x.id === row.clubId)!
@@ -97,12 +100,12 @@ export function PortalPage() {
                 <span>
                   {i + 1}. {c.shortName}{' '}
                   {you ? (
-                    <span className="text-xs text-sky-700">YOU</span>
+                    <span className="text-xs text-sky-700">คุณ</span>
                   ) : (
                     <span className="text-xs text-slate-400">AI</span>
                   )}
                 </span>
-                <span className="font-semibold">{row.points} pts</span>
+                <span className="font-semibold">{row.points} แต้ม</span>
               </li>
             )
           })}

@@ -9,47 +9,46 @@ export function SavePage() {
 
   return (
     <section className="max-w-xl space-y-4 rounded-xl border border-slate-200 bg-white/80 p-5">
-      <h2 className="text-lg font-semibold">Save / Load</h2>
+      <h2 className="text-lg font-semibold">เซฟ / โหลด</h2>
       <p className="text-sm text-slate-600">
-        Autosaves to browser localStorage after each matchday. Slot: <code>fc-manager-save-v1</code>
+        เซฟอัตโนมัติในเบราว์เซอร์หลังทุกแมตช์เดย์ สล็อต:{' '}
+        <code>fc-manager-save-v1</code>
       </p>
       <dl className="text-sm">
         <div className="flex justify-between border-b border-slate-100 py-2">
-          <dt className="text-slate-500">Manager</dt>
+          <dt className="text-slate-500">ผู้จัดการ</dt>
           <dd className="font-medium">{save.managerName}</dd>
         </div>
         <div className="flex justify-between border-b border-slate-100 py-2">
-          <dt className="text-slate-500">Club</dt>
+          <dt className="text-slate-500">สโมสร</dt>
           <dd className="font-medium">
             {save.clubs.find((c) => c.id === save.humanClubId)?.name}
           </dd>
         </div>
         <div className="flex justify-between py-2">
-          <dt className="text-slate-500">Created</dt>
-          <dd className="font-medium">{new Date(save.createdAt).toLocaleString()}</dd>
+          <dt className="text-slate-500">สร้างเมื่อ</dt>
+          <dd className="font-medium">{new Date(save.createdAt).toLocaleString('th-TH')}</dd>
         </div>
       </dl>
       <div className="flex flex-wrap gap-2">
         <button
           type="button"
-          onClick={() => {
-            persist()
-          }}
+          onClick={() => persist()}
           className="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-lime-300 hover:bg-slate-800"
         >
-          Save now
+          เซฟตอนนี้
         </button>
         <button
           type="button"
           onClick={() => {
-            if (window.confirm('Delete save and return to home?')) {
+            if (window.confirm('ลบเซฟแล้วกลับหน้าแรก?')) {
               resetSave()
               navigate('/')
             }
           }}
           className="rounded-md border border-red-200 bg-red-50 px-4 py-2 text-sm font-semibold text-red-800 hover:bg-red-100"
         >
-          Delete save
+          ลบเซฟ
         </button>
       </div>
     </section>

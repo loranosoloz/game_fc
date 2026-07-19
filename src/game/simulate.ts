@@ -125,12 +125,12 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       const usHome = fixture.homeClubId === save.humanClubId
       const usGoals = usHome ? result.homeGoals : result.awayGoals
       const themGoals = usHome ? result.awayGoals : result.homeGoals
-      const outcome = usGoals > themGoals ? 'Win' : usGoals === themGoals ? 'Draw' : 'Loss'
+      const outcome = usGoals > themGoals ? 'ชนะ' : usGoals === themGoals ? 'เสมอ' : 'แพ้'
       inbox.unshift({
         id: `msg-${Date.now()}-${fixture.id}`,
         date: fixture.date,
-        title: `${outcome} vs ${opp.name}`,
-        body: `Final score ${result.homeGoals}–${result.awayGoals}. Gate receipts (home): £${homeIncome.toLocaleString()}. ${prepared.results.length - 1} other AI fixtures were also completed this matchday.`,
+        title: `${outcome} พบ ${opp.name}`,
+        body: `สกอร์สุดท้าย ${result.homeGoals}–${result.awayGoals} รายได้ตั๋วเหย้า: ${homeIncome.toLocaleString('th-TH')} บาท นัดอื่นของ AI ในแมตช์เดย์นี้จบครบ ${prepared.results.length - 1} นัด`,
         read: false,
       })
     }

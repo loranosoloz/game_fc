@@ -15,7 +15,7 @@ export function MatchPage() {
   const last = save.lastHumanResult
 
   const nameOf = (id: string) => save.clubs.find((c) => c.id === id)?.name ?? id
-  const tag = (id: string) => (id === save.humanClubId ? 'YOU' : 'AI')
+  const tag = (id: string) => (id === save.humanClubId ? 'คุณ' : 'AI')
 
   const dayFixtures =
     next != null ? save.fixtures.filter((f) => f.matchday === next.matchday) : []
@@ -27,22 +27,22 @@ export function MatchPage() {
   return (
     <div className="grid gap-6 lg:grid-cols-2">
       <section className="rounded-xl border border-slate-200 bg-white/80 p-5">
-        <h2 className="text-lg font-semibold">Your next match</h2>
+        <h2 className="text-lg font-semibold">นัดถัดไปของคุณ</h2>
         {next ? (
           <div className="mt-3 space-y-3">
             <p className="text-2xl font-bold tracking-tight">
               {nameOf(next.homeClubId)}{' '}
               <span className="text-sm font-normal text-slate-400">({tag(next.homeClubId)})</span>
-              <span className="mx-2 text-slate-400">vs</span>
+              <span className="mx-2 text-slate-400">พบ</span>
               {nameOf(next.awayClubId)}{' '}
               <span className="text-sm font-normal text-slate-400">({tag(next.awayClubId)})</span>
             </p>
             <p className="text-sm text-slate-600">
-              Matchday {next.matchday} · {next.date}
+              แมตช์เดย์ {next.matchday} · {next.date}
             </p>
             <p className="text-sm text-slate-600">
-              Same day: <strong>{dayFixtures.length}</strong> fixtures (your match on the pitch + AI
-              vs AI in the background).
+              วันเดียวกันมี <strong>{dayFixtures.length}</strong> นัด (นัดคุณบนสนาม + นัด AI
+              ในพื้นหลัง)
             </p>
             <div className="flex flex-wrap gap-2">
               <button
@@ -50,27 +50,27 @@ export function MatchPage() {
                 onClick={enterLive}
                 className="rounded-md bg-slate-900 px-4 py-2.5 text-sm font-semibold text-lime-300 hover:bg-slate-800"
               >
-                Enter match (pitch + commentary)
+                เข้าแมตช์ (สนาม + คำบรรยาย)
               </button>
               <button
                 type="button"
                 onClick={playNextMatchday}
                 className="rounded-md border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-50"
               >
-                Instant result
+                ผลทันที
               </button>
             </div>
           </div>
         ) : (
           <div className="mt-3 space-y-3">
-            <p className="text-sm text-slate-600">No remaining fixtures for your club.</p>
+            <p className="text-sm text-slate-600">ไม่มีนัดเหลือสำหรับทีมคุณ</p>
             {!save.seasonComplete ? (
               <button
                 type="button"
                 onClick={playNextMatchday}
                 className="rounded-md bg-slate-900 px-4 py-2.5 text-sm font-semibold text-lime-300 hover:bg-slate-800"
               >
-                Resolve next AI matchday
+                จำลองแมตช์เดย์ AI ถัดไป
               </button>
             ) : null}
           </div>
@@ -78,7 +78,7 @@ export function MatchPage() {
 
         {last ? (
           <div className="mt-6 border-t border-slate-100 pt-4">
-            <h3 className="font-semibold">Last result (you)</h3>
+            <h3 className="font-semibold">ผลล่าสุด (คุณ)</h3>
             <p className="mt-1 text-xl font-bold">
               {last.homeGoals} – {last.awayGoals}
             </p>
@@ -87,7 +87,7 @@ export function MatchPage() {
                 .filter((e) => e.kind === 'goal' || e.kind === 'fulltime')
                 .map((e) => (
                   <li key={e.id ?? `${e.minute}-${e.playerName}`}>
-                    {e.minute}&apos; {e.text ?? `${e.playerName ?? 'Event'}`}
+                    {e.minute}&apos; {e.text ?? `${e.playerName ?? 'เหตุการณ์'}`}
                   </li>
                 ))}
             </ul>
@@ -96,10 +96,10 @@ export function MatchPage() {
       </section>
 
       <section className="rounded-xl border border-slate-200 bg-white/80 p-5">
-        <h2 className="text-lg font-semibold">Recent (your club)</h2>
+        <h2 className="text-lg font-semibold">ผลล่าสุดของทีมคุณ</h2>
         <ul className="mt-3 space-y-2 text-sm">
           {recent.length === 0 ? (
-            <li className="text-slate-500">No matches played yet.</li>
+            <li className="text-slate-500">ยังไม่เคยลงแข่ง</li>
           ) : (
             recent.map((f) => (
               <li
@@ -107,7 +107,7 @@ export function MatchPage() {
                 className="flex items-center justify-between rounded-md bg-slate-50 px-3 py-2"
               >
                 <span>
-                  {nameOf(f.homeClubId)} vs {nameOf(f.awayClubId)}
+                  {nameOf(f.homeClubId)} พบ {nameOf(f.awayClubId)}
                 </span>
                 <span className="font-semibold">
                   {f.homeGoals}–{f.awayGoals}

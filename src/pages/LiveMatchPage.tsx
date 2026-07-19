@@ -99,14 +99,15 @@ export function LiveMatchPage() {
       <header className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="text-xs font-semibold tracking-[0.2em] text-slate-500 uppercase">
-            Live match · FM style
+            แมตช์สด · สไตล์ FM
           </p>
           <h1 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
             {clubs.home.name}{' '}
-            <span className="text-slate-400">vs</span> {clubs.away.name}
+            <span className="text-slate-400">พบ</span> {clubs.away.name}
           </h1>
           <p className="text-sm text-slate-600">
-            Matchday {live.matchday} · {live.date} · 22 players on pitch · AI fixtures resolve at FT
+            แมตช์เดย์ {live.matchday} · {live.date} · ผู้เล่น 22 คนบนสนาม · นัด AI
+            จะถูกบันทึกเมื่อจบเกม
           </p>
         </div>
         <div className="text-right">
@@ -115,7 +116,7 @@ export function LiveMatchPage() {
           </p>
           <p className="text-sm font-semibold text-slate-600">{current.minute}&apos;</p>
           {active ? (
-            <p className="mt-1 text-xs font-medium text-lime-800">On ball: {active.name}</p>
+            <p className="mt-1 text-xs font-medium text-lime-800">ครองบอล: {active.name}</p>
           ) : null}
         </div>
       </header>
@@ -138,7 +139,7 @@ export function LiveMatchPage() {
           onClick={() => setPlaying((p) => !p)}
           disabled={done}
         >
-          {playing ? 'Pause' : 'Play'}
+          {playing ? 'หยุดชั่วคราว' : 'เล่นต่อ'}
         </button>
         {(['slow', 'normal', 'fast'] as const).map((s) => (
           <button
@@ -146,13 +147,13 @@ export function LiveMatchPage() {
             type="button"
             onClick={() => setSpeed(s)}
             className={cn(
-              'rounded-md border px-3 py-1.5 text-sm font-medium capitalize',
+              'rounded-md border px-3 py-1.5 text-sm font-medium',
               speed === s
                 ? 'border-slate-900 bg-slate-900 text-lime-300'
                 : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-50',
             )}
           >
-            {s}
+            {s === 'slow' ? 'ช้า' : s === 'normal' ? 'ปกติ' : 'เร็ว'}
           </button>
         ))}
         <button
@@ -164,7 +165,7 @@ export function LiveMatchPage() {
             setPlaying(false)
           }}
         >
-          Skip to FT
+          ข้ามไปจบเกม
         </button>
         {done ? (
           <button
@@ -175,27 +176,27 @@ export function LiveMatchPage() {
               navigate('/match')
             }}
           >
-            Confirm result &amp; resolve AI matches
+            ยืนยันผลและบันทึกนัด AI
           </button>
         ) : (
           <button
             type="button"
             className="rounded-md border border-red-200 bg-red-50 px-3 py-1.5 text-sm font-semibold text-red-800 hover:bg-red-100"
             onClick={() => {
-              if (window.confirm('Leave without finishing? Matchday will not be saved.')) {
+              if (window.confirm('ออกโดยไม่จบแมตช์? แมตช์เดย์จะไม่ถูกบันทึก')) {
                 abortLiveMatch()
                 navigate('/match')
               }
             }}
           >
-            Abort
+            ยกเลิก
           </button>
         )}
       </div>
 
       <section className="rounded-xl border border-slate-200 bg-white/90 p-4 shadow-sm">
         <h2 className="text-sm font-semibold tracking-wide text-slate-500 uppercase">
-          Commentary
+          คำบรรยาย
         </h2>
         <div ref={feedRef} className="mt-3 max-h-64 space-y-2 overflow-y-auto pr-1">
           {visible.map((ev) => (
