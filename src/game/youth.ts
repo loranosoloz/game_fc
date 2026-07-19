@@ -14,6 +14,8 @@ import { REAL_NAME_BANKS } from '@/data/world/realNameBanks'
 import { ensureScouting } from './scouting'
 import { newsAfterYouth, pushNews } from './media'
 import { createBodyMap } from './bodyMap'
+import { rollPlayerSkills } from './playerSkills'
+import { createPlayerSocial } from './social'
 
 const YOUTH_NAME_POOL = [
   ...new Set([...Object.values(REAL_NAME_BANKS).flat(), ...REAL_NAME_OVERFLOW]),
@@ -104,6 +106,18 @@ export function maybePromoteYouth(save: GameSave): GameSave {
       isYouth: true,
       mentorId: null,
       mediaHandling: 5 + Math.floor(rng() * 8),
+      skills: rollPlayerSkills(roleGroup(role), overallFromCa(ca), rng),
+      social: createPlayerSocial(
+        {
+          id: `p-${maxId}`,
+          name,
+          overall: overallFromCa(ca),
+          age,
+          mediaHandling: 5 + Math.floor(rng() * 8),
+          isYouth: true,
+        },
+        human.social?.followers ?? 50_000,
+      ),
     })
   }
 

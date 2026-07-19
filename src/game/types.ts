@@ -24,7 +24,7 @@ export type Pressing = 'low' | 'medium' | 'high'
 export type Tempo = 'slow' | 'normal' | 'fast'
 export type Width = 'narrow' | 'normal' | 'wide'
 export type PlayStyle = 'possession' | 'balanced' | 'counter'
-export type CompetitionKind = 'league' | 'cup' | 'ucl'
+export type CompetitionKind = 'league' | 'cup' | 'ucl' | 'league_cup' | 'trophy'
 export type SetPiecePlan = 'mixed' | 'near_post' | 'far_post' | 'short' | 'direct'
 export type InjuryType = 'muscle' | 'ligament' | 'bone'
 export type InjuryTreatment = 'rest' | 'physio' | 'injection'
@@ -164,8 +164,21 @@ export interface Player {
   mentorId: string | null
   /** How well the player handles media (1–20) */
   mediaHandling: number
+  /** Special position skills (max 10) — unique pools per GK/DF/MF/FW */
+  skills: string[]
   /** Last lifestyle activity id */
   lastActivityId?: string | null
+  /** บัญชีโซเชียลส่วนตัว */
+  social: PlayerSocial
+}
+
+export interface PlayerSocial {
+  handle: string
+  followers: number
+  /** ความร้อนแรงช่วงสั้น 0–100 */
+  heat: number
+  postsWeek: number
+  verified: boolean
 }
 
 export interface Club {
@@ -186,6 +199,20 @@ export interface Club {
   shirtRevenueSeason?: number
   /** ลีกต้นทาง (คลับข้ามลีก / UCL invite) */
   originLeagueId?: string
+  /** 1 = ดิวิชันบน · 2 = ลีกล่าง */
+  division: 1 | 2
+  /** บัญชีโซเชียลทางการของสโมสร */
+  social: ClubSocial
+}
+
+export interface ClubSocial {
+  handle: string
+  followers: number
+  /** engagement 0–100 */
+  engagement: number
+  /** ความแข็งแกร่งแบรนด์ออนไลน์ 0–100 */
+  brand: number
+  lastPostNote: string
 }
 
 export interface TeamInstructions {
@@ -230,6 +257,8 @@ export interface Fixture {
   homeGoals?: number
   awayGoals?: number
   competition: CompetitionKind
+  /** สำหรับนัดลีก — ดิวิชัน 1 หรือ 2 */
+  division?: 1 | 2
   cupRound?: string
   /** Assigned match official */
   refereeId?: string
@@ -1041,6 +1070,8 @@ export interface GameSave {
   tacticsByClub: Record<string, Tactics>
   fixtures: Fixture[]
   table: TableRow[]
+  /** ตารางลีกล่าง (ดิวิชัน 2) */
+  tableDiv2: TableRow[]
   inbox: InboxMessage[]
   lastHumanResult: MatchResult | null
   seasonComplete: boolean
@@ -1064,6 +1095,10 @@ export interface GameSave {
   /** Post-match press conference (null when none pending) */
   pressConference: PressConferenceState | null
   cup: CupState
+  /** ลีกคัพ — ดิวิชัน 1+2 */
+  leagueCup: CupState
+  /** ถ้วยลีกล่าง */
+  trophy: CupState
   /** UEFA Champions League knockout (domestic top 4 + invite clubs). */
   ucl: CupState
   development: DevelopmentState
@@ -1092,14 +1127,36 @@ export interface FacilityProject {
   startedMatchday: number
   doneMatchday: number
   note: string
+  /** ความจุเป้าหลังสร้างเสร็จ (เฉพาะสนาม) */
+  targetCapacity?: number
+  costPaid?: number
+}
+
+/** ข้อเสนออัปเกรดจากผู้จัดการ → รอเจ้าของอนุมัติ */
+export interface FacilityProposal {
+  kind: FacilityKind
+  fromTier: number
+  toTier: number
+  cost: number
+  /** ความจุเป้าถ้าเป็นสนาม (ขั้นละ ~10,000 · Lv10 = 100,000) */
+  targetCapacity?: number
+  proposedMatchday: number
+  note: string
 }
 
 export interface FacilitiesState {
   stadiumTier: number
+  /** เพดานขั้นสนามของคลับนี้ (ทีมใหญ่สูงสุด 10 = จุได้แสน) */
+  maxStadiumTier: number
   trainingTier: number
+  maxTrainingTier: number
   medicalTier: number
+  maxMedicalTier: number
   commercialTier: number
+  maxCommercialTier: number
   project: FacilityProject | null
+  pendingProposal: FacilityProposal | null
+  lastProposalMatchday: number
   lastNote: string
 }
 

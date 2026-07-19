@@ -3,6 +3,7 @@ import type { Club, CupState, Fixture, GameSave, Player, Tactics } from './types
 import { ALL_LEAGUES, getLeague, type LeagueId } from '@/data/world'
 import { createPlayersForClubDef } from './worldSeed'
 import { autoPickTactics } from './seed'
+import { createClubSocial } from './social'
 
 export type UclState = CupState
 
@@ -59,6 +60,15 @@ export function createUclInviteClubs(homeLeagueId: LeagueId): {
       wageBudgetWeekly: Math.round(100_000 + def.rep * 3_000),
       seasonStartBalance: balance,
       originLeagueId: pick.leagueId,
+      division: 1,
+      social: createClubSocial({
+        id,
+        name: def.name,
+        shortName: def.shortName,
+        reputation: def.rep,
+        stadiumCapacity: 40_000 + def.rep * 500,
+        division: 1,
+      }),
     }
     clubs.push(club)
 

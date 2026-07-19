@@ -4,6 +4,7 @@ import developmentDb from '@/data/development.json'
 import type { Player, PlayerAttributes, PlayerGrowth, PlayerHidden, RoleCode } from './types'
 import { roleGroup } from './positions'
 import { ensureBodyMap } from './bodyMap'
+import { ensurePlayerSkills } from './playerSkills'
 
 export { attributesDb, personalitiesDb, developmentDb }
 
@@ -175,11 +176,27 @@ export function ensurePlayerV3Fields(p: Partial<Player> & { id: string; clubId: 
     isYouth: p.isYouth ?? false,
     mentorId: p.mentorId ?? null,
     mediaHandling: p.mediaHandling ?? Math.max(1, Math.min(20, Math.round(8 + Math.random() * 8))),
+    skills: ensurePlayerSkills({
+      ...p,
+      position: p.position ?? roleGroup(role),
+      overall: p.overall ?? overallFromCa(ca),
+      role,
+    } as Player),
     cash:
       typeof p.cash === 'number'
         ? p.cash
         : Math.round((p.wage ?? 2000) * (6 + Math.random() * 14)),
     lastActivityId: p.lastActivityId ?? null,
+    social: p.social ?? {
+      handle: `@${(p.name ?? 'Player').replace(/\s+/g, '').slice(0, 14) || 'Player'}`,
+      followers: Math.max(
+        1_200,
+        Math.round(((p.overall ?? 60) ** 2) * 55 + ((p.mediaHandling ?? 10) * 9_000)),
+      ),
+      heat: 20,
+      postsWeek: 2,
+      verified: (p.overall ?? 0) >= 78,
+    },
   }
 }
 

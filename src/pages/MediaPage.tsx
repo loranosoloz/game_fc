@@ -12,6 +12,12 @@ import {
   type RomanoPlantKind,
 } from '@/game/romanoPlant'
 import type { MediaChannel, MediaItem, MediaTone } from '@/game/types'
+import {
+  ensureAllSocial,
+  formatFollowers,
+  topClubSocial,
+  topPlayerSocial,
+} from '@/game/social'
 import { formatMoney } from '@/lib/format'
 import { cn } from '@/lib/cn'
 import { GhostButton, PageHeader, Panel, PrimaryButton } from '@/components/ui'
@@ -68,7 +74,7 @@ function MediaCard({ item, showReliability }: { item: MediaItem; showReliability
 
 export function MediaPage() {
   const saveRaw = useGameStore((s) => s.save)!
-  const save = ensurePhase5(saveRaw)
+  const save = ensureAllSocial(ensurePhase5(saveRaw))
   const plantRomano = useGameStore((s) => s.plantRomano)
   const media = ensureMediaFeed(save)
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
@@ -76,6 +82,9 @@ export function MediaPage() {
   const [kind, setKind] = useState<RomanoPlantKind>('hype_club')
   const [playerId, setPlayerId] = useState('')
   const [rivalClubId, setRivalClubId] = useState('')
+  const clubLeaders = useMemo(() => topClubSocial(save, 6), [save])
+  const squadSocial = useMemo(() => topPlayerSocial(save, save.humanClubId, 6), [save])
+  const worldStars = useMemo(() => topPlayerSocial(save, undefined, 6), [save])
 
   const list = useMemo(() => {
     if (tab === 'news') return media.news
@@ -121,8 +130,35 @@ export function MediaPage() {
     <div className="space-y-5">
       <PageHeader
         title="สื่อ & ข่าวหลังบ้าน"
-        subtitle="ข่าวหลัก · โซเชียล · Romano — จ้างปล่อยข่าวได้ทุก ~3 เดือน (แพง · มีความเสี่ยงเปิดโปง)"
+        subtitle="ทุกสโมสรและนักเตะมีบัญชีโซเชียล · ข่าวหลัก · Romano"
       />
+
+      <div className="grid gap-3 sm:grid-cols-3">
+        <Panel>
+          <p className="text-[11px] font-semibold tracking-wide text-slate-500 uppercase">
+            บัญชีสโมสร
+          </p>
+          <p className="mt-1 text-lg font-bold text-slate-900">{club.social.handle}</p>
+          <p className="text-sm text-slate-600">
+            {formatFollowers(club.social.followers)} ผู้ติดตาม · engagement {club.social.engagement}
+          </p>
+          <p className="mt-1 text-xs text-slate-500">{club.social.lastPostNote}</p>
+        </Panel>
+        <Panel>
+          <p className="text-[11px] font-semibold tracking-wide text-slate-500 uppercase">แบรนด์ออนไลน์</p>
+          <p className="mt-1 text-lg font-bold text-slate-900">{club.social.brand}/100</p>
+          <p className="text-xs text-slate-500">โตตามชื่อเสียง + ผลแข่ง · กระทบยอดติดตาม</p>
+        </Panel>
+        <Panel>
+          <p className="text-[11px] font-semibold tracking-wide text-slate-500 uppercase">ดาวโซเชียลในทีม</p>
+          <p className="mt-1 text-lg font-bold text-slate-900">
+            {squadSocial[0] ? `${squadSocial[0].social.handle}` : '—'}
+          </p>
+          <p className="text-sm text-slate-600">
+            {squadSocial[0] ? `${formatFollowers(squadSocial[0].social.followers)} · heat ${squadSocial[0].social.heat}` : ''}
+          </p>
+        </Panel>
+      </div>
 
       <div className="flex flex-wrap gap-1.5">
         {TABS.map((t) => (
@@ -269,6 +305,64 @@ export function MediaPage() {
           </p>
         ) : null}
       </Panel>
+
+      {tab === 'social' ? (
+        <div className="grid gap-4 lg:grid-cols-3">
+          <Panel>
+            <h3 className="text-sm font-bold text-slate-900">สโมสรติดตามเยอะสุด</h3>
+            <ul className="mt-2 space-y-1.5 text-sm">
+              {clubLeaders.map((c) => (
+                <li key={c.id} className="flex justify-between gap-2">
+                  <span className="truncate">
+                    <span className="font-medium text-sky-800">{c.social.handle}</span>
+                    <span className="text-slate-500"> · {c.shortName}</span>
+                  </span>
+                  <span className="shrink-0 tabular-nums font-semibold">
+                    {formatFollowers(c.social.followers)}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </Panel>
+          <Panel>
+            <h3 className="text-sm font-bold text-slate-900">นักเตะในทีมคุณ</h3>
+            <ul className="mt-2 space-y-1.5 text-sm">
+              {squadSocial.map((p) => (
+                <li key={p.id} className="flex justify-between gap-2">
+                  <span className="truncate">
+                    {p.social.verified ? '✓ ' : ''}
+                    <span className="font-medium text-sky-800">{p.social.handle}</span>
+                  </span>
+                  <span className="shrink-0 tabular-nums">
+                    {formatFollowers(p.social.followers)}
+                    <span className="ml-1 text-[10px] text-rose-600">h{p.social.heat}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </Panel>
+          <Panel>
+            <h3 className="text-sm font-bold text-slate-900">ดาวโซเชียลลีก</h3>
+            <ul className="mt-2 space-y-1.5 text-sm">
+              {worldStars.map((p) => {
+                const c = save.clubs.find((x) => x.id === p.clubId)
+                return (
+                  <li key={p.id} className="flex justify-between gap-2">
+                    <span className="truncate">
+                      {p.social.verified ? '✓ ' : ''}
+                      {p.social.handle}
+                      <span className="text-slate-400"> · {c?.shortName}</span>
+                    </span>
+                    <span className="shrink-0 tabular-nums font-semibold">
+                      {formatFollowers(p.social.followers)}
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
+          </Panel>
+        </div>
+      ) : null}
 
       {list.length === 0 ? (
         <Panel>

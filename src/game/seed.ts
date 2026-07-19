@@ -10,6 +10,8 @@ import {
   pickPersonality,
 } from './attributes'
 import { createBodyMap } from './bodyMap'
+import { rollPlayerSkills } from './playerSkills'
+import { createClubSocial, createPlayerSocial } from './social'
 
 const CLUB_DEFS: Array<{ name: string; shortName: string; color: string; rep: number }> = [
   { name: 'Northgate United', shortName: 'NOR', color: '#1d4ed8', rep: 78 },
@@ -98,6 +100,15 @@ export function createClubs(humanClubId: string): Club[] {
       balance,
       wageBudgetWeekly: Math.round(80_000 + def.rep * 2_200),
       seasonStartBalance: balance,
+      division: 1 as const,
+      social: createClubSocial({
+        id,
+        name: def.name,
+        shortName: def.shortName,
+        reputation: def.rep,
+        stadiumCapacity: 18_000 + def.rep * 400,
+        division: 1,
+      }),
     }
   })
 }
@@ -160,6 +171,18 @@ export function createPlayersForClubs(clubs: Club[], seed = 2026): Player[] {
           isYouth: false,
           mentorId: null,
           mediaHandling: 6 + Math.floor(rng() * 12),
+          skills: rollPlayerSkills(roleGroup(row.role), overallFromCa(ca), rng),
+          social: createPlayerSocial(
+            {
+              id: `p-${n}`,
+              name,
+              overall: overallFromCa(ca),
+              age,
+              mediaHandling: 6 + Math.floor(rng() * 12),
+              isYouth: false,
+            },
+            club.social?.followers ?? 80_000,
+          ),
         })
       }
     }

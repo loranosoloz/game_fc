@@ -16,6 +16,8 @@ import { formatIllnessStatus, ILLNESS_TYPE_LABEL } from '@/game/illness'
 import { BodyMapFigure } from '@/components/BodyMapFigure'
 import { getActivity } from '@/game/dailyLife'
 import { formatBanStatus } from '@/game/discipline'
+import { ensurePlayerSkills, skillLabel } from '@/game/playerSkills'
+import { ensurePlayerSocial, formatFollowers } from '@/game/social'
 
 const ROLES: SquadRole[] = ['key', 'regular', 'squad', 'prospect']
 
@@ -193,6 +195,18 @@ function PlayerDetailPanel({
           <StatusBar label="Happiness" value={player.happiness ?? player.morale} />
           <StatusBar label="Media" value={player.mediaHandling ?? 10} />
         </ul>
+        {(() => {
+          const social = ensurePlayerSocial(player).social
+          return (
+            <p className="mt-2 rounded-md bg-sky-50 px-2 py-1.5 text-xs text-sky-950">
+              {social.verified ? '✓ ' : ''}
+              <span className="font-semibold">{social.handle}</span>
+              {' · '}
+              {formatFollowers(social.followers)} ผู้ติดตาม · heat {social.heat} · โพสต์/
+              สัปดาห์ ~{social.postsWeek}
+            </p>
+          )
+        })()}
         {player.injuryDays > 0 ? (
           <p className="mt-2 rounded bg-rose-50 px-2 py-1.5 text-xs text-rose-900">
             เจ็บ: {player.injuryType ? INJURY_TYPE_LABEL[player.injuryType] : '—'}
@@ -228,6 +242,22 @@ function PlayerDetailPanel({
         <div className="mt-2">
           <BodyMapFigure player={player} compact />
         </div>
+      </div>
+
+      <div>
+        <h4 className="text-sm font-semibold">
+          สกิลพิเศษ ({ensurePlayerSkills(player).length}/10)
+        </h4>
+        <ul className="mt-2 flex flex-wrap gap-1.5">
+          {ensurePlayerSkills(player).map((id) => (
+            <li
+              key={id}
+              className="rounded border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs text-slate-700"
+            >
+              {skillLabel(id)}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div>

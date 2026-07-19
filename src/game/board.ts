@@ -88,7 +88,9 @@ export function ensureBoard(save: GameSave): BoardState {
 
 export function refreshVisionKpis(save: GameSave): BoardState {
   const board = ensureBoard(save)
-  const table = sortedTable(save.table)
+  const humanClub = save.clubs.find((c) => c.id === save.humanClubId)
+  const useDiv2 = humanClub?.division === 2
+  const table = sortedTable(useDiv2 ? save.tableDiv2 ?? save.table : save.table)
   const rank = table.findIndex((r) => r.clubId === save.humanClubId) + 1 || 20
   const human = save.clubs.find((c) => c.id === save.humanClubId)!
   const tactics = save.tacticsByClub[save.humanClubId]
@@ -97,9 +99,17 @@ export function refreshVisionKpis(save: GameSave): BoardState {
     .filter((p) => p.clubId === save.humanClubId && p.isYouth)
     .reduce((s, p) => s + p.minutesPlayed, 0)
 
+  const targetRank = useDiv2 ? Math.min(board.targetMaxRank, 6) : board.targetMaxRank
+
   const kpis = board.kpis.map((k) => {
     if (k.id === 'league_rank') {
-      return { ...k, current: rank, met: rank <= board.targetMaxRank && rank > 0 }
+      return {
+        ...k,
+        label: useDiv2 ? `ติดท็อป ${targetRank} (เลื่อนชั้น)` : k.label,
+        target: targetRank,
+        current: rank,
+        met: rank <= targetRank && rank > 0,
+      }
     }
     if (k.id === 'style') {
       return { ...k, current: styleMatch, met: styleMatch === 1 }
@@ -127,14 +137,18 @@ export function applyMatchToBoard(
 ): BoardState {
   let board = refreshVisionKpis(save)
   const table = sortedTable(save.table)
-  const rank = table.findIndex((r) => r.clubId === save.humanClubId) + 1 || 20
+  const humanClub = save.clubs.find((c) => c.id === save.humanClubId)
+  const rankTable =
+    humanClub?.division === 2 ? sortedTable(save.tableDiv2 ?? save.table) : table
+  const rank = rankTable.findIndex((r) => r.clubId === save.humanClubId) + 1 || 20
   const won = usGoals > themGoals
   const drawn = usGoals === themGoals
   const owner = ensureOwner(save)
 
   let delta = won ? 3 : drawn ? 0 : -4
-  if (rank <= board.targetMaxRank) delta += 1
-  else if (rank >= board.targetMaxRank + 5) delta -= 2
+  const target = humanClub?.division === 2 ? Math.min(board.targetMaxRank, 6) : board.targetMaxRank
+  if (rank <= target) delta += 1
+  else if (rank >= target + 5) delta -= 2
 
   const kpiBonus = board.kpis.filter((k) => k.met).length
   delta += Math.floor(kpiBonus / 2) - 1

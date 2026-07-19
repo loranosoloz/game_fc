@@ -216,7 +216,11 @@ export function acceptJobOffer(
     talks: createTalksState(),
     takeover: createTakeoverState(save.season),
     clubIncome: createClubIncome(club.reputation),
-    facilities: createFacilitiesState(club.stadiumCapacity),
+    facilities: createFacilitiesState(
+      club.stadiumCapacity,
+      club.reputation,
+      club.division ?? 1,
+    ),
     pressConference: null,
     managerReputation: clamp(rep + 4),
     career: {

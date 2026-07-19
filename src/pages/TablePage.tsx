@@ -1,18 +1,53 @@
+import { useState } from 'react'
 import { useGameStore } from '@/store/gameStore'
 import { sortedTable } from '@/game/simulate'
 import { cn } from '@/lib/cn'
+import { DIV2_LEAGUE_NAME, type LeagueId } from '@/data/world'
+import { ensurePhase5 } from '@/game/save'
 
 export function TablePage() {
-  const save = useGameStore((s) => s.save)!
-  const rows = sortedTable(save.table)
+  const saveRaw = useGameStore((s) => s.save)!
+  const save = ensurePhase5(saveRaw)
+  const lid = (save.leagueId || 'eng') as LeagueId
+  const [tab, setTab] = useState<'d1' | 'd2'>('d1')
+  const rows = sortedTable(tab === 'd1' ? save.table : save.tableDiv2 ?? [])
+  const humanDiv = save.clubs.find((c) => c.id === save.humanClubId)?.division ?? 1
 
   return (
-    <section className="rounded-xl border border-slate-200 bg-white/80 p-5">
-      <h2 className="text-lg font-semibold">พรีเมียร์ ดิวิชัน</h2>
+    <section className="space-y-4 rounded-xl border border-slate-200 bg-white/80 p-5">
+      <div className="flex flex-wrap items-center gap-2">
+        <h2 className="mr-auto text-lg font-semibold">ตารางลีก</h2>
+        <button
+          type="button"
+          onClick={() => setTab('d1')}
+          className={cn(
+            'rounded-md border px-3 py-1.5 text-sm font-semibold',
+            tab === 'd1'
+              ? 'border-slate-900 bg-slate-900 text-lime-300'
+              : 'border-slate-300 bg-white',
+          )}
+        >
+          ดิวิชัน 1
+        </button>
+        <button
+          type="button"
+          onClick={() => setTab('d2')}
+          className={cn(
+            'rounded-md border px-3 py-1.5 text-sm font-semibold',
+            tab === 'd2'
+              ? 'border-slate-900 bg-slate-900 text-lime-300'
+              : 'border-slate-300 bg-white',
+          )}
+        >
+          {DIV2_LEAGUE_NAME[lid].nameTh}
+        </button>
+      </div>
       <p className="text-sm text-slate-500">
-        20 สโมสร · ผลจากนัดของคุณและ AI อัปเดตตารางเดียวกัน
+        20 สโมสร · ท้ายฤดูกาล 3 ทีมท้ายดิวิชัน 1 ตกชั้น · 3 ทีมนำ{DIV2_LEAGUE_NAME[lid].nameTh}{' '}
+        เลื่อนชั้น
+        {humanDiv === 2 ? ' · คุณอยู่ในลีกล่าง' : ''}
       </p>
-      <div className="mt-4 overflow-x-auto">
+      <div className="mt-2 overflow-x-auto">
         <table className="w-full min-w-[720px] border-collapse text-left text-sm">
           <thead>
             <tr className="border-b border-slate-200 text-xs tracking-wide text-slate-500 uppercase">
@@ -31,10 +66,19 @@ export function TablePage() {
           </thead>
           <tbody>
             {rows.map((row, i) => {
-              const club = save.clubs.find((c) => c.id === row.clubId)!
-              const you = club.controlledBy === 'human'
+              const club = save.clubs.find((c) => c.id === row.clubId)
+              if (!club) return null
+              const you = club.id === save.humanClubId
+              const zone =
+                tab === 'd1' && i >= 17
+                  ? 'bg-rose-50/90'
+                  : tab === 'd2' && i < 3
+                    ? 'bg-lime-50/90'
+                    : you
+                      ? 'bg-sky-50/80'
+                      : ''
               return (
-                <tr key={row.clubId} className={cn('border-b border-slate-100', you && 'bg-sky-50/80')}>
+                <tr key={row.clubId} className={cn('border-b border-slate-100', zone)}>
                   <td className="py-2 pr-2 font-semibold">{i + 1}</td>
                   <td className="py-2 pr-2">
                     <span
@@ -43,6 +87,12 @@ export function TablePage() {
                       aria-hidden
                     />
                     {club.name}
+                    {tab === 'd1' && i >= 17 ? (
+                      <span className="ml-1 text-[10px] text-rose-700">ตกชั้น</span>
+                    ) : null}
+                    {tab === 'd2' && i < 3 ? (
+                      <span className="ml-1 text-[10px] text-lime-800">เลื่อนชั้น</span>
+                    ) : null}
                   </td>
                   <td className="py-2 pr-2">
                     {you ? (

@@ -1,116 +1,159 @@
 import { useGameStore } from '@/store/gameStore'
 import cupFormat from '@/data/cupFormat.json'
+import leagueCupFormat from '@/data/leagueCupFormat.json'
+import trophyFormat from '@/data/trophyFormat.json'
 import uclFormat from '@/data/uclFormat.json'
+import { ensurePhase5 } from '@/game/save'
+
+function RoundBlock({
+  title,
+  rounds,
+  fixtures,
+  nameOf,
+  tone = 'slate',
+}: {
+  title: string
+  champion?: string | null
+  subtitle?: string
+  rounds: Array<{ id: string; label: string; matchdayOffset?: number }>
+  fixtures: Array<{
+    id: string
+    cupRound?: string
+    homeClubId: string
+    awayClubId: string
+    played: boolean
+    homeGoals?: number
+    awayGoals?: number
+    date: string
+    matchday: number
+  }>
+  nameOf: (id: string) => string
+  tone?: 'slate' | 'amber' | 'violet' | 'emerald'
+}) {
+  const border =
+    tone === 'amber'
+      ? 'border-amber-100'
+      : tone === 'violet'
+        ? 'border-violet-100'
+        : tone === 'emerald'
+          ? 'border-emerald-100'
+          : 'border-slate-200'
+  const bg =
+    tone === 'amber'
+      ? 'bg-amber-50/80'
+      : tone === 'violet'
+        ? 'bg-violet-50/80'
+        : tone === 'emerald'
+          ? 'bg-emerald-50/80'
+          : 'bg-slate-50'
+
+  return (
+    <section className="space-y-4">
+      <div className={`rounded-xl border ${border} bg-white/80 p-5`}>
+        <h2 className="text-lg font-semibold">{title}</h2>
+      </div>
+      {rounds.map((round) => {
+        const list = fixtures.filter((f) => f.cupRound === round.id)
+        const md =
+          round.matchdayOffset ??
+          (list[0]?.matchday != null ? list[0].matchday : '—')
+        return (
+          <section key={`${title}-${round.id}`} className={`rounded-xl border ${border} bg-white/80 p-5`}>
+            <h3 className="font-semibold">
+              {round.label}{' '}
+              <span className="text-sm font-normal text-slate-500">· MD {md}</span>
+            </h3>
+            {list.length === 0 ? (
+              <p className="mt-2 text-sm text-slate-500">ยังไม่จับสลาก / รอรอบก่อนหน้า</p>
+            ) : (
+              <ul className="mt-2 space-y-1 text-sm">
+                {list.map((f) => (
+                  <li key={f.id} className={`flex justify-between rounded ${bg} px-2 py-1.5`}>
+                    <span>
+                      {nameOf(f.homeClubId)} vs {nameOf(f.awayClubId)}
+                    </span>
+                    <span className="font-semibold">
+                      {f.played ? `${f.homeGoals}–${f.awayGoals}` : f.date}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        )
+      })}
+    </section>
+  )
+}
 
 export function CompetitionsPage() {
-  const save = useGameStore((s) => s.save)!
+  const saveRaw = useGameStore((s) => s.save)!
+  const save = ensurePhase5(saveRaw)
   const nameOf = (id: string) => save.clubs.find((c) => c.id === id)?.name ?? id
 
-  const cupFx = save.fixtures
-    .filter((f) => f.competition === 'cup')
-    .sort((a, b) => a.matchday - b.matchday)
-
-  const uclFx = save.fixtures
-    .filter((f) => f.competition === 'ucl')
-    .sort((a, b) => a.matchday - b.matchday)
-
-  const cupByRound = cupFormat.rounds.map((r) => ({
-    ...r,
-    fixtures: cupFx.filter((f) => f.cupRound === r.id),
-  }))
-
-  const uclByRound = uclFormat.rounds.map((r) => ({
-    ...r,
-    fixtures: uclFx.filter((f) => f.cupRound === r.id),
-  }))
-
-  const ucl = save.ucl
+  const byComp = (comp: string) =>
+    save.fixtures
+      .filter((f) => f.competition === comp)
+      .sort((a, b) => a.matchday - b.matchday)
 
   return (
     <div className="space-y-8">
-      <section className="space-y-4">
-        <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-5">
-          <h2 className="text-lg font-semibold text-amber-950">{ucl?.name ?? 'UEFA Champions League'}</h2>
-          {ucl?.championClubId ? (
-            <p className="mt-2 text-sm font-semibold text-emerald-800">
-              แชมป์ยุโรป: {nameOf(ucl.championClubId)}
-            </p>
-          ) : (
-            <p className="mt-2 text-sm text-slate-600">
-              League phase (16 ทีม · 6 นัด) → Top 8 เข้า QF → SF → Final
-            </p>
-          )}
-        </div>
+      <RoundBlock
+        title={save.ucl?.name ?? 'UEFA Champions League'}
+        rounds={uclFormat.rounds.map((r) => ({
+          id: r.id,
+          label: r.label,
+          matchdayOffset: (r as { matchdayOffset?: number }).matchdayOffset,
+        }))}
+        fixtures={byComp('ucl')}
+        nameOf={nameOf}
+        tone="amber"
+      />
+      {save.ucl?.championClubId ? (
+        <p className="-mt-6 text-sm font-semibold text-emerald-800">
+          แชมป์ยุโรป: {nameOf(save.ucl.championClubId)}
+        </p>
+      ) : (
+        <p className="-mt-6 text-sm text-slate-600">
+          League phase → Top 8 → QF/SF/Final
+        </p>
+      )}
 
-        {uclByRound.map((round) => (
-          <section key={`ucl-${round.id}`} className="rounded-xl border border-amber-100 bg-white/80 p-5">
-            <h3 className="font-semibold text-amber-950">
-              UCL · {round.label}{' '}
-              <span className="text-sm font-normal text-slate-500">· MD {round.matchdayOffset}</span>
-            </h3>
-            {round.fixtures.length === 0 ? (
-              <p className="mt-2 text-sm text-slate-500">ยังไม่จับสลาก / รอรอบก่อนหน้า</p>
-            ) : (
-              <ul className="mt-2 space-y-1 text-sm">
-                {round.fixtures.map((f) => (
-                  <li key={f.id} className="flex justify-between rounded bg-amber-50/80 px-2 py-1.5">
-                    <span>
-                      {nameOf(f.homeClubId)} vs {nameOf(f.awayClubId)}
-                    </span>
-                    <span className="font-semibold">
-                      {f.played ? `${f.homeGoals}–${f.awayGoals}` : f.date}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </section>
-        ))}
-      </section>
+      <RoundBlock
+        title={save.cup.name}
+        rounds={cupFormat.rounds}
+        fixtures={byComp('cup')}
+        nameOf={nameOf}
+      />
+      {save.cup.championClubId ? (
+        <p className="-mt-6 text-sm font-semibold text-emerald-800">
+          แชมป์ถ้วยชาติ: {nameOf(save.cup.championClubId)}
+        </p>
+      ) : (
+        <p className="-mt-6 text-sm text-slate-600">ถ้วยใหญ่ · รวมทีมจากทั้งสองดิวิชัน (top 16 ตามชื่อเสียง)</p>
+      )}
 
-      <section className="space-y-4">
-        <div className="rounded-xl border border-slate-200 bg-white/80 p-5">
-          <h2 className="text-lg font-semibold">{save.cup.name}</h2>
-          {save.cup.championClubId ? (
-            <p className="mt-2 text-sm font-semibold text-emerald-800">
-              แชมป์: {nameOf(save.cup.championClubId)}
-            </p>
-          ) : (
-            <p className="mt-2 text-sm text-slate-600">แข่งคู่ขนานลีก · ไม่มีเสมอ (มีผู้ชนะเสมอ)</p>
-          )}
-        </div>
+      <RoundBlock
+        title={save.leagueCup?.name ?? 'League Cup'}
+        rounds={leagueCupFormat.rounds}
+        fixtures={byComp('league_cup')}
+        nameOf={nameOf}
+        tone="violet"
+      />
+      <p className="-mt-6 text-sm text-slate-600">ลีกคัพ · 32 ทีมจากดิวิชัน 1+2</p>
 
-        {cupByRound.map((round) => (
-          <section key={round.id} className="rounded-xl border border-slate-200 bg-white/80 p-5">
-            <h3 className="font-semibold">
-              {round.label}{' '}
-              <span className="text-sm font-normal text-slate-500">· MD {round.matchdayOffset}</span>
-            </h3>
-            {round.fixtures.length === 0 ? (
-              <p className="mt-2 text-sm text-slate-500">ยังไม่จับสลาก / รอรอบก่อนหน้า</p>
-            ) : (
-              <ul className="mt-2 space-y-1 text-sm">
-                {round.fixtures.map((f) => (
-                  <li key={f.id} className="flex justify-between rounded bg-slate-50 px-2 py-1.5">
-                    <span>
-                      {nameOf(f.homeClubId)} vs {nameOf(f.awayClubId)}
-                    </span>
-                    <span className="font-semibold">
-                      {f.played ? `${f.homeGoals}–${f.awayGoals}` : f.date}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </section>
-        ))}
-      </section>
+      <RoundBlock
+        title={save.trophy?.name ?? 'Trophy'}
+        rounds={trophyFormat.rounds}
+        fixtures={byComp('trophy')}
+        nameOf={nameOf}
+        tone="emerald"
+      />
+      <p className="-mt-6 text-sm text-slate-600">ถ้วยลีกล่าง · เฉพาะดิวิชัน 2 (16 ทีม)</p>
 
       <section className="rounded-xl border border-slate-200 bg-white/80 p-5">
         <h2 className="text-lg font-semibold">ลีกอื่นในโลก</h2>
-        <p className="mt-1 text-xs text-slate-500">
-          สรุปเบาๆ (ไม่จำลองเต็มทุกนัด) — อัปเดตหลังแมตช์เดย์
-        </p>
+        <p className="mt-1 text-xs text-slate-500">สรุปเบาๆ — อัปเดตหลังแมตช์เดย์</p>
         <ul className="mt-3 grid gap-2 sm:grid-cols-2">
           {(save.worldPulse?.leagues ?? []).map((l) => (
             <li key={l.leagueId} className="rounded-md bg-slate-50 px-3 py-2 text-sm">

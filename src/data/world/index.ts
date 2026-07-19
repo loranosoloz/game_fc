@@ -5,7 +5,7 @@ import { LEAGUES_LATIN_THAI } from './leaguesLatinThai'
 export type { LeagueId, LeagueDef, ClubDef, StarDef } from './leaguesCore'
 export { NAME_POOLS }
 export { REAL_NAME_BANKS } from './realNameBanks'
-export { REAL_NAME_OVERFLOW } from './realNameOverflow'
+export { DIV2_CLUB_NAMES, DIV2_LEAGUE_NAME, EXTRA_CUP_NAMES } from './div2Clubs'
 
 export const ALL_LEAGUES: LeagueDef[] = [
   ...WORLD_LEAGUES,

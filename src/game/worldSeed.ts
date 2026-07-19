@@ -8,10 +8,12 @@ import {
   overallFromCa,
   pickPersonality,
 } from '@/game/attributes'
-import { getLeague, type LeagueId, type ClubDef } from '@/data/world'
+import { getLeague, type LeagueId, type ClubDef, DIV2_CLUB_NAMES } from '@/data/world'
 import { REAL_NAME_BANKS } from '@/data/world/realNameBanks'
 import { REAL_NAME_OVERFLOW } from '@/data/world/realNameOverflow'
 import { createBodyMap } from '@/game/bodyMap'
+import { rollPlayerSkills } from '@/game/playerSkills'
+import { createClubSocial, createPlayerSocial } from '@/game/social'
 
 /** All real names across leagues + overflow (deduped) for fill when regional bank is empty. */
 const GLOBAL_REAL_NAMES: string[] = [
@@ -59,7 +61,7 @@ function pickSquadRole(overall: number, age: number, indexInClub: number): Squad
 
 export function createClubsFromLeague(leagueId: LeagueId, humanClubId: string): Club[] {
   const league = getLeague(leagueId)
-  return league.clubs.map((def, i) => {
+  const div1 = league.clubs.map((def, i) => {
     const id = `club-${i + 1}`
     const isHuman = id === humanClubId
     const balance = Math.round(8_000_000 + def.rep * 220_000 + (isHuman ? 500_000 : 0))
@@ -68,14 +70,53 @@ export function createClubsFromLeague(leagueId: LeagueId, humanClubId: string): 
       name: def.name,
       shortName: def.shortName,
       color: def.color,
-      controlledBy: isHuman ? 'human' : 'ai',
+      controlledBy: (isHuman ? 'human' : 'ai') as Club['controlledBy'],
       reputation: def.rep,
       stadiumCapacity: 18_000 + def.rep * 450,
       balance,
       wageBudgetWeekly: Math.round(80_000 + def.rep * 2_800),
       seasonStartBalance: balance,
+      division: 1 as const,
+      social: createClubSocial({
+        id,
+        name: def.name,
+        shortName: def.shortName,
+        reputation: def.rep,
+        stadiumCapacity: 18_000 + def.rep * 450,
+        division: 1,
+      }),
     }
   })
+
+  const d2names = DIV2_CLUB_NAMES[leagueId]
+  const div2 = d2names.map((def, i) => {
+    const id = `d2-${i + 1}`
+    const rep = 42 + (i % 8) + Math.floor(i / 5)
+    const balance = Math.round(2_500_000 + rep * 90_000)
+    return {
+      id,
+      name: def.name,
+      shortName: def.shortName,
+      color: def.color,
+      controlledBy: 'ai' as const,
+      reputation: rep,
+      stadiumCapacity: 10_000 + rep * 280,
+      balance,
+      wageBudgetWeekly: Math.round(35_000 + rep * 1_200),
+      seasonStartBalance: balance,
+      division: 2 as const,
+      social: createClubSocial({
+        id,
+        name: def.name,
+        shortName: def.shortName,
+        reputation: rep,
+        stadiumCapacity: 10_000 + rep * 280,
+        division: 2,
+      }),
+    }
+  })
+
+  return [...div1, ...div2]
 }
 
 export function listClubOptionsForLeague(leagueId: LeagueId) {
@@ -142,8 +183,10 @@ export function createPlayersForClubDef(opts: {
   const clubPlayers: Player[] = []
   let n = startN
 
-  const starQueue = def.stars.slice()
+  const roster: typeof def.stars = []
+  const starQueue = roster.length > 0 ? roster : def.stars.slice()
   const usedRoles = new Map<RoleCode, number>()
+  const useFullRoster = false
 
   for (const star of starQueue) {
     n += 1
@@ -191,9 +234,22 @@ export function createPlayersForClubDef(opts: {
       isYouth: false,
       mentorId: null,
       mediaHandling: 6 + Math.floor(rng() * 12),
+      skills: rollPlayerSkills(roleGroup(star.role), overallFromCa(ca), rng),
+      social: createPlayerSocial(
+        {
+          id: `${idPrefix}-${n}`,
+          name: star.name,
+          overall: overallFromCa(ca),
+          age: star.age,
+          mediaHandling: 6 + Math.floor(rng() * 12),
+          isYouth: false,
+        },
+        club.social?.followers ?? 100_000,
+      ),
     })
   }
 
+  if (!useFullRoster) {
   for (const row of template) {
     const already = usedRoles.get(row.role) ?? 0
     const need = Math.max(0, row.count - already)
@@ -245,8 +301,21 @@ export function createPlayersForClubDef(opts: {
         isYouth: false,
         mentorId: null,
         mediaHandling: 6 + Math.floor(rng() * 12),
+        skills: rollPlayerSkills(roleGroup(row.role), overallFromCa(ca), rng),
+        social: createPlayerSocial(
+          {
+            id: `${idPrefix}-${n}`,
+            name,
+            overall: overallFromCa(ca),
+            age,
+            mediaHandling: 6 + Math.floor(rng() * 12),
+            isYouth: false,
+          },
+          club.social?.followers ?? 80_000,
+        ),
       })
     }
+  }
   }
 
   clubPlayers.sort((a, b) => b.overall - a.overall)
@@ -268,7 +337,20 @@ export function createPlayersFromLeague(
   let n = 0
 
   clubs.forEach((club, clubIndex) => {
-    const def: ClubDef = league.clubs[clubIndex]
+    let def: ClubDef
+    if (club.division === 2 || club.id.startsWith('d2-')) {
+      def = {
+        key: club.id,
+        name: club.name,
+        shortName: club.shortName,
+        color: club.color,
+        rep: club.reputation,
+        stars: [],
+      }
+    } else {
+      const idx = Number(club.id.replace('club-', '')) - 1
+      def = league.clubs[idx] ?? league.clubs[clubIndex % league.clubs.length]
+    }
     const built = createPlayersForClubDef({
       leagueId,
       club,
@@ -276,6 +358,7 @@ export function createPlayersFromLeague(
       seed: seed + clubIndex * 131 + leagueId.charCodeAt(0) * 97,
       startN: n,
       usedNames,
+      idPrefix: club.division === 2 ? 'd2p' : 'p',
     })
     n = built.nextN
     players.push(...built.players)

@@ -1,0 +1,11 @@
+{
+  "name": "League Cup",
+  "rounds": [
+    { "id": "r32", "label": "Round of 32", "matchdayOffset": 3 },
+    { "id": "r16", "label": "Round of 16", "matchdayOffset": 9 },
+    { "id": "qf", "label": "Quarter-final", "matchdayOffset": 15 },
+    { "id": "sf", "label": "Semi-final", "matchdayOffset": 25 },
+    { "id": "final", "label": "Final", "matchdayOffset": 33 }
+  ],
+  "teamsInFirstRound": 32
+}

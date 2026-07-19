@@ -101,10 +101,25 @@ export function applyMatchdayIncome(save: GameSave): GameSave {
 
 export function awardCompetitionPrize(
   save: GameSave,
-  kind: 'cup' | 'ucl',
+  kind: 'cup' | 'ucl' | 'league_cup' | 'trophy',
   championClubId: string,
 ): GameSave {
-  const prize = kind === 'ucl' ? 12_000_000 : 4_500_000
+  const prize =
+    kind === 'ucl'
+      ? 12_000_000
+      : kind === 'cup'
+        ? 4_500_000
+        : kind === 'league_cup'
+          ? 2_500_000
+          : 1_200_000
+  const note =
+    kind === 'ucl'
+      ? 'เงินรางวัลแชมป์ UCL'
+      : kind === 'cup'
+        ? 'เงินรางวัลแชมป์ถ้วยชาติ'
+        : kind === 'league_cup'
+          ? 'เงินรางวัลแชมป์ลีกคัพ'
+          : 'เงินรางวัลแชมป์ถ้วยลีกล่าง'
   if (championClubId !== save.humanClubId) {
     // still pay AI quietly
     const clubs = save.clubs.map((c) =>
@@ -124,9 +139,9 @@ export function awardCompetitionPrize(
       {
         id: uid('led'),
         date: save.currentDate,
-          kind: 'prize' as const,
+        kind: 'prize' as const,
         amount: prize,
-        note: kind === 'ucl' ? 'เงินรางวัลแชมป์ UCL' : 'เงินรางวัลแชมป์ถ้วย',
+        note,
       },
       ...finance.ledger,
     ].slice(0, 50),

@@ -12,6 +12,7 @@ import type {
 import { applyInjury } from './medical'
 import { applyMatchWear, bodyWearInjuryBonus } from './bodyMap'
 import { getReferee, refereeKickoffNote } from './referees'
+import { xiSkillBonuses } from './playerSkills'
 
 function mulberry32(seed: number) {
   return () => {
@@ -187,6 +188,13 @@ export function simulateFixture(
   let homeDefend = xiStrength(players, homeTactics, 'defend')
   let awayAttack = xiStrength(players, awayTactics, 'attack') * setPieceBonus(awayTactics)
   let awayDefend = xiStrength(players, awayTactics, 'defend')
+
+  const homeSkills = xiSkillBonuses(players, homeTactics.startingXi)
+  const awaySkills = xiSkillBonuses(players, awayTactics.startingXi)
+  homeAttack *= homeSkills.attack
+  homeDefend *= homeSkills.defend
+  awayAttack *= awaySkills.attack
+  awayDefend *= awaySkills.defend
 
   const homePool = buildSidePlayers(homeTactics, players)
   const awayPool = buildSidePlayers(awayTactics, players)

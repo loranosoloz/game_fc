@@ -9,6 +9,10 @@ import {
   ensureFacilities,
   FACILITY_LABEL,
   facilityUpgradeCost,
+  facilityCurrentTier,
+  facilityMaxTier,
+  facilityProgressLabel,
+  stadiumCapacityForTier,
 } from '@/game/facilities'
 import type { FacilityKind } from '@/game/types'
 import { PageHeader, Panel, ProgressBar, StatTile, PrimaryButton, GhostButton } from '@/components/ui'
@@ -16,7 +20,7 @@ import { PageHeader, Panel, ProgressBar, StatTile, PrimaryButton, GhostButton } 
 export function FinancePage() {
   const saveRaw = useGameStore((s) => s.save)!
   const save = ensurePhase5(saveRaw)
-  const upgradeFacility = useGameStore((s) => s.upgradeFacility)
+  const proposeFacilityUpgrade = useGameStore((s) => s.proposeFacilityUpgrade)
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
   const finance = ensureClubFinance(save)
   const income = ensureClubIncome(save)
@@ -123,9 +127,15 @@ export function FinancePage() {
       <Panel>
         <h3 className="text-sm font-bold text-slate-900">สนามและสิ่งอำนวยความสะดวก</h3>
         <p className="mt-1 text-xs text-slate-500">
-          ก่อสร้างได้ทีละโครงการ · สนามเพิ่มความจุ · ฝึก/แพทย์ช่วยทีม · พาณิชย์เพิ่มรายได้ตั๋ว
+          ผู้จัดการเสนอได้เท่านั้น — เจ้าของอนุมัติที่หน้าบอร์ด/แฟน · เงินหักจากบัญชีสโมสร ·
+          สนาม Lv.n ≈ n×10,000 ที่นั่ง (Lv.10 = 100,000) · ทีมใหญ่เพดานสูงกว่า
         </p>
-        {facilities.project ? (
+        {facilities.pendingProposal ? (
+          <p className="mt-2 rounded-md bg-sky-50 px-3 py-2 text-sm text-sky-950">
+            รอเจ้าของ: {facilities.pendingProposal.note} ·{' '}
+            {formatMoney(facilities.pendingProposal.cost)} — ไปหน้าบอร์ด/แฟนเพื่ออนุมัติ
+          </p>
+        ) : facilities.project ? (
           <p className="mt-2 rounded-md bg-amber-50 px-3 py-2 text-sm text-amber-950">
             กำลังก่อสร้าง: {facilities.project.note} · เสร็จ MD{facilities.project.doneMatchday}
           </p>
@@ -135,30 +145,44 @@ export function FinancePage() {
         <dl className="mt-3 grid grid-cols-2 gap-2 text-center text-xs sm:grid-cols-4">
           {(
             [
-              ['stadium', facilities.stadiumTier],
-              ['training', facilities.trainingTier],
-              ['medical', facilities.medicalTier],
-              ['commercial', facilities.commercialTier],
-            ] as [FacilityKind, number][]
-          ).map(([kind, tier]) => (
-            <div key={kind} className="rounded-md bg-slate-50 px-2 py-2">
-              <dt className="text-slate-500 leading-tight">{FACILITY_LABEL[kind]}</dt>
-              <dd className="text-lg font-bold">Lv.{tier}</dd>
-              <dd className="text-[10px] text-slate-400">
-                {formatMoney(facilityUpgradeCost(kind, tier))}
-              </dd>
-              <GhostButton
-                className="mt-1 w-full text-xs"
-                onClick={() => upgradeFacility(kind)}
-                disabled={!!facilities.project || tier >= 10}
-              >
-                อัปเกรด
-              </GhostButton>
-            </div>
-          ))}
+              'stadium',
+              'training',
+              'medical',
+              'commercial',
+            ] as FacilityKind[]
+          ).map((kind) => {
+            const tier = facilityCurrentTier(facilities, kind)
+            const max = facilityMaxTier(facilities, kind)
+            const atCap = tier >= max
+            const canPropose =
+              !facilities.project && !facilities.pendingProposal && !atCap
+            return (
+              <div key={kind} className="rounded-md bg-slate-50 px-2 py-2">
+                <dt className="text-slate-500 leading-tight">{FACILITY_LABEL[kind]}</dt>
+                <dd className="text-lg font-bold">
+                  {tier}/{max}
+                </dd>
+                <dd className="text-[10px] leading-snug text-slate-500">
+                  {facilityProgressLabel(facilities, kind)}
+                </dd>
+                <dd className="mt-0.5 text-[10px] text-slate-400">
+                  {atCap ? 'เพดานคลับ' : formatMoney(facilityUpgradeCost(kind, tier))}
+                </dd>
+                <GhostButton
+                  className="mt-1 w-full text-xs"
+                  onClick={() => proposeFacilityUpgrade(kind)}
+                  disabled={!canPropose}
+                >
+                  เสนอเจ้าของ
+                </GhostButton>
+              </div>
+            )
+          })}
         </dl>
         <p className="mt-2 text-xs text-slate-500">
-          ความจุปัจจุบัน {club.stadiumCapacity.toLocaleString('th-TH')} ที่นั่ง
+          ความจุปัจจุบัน {club.stadiumCapacity.toLocaleString('th-TH')} ที่นั่ง · เพดานคลับ{' '}
+          {stadiumCapacityForTier(facilities.maxStadiumTier).toLocaleString('th-TH')} · เงินในบัญชี{' '}
+          {formatMoney(club.balance)}
         </p>
       </Panel>
 

@@ -58,7 +58,11 @@ import {
 } from '@/game/takeover'
 import { startNextSeason } from '@/game/season'
 import { acceptJobOffer, rejectJobOffer } from '@/game/jobs'
-import { startFacilityUpgrade, medicalFacilityBonus } from '@/game/facilities'
+import {
+  proposeFacilityUpgrade as proposeFacilityUpgradeFn,
+  resolveFacilityProposal as resolveFacilityProposalFn,
+  medicalFacilityBonus,
+} from '@/game/facilities'
 import type { FacilityKind } from '@/game/types'
 import { takeHoliday } from '@/game/holiday'
 import { managerTalk, respondToPlayerRequest } from '@/game/playerTalks'
@@ -136,6 +140,9 @@ interface GameStore {
   startNewSeason: () => boolean
   acceptJob: (offerId: string) => boolean
   rejectJob: (offerId: string) => boolean
+  proposeFacilityUpgrade: (kind: FacilityKind) => boolean
+  resolveFacilityProposal: (approve: boolean) => boolean
+  /** @deprecated ใช้ proposeFacilityUpgrade */
   upgradeFacility: (kind: FacilityKind) => boolean
   takeManagerHoliday: (matchdays: number) => boolean
   answerPressConference: (answerIds: string[]) => void
@@ -884,10 +891,32 @@ export const useGameStore = create<GameStore>((set, get) => ({
     return true
   },
 
+  proposeFacilityUpgrade: (kind) => {
+    const { save } = get()
+    if (!save) return false
+    const result = proposeFacilityUpgradeFn(save, kind)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  resolveFacilityProposal: (approve) => {
+    const { save } = get()
+    if (!save) return false
+    const result = resolveFacilityProposalFn(save, approve)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
   upgradeFacility: (kind) => {
     const { save } = get()
     if (!save) return false
-    const result = startFacilityUpgrade(save, kind)
+    const result = proposeFacilityUpgradeFn(save, kind)
     set({ status: result.message })
     if (!result.ok) return false
     saveToStorage(result.save)

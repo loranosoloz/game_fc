@@ -16,10 +16,15 @@ import { createScouting, ensureScouting } from './scouting'
 import { createPressFeed, createMediaFeed, ensureMediaFeed } from './media'
 import { createCupState, generateCupFixtures } from './cup'
 import {
+  generateLeagueCupFixtures,
+  generateTrophyFixtures,
+} from './extraCups'
+import {
   createUclState,
   createUclInviteClubs,
   generateUclFixtures,
 } from './ucl'
+import { DIV2_LEAGUE_NAME, EXTRA_CUP_NAMES } from '@/data/world'
 import { assignRefereesToFixtures } from './referees'
 import { createDevelopmentState } from './development'
 import { createClubFinance, ensureClubFinance } from './playerEconomy'
@@ -33,9 +38,38 @@ import { createCareerState, ensureCareer } from './jobs'
 import { createFacilitiesState, ensureFacilities } from './facilities'
 import { createContractTalks, ensureContractTalks } from './transfer'
 import { createWorldPulse, ensureWorldPulse } from './worldPulse'
+import { ensureAllSocial } from './social'
 import { persistSaveSync, loadSaveRawAsync, clearAllSaves } from './idbSave'
 import { roleGroup } from './positions'
-import type { RoleCode } from './types'
+import type { RoleCode, TableRow } from './types'
+
+function applySyntheticLeagueResult(
+  table: TableRow[],
+  homeId: string,
+  awayId: string,
+  hg: number,
+  ag: number,
+): TableRow[] {
+  return table.map((row) => {
+    if (row.clubId !== homeId && row.clubId !== awayId) return row
+    const home = row.clubId === homeId
+    const gf = home ? hg : ag
+    const ga = home ? ag : hg
+    const won = gf > ga ? 1 : 0
+    const drawn = gf === ga ? 1 : 0
+    const lost = gf < ga ? 1 : 0
+    return {
+      ...row,
+      played: row.played + 1,
+      won: row.won + won,
+      drawn: row.drawn + drawn,
+      lost: row.lost + lost,
+      gf: row.gf + gf,
+      ga: row.ga + ga,
+      points: row.points + won * 3 + drawn,
+    }
+  })
+}
 
 export function createNewGame(
   managerName: string,
@@ -52,13 +86,37 @@ export function createNewGame(
     ...createTacticsForAll(domesticClubs, domesticPlayers),
     ...invite.tactics,
   }
-  const clubIds = domesticClubs.map((c) => c.id)
+  const clubIds = domesticClubs.filter((c) => c.division === 1).map((c) => c.id)
+  const d2Ids = domesticClubs.filter((c) => c.division === 2).map((c) => c.id)
   const startDate = '2026-08-15'
-  const leagueFx = generateSeasonFixtures(clubIds)
+  const leagueFx = generateSeasonFixtures(clubIds, startDate, 1)
+  const leagueFx2 = generateSeasonFixtures(d2Ids, startDate, 2)
   const seasonStart = leagueFx[0]?.date ?? startDate
   const cupFx = generateCupFixtures(domesticClubs, seasonStart)
-  const uclFx = generateUclFixtures(domesticClubs, invite.clubs, humanClubId, seasonStart)
-  const fixtures = assignRefereesToFixtures([...leagueFx, ...cupFx, ...uclFx])
+  const lc = generateLeagueCupFixtures(
+    domesticClubs,
+    seasonStart,
+    EXTRA_CUP_NAMES[leagueId].leagueCup,
+  )
+  const tr = generateTrophyFixtures(
+    domesticClubs,
+    seasonStart,
+    EXTRA_CUP_NAMES[leagueId].trophy,
+  )
+  const uclFx = generateUclFixtures(
+    domesticClubs.filter((c) => c.division === 1),
+    invite.clubs,
+    humanClubId,
+    seasonStart,
+  )
+  const fixtures = assignRefereesToFixtures([
+    ...leagueFx,
+    ...leagueFx2,
+    ...cupFx,
+    ...lc.fixtures,
+    ...tr.fixtures,
+    ...uclFx,
+  ])
   const human = domesticClubs.find((c) => c.id === humanClubId)!
 
   return {
@@ -77,12 +135,13 @@ export function createNewGame(
     tacticsByClub,
     fixtures,
     table: blankTable(clubIds),
+    tableDiv2: blankTable(d2Ids),
     inbox: [
       {
         id: 'welcome',
         date: seasonStart,
         title: `Welcome to ${human.name}`,
-        body: `You manage ${human.name} in ${league.name} (${league.nameTh}). Full real-name squads + Champions League (QF/SF สองนัด) + ตลาดข้ามลีกจากคลับเชิญ + สปอนเซอร์/TV/ยืมตัว/shortlist.`,
+        body: `คุณคุม ${human.name} ใน ${league.name} · มี${DIV2_LEAGUE_NAME[leagueId].nameTh} · ถ้วยชาติ + ${EXTRA_CUP_NAMES[leagueId].leagueCup} + ${EXTRA_CUP_NAMES[leagueId].trophy} · ตกชั้น/เลื่อนชั้นท้ายฤดูกาล`,
         read: false,
       },
     ],
@@ -102,6 +161,8 @@ export function createNewGame(
     media: createMediaFeed(),
     pressConference: null,
     cup: createCupState(league.cupName),
+    leagueCup: lc.state,
+    trophy: tr.state,
     ucl: createUclState(),
     development: createDevelopmentState(),
     talks: createTalksState(),
@@ -111,7 +172,11 @@ export function createNewGame(
     clubIncome: createClubIncome(human.reputation),
     takeover: createTakeoverState(2026),
     career: createCareerState(humanClubId),
-    facilities: createFacilitiesState(human.stadiumCapacity),
+    facilities: createFacilitiesState(
+      human.stadiumCapacity,
+      human.reputation,
+      human.division ?? 1,
+    ),
     contractTalks: createContractTalks(),
     worldPulse: createWorldPulse(leagueId),
   }
@@ -156,11 +221,130 @@ export function ensurePhase5(save: GameSave): GameSave {
   else next = { ...next, career: ensureCareer(next) }
   if (!next.facilities) {
     const h = next.clubs.find((c) => c.id === next.humanClubId)
-    next = { ...next, facilities: createFacilitiesState(h?.stadiumCapacity ?? 25_000) }
+    next = {
+      ...next,
+      facilities: createFacilitiesState(
+        h?.stadiumCapacity ?? 25_000,
+        h?.reputation ?? 50,
+        h?.division ?? 1,
+      ),
+    }
   } else next = { ...next, facilities: ensureFacilities(next) }
   if (!next.contractTalks) next = { ...next, contractTalks: ensureContractTalks(next) }
   if (!next.worldPulse) next = { ...next, worldPulse: createWorldPulse(next.leagueId || 'eng') }
   else next = { ...next, worldPulse: ensureWorldPulse(next) }
+
+  next = {
+    ...next,
+    clubs: next.clubs.map((c) => ({
+      ...c,
+      division: (c.division ?? (c.id.startsWith('d2-') ? 2 : 1)) as 1 | 2,
+    })),
+  }
+  if (!next.tableDiv2) next = { ...next, tableDiv2: [] }
+  if (!next.leagueCup) {
+    const lid = (next.leagueId || 'eng') as LeagueId
+    next = {
+      ...next,
+      leagueCup: createCupState(EXTRA_CUP_NAMES[lid]?.leagueCup ?? 'League Cup'),
+    }
+  }
+  if (!next.trophy) {
+    const lid = (next.leagueId || 'eng') as LeagueId
+    next = {
+      ...next,
+      trophy: createCupState(EXTRA_CUP_NAMES[lid]?.trophy ?? 'Trophy'),
+    }
+  }
+  if (!next.clubs.some((c) => c.division === 2)) {
+    const lid = (next.leagueId || 'eng') as LeagueId
+    const seeded = createClubsFromLeague(lid, next.humanClubId)
+    const d2 = seeded.filter((c) => c.division === 2)
+    const d2Players = createPlayersFromLeague(lid, d2)
+    const d2Tactics = createTacticsForAll(d2, d2Players)
+    next = {
+      ...next,
+      clubs: [...next.clubs, ...d2],
+      players: [...next.players, ...d2Players],
+      tacticsByClub: { ...next.tacticsByClub, ...d2Tactics },
+      tableDiv2: blankTable(d2.map((c) => c.id)),
+    }
+  }
+
+  // เซฟเก่า: มีคลับลีกล่างแล้วแต่ยังไม่มีปฏิทิน / ถ้วยเพิ่ม
+  {
+    const lid = (next.leagueId || 'eng') as LeagueId
+    const domestic = next.clubs.filter((c) => !c.id.startsWith('ucl-'))
+    const d2Ids = domestic.filter((c) => c.division === 2).map((c) => c.id)
+    const seasonStart =
+      next.fixtures.find((f) => f.competition === 'league')?.date ??
+      `${next.season ?? 2026}-08-15`
+    let fixtures = next.fixtures.slice()
+    let tableDiv2 = next.tableDiv2?.length
+      ? next.tableDiv2.slice()
+      : blankTable(d2Ids)
+    let leagueCup = next.leagueCup
+    let trophy = next.trophy
+    let injected = false
+
+    if (d2Ids.length === 20 && !fixtures.some((f) => f.competition === 'league' && (f.division === 2 || String(f.id).startsWith('fx2')))) {
+      const fx2 = generateSeasonFixtures(d2Ids, seasonStart, 2)
+      const md = next.matchday ?? 0
+      let seed = (next.season ?? 2026) * 97 + md * 13
+      const rand = () => {
+        seed = (seed * 1103515245 + 12345) & 0x7fffffff
+        return seed / 0x7fffffff
+      }
+      tableDiv2 = blankTable(d2Ids)
+      const filled = fx2.map((f) => {
+        if (f.matchday > md) return f
+        const hg = Math.floor(rand() * 4)
+        const ag = Math.floor(rand() * 4)
+        tableDiv2 = applySyntheticLeagueResult(tableDiv2, f.homeClubId, f.awayClubId, hg, ag)
+        return { ...f, played: true, homeGoals: hg, awayGoals: ag }
+      })
+      fixtures = [...fixtures, ...filled]
+      injected = true
+    }
+
+    if (
+      !fixtures.some((f) => f.competition === 'league_cup') &&
+      (next.matchday ?? 0) < 3
+    ) {
+      const lc = generateLeagueCupFixtures(
+        domestic,
+        seasonStart,
+        EXTRA_CUP_NAMES[lid]?.leagueCup ?? 'League Cup',
+      )
+      fixtures = [...fixtures, ...lc.fixtures]
+      leagueCup = lc.state
+      injected = true
+    }
+    if (
+      !fixtures.some((f) => f.competition === 'trophy') &&
+      (next.matchday ?? 0) < 5
+    ) {
+      const tr = generateTrophyFixtures(
+        domestic,
+        seasonStart,
+        EXTRA_CUP_NAMES[lid]?.trophy ?? 'Trophy',
+      )
+      fixtures = [...fixtures, ...tr.fixtures]
+      trophy = tr.state
+      injected = true
+    }
+
+    if (injected) {
+      next = {
+        ...next,
+        fixtures: assignRefereesToFixtures(fixtures),
+        tableDiv2,
+        leagueCup,
+        trophy,
+      }
+    }
+  }
+
   if (!next.leagueId) next = { ...next, leagueId: 'eng', leagueName: next.leagueName ?? 'Premier League' }
   if (!next.leagueName) next = { ...next, leagueName: 'World League' }
 
@@ -196,14 +380,14 @@ export function ensurePhase5(save: GameSave): GameSave {
     })),
   )
 
-  return {
+  return ensureAllSocial({
     ...next,
     version: 6,
     players,
     clubs,
     tacticsByClub,
     fixtures,
-  }
+  })
 }
 
 /** @deprecated */
@@ -304,6 +488,9 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
         ? (raw.managerReputation as number)
         : Math.min(72, 48 + Math.round(human.reputation / 5)),
     cup: (raw.cup as GameSave['cup']) ?? createCupState(),
+    tableDiv2: (raw.tableDiv2 as GameSave['tableDiv2']) ?? [],
+    leagueCup: (raw.leagueCup as GameSave['leagueCup']) ?? createCupState('League Cup'),
+    trophy: (raw.trophy as GameSave['trophy']) ?? createCupState('Trophy'),
     ucl: (raw.ucl as GameSave['ucl']) ?? createUclState(),
     development: (raw.development as GameSave['development']) ?? createDevelopmentState(),
     talks: (raw.talks as GameSave['talks']) ?? createTalksState(),
@@ -321,7 +508,11 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
       createCareerState((raw.humanClubId as string) ?? humanClubId),
     facilities:
       (raw.facilities as GameSave['facilities']) ??
-      createFacilitiesState(human.stadiumCapacity),
+      createFacilitiesState(
+        human.stadiumCapacity,
+        human.reputation,
+        (human as { division?: 1 | 2 }).division ?? 1,
+      ),
     contractTalks:
       (raw.contractTalks as GameSave['contractTalks']) ?? createContractTalks(),
     worldPulse:

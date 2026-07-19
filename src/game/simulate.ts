@@ -8,6 +8,7 @@ import { processStadiumPresence } from './clubAtmosphere'
 import { scanTakeoverMarket } from './takeover'
 import { enterUnemployment, refreshJobMarket } from './jobs'
 import { processFacilities, medicalFacilityBonus, commercialGateBonus } from './facilities'
+import { tickSocialAfterMatchday } from './social'
 import { transferWindowKind } from './transferWindow'
 import { tickWorldPulse } from './worldPulse'
 import { applyTrainingWeek, updatePlayingTimeMorale } from './training'
@@ -41,6 +42,10 @@ import { processTransferDeskMatchday } from './transferDesk'
 import type { MediaItem } from './types'
 import { maybePromoteYouth } from './youth'
 import { advanceCupAfterMatchday } from './cup'
+import {
+  advanceLeagueCupAfterMatchday,
+  advanceTrophyAfterMatchday,
+} from './extraCups'
 import { advanceUclAfterMatchday } from './ucl'
 import { assignRefereesToFixtures, getReferee } from './referees'
 import {
@@ -64,7 +69,7 @@ import {
 } from './playerEconomy'
 
 function applyResultToTable(table: TableRow[], fixture: Fixture, homeGoals: number, awayGoals: number): TableRow[] {
-  if (fixture.competition === 'cup' || fixture.competition === 'ucl') return table
+  if (fixture.competition !== 'league') return table
   return table.map((row) => {
     if (row.clubId === fixture.homeClubId) {
       const won = homeGoals > awayGoals
@@ -177,12 +182,15 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   save = ensureFans(save)
   let fixtures = assignRefereesToFixtures(save.fixtures.slice())
   let table = save.table.slice()
+  let tableDiv2 = (save.tableDiv2 ?? []).slice()
   let players = save.players.slice()
   let clubs = save.clubs.map((c) => ({ ...c }))
   let fans = save.fans
   let board = save.board
   let ownerState = ensureOwner(save)
   let cup = save.cup
+  let leagueCup = save.leagueCup ?? { name: 'League Cup', championClubId: null, eliminated: [] }
+  let trophy = save.trophy ?? { name: 'Trophy', championClubId: null, eliminated: [] }
   let ucl = save.ucl
   let pressConference = save.pressConference ?? null
   let managerReputation = save.managerReputation ?? 50
@@ -222,7 +230,11 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
           }
         : f,
     )
-    table = applyResultToTable(table, fixture, result.homeGoals, result.awayGoals)
+    if (fixture.competition === 'league' && (fixture.division === 2 || String(fixture.id).startsWith('fx2'))) {
+      tableDiv2 = applyResultToTable(tableDiv2, fixture, result.homeGoals, result.awayGoals)
+    } else {
+      table = applyResultToTable(table, fixture, result.homeGoals, result.awayGoals)
+    }
 
     const home = clubs.find((c) => c.id === fixture.homeClubId)!
     const away = clubs.find((c) => c.id === fixture.awayClubId)!
@@ -390,6 +402,12 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   const cupAdv = advanceCupAfterMatchday(fixtures, cup, prepared.matchday)
   fixtures = cupAdv.fixtures
   cup = cupAdv.cup
+  const lcAdv = advanceLeagueCupAfterMatchday(fixtures, leagueCup, prepared.matchday)
+  fixtures = lcAdv.fixtures
+  leagueCup = lcAdv.cup
+  const trAdv = advanceTrophyAfterMatchday(fixtures, trophy, prepared.matchday)
+  fixtures = trAdv.fixtures
+  trophy = trAdv.cup
   if (cup.championClubId && !save.cup.championClubId) {
     const champ = clubs.find((c) => c.id === cup.championClubId)
     inbox.unshift({
@@ -421,6 +439,48 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     )
     clubs = cupPrize.clubs
     clubFinance = cupPrize.clubFinance
+  }
+
+  if (leagueCup.championClubId && !save.leagueCup?.championClubId) {
+    const champ = clubs.find((c) => c.id === leagueCup.championClubId)
+    inbox.unshift({
+      id: `msg-lc-${Date.now()}`,
+      date: prepared.date,
+      title: 'League Cup Champions',
+      body: `${champ?.name ?? leagueCup.championClubId} คว้าแชมป์ ${leagueCup.name}`,
+      read: false,
+    })
+    if (leagueCup.championClubId === save.humanClubId) {
+      managerReputation = Math.min(100, managerReputation + 3)
+    }
+    const prize = awardCompetitionPrize(
+      { ...save, clubs, currentDate: prepared.date, clubFinance },
+      'league_cup',
+      leagueCup.championClubId,
+    )
+    clubs = prize.clubs
+    clubFinance = prize.clubFinance
+  }
+
+  if (trophy.championClubId && !save.trophy?.championClubId) {
+    const champ = clubs.find((c) => c.id === trophy.championClubId)
+    inbox.unshift({
+      id: `msg-tr-${Date.now()}`,
+      date: prepared.date,
+      title: 'Trophy Champions',
+      body: `${champ?.name ?? trophy.championClubId} คว้าแชมป์ ${trophy.name}`,
+      read: false,
+    })
+    if (trophy.championClubId === save.humanClubId) {
+      managerReputation = Math.min(100, managerReputation + 2)
+    }
+    const prize = awardCompetitionPrize(
+      { ...save, clubs, currentDate: prepared.date, clubFinance },
+      'trophy',
+      trophy.championClubId,
+    )
+    clubs = prize.clubs
+    clubFinance = prize.clubFinance
   }
 
   const uclAdv = advanceUclAfterMatchday(fixtures, ucl, prepared.matchday)
@@ -459,6 +519,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     ...save,
     fixtures,
     table,
+    tableDiv2,
     players,
     clubs,
     tacticsByClub,
@@ -466,6 +527,8 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     board,
     owner: ownerState,
     cup,
+    leagueCup,
+    trophy,
     ucl,
     managerReputation,
     pressConference,
@@ -473,7 +536,9 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     inbox: inbox.slice(0, 40),
     lastHumanResult: humanResult ?? save.lastHumanResult,
     matchday: prepared.matchday,
-    seasonComplete: fixtures.filter((f) => f.competition === 'league').every((f) => f.played),
+    seasonComplete: fixtures
+      .filter((f) => f.competition === 'league')
+      .every((f) => f.played),
     currentDate: prepared.date,
   }
 
@@ -593,6 +658,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     next = refreshJobMarket(next)
   }
   next = processFacilities(next)
+  next = tickSocialAfterMatchday(next)
   next = tickWorldPulse(next)
   if (next.matchday === 19 && transferWindowKind(next) === 'winter') {
     next = {

@@ -11,6 +11,8 @@ import {
 import { ensureFans, fanMoodLabel, fanTicketMultiplier } from '@/game/fans'
 import { FAN_FACTION_LABEL, type FanFactionKey } from '@/game/clubAtmosphere'
 import { ensureTakeover, verdictLabel, listInvestors } from '@/game/takeover'
+import { ensureFacilities, FACILITY_LABEL, stadiumCapacityForTier } from '@/game/facilities'
+import { ensureClubSocial, formatFollowers } from '@/game/social'
 import { formatMoney } from '@/lib/format'
 import { GhostButton, PageHeader, Panel, PrimaryButton, ProgressBar, StatTile } from '@/components/ui'
 
@@ -23,16 +25,22 @@ export function ClubVisionPage() {
   const callMeeting = useGameStore((s) => s.callBoardMeeting)
   const outreach = useGameStore((s) => s.outreachFans)
   const answerDemand = useGameStore((s) => s.answerOwnerDemand)
+  const resolveFacility = useGameStore((s) => s.resolveFacilityProposal)
   const adviseTakeover = useGameStore((s) => s.adviseTakeover)
   const attemptTakeover = useGameStore((s) => s.attemptTakeover)
   const rejectTakeover = useGameStore((s) => s.rejectTakeover)
   const board = refreshVisionKpis({ ...save, board: ensureBoard(save) })
   const owner = ensureOwner(save)
+  const facilities = ensureFacilities(save)
+  const club = save.clubs.find((c) => c.id === save.humanClubId)
+  const clubSocial = club ? ensureClubSocial(club).social : null
   const fans = save.fans
   const takeover = ensureTakeover(save)
   const [ask, setAsk] = useState(Math.round(owner.warChest * 0.15))
   const openOffers = takeover.offers.filter((o) => o.status === 'open')
   const investorCount = listInvestors().length
+  const proposal = facilities.pendingProposal
+  const canFundProposal = proposal ? (club?.balance ?? 0) >= proposal.cost : false
 
   if (board.sacked) {
     const career = save.career
@@ -95,7 +103,7 @@ export function ClubVisionPage() {
         subtitle="เจ้าของมาสนาม · บอร์ด · กลุ่มแฟนหลายฝ่าย · ของบและคำสั่ง"
       />
 
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         <StatTile
           label="บอร์ด"
           value={`${board.confidence}`}
@@ -116,6 +124,11 @@ export function ClubVisionPage() {
           label="War chest"
           value={formatMoney(owner.warChest)}
           hint={`เทคโอเวอร์ ${owner.takeoverHeat}/100`}
+        />
+        <StatTile
+          label="โซเชียลคลับ"
+          value={clubSocial ? formatFollowers(clubSocial.followers) : '—'}
+          hint={clubSocial ? `${clubSocial.handle} · brand ${clubSocial.brand}` : undefined}
         />
       </div>
 
@@ -150,6 +163,43 @@ export function ClubVisionPage() {
               </div>
             </div>
           ) : null}
+          {proposal ? (
+            <div className="mt-3 rounded-md bg-violet-50 px-3 py-2 text-sm text-violet-950">
+              <p className="font-semibold">ข้อเสนออัปเกรดจากผู้จัดการ</p>
+              <p className="mt-1">{proposal.note}</p>
+              <p className="mt-1 text-xs">
+                {FACILITY_LABEL[proposal.kind]} · งบสโมสร{' '}
+                {formatMoney(proposal.cost)}
+                {proposal.targetCapacity
+                  ? ` · เป้า ${proposal.targetCapacity.toLocaleString('th-TH')} ที่นั่ง`
+                  : ''}
+              </p>
+              <p className="mt-1 text-xs text-slate-600">
+                บัญชีสโมสร {formatMoney(club?.balance ?? 0)}
+                {canFundProposal ? ' · พอจ่าย' : ' · ไม่พอ — ต้องหาเงิน/ของบก่อน'}
+              </p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                <PrimaryButton
+                  onClick={() => resolveFacility(true)}
+                  disabled={!canFundProposal}
+                >
+                  อนุมัติ (หักเงินคลับ)
+                </PrimaryButton>
+                <GhostButton onClick={() => resolveFacility(false)}>ปฏิเสธ</GhostButton>
+              </div>
+            </div>
+          ) : facilities.project ? (
+            <p className="mt-3 text-xs text-amber-800">
+              กำลังก่อสร้าง: {facilities.project.note} · เสร็จ MD{facilities.project.doneMatchday}
+            </p>
+          ) : (
+            <p className="mt-3 text-xs text-slate-500">
+              สนาม {facilities.stadiumTier}/{facilities.maxStadiumTier} (
+              {stadiumCapacityForTier(facilities.stadiumTier).toLocaleString('th-TH')}/
+              {stadiumCapacityForTier(facilities.maxStadiumTier).toLocaleString('th-TH')} ที่นั่ง)
+              — เสนออัปเกรดที่หน้าการเงิน
+            </p>
+          )}
           <div className="mt-3 flex flex-wrap gap-2">
             <GhostButton onClick={() => inviteOwner()}>เชิญมาดูที่สนาม</GhostButton>
           </div>

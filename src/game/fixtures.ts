@@ -1,7 +1,11 @@
 import type { Fixture } from './types'
 
 /** Round-robin home & away for 20 clubs → 38 matchdays, 10 games each. */
-export function generateSeasonFixtures(clubIds: string[], seasonStart = '2026-08-15'): Fixture[] {
+export function generateSeasonFixtures(
+  clubIds: string[],
+  seasonStart = '2026-08-15',
+  division: 1 | 2 = 1,
+): Fixture[] {
   if (clubIds.length !== 20) {
     throw new Error('ลีกต้องมี 20 สโมสร')
   }
@@ -12,6 +16,7 @@ export function generateSeasonFixtures(clubIds: string[], seasonStart = '2026-08
   const rotation = clubIds.slice()
   const fixtures: Fixture[] = []
   let id = 1
+  const prefix = division === 2 ? 'fx2' : 'fx'
 
   const addDays = (iso: string, days: number) => {
     const d = new Date(`${iso}T12:00:00Z`)
@@ -26,13 +31,14 @@ export function generateSeasonFixtures(clubIds: string[], seasonStart = '2026-08
       const home = rotation[i]
       const away = rotation[n - 1 - i]
       fixtures.push({
-        id: `fx-${id++}`,
+        id: `${prefix}-${id++}`,
         matchday,
         date,
         homeClubId: home,
         awayClubId: away,
         played: false,
         competition: 'league',
+        division,
       })
     }
     const fixed = rotation[0]
@@ -41,17 +47,17 @@ export function generateSeasonFixtures(clubIds: string[], seasonStart = '2026-08
     rotation.splice(0, rotation.length, fixed, ...rest)
   }
 
-  // Second half: reverse home/away
   const firstHalf = fixtures.slice()
   for (const fx of firstHalf) {
     fixtures.push({
-      id: `fx-${id++}`,
+      id: `${prefix}-${id++}`,
       matchday: fx.matchday + rounds,
       date: addDays(seasonStart, (fx.matchday + rounds - 1) * 7),
       homeClubId: fx.awayClubId,
       awayClubId: fx.homeClubId,
       played: false,
       competition: 'league',
+      division,
     })
   }
 
