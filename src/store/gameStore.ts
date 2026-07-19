@@ -58,6 +58,8 @@ import {
 } from '@/game/takeover'
 import { startNextSeason } from '@/game/season'
 import { acceptJobOffer, rejectJobOffer } from '@/game/jobs'
+import { startFacilityUpgrade, medicalFacilityBonus } from '@/game/facilities'
+import type { FacilityKind } from '@/game/types'
 import { managerTalk, respondToPlayerRequest } from '@/game/playerTalks'
 import type { ManagerTalkTopic, TalkResponse } from '@/game/types'
 import {
@@ -133,12 +135,13 @@ interface GameStore {
   startNewSeason: () => boolean
   acceptJob: (offerId: string) => boolean
   rejectJob: (offerId: string) => boolean
+  upgradeFacility: (kind: FacilityKind) => boolean
   answerPressConference: (answerIds: string[]) => void
   dismissPressConference: () => void
 }
 
 function finalizeApplied(save: GameSave, matchday: number, resultsCount: number) {
-  const physio = staffLevel(save.staff, 'physio')
+  const physio = staffLevel(save.staff, 'physio') + medicalFacilityBonus(save)
   let withRecovery: GameSave = {
     ...save,
     players: recoverSquad(save.players, physio),
@@ -871,6 +874,17 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const { save } = get()
     if (!save) return false
     const result = rejectJobOffer(save, offerId)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  upgradeFacility: (kind) => {
+    const { save } = get()
+    if (!save) return false
+    const result = startFacilityUpgrade(save, kind)
     set({ status: result.message })
     if (!result.ok) return false
     saveToStorage(result.save)

@@ -7,6 +7,7 @@ import { applyMatchToOwner, ensureOwner } from './owner'
 import { processStadiumPresence } from './clubAtmosphere'
 import { scanTakeoverMarket } from './takeover'
 import { enterUnemployment, refreshJobMarket } from './jobs'
+import { processFacilities, medicalFacilityBonus, commercialGateBonus } from './facilities'
 import { applyTrainingWeek, updatePlayingTimeMorale } from './training'
 import { tickPlayerInjury } from './medical'
 import {
@@ -230,6 +231,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
       result.awayGoals,
       isHumanHome ? fans : undefined,
       prepared.matchday,
+      isHumanHome ? commercialGateBonus(save) : 1,
     )
     clubs = clubs.map((c) =>
       c.id === home.id ? applyGateReceiptToClub(c, receipt) : c,
@@ -588,6 +590,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   if (next.career?.unemployed || next.board?.sacked) {
     next = refreshJobMarket(next)
   }
+  next = processFacilities(next)
   next = { ...next, media: ensureMediaFeed(next) }
   for (const n of newsBatch) next = pushNews(next, n)
   next = advanceMediaWeek(next)

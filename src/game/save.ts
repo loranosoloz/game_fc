@@ -30,6 +30,7 @@ import { createTransferDesk, ensureTransferDesk } from './transferDesk'
 import { createClubIncome, ensureClubIncome } from './clubIncome'
 import { createTakeoverState, ensureTakeover } from './takeover'
 import { createCareerState, ensureCareer } from './jobs'
+import { createFacilitiesState, ensureFacilities } from './facilities'
 import { persistSaveSync, loadSaveRawAsync, clearAllSaves } from './idbSave'
 import { roleGroup } from './positions'
 import type { RoleCode } from './types'
@@ -108,6 +109,7 @@ export function createNewGame(
     clubIncome: createClubIncome(human.reputation),
     takeover: createTakeoverState(2026),
     career: createCareerState(humanClubId),
+    facilities: createFacilitiesState(human.stadiumCapacity),
   }
 }
 
@@ -148,6 +150,10 @@ export function ensurePhase5(save: GameSave): GameSave {
   else next = { ...next, takeover: ensureTakeover(next) }
   if (!next.career) next = { ...next, career: ensureCareer(next) }
   else next = { ...next, career: ensureCareer(next) }
+  if (!next.facilities) {
+    const h = next.clubs.find((c) => c.id === next.humanClubId)
+    next = { ...next, facilities: createFacilitiesState(h?.stadiumCapacity ?? 25_000) }
+  } else next = { ...next, facilities: ensureFacilities(next) }
   if (!next.leagueId) next = { ...next, leagueId: 'eng', leagueName: next.leagueName ?? 'Premier League' }
   if (!next.leagueName) next = { ...next, leagueName: 'World League' }
 
@@ -306,6 +312,9 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
     career:
       (raw.career as GameSave['career']) ??
       createCareerState((raw.humanClubId as string) ?? humanClubId),
+    facilities:
+      (raw.facilities as GameSave['facilities']) ??
+      createFacilitiesState(human.stadiumCapacity),
   } as GameSave
 
   return ensurePhase5(ensureFans(base))

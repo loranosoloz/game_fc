@@ -5,14 +5,22 @@ import { ensureClubFinance, PLAYER_SPENDINGS } from '@/game/playerEconomy'
 import { cashflowForecast, ensureClubIncome } from '@/game/clubIncome'
 import { DISCIPLINE_FINES } from '@/game/disciplineFines'
 import { ensurePhase5 } from '@/game/save'
-import { PageHeader, Panel, ProgressBar, StatTile } from '@/components/ui'
+import {
+  ensureFacilities,
+  FACILITY_LABEL,
+  facilityUpgradeCost,
+} from '@/game/facilities'
+import type { FacilityKind } from '@/game/types'
+import { PageHeader, Panel, ProgressBar, StatTile, PrimaryButton, GhostButton } from '@/components/ui'
 
 export function FinancePage() {
   const saveRaw = useGameStore((s) => s.save)!
   const save = ensurePhase5(saveRaw)
+  const upgradeFacility = useGameStore((s) => s.upgradeFacility)
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
   const finance = ensureClubFinance(save)
   const income = ensureClubIncome(save)
+  const facilities = ensureFacilities(save)
   const forecast = cashflowForecast(save)
   const squad = save.players.filter((p) => p.clubId === save.humanClubId)
   const weeklyWages = squad.reduce((s, p) => s + p.wage, 0)
@@ -107,6 +115,50 @@ export function FinancePage() {
         <p className="mt-2 text-xs text-slate-500">
           กระเป๋านักเตะรวม {formatMoney(squadCash)} · ขายเสื้อฤดูกาล{' '}
           {formatMoney(finance.shirtSeason || 0)}
+        </p>
+      </Panel>
+
+      </div>
+
+      <Panel>
+        <h3 className="text-sm font-bold text-slate-900">สนามและสิ่งอำนวยความสะดวก</h3>
+        <p className="mt-1 text-xs text-slate-500">
+          ก่อสร้างได้ทีละโครงการ · สนามเพิ่มความจุ · ฝึก/แพทย์ช่วยทีม · พาณิชย์เพิ่มรายได้ตั๋ว
+        </p>
+        {facilities.project ? (
+          <p className="mt-2 rounded-md bg-amber-50 px-3 py-2 text-sm text-amber-950">
+            กำลังก่อสร้าง: {facilities.project.note} · เสร็จ MD{facilities.project.doneMatchday}
+          </p>
+        ) : (
+          <p className="mt-2 text-xs text-slate-500">{facilities.lastNote}</p>
+        )}
+        <dl className="mt-3 grid grid-cols-2 gap-2 text-center text-xs sm:grid-cols-4">
+          {(
+            [
+              ['stadium', facilities.stadiumTier],
+              ['training', facilities.trainingTier],
+              ['medical', facilities.medicalTier],
+              ['commercial', facilities.commercialTier],
+            ] as [FacilityKind, number][]
+          ).map(([kind, tier]) => (
+            <div key={kind} className="rounded-md bg-slate-50 px-2 py-2">
+              <dt className="text-slate-500 leading-tight">{FACILITY_LABEL[kind]}</dt>
+              <dd className="text-lg font-bold">Lv.{tier}</dd>
+              <dd className="text-[10px] text-slate-400">
+                {formatMoney(facilityUpgradeCost(kind, tier))}
+              </dd>
+              <GhostButton
+                className="mt-1 w-full text-xs"
+                onClick={() => upgradeFacility(kind)}
+                disabled={!!facilities.project || tier >= 10}
+              >
+                อัปเกรด
+              </GhostButton>
+            </div>
+          ))}
+        </dl>
+        <p className="mt-2 text-xs text-slate-500">
+          ความจุปัจจุบัน {club.stadiumCapacity.toLocaleString('th-TH')} ที่นั่ง
         </p>
       </Panel>
 

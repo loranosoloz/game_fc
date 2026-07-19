@@ -86,13 +86,14 @@ export function calcGateReceipt(
   goalsAgainst: number,
   fans?: FanState,
   matchday = 0,
+  commercialMult = 1,
 ): GateReceipt {
   const fanMult = fans ? fanTicketMultiplier(fans, matchday) : 1
   const fill = 0.55 + Math.min(0.35, club.reputation / 200)
   const crowd = Math.round(club.stadiumCapacity * fill * fanMult)
   const resultMood = goalsFor > goalsAgainst ? 1.08 : goalsFor === goalsAgainst ? 1 : 0.92
   const ticketPrice = 180 + club.reputation * 2.2
-  const tickets = Math.round(crowd * ticketPrice * resultMood)
+  const tickets = Math.round(crowd * ticketPrice * resultMood * commercialMult)
 
   const shirtRate =
     0.06 +

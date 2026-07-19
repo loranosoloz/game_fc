@@ -1077,6 +1077,26 @@ export interface GameSave {
   takeover: TakeoverState
   /** อาชีพผู้จัดการ · ว่างงาน · ข้อเสนองาน */
   career: CareerState
+  /** สนาม + สิ่งอำนวยความสะดวก */
+  facilities: FacilitiesState
+}
+
+export type FacilityKind = 'stadium' | 'training' | 'medical' | 'commercial'
+
+export interface FacilityProject {
+  kind: FacilityKind
+  startedMatchday: number
+  doneMatchday: number
+  note: string
+}
+
+export interface FacilitiesState {
+  stadiumTier: number
+  trainingTier: number
+  medicalTier: number
+  commercialTier: number
+  project: FacilityProject | null
+  lastNote: string
 }
 
 export interface JobOffer {

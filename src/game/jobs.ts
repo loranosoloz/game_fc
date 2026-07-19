@@ -6,6 +6,7 @@ import { createDynamics } from './dynamics'
 import { createTalksState } from './playerTalks'
 import { createTakeoverState } from './takeover'
 import { createClubIncome } from './clubIncome'
+import { createFacilitiesState } from './facilities'
 import { autoPickTactics } from './seed'
 
 function uid(prefix: string) {
@@ -215,6 +216,7 @@ export function acceptJobOffer(
     talks: createTalksState(),
     takeover: createTakeoverState(save.season),
     clubIncome: createClubIncome(club.reputation),
+    facilities: createFacilitiesState(club.stadiumCapacity),
     pressConference: null,
     managerReputation: clamp(rep + 4),
     career: {
