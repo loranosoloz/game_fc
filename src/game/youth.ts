@@ -13,6 +13,7 @@ import { REAL_NAME_OVERFLOW } from '@/data/world/realNameOverflow'
 import { REAL_NAME_BANKS } from '@/data/world/realNameBanks'
 import { ensureScouting } from './scouting'
 import { newsAfterYouth, pushNews } from './media'
+import { createBodyMap } from './bodyMap'
 
 const YOUTH_NAME_POOL = [
   ...new Set([...Object.values(REAL_NAME_BANKS).flat(), ...REAL_NAME_OVERFLOW]),
@@ -88,9 +89,12 @@ export function maybePromoteYouth(save: GameSave): GameSave {
       injuryDays: 0,
       injuryType: null,
       treatment: null,
+      injuryBodyPart: null,
+      bodyMap: createBodyMap(rng),
       injuryHistory: [],
       seasonYellows: 0,
       banMatches: 0,
+      leaveDays: 0,
       contractYears: 3,
       contractEndSeason: save.season + 3,
       releaseClause: null,

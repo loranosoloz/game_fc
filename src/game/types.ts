@@ -29,10 +29,39 @@ export type SetPiecePlan = 'mixed' | 'near_post' | 'far_post' | 'short' | 'direc
 export type InjuryType = 'muscle' | 'ligament' | 'bone'
 export type InjuryTreatment = 'rest' | 'physio' | 'injection'
 
+/** Body regions for fitness / injury map (all players including AI) */
+export type BodyPartId =
+  | 'head'
+  | 'neck'
+  | 'shoulderL'
+  | 'shoulderR'
+  | 'chest'
+  | 'back'
+  | 'armL'
+  | 'armR'
+  | 'handL'
+  | 'handR'
+  | 'abdomen'
+  | 'groin'
+  | 'thighL'
+  | 'thighR'
+  | 'kneeL'
+  | 'kneeR'
+  | 'calfL'
+  | 'calfR'
+  | 'ankleL'
+  | 'ankleR'
+  | 'footL'
+  | 'footR'
+
+/** Per-part fitness 0–100 (green ≥70, yellow 40–69, red &lt;40) */
+export type BodyMap = Record<BodyPartId, number>
+
 export interface InjuryRecord {
   type: InjuryType
   days: number
   source: 'match' | 'training'
+  bodyPart?: BodyPartId
 }
 
 export interface PlayerAttributes {
@@ -104,11 +133,19 @@ export interface Player {
   injuryDays: number
   injuryType: InjuryType | null
   treatment: InjuryTreatment | null
+  /** Active injured region when injuryDays > 0 */
+  injuryBodyPart: BodyPartId | null
+  /** Per-region fitness — all clubs (human + AI) */
+  bodyMap: BodyMap
   injuryHistory: InjuryRecord[]
   /** Season yellow card tally (reset on accumulation ban) */
   seasonYellows: number
   /** Matches remaining suspended */
   banMatches: number
+  /** ลาส่วนตัว / คอลอัป ฯลฯ — นับถอยหลังต่อแมตช์เดย์ · ไม่พร้อมลงแข่ง */
+  leaveDays: number
+  /** ต้นสังกัดตอนถูกยืม (ว่าง = ไม่ได้ยืม) */
+  loanParentClubId?: string | null
   /** Years left on contract */
   contractYears: number
   /** Season when contract expires */
@@ -142,6 +179,8 @@ export interface Club {
   ticketRevenueSeason?: number
   /** รายได้ขายเสื้อสะสมฤดูกาล */
   shirtRevenueSeason?: number
+  /** ลีกต้นทาง (คลับข้ามลีก / UCL invite) */
+  originLeagueId?: string
 }
 
 export interface TeamInstructions {
@@ -163,6 +202,17 @@ export interface Tactics {
     corners: SetPiecePlan
     freeKicks: SetPiecePlan
   }
+  /** คำสั่งเจาะจงคู่แข่ง (กด/มาร์กดาว) */
+  opposition?: OppositionInstructions
+}
+
+export interface OppositionInstructions {
+  /** กดสูงใส่ผู้เล่น id นี้ */
+  pressPlayerId: string | null
+  /** มาร์กตัวแน่น */
+  markPlayerId: string | null
+  /** never_show / show_onto_weak / tight */
+  showOnto: 'none' | 'weaker_foot' | 'tight'
 }
 
 export interface Fixture {
@@ -178,6 +228,10 @@ export interface Fixture {
   cupRound?: string
   /** Assigned match official */
   refereeId?: string
+  /** สองนัด: 1 = ขาแรก, 2 = ขากลับ */
+  leg?: 1 | 2
+  /** ผูกคู่สองนัด */
+  tieId?: string
 }
 
 export interface Referee {
@@ -430,7 +484,7 @@ export interface PlayerSpendLog {
 export interface FinanceLedgerEntry {
   id: string
   date: string
-  kind: 'tickets' | 'shirts' | 'wages' | 'fine' | 'other'
+  kind: 'tickets' | 'shirts' | 'wages' | 'fine' | 'other' | 'sponsor' | 'tv' | 'prize' | 'loan'
   amount: number
   note: string
 }
@@ -467,6 +521,9 @@ export interface ClubFinanceState {
   wageSeason: number
   /** ค่าปรับวินัยที่หักจากนักเตะ (เข้าคลับ) สะสมฤดูกาล */
   fineSeason: number
+  sponsorSeason: number
+  tvSeason: number
+  prizeSeason: number
   lastMatchTickets: number
   lastMatchShirts: number
   lastMatchCrowd: number
@@ -612,6 +669,183 @@ export interface DevelopmentState {
   personalityLog: PersonalityEventLog[]
 }
 
+/** ผู้จัดการเริ่มคุย */
+export type ManagerTalkTopic =
+  | 'praise'
+  | 'criticism'
+  | 'promise_minutes'
+  | 'role_clarity'
+  | 'discipline_warn'
+  | 'encourage'
+  | 'listen'
+  | 'team_meeting'
+
+/** นักเตะเรียกคุย — id จาก talkDialogs.json (100 ประเภท) */
+export type PlayerRequestKind = string
+
+export type TalkResponse = 'agree' | 'promise' | 'refuse' | 'listen_only'
+
+/** ชนิดสัญญาจาก dialog effects */
+export type TalkPromiseKind = string
+
+/** ผลจากการตอบบทสนทนา */
+export interface TalkEffectBundle {
+  morale?: number
+  happiness?: number
+  condition?: number
+  sharpness?: number
+  form?: number
+  cash?: number
+  clubCost?: number
+  injuryDays?: number
+  leaveDays?: number
+  cohesion?: number
+  managerRep?: number
+  mediaHandling?: number
+  missTraining?: boolean
+  promise?: { kind: TalkPromiseKind; dueDays: number }
+}
+
+export interface TalkKindMeta {
+  id: PlayerRequestKind
+  labelTh: string
+  urgencyBase: number
+  when: string[]
+}
+
+export interface TalkDialogDef {
+  id: string
+  kind: PlayerRequestKind
+  labelTh: string
+  when: string[]
+  urgencyBase: number
+  weight: number
+  playerLine: string
+  responses: Record<
+    TalkResponse,
+    { effects: TalkEffectBundle; outcomeTh: string }
+  >
+}
+
+export interface PlayerTalkRequest {
+  id: string
+  playerId: string
+  clubId: string
+  kind: PlayerRequestKind
+  /** อ้างอิง talkDialogs.json — ของเก่าอาจไม่มี */
+  dialogId?: string
+  labelTh?: string
+  date: string
+  matchday: number
+  urgency: number
+  message: string
+  status: 'pending' | 'resolved' | 'ignored' | 'expired'
+}
+
+export interface TalkPromise {
+  playerId: string
+  clubId: string
+  kind: TalkPromiseKind
+  createdMatchday: number
+  /** ตรวจภายในกี่แมตช์เดย์ */
+  dueMatchday: number
+  note: string
+}
+
+export interface TalkLog {
+  id: string
+  date: string
+  matchday: number
+  source: 'manager' | 'player'
+  playerId: string | null
+  playerName: string
+  topic: string
+  response?: TalkResponse
+  outcome: string
+}
+
+export interface TalksState {
+  requests: PlayerTalkRequest[]
+  logs: TalkLog[]
+  promises: TalkPromise[]
+  lastTeamMeetingMatchday: number
+}
+
+export interface LoanDeal {
+  id: string
+  playerId: string
+  fromClubId: string
+  toClubId: string
+  startMatchday: number
+  endMatchday: number
+  /** สัดส่วนค่าเหนื่อยที่ต้นสังกัดยังจ่าย 0–1 */
+  wageShareParent: number
+  fee: number
+  optionToBuy: number | null
+  recallable: boolean
+  status: 'active' | 'ended' | 'recalled' | 'bought'
+}
+
+export interface ShortlistEntry {
+  playerId: string
+  addedMatchday: number
+  note: string
+}
+
+export interface ShortlistState {
+  entries: ShortlistEntry[]
+}
+
+export type TransferOfferKind = 'buy' | 'sell' | 'exchange' | 'auction'
+
+export interface PendingTransferOffer {
+  id: string
+  kind: TransferOfferKind
+  playerId: string
+  /** สำหรับแลกตัว */
+  exchangePlayerId?: string
+  fromClubId: string
+  toClubId: string
+  fee: number
+  wage: number
+  contractYears: number
+  /** add-on: โบนัสเมื่อลง N นัด */
+  appearanceAddon: number
+  /** % ขายต่อ */
+  sellOnPercent: number
+  status: 'pending' | 'accepted' | 'rejected' | 'countered'
+  counterFee?: number
+  expiresMatchday: number
+  note: string
+}
+
+export interface TransferDeskState {
+  offers: PendingTransferOffer[]
+  auctions: Array<{
+    id: string
+    playerId: string
+    sellerClubId: string
+    minBid: number
+    currentBid: number
+    currentBidderId: string | null
+    endsMatchday: number
+  }>
+}
+
+export interface SponsorDeal {
+  id: string
+  name: string
+  perMatchday: number
+  seasonTotal: number
+  paid: number
+}
+
+export interface ClubIncomeState {
+  sponsors: SponsorDeal[]
+  tvPerMatchday: number
+  tvSeasonPaid: number
+}
+
 export interface GameSave {
   version: 6
   createdAt: string
@@ -654,6 +888,12 @@ export interface GameSave {
   /** UEFA Champions League knockout (domestic top 4 + invite clubs). */
   ucl: CupState
   development: DevelopmentState
+  /** นัดคุยผู้จัดการ ↔ นักเตะ / คำขอเรียกคุย */
+  talks: TalksState
+  loans: LoanDeal[]
+  shortlist: ShortlistState
+  transferDesk: TransferDeskState
+  clubIncome: ClubIncomeState
 }
 
 export const FORMATION_SLOTS: Record<FormationId, RoleCode[]> = {

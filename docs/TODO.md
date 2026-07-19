@@ -12,6 +12,8 @@
 | Scouting 0%/alumni 50% + stadium guests + form watch | ✅ | ✅ committed |
 | Gate tickets/shirts + player wallets + spending DB | ✅ | ✅ committed |
 | Discipline fines (สุ่มหน้างาน → หัก cash) | ✅ | ✅ committed |
+| Meetings · 100 ประเภท · 600 dialog · AI คุยด้วย | ✅ | ⏳ รอ commit |
+| Expansion pack: loan / sponsor·TV·prize / shortlist / desk / UCL 2 legs / IDB / opp | ✅ | ⏳ รอ commit |
 
 Data packs: `src/data/` + `src/data/world/` · Save **v6**
 
@@ -19,19 +21,17 @@ Data packs: `src/data/` + `src/data/world/` · Save **v6**
 
 ## Git
 
-- สาขา: `master` · งานชุดล่าสุดอยู่ใน commit ท้องถิ่นแล้ว (working tree สะอาด)
+- สาขา: `master` · **meetings + expansion pack รอ commit**
 - สถานะกับ remote: **ahead of `origin/master`** — ยังไม่ `git push` จนกว่าจะสั่ง
-- คอมมิตที่เกี่ยวข้องโดยตรงกับเฟสล่าสุด: `2fc0062` (media / Romano / scouting / gate+wallets ฯลฯ)
 
 ### Todo ฝั่ง Git (ค้าง)
 
+- [ ] commit ระบบ meetings + expansion pack
 - [ ] `git push origin master` เมื่อพร้อมเผยแพร่ remote
-- [ ] (ออปชัน) เปิด GitHub Issues จากรายการด้านล่างถ้าอยาก track นอก repo
 
-## ขยายต่อได้ (ออปชัน)
+## ขยายต่อได้ (ออปชันลึกขึ้น)
 
-- หลายลีกในโลกเดียว / ย้ายข้ามลีก
-- UCL แบบ league phase / สองนัด
-- IndexedDB เมื่อ data ใหญ่ขึ้น
-- สปอนเซอร์ / TV money / เงินรางวัลถ้วย (ขยายจาก gate ที่มีแล้ว)
-- Press conference ลึกขึ้น / shortlist / loan
+- หลายลีกแข่งพร้อมกันเต็มฤดูกาล (ตอนนี้ตลาดข้ามลีกผ่าน UCL invite)
+- UCL league phase เต็มรูปแบบ
+- เจรจาสัญญาหลายรอบ / agent fee แยกเต็ม
+- Editor โลก / cloud save

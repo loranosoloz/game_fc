@@ -1,4 +1,11 @@
 import type { InjuryRecord, InjuryTreatment, InjuryType, Player } from './types'
+import {
+  BODY_PART_LABEL,
+  ensureBodyMap,
+  healBodyMap,
+  markBodyPartInjured,
+  pickInjuredBodyPart,
+} from './bodyMap'
 
 const HISTORY_CAP = 12
 
@@ -73,9 +80,16 @@ export function applyInjury(
   rng = Math.random,
 ): Player {
   const rolled = rollInjury(source, rng, player.age)
-  const record: InjuryRecord = { type: rolled.type, days: rolled.days, source }
+  const map = ensureBodyMap(player)
+  const bodyPart = pickInjuredBodyPart(rolled.type, map, rng)
+  const record: InjuryRecord = {
+    type: rolled.type,
+    days: rolled.days,
+    source,
+    bodyPart,
+  }
   const history = [record, ...(player.injuryHistory ?? [])].slice(0, HISTORY_CAP)
-  return {
+  let next: Player = {
     ...player,
     injuryDays: rolled.days,
     injuryType: rolled.type,
@@ -83,6 +97,8 @@ export function applyInjury(
     injuryHistory: history,
     condition: Math.max(35, player.condition - (source === 'training' ? 15 : 8)),
   }
+  next = markBodyPartInjured(next, bodyPart)
+  return next
 }
 
 export function clearInjuryFields(player: Player): Player {
@@ -92,6 +108,7 @@ export function clearInjuryFields(player: Player): Player {
     injuryDays: 0,
     injuryType: null,
     treatment: null,
+    injuryBodyPart: null,
   }
 }
 
@@ -112,12 +129,18 @@ export function recoveryTickAmount(player: Player, physioLevel: number): number 
 
 export function tickPlayerInjury(player: Player, physioLevel: number): Player {
   if (player.injuryDays <= 0) {
-    return {
-      ...player,
-      condition: Math.min(100, player.condition + 3 + Math.floor(physioLevel / 8)),
-      injuryType: null,
-      treatment: null,
-    }
+    const healed = healBodyMap(
+      {
+        ...player,
+        condition: Math.min(100, player.condition + 3 + Math.floor(physioLevel / 8)),
+        injuryType: null,
+        treatment: null,
+        injuryBodyPart: null,
+      },
+      physioLevel,
+      false,
+    )
+    return healed
   }
   const heal = recoveryTickAmount(player, physioLevel)
   const treatment = player.treatment ?? 'physio'
@@ -127,24 +150,34 @@ export function tickPlayerInjury(player: Player, physioLevel: number): Player {
 
   const nextDays = Math.max(0, player.injuryDays - heal)
 
-  // Injection: small chance of setback while still injured
-  let setback = player
   if (treatment === 'injection' && nextDays > 0 && Math.random() < 0.08) {
-    setback = {
-      ...player,
-      injuryDays: nextDays + 2,
-      condition: Math.max(30, player.condition - 4),
-    }
-    return setback
+    return healBodyMap(
+      {
+        ...player,
+        injuryDays: nextDays + 2,
+        condition: Math.max(30, player.condition - 4),
+      },
+      physioLevel,
+      true,
+    )
   }
 
-  return clearInjuryFields({
+  const base = clearInjuryFields({
     ...player,
     condition: Math.min(100, player.condition + condGain),
     injuryDays: nextDays,
     injuryType: nextDays > 0 ? player.injuryType : null,
     treatment: nextDays > 0 ? treatment : null,
+    injuryBodyPart: nextDays > 0 ? player.injuryBodyPart : null,
   })
+  return healBodyMap(base, physioLevel, nextDays > 0)
+}
+
+export function formatInjuryStatus(player: Player): string {
+  if (player.injuryDays <= 0) return `${player.condition}%`
+  const type = player.injuryType ? INJURY_TYPE_LABEL[player.injuryType] : 'เจ็บ'
+  const part = player.injuryBodyPart ? ` · ${BODY_PART_LABEL[player.injuryBodyPart]}` : ''
+  return `${type}${part} ${player.injuryDays}ว`
 }
 
 export function setPlayerTreatment(player: Player, treatment: InjuryTreatment): Player {
@@ -159,12 +192,6 @@ export function injuryHistoryPenalty(player: Player): number {
   const boneHits = recent.filter((h) => h.type === 'bone').length
   const total = recent.length
   return Math.max(0.75, 1 - total * 0.03 - boneHits * 0.04)
-}
-
-export function formatInjuryStatus(player: Player): string {
-  if (player.injuryDays <= 0) return `${player.condition}%`
-  const type = player.injuryType ? INJURY_TYPE_LABEL[player.injuryType] : 'เจ็บ'
-  return `${type} ${player.injuryDays}ว`
 }
 
 export function estimatedReturnMatchdays(player: Player): number {

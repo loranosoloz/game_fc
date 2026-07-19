@@ -296,14 +296,20 @@ export function sellPlayerToAi(save: GameSave, playerId: string, askFee: number)
   }
 }
 
-export function listMarketPlayers(save: GameSave): Array<Player & { clubName: string; value: number }> {
+export function listMarketPlayers(save: GameSave): Array<
+  Player & { clubName: string; value: number; originLeague?: string }
+> {
   return save.players
-    .filter((p) => p.clubId !== save.humanClubId)
-    .map((p) => ({
-      ...p,
-      clubName: save.clubs.find((c) => c.id === p.clubId)?.name ?? '—',
-      value: estimatedValue(p),
-    }))
+    .filter((p) => p.clubId !== save.humanClubId && !p.loanParentClubId)
+    .map((p) => {
+      const club = save.clubs.find((c) => c.id === p.clubId)
+      return {
+        ...p,
+        clubName: club?.name ?? '—',
+        value: estimatedValue(p),
+        originLeague: club?.originLeagueId,
+      }
+    })
     .sort((a, b) => b.overall - a.overall)
 }
 

@@ -24,6 +24,15 @@ import {
 import { autoPickTactics } from '@/game/seed'
 import { FORMATION_SLOTS } from '@/game/types'
 import { buyPlayerFromAi, sellPlayerToAi, renewContract } from '@/game/transfer'
+import {
+  submitNegotiatedBuy,
+  acceptCounterOffer,
+  proposePlayerExchange,
+  startAuction,
+} from '@/game/transferDesk'
+import { arrangeLoan, recallLoan, exerciseLoanOption } from '@/game/loans'
+import { toggleShortlist } from '@/game/shortlist'
+import type { OppositionInstructions } from '@/game/types'
 import { applyTrainingWeek, recoverInjuriesOneDay } from '@/game/training'
 import { setPlayerTreatment } from '@/game/medical'
 import { upgradeStaff, staffUpgradeCost, staffLevel, hireStaff, convertPlayerToStaff, promoteStaffToCoach } from '@/game/staff'
@@ -33,6 +42,8 @@ import { recomputeDynamics } from '@/game/dynamics'
 import { assignMentor } from '@/game/development'
 import { plantRomanoStory } from '@/game/romanoPlant'
 import type { PlantOpts, RomanoPlantKind } from '@/game/romanoPlant'
+import { managerTalk, respondToPlayerRequest } from '@/game/playerTalks'
+import type { ManagerTalkTopic, TalkResponse } from '@/game/types'
 import {
   answerPressConference as resolvePressConference,
   dismissPressConference as skipPressConference,
@@ -49,6 +60,7 @@ interface GameStore {
   setFormation: (formation: FormationId, which?: 'ip' | 'oop') => void
   setInstructions: (patch: Partial<TeamInstructions>) => void
   setSetPieces: (corners?: SetPiecePlan, freeKicks?: SetPiecePlan) => void
+  setOpposition: (patch: Partial<OppositionInstructions>) => void
   setStartingXi: (playerIds: string[]) => void
   setSquadRole: (playerId: string, role: SquadRole) => void
   setTraining: (patch: Partial<TrainingState>) => void
@@ -63,8 +75,24 @@ interface GameStore {
   markInboxRead: (id: string) => void
   clearStatus: () => void
   offerBuyPlayer: (playerId: string, fee: number, wage: number, contractYears?: number) => boolean
+  offerBuyNegotiated: (
+    playerId: string,
+    fee: number,
+    wage: number,
+    years?: number,
+    appearanceAddon?: number,
+    sellOnPercent?: number,
+  ) => boolean
+  acceptTransferCounter: (offerId: string) => boolean
+  offerExchange: (theirId: string, ourId: string, cash: number) => boolean
+  startPlayerAuction: (playerId: string, minBid?: number) => boolean
   offerSellPlayer: (playerId: string, fee: number) => boolean
   renewPlayerContract: (playerId: string, wage: number, years: number) => boolean
+  loanInPlayer: (playerId: string) => boolean
+  loanOutPlayer: (playerId: string, toClubId: string) => boolean
+  recallLoanDeal: (dealId: string) => boolean
+  buyLoanOption: (dealId: string) => boolean
+  togglePlayerShortlist: (playerId: string) => void
   upgradeStaffRole: (role: 'coach' | 'scout' | 'physio') => void
   hireStaffMember: (staffId: string, asRole?: 'coach' | 'scout' | 'physio') => boolean
   promoteToCoach: (staffId: string) => boolean
@@ -75,6 +103,8 @@ interface GameStore {
   setIndividualFocus: (playerId: string, focus: IndividualFocus) => void
   setMentor: (menteeId: string, mentorId: string | null) => void
   plantRomano: (kind: RomanoPlantKind, opts?: PlantOpts) => boolean
+  startManagerTalk: (topic: ManagerTalkTopic, playerId?: string) => boolean
+  answerPlayerRequest: (requestId: string, response: TalkResponse) => boolean
   answerPressConference: (answerIds: string[]) => void
   dismissPressConference: () => void
 }
@@ -191,6 +221,23 @@ export const useGameStore = create<GameStore>((set, get) => ({
       setPieces: {
         corners: corners ?? current.setPieces.corners,
         freeKicks: freeKicks ?? current.setPieces.freeKicks,
+      },
+    })
+    saveToStorage(next)
+    set({ save: next })
+  },
+
+  setOpposition: (patch) => {
+    const { save } = get()
+    if (!save) return
+    const current = save.tacticsByClub[save.humanClubId]
+    const next = patchHumanTactics(save, {
+      opposition: {
+        pressPlayerId: null,
+        markPlayerId: null,
+        showOnto: 'none',
+        ...current.opposition,
+        ...patch,
       },
     })
     saveToStorage(next)
@@ -418,6 +465,58 @@ export const useGameStore = create<GameStore>((set, get) => ({
     return true
   },
 
+  offerBuyNegotiated: (playerId, fee, wage, years = 3, appearanceAddon = 0, sellOnPercent = 0) => {
+    const { save } = get()
+    if (!save) return false
+    const result = submitNegotiatedBuy(
+      save,
+      playerId,
+      fee,
+      wage,
+      years,
+      appearanceAddon,
+      sellOnPercent,
+    )
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  acceptTransferCounter: (offerId) => {
+    const { save } = get()
+    if (!save) return false
+    const result = acceptCounterOffer(save, offerId)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  offerExchange: (theirId, ourId, cash) => {
+    const { save } = get()
+    if (!save) return false
+    const result = proposePlayerExchange(save, theirId, ourId, cash)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  startPlayerAuction: (playerId, minBid) => {
+    const { save } = get()
+    if (!save) return false
+    const result = startAuction(save, playerId, minBid)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
   offerSellPlayer: (playerId, fee) => {
     const { save } = get()
     if (!save) return false
@@ -438,6 +537,64 @@ export const useGameStore = create<GameStore>((set, get) => ({
     saveToStorage(result.save)
     set({ save: result.save })
     return true
+  },
+
+  loanInPlayer: (playerId) => {
+    const { save } = get()
+    if (!save) return false
+    const result = arrangeLoan(save, playerId, save.humanClubId, {
+      durationMatchdays: 12,
+      recallable: true,
+    })
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  loanOutPlayer: (playerId, toClubId) => {
+    const { save } = get()
+    if (!save) return false
+    const result = arrangeLoan(save, playerId, toClubId, {
+      durationMatchdays: 12,
+      recallable: true,
+    })
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  recallLoanDeal: (dealId) => {
+    const { save } = get()
+    if (!save) return false
+    const result = recallLoan(save, dealId)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  buyLoanOption: (dealId) => {
+    const { save } = get()
+    if (!save) return false
+    const result = exerciseLoanOption(save, dealId)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  togglePlayerShortlist: (playerId) => {
+    const { save } = get()
+    if (!save) return
+    const next = toggleShortlist(save, playerId)
+    saveToStorage(next)
+    set({ save: next, status: 'อัปเดต shortlist แล้ว' })
   },
 
   upgradeStaffRole: (role) => {
@@ -528,6 +685,28 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const { save } = get()
     if (!save) return false
     const result = plantRomanoStory(save, save.humanClubId, kind, opts)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  startManagerTalk: (topic, playerId) => {
+    const { save } = get()
+    if (!save) return false
+    const result = managerTalk(save, topic, playerId)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  answerPlayerRequest: (requestId, response) => {
+    const { save } = get()
+    if (!save) return false
+    const result = respondToPlayerRequest(save, requestId, response)
     set({ status: result.message })
     if (!result.ok) return false
     saveToStorage(result.save)

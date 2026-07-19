@@ -21,6 +21,10 @@ import { createPressConference } from './pressConference'
 import { maybeAiRomanoPlants } from './romanoPlant'
 import { resolveFormWatches, weeklyScoutPassive } from './scouting'
 import { generateStadiumVisits } from './stadiumVisits'
+import { generatePlayerTalkRequests, processAiPlayerTalks, resolveTalkPromises } from './playerTalks'
+import { processLoansMatchday } from './loans'
+import { applyMatchdayIncome, awardCompetitionPrize } from './clubIncome'
+import { processTransferDeskMatchday } from './transferDesk'
 import type { MediaItem } from './types'
 import { maybePromoteYouth } from './youth'
 import { advanceCupAfterMatchday } from './cup'
@@ -368,6 +372,17 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     }
   }
 
+  // apply prize money after cup crowned
+  if (cup.championClubId && !save.cup.championClubId) {
+    const cupPrize = awardCompetitionPrize(
+      { ...save, clubs, currentDate: prepared.date, clubFinance },
+      'cup',
+      cup.championClubId,
+    )
+    clubs = cupPrize.clubs
+    clubFinance = cupPrize.clubFinance
+  }
+
   const uclAdv = advanceUclAfterMatchday(fixtures, ucl, prepared.matchday)
   fixtures = uclAdv.fixtures
   ucl = uclAdv.ucl
@@ -391,6 +406,13 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     if (ucl.championClubId === save.humanClubId) {
       managerReputation = Math.min(100, managerReputation + 8)
     }
+    const uclPrize = awardCompetitionPrize(
+      { ...save, clubs, currentDate: prepared.date, clubFinance },
+      'ucl',
+      ucl.championClubId,
+    )
+    clubs = uclPrize.clubs
+    clubFinance = uclPrize.clubFinance
   }
 
   let next: GameSave = {
@@ -480,6 +502,12 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   next = maybePlayersBecomeStaff(next)
   next = simulateDailyLife(next, 7)
   next = simulatePlayerSpending(next, 7)
+  next = resolveTalkPromises(next)
+  next = generatePlayerTalkRequests(next)
+  next = processAiPlayerTalks(next)
+  next = applyMatchdayIncome(next)
+  next = processLoansMatchday(next)
+  next = processTransferDeskMatchday(next)
   next = { ...next, media: ensureMediaFeed(next) }
   for (const n of newsBatch) next = pushNews(next, n)
   next = advanceMediaWeek(next)
@@ -531,7 +559,12 @@ export function applyWeeklyWages(save: GameSave): GameSave {
 }
 
 export function recoverSquad(players: Player[], physioLevel = 8): Player[] {
-  return players.map((p) => tickPlayerInjury(p, physioLevel))
+  return players.map((p) => {
+    const healed = tickPlayerInjury(p, physioLevel)
+    const leave = healed.leaveDays ?? 0
+    if (leave <= 0) return healed
+    return { ...healed, leaveDays: Math.max(0, leave - 1) }
+  })
 }
 
 export function sortedTable(table: TableRow[]) {

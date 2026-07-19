@@ -1,3 +1,4 @@
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useGameStore } from '@/store/gameStore'
 import { roleShort } from '@/game/positions'
@@ -11,8 +12,10 @@ import {
   formatInjuryStatus,
   recoveryTickAmount,
 } from '@/game/medical'
+import { BODY_PART_LABEL, bodyMapSummary } from '@/game/bodyMap'
 import { staffLevel } from '@/game/staff'
 import { formatBanStatus } from '@/game/discipline'
+import { BodyMapFigure } from '@/components/BodyMapFigure'
 import { GhostButton, PageHeader, Panel, StatTile } from '@/components/ui'
 
 const TREATMENTS: InjuryTreatment[] = ['rest', 'physio', 'injection']
@@ -23,7 +26,13 @@ export function MedicalPage() {
   const upgradeStaffRole = useGameStore((s) => s.upgradeStaffRole)
   const physio = staffLevel(save.staff, 'physio')
 
-  const squad = save.players.filter((p) => p.clubId === save.humanClubId)
+  const squad = useMemo(
+    () =>
+      save.players
+        .filter((p) => p.clubId === save.humanClubId)
+        .sort((a, b) => b.overall - a.overall),
+    [save.players, save.humanClubId],
+  )
   const injured = squad
     .filter((p) => p.injuryDays > 0)
     .sort((a, b) => b.injuryDays - a.injuryDays)
@@ -32,6 +41,12 @@ export function MedicalPage() {
     .filter((p) => p.injuryDays <= 0 && p.condition < 70)
     .sort((a, b) => a.condition - b.condition)
     .slice(0, 10)
+  const atRisk = squad
+    .filter((p) => {
+      const s = bodyMapSummary(p)
+      return s.red > 0 || s.yellow >= 4
+    })
+    .slice(0, 8)
   const historyHits = squad
     .flatMap((p) =>
       (p.injuryHistory ?? []).slice(0, 3).map((h) => ({
@@ -41,21 +56,57 @@ export function MedicalPage() {
     )
     .slice(0, 12)
 
+  const [selectedId, setSelectedId] = useState<string | null>(null)
+  const selected =
+    squad.find((p) => p.id === selectedId) ??
+    injured[0] ??
+    atRisk[0] ??
+    squad[0] ??
+    null
+
   return (
     <div className="space-y-5">
       <PageHeader
         title="ศูนย์แพทย์"
-        subtitle={`แผนรักษา · ประวัติ · วินัย · Physio Lv.${physio}`}
+        subtitle={`แผนที่ร่างกาย · แผนรักษา · Physio Lv.${physio}`}
         actions={
           <GhostButton onClick={() => upgradeStaffRole('physio')}>อัปเกรด Physio</GhostButton>
         }
       />
 
-      <div className="grid gap-3 sm:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-4">
         <StatTile label="บาดเจ็บ" value={injured.length} hint="คนในสควอด" accent={injured.length > 0} />
+        <StatTile label="เสี่ยง (แดง/เหลือง)" value={atRisk.length} hint="body map" />
         <StatTile label="โดนแบน" value={banned.length} hint="ใบแดง / สะสมเหลือง" />
         <StatTile label="สภาพต่ำ" value={lowCond.length} hint="condition &lt; 70%" />
       </div>
+
+      <Panel className="space-y-3">
+        <div className="flex flex-wrap items-end justify-between gap-2">
+          <div>
+            <h3 className="text-sm font-bold text-slate-900">แผนที่ร่างกายรายคน</h3>
+            <p className="text-xs text-slate-500">
+              เขียว / เหลือง / แดง ตามส่วน — ใช้กับทุกนักเตะในโลกเกม (รวม AI) · แสดงสควอดคุณที่นี่
+            </p>
+          </div>
+          <select
+            className="rounded-md border border-slate-300 bg-white px-2 py-1.5 text-sm"
+            value={selected?.id ?? ''}
+            onChange={(e) => setSelectedId(e.target.value)}
+          >
+            {squad.map((p) => {
+              const s = bodyMapSummary(p)
+              return (
+                <option key={p.id} value={p.id}>
+                  {roleShort(p.role)} {p.name}
+                  {p.injuryDays > 0 ? ' · เจ็บ' : s.red > 0 ? ' · แดง' : s.yellow > 3 ? ' · อ่อน' : ''}
+                </option>
+              )
+            })}
+          </select>
+        </div>
+        {selected ? <BodyMapFigure player={selected} /> : null}
+      </Panel>
 
       <div className="grid gap-5 lg:grid-cols-[1.25fr_1fr]">
         <Panel className="space-y-5">
@@ -70,7 +121,11 @@ export function MedicalPage() {
                   return (
                     <li
                       key={p.id}
-                      className="rounded-xl border border-rose-200/80 bg-gradient-to-br from-rose-50 to-white px-4 py-3"
+                      className={cn(
+                        'cursor-pointer rounded-xl border border-rose-200/80 bg-gradient-to-br from-rose-50 to-white px-4 py-3',
+                        selected?.id === p.id && 'ring-2 ring-slate-900/20',
+                      )}
+                      onClick={() => setSelectedId(p.id)}
                     >
                       <div className="flex flex-wrap items-baseline justify-between gap-2">
                         <span className="font-bold text-rose-950">
@@ -78,8 +133,9 @@ export function MedicalPage() {
                           <span className="ml-2 text-xs font-normal text-slate-500">{p.age}ย</span>
                         </span>
                         <span className="text-sm font-semibold text-rose-800">
-                          {p.injuryType ? INJURY_TYPE_LABEL[p.injuryType] : 'เจ็บ'} · {p.injuryDays}{' '}
-                          วัน · ≈{estimatedReturnMatchdays(p)} นัด
+                          {p.injuryType ? INJURY_TYPE_LABEL[p.injuryType] : 'เจ็บ'}
+                          {p.injuryBodyPart ? ` · ${BODY_PART_LABEL[p.injuryBodyPart]}` : ''} ·{' '}
+                          {p.injuryDays} วัน · ≈{estimatedReturnMatchdays(p)} นัด
                         </span>
                       </div>
                       <p className="mt-1 text-xs text-slate-600">
@@ -92,7 +148,10 @@ export function MedicalPage() {
                             key={t}
                             type="button"
                             title={TREATMENT_HINT[t]}
-                            onClick={() => setInjuryTreatment(p.id, t)}
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              setInjuryTreatment(p.id, t)
+                            }}
                             className={cn(
                               'rounded-md border px-2.5 py-1 text-xs font-semibold',
                               p.treatment === t
@@ -104,9 +163,6 @@ export function MedicalPage() {
                           </button>
                         ))}
                       </div>
-                      <p className="mt-1.5 text-[11px] text-slate-500">
-                        {p.treatment ? TREATMENT_HINT[p.treatment] : ''}
-                      </p>
                     </li>
                   )
                 })}
@@ -140,7 +196,11 @@ export function MedicalPage() {
             ) : (
               <ul className="mt-2 space-y-1 text-sm">
                 {lowCond.map((p) => (
-                  <li key={p.id} className="flex justify-between rounded-lg bg-slate-50 px-3 py-2">
+                  <li
+                    key={p.id}
+                    className="flex cursor-pointer justify-between rounded-lg bg-slate-50 px-3 py-2 hover:bg-slate-100"
+                    onClick={() => setSelectedId(p.id)}
+                  >
                     <span>
                       {roleShort(p.role)} {p.name}
                     </span>
@@ -173,7 +233,9 @@ export function MedicalPage() {
                     <span className="font-medium">{h.player.name}</span>
                     <span className="text-slate-500">
                       {' '}
-                      · {INJURY_TYPE_LABEL[h.type]} ({h.source === 'match' ? 'แข่ง' : 'ซ้อม'})
+                      · {INJURY_TYPE_LABEL[h.type]}
+                      {h.bodyPart ? ` · ${BODY_PART_LABEL[h.bodyPart]}` : ''} (
+                      {h.source === 'match' ? 'แข่ง' : 'ซ้อม'})
                     </span>
                   </span>
                   <span className="tabular-nums text-slate-600">{h.days}ว</span>

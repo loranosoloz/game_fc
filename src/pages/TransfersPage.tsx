@@ -9,6 +9,9 @@ import { cn } from '@/lib/cn'
 import { TransferIntelPanel } from '@/components/TransferIntelPanel'
 import { ensureFans, fanMoodLabel } from '@/game/fans'
 import { ensureScouting, knowledgeOf, recentFormForPlayer, revealOverall, revealPa } from '@/game/scouting'
+import { ensureTransferDesk } from '@/game/transferDesk'
+import { isShortlisted } from '@/game/shortlist'
+import { activeLoansForClub } from '@/game/loans'
 import { Link } from 'react-router-dom'
 
 type Tab = 'buy' | 'sell'
@@ -17,7 +20,12 @@ export function TransfersPage() {
   const saveRaw = useGameStore((s) => s.save)!
   const save = ensureFans(saveRaw)
   const offerBuyPlayer = useGameStore((s) => s.offerBuyPlayer)
+  const offerBuyNegotiated = useGameStore((s) => s.offerBuyNegotiated)
   const offerSellPlayer = useGameStore((s) => s.offerSellPlayer)
+  const loanInPlayer = useGameStore((s) => s.loanInPlayer)
+  const startPlayerAuction = useGameStore((s) => s.startPlayerAuction)
+  const togglePlayerShortlist = useGameStore((s) => s.togglePlayerShortlist)
+  const acceptTransferCounter = useGameStore((s) => s.acceptTransferCounter)
   const renewPlayerContract = useGameStore((s) => s.renewPlayerContract)
   const runScout = useGameStore((s) => s.runScout)
 
@@ -77,6 +85,10 @@ export function TransfersPage() {
     setYears(Math.max(1, p.contractYears ?? 2))
   }
 
+  const desk = ensureTransferDesk(save)
+  const loans = activeLoansForClub(save, save.humanClubId)
+  const counters = desk.offers.filter((o) => o.status === 'countered')
+
   return (
     <div className="grid gap-6 lg:grid-cols-[1.15fr_1.15fr]">
       <section className="rounded-xl border border-slate-200 bg-white/80 p-5">
@@ -107,6 +119,37 @@ export function TransfersPage() {
             {fanMoodLabel(save.fans.mood)} ({save.fans.mood}/100)
           </strong>
         </p>
+
+        {counters.length > 0 ? (
+          <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm">
+            <p className="font-semibold text-amber-950">ข้อเสนอโต้กลับค้าง</p>
+            <ul className="mt-1 space-y-1">
+              {counters.map((o) => {
+                const p = save.players.find((x) => x.id === o.playerId)
+                return (
+                  <li key={o.id} className="flex flex-wrap items-center gap-2">
+                    <span>
+                      {p?.name}: {o.note}
+                    </span>
+                    <button
+                      type="button"
+                      className="rounded border border-amber-400 bg-white px-2 py-0.5 text-xs font-semibold"
+                      onClick={() => acceptTransferCounter(o.id)}
+                    >
+                      รับราคาโต้
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        ) : null}
+
+        {loans.length > 0 ? (
+          <p className="mt-2 text-xs text-slate-500">
+            สัญญายืมที่เกี่ยวกับคุณ: {loans.length} ฉบับ (ดูรายละเอียดใน inbox / จบอัตโนมัติเมื่อครบ MD)
+          </p>
+        ) : null}
 
         {tab === 'buy' ? (
           <>
@@ -206,6 +249,7 @@ export function TransfersPage() {
             </p>
             <p className="text-slate-600">
               สังกัด: {selectedBuy.clubName} (AI)
+              {selectedBuy.originLeague ? ` · ลีกต้นทาง ${selectedBuy.originLeague}` : ''}
               <br />
               ความรู้สเกาต์: {knowledgeOf(scouting, selectedBuy.id)}%
               {scouting.alumniIds.includes(selectedBuy.id) ? ' · อดีตลูกทีม (พื้น 50%)' : ' · เริ่มจาก 0%'}
@@ -280,7 +324,28 @@ export function TransfersPage() {
               className="w-full rounded-md bg-slate-900 px-4 py-2.5 font-semibold text-lime-300 hover:bg-slate-800"
               onClick={() => offerBuyPlayer(selectedBuy.id, fee, wage, years)}
             >
-              ส่งข้อเสนอซื้อ
+              ส่งข้อเสนอซื้อ (ทันที)
+            </button>
+            <button
+              type="button"
+              className="w-full rounded-md border border-slate-300 bg-white px-4 py-2 font-semibold hover:bg-slate-50"
+              onClick={() => offerBuyNegotiated(selectedBuy.id, fee, wage, years, 50_000, 10)}
+            >
+              เจรจา (+add-on / sell-on 10%)
+            </button>
+            <button
+              type="button"
+              className="w-full rounded-md border border-sky-300 bg-sky-50 px-4 py-2 font-semibold text-sky-950 hover:bg-sky-100"
+              onClick={() => loanInPlayer(selectedBuy.id)}
+            >
+              ยืมตัวเข้าทีม (12 MD)
+            </button>
+            <button
+              type="button"
+              className="w-full rounded-md border border-amber-300 bg-amber-50 px-4 py-2 font-semibold text-amber-950 hover:bg-amber-100"
+              onClick={() => togglePlayerShortlist(selectedBuy.id)}
+            >
+              {isShortlisted(save, selectedBuy.id) ? 'เอาออกจาก Shortlist' : 'ใส่ Shortlist'}
             </button>
           </div>
         ) : null}
@@ -316,6 +381,13 @@ export function TransfersPage() {
               onClick={() => offerSellPlayer(selectedSell.id, fee)}
             >
               เสนอขายให้ AI
+            </button>
+            <button
+              type="button"
+              className="w-full rounded-md border border-violet-300 bg-violet-50 px-4 py-2 font-semibold text-violet-950 hover:bg-violet-100"
+              onClick={() => startPlayerAuction(selectedSell.id, fee)}
+            >
+              เปิดประมูล (AI ประมูล 2 MD)
             </button>
             <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
               <p className="font-semibold text-slate-800">ต่อสัญญา</p>

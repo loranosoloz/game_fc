@@ -9,6 +9,7 @@ import {
   overallFromCa,
   pickPersonality,
 } from './attributes'
+import { createBodyMap } from './bodyMap'
 
 const CLUB_DEFS: Array<{ name: string; shortName: string; color: string; rep: number }> = [
   { name: 'Northgate United', shortName: 'NOR', color: '#1d4ed8', rep: 78 },
@@ -144,9 +145,12 @@ export function createPlayersForClubs(clubs: Club[], seed = 2026): Player[] {
           injuryDays: 0,
           injuryType: null,
           treatment: null,
+          injuryBodyPart: null,
+          bodyMap: createBodyMap(rng),
           injuryHistory: [],
           seasonYellows: 0,
           banMatches: 0,
+          leaveDays: 0,
           contractYears: 2 + Math.floor(rng() * 3),
           contractEndSeason: 2028 + Math.floor(rng() * 2),
           releaseClause: null,
@@ -174,7 +178,13 @@ export function autoPickTactics(
 ): Tactics {
   const slots = FORMATION_SLOTS[formation]
   const pool = players
-    .filter((p) => p.clubId === clubId && p.injuryDays <= 0 && (p.banMatches ?? 0) <= 0)
+    .filter(
+      (p) =>
+        p.clubId === clubId &&
+        p.injuryDays <= 0 &&
+        (p.banMatches ?? 0) <= 0 &&
+        (p.leaveDays ?? 0) <= 0,
+    )
     .slice()
     .sort(
       (a, b) =>

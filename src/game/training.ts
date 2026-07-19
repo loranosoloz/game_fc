@@ -2,6 +2,7 @@ import mentoringDb from '@/data/mentoring.json'
 import type { GameSave, IndividualFocus, Player, PlayerAttributes, TrainingFocus, TrainingState } from './types'
 import { overallFromCa } from './attributes'
 import { applyInjury, tickPlayerInjury } from './medical'
+import { applyTrainingWear, bodyWearInjuryBonus } from './bodyMap'
 
 export function defaultTraining(): TrainingState {
   return { focus: 'tactics', intensity: 'medium', individual: {} }
@@ -91,9 +92,12 @@ export function applyTrainingWeek(
       ca,
       attrs,
     }
+    out = applyTrainingWear(out, training.focus !== 'rest' && training.intensity === 'high')
 
     const injuryChance =
-      0.04 * (training.intensity === 'high' ? 1 : 0.4) * (p.hidden.injuryProneness / 12)
+      (0.04 * (training.intensity === 'high' ? 1 : 0.4) * (p.hidden.injuryProneness / 12) +
+        bodyWearInjuryBonus(out)) *
+      (training.focus === 'rest' ? 0 : 1)
     if (training.focus !== 'rest' && Math.random() < injuryChance) {
       out = applyInjury(out, 'training')
       injuries.push(p.name)

@@ -11,6 +11,7 @@ import {
 import { getLeague, type LeagueId, type ClubDef } from '@/data/world'
 import { REAL_NAME_BANKS } from '@/data/world/realNameBanks'
 import { REAL_NAME_OVERFLOW } from '@/data/world/realNameOverflow'
+import { createBodyMap } from '@/game/bodyMap'
 
 /** All real names across leagues + overflow (deduped) for fill when regional bank is empty. */
 const GLOBAL_REAL_NAMES: string[] = [
@@ -175,9 +176,12 @@ export function createPlayersForClubDef(opts: {
       injuryDays: 0,
       injuryType: null,
       treatment: null,
+      injuryBodyPart: null,
+      bodyMap: createBodyMap(rng),
       injuryHistory: [],
       seasonYellows: 0,
       banMatches: 0,
+      leaveDays: 0,
       contractYears: 3,
       contractEndSeason: 2029,
       releaseClause: star.ovr >= 80 ? Math.round(star.ovr ** 2 * 1200) : null,
@@ -224,9 +228,12 @@ export function createPlayersForClubDef(opts: {
         injuryDays: 0,
         injuryType: null,
         treatment: null,
+        injuryBodyPart: null,
+        bodyMap: createBodyMap(rng),
         injuryHistory: [],
         seasonYellows: 0,
         banMatches: 0,
+        leaveDays: 0,
         contractYears: years,
         contractEndSeason: 2026 + years,
         releaseClause: overall >= 78 ? Math.round(overall ** 2 * 1000) : null,

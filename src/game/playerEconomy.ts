@@ -18,6 +18,9 @@ export function createClubFinance(): ClubFinanceState {
     shirtSeason: 0,
     wageSeason: 0,
     fineSeason: 0,
+    sponsorSeason: 0,
+    tvSeason: 0,
+    prizeSeason: 0,
     lastMatchTickets: 0,
     lastMatchShirts: 0,
     lastMatchCrowd: 0,
@@ -34,6 +37,9 @@ export function ensureClubFinance(save: GameSave): ClubFinanceState {
     ...createClubFinance(),
     ...raw,
     fineSeason: raw.fineSeason ?? 0,
+    sponsorSeason: raw.sponsorSeason ?? 0,
+    tvSeason: raw.tvSeason ?? 0,
+    prizeSeason: raw.prizeSeason ?? 0,
     fineLogs: raw.fineLogs ?? [],
   }
 }

@@ -3,6 +3,7 @@ import personalitiesDb from '@/data/personalities.json'
 import developmentDb from '@/data/development.json'
 import type { Player, PlayerAttributes, PlayerGrowth, PlayerHidden, RoleCode } from './types'
 import { roleGroup } from './positions'
+import { ensureBodyMap } from './bodyMap'
 
 export { attributesDb, personalitiesDb, developmentDb }
 
@@ -159,9 +160,12 @@ export function ensurePlayerV3Fields(p: Partial<Player> & { id: string; clubId: 
     injuryDays: p.injuryDays ?? 0,
     injuryType: p.injuryType ?? (p.injuryDays && p.injuryDays > 0 ? 'muscle' : null),
     treatment: p.treatment ?? (p.injuryDays && p.injuryDays > 0 ? 'physio' : null),
+    injuryBodyPart: p.injuryBodyPart ?? null,
+    bodyMap: ensureBodyMap(p),
     injuryHistory: p.injuryHistory ?? [],
     seasonYellows: p.seasonYellows ?? 0,
     banMatches: p.banMatches ?? 0,
+    leaveDays: p.leaveDays ?? 0,
     contractYears: p.contractYears ?? Math.max(1, 4 - Math.floor((p.age ?? 24) / 10)),
     contractEndSeason: p.contractEndSeason ?? 2026 + (p.contractYears ?? 2),
     releaseClause: p.releaseClause ?? null,

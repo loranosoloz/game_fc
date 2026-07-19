@@ -8,6 +8,7 @@ import { boardLabel } from '@/game/board'
 import { ensurePhase5 } from '@/game/save'
 import { ensureMediaFeed, gossipLine, countTodaysNews } from '@/game/media'
 import { ensureScouting } from '@/game/scouting'
+import { pendingTalkRequests } from '@/game/playerTalks'
 import { latestSquadDay } from '@/game/dailyLife'
 import { cn } from '@/lib/cn'
 
@@ -46,6 +47,7 @@ export function PortalPage() {
   const missCount = dayLogs.filter((l) => l.missTraining).length
   const scouting = ensureScouting(save)
   const lastVisit = scouting.visits[0]
+  const talkPending = pendingTalkRequests(save)
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
@@ -136,6 +138,23 @@ export function PortalPage() {
             </div>
           </dl>
         </div>
+
+        {talkPending.length > 0 ? (
+          <div className="rounded-xl border border-sky-200 bg-sky-50/90 p-5">
+            <div className="flex items-center justify-between gap-2">
+              <h2 className="text-lg font-semibold text-sky-950">นักเตะเรียกคุย</h2>
+              <Link
+                to="/meetings"
+                className="text-xs font-semibold text-sky-800 underline underline-offset-2 hover:text-sky-950"
+              >
+                ตอบเลย →
+              </Link>
+            </div>
+            <p className="mt-1 text-sm text-sky-900">
+              มี {talkPending.length} คนรอคุยส่วนตัว — ความต้องการจากสถานะจริง (นาที·สัญญา·ย้าย·เจ็บ)
+            </p>
+          </div>
+        ) : null}
 
         <div className="rounded-xl border border-slate-200 bg-white/80 p-5">
           <div className="flex items-center justify-between gap-2">

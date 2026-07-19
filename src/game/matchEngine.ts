@@ -10,6 +10,7 @@ import type {
   Tactics,
 } from './types'
 import { applyInjury } from './medical'
+import { applyMatchWear, bodyWearInjuryBonus } from './bodyMap'
 import { getReferee, refereeKickoffNote } from './referees'
 
 function mulberry32(seed: number) {
@@ -44,13 +45,13 @@ function instructionDefenseBonus(t: Tactics): number {
   return def
 }
 
-function xiStrength(players: Player[], tactics: Tactics): number {
+function xiStrength(players: Player[], tactics: Tactics, phase: 'attack' | 'defend'): number {
   const xi = tactics.startingXi
     .map((id) => players.find((p) => p.id === id))
     .filter(Boolean) as Player[]
   if (xi.length === 0) return 50
   const sum = xi.reduce((acc, p) => {
-    if (p.injuryDays > 0 || (p.banMatches ?? 0) > 0) return acc
+    if (p.injuryDays > 0 || (p.banMatches ?? 0) > 0 || (p.leaveDays ?? 0) > 0) return acc
     const fitness =
       (p.condition / 100) *
       (0.7 + p.form / 40) *
@@ -61,7 +62,37 @@ function xiStrength(players: Player[], tactics: Tactics): number {
   }, 0)
   const base = sum / xi.length
   const fam = 0.88 + (tactics.familiarity / 100) * 0.2
-  return base * fam * instructionAttackBonus(tactics)
+  // OOP formation: แนวรับแน่นขึ้นเล็กน้อยเมื่อใช้รูปต่างจาก IP
+  let oop = 1
+  if (phase === 'defend' && tactics.formationOop && tactics.formationOop !== tactics.formation) {
+    oop = 1.035
+  }
+  if (phase === 'attack' && tactics.formationOop === tactics.formation) {
+    oop = 1.01
+  }
+  const instr = phase === 'attack' ? instructionAttackBonus(tactics) : instructionDefenseBonus(tactics)
+  return base * fam * instr * oop
+}
+
+function oppositionBias(
+  attackTactics: Tactics,
+  defendPlayers: Player[],
+  attackPlayers: Player[],
+): number {
+  const opp = attackTactics.opposition
+  if (!opp) return 1
+  let m = 1
+  if (opp.pressPlayerId) {
+    const target = defendPlayers.find((p) => p.id === opp.pressPlayerId)
+    if (target && target.overall >= 78) m += 0.025
+  }
+  if (opp.markPlayerId) {
+    const target = attackPlayers.find((p) => p.id === opp.markPlayerId)
+    if (target) m -= 0.02
+  }
+  if (opp.showOnto === 'tight') m += 0.015
+  if (opp.showOnto === 'weaker_foot') m += 0.01
+  return m
 }
 
 function sampleGoals(attack: number, defense: number, homeBoost: number, rng: () => number) {
@@ -152,8 +183,18 @@ export function simulateFixture(
     return b
   }
 
-  let homeRating = xiStrength(players, homeTactics) * setPieceBonus(homeTactics)
-  let awayRating = xiStrength(players, awayTactics) * setPieceBonus(awayTactics)
+  let homeAttack = xiStrength(players, homeTactics, 'attack') * setPieceBonus(homeTactics)
+  let homeDefend = xiStrength(players, homeTactics, 'defend')
+  let awayAttack = xiStrength(players, awayTactics, 'attack') * setPieceBonus(awayTactics)
+  let awayDefend = xiStrength(players, awayTactics, 'defend')
+
+  const homePool = buildSidePlayers(homeTactics, players)
+  const awayPool = buildSidePlayers(awayTactics, players)
+  homeAttack *= oppositionBias(homeTactics, awayPool, homePool)
+  awayAttack *= oppositionBias(awayTactics, homePool, awayPool)
+
+  let homeRating = (homeAttack + homeDefend) / 2
+  let awayRating = (awayAttack + awayDefend) / 2
   if (humanDynamicsBonus !== 1) {
     homeRating *= humanDynamicsBonus
     awayRating *= Math.max(0.85, 2 - humanDynamicsBonus)
@@ -165,14 +206,16 @@ export function simulateFixture(
   let homeGoals = sampleGoals(homeRating, awayDef, 1.12, rng)
   let awayGoals = sampleGoals(awayRating, homeDef, 0.95, rng)
 
-  // Cup / UCL: no draws
-  if ((fixture.competition === 'cup' || fixture.competition === 'ucl') && homeGoals === awayGoals) {
+  // Cup / UCL: no draws (ยกเว้นสองนัด — อนุญาตเสมอในนัดเดียว)
+  if (
+    (fixture.competition === 'cup' || fixture.competition === 'ucl') &&
+    homeGoals === awayGoals &&
+    !fixture.tieId
+  ) {
     if (rng() < 0.5) homeGoals += 1
     else awayGoals += 1
   }
 
-  const homePool = buildSidePlayers(homeTactics, players)
-  const awayPool = buildSidePlayers(awayTactics, players)
   const homeOut = outfield(homePool)
   const awayOut = outfield(awayPool)
   const homeGk = gk(homePool)
@@ -478,11 +521,13 @@ export function applyMatchFatigue(players: Player[], tactics: Tactics, played: b
   const used = new Set([...tactics.startingXi, ...tactics.bench.slice(0, 3)])
   return players.map((p) => {
     if (!used.has(p.id)) {
-      return {
+      let next = {
         ...p,
         condition: Math.min(100, p.condition + 4),
         sharpness: Math.max(30, p.sharpness - 1),
       }
+      next = applyMatchWear(next, 'unused')
+      return next
     }
     const drop = 6 + Math.floor(Math.random() * 6)
     let next = {
@@ -492,12 +537,14 @@ export function applyMatchFatigue(players: Player[], tactics: Tactics, played: b
       form: Math.min(20, Math.max(1, p.form + (Math.random() > 0.5 ? 1 : -1))),
       minutesPlayed: p.minutesPlayed + (xi.has(p.id) ? 90 : 20),
     }
+    next = applyMatchWear(next, xi.has(p.id) ? 'starter' : 'sub')
+    const wearBonus = bodyWearInjuryBonus(next)
     if (
       xi.has(p.id) &&
       p.injuryDays <= 0 &&
       (p.banMatches ?? 0) <= 0 &&
       next.condition < 60 &&
-      Math.random() < 0.02 + p.hidden.injuryProneness / 400
+      Math.random() < 0.02 + p.hidden.injuryProneness / 400 + wearBonus
     ) {
       next = applyInjury(next, 'match')
     }

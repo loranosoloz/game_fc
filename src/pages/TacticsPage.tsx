@@ -62,10 +62,29 @@ export function TacticsPage() {
   const setFormation = useGameStore((s) => s.setFormation)
   const setInstructions = useGameStore((s) => s.setInstructions)
   const setSetPieces = useGameStore((s) => s.setSetPieces)
+  const setOpposition = useGameStore((s) => s.setOpposition)
   const setStartingXi = useGameStore((s) => s.setStartingXi)
   const autoPickHumanXi = useGameStore((s) => s.autoPickHumanXi)
 
   const tactics = save.tacticsByClub[save.humanClubId]
+  const nextFx = save.fixtures.find(
+    (f) =>
+      !f.played &&
+      (f.homeClubId === save.humanClubId || f.awayClubId === save.humanClubId),
+  )
+  const oppId = nextFx
+    ? nextFx.homeClubId === save.humanClubId
+      ? nextFx.awayClubId
+      : nextFx.homeClubId
+    : null
+  const oppThreats = useMemo(() => {
+    if (!oppId) return []
+    return save.players
+      .filter((p) => p.clubId === oppId && p.injuryDays <= 0)
+      .sort((a, b) => b.overall - a.overall)
+      .slice(0, 8)
+  }, [save.players, oppId])
+
   const squad = useMemo(
     () =>
       save.players
@@ -194,6 +213,49 @@ export function TacticsPage() {
             options={SET_PIECES}
             value={tactics.setPieces?.freeKicks ?? 'direct'}
             onChange={(freeKicks) => setSetPieces(undefined, freeKicks)}
+          />
+        </div>
+
+        <div className="space-y-3 rounded-lg border border-slate-100 bg-slate-50/80 p-3">
+          <p className="text-sm font-semibold">Opposition instructions</p>
+          <p className="text-xs text-slate-500">
+            กด/มาร์กดาวคู่แข่งนัดหน้า · OOP มีผลตอนรับในเอนจิน
+          </p>
+          <label className="grid gap-1 text-xs">
+            <span>กดสูงใส่</span>
+            <select
+              className="rounded-md border border-slate-300 px-2 py-1.5 text-sm"
+              value={tactics.opposition?.pressPlayerId ?? ''}
+              onChange={(e) => setOpposition({ pressPlayerId: e.target.value || null })}
+            >
+              <option value="">— ไม่ระบุ —</option>
+              {oppThreats.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.name} ({p.overall})
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="grid gap-1 text-xs">
+            <span>มาร์กตัวแน่น</span>
+            <select
+              className="rounded-md border border-slate-300 px-2 py-1.5 text-sm"
+              value={tactics.opposition?.markPlayerId ?? ''}
+              onChange={(e) => setOpposition({ markPlayerId: e.target.value || null })}
+            >
+              <option value="">— ไม่ระบุ —</option>
+              {oppThreats.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.name} ({p.overall})
+                </option>
+              ))}
+            </select>
+          </label>
+          <ChipGroup
+            label="Show onto"
+            options={['none', 'weaker_foot', 'tight']}
+            value={tactics.opposition?.showOnto ?? 'none'}
+            onChange={(showOnto) => setOpposition({ showOnto })}
           />
         </div>
 

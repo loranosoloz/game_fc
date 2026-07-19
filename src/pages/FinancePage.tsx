@@ -2,6 +2,7 @@ import { useGameStore } from '@/store/gameStore'
 import { formatMoney } from '@/lib/format'
 import { ffpStatus } from '@/game/financeFfp'
 import { ensureClubFinance, PLAYER_SPENDINGS } from '@/game/playerEconomy'
+import { cashflowForecast, ensureClubIncome } from '@/game/clubIncome'
 import { DISCIPLINE_FINES } from '@/game/disciplineFines'
 import { ensurePhase5 } from '@/game/save'
 import { PageHeader, Panel, ProgressBar, StatTile } from '@/components/ui'
@@ -11,6 +12,8 @@ export function FinancePage() {
   const save = ensurePhase5(saveRaw)
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
   const finance = ensureClubFinance(save)
+  const income = ensureClubIncome(save)
+  const forecast = cashflowForecast(save)
   const squad = save.players.filter((p) => p.clubId === save.humanClubId)
   const weeklyWages = squad.reduce((s, p) => s + p.wage, 0)
   const squadCash = squad.reduce((s, p) => s + (p.cash ?? 0), 0)
@@ -26,7 +29,7 @@ export function FinancePage() {
     <div className="space-y-5">
       <PageHeader
         title="การเงิน"
-        subtitle="ตั๋ว + เสื้อ · กระเป๋านักเตะ · ค่าปรับวินัย · การใช้จ่ายส่วนตัว"
+        subtitle="ตั๋ว·เสื้อ·สปอนเซอร์·TV·รางวัลถ้วย · พยากรณ์กระแสเงิน · FFP"
       />
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -41,18 +44,14 @@ export function FinancePage() {
           }
         />
         <StatTile
-          label="ขายเสื้อฤดูกาลนี้"
-          value={formatMoney(finance.shirtSeason || club.shirtRevenueSeason || 0)}
-          hint={
-            finance.lastMatchShirts
-              ? `นัดล่าสุด ${formatMoney(finance.lastMatchShirts)}`
-              : undefined
-          }
+          label="สปอนเซอร์ฤดูกาล"
+          value={formatMoney(finance.sponsorSeason ?? 0)}
+          hint={income.sponsors.map((s) => s.name).join(' · ')}
         />
         <StatTile
-          label="กระเป๋านักเตะรวม"
-          value={formatMoney(squadCash)}
-          hint={`ค่าเหนื่อย/สัปดาห์ ${formatMoney(weeklyWages)}`}
+          label="TV + รางวัล"
+          value={formatMoney((finance.tvSeason ?? 0) + (finance.prizeSeason ?? 0))}
+          hint={`TV ${formatMoney(finance.tvSeason ?? 0)} · ถ้วย ${formatMoney(finance.prizeSeason ?? 0)}`}
         />
       </div>
 
@@ -78,6 +77,38 @@ export function FinancePage() {
           hint={ffp.warning ?? 'อยู่ในเกณฑ์'}
         />
       </div>
+
+      <Panel>
+        <h3 className="text-sm font-bold text-slate-900">พยากรณ์กระแสเงิน 6 แมตช์เดย์</h3>
+        <p className="mt-1 text-xs text-slate-500">
+          สปอนเซอร์+TV ต่อ MD ลบค่าเหนื่อย (ยังไม่รวมตั๋วนัดเหย้า/ซื้อขาย)
+        </p>
+        <ul className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          {forecast.map((row) => (
+            <li
+              key={row.matchday}
+              className="rounded-lg bg-slate-50 px-3 py-2 text-xs"
+            >
+              <span className="font-semibold">MD{row.matchday}</span>
+              <span className="mt-0.5 block text-slate-600">
+                เข้า {formatMoney(row.income)} · จ่าย {formatMoney(row.wages)}
+              </span>
+              <span
+                className={
+                  row.net >= 0 ? 'font-semibold text-lime-800' : 'font-semibold text-rose-700'
+                }
+              >
+                สุทธิ {row.net >= 0 ? '+' : ''}
+                {formatMoney(row.net)} → {formatMoney(row.projectedBalance)}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-2 text-xs text-slate-500">
+          กระเป๋านักเตะรวม {formatMoney(squadCash)} · ขายเสื้อฤดูกาล{' '}
+          {formatMoney(finance.shirtSeason || 0)}
+        </p>
+      </Panel>
 
       <div className="grid gap-5 lg:grid-cols-2">
         <Panel>

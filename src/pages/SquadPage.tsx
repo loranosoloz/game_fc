@@ -11,6 +11,8 @@ import {
   INJURY_TYPE_LABEL,
   TREATMENT_LABEL,
 } from '@/game/medical'
+import { BODY_PART_LABEL } from '@/game/bodyMap'
+import { BodyMapFigure } from '@/components/BodyMapFigure'
 import { getActivity } from '@/game/dailyLife'
 import { formatBanStatus } from '@/game/discipline'
 
@@ -190,7 +192,8 @@ function PlayerDetailPanel({
         </ul>
         {player.injuryDays > 0 ? (
           <p className="mt-2 rounded bg-rose-50 px-2 py-1.5 text-xs text-rose-900">
-            เจ็บ: {player.injuryType ? INJURY_TYPE_LABEL[player.injuryType] : '—'} ·{' '}
+            เจ็บ: {player.injuryType ? INJURY_TYPE_LABEL[player.injuryType] : '—'}
+            {player.injuryBodyPart ? ` · ${BODY_PART_LABEL[player.injuryBodyPart]}` : ''} ·{' '}
             {player.injuryDays} วัน · รักษา{' '}
             {player.treatment ? TREATMENT_LABEL[player.treatment] : '—'}
           </p>
@@ -202,10 +205,21 @@ function PlayerDetailPanel({
             ประวัติเจ็บ {history.length} ครั้งล่าสุด:{' '}
             {history
               .slice(0, 3)
-              .map((h) => INJURY_TYPE_LABEL[h.type])
+              .map((h) =>
+                h.bodyPart
+                  ? `${INJURY_TYPE_LABEL[h.type]}/${BODY_PART_LABEL[h.bodyPart]}`
+                  : INJURY_TYPE_LABEL[h.type],
+              )
               .join(', ')}
           </p>
         ) : null}
+      </div>
+
+      <div>
+        <h4 className="text-sm font-semibold">แผนที่ร่างกาย</h4>
+        <div className="mt-2">
+          <BodyMapFigure player={player} compact />
+        </div>
       </div>
 
       <div>

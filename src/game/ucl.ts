@@ -58,6 +58,7 @@ export function createUclInviteClubs(homeLeagueId: LeagueId): {
       balance,
       wageBudgetWeekly: Math.round(100_000 + def.rep * 3_000),
       seasonStartBalance: balance,
+      originLeagueId: pick.leagueId,
     }
     clubs.push(club)
 
@@ -132,15 +133,54 @@ export function advanceUclAfterMatchday(
   const roundId = playedThis[0].cupRound
   if (!roundId) return { fixtures, ucl }
 
+  const roundMeta = uclFormat.rounds.find((r) => r.id === roundId)
+  const roundAll = fixtures.filter((f) => f.competition === 'ucl' && f.cupRound === roundId)
+  if (!roundAll.every((f) => f.played)) {
+    // ยังมีนัดในรอบนี้ไม่จบ (รอขากลับ)
+    return { fixtures, ucl }
+  }
+
   const winners: string[] = []
   const eliminated = [...ucl.eliminated]
-  for (const f of playedThis) {
-    const hg = f.homeGoals ?? 0
-    const ag = f.awayGoals ?? 0
-    const winner = hg >= ag ? f.homeClubId : f.awayClubId
-    const loser = winner === f.homeClubId ? f.awayClubId : f.homeClubId
-    winners.push(winner)
-    if (!eliminated.includes(loser)) eliminated.push(loser)
+
+  if (roundMeta && (roundMeta as { twoLegged?: boolean }).twoLegged) {
+    const byTie = new Map<string, Fixture[]>()
+    for (const f of roundAll) {
+      const tid = f.tieId ?? f.id
+      const list = byTie.get(tid) ?? []
+      list.push(f)
+      byTie.set(tid, list)
+    }
+    for (const [, legs] of byTie) {
+      const a = legs[0].homeClubId
+      const b = legs[0].awayClubId
+      let goalsA = 0
+      let goalsB = 0
+      for (const leg of legs) {
+        const hg = leg.homeGoals ?? 0
+        const ag = leg.awayGoals ?? 0
+        if (leg.homeClubId === a) {
+          goalsA += hg
+          goalsB += ag
+        } else {
+          goalsA += ag
+          goalsB += hg
+        }
+      }
+      const winner = goalsA >= goalsB ? a : b
+      const loser = winner === a ? b : a
+      winners.push(winner)
+      if (!eliminated.includes(loser)) eliminated.push(loser)
+    }
+  } else {
+    for (const f of roundAll) {
+      const hg = f.homeGoals ?? 0
+      const ag = f.awayGoals ?? 0
+      const winner = hg >= ag ? f.homeClubId : f.awayClubId
+      const loser = winner === f.homeClubId ? f.awayClubId : f.homeClubId
+      winners.push(winner)
+      if (!eliminated.includes(loser)) eliminated.push(loser)
+    }
   }
 
   const idx = roundOrder.indexOf(roundId)
@@ -151,7 +191,12 @@ export function advanceUclAfterMatchday(
     }
   }
 
-  const nextRound = uclFormat.rounds[idx + 1]
+  const nextRound = uclFormat.rounds[idx + 1] as {
+    id: string
+    matchdayOffset: number
+    twoLegged?: boolean
+    returnOffset?: number
+  }
   const existingNext = fixtures.some((f) => f.competition === 'ucl' && f.cupRound === nextRound.id)
   if (existingNext || winners.length < 2) {
     return { fixtures, ucl: { ...ucl, eliminated } }
@@ -160,16 +205,47 @@ export function advanceUclAfterMatchday(
   const newFx: Fixture[] = []
   for (let i = 0; i < winners.length; i += 2) {
     if (!winners[i + 1]) break
-    newFx.push({
-      id: `ucl-${nextRound.id}-${i / 2 + 1}`,
-      matchday: nextRound.matchdayOffset,
-      date: addDays(playedThis[0].date, (nextRound.matchdayOffset - matchday) * 7),
-      homeClubId: winners[i],
-      awayClubId: winners[i + 1],
-      played: false,
-      competition: 'ucl',
-      cupRound: nextRound.id,
-    })
+    const home = winners[i]
+    const away = winners[i + 1]
+    const tieId = `ucl-tie-${nextRound.id}-${i / 2 + 1}`
+    if (nextRound.twoLegged) {
+      newFx.push({
+        id: `ucl-${nextRound.id}-${i / 2 + 1}-l1`,
+        matchday: nextRound.matchdayOffset,
+        date: addDays(playedThis[0].date, (nextRound.matchdayOffset - matchday) * 7),
+        homeClubId: home,
+        awayClubId: away,
+        played: false,
+        competition: 'ucl',
+        cupRound: nextRound.id,
+        leg: 1,
+        tieId,
+      })
+      const ret = nextRound.returnOffset ?? nextRound.matchdayOffset + 2
+      newFx.push({
+        id: `ucl-${nextRound.id}-${i / 2 + 1}-l2`,
+        matchday: ret,
+        date: addDays(playedThis[0].date, (ret - matchday) * 7),
+        homeClubId: away,
+        awayClubId: home,
+        played: false,
+        competition: 'ucl',
+        cupRound: nextRound.id,
+        leg: 2,
+        tieId,
+      })
+    } else {
+      newFx.push({
+        id: `ucl-${nextRound.id}-${i / 2 + 1}`,
+        matchday: nextRound.matchdayOffset,
+        date: addDays(playedThis[0].date, (nextRound.matchdayOffset - matchday) * 7),
+        homeClubId: home,
+        awayClubId: away,
+        played: false,
+        competition: 'ucl',
+        cupRound: nextRound.id,
+      })
+    }
   }
 
   return {

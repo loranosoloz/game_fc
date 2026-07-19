@@ -19,6 +19,7 @@ const navGroups = [
     label: 'ทีม',
     links: [
       { to: '/squad', label: 'สควอด' },
+      { to: '/meetings', label: 'คุยกับนักเตะ' },
       { to: '/tactics', label: 'แท็กติก' },
       { to: '/training', label: 'ซ้อม' },
       { to: '/medical', label: 'แพทย์' },

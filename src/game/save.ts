@@ -22,6 +22,12 @@ import {
 import { assignRefereesToFixtures } from './referees'
 import { createDevelopmentState } from './development'
 import { createClubFinance, ensureClubFinance } from './playerEconomy'
+import { createTalksState, ensureTalks } from './playerTalks'
+import { createLoansState, ensureLoans } from './loans'
+import { createShortlist, ensureShortlist } from './shortlist'
+import { createTransferDesk, ensureTransferDesk } from './transferDesk'
+import { createClubIncome, ensureClubIncome } from './clubIncome'
+import { persistSaveSync, loadSaveRawAsync, clearAllSaves } from './idbSave'
 import { roleGroup } from './positions'
 import type { RoleCode } from './types'
 
@@ -70,7 +76,7 @@ export function createNewGame(
         id: 'welcome',
         date: seasonStart,
         title: `Welcome to ${human.name}`,
-        body: `You manage ${human.name} in ${league.name} (${league.nameTh}). Full real-name squads + Champions League (top 4 + European invite clubs).`,
+        body: `You manage ${human.name} in ${league.name} (${league.nameTh}). Full real-name squads + Champions League (QF/SF สองนัด) + ตลาดข้ามลีกจากคลับเชิญ + สปอนเซอร์/TV/ยืมตัว/shortlist.`,
         read: false,
       },
     ],
@@ -91,6 +97,11 @@ export function createNewGame(
     cup: createCupState(league.cupName),
     ucl: createUclState(),
     development: createDevelopmentState(),
+    talks: createTalksState(),
+    loans: createLoansState(),
+    shortlist: createShortlist(),
+    transferDesk: createTransferDesk(),
+    clubIncome: createClubIncome(human.reputation),
   }
 }
 
@@ -120,6 +131,11 @@ export function ensurePhase5(save: GameSave): GameSave {
   if (!next.cup) next = { ...next, cup: createCupState() }
   if (!next.ucl) next = { ...next, ucl: createUclState() }
   if (!next.development) next = { ...next, development: createDevelopmentState() }
+  if (!next.talks) next = { ...next, talks: ensureTalks(next) }
+  if (!next.loans) next = { ...next, loans: ensureLoans(next) }
+  if (!next.shortlist) next = { ...next, shortlist: ensureShortlist(next) }
+  if (!next.transferDesk) next = { ...next, transferDesk: ensureTransferDesk(next) }
+  if (!next.clubIncome) next = { ...next, clubIncome: ensureClubIncome(next) }
   if (!next.leagueId) next = { ...next, leagueId: 'eng', leagueName: next.leagueName ?? 'Premier League' }
   if (!next.leagueName) next = { ...next, leagueName: 'World League' }
 
@@ -262,13 +278,20 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
     cup: (raw.cup as GameSave['cup']) ?? createCupState(),
     ucl: (raw.ucl as GameSave['ucl']) ?? createUclState(),
     development: (raw.development as GameSave['development']) ?? createDevelopmentState(),
+    talks: (raw.talks as GameSave['talks']) ?? createTalksState(),
+    loans: (raw.loans as GameSave['loans']) ?? createLoansState(),
+    shortlist: (raw.shortlist as GameSave['shortlist']) ?? createShortlist(),
+    transferDesk: (raw.transferDesk as GameSave['transferDesk']) ?? createTransferDesk(),
+    clubIncome:
+      (raw.clubIncome as GameSave['clubIncome']) ??
+      createClubIncome(human.reputation),
   } as GameSave
 
   return ensurePhase5(ensureFans(base))
 }
 
 export function saveToStorage(save: GameSave) {
-  localStorage.setItem(SAVE_KEY, JSON.stringify(save))
+  persistSaveSync(save)
 }
 
 export function loadFromStorage(): GameSave | null {
@@ -291,6 +314,7 @@ export function loadFromStorage(): GameSave | null {
     const raw = localStorage.getItem(SAVE_KEY)
     if (raw) return tryParse(raw)
     for (const key of [
+      'fc-manager-save-v5',
       'fc-manager-save-v4',
       'fc-manager-save-v3',
       'fc-manager-save-v2',
@@ -310,10 +334,26 @@ export function loadFromStorage(): GameSave | null {
   }
 }
 
+export async function loadFromStorageAsync(): Promise<GameSave | null> {
+  try {
+    const raw = await loadSaveRawAsync()
+    if (raw) {
+      const parsed = JSON.parse(raw) as Record<string, unknown>
+      if (
+        parsed.version === 6 ||
+        parsed.version === 5 ||
+        parsed.version === 4 ||
+        parsed.version === 3
+      ) {
+        return ensurePhase5(parsed as unknown as GameSave)
+      }
+    }
+  } catch {
+    /* */
+  }
+  return loadFromStorage()
+}
+
 export function clearStorage() {
-  localStorage.removeItem(SAVE_KEY)
-  localStorage.removeItem('fc-manager-save-v4')
-  localStorage.removeItem('fc-manager-save-v3')
-  localStorage.removeItem('fc-manager-save-v2')
-  localStorage.removeItem('fc-manager-save-v1')
+  clearAllSaves()
 }
