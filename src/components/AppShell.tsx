@@ -107,6 +107,15 @@ export function AppShell() {
             >
               {save.seasonComplete ? 'จบฤดูกาลแล้ว' : 'เล่นนัดถัดไป'}
             </PrimaryButton>
+            {save.seasonComplete && !save.board?.sacked ? (
+              <PrimaryButton
+                onClick={() => {
+                  useGameStore.getState().startNewSeason()
+                }}
+              >
+                เริ่มฤดูกาลใหม่
+              </PrimaryButton>
+            ) : null}
           </div>
         </div>
       </header>

@@ -56,6 +56,7 @@ import {
   attemptTakeoverDeal,
   rejectTakeoverOffer,
 } from '@/game/takeover'
+import { startNextSeason } from '@/game/season'
 import { managerTalk, respondToPlayerRequest } from '@/game/playerTalks'
 import type { ManagerTalkTopic, TalkResponse } from '@/game/types'
 import {
@@ -128,6 +129,7 @@ interface GameStore {
   adviseTakeover: (offerId: string, advice: 'recommend' | 'caution' | 'reject') => boolean
   attemptTakeover: (offerId: string) => boolean
   rejectTakeover: (offerId: string) => boolean
+  startNewSeason: () => boolean
   answerPressConference: (answerIds: string[]) => void
   dismissPressConference: () => void
 }
@@ -466,7 +468,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const { save } = get()
     if (!save) return
     if (save.seasonComplete) {
-      set({ status: 'จบฤดูกาลแล้ว — เริ่มเกมใหม่ได้เมื่อพร้อม' })
+      set({ status: 'จบฤดูกาลแล้ว — กด「เริ่มฤดูกาลใหม่」ที่แถบบนหรือหน้าแมตช์' })
       return
     }
     get().playNextMatchday()
@@ -837,6 +839,17 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (!result.ok) return false
     saveToStorage(result.save)
     set({ save: result.save })
+    return true
+  },
+
+  startNewSeason: () => {
+    const { save } = get()
+    if (!save) return false
+    const result = startNextSeason(save)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save, liveMatch: null })
     return true
   },
 

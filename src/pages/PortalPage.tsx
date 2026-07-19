@@ -48,10 +48,26 @@ export function PortalPage() {
   const scouting = ensureScouting(save)
   const lastVisit = scouting.visits[0]
   const talkPending = pendingTalkRequests(save)
+  const startNewSeason = useGameStore((s) => s.startNewSeason)
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
       <section className="space-y-4">
+        {save.seasonComplete && !save.board?.sacked ? (
+          <div className="rounded-xl border border-lime-300 bg-lime-50 p-5">
+            <h2 className="text-lg font-semibold text-lime-950">จบฤดูกาล {save.season}</h2>
+            <p className="mt-1 text-sm text-lime-900">
+              อันดับลีก #{rank || '—'} · กดเริ่มฤดูกาลใหม่เพื่ออายุนักเตะ +1 และสร้างตารางปีถัดไป
+            </p>
+            <button
+              type="button"
+              onClick={() => startNewSeason()}
+              className="mt-3 rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-lime-300"
+            >
+              เริ่มฤดูกาล {save.season + 1}
+            </button>
+          </div>
+        ) : null}
         <div className="rounded-xl border border-slate-200 bg-white/80 p-5">
           <h2 className="text-lg font-semibold">ชีพจรสโมสร</h2>
           <dl className="mt-3 grid grid-cols-2 gap-3 text-sm md:grid-cols-4">

@@ -137,6 +137,10 @@ export function MatchPage() {
               <p className="text-slate-300">ไม่มีนัดเหลือสำหรับทีมคุณ</p>
               {!save.seasonComplete ? (
                 <PrimaryButton onClick={playNextMatchday}>จำลองแมตช์เดย์ AI</PrimaryButton>
+              ) : !save.board?.sacked ? (
+                <PrimaryButton onClick={() => useGameStore.getState().startNewSeason()}>
+                  เริ่มฤดูกาล {save.season + 1}
+                </PrimaryButton>
               ) : null}
             </div>
           )}
