@@ -113,6 +113,7 @@ interface GameStore {
     years?: number,
     appearanceAddon?: number,
     sellOnPercent?: number,
+    addons?: import('@/game/types').TransferAddonPackage,
   ) => boolean
   acceptTransferCounter: (offerId: string) => boolean
   offerExchange: (theirId: string, ourId: string, cash: number) => boolean
@@ -565,7 +566,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     return true
   },
 
-  offerBuyNegotiated: (playerId, fee, wage, years = 3, appearanceAddon = 0, sellOnPercent = 0) => {
+  offerBuyNegotiated: (playerId, fee, wage, years = 3, appearanceAddon = 0, sellOnPercent = 0, addons) => {
     const { save } = get()
     if (!save) return false
     const result = submitNegotiatedBuy(
@@ -576,6 +577,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       years,
       appearanceAddon,
       sellOnPercent,
+      addons,
     )
     set({ status: result.message })
     if (!result.ok) return false

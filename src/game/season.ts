@@ -15,6 +15,7 @@ import { createYouthState } from './youth'
 import { ensureFans } from './fans'
 import { autoPickTactics } from './seed'
 import { createTransferDesk } from './transferDesk'
+import { tickPromotionClauses } from './transferClauses'
 import { createWorldPulse } from './worldPulse'
 import {
   generateLeagueCupFixtures,
@@ -165,6 +166,9 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
 
   const promo = applyPromotionRelegation(domesticClubs, save.table, save.tableDiv2 ?? [])
   domesticClubs = promo.clubs.filter((c) => !c.id.startsWith('ucl-')) as typeof domesticClubs
+  const promotedIds = sortedRows(save.tableDiv2 ?? [])
+    .slice(0, 3)
+    .map((r) => r.clubId)
 
   // คืนนักเตะจากการยืมก่อนขึ้นปีใหม่
   let players = save.players
@@ -377,13 +381,18 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
     },
     inbox,
     loans: [],
-    transferDesk: createTransferDesk(),
+    transferDesk: {
+      ...createTransferDesk(),
+      clauses: (save.transferDesk?.clauses ?? []).filter((c) => c.status === 'active'),
+    },
     worldPulse: createWorldPulse(leagueId),
   }
 
+  const withPromo = tickPromotionClauses(next, promotedIds)
+
   return {
     ok: true,
-    save: next,
+    save: withPromo,
     message: `เริ่มฤดูกาล ${newSeason} · ปีที่แล้วอันดับ #${humanRank}${
       promo.notes.length ? ` · ${promo.notes.join(', ')}` : ''
     }`,

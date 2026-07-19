@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react'
 import { useGameStore } from '@/store/gameStore'
 import { estimatedValue, listMarketPlayers, minAcceptableFee } from '@/game/transfer'
 import { agentStyleFor, AGENT_STYLE_LABEL, AGENT_STYLE_DESC } from '@/game/agents'
+import { emptyAddonPackage } from '@/game/transferClauses'
+import type { TransferAddonPackage } from '@/game/types'
 import { analyzeBuy, analyzeSell } from '@/game/transferIntel'
 import { roleLabel, roleShort } from '@/game/positions'
 import { formatMoney } from '@/lib/format'
@@ -41,10 +43,20 @@ export function TransfersPage() {
   const [fee, setFee] = useState(0)
   const [wage, setWage] = useState(0)
   const [years, setYears] = useState(3)
-  const [addon, setAddon] = useState(50_000)
-  const [sellOn, setSellOn] = useState(10)
+  const [addons, setAddons] = useState<TransferAddonPackage>(() => ({
+    ...emptyAddonPackage(),
+    appearanceFee: 50_000,
+    appearanceNeeded: 10,
+    sellOnPercent: 10,
+    perAppearance: 5_000,
+    perCleanSheet: 8_000,
+  }))
   const [exchangeOurId, setExchangeOurId] = useState('')
   const [exchangeCash, setExchangeCash] = useState(0)
+
+  const patchAddon = <K extends keyof TransferAddonPackage>(key: K, value: TransferAddonPackage[K]) => {
+    setAddons((prev) => ({ ...prev, [key]: value }))
+  }
 
   const human = save.clubs.find((c) => c.id === save.humanClubId)!
   const scouting = ensureScouting(save)
@@ -167,6 +179,27 @@ export function TransfersPage() {
                   </li>
                 )
               })}
+            </ul>
+          </div>
+        ) : null}
+
+        {(desk.clauses ?? []).filter((c) => c.status === 'active').length > 0 ? (
+          <div className="mt-3 max-h-36 overflow-y-auto rounded-lg border border-sky-200 bg-sky-50 px-3 py-2 text-xs text-sky-950">
+            <p className="font-semibold">เงื่อนไขที่ยังค้าง</p>
+            <ul className="mt-1 space-y-0.5">
+              {(desk.clauses ?? [])
+                .filter((c) => c.status === 'active')
+                .slice(0, 12)
+                .map((c) => (
+                  <li key={c.id}>
+                    {c.playerName}: {c.note}
+                    {c.appearancesNeeded > 0
+                      ? ` · ${c.appearancesSoFar}/${c.appearancesNeeded}`
+                      : c.appearancesSoFar > 0
+                        ? ` · จ่ายแล้ว ${c.appearancesSoFar} ครั้ง`
+                        : ''}
+                  </li>
+                ))}
             </ul>
           </div>
         ) : null}
@@ -354,31 +387,176 @@ export function TransfersPage() {
                 onChange={(e) => setYears(Number(e.target.value))}
               />
             </label>
-            <div className="grid grid-cols-2 gap-2">
-              <label className="grid gap-1">
-                <span>Add-on ลงแข่ง</span>
-                <input
-                  type="number"
-                  className="rounded-md border border-slate-300 px-3 py-2"
-                  value={addon}
-                  onChange={(e) => setAddon(Number(e.target.value))}
-                />
-              </label>
-              <label className="grid gap-1">
-                <span>Sell-on %</span>
-                <input
-                  type="number"
-                  min={0}
-                  max={25}
-                  className="rounded-md border border-slate-300 px-3 py-2"
-                  value={sellOn}
-                  onChange={(e) => setSellOn(Number(e.target.value))}
-                />
-              </label>
+            <div className="space-y-2 rounded-lg border border-slate-200 bg-slate-50 p-3">
+              <p className="text-xs font-semibold text-slate-700">Add-on → คลับขาย (จ่ายทีหลัง)</p>
+              <div className="grid grid-cols-2 gap-2">
+                <label className="grid gap-0.5 text-xs">
+                  <span>ลงแข่งครบ (บาท)</span>
+                  <input
+                    type="number"
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.appearanceFee}
+                    onChange={(e) => patchAddon('appearanceFee', Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-0.5 text-xs">
+                  <span>เป้า (นัด)</span>
+                  <input
+                    type="number"
+                    min={1}
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.appearanceNeeded}
+                    onChange={(e) => patchAddon('appearanceNeeded', Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-0.5 text-xs">
+                  <span>ประตูครบ (บาท)</span>
+                  <input
+                    type="number"
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.goalsFee}
+                    onChange={(e) => patchAddon('goalsFee', Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-0.5 text-xs">
+                  <span>เป้า (ประตู)</span>
+                  <input
+                    type="number"
+                    min={1}
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.goalsNeeded}
+                    onChange={(e) => patchAddon('goalsNeeded', Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-0.5 text-xs">
+                  <span>แอสซิสต์ครบ (บาท)</span>
+                  <input
+                    type="number"
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.assistsFee}
+                    onChange={(e) => patchAddon('assistsFee', Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-0.5 text-xs">
+                  <span>เป้า (ครั้ง)</span>
+                  <input
+                    type="number"
+                    min={1}
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.assistsNeeded}
+                    onChange={(e) => patchAddon('assistsNeeded', Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-0.5 text-xs">
+                  <span>คลีนชีตครบ (บาท)</span>
+                  <input
+                    type="number"
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.cleanSheetsFee}
+                    onChange={(e) => patchAddon('cleanSheetsFee', Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-0.5 text-xs">
+                  <span>เป้า (นัด CS)</span>
+                  <input
+                    type="number"
+                    min={1}
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.cleanSheetsNeeded}
+                    onChange={(e) => patchAddon('cleanSheetsNeeded', Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-0.5 text-xs">
+                  <span>Sell-on %</span>
+                  <input
+                    type="number"
+                    min={0}
+                    max={25}
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.sellOnPercent}
+                    onChange={(e) => patchAddon('sellOnPercent', Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-0.5 text-xs">
+                  <span>เลื่อนชั้น</span>
+                  <input
+                    type="number"
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.promotionFee}
+                    onChange={(e) => patchAddon('promotionFee', Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-0.5 text-xs">
+                  <span>แชมป์ลีก</span>
+                  <input
+                    type="number"
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.leagueTitleFee}
+                    onChange={(e) => patchAddon('leagueTitleFee', Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-0.5 text-xs">
+                  <span>โซนยุโรป (ท็อป 4)</span>
+                  <input
+                    type="number"
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.europeFee}
+                    onChange={(e) => patchAddon('europeFee', Number(e.target.value))}
+                  />
+                </label>
+              </div>
+              <p className="text-xs font-semibold text-slate-700">โบนัสนักเตะ (สัญญา)</p>
+              <div className="grid grid-cols-2 gap-2">
+                <label className="grid gap-0.5 text-xs">
+                  <span>เงินเซ็นสัญญา</span>
+                  <input
+                    type="number"
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.signingOnFee}
+                    onChange={(e) => patchAddon('signingOnFee', Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-0.5 text-xs">
+                  <span>ต่อนัดที่ลง</span>
+                  <input
+                    type="number"
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.perAppearance}
+                    onChange={(e) => patchAddon('perAppearance', Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-0.5 text-xs">
+                  <span>ต่อประตู</span>
+                  <input
+                    type="number"
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.perGoal}
+                    onChange={(e) => patchAddon('perGoal', Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-0.5 text-xs">
+                  <span>ต่อแอสซิสต์</span>
+                  <input
+                    type="number"
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.perAssist}
+                    onChange={(e) => patchAddon('perAssist', Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-0.5 text-xs col-span-2">
+                  <span>ต่อคลีนชีต (GK/DF)</span>
+                  <input
+                    type="number"
+                    className="rounded border border-slate-300 px-2 py-1.5"
+                    value={addons.perCleanSheet}
+                    onChange={(e) => patchAddon('perCleanSheet', Number(e.target.value))}
+                  />
+                </label>
+              </div>
             </div>
             <p className="text-xs text-slate-500">
-              เอเยนต์: {AGENT_STYLE_LABEL[agentStyleFor(selectedBuy)]} · เจรจาจะใช้ add-on/sell-on
-              จริง (จ่ายทีหลัง)
+              เอเยนต์: {AGENT_STYLE_LABEL[agentStyleFor(selectedBuy)]} ·{' '}
+              {AGENT_STYLE_DESC[agentStyleFor(selectedBuy)]} · เงื่อนไขจ่ายจริงหลังแมตช์/จบฤดูกาล
             </p>
             <button
               type="button"
@@ -391,10 +569,18 @@ export function TransfersPage() {
               type="button"
               className="w-full rounded-md border border-slate-300 bg-white px-4 py-2 font-semibold hover:bg-slate-50"
               onClick={() =>
-                offerBuyNegotiated(selectedBuy.id, fee, wage, years, addon, sellOn)
+                offerBuyNegotiated(
+                  selectedBuy.id,
+                  fee,
+                  wage,
+                  years,
+                  addons.appearanceFee,
+                  addons.sellOnPercent,
+                  addons,
+                )
               }
             >
-              1) เจรจาค่าตัว (+เงื่อนไข)
+              1) เจรจาค่าตัว (+เงื่อนไขครบ)
             </button>
             {selectedBuy.releaseClause ? (
               <button

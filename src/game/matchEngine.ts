@@ -360,6 +360,8 @@ export function simulateFixture(
           clubId: isHome ? homeClub.id : awayClub.id,
           playerName: scorer.name,
           playerId: scorer.id,
+          assistPlayerId: assist?.id,
+          assistPlayerName: assist?.name,
         },
       )
       continue

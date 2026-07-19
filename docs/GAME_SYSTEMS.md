@@ -743,7 +743,8 @@ Data: `src/data/world/` · New game เลือกลีก+สโมสร · 
 - สภาพอากาศต่อนัด · กระทบเรตติ้ง + เจ็บเล็กน้อย · UI บน Portal/Match
 
 ### Player Depth Pack ✅
-- **Transfer clauses**: appearance add-on จ่ายเมื่อลงสนามครบ · sell-on % เมื่อขายต่อ (`transferDesk.clauses`)
+- **Transfer clauses**: appearance / goals / assists / clean sheets milestones · sell-on % · เลื่อนชั้น · แชมป์ลีก · โซนยุโรป
+- **โบนัสนักเตะ**: เงินเซ็นสัญญา · ต่อนัด · ต่อประตู · ต่อแอสซิสต์ · ต่อคลีนชีต (GK/DF)
 - **เอเยนต์**: บุคลิก greedy/loyal/aggressive/balanced กระทบต่อสัญญาและค่าเหนื่อย
 - **ตลาด**: แลกตัว · กดเงื่อนไขซื้อขาด · shortlist มีคู่แข่งกดดัน inbox
 - **พัฒนา**: mentor ส่งต่อ growth/บุคลิก · โฟกัสซ้อมเข้า/ไม่เข้าตำแหน่ง · `trainingFacilityBonus`

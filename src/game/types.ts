@@ -354,6 +354,9 @@ export interface MatchEvent {
   clubId?: string
   playerName?: string
   playerId?: string
+  /** เมื่อ kind === 'goal' */
+  assistPlayerId?: string
+  assistPlayerName?: string
   text: string
   spot: PitchSpot
   homeGoals: number
@@ -1078,10 +1081,12 @@ export interface PendingTransferOffer {
   fee: number
   wage: number
   contractYears: number
-  /** add-on: โบนัสเมื่อลง N นัด */
+  /** @deprecated ใช้ addons.appearanceFee */
   appearanceAddon: number
-  /** % ขายต่อ */
+  /** @deprecated ใช้ addons.sellOnPercent */
   sellOnPercent: number
+  /** แพ็กเงื่อนไขพิเศษเต็มชุด */
+  addons?: TransferAddonPackage
   status: 'pending' | 'accepted' | 'rejected' | 'countered'
   counterFee?: number
   expiresMatchday: number
@@ -1099,20 +1104,73 @@ export interface TransferDeskState {
     currentBidderId: string | null
     endsMatchday: number
   }>
-  /** เงื่อนไขพิเศษที่ยังค้าง (add-on / sell-on) */
+  /** เงื่อนไขพิเศษที่ยังค้าง (add-on / sell-on / โบนัสนัด) */
   clauses?: TransferClause[]
+}
+
+/** ชนิดเงื่อนไขสัญญาจริงที่ใช้ในตลาด */
+export type TransferClauseKind =
+  | 'appearance'
+  | 'goals'
+  | 'assists'
+  | 'clean_sheets'
+  | 'sell_on'
+  | 'promotion'
+  | 'league_title'
+  | 'europe_qualify'
+  | 'signing_on'
+  | 'per_appearance'
+  | 'per_goal'
+  | 'per_assist'
+  | 'per_clean_sheet'
+
+/** แพ็ก add-on ตอนเจรจาซื้อ */
+export interface TransferAddonPackage {
+  /** โบนัสลงครบ N นัด → จ่ายคลับขาย */
+  appearanceFee: number
+  appearanceNeeded: number
+  /** โบนัสยิงครบ N ประตู → คลับขาย */
+  goalsFee: number
+  goalsNeeded: number
+  /** โบนัสแอสซิสต์ครบ N → คลับขาย */
+  assistsFee: number
+  assistsNeeded: number
+  /** โบนัสคลีนชีตครบ N → คลับขาย */
+  cleanSheetsFee: number
+  cleanSheetsNeeded: number
+  /** % ขายต่อ */
+  sellOnPercent: number
+  /** โบนัสเลื่อนชั้น */
+  promotionFee: number
+  /** โบนัสแชมป์ลีก */
+  leagueTitleFee: number
+  /** โบนัสติดโซนยุโรป (ท็อป 4 ดิวิชัน 1) */
+  europeFee: number
+  /** เงินเซ็นสัญญาให้นักเตะ (ครั้งเดียว) */
+  signingOnFee: number
+  /** โบนัสนักเตะต่อนัดที่ลง */
+  perAppearance: number
+  /** โบนัสนักเตะต่อประตู */
+  perGoal: number
+  /** โบนัสนักเตะต่อแอสซิสต์ */
+  perAssist: number
+  /** โบนัสนักเตะต่อคลีนชีต */
+  perCleanSheet: number
 }
 
 export interface TransferClause {
   id: string
-  kind: 'appearance' | 'sell_on'
+  kind: TransferClauseKind
   playerId: string
   playerName: string
-  /** คลับที่ต้องจ่าย (มักเป็นผู้ซื้อ) */
+  /** คลับที่ต้องจ่าย (ผู้ซื้อ / สโมสรปัจจุบัน) */
   fromClubId: string
-  /** คลับที่รับเงิน (ผู้ขายเดิม) */
+  /** คลับที่รับเงิน (ผู้ขายเดิม) — ว่างถ้าจ่ายให้นักเตะ */
   toClubId: string
+  /** ผู้รับเงิน */
+  payee: 'seller' | 'player'
   amount: number
+  /** เป้า milestone หรือเพดานโบนัสรายนัด (0 = ไม่จำกัด) */
   appearancesNeeded: number
   appearancesSoFar: number
   sellOnPercent: number

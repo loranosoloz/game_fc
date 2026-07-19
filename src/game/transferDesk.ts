@@ -1,8 +1,14 @@
-import type { GameSave, PendingTransferOffer, TransferDeskState } from './types'
+import type {
+  GameSave,
+  MatchResult,
+  PendingTransferOffer,
+  TransferAddonPackage,
+  TransferDeskState,
+} from './types'
 import { buyPlayerFromAi, estimatedValue, sellPlayerToAi } from './transfer'
 import { formatMoney } from '@/lib/format'
 import { isTransferWindowOpen, transferWindowLabel } from './transferWindow'
-import { attachClausesAfterBuy, tickAppearanceClauses } from './transferClauses'
+import { attachClausesAfterBuy, tickPerformanceClauses, resolveAddonPackage } from './transferClauses'
 
 function uid(prefix: string) {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`
@@ -30,6 +36,7 @@ export function submitNegotiatedBuy(
   contractYears = 3,
   appearanceAddon = 0,
   sellOnPercent = 0,
+  addons?: TransferAddonPackage | null,
 ): DeskResult {
   if (!isTransferWindowOpen(save)) return { ok: false, message: transferWindowLabel(save) }
   const player = save.players.find((p) => p.id === playerId)
@@ -39,6 +46,7 @@ export function submitNegotiatedBuy(
   const seller = save.clubs.find((c) => c.id === player.clubId)!
   const value = estimatedValue(player)
   const want = Math.round(value * (0.95 + seller.reputation / 350))
+  const pkg = resolveAddonPackage(addons, appearanceAddon, sellOnPercent)
 
   // ถ้าราคาใกล้เคียง → ปิดทันที (หัก add-on เล็กน้อยจากความพึงพอใจ)
   if (fee >= want * 0.97 && wage >= player.wage * 1.05) {
@@ -49,8 +57,7 @@ export function submitNegotiatedBuy(
       playerName: player.name,
       buyerClubId: save.humanClubId,
       sellerClubId: seller.id,
-      appearanceAddon,
-      sellOnPercent,
+      addons: pkg,
     })
     return { ok: true, message: closed.message + ' (ปิดดีลทันที)', save: withClauses }
   }
@@ -73,12 +80,13 @@ export function submitNegotiatedBuy(
     fee,
     wage,
     contractYears,
-    appearanceAddon,
-    sellOnPercent,
+    appearanceAddon: pkg.appearanceFee,
+    sellOnPercent: pkg.sellOnPercent,
+    addons: pkg,
     status: 'countered',
     counterFee: counter,
     expiresMatchday: save.matchday + 3,
-    note: `${seller.name} เสนอราคากลับ ${formatMoney(counter)}`,
+    note: `${seller.name} โต้กลับค่าตัว ${formatMoney(counter)}`,
   }
 
   const desk = ensureTransferDesk(save)
@@ -125,6 +133,7 @@ export function acceptCounterOffer(save: GameSave, offerId: string): DeskResult 
     sellerClubId: offer.fromClubId,
     appearanceAddon: offer.appearanceAddon,
     sellOnPercent: offer.sellOnPercent,
+    addons: offer.addons,
   })
   return {
     ok: true,
@@ -220,7 +229,7 @@ export function startAuction(save: GameSave, playerId: string, minBid?: number):
 }
 
 /** AI ประมูล + ปิดดีลเมื่อครบ + clauses + shortlist rival bids */
-export function processTransferDeskMatchday(save: GameSave): GameSave {
+export function processTransferDeskMatchday(save: GameSave, results: MatchResult[] = []): GameSave {
   let desk = ensureTransferDesk(save)
   let next = save
 
@@ -291,7 +300,13 @@ export function processTransferDeskMatchday(save: GameSave): GameSave {
 
   desk = { ...desk, offers, auctions: still, clauses: desk.clauses ?? [] }
   next = { ...next, transferDesk: desk }
-  next = tickAppearanceClauses(next)
+  const matchResults =
+    results.length > 0
+      ? results
+      : next.lastHumanResult
+        ? [next.lastHumanResult]
+        : []
+  next = tickPerformanceClauses(next, matchResults)
 
   // Shortlist rival interest — AI กดดันค่าตัว
   const shortlist = next.shortlist?.entries ?? []

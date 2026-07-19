@@ -40,6 +40,7 @@ import { generatePlayerTalkRequests, processAiPlayerTalks, resolveTalkPromises }
 import { processLoansMatchday } from './loans'
 import { applyMatchdayIncome, awardCompetitionPrize } from './clubIncome'
 import { processTransferDeskMatchday } from './transferDesk'
+import { tickEndOfSeasonClauses } from './transferClauses'
 import type { MediaItem } from './types'
 import { maybePromoteYouth } from './youth'
 import { advanceCupAfterMatchday } from './cup'
@@ -665,7 +666,13 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   next = processAiPlayerTalks(next)
   next = applyMatchdayIncome(next)
   next = processLoansMatchday(next)
-  next = processTransferDeskMatchday(next)
+  next = processTransferDeskMatchday(
+    next,
+    prepared.results.map((r) => r.result),
+  )
+  if (next.seasonComplete && !save.seasonComplete) {
+    next = tickEndOfSeasonClauses(next)
+  }
   next = processFanPolitics(next)
   next = processBoardPolitics(next)
   if (next.board?.sacked) {
