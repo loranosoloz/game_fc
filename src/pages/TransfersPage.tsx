@@ -436,8 +436,16 @@ export function TransfersPage() {
                 className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-2 font-semibold hover:bg-white"
                 onClick={() => renewPlayerContract(selectedSell.id, wage, years)}
               >
-                ต่อสัญญา
+                เจรจา/ต่อสัญญา
               </button>
+              <p className="mt-1 text-[11px] text-slate-500">
+                สูงสุด 3 รอบ · มีค่าเอเยนต์เมื่อเซ็น · ข้อเสนอต่ำเกินไปเอเยนต์จะโต้กลับ
+                {save.contractTalks?.talks?.find(
+                  (t) => t.playerId === selectedSell.id && t.status === 'open',
+                )
+                  ? ` · ${save.contractTalks.talks.find((t) => t.playerId === selectedSell.id && t.status === 'open')!.note}`
+                  : ''}
+              </p>
             </div>
           </div>
         ) : null}

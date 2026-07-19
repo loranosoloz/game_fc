@@ -1079,6 +1079,8 @@ export interface GameSave {
   career: CareerState
   /** สนาม + สิ่งอำนวยความสะดวก */
   facilities: FacilitiesState
+  /** เจรจาสัญญาหลายรอบ */
+  contractTalks: ContractTalkState
 }
 
 export type FacilityKind = 'stadium' | 'training' | 'medical' | 'commercial'
@@ -1097,6 +1099,27 @@ export interface FacilitiesState {
   commercialTier: number
   project: FacilityProject | null
   lastNote: string
+}
+
+export interface ContractNegotiation {
+  id: string
+  playerId: string
+  playerName: string
+  round: number
+  maxRounds: number
+  lastOfferWage: number
+  lastOfferYears: number
+  /** ค่าเหนื่อยขั้นต่ำที่ฝั่งนักเตะ/เอเยนต์รับได้ตอนนี้ */
+  askWage: number
+  askYears: number
+  /** ค่าเอเยนต์ถ้าเซ็นสำเร็จ */
+  agentFee: number
+  status: 'open' | 'signed' | 'walked'
+  note: string
+}
+
+export interface ContractTalkState {
+  talks: ContractNegotiation[]
 }
 
 export interface JobOffer {

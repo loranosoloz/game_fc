@@ -1,4 +1,4 @@
-import type { Club, GameSave, InboxMessage, Player, Tactics } from './types'
+import type { Club, ContractNegotiation, ContractTalkState, GameSave, InboxMessage, Player, Tactics } from './types'
 import { autoPickTactics } from './seed'
 import { formatMoney } from '@/lib/format'
 import {
@@ -26,7 +26,7 @@ export function minAcceptableFee(player: Player, seller: Club): number {
 
 export type OfferResult =
   | { ok: true; message: string; save: GameSave }
-  | { ok: false; message: string }
+  | { ok: false; message: string; save?: GameSave }
 
 function stripFromTactics(tactics: Tactics, playerId: string): Tactics {
   return {
@@ -356,18 +356,14 @@ export function renewContract(
   }
   if (years < 1 || years > 5) return { ok: false, message: 'สัญญาระหว่าง 1–5 ปี' }
 
-  const floor = Math.round(player.wage * 0.95)
-  const ambitionBump = player.overall >= 78 ? 1.08 : 1
-  const want = Math.round(player.wage * ambitionBump)
-  if (newWage < floor) {
-    return { ok: false, message: `ค่าเหนื่อยต่ำเกินไป (อย่างน้อย ${formatMoney(floor)})` }
-  }
-  if (newWage < want * 0.92 && years < 3) {
-    return {
-      ok: false,
-      message: `${player.name} อยากได้ ~${formatMoney(want)}/สัปดาห์ หรือสัญญา ≥3 ปี`,
-    }
-  }
+  const talks = save.contractTalks?.talks ?? []
+  let talk = talks.find((t) => t.playerId === playerId && t.status === 'open')
+  const ambitionBump = player.overall >= 78 ? 1.12 : player.overall >= 72 ? 1.06 : 1.02
+  const ageBump = player.age <= 24 ? 1.05 : player.age >= 32 ? 0.97 : 1
+  let askWage = talk?.askWage ?? Math.round(player.wage * ambitionBump * ageBump)
+  let askYears = talk?.askYears ?? Math.max(2, Math.min(4, years))
+  const agentRate = 0.06 + (player.overall >= 80 ? 0.04 : player.overall >= 74 ? 0.02 : 0)
+  const agentFee = Math.round(newWage * 52 * years * agentRate)
 
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
   const otherWages = save.players
@@ -376,12 +372,86 @@ export function renewContract(
   if (otherWages + newWage > club.wageBudgetWeekly * 1.15) {
     return { ok: false, message: 'เกินงบค่าเหนื่อยรายสัปดาห์ของสโมสร' }
   }
+  if (club.balance < agentFee) {
+    return {
+      ok: false,
+      message: `งบไม่พอค่าเอเยนต์ (~${formatMoney(agentFee)})`,
+    }
+  }
+
+  const round = (talk?.round ?? 0) + 1
+  const maxRounds = talk?.maxRounds ?? 3
+  const wageOk = newWage >= askWage * 0.97
+  const yearsOk = years >= askYears || newWage >= askWage * 1.08
+
+  if (!wageOk || !yearsOk) {
+    if (round >= maxRounds) {
+      const walked: ContractNegotiation = {
+        id: talk?.id ?? `ct-${Date.now()}`,
+        playerId,
+        playerName: player.name,
+        round,
+        maxRounds,
+        lastOfferWage: newWage,
+        lastOfferYears: years,
+        askWage,
+        askYears,
+        agentFee,
+        status: 'walked',
+        note: 'เจรจาล้ม — เอเยนต์พานักเตะออกจากโต๊ะ',
+      }
+      return {
+        ok: false,
+        message: walked.note,
+        save: {
+          ...save,
+          contractTalks: {
+            talks: [walked, ...talks.filter((t) => t.playerId !== playerId)].slice(0, 20),
+          },
+          players: save.players.map((p) =>
+            p.id === playerId ? { ...p, happiness: Math.max(1, (p.happiness ?? 10) - 2) } : p,
+          ),
+        },
+      }
+    }
+    // counter — ขึ้น ask เล็กน้อย
+    askWage = Math.round(askWage * (1.04 + round * 0.01))
+    askYears = Math.min(5, Math.max(askYears, years + (years < askYears ? 0 : 0)))
+    const nextTalk: ContractNegotiation = {
+      id: talk?.id ?? `ct-${Date.now()}`,
+      playerId,
+      playerName: player.name,
+      round,
+      maxRounds,
+      lastOfferWage: newWage,
+      lastOfferYears: years,
+      askWage,
+      askYears,
+      agentFee: Math.round(askWage * 52 * askYears * agentRate),
+      status: 'open',
+      note: `รอบ ${round}/${maxRounds}: เอเยนต์ขอ ~${formatMoney(askWage)}/สัปดาห์ · ${askYears} ปี · ค่าเอเยนต์ประมาณ ${formatMoney(Math.round(askWage * 52 * askYears * agentRate))}`,
+    }
+    return {
+      ok: false,
+      message: nextTalk.note,
+      save: {
+        ...save,
+        contractTalks: {
+          talks: [nextTalk, ...talks.filter((t) => !(t.playerId === playerId && t.status === 'open'))].slice(
+            0,
+            20,
+          ),
+        },
+      },
+    }
+  }
 
   const players = save.players.map((p) =>
     p.id === playerId
       ? {
           ...p,
           wage: newWage,
+          wageWeekly: newWage,
           contractYears: years,
           contractEndSeason: save.season + years,
           morale: Math.min(20, p.morale + 1),
@@ -390,19 +460,43 @@ export function renewContract(
       : p,
   )
 
+  const signed: ContractNegotiation = {
+    id: talk?.id ?? `ct-${Date.now()}`,
+    playerId,
+    playerName: player.name,
+    round: Math.max(1, round),
+    maxRounds,
+    lastOfferWage: newWage,
+    lastOfferYears: years,
+    askWage,
+    askYears,
+    agentFee,
+    status: 'signed',
+    note: `เซ็นแล้ว · ค่าเอเยนต์ ${formatMoney(agentFee)}`,
+  }
+
   return {
     ok: true,
-    message: `ต่อสัญญา ${player.name} สำเร็จ · ${years} ปี · ${formatMoney(newWage)}/สัปดาห์`,
+    message: `ต่อสัญญา ${player.name} สำเร็จ · ${years} ปี · ${formatMoney(newWage)}/สัปดาห์ · เอเยนต์ ${formatMoney(agentFee)}`,
     save: pushNews(
       {
         ...save,
         players,
+        clubs: save.clubs.map((c) =>
+          c.id === club.id ? { ...c, balance: c.balance - agentFee } : c,
+        ),
+        contractTalks: {
+          talks: [signed, ...talks.filter((t) => !(t.playerId === playerId && t.status === 'open'))].slice(
+            0,
+            20,
+          ),
+        },
         inbox: [
           {
             id: `msg-renew-${Date.now()}`,
             date: save.currentDate,
             title: `ต่อสัญญา: ${player.name}`,
-            body: `สัญญาใหม่ ${years} ปี หมดฤดูกาล ${save.season + years} · ค่าเหนื่อย ${formatMoney(newWage)}/สัปดาห์`,
+            body: `สัญญาใหม่ ${years} ปี หมดฤดูกาล ${save.season + years} · ค่าเหนื่อย ${formatMoney(newWage)}/สัปดาห์ · จ่ายเอเยนต์ ${formatMoney(agentFee)}`,
             read: false,
           },
           ...save.inbox,
@@ -411,4 +505,12 @@ export function renewContract(
       newsAfterContract(save, player.name, years),
     ),
   }
+}
+
+export function createContractTalks(): ContractTalkState {
+  return { talks: [] }
+}
+
+export function ensureContractTalks(save: GameSave): ContractTalkState {
+  return save.contractTalks ?? createContractTalks()
 }

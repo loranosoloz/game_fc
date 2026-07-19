@@ -572,10 +572,11 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (!save) return false
     const result = renewContract(save, playerId, wage, years)
     set({ status: result.message })
-    if (!result.ok) return false
-    saveToStorage(result.save)
-    set({ save: result.save })
-    return true
+    if (result.save) {
+      saveToStorage(result.save)
+      set({ save: result.save })
+    }
+    return result.ok
   },
 
   loanInPlayer: (playerId) => {

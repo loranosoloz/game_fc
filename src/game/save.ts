@@ -31,6 +31,7 @@ import { createClubIncome, ensureClubIncome } from './clubIncome'
 import { createTakeoverState, ensureTakeover } from './takeover'
 import { createCareerState, ensureCareer } from './jobs'
 import { createFacilitiesState, ensureFacilities } from './facilities'
+import { createContractTalks, ensureContractTalks } from './transfer'
 import { persistSaveSync, loadSaveRawAsync, clearAllSaves } from './idbSave'
 import { roleGroup } from './positions'
 import type { RoleCode } from './types'
@@ -110,6 +111,7 @@ export function createNewGame(
     takeover: createTakeoverState(2026),
     career: createCareerState(humanClubId),
     facilities: createFacilitiesState(human.stadiumCapacity),
+    contractTalks: createContractTalks(),
   }
 }
 
@@ -154,6 +156,7 @@ export function ensurePhase5(save: GameSave): GameSave {
     const h = next.clubs.find((c) => c.id === next.humanClubId)
     next = { ...next, facilities: createFacilitiesState(h?.stadiumCapacity ?? 25_000) }
   } else next = { ...next, facilities: ensureFacilities(next) }
+  if (!next.contractTalks) next = { ...next, contractTalks: ensureContractTalks(next) }
   if (!next.leagueId) next = { ...next, leagueId: 'eng', leagueName: next.leagueName ?? 'Premier League' }
   if (!next.leagueName) next = { ...next, leagueName: 'World League' }
 
@@ -315,6 +318,8 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
     facilities:
       (raw.facilities as GameSave['facilities']) ??
       createFacilitiesState(human.stadiumCapacity),
+    contractTalks:
+      (raw.contractTalks as GameSave['contractTalks']) ?? createContractTalks(),
   } as GameSave
 
   return ensurePhase5(ensureFans(base))
