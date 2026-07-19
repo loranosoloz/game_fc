@@ -2,8 +2,18 @@ import { motion } from 'motion/react'
 import type { PitchSpot } from '@/game/types'
 import { cn } from '@/lib/cn'
 
+export interface PitchPlayerMarker {
+  id: string
+  label: string
+  name: string
+  side: 'home' | 'away'
+  spot: PitchSpot
+  active?: boolean
+}
+
 interface MatchPitchProps {
   spot: PitchSpot
+  players: PitchPlayerMarker[]
   homeColor: string
   awayColor: string
   homeShort: string
@@ -14,6 +24,7 @@ interface MatchPitchProps {
 
 export function MatchPitch({
   spot,
+  players,
   homeColor,
   awayColor,
   homeShort,
@@ -53,8 +64,35 @@ export function MatchPitch({
         </text>
       </svg>
 
+      {players.map((p) => {
+        const color = p.side === 'home' ? homeColor : awayColor
+        return (
+          <motion.div
+            key={p.id}
+            title={p.name}
+            className={cn(
+              'pointer-events-none absolute flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-[10px] font-bold text-white shadow-md ring-2',
+              p.active ? 'z-20 ring-lime-300' : 'z-10 ring-black/25',
+            )}
+            style={{ backgroundColor: color }}
+            animate={{
+              left: `${p.spot.x}%`,
+              top: `${p.spot.y}%`,
+              scale: p.active ? 1.25 : 1,
+            }}
+            transition={{
+              left: { type: 'spring', stiffness: 100, damping: 18 },
+              top: { type: 'spring', stiffness: 100, damping: 18 },
+              scale: { duration: 0.25 },
+            }}
+          >
+            {p.label}
+          </motion.div>
+        )
+      })}
+
       <motion.div
-        className="pointer-events-none absolute h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f8fafc] shadow-[0_0_14px_rgba(255,255,255,0.55)] ring-2 ring-slate-900/25"
+        className="pointer-events-none absolute z-30 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f8fafc] shadow-[0_0_14px_rgba(255,255,255,0.55)] ring-2 ring-slate-900/25"
         animate={{
           left: `${spot.x}%`,
           top: `${spot.y}%`,

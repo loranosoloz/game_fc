@@ -4,6 +4,7 @@ import { MatchPitch } from '@/components/MatchPitch'
 import { useGameStore } from '@/store/gameStore'
 import { cn } from '@/lib/cn'
 import type { MatchEventKind } from '@/game/types'
+import { buildPitchPlayers, withActionOffset } from '@/game/pitchLayout'
 
 const SPEED_MS: Record<'slow' | 'normal' | 'fast', number> = {
   slow: 1400,
@@ -78,9 +79,20 @@ export function LiveMatchPage() {
     }
   }, [save, live])
 
+  const pitchPlayers = useMemo(() => {
+    if (!save || !live?.humanFixture || !current) return []
+    const fx = live.humanFixture
+    const homeTactics = live.tacticsByClub[fx.homeClubId]
+    const awayTactics = live.tacticsByClub[fx.awayClubId]
+    const home = buildPitchPlayers(homeTactics, save.players, 'home')
+    const away = buildPitchPlayers(awayTactics, save.players, 'away')
+    return withActionOffset([...home, ...away], current.playerName, current.spot)
+  }, [save, live, current])
+
   if (!save || !live || !current || !clubs) return null
 
   const pulse = current.kind === 'goal' || current.kind === 'shot'
+  const active = pitchPlayers.find((p) => p.active)
 
   return (
     <div className="mx-auto flex min-h-dvh max-w-5xl flex-col gap-4 px-4 py-4 md:py-6">
@@ -94,7 +106,7 @@ export function LiveMatchPage() {
             <span className="text-slate-400">vs</span> {clubs.away.name}
           </h1>
           <p className="text-sm text-slate-600">
-            Matchday {live.matchday} · {live.date} · AI fixtures resolve when this ends
+            Matchday {live.matchday} · {live.date} · 22 players on pitch · AI fixtures resolve at FT
           </p>
         </div>
         <div className="text-right">
@@ -102,11 +114,15 @@ export function LiveMatchPage() {
             {current.homeGoals}–{current.awayGoals}
           </p>
           <p className="text-sm font-semibold text-slate-600">{current.minute}&apos;</p>
+          {active ? (
+            <p className="mt-1 text-xs font-medium text-lime-800">On ball: {active.name}</p>
+          ) : null}
         </div>
       </header>
 
       <MatchPitch
         spot={current.spot}
+        players={pitchPlayers}
         homeColor={clubs.home.color}
         awayColor={clubs.away.color}
         homeShort={clubs.home.shortName}
