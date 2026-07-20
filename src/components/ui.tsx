@@ -1,4 +1,5 @@
 import { cn } from '@/lib/cn'
+import { coachStatTo20 } from '@/lib/format'
 import type { ReactNode } from 'react'
 
 export function PageHeader({
@@ -130,6 +131,18 @@ export function ProgressBar({
   return (
     <div className={cn('h-1.5 w-full overflow-hidden rounded-full bg-slate-200', className)}>
       <div className="h-full rounded-full bg-slate-800 transition-all" style={{ width: `${pct}%` }} />
+    </div>
+  )
+}
+
+/** แถบสtat โค้ชแบบ FM (สเกล /20 จากค่า 1–100 ภายใน) */
+export function CoachStatRow({ label, value100 }: { label: string; value100: number }) {
+  const v20 = coachStatTo20(value100)
+  return (
+    <div className="flex items-center gap-2 text-xs">
+      <span className="w-20 shrink-0 text-slate-500">{label}</span>
+      <ProgressBar value={v20} max={20} className="flex-1" />
+      <span className="w-10 text-right font-semibold tabular-nums">{v20}/20</span>
     </div>
   )
 }

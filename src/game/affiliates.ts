@@ -115,7 +115,7 @@ export function boostAffiliateRelations(
           id: `msg-aff-${Date.now()}`,
           date: save.currentDate,
           title: 'พันธมิตรเยาวชน',
-          body: `${note} · หัก ฿${cost.toLocaleString('th-TH')}`,
+          body: `${note} · หัก €${cost.toLocaleString('th-TH')}`,
           read: false,
         },
         ...save.inbox,

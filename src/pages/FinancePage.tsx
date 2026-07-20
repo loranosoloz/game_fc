@@ -1,5 +1,6 @@
 import { useGameStore } from '@/store/gameStore'
 import { formatMoney } from '@/lib/format'
+import { PlayerFace } from '@/components/PlayerFace'
 import { ffpStatus } from '@/game/financeFfp'
 import { ensureClubFinance, PLAYER_SPENDINGS } from '@/game/playerEconomy'
 import { cashflowForecast, ensureClubIncome, prizeAmountFor, prizeTable, domesticPrizeScale } from '@/game/clubIncome'
@@ -363,10 +364,13 @@ export function FinancePage() {
             {topWages.map((p) => (
               <li
                 key={p.id}
-                className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 text-sm"
+                className="flex items-center justify-between gap-2 rounded-lg bg-slate-50 px-3 py-2 text-sm"
               >
-                <span className="font-medium text-slate-800">{p.name}</span>
-                <span className="font-semibold tabular-nums">{formatMoney(p.wage)}/สัปดาห์</span>
+                <span className="flex min-w-0 items-center gap-2">
+                  <PlayerFace name={p.name} size="xs" />
+                  <span className="truncate font-medium text-slate-800">{p.name}</span>
+                </span>
+                <span className="shrink-0 font-semibold tabular-nums">{formatMoney(p.wage)}/สัปดาห์</span>
               </li>
             ))}
           </ul>
@@ -378,10 +382,13 @@ export function FinancePage() {
             {richest.map((p) => (
               <li
                 key={p.id}
-                className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 text-sm"
+                className="flex items-center justify-between gap-2 rounded-lg bg-slate-50 px-3 py-2 text-sm"
               >
-                <span className="font-medium text-slate-800">{p.name}</span>
-                <span className="font-semibold tabular-nums text-lime-800">
+                <span className="flex min-w-0 items-center gap-2">
+                  <PlayerFace name={p.name} size="xs" />
+                  <span className="truncate font-medium text-slate-800">{p.name}</span>
+                </span>
+                <span className="shrink-0 font-semibold tabular-nums text-lime-800">
                   {formatMoney(p.cash ?? 0)}
                 </span>
               </li>

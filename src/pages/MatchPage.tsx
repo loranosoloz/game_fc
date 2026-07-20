@@ -6,6 +6,7 @@ import { MatchStatsPanel } from '@/components/MatchStatsPanel'
 import { GhostButton, PageHeader, Panel, PrimaryButton, StatTile } from '@/components/ui'
 import { ensureScouting, formWatchCost } from '@/game/scouting'
 import { formatMoney } from '@/lib/format'
+import { PlayerFace } from '@/components/PlayerFace'
 import {
   enrichOppositionBrief,
   humanMatchAbsentees,
@@ -23,6 +24,7 @@ import {
   transferDeadlineLabel,
 } from '@/game/transferDeadline'
 import { transferWindowLabel } from '@/game/transferWindow'
+import { canAdvanceDay, dayAdvanceBlockMessage } from '@/game/advanceGates'
 
 function FormPills({ form }: { form: Array<'W' | 'D' | 'L'> }) {
   if (form.length === 0) return <span className="text-xs text-slate-500">ยังไม่มีผล</span>
@@ -126,10 +128,19 @@ export function MatchPage() {
             {' · '}ลีก/ถ้วยเตะคนละวันได้ — วันว่างก็มีฟื้นตัว·ไลฟ์สไตล์·ข่าว
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
-            <PrimaryButton onClick={() => advanceDay()}>เดิน 1 วัน</PrimaryButton>
+            <PrimaryButton
+              disabled={!canAdvanceDay(save)}
+              title={dayAdvanceBlockMessage(save) ?? undefined}
+              onClick={() => advanceDay()}
+            >
+              เดิน 1 วัน
+            </PrimaryButton>
             <GhostButton onClick={() => playNextMatchday({ force: true })}>
               เล่นแมตช์เดย์ถัดไป
             </GhostButton>
+            {!canAdvanceDay(save) ? (
+              <p className="w-full text-xs text-amber-800">{dayAdvanceBlockMessage(save)}</p>
+            ) : null}
           </div>
         </Panel>
       ) : null}
@@ -345,9 +356,12 @@ export function MatchPage() {
                     <p className="text-xs font-semibold text-slate-500 uppercase">XI คาดการณ์</p>
                     <ul className="mt-1.5 grid grid-cols-1 gap-0.5 sm:grid-cols-2">
                       {brief.predictedXi.map((p) => (
-                        <li key={p.id} className="text-xs">
-                          <span className="text-slate-400">{p.role}</span> {p.name}{' '}
-                          <span className="tabular-nums text-slate-500">{p.overall}</span>
+                        <li key={p.id} className="flex items-center gap-1.5 text-xs">
+                          <PlayerFace name={p.name} size="xs" />
+                          <span>
+                            <span className="text-slate-400">{p.role}</span> {p.name}{' '}
+                            <span className="tabular-nums text-slate-500">{p.overall}</span>
+                          </span>
                         </li>
                       ))}
                     </ul>
@@ -374,11 +388,14 @@ export function MatchPage() {
                 {ourXi.map((p) => (
                   <li
                     key={p.id}
-                    className="rounded bg-slate-50 px-2 py-1 text-xs"
+                    className="flex items-center gap-1.5 rounded bg-slate-50 px-2 py-1 text-xs"
                   >
-                    <span className="text-slate-400">{p.role}</span> {p.name}{' '}
-                    <span className="tabular-nums text-slate-500">
-                      {p.overall} · C{p.condition}
+                    <PlayerFace name={p.name} size="xs" />
+                    <span>
+                      <span className="text-slate-400">{p.role}</span> {p.name}{' '}
+                      <span className="tabular-nums text-slate-500">
+                        {p.overall} · C{p.condition}
+                      </span>
                     </span>
                   </li>
                 ))}
@@ -388,9 +405,12 @@ export function MatchPage() {
               </p>
               <ul className="mt-1 grid grid-cols-1 gap-1 sm:grid-cols-2">
                 {ourBench.map((p) => (
-                  <li key={p.id} className="rounded bg-amber-50/80 px-2 py-1 text-xs">
-                    <span className="text-amber-800/80">{p.role}</span> {p.name}{' '}
-                    <span className="tabular-nums text-slate-500">{p.overall}</span>
+                  <li key={p.id} className="flex items-center gap-1.5 rounded bg-amber-50/80 px-2 py-1 text-xs">
+                    <PlayerFace name={p.name} size="xs" />
+                    <span>
+                      <span className="text-amber-800/80">{p.role}</span> {p.name}{' '}
+                      <span className="tabular-nums text-slate-500">{p.overall}</span>
+                    </span>
                   </li>
                 ))}
               </ul>

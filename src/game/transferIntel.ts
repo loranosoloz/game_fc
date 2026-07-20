@@ -1,4 +1,4 @@
-import type { GameSave, Player, PositionGroup } from './types'
+import type { GameSave, Player, PositionGroup, TransferAddonPackage } from './types'
 import { estimatedValue, marketSellPremium } from './transfer'
 import { groupLabel, roleLabel } from './positions'
 import { formatMoney } from '@/lib/format'
@@ -473,5 +473,322 @@ export function toneClass(tone: IntelTone) {
       return 'border-red-300 bg-red-50 text-red-950'
     default:
       return 'border-slate-200 bg-slate-50 text-slate-800'
+  }
+}
+
+export interface AddonIntel {
+  verdict: TransferIntel['verdict']
+  verdictLabel: string
+  headline: string
+  summary: string
+  points: IntelPoint[]
+  upfrontCost: number
+  estimatedAddonMax: number
+  totalDealEstimate: number
+  budgetAfterUpfront: number
+  addonShareOfDeal: number
+  financeVoice: string
+  suggestedNote: string
+}
+
+function addonVerdictLabel(v: TransferIntel['verdict'], mode: 'buy' | 'sell') {
+  if (mode === 'buy') {
+    switch (v) {
+      case 'strongly_yes':
+        return 'แพ็ก add-on คุ้มมาก'
+      case 'yes':
+        return 'แพ็ก add-on โอเค'
+      case 'hold':
+        return 'ปรับ add-on ก่อนเซ็น'
+      case 'no':
+        return 'add-on แพงเกิน'
+      case 'strongly_no':
+        return 'หลีกเลี่ยง add-on นี้'
+    }
+  }
+  switch (v) {
+    case 'strongly_yes':
+      return 'add-on ดีมากสำหรับขาย'
+    case 'yes':
+      return 'add-on ช่วยปิดดีล'
+    case 'hold':
+      return 'เพิ่ม add-on อีกนิด'
+    case 'no':
+      return 'add-on น้อยเกิน'
+    case 'strongly_no':
+      return 'อย่าขายแบบนี้'
+  }
+}
+
+function projectedAppsPerSeason(player: Player, save: GameSave, clubId: string): number {
+  const squad = squadOf(save, clubId)
+  const avg = avgOvr(squad)
+  const tactics = save.tacticsByClub[clubId]
+  const inXi = tactics?.startingXi.includes(player.id) ?? false
+  if (inXi) return 34
+  if (player.overall >= avg + 2) return 22
+  if (player.overall >= avg - 2) return 14
+  return 6
+}
+
+function sumAddonExposure(
+  addons: TransferAddonPackage,
+  player: Player,
+  save: GameSave,
+  clubId: string,
+  contractYears: number,
+): number {
+  const appsPerSeason = projectedAppsPerSeason(player, save, clubId)
+  const totalApps = appsPerSeason * contractYears
+  let max = 0
+
+  if (addons.appearanceFee > 0 && addons.appearanceNeeded > 0) {
+    const prob = totalApps >= addons.appearanceNeeded ? 0.85 : 0.35
+    max += addons.appearanceFee * prob
+  }
+  if (addons.goalsFee > 0 && addons.goalsNeeded > 0) {
+    const goalsPerSeason =
+      player.role === 'ST' || player.role === 'AM' ? 12 : player.role === 'W' ? 8 : 3
+    const totalGoals = goalsPerSeason * contractYears
+    max += totalGoals >= addons.goalsNeeded ? addons.goalsFee * 0.7 : addons.goalsFee * 0.2
+  }
+  if (addons.assistsFee > 0 && addons.assistsNeeded > 0) {
+    const astPerSeason = player.role === 'W' || player.role === 'AM' ? 8 : 4
+    const totalAst = astPerSeason * contractYears
+    max += totalAst >= addons.assistsNeeded ? addons.assistsFee * 0.65 : addons.assistsFee * 0.15
+  }
+  if (addons.cleanSheetsFee > 0 && addons.cleanSheetsNeeded > 0) {
+    const csPerSeason = player.position === 'GK' ? 14 : player.position === 'DEF' ? 8 : 0
+    const totalCs = csPerSeason * contractYears
+    max += totalCs >= addons.cleanSheetsNeeded ? addons.cleanSheetsFee * 0.6 : addons.cleanSheetsFee * 0.1
+  }
+  if (addons.intlCapsFee && addons.intlCapsFee > 0) {
+    max += addons.intlCapsFee * 0.25
+  }
+  max += addons.promotionFee * 0.05
+  max += addons.leagueTitleFee * 0.08
+  max += addons.europeFee * 0.15
+
+  return Math.round(max)
+}
+
+export function analyzeAddons(
+  save: GameSave,
+  player: Player,
+  mode: 'buy' | 'sell',
+  baseFee: number,
+  wage: number,
+  contractYears: number,
+  addons: TransferAddonPackage,
+): AddonIntel {
+  const human = save.clubs.find((c) => c.id === save.humanClubId)!
+  const value = estimatedValue(player)
+  const upfrontCost = baseFee + (addons.signingOnFee ?? 0)
+  const estimatedAddonMax = sumAddonExposure(addons, player, save, human.id, contractYears)
+  const playerBonusMax =
+    (addons.perAppearance ?? 0) * projectedAppsPerSeason(player, save, human.id) * contractYears +
+    (addons.perGoal ?? 0) * 8 * contractYears +
+    (addons.perAssist ?? 0) * 5 * contractYears +
+    (addons.perCleanSheet ?? 0) * 6 * contractYears
+  const totalDealEstimate = Math.round(upfrontCost + estimatedAddonMax + playerBonusMax * 0.5)
+  const budgetAfterUpfront = human.balance - upfrontCost
+  const addonShareOfDeal =
+    totalDealEstimate > 0 ? (estimatedAddonMax + playerBonusMax * 0.5) / totalDealEstimate : 0
+  const points: IntelPoint[] = []
+  let score = 52
+
+  const feePct = upfrontCost / Math.max(human.balance, 1)
+  if (mode === 'buy') {
+    if (feePct > 0.5 && estimatedAddonMax < baseFee * 0.15) {
+      points.push({
+        lens: 'การเงิน',
+        tone: 'warning',
+        score: 35,
+        title: 'จ่ายหน้าเยอะเกิน — ควรผ่อน add-on',
+        why: `ค่าตัวหน้า ${formatMoney(upfrontCost)} กิน ~${(feePct * 100).toFixed(0)}% งบ · ลองลดหน้าแล้วใส่โบนัสลงแข่ง/ประตูเพื่อกระจายความเสี่ยง`,
+      })
+      score -= 10
+    } else if (feePct <= 0.25 && estimatedAddonMax > baseFee * 0.4) {
+      points.push({
+        lens: 'การเงิน',
+        tone: 'positive',
+        score: 82,
+        title: 'โครงสร้างผ่อนจ่ายดี',
+        why: `จ่ายหน้า ${formatMoney(upfrontCost)} (~${(feePct * 100).toFixed(0)}% งบ) · add-on สูงสุดประมาณ ${formatMoney(estimatedAddonMax)} — สภาพคล่องยังหมุนได้`,
+      })
+      score += 12
+    } else {
+      points.push({
+        lens: 'การเงิน',
+        tone: 'neutral',
+        score: 58,
+        title: `ภาระรวมประมาณ ${formatMoney(totalDealEstimate)}`,
+        why: `หน้า ${formatMoney(upfrontCost)} + add-on คลับขาย ~${formatMoney(estimatedAddonMax)} + โบนัสนักเตะ ~${formatMoney(Math.round(playerBonusMax * 0.5))} · งบหลังจ่ายหน้า ${formatMoney(budgetAfterUpfront)}`,
+      })
+    }
+
+    if (addons.sellOnPercent >= 20) {
+      points.push({
+        lens: 'ขายต่อ',
+        tone: addons.sellOnPercent >= 30 ? 'critical' : 'warning',
+        score: addons.sellOnPercent >= 30 ? 20 : 38,
+        title: `Sell-on ${addons.sellOnPercent}% สูง`,
+        why:
+          addons.sellOnMode === 'profit'
+            ? `ถ้าขายต่อกำไร คุณเสีย ${addons.sellOnPercent}% ของกำไร — นักเตะอายุน้อย/ดี จะกัดกำไรในอนาคต`
+            : `ถ้าขายต่อ คุณเสีย ${addons.sellOnPercent}% จากค่าตัวถัดไป — แนะนำ ≤10% ถ้าเป็นโปรไฟล์เด็ก`,
+      })
+      score -= addons.sellOnPercent >= 30 ? 14 : 6
+    } else if (addons.sellOnPercent > 0) {
+      points.push({
+        lens: 'ขายต่อ',
+        tone: 'positive',
+        score: 72,
+        title: `Sell-on ${addons.sellOnPercent}% ยอมรับได้`,
+        why: `ระดับนี้เป็นที่นิยมปิดดีล — ไม่กัดกำไรมากถ้าขายต่อในอนาคต`,
+      })
+      score += 4
+    }
+
+    if (addons.appearanceFee > 0) {
+      const apps = projectedAppsPerSeason(player, save, human.id) * contractYears
+      const likely = apps >= addons.appearanceNeeded
+      points.push({
+        lens: 'โบนัสลงแข่ง',
+        tone: likely ? 'warning' : 'positive',
+        score: likely ? 42 : 78,
+        title: likely
+          ? `โบนัส ${formatMoney(addons.appearanceFee)} น่าจะถึง (${addons.appearanceNeeded} นัด)`
+          : `โบนัสลงแข่งปลอดภัย (${addons.appearanceNeeded} นัด)`,
+        why: likely
+          ? `คาดลง ~${apps} นัดใน ${contractYears} ปี — มีโอกาสจ่าย ${formatMoney(addons.appearanceFee)} ให้คลับขาย`
+          : `เป้า ${addons.appearanceNeeded} นัดสูงกว่าที่คาดลง (~${apps}) — เงินอาจไม่จ่ายจริง`,
+      })
+      score += likely ? -5 : 6
+    }
+
+    if ((addons.signingOnFee ?? 0) > baseFee * 0.15) {
+      points.push({
+        lens: 'เงินเซ็น',
+        tone: 'warning',
+        score: 40,
+        title: 'เงินเซ็นสัญญาหนัก',
+        why: `เงินเซ็น ${formatMoney(addons.signingOnFee ?? 0)} กินงบทันที — รวมหน้าแล้ว ${formatMoney(upfrontCost)} ก่อนเริ่มเล่นนัดแรก`,
+      })
+      score -= 8
+    }
+
+    if (addons.buyBackFee && addons.buyBackFee > 0) {
+      points.push({
+        lens: 'ซื้อคืน',
+        tone: 'neutral',
+        score: 55,
+        title: `สิทธิ์ซื้อคืน ${formatMoney(addons.buyBackFee)}`,
+        why: `คลับขายเก็บทางกลับใน ${addons.buyBackYears ?? 3} ปี — ดีถ้าเป็นนักเตะดาวรุ่งที่ยังไม่พร้อมทันที`,
+      })
+    }
+
+    const wageBump =
+      (addons.annualWageRisePercent ?? 0) + (addons.europeWageBumpPercent ?? 0) * 0.3
+    if (wageBump > 15) {
+      points.push({
+        lens: 'ค่าเหนื่อย',
+        tone: 'warning',
+        score: 38,
+        title: 'โครงสร้างค่าเหนื่อยบวมในอนาคต',
+        why: `ขึ้นเงินเดือน ${addons.annualWageRisePercent ?? 0}%/ปี + โบนัสยุโรป ${addons.europeWageBumpPercent ?? 0}% — ค่าเหนื่อยเริ่ม ${formatMoney(wage)}/สัปดาห์ จะแพงขึ้นเร็ว`,
+      })
+      score -= 9
+    }
+  } else {
+    // sell mode — addons benefit seller
+    if (estimatedAddonMax > baseFee * 0.3) {
+      points.push({
+        lens: 'การเงิน',
+        tone: 'positive',
+        score: 85,
+        title: 'add-on เพิ่มมูลค่าดีลให้คุณ',
+        why: `หน้า ${formatMoney(baseFee)} + add-on ที่อาจได้อีก ~${formatMoney(estimatedAddonMax)} — รวมประมาณ ${formatMoney(totalDealEstimate)}`,
+      })
+      score += 14
+    } else {
+      points.push({
+        lens: 'การเงิน',
+        tone: 'warning',
+        score: 42,
+        title: 'add-on น้อย — ได้เงินหน้าเป็นหลัก',
+        why: `มูลค่าประเมิน ${formatMoney(value)} · ถ้าขาย ${formatMoney(baseFee)} โดยไม่มีโบนัส milestone อาจเสีย upside`,
+      })
+      score -= 6
+    }
+
+    if (addons.sellOnPercent >= 15) {
+      points.push({
+        lens: 'ขายต่อ',
+        tone: 'positive',
+        score: 80,
+        title: `เก็บ sell-on ${addons.sellOnPercent}%`,
+        why: `ถ้า ${player.name} โตต่อ คุณยังได้ส่วนแบ่งจากการขายครั้งถัดไป — ดีสำหรับนักเตะอายุน้อย`,
+      })
+      score += 10
+    } else if (player.age <= 24 && addons.sellOnPercent < 10) {
+      points.push({
+        lens: 'ขายต่อ',
+        tone: 'warning',
+        score: 35,
+        title: 'ควรใส่ sell-on สูงกว่านี้',
+        why: `อายุ ${player.age} ยังมีเพดานโต — ขายโดยไม่เก็บ % ขายต่อ = เสียกำไรในอนาคต`,
+      })
+      score -= 8
+    }
+
+    if (addons.appearanceFee > 0) {
+      points.push({
+        lens: 'โบนัสลงแข่ง',
+        tone: 'positive',
+        score: 70,
+        title: `โบนัสลงแข่ง ${formatMoney(addons.appearanceFee)}`,
+        why: `ถ้าเขาลงจริงที่ทีมซื้อ คุณได้เงินเพิ่ม — เป้า ${addons.appearanceNeeded} นัด`,
+      })
+      score += 5
+    }
+  }
+
+  if (addonShareOfDeal > 0.55 && mode === 'buy') {
+    points.push({
+      lens: 'ความเสี่ยงรวม',
+      tone: 'critical',
+      score: 25,
+      title: 'add-on กินสัดส่วนดีลมาก',
+      why: `~${(addonShareOfDeal * 100).toFixed(0)}% ของมูลค่าดีลเป็นเงื่อนไขทีหลัง/โบนัส — อ่าน fine print ให้ครบก่อนเซ็น`,
+    })
+    score -= 12
+  }
+
+  score = Math.max(0, Math.min(100, score))
+  const verdict = verdictFromScore(score)
+
+  const suggestedNote =
+    mode === 'buy'
+      ? feePct > 0.35
+        ? `แนะนำ: ลดค่าตัวหน้า → เพิ่มโบนัสลงแข่ง ${formatMoney(Math.round(value * 0.08))} ที่ ${Math.max(15, addons.appearanceNeeded)} นัด · sell-on ≤10%`
+        : `แนะนำ: หน้า ~${formatMoney(Math.round(value * 0.92))} · โบนัสประตู/แอสซิสต์ถ้าเป็นตำแหน่งรุก · หลีก sell-on สูง`
+      : player.age <= 26
+        ? `แนะนำ: ขอ sell-on ${Math.min(25, 15 + Math.round((26 - player.age) * 2))}% + โบนัสลงแข่ง ${formatMoney(Math.round(value * 0.06))}`
+        : `แนะนำ: เน้นเงินหน้า ${formatMoney(Math.round(value * 1.05))} · add-on น้อยเพราะอายุ ${player.age}`
+
+  return {
+    verdict,
+    verdictLabel: addonVerdictLabel(verdict, mode),
+    headline: mode === 'buy' ? 'AI วิเคราะห์ Add-on / เงื่อนไข' : 'AI วิเคราะห์ Add-on ตอนขาย',
+    summary: `ดีลรวมประมาณ ${formatMoney(totalDealEstimate)} (หน้า ${formatMoney(upfrontCost)} + add-on ~${formatMoney(estimatedAddonMax)}) · คะแนนคุ้มค่า ${score}/100`,
+    points: points.sort((a, b) => b.score - a.score),
+    upfrontCost,
+    estimatedAddonMax,
+    totalDealEstimate,
+    budgetAfterUpfront,
+    addonShareOfDeal,
+    financeVoice: `「งบ ${formatMoney(human.balance)} · หลังจ่ายหน้าเหลือ ${formatMoney(budgetAfterUpfront)} · ค่าเหนื่อย ${formatMoney(wage)}/สัปดาห์ × ${contractYears} ปี」`,
+    suggestedNote,
   }
 }

@@ -4,7 +4,7 @@ import { estimatedValue, listMarketPlayers, minAcceptableFee, marketSellPremium,
 import { agentStyleFor, AGENT_STYLE_LABEL, AGENT_STYLE_DESC } from '@/game/agents'
 import { emptyAddonPackage } from '@/game/transferClauses'
 import type { TransferAddonPackage } from '@/game/types'
-import { analyzeBuy, analyzeSell } from '@/game/transferIntel'
+import { analyzeBuy, analyzeSell, analyzeAddons } from '@/game/transferIntel'
 import { roleLabel, roleShort } from '@/game/positions'
 import { formatMoney } from '@/lib/format'
 import type { PositionGroup } from '@/game/types'
@@ -124,10 +124,20 @@ export function TransfersPage() {
     : null
 
   const intel = useMemo(() => {
-    if (tab === 'buy' && selectedBuy) return analyzeBuy(save, selectedBuy, save.fans)
-    if (tab === 'sell' && selectedSell) return analyzeSell(save, selectedSell, save.fans)
+    if (tab === 'buy' && selectedBuy)
+      return analyzeBuy(save, selectedBuy, save.fans)
+    if (tab === 'sell' && selectedSell)
+      return analyzeSell(save, selectedSell, save.fans)
     return null
   }, [tab, selectedBuy, selectedSell, save])
+
+  const addonIntel = useMemo(() => {
+    if (tab === 'buy' && selectedBuy)
+      return analyzeAddons(save, selectedBuy, 'buy', fee, wage, years, addons)
+    if (tab === 'sell' && selectedSell)
+      return analyzeAddons(save, selectedSell, 'sell', fee, wage, years, addons)
+    return null
+  }, [tab, selectedBuy, selectedSell, save, fee, wage, years, addons])
 
   const pickBuy = (id: string) => {
     const p = market.find((x) => x.id === id)!
@@ -659,7 +669,7 @@ export function TransfersPage() {
               <p className="text-xs font-semibold text-slate-700">Add-on → คลับขาย (จ่ายทีหลัง)</p>
               <div className="grid grid-cols-2 gap-2">
                 <label className="grid gap-0.5 text-xs">
-                  <span>ลงแข่งครบ (บาท)</span>
+                  <span>ลงแข่งครบ (€)</span>
                   <input
                     type="number"
                     className="rounded border border-slate-300 px-2 py-1.5"
@@ -678,7 +688,7 @@ export function TransfersPage() {
                   />
                 </label>
                 <label className="grid gap-0.5 text-xs">
-                  <span>ประตูครบ (บาท)</span>
+                  <span>ประตูครบ (€)</span>
                   <input
                     type="number"
                     className="rounded border border-slate-300 px-2 py-1.5"
@@ -697,7 +707,7 @@ export function TransfersPage() {
                   />
                 </label>
                 <label className="grid gap-0.5 text-xs">
-                  <span>แอสซิสต์ครบ (บาท)</span>
+                  <span>แอสซิสต์ครบ (€)</span>
                   <input
                     type="number"
                     className="rounded border border-slate-300 px-2 py-1.5"
@@ -716,7 +726,7 @@ export function TransfersPage() {
                   />
                 </label>
                 <label className="grid gap-0.5 text-xs">
-                  <span>คลีนชีตครบ (บาท)</span>
+                  <span>คลีนชีตครบ (€)</span>
                   <input
                     type="number"
                     className="rounded border border-slate-300 px-2 py-1.5"
@@ -759,7 +769,7 @@ export function TransfersPage() {
                   </select>
                 </label>
                 <label className="grid gap-0.5 text-xs">
-                  <span>แคปชาติ (บาท)</span>
+                  <span>แคปชาติ (€)</span>
                   <input
                     type="number"
                     className="rounded border border-slate-300 px-2 py-1.5"
@@ -1381,6 +1391,7 @@ export function TransfersPage() {
         {intel ? (
           <TransferIntelPanel
             intel={intel}
+            addonIntel={addonIntel}
             onApplySuggestion={() => {
               setFee(intel.suggestedFee)
               if (intel.suggestedWage) setWage(intel.suggestedWage)

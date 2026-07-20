@@ -1,8 +1,11 @@
 {
   "roles": [
-    { "id": "coach", "label": "Coach", "labelTh": "โค้ช", "affects": "training" },
+    { "id": "coach", "label": "Assistant coach", "labelTh": "ผู้ช่วยผู้จัดการ", "affects": "training" },
+    { "id": "attacking", "label": "Attacking coach", "labelTh": "โค้ชฝึกกองหน้า", "affects": "attacking_training" },
+    { "id": "defending", "label": "Defending coach", "labelTh": "โค้ชฝึกกองหลัง", "affects": "defending_training" },
+    { "id": "fitness", "label": "Fitness coach", "labelTh": "โค้ชฟิตเนส", "affects": "fitness" },
     { "id": "scout", "label": "Scout", "labelTh": "สเกาต์", "affects": "scouting" },
-    { "id": "physio", "label": "Physio", "labelTh": "แพทย์", "affects": "recovery" }
+    { "id": "physio", "label": "Physio", "labelTh": "แพทย์ / ฟิสิโอ", "affects": "recovery" }
   ],
   "defaultLevel": 8,
   "maxLevel": 20

@@ -2,6 +2,20 @@ import staffRoles from '@/data/staffRoles.json'
 import staffPoolDb from '@/data/staffPool.json'
 import type { Club, GameSave, StaffMember, StaffPerson, StaffRole, StaffState } from './types'
 
+export const STAFF_ROLES: StaffRole[] = [
+  'coach',
+  'attacking',
+  'defending',
+  'fitness',
+  'scout',
+  'physio',
+]
+
+export function staffRoleLabelTh(role: StaffRole): string {
+  const hit = (staffRoles.roles as { id: string; labelTh: string }[]).find((r) => r.id === role)
+  return hit?.labelTh ?? role
+}
+
 const PERSONALITIES = [
   'model_pro',
   'driven',
@@ -25,15 +39,51 @@ function clamp(n: number, min = 1, max = 20) {
 }
 
 /** Effective working level for a role slot from living skills. */
-export function effectiveStaffLevel(person: StaffPerson, role: StaffRole = person.role): number {
-  const skill =
-    role === 'coach' ? person.coachSkill : role === 'scout' ? person.scoutSkill : person.physioSkill
-  return clamp((skill + person.professionalism) / 2, 1, staffRoles.maxLevel)
+export function skillForRole(person: StaffPerson, role: StaffRole): number {
+  switch (role) {
+    case 'coach':
+      return person.coachSkill
+    case 'attacking':
+      return person.attackSkill ?? person.coachSkill
+    case 'defending':
+      return person.defendSkill ?? person.coachSkill
+    case 'fitness':
+      return person.fitnessSkill ?? person.coachSkill
+    case 'scout':
+      return person.scoutSkill
+    case 'physio':
+      return person.physioSkill
+  }
 }
 
-export function pricingFromSkills(person: Pick<StaffPerson, 'coachSkill' | 'scoutSkill' | 'physioSkill' | 'reputation' | 'professionalism'>) {
-  const peak = Math.max(person.coachSkill, person.scoutSkill, person.physioSkill)
-  const wageWeekly = Math.round(6_000 + peak * 2_800 + person.reputation * 1_400 + person.professionalism * 400)
+export function effectiveStaffLevel(person: StaffPerson, role: StaffRole = person.role): number {
+  return clamp((skillForRole(person, role) + person.professionalism) / 2, 1, staffRoles.maxLevel)
+}
+
+export function pricingFromSkills(
+  person: Pick<
+    StaffPerson,
+    | 'coachSkill'
+    | 'attackSkill'
+    | 'defendSkill'
+    | 'fitnessSkill'
+    | 'scoutSkill'
+    | 'physioSkill'
+    | 'reputation'
+    | 'professionalism'
+  >,
+) {
+  const peak = Math.max(
+    person.coachSkill,
+    person.attackSkill ?? 0,
+    person.defendSkill ?? 0,
+    person.fitnessSkill ?? 0,
+    person.scoutSkill,
+    person.physioSkill,
+  )
+  const wageWeekly = Math.round(
+    6_000 + peak * 2_800 + person.reputation * 1_400 + person.professionalism * 400,
+  )
   const hireFee = Math.round(30_000 + peak * 16_000 + person.reputation * 9_000)
   return { wageWeekly, hireFee }
 }
@@ -54,26 +104,40 @@ function rollPerson(id: string, name: string, rng: () => number, origin: StaffPe
         : 7 + Math.floor(rng() * 10)
   const det = 6 + Math.floor(rng() * 12)
 
-  // Three aptitudes — anyone can become coach if coachSkill develops
+  // Aptitudes — anyone can move roles if skill is high enough
   let coachSkill = 4 + Math.floor(rng() * 12)
+  let attackSkill = 4 + Math.floor(rng() * 12)
+  let defendSkill = 4 + Math.floor(rng() * 12)
+  let fitnessSkill = 4 + Math.floor(rng() * 12)
   let scoutSkill = 4 + Math.floor(rng() * 12)
   let physioSkill = 4 + Math.floor(rng() * 12)
-  // Soft starting preference (not locked forever)
-  const bias = Math.floor(rng() * 3)
+  const bias = Math.floor(rng() * 6)
   if (bias === 0) coachSkill = Math.min(20, coachSkill + 4)
-  if (bias === 1) scoutSkill = Math.min(20, scoutSkill + 4)
-  if (bias === 2) physioSkill = Math.min(20, physioSkill + 4)
+  if (bias === 1) attackSkill = Math.min(20, attackSkill + 4)
+  if (bias === 2) defendSkill = Math.min(20, defendSkill + 4)
+  if (bias === 3) fitnessSkill = Math.min(20, fitnessSkill + 4)
+  if (bias === 4) scoutSkill = Math.min(20, scoutSkill + 4)
+  if (bias === 5) physioSkill = Math.min(20, physioSkill + 4)
 
-  const role: StaffRole =
-    coachSkill >= scoutSkill && coachSkill >= physioSkill
-      ? 'coach'
-      : scoutSkill >= physioSkill
-        ? 'scout'
-        : 'physio'
+  const skills: Record<StaffRole, number> = {
+    coach: coachSkill,
+    attacking: attackSkill,
+    defending: defendSkill,
+    fitness: fitnessSkill,
+    scout: scoutSkill,
+    physio: physioSkill,
+  }
+  const role = (Object.entries(skills).sort((a, b) => b[1] - a[1])[0]![0] as StaffRole)
 
-  const reputation = clamp((coachSkill + scoutSkill + physioSkill) / 3 + rng() * 3)
+  const reputation = clamp(
+    (coachSkill + attackSkill + defendSkill + fitnessSkill + scoutSkill + physioSkill) / 6 +
+      rng() * 3,
+  )
   const base = {
     coachSkill,
+    attackSkill,
+    defendSkill,
+    fitnessSkill,
     scoutSkill,
     physioSkill,
     reputation,
@@ -96,6 +160,9 @@ function rollPerson(id: string, name: string, rng: () => number, origin: StaffPe
     determination: clamp(det),
     personalityId,
     coachSkill,
+    attackSkill,
+    defendSkill,
+    fitnessSkill,
     scoutSkill,
     physioSkill,
     reputation,
@@ -109,8 +176,12 @@ function rollPerson(id: string, name: string, rng: () => number, origin: StaffPe
 /** Migrate old JSON-shaped staff into living people. */
 export function ensureLivingStaff(p: StaffPerson & { level?: number }): StaffPerson {
   if (typeof p.coachSkill === 'number' && typeof p.energy === 'number') {
+    const coachSkill = p.coachSkill
     return {
       ...p,
+      attackSkill: p.attackSkill ?? clamp(coachSkill - 1 + Math.random() * 3),
+      defendSkill: p.defendSkill ?? clamp(coachSkill - 1 + Math.random() * 3),
+      fitnessSkill: p.fitnessSkill ?? clamp(coachSkill - 1 + Math.random() * 3),
       lastActivityId: p.lastActivityId ?? null,
       yearsInRole: p.yearsInRole ?? 0,
       formerPlayerName: p.formerPlayerName ?? null,
@@ -118,6 +189,9 @@ export function ensureLivingStaff(p: StaffPerson & { level?: number }): StaffPer
   }
   const level = p.level ?? 10
   const coachSkill = p.role === 'coach' ? level : clamp(level - 3 + Math.random() * 4)
+  const attackSkill = p.role === 'attacking' ? level : clamp(level - 3 + Math.random() * 4)
+  const defendSkill = p.role === 'defending' ? level : clamp(level - 3 + Math.random() * 4)
+  const fitnessSkill = p.role === 'fitness' ? level : clamp(level - 3 + Math.random() * 4)
   const scoutSkill = p.role === 'scout' ? level : clamp(level - 3 + Math.random() * 4)
   const physioSkill = p.role === 'physio' ? level : clamp(level - 3 + Math.random() * 4)
   const living: StaffPerson = {
@@ -135,6 +209,9 @@ export function ensureLivingStaff(p: StaffPerson & { level?: number }): StaffPer
     determination: p.determination ?? 10,
     personalityId: p.personalityId ?? 'balanced',
     coachSkill,
+    attackSkill,
+    defendSkill,
+    fitnessSkill,
     scoutSkill,
     physioSkill,
     reputation: p.reputation ?? level,
@@ -154,7 +231,7 @@ export function createStaffPool(clubs: Club[], seed = 2026): StaffPerson[] {
     rollPerson(`stf-${String(i + 1).padStart(3, '0')}`, name, rng),
   )
 
-  for (const role of ['coach', 'scout', 'physio'] as StaffRole[]) {
+  for (const role of STAFF_ROLES) {
     const candidates = pool
       .filter((p) => !p.clubId)
       .sort(
@@ -178,8 +255,7 @@ export function createStaffPool(clubs: Club[], seed = 2026): StaffPerson[] {
 }
 
 export function membersFromPool(pool: StaffPerson[], clubId: string): StaffMember[] {
-  const roles: StaffRole[] = ['coach', 'scout', 'physio']
-  return roles.map((role) => {
+  return STAFF_ROLES.map((role) => {
     const p = pool.find((s) => s.clubId === clubId && s.role === role)
     return p
       ? {
@@ -190,35 +266,42 @@ export function membersFromPool(pool: StaffPerson[], clubId: string): StaffMembe
         }
       : {
           role,
-          name: role === 'coach' ? 'โค้ชหลัก (ว่าง)' : `${role} (ว่าง)`,
+          name: `${staffRoleLabelTh(role)} (ว่าง)`,
           level: staffRoles.defaultLevel,
           staffId: null,
         }
   })
 }
 
-/** บังคับ: แต่ละสโมสรมีโค้ชหลักได้เพียง 1 คน — คนเกินถูกปล่อยเป็นฟรีเอเยนต์ */
+/** แต่ละตำแหน่งต่อคลับมีได้ 1 คน — คนเกินถูกปล่อยเป็นฟรีเอเยนต์ */
 export function enforceOneHeadCoachPerClub(pool: StaffPerson[]): StaffPerson[] {
-  const coachesByClub = new Map<string, StaffPerson[]>()
-  for (const p of pool) {
-    if (!p.clubId || p.role !== 'coach') continue
-    const list = coachesByClub.get(p.clubId) ?? []
-    list.push(p)
-    coachesByClub.set(p.clubId, list)
-  }
   const drop = new Set<string>()
-  for (const [, list] of coachesByClub) {
-    if (list.length <= 1) continue
-    list
-      .slice()
-      .sort((a, b) => b.coachSkill - a.coachSkill || b.reputation - a.reputation)
-      .slice(1)
-      .forEach((p) => drop.add(p.id))
+  for (const role of STAFF_ROLES) {
+    const byClub = new Map<string, StaffPerson[]>()
+    for (const p of pool) {
+      if (!p.clubId || p.role !== role) continue
+      const list = byClub.get(p.clubId) ?? []
+      list.push(p)
+      byClub.set(p.clubId, list)
+    }
+    for (const [, list] of byClub) {
+      if (list.length <= 1) continue
+      list
+        .slice()
+        .sort(
+          (a, b) =>
+            skillForRole(b, role) - skillForRole(a, role) || b.reputation - a.reputation,
+        )
+        .slice(1)
+        .forEach((p) => drop.add(p.id))
+    }
   }
   if (drop.size === 0) return pool
   return pool.map((p) => {
     if (!drop.has(p.id)) return p
-    const fallback: StaffRole = p.scoutSkill >= p.physioSkill ? 'scout' : 'physio'
+    const scores: [StaffRole, number][] = STAFF_ROLES.map((r) => [r, skillForRole(p, r)])
+    scores.sort((a, b) => b[1] - a[1])
+    const fallback = scores.find(([r]) => r !== p.role)?.[0] ?? 'scout'
     return { ...p, clubId: null, role: fallback, yearsInRole: 0 }
   })
 }
@@ -287,6 +370,9 @@ export function upgradeStaff(staff: StaffState, role: StaffRole, humanClubId: st
     if (p.clubId !== humanClubId || p.role !== role) return p
     const next = { ...p }
     if (role === 'coach') next.coachSkill = Math.min(20, next.coachSkill + 1)
+    if (role === 'attacking') next.attackSkill = Math.min(20, (next.attackSkill ?? next.coachSkill) + 1)
+    if (role === 'defending') next.defendSkill = Math.min(20, (next.defendSkill ?? next.coachSkill) + 1)
+    if (role === 'fitness') next.fitnessSkill = Math.min(20, (next.fitnessSkill ?? next.coachSkill) + 1)
     if (role === 'scout') next.scoutSkill = Math.min(20, next.scoutSkill + 1)
     if (role === 'physio') next.physioSkill = Math.min(20, next.physioSkill + 1)
     next.professionalism = Math.min(20, next.professionalism + (Math.random() < 0.3 ? 1 : 0))
@@ -302,7 +388,7 @@ export function upgradeStaff(staff: StaffState, role: StaffRole, humanClubId: st
       members: fin.members,
     },
     ok: true as const,
-    message: `อัปสกิล ${role} สำเร็จ`,
+    message: `อัปสกิล ${staffRoleLabelTh(role)} สำเร็จ`,
   }
 }
 
@@ -316,19 +402,18 @@ export function hireStaff(
   if (!person) return { ok: false, message: 'ไม่พบสตาฟ' }
   if (person.clubId) return { ok: false, message: 'สตาฟคนนี้มีสัญญาแล้ว' }
 
-  const skill =
-    asRole === 'coach' ? person.coachSkill : asRole === 'scout' ? person.scoutSkill : person.physioSkill
+  const skill = skillForRole(person, asRole)
   if (skill < 6) {
     return {
       ok: false,
-      message: `${person.name} ยังไม่พร้อมเป็น ${asRole} (สกิล ${skill}/20 — ต้องการอย่างน้อย 6)`,
+      message: `${person.name} ยังไม่พร้อมเป็น${staffRoleLabelTh(asRole)} (สกิล ${skill}/20 — ต้องการอย่างน้อย 6)`,
     }
   }
 
   const human = save.clubs.find((c) => c.id === save.humanClubId)!
   const totalCost = person.hireFee + person.wageWeekly * 4
   if (human.balance < totalCost) {
-    return { ok: false, message: `งบไม่พอ (ต้องการ ~${totalCost.toLocaleString('th-TH')} ฿)` }
+    return { ok: false, message: `งบไม่พอ (ต้องการ ~${totalCost.toLocaleString('en-US')} €)` }
   }
 
   const old = save.staff.pool!.find((p) => p.clubId === human.id && p.role === asRole)
@@ -354,7 +439,7 @@ export function hireStaff(
 
   return {
     ok: true,
-    message: `ว่าจ้าง ${person.name} เป็น ${asRole === 'coach' ? 'โค้ชหลัก' : asRole}${old ? ` (ปล่อย ${old.name})` : ''}`,
+    message: `เชิญ ${person.name} เข้าทีมงานเป็น${staffRoleLabelTh(asRole)}${old ? ` (ปล่อย ${old.name})` : ''}`,
     save: {
       ...save,
       clubs,
@@ -367,8 +452,8 @@ export function hireStaff(
         {
           id: `msg-hire-${Date.now()}`,
           date: save.currentDate,
-          title: `ว่าจ้างสตาฟ: ${person.name}`,
-          body: `ตำแหน่ง ${asRole === 'coach' ? 'โค้ชหลัก' : asRole} · พลังงาน ${person.energy}% · โค้ชสกิล ${person.coachSkill} · ค่าจ้าง ${person.hireFee.toLocaleString('th-TH')} ฿`,
+          title: `เชิญสตาฟ: ${person.name}`,
+          body: `ตำแหน่ง ${staffRoleLabelTh(asRole)} · พลังงาน ${person.energy}% · สกิล ${skill}/20 · ค่าเซ็น ${person.hireFee.toLocaleString('en-US')} €`,
           read: false,
         },
         ...save.inbox,
@@ -404,7 +489,7 @@ export function promoteStaffToCoach(
 
   return {
     ok: true,
-    message: `${person.name} เป็นโค้ชหลักคนเดียวของสโมสร${oldCoach ? ` · ${oldCoach.name} พ้นตำแหน่ง` : ''}`,
+    message: `${person.name} เป็นผู้ช่วยผู้จัดการ${oldCoach ? ` · ${oldCoach.name} พ้นตำแหน่ง` : ''}`,
     save: {
       ...save,
       staff: {
@@ -416,8 +501,8 @@ export function promoteStaffToCoach(
         {
           id: `msg-promo-${Date.now()}`,
           date: save.currentDate,
-          title: `โค้ชหลักคนใหม่: ${person.name}`,
-          body: `จาก ${person.role} → โค้ชหลัก · coachSkill ${person.coachSkill} (มีได้เพียง 1 คน)`,
+          title: `ผู้ช่วยผู้จัดการคนใหม่: ${person.name}`,
+          body: `จาก ${staffRoleLabelTh(person.role)} → ผู้ช่วยผู้จัดการ · สกิลโค้ช ${person.coachSkill}/20`,
           read: false,
         },
         ...save.inbox,
@@ -435,7 +520,7 @@ export function refreshStaffMarket(save: GameSave): GameSave {
 
   for (const club of save.clubs.filter((c) => c.controlledBy === 'ai')) {
     if (rng() > 0.12) continue
-    const role = (['coach', 'scout', 'physio'] as StaffRole[])[Math.floor(rng() * 3)]
+    const role = STAFF_ROLES[Math.floor(rng() * STAFF_ROLES.length)]!
     const free = pool
       .filter((p) => !p.clubId)
       .sort((a, b) => effectiveStaffLevel(b, role) - effectiveStaffLevel(a, role))
@@ -508,11 +593,17 @@ export function convertPlayerToStaff(
 
   const pro = player.growth?.professionalism ?? 10
   const coachSkill = clamp(player.overall / 6 + (role === 'coach' ? 4 : 0))
+  const attackSkill = clamp(player.overall / 7 + (role === 'attacking' ? 5 : 1))
+  const defendSkill = clamp(player.overall / 7 + (role === 'defending' ? 5 : 1))
+  const fitnessSkill = clamp(player.overall / 8 + (role === 'fitness' ? 5 : 2))
   const scoutSkill = clamp(player.overall / 7 + (role === 'scout' ? 4 : 2))
   const physioSkill = clamp(8 + (role === 'physio' ? 4 : 0))
   const reputation = clamp(player.overall / 5)
   const price = pricingFromSkills({
     coachSkill,
+    attackSkill,
+    defendSkill,
+    fitnessSkill,
     scoutSkill,
     physioSkill,
     reputation,
@@ -534,6 +625,9 @@ export function convertPlayerToStaff(
     determination: clamp(player.growth?.determination ?? 10),
     personalityId: player.personalityId,
     coachSkill,
+    attackSkill,
+    defendSkill,
+    fitnessSkill,
     scoutSkill,
     physioSkill,
     reputation,
@@ -590,7 +684,7 @@ export function maybePlayersBecomeStaff(save: GameSave): GameSave {
   )
   for (const p of candidates) {
     if (rng() > 0.04) continue
-    const role = (['coach', 'scout', 'physio'] as StaffRole[])[Math.floor(rng() * 3)]
+    const role = STAFF_ROLES[Math.floor(rng() * STAFF_ROLES.length)]!
     const res = convertPlayerToStaff(next, p.id, role)
     if (res.ok) next = res.save
   }

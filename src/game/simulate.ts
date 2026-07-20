@@ -275,6 +275,8 @@ export function prepareMatchday(
               power: save.managerProfile.power,
               attackingIQ: save.managerProfile.attackingIQ,
               defendingIQ: save.managerProfile.defendingIQ,
+              manManagement: save.managerProfile.manManagement,
+              adaptability: save.managerProfile.adaptability,
               strongVs: save.managerProfile.strongVs,
               weakVs: save.managerProfile.weakVs,
             },
@@ -487,6 +489,8 @@ export function continueAfterHalfTime(
             power: save.managerProfile.power,
             attackingIQ: save.managerProfile.attackingIQ,
             defendingIQ: save.managerProfile.defendingIQ,
+            manManagement: save.managerProfile.manManagement,
+            adaptability: save.managerProfile.adaptability,
             strongVs: save.managerProfile.strongVs,
             weakVs: save.managerProfile.weakVs,
           },
@@ -613,6 +617,8 @@ function humanSimCtx(save: GameSave) {
           power: save.managerProfile.power,
           attackingIQ: save.managerProfile.attackingIQ,
           defendingIQ: save.managerProfile.defendingIQ,
+          manManagement: save.managerProfile.manManagement,
+          adaptability: save.managerProfile.adaptability,
           strongVs: save.managerProfile.strongVs,
           weakVs: save.managerProfile.weakVs,
         },
@@ -1039,8 +1045,8 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
                           ? `${save.superCup?.name ?? 'Super Cup'}`
                           : 'ลีก'
       const gateNote = usHome
-        ? ` · ตั๋ว ${receipt.tickets.toLocaleString('th-TH')} + เสื้อ ${receipt.shirts.toLocaleString('th-TH')} ฿ (ผู้ชม ~${receipt.crowd.toLocaleString('th-TH')})`
-        : ` · รายได้เจ้าบ้าน ${homeIncome.toLocaleString('th-TH')} ฿`
+        ? ` · ตั๋ว ${formatMoney(receipt.tickets)} + เสื้อ ${formatMoney(receipt.shirts)} (ผู้ชม ~${receipt.crowd.toLocaleString('th-TH')})`
+        : ` · รายได้เจ้าบ้าน ${formatMoney(homeIncome)}`
       inbox.unshift({
         id: `msg-${Date.now()}-${fixture.id}`,
         date: fixture.date,
@@ -1499,8 +1505,15 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     next.training,
     trainingFacilityBonus(next),
     next.matchday,
+    {
+      coach: staffLevel(next.staff, 'coach'),
+      attacking: staffLevel(next.staff, 'attacking'),
+      defending: staffLevel(next.staff, 'defending'),
+      fitness: staffLevel(next.staff, 'fitness'),
+    },
   )
-  const coachBoost = staffLevel(next.staff, 'coach') / 40
+  const coachBoost =
+    staffLevel(next.staff, 'coach') / 40 + staffLevel(next.staff, 'fitness') / 55
   const trainingInjuries = detectNewInjuries(injuryBefore, trained.players, next.humanClubId)
   // Also catch match injuries (compare mid-state before training)
   const matchInjuries = detectNewInjuries(injuryBefore, players, next.humanClubId)

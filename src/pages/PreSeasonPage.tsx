@@ -42,7 +42,7 @@ export function PreSeasonPage() {
         {ps.note}
         {blocking ? (
           <span className="mt-1 block text-amber-800">
-            ต้องจบหรือข้ามปรีซีซั่นก่อนถึงจะเล่น Community Shield / ลีกได้ (ทัวร์ไม่ทับปฏิทินแข่งขัน)
+            บังคับเลือกทัวร์หรือข้าม · จบนัดอุ่นก่อน — ไม่งั้นเดินวัน / พักร้อน / เล่นลีกไม่ได้
           </span>
         ) : (
           <span className="mt-1 block text-emerald-800">

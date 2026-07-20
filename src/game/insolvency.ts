@@ -31,7 +31,7 @@ export interface ClubInsolvencyState {
   stage: InsolvencyStage
   /** MD ที่ติดลบ/ค้างจ่ายติดต่อกัน */
   negativeStreak: number
-  /** ค้างค่าเหนื่อยสะสม (บาท) */
+  /** ค้างค่าเหนื่อยสะสม (€) */
   unpaidWages: number
   /** ครั้งที่เลื่อนจ่ายค่าเหนื่อย */
   wageDeferCount: number

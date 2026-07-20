@@ -143,7 +143,7 @@ export function requestClubBudget(
     return {
       ok: false,
       save,
-      message: `ขอได้ไม่เกิน war chest ฿${owner.warChest.toLocaleString('th-TH')}`,
+      message: `ขอได้ไม่เกิน war chest €${owner.warChest.toLocaleString('th-TH')}`,
     }
   }
 
@@ -168,14 +168,14 @@ export function requestClubBudget(
         owner: {
           ...owner,
           relationship: clamp(owner.relationship - 4),
-          lastNote: `${owner.name} ปฏิเสธของบ ฿${amount.toLocaleString('th-TH')}`,
+          lastNote: `${owner.name} ปฏิเสธของบ €${amount.toLocaleString('th-TH')}`,
         },
         inbox: [
           {
             id: `msg-budget-${Date.now()}`,
             date: save.currentDate,
             title: 'บอร์ดปฏิเสธของบ',
-            body: `${owner.name} ไม่เห็นด้วยกับคำขอ ฿${amount.toLocaleString('th-TH')}`,
+            body: `${owner.name} ไม่เห็นด้วยกับคำขอ €${amount.toLocaleString('th-TH')}`,
             read: false,
           },
           ...save.inbox,
@@ -203,7 +203,7 @@ export function requestClubBudget(
       board: {
         ...nextBoard,
         confidence: clamp(board.confidence + 2),
-        lastNote: `บอร์ดอนุมัติฉีดเงิน ฿${amount.toLocaleString('th-TH')}`,
+        lastNote: `บอร์ดอนุมัติฉีดเงิน €${amount.toLocaleString('th-TH')}`,
       },
       owner: {
         ...owner,
@@ -216,12 +216,12 @@ export function requestClubBudget(
           id: `msg-budget-${Date.now()}`,
           date: save.currentDate,
           title: 'ฉีดเงินจากเจ้าของ',
-          body: `ได้รับ ฿${amount.toLocaleString('th-TH')} จาก ${owner.name}`,
+          body: `ได้รับ €${amount.toLocaleString('th-TH')} จาก ${owner.name}`,
           read: false,
         },
         ...save.inbox,
       ].slice(0, 40),
     },
-    message: `ได้งบ ฿${amount.toLocaleString('th-TH')} จาก ${owner.name}`,
+    message: `ได้งบ €${amount.toLocaleString('th-TH')} จาก ${owner.name}`,
   }
 }

@@ -669,6 +669,87 @@ export function pushNews(save: GameSave, story: MediaItem): GameSave {
   }
 }
 
+/**
+ * ข่าวเปิดเกมทุกครั้งที่เริ่มใหม่ — หลังจบบอลโลก / เข้าปรีซีซั่น
+ * (วันที่ควรเป็น ~20 ก.ค.)
+ */
+export function seedOpeningNews(save: GameSave): GameSave {
+  const club = save.clubs.find((c) => c.id === save.humanClubId)
+  const clubName = club?.name ?? 'สโมสรของคุณ'
+  const date = save.currentDate
+  const wcChamp =
+    save.worldCup?.championTh ||
+    save.worldCup?.champion ||
+    save.lastIntlTournamentReports?.find((r) => /โลก|world/i.test(r.labelTh || ''))
+      ?.championTh ||
+    null
+  const leagueName = save.leagueName
+
+  const stories: Array<{
+    id: string
+    headline: string
+    body: string
+    tone: MediaTone
+    tags: string[]
+    salt: number
+  }> = [
+    {
+      id: `news-open-wc-${save.season}`,
+      headline: wcChamp
+        ? `หลังฟุตบอลโลก ${save.season}: ${wcChamp} ฉลองแชมป์ — ดาวดังทยอยกลับสโมสร`
+        : `หลังฟุตบอลโลก ${save.season}: นักเตะทีมชาติทยอยกลับสโมสร`,
+      body: wcChamp
+        ? `ทัวร์นาเมนต์ใหญ่จบลงแล้ว แชมป์โลก ${wcChamp} · ลีกยุโรปเข้าสู่ช่วงปรีซีซั่นก่อนเปิดฤดูกาลกลางสิงหาคม`
+        : `ทัวร์นาเมนต์ทีมชาติฤดูร้อนจบลง · สโมสรเตรียมอุ่นเครื่องก่อนเปิดลีก`,
+      tone: 'neutral',
+      tags: ['opening', 'world_cup', 'international'],
+      salt: 11,
+    },
+    {
+      id: `news-open-manager-${save.humanClubId}`,
+      headline: `${clubName} แต่งตั้งผู้จัดการคนใหม่`,
+      body: `บอร์ด ${clubName} ยืนยันแต่งตั้งผู้จัดการคนใหม่ใน ${leagueName} · ภารกิจแรกคือเลือกแผนปรีซีซั่นและจัดทัพก่อน MD1`,
+      tone: 'positive',
+      tags: ['opening', 'club', 'manager'],
+      salt: 22,
+    },
+    {
+      id: `news-open-market-${save.season}`,
+      headline: 'ตลาดนักเตะเดือด — หน้าต่างซัมเมอร์เปิดเต็มที่',
+      body: `เอเยนต์และสโมสรเร่งเจรจาก่อนเปิดลีก · คาดว่าจะมีดีลใหญ่ต่อเนื่องตลอดเดือนกรกฎาคม–สิงหาคม`,
+      tone: 'neutral',
+      tags: ['opening', 'transfer'],
+      salt: 33,
+    },
+    {
+      id: `news-open-preseason-${save.season}`,
+      headline: 'ปรีซีซั่นเริ่มแล้ว — สโมสรเลือกทัวร์อุ่นเครื่อง',
+      body: `หลายทีมเปิดค่ายซ้อมและรับข้อเสนอทัวร์ต่างประเทศ · นัดอุ่นเครื่องช่วยเก็บความฟิตก่อน Community Shield และ MD1`,
+      tone: 'neutral',
+      tags: ['opening', 'preseason'],
+      salt: 44,
+    },
+  ]
+
+  let next = save
+  // push จากท้าย → หัวข่าวแรกอยู่บนสุด
+  for (const s of [...stories].reverse()) {
+    const outlet = pickOutlet(next, s.salt)
+    next = pushNews(next, {
+      id: s.id,
+      date,
+      channel: 'news',
+      headline: `${outlet.name} · ${s.headline}`,
+      body: s.body,
+      tone: s.tone,
+      tags: s.tags,
+      outlet: outlet.name,
+      subjectName: clubName,
+    })
+  }
+  return next
+}
+
 /** Compatibility: empty legacy feed (prefer createMediaFeed) */
 export function createPressFeed(): PressStory[] {
   return []

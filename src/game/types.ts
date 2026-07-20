@@ -96,8 +96,104 @@ export type BodyMap = Record<BodyPartId, number>
 export interface InjuryRecord {
   type: InjuryType
   days: number
-  source: 'match' | 'training'
+  source: 'match' | 'training' | 'history'
   bodyPart?: BodyPartId
+  /** วันที่เกิด (ย้อนหลัง / บันทึก) */
+  date?: string
+  /** ปีจบฤดูกาล เช่น 2024 = ฤดูกาล 2023/24 */
+  season?: number
+  /** เรื้อรัง / เจ็บซ้ำบริเวณเดิม */
+  chronic?: boolean
+  noteTh?: string
+}
+
+/** สถิติฤดูกาลย้อนหลัง (ก่อนเปิดอาชีพ / ฤดูกาลที่แล้ว) */
+export interface PlayerCareerSeason {
+  /** ปีจบฤดูกาล เช่น 2025 = 2024/25 */
+  season: number
+  label: string
+  clubName: string
+  leagueId?: string
+  apps: number
+  goals: number
+  assists: number
+  minutes?: number
+  yellows?: number
+  reds?: number
+}
+
+export interface PlayerCareerClubStint {
+  clubName: string
+  clubKey?: string
+  leagueId?: string
+  fromYear: number
+  toYear: number
+}
+
+export interface PlayerCareerTransfer {
+  year: number
+  fromClub: string
+  toClub: string
+  feeEur: number | null
+  kind: 'youth' | 'transfer' | 'loan' | 'loan_end' | 'free'
+  noteTh?: string
+}
+
+export interface PlayerCareerTitle {
+  year: number
+  label: string
+  labelTh: string
+  competition:
+    | 'league'
+    | 'cup'
+    | 'ucl'
+    | 'uel'
+    | 'super_cup'
+    | 'world_cup'
+    | 'euro'
+    | 'asian_cup'
+    | 'other'
+  clubName?: string
+  nation?: string
+}
+
+export interface PlayerWorldCupEntry {
+  year: number
+  apps: number
+  goals: number
+  assists: number
+  bestStage: string
+  bestStageTh: string
+  champion?: boolean
+}
+
+export interface PlayerCareerIntl {
+  nation: string
+  nationTh: string
+  caps: number
+  goals: number
+  worldCups: PlayerWorldCupEntry[]
+  majorTournaments: Array<{
+    year: number
+    name: string
+    nameTh: string
+    apps: number
+    goals: number
+    bestStageTh: string
+  }>
+}
+
+/** ประวัติอาชีพครบชุด — สโมสร · ย้าย · แชมป์ · ทีมชาติ */
+export interface PlayerCareerProfile {
+  version: 2 | 3 | 4
+  /** ที่มาของสถิติอาชีพ — ใช้เฉพาะของจริง */
+  source?: 'transfermarkt'
+  debutYear: number
+  clubs: PlayerCareerClubStint[]
+  transfers: PlayerCareerTransfer[]
+  titles: PlayerCareerTitle[]
+  intl: PlayerCareerIntl
+  summaryTh: string
 }
 
 export interface PlayerAttributes {
@@ -164,7 +260,7 @@ export interface Player {
   /** Playing-time / role satisfaction (1–20) */
   happiness: number
   wage: number
-  /** เงินส่วนตัวในกระเป๋า (฿) — ได้จากค่าเหนื่อย ใช้จ่ายตามไลฟ์สไตล์ */
+  /** เงินส่วนตัวในกระเป๋า (€) — ได้จากค่าเหนื่อย ใช้จ่ายตามไลฟ์สไตล์ */
   cash: number
   squadRole: SquadRole
   injuryDays: number
@@ -175,6 +271,10 @@ export interface Player {
   /** Per-region fitness — all clubs (human + AI) */
   bodyMap: BodyMap
   injuryHistory: InjuryRecord[]
+  /** สถิติฤดูกาลย้อนหลัง (ยิง / แอสซิสต์ / นัด) */
+  careerSeasons?: PlayerCareerSeason[]
+  /** ประวัติอาชีพครบ: ย้ายทีม · แชมป์ · ทีมชาติ · ฟุตบอลโลก */
+  careerProfile?: PlayerCareerProfile
   /** Days remaining sick (0 = healthy) — all clubs including AI */
   illnessDays: number
   illnessType: IllnessType | null
@@ -895,7 +995,13 @@ export interface DynamicsState {
   lastNote: string
 }
 
-export type StaffRole = 'coach' | 'scout' | 'physio'
+export type StaffRole =
+  | 'coach'
+  | 'attacking'
+  | 'defending'
+  | 'fitness'
+  | 'scout'
+  | 'physio'
 
 export interface StaffMember {
   role: StaffRole
@@ -907,7 +1013,7 @@ export interface StaffMember {
 export interface StaffPerson {
   id: string
   name: string
-  /** Current job — mutable (scout/physio สามารถเป็นโค้ชได้) */
+  /** Current job — mutable (ย้ายตำแหน่งในคลับได้) */
   role: StaffRole
   clubId: string | null
   origin: 'career' | 'ex_player'
@@ -920,8 +1026,11 @@ export interface StaffPerson {
   ambition: number
   determination: number
   personalityId: string
-  /** ทักษะแต่ละสาย 1–20 (กำหนดว่าจะเก่งเป็นโค้ชแค่ไหน) */
+  /** ทักษะแต่ละสาย 1–20 */
   coachSkill: number
+  attackSkill: number
+  defendSkill: number
+  fitnessSkill: number
   scoutSkill: number
   physioSkill: number
   reputation: number
@@ -1628,6 +1737,8 @@ export interface ClubIncomeState {
 export interface GameSave {
   version: 6
   createdAt: string
+  /** หน่วยเงินในเซฟ — EUR (หลัง ก.ค. 2026) */
+  currency?: 'EUR' | 'THB'
   managerName: string
   /** Manager public reputation 0–100 (jobs / pull / media) */
   managerReputation: number

@@ -197,13 +197,11 @@ export function nextWorldCupYear(fromYear: number): number {
 }
 
 /**
- * ปีชิงที่อาชีพนี้จะไป — ต้องมีช่วงคัดเลือก ~2 ปีก่อน
- * ถ้าเริ่มเกมปีเดียวกับ WC → เลื่อนไปรอบถัดไป (เช่น 2026 → เป้า 2030)
+ * ปีชิงฟุตบอลโลกที่ผูกกับฤดูกาลคลับนี้
+ * — ฤดูร้อนปีนั้น = ชิงก่อนเปิดลีก ส.ค. (เช่น ฤดูกาล 2026 → บอลโลก 2026 จบแล้วค่อยปรีซีซั่น)
  */
 export function pickFinalsYear(season: number): number {
-  let y = nextWorldCupYear(season)
-  if (y <= season) y += 4
-  return y
+  return nextWorldCupYear(season)
 }
 
 export function qualStartForFinals(finalsYear: number): number {

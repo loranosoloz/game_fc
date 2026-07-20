@@ -6,6 +6,7 @@ import type {
   InjuryTreatment,
   SetPiecePlan,
   SquadRole,
+  StaffRole,
   Tactics,
   TeamInstructions,
   TrainingState,
@@ -116,6 +117,7 @@ import {
 } from '@/game/internationalBreaks'
 import { applyMatchdayChronicle } from '@/game/matchdayReport'
 import { advanceCalendarDay } from '@/game/calendarDay'
+import { dayAdvanceBlockMessage } from '@/game/advanceGates'
 import {
   confirmNtCamp as confirmNtCampFn,
   ensureNtCamp,
@@ -230,10 +232,10 @@ interface GameStore {
   triggerPlayerBuyBack: (playerId: string) => boolean
   togglePlayerShortlist: (playerId: string) => void
   upgradeStaffRole: (role: 'coach' | 'scout' | 'physio') => void
-  hireStaffMember: (staffId: string, asRole?: 'coach' | 'scout' | 'physio') => boolean
+  hireStaffMember: (staffId: string, asRole?: StaffRole) => boolean
   promoteToCoach: (staffId: string) => boolean
   hireWorldCoach: (coachId: string) => boolean
-  retirePlayerToStaff: (playerId: string, role?: 'coach' | 'scout' | 'physio') => boolean
+  retirePlayerToStaff: (playerId: string, role?: StaffRole) => boolean
   upgradeYouthAcademy: () => void
   boostAffiliateRelations: () => boolean
   graduateYouthPlayer: (playerId: string) => boolean
@@ -818,8 +820,9 @@ export const useGameStore = create<GameStore>((set, get) => ({
   advanceDay: () => {
     const { save } = get()
     if (!save) return
-    if (save.seasonComplete) {
-      set({ status: 'จบฤดูกาลแล้ว — กด「เริ่มฤดูกาลใหม่」ที่แถบบนหรือหน้าแมตช์' })
+    const block = dayAdvanceBlockMessage(save)
+    if (block) {
+      set({ status: block })
       return
     }
     if (save.transferDeadline?.active) {
@@ -1484,6 +1487,11 @@ export const useGameStore = create<GameStore>((set, get) => ({
   takeManagerHoliday: (matchdays) => {
     const { save } = get()
     if (!save) return false
+    const block = dayAdvanceBlockMessage(save)
+    if (block) {
+      set({ status: `พักร้อนไม่ได้ — ${block}` })
+      return false
+    }
     const result = takeHoliday(save, matchdays)
     set({ status: result.message })
     if (!result.ok) return false

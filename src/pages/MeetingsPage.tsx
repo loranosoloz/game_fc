@@ -13,6 +13,7 @@ import {
 import type { ManagerTalkTopic, TalkResponse } from '@/game/types'
 import { cn } from '@/lib/cn'
 import { GhostButton, PageHeader, Panel, PrimaryButton, StatTile } from '@/components/ui'
+import { PlayerFace } from '@/components/PlayerFace'
 
 export function MeetingsPage() {
   const saveRaw = useGameStore((s) => s.save)!
@@ -71,11 +72,14 @@ export function MeetingsPage() {
                   key={r.id}
                   className="rounded-lg border border-amber-200 bg-white/90 px-4 py-3"
                 >
-                  <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <p className="font-semibold text-slate-900">
-                      {p?.name ?? r.playerId}{' '}
-                      <span className="text-[10px] font-bold tracking-wide text-amber-800 uppercase">
-                        {requestKindLabel(r.kind, r.labelTh)} · ด่วน {r.urgency}/10
+                  <div className="flex flex-wrap items-start justify-between gap-2">
+                    <p className="flex items-center gap-2 font-semibold text-slate-900">
+                      {p ? <PlayerFace name={p.name} size="sm" /> : null}
+                      <span>
+                        {p?.name ?? r.playerId}{' '}
+                        <span className="text-[10px] font-bold tracking-wide text-amber-800 uppercase">
+                          {requestKindLabel(r.kind, r.labelTh)} · ด่วน {r.urgency}/10
+                        </span>
                       </span>
                     </p>
                     <span className="text-[11px] text-slate-400">

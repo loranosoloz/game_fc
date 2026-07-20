@@ -19,7 +19,7 @@ import { createDynamics } from './dynamics'
 import { createStaff, ensureStaffState } from './staff'
 import { createYouthState } from './youth'
 import { createScouting, ensureScouting } from './scouting'
-import { createPressFeed, createMediaFeed, ensureMediaFeed } from './media'
+import { createPressFeed, createMediaFeed, ensureMediaFeed, seedOpeningNews } from './media'
 import { emptyAwardsState, monthKeyFromDate } from './awards'
 import { createCupState, generateCupFixtures } from './cup'
 import {
@@ -74,6 +74,8 @@ import {
 } from './managerProfile'
 import { runSummerIntlTournaments } from './intlTournaments'
 import { ensureSquadLanguages } from './languages'
+import { seedCareerHonoursFromHistory } from './worldHistory'
+import { ensurePlayerCareerSeeds } from './playerCareerSeed'
 import {
   createManagerProgress,
   ensureClubQuests,
@@ -263,6 +265,7 @@ export function createNewGame(
   const baseSave: GameSave = {
     version: 6,
     createdAt: new Date().toISOString(),
+    currency: 'EUR',
     managerName: managerName.trim() || 'Manager',
     managerReputation: startingReputationFromProfile(human.reputation, managerProfile),
     managerProfile,
@@ -372,15 +375,81 @@ export function createNewGame(
     worldCup: null,
   }
 
-  // ทัวร์นาเมนต์ฤดูร้อน + ภาษา + เควส + คู่อริ
+  // ทัวร์นาเมนต์ฤดูร้อน (รวมฟุตบอลโลกถ้าเป็นปีชิง) → แล้วเปิดปรีซีซั่นบังคับเลือก (เริ่ม 20 ก.ค.)
   const withWc = ensureWorldCup(baseSave)
   const summer = runSummerIntlTournaments(withWc)
   const withPs = openPreSeasonWindow(summer.save, seasonStart)
-  return ensureClubQuests(seedLeagueRivalries(ensureSquadLanguages(withPs)))
+  const withOpenNews = seedOpeningNews(withPs)
+  const summerNote = summer.reports.length
+    ? `จบฤดูร้อนแล้ว: ${summer.reports.map((r) => `${r.labelTh} (แชมป์ ${r.championTh})`).join(' · ')} · เลือกปรีซีซั่นก่อนเดินวัน`
+    : 'จบฤดูร้อนทีมชาติแล้ว · เลือกปรีซีซั่นก่อนเดินวัน'
+  return ensureClubQuests(
+    seedCareerHonoursFromHistory(
+      seedLeagueRivalries(
+        ensureSquadLanguages({
+          ...withOpenNews,
+          inbox: [
+            {
+              id: `msg-post-summer-${Date.now()}`,
+              date: withOpenNews.currentDate,
+              title: 'หลังฤดูร้อน · เข้าปรีซีซั่น',
+              body: summerNote,
+              read: false,
+            },
+            ...withOpenNews.inbox.map((m) => ({
+              ...m,
+              date: withOpenNews.currentDate,
+            })),
+          ].slice(0, 45),
+          preSeason: withOpenNews.preSeason
+            ? {
+                ...withOpenNews.preSeason,
+                note: `${summerNote} · ${withOpenNews.preSeason.note}`,
+              }
+            : withOpenNews.preSeason,
+        }),
+      ),
+    ),
+  )
+}
+
+/**
+ * เซฟเก่าค่าเหนื่อยจาก BIO เป็นบาท (×45) — แปลงเฉพาะค่าที่ดูเป็น THB
+ * งบคลับ/โค้ชโลกส่วนใหญ่เป็นสเกล € อยู่แล้ว ไม่หารทับ
+ */
+function migrateCurrencyToEur(save: GameSave): GameSave {
+  if (save.currency === 'EUR') return save
+  const thbWeekly = save.players.filter((p) => p.wage > 220_000).length
+  const ratio = thbWeekly / Math.max(1, save.players.length)
+  if (ratio < 0.08) {
+    return { ...save, currency: 'EUR' }
+  }
+  const toEur = (n: number) => Math.round(n / 40)
+  return {
+    ...save,
+    currency: 'EUR',
+    players: save.players.map((p) => {
+      if (p.wage <= 220_000) {
+        return {
+          ...p,
+          cash: p.cash != null && p.cash > 2_000_000 ? toEur(p.cash) : p.cash,
+        }
+      }
+      return {
+        ...p,
+        wage: toEur(p.wage),
+        cash: toEur(p.cash ?? 0),
+        releaseClause:
+          p.releaseClause != null && p.releaseClause > 8_000_000
+            ? toEur(p.releaseClause)
+            : p.releaseClause,
+      }
+    }),
+  }
 }
 
 export function ensurePhase5(save: GameSave): GameSave {
-  let next = ensureFans(save)
+  let next = migrateCurrencyToEur(ensureFans(save))
   const human = next.clubs.find((c) => c.id === next.humanClubId)!
   if (!next.training) next = { ...next, training: defaultTraining() }
   else if (!next.training.individual) {
@@ -420,6 +489,8 @@ export function ensurePhase5(save: GameSave): GameSave {
   next = ensureClubQuests(next)
   next = ensureSeasonCalendar(next)
   next = ensureSquadLanguages(next)
+  next = seedCareerHonoursFromHistory(next)
+  next = ensurePlayerCareerSeeds(next)
   if (next.lastMatchdayReport === undefined) next = { ...next, lastMatchdayReport: null }
   if (!next.matchdayChronicle) next = { ...next, matchdayChronicle: [] }
   if (next.lastIntlTournamentReports === undefined) {

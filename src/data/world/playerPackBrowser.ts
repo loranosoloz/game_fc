@@ -161,11 +161,17 @@ export function listAllPackPlayers(): PackPlayerRow[] {
     const meta = LEAGUE_META[leagueId]
     for (const clubKey of meta.keys()) {
       const club = clubLabel(leagueId, clubKey)
-      for (const p of meta.roster(clubKey)) {
+      const roster = meta.roster(clubKey)
+      const nameCount = new Map<string, number>()
+      for (let i = 0; i < roster.length; i++) {
+        const p = roster[i]!
+        const occ = (nameCount.get(p.name) ?? 0) + 1
+        nameCount.set(p.name, occ)
         const bio = bioForPlayerName(p.name)
         const fm = fmInsideForPlayerName(p.name)
+        const idSuffix = occ > 1 ? `#${occ}` : ''
         rows.push({
-          id: `${leagueId}-${clubKey}-${p.name}`,
+          id: `${leagueId}-${clubKey}-${i}-${p.name}${idSuffix}`,
           leagueId,
           leagueLabel: meta.label,
           clubKey,

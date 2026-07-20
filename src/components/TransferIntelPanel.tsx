@@ -1,13 +1,15 @@
-import type { TransferIntel } from '@/game/transferIntel'
+import type { TransferIntel, AddonIntel } from '@/game/transferIntel'
 import { toneClass } from '@/game/transferIntel'
 import { cn } from '@/lib/cn'
 import { formatMoney } from '@/lib/format'
 
 export function TransferIntelPanel({
   intel,
+  addonIntel,
   onApplySuggestion,
 }: {
   intel: TransferIntel
+  addonIntel?: AddonIntel | null
   onApplySuggestion?: () => void
 }) {
   const verdictColor =
@@ -71,6 +73,49 @@ export function TransferIntelPanel({
           {formatMoney(intel.suggestedFee)}
           {intel.suggestedWage ? ` · ค่าเหนื่อย ${formatMoney(intel.suggestedWage)}` : ''})
         </button>
+      ) : null}
+
+      {addonIntel ? (
+        <div className="space-y-3 border-t border-slate-100 pt-4">
+          <div
+            className={cn(
+              'rounded-lg border px-3 py-2',
+              addonIntel.verdict === 'strongly_yes' || addonIntel.verdict === 'yes'
+                ? 'border-lime-300 bg-lime-50 text-lime-950'
+                : addonIntel.verdict === 'hold'
+                  ? 'border-amber-300 bg-amber-50 text-amber-950'
+                  : 'border-red-300 bg-red-50 text-red-950',
+            )}
+          >
+            <p className="text-xs font-semibold tracking-wide uppercase">Add-on / เงื่อนไข</p>
+            <p className="mt-1 text-base font-bold">{addonIntel.verdictLabel}</p>
+            <p className="mt-2 text-sm font-semibold">{addonIntel.headline}</p>
+            <p className="mt-1 text-xs leading-relaxed opacity-90">{addonIntel.summary}</p>
+          </div>
+
+          <ul className="space-y-2">
+            {addonIntel.points.map((p) => (
+              <li
+                key={`addon-${p.lens}-${p.title}`}
+                className={cn('rounded-md border px-3 py-2 text-sm', toneClass(p.tone))}
+              >
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="font-semibold">
+                    [{p.lens}] {p.title}
+                  </span>
+                  <span className="text-xs opacity-70">{p.score}/100</span>
+                </div>
+                <p className="mt-1 text-xs leading-relaxed opacity-90">{p.why}</p>
+              </li>
+            ))}
+          </ul>
+
+          <div className="rounded-md border border-slate-200 bg-white px-3 py-2 text-xs text-slate-700">
+            <p className="font-semibold text-slate-500">เสียงการเงิน (add-on)</p>
+            <p className="mt-1 leading-relaxed">{addonIntel.financeVoice}</p>
+            <p className="mt-2 font-semibold text-indigo-900">{addonIntel.suggestedNote}</p>
+          </div>
+        </div>
       ) : null}
     </div>
   )

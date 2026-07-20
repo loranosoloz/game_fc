@@ -10,6 +10,7 @@ import {
 import { ensureAffiliates, affiliateBoostCost } from '@/game/affiliates'
 import { roleShort } from '@/game/positions'
 import { formatMoney } from '@/lib/format'
+import { PlayerFace } from '@/components/PlayerFace'
 import {
   GhostButton,
   PageHeader,
@@ -106,7 +107,12 @@ export function YouthPage() {
                     return (
                       <tr key={p.id}>
                         <td>
-                          <span className="text-slate-400">{roleShort(p.role)}</span> {p.name}
+                          <span className="inline-flex items-center gap-2">
+                            <PlayerFace name={p.name} size="xs" />
+                            <span>
+                              <span className="text-slate-400">{roleShort(p.role)}</span> {p.name}
+                            </span>
+                          </span>
                         </td>
                         <td className="text-xs text-slate-500">
                           {p.age <= 16 ? 'U16' : p.age <= 18 ? 'U18' : p.age <= 21 ? 'U21' : 'U23'}

@@ -23,6 +23,7 @@ import { leagueIdOfSave } from '@/game/mediaOutlets'
 import { formatMoney } from '@/lib/format'
 import { cn } from '@/lib/cn'
 import { GhostButton, PageHeader, Panel, PrimaryButton } from '@/components/ui'
+import { PlayerFace } from '@/components/PlayerFace'
 
 const TABS: { id: MediaChannel; label: string; hint: string }[] = [
   { id: 'news', label: 'ข่าว', hint: 'สำนักข่าวประเทศละ 2 ช่อง · ผลแข่ง · ดีล' },
@@ -189,13 +190,16 @@ export function MediaPage() {
           {shownLegends.map((p) => (
             <li
               key={p.id}
-              className="rounded-md border border-slate-200/80 bg-slate-50/80 px-3 py-2"
+              className="flex gap-2.5 rounded-md border border-slate-200/80 bg-slate-50/80 px-3 py-2"
             >
-              <p className="text-sm font-semibold text-slate-900">{p.name}</p>
-              <p className="text-[11px] font-medium text-slate-500">
-                {p.roleTh} · ตำนาน {p.legendClubName}
-              </p>
-              <p className="mt-1 text-xs leading-snug text-slate-600">{p.bioTh}</p>
+              <PlayerFace name={p.name} size="sm" className="mt-0.5" />
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-slate-900">{p.name}</p>
+                <p className="text-[11px] font-medium text-slate-500">
+                  {p.roleTh} · ตำนาน {p.legendClubName}
+                </p>
+                <p className="mt-1 text-xs leading-snug text-slate-600">{p.bioTh}</p>
+              </div>
             </li>
           ))}
         </ul>

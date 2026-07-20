@@ -173,7 +173,7 @@ export function applyLifestyleFines(
     if (clubId === save.humanClubId) {
       humanClubGain += result.clubGain
       inboxBits.push(
-        `${result.log.playerName}: ${result.log.labelTh} (−${result.log.amount.toLocaleString('th-TH')} ฿)`,
+        `${result.log.playerName}: ${result.log.labelTh} (−${result.log.amount.toLocaleString('th-TH')} €)`,
       )
     }
   }
@@ -232,7 +232,7 @@ export function applyMatchCardFines(
     )
     if (clubId === save.humanClubId) {
       bits.push(
-        `${result.log.playerName}: ${result.log.labelTh} (−${result.log.amount.toLocaleString('th-TH')} ฿)`,
+        `${result.log.playerName}: ${result.log.labelTh} (−${result.log.amount.toLocaleString('th-TH')} €)`,
       )
     }
   }

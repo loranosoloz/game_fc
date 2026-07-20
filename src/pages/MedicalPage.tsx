@@ -17,6 +17,7 @@ import { ILLNESS_TYPE_LABEL, isIll } from '@/game/illness'
 import { staffLevel } from '@/game/staff'
 import { formatBanStatus } from '@/game/discipline'
 import { BodyMapFigure } from '@/components/BodyMapFigure'
+import { PlayerFace } from '@/components/PlayerFace'
 import { GhostButton, PageHeader, Panel, StatTile } from '@/components/ui'
 
 const TREATMENTS: InjuryTreatment[] = ['rest', 'physio', 'injection']
@@ -24,7 +25,6 @@ const TREATMENTS: InjuryTreatment[] = ['rest', 'physio', 'injection']
 export function MedicalPage() {
   const save = useGameStore((s) => s.save)!
   const setInjuryTreatment = useGameStore((s) => s.setInjuryTreatment)
-  const upgradeStaffRole = useGameStore((s) => s.upgradeStaffRole)
   const physio = staffLevel(save.staff, 'physio')
 
   const squad = useMemo(
@@ -71,9 +71,6 @@ export function MedicalPage() {
       <PageHeader
         title="ศูนย์แพทย์"
         subtitle={`แผนที่ร่างกาย · แผนรักษา · Physio Lv.${physio}`}
-        actions={
-          <GhostButton onClick={() => upgradeStaffRole('physio')}>อัปเกรด Physio</GhostButton>
-        }
       />
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
@@ -138,10 +135,13 @@ export function MedicalPage() {
                       )}
                       onClick={() => setSelectedId(p.id)}
                     >
-                      <div className="flex flex-wrap items-baseline justify-between gap-2">
-                        <span className="font-bold text-rose-950">
-                          <span className="text-slate-500">{roleShort(p.role)}</span> {p.name}
-                          <span className="ml-2 text-xs font-normal text-slate-500">{p.age}ย</span>
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <span className="flex min-w-0 items-center gap-2 font-bold text-rose-950">
+                          <PlayerFace name={p.name} size="sm" />
+                          <span>
+                            <span className="text-slate-500">{roleShort(p.role)}</span> {p.name}
+                            <span className="ml-2 text-xs font-normal text-slate-500">{p.age}ย</span>
+                          </span>
                         </span>
                         <span className="text-sm font-semibold text-rose-800">
                           {p.injuryType ? INJURY_TYPE_LABEL[p.injuryType] : 'เจ็บ'}
@@ -152,6 +152,9 @@ export function MedicalPage() {
                       <p className="mt-1 text-xs text-slate-600">
                         Condition {p.condition}% · ฟื้น −{tick} วัน/tick · ประวัติ{' '}
                         {(p.injuryHistory ?? []).length} ครั้ง
+                        {(p.injuryHistory ?? []).some((h) => h.chronic)
+                          ? ' · มีเรื้อรัง'
+                          : ''}
                       </p>
                       <div className="mt-2 flex flex-wrap gap-1.5">
                         {TREATMENTS.map((t) => (
@@ -196,9 +199,12 @@ export function MedicalPage() {
                     )}
                     onClick={() => setSelectedId(p.id)}
                   >
-                    <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <span className="font-bold text-violet-950">
-                        <span className="text-slate-500">{roleShort(p.role)}</span> {p.name}
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <span className="flex min-w-0 items-center gap-2 font-bold text-violet-950">
+                        <PlayerFace name={p.name} size="sm" />
+                        <span>
+                          <span className="text-slate-500">{roleShort(p.role)}</span> {p.name}
+                        </span>
                       </span>
                       <span className="text-sm font-semibold text-violet-800">
                         {p.illnessType ? ILLNESS_TYPE_LABEL[p.illnessType] : 'ป่วย'} ·{' '}
@@ -221,12 +227,15 @@ export function MedicalPage() {
                 {banned.map((p) => (
                   <li
                     key={p.id}
-                    className="flex justify-between rounded-lg border border-amber-200 bg-amber-50 px-3 py-2"
+                    className="flex items-center justify-between gap-2 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2"
                   >
-                    <span>
-                      {roleShort(p.role)} {p.name} · เหลืองฤดูกาล {p.seasonYellows ?? 0}
+                    <span className="flex min-w-0 items-center gap-2">
+                      <PlayerFace name={p.name} size="xs" />
+                      <span className="truncate">
+                        {roleShort(p.role)} {p.name} · เหลืองฤดูกาล {p.seasonYellows ?? 0}
+                      </span>
                     </span>
-                    <span className="font-semibold text-amber-900">{formatBanStatus(p)}</span>
+                    <span className="shrink-0 font-semibold text-amber-900">{formatBanStatus(p)}</span>
                   </li>
                 ))}
               </ul>
@@ -242,13 +251,16 @@ export function MedicalPage() {
                 {lowCond.map((p) => (
                   <li
                     key={p.id}
-                    className="flex cursor-pointer justify-between rounded-lg bg-slate-50 px-3 py-2 hover:bg-slate-100"
+                    className="flex cursor-pointer items-center justify-between gap-2 rounded-lg bg-slate-50 px-3 py-2 hover:bg-slate-100"
                     onClick={() => setSelectedId(p.id)}
                   >
-                    <span>
-                      {roleShort(p.role)} {p.name}
+                    <span className="flex min-w-0 items-center gap-2">
+                      <PlayerFace name={p.name} size="xs" />
+                      <span className="truncate">
+                        {roleShort(p.role)} {p.name}
+                      </span>
                     </span>
-                    <span>{formatInjuryStatus(p)}</span>
+                    <span className="shrink-0">{formatInjuryStatus(p)}</span>
                   </li>
                 ))}
               </ul>
@@ -271,18 +283,21 @@ export function MedicalPage() {
               {historyHits.map((h, i) => (
                 <li
                   key={`${h.player.id}-${i}`}
-                  className="flex justify-between gap-2 rounded-lg border border-slate-100 px-3 py-2"
+                  className="flex items-center justify-between gap-2 rounded-lg border border-slate-100 px-3 py-2"
                 >
-                  <span>
-                    <span className="font-medium">{h.player.name}</span>
-                    <span className="text-slate-500">
-                      {' '}
-                      · {INJURY_TYPE_LABEL[h.type]}
-                      {h.bodyPart ? ` · ${BODY_PART_LABEL[h.bodyPart]}` : ''} (
-                      {h.source === 'match' ? 'แข่ง' : 'ซ้อม'})
+                  <span className="flex min-w-0 items-center gap-2">
+                    <PlayerFace name={h.player.name} size="xs" />
+                    <span className="truncate">
+                      <span className="font-medium">{h.player.name}</span>
+                      <span className="text-slate-500">
+                        {' '}
+                        · {INJURY_TYPE_LABEL[h.type]}
+                        {h.bodyPart ? ` · ${BODY_PART_LABEL[h.bodyPart]}` : ''} (
+                        {h.source === 'match' ? 'แข่ง' : 'ซ้อม'})
+                      </span>
                     </span>
                   </span>
-                  <span className="tabular-nums text-slate-600">{h.days}ว</span>
+                  <span className="shrink-0 tabular-nums text-slate-600">{h.days}ว</span>
                 </li>
               ))}
             </ul>

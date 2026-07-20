@@ -501,7 +501,7 @@ export function ClubVisionPage() {
         </p>
         <div className="mt-3 flex flex-wrap items-end gap-2">
           <label className="grid gap-1 text-sm">
-            <span>จำนวน (฿)</span>
+            <span>จำนวน (€)</span>
             <input
               type="number"
               className="rounded-md border border-slate-300 px-3 py-2"

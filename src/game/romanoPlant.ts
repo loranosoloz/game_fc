@@ -100,7 +100,7 @@ export function canPlantRomano(
   if (club.balance < cost) {
     return {
       ok: false,
-      reason: `งบไม่พอ — Romano เก็บ ${cost.toLocaleString('th-TH')} ฿`,
+      reason: `งบไม่พอ — Romano เก็บ ${cost.toLocaleString('th-TH')} €`,
     }
   }
   return { ok: true, cost }
@@ -600,7 +600,7 @@ export function plantRomanoStory(
       : exposed
         ? `สื่อ: ${payer.shortName} โดนแฉซื้อข่าว`
         : `Romano: ข่าวจาก ${payer.shortName}`,
-    body: `${reaction.summary} · จ่าย ${gate.cost.toLocaleString('th-TH')} ฿ · คูลดาวน์ ${ROMANO_PLANT_COOLDOWN_DAYS} วัน`,
+    body: `${reaction.summary} · จ่าย ${gate.cost.toLocaleString('th-TH')} € · คูลดาวน์ ${ROMANO_PLANT_COOLDOWN_DAYS} วัน`,
     read: false,
   }
 
@@ -612,7 +612,7 @@ export function plantRomanoStory(
   return {
     ok: true,
     save: next,
-    message: `${reaction.summary} (จ่าย ${gate.cost.toLocaleString('th-TH')} ฿)`,
+    message: `${reaction.summary} (จ่าย ${gate.cost.toLocaleString('th-TH')} €)`,
   }
 }
 

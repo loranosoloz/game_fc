@@ -380,7 +380,7 @@ export const EXTRA_CUP_NAMES: Record<
   LeagueId,
   { leagueCup: string; trophy: string }
 > = {
-  eng: { leagueCup: 'EFL Cup', trophy: 'EFL Trophy' },
+  eng: { leagueCup: 'EFL Cup (Carabao)', trophy: 'EFL Trophy' },
   esp: { leagueCup: 'Copa de la Liga', trophy: 'Copa Federación' },
   ger: { leagueCup: 'Ligapokal', trophy: '3. Liga Pokal' },
   fra: { leagueCup: 'Coupe de la Ligue', trophy: 'Trophée des Champions L2' },

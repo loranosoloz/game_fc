@@ -12,6 +12,7 @@ import { FORMATION_SLOTS, ALL_FORMATIONS, FORMATION_LABEL_TH, formationLabel } f
 import { roleLabel, roleShort } from '@/game/positions'
 import { isUnavailable } from '@/game/discipline'
 import { cn } from '@/lib/cn'
+import { PlayerFace } from '@/components/PlayerFace'
 
 const FORMATIONS = ALL_FORMATIONS
 
@@ -276,12 +277,15 @@ export function TacticsPage() {
           {tactics.startingXi.map((id, i) => {
             const p = save.players.find((x) => x.id === id)
             return (
-              <li key={id} className="flex justify-between rounded bg-slate-50 px-2 py-1">
-                <span>
-                  <span className="font-semibold text-slate-800">{roleShort(slots[i])}</span> ·{' '}
-                  {p?.name}
+              <li key={id} className="flex items-center justify-between gap-2 rounded bg-slate-50 px-2 py-1">
+                <span className="flex min-w-0 items-center gap-2">
+                  {p ? <PlayerFace name={p.name} size="xs" /> : null}
+                  <span className="truncate">
+                    <span className="font-semibold text-slate-800">{roleShort(slots[i])}</span> ·{' '}
+                    {p?.name}
+                  </span>
                 </span>
-                <span className="text-slate-500">{p?.overall}</span>
+                <span className="shrink-0 text-slate-500">{p?.overall}</span>
               </li>
             )
           })}
@@ -295,11 +299,14 @@ export function TacticsPage() {
               tactics.bench.map((id, i) => {
                 const p = save.players.find((x) => x.id === id)
                 return (
-                  <li key={id} className="flex justify-between rounded bg-amber-50/80 px-2 py-1">
-                    <span>
-                      <span className="font-semibold text-amber-900">B{i + 1}</span> · {p?.name}
+                  <li key={id} className="flex items-center justify-between gap-2 rounded bg-amber-50/80 px-2 py-1">
+                    <span className="flex min-w-0 items-center gap-2">
+                      {p ? <PlayerFace name={p.name} size="xs" /> : null}
+                      <span className="truncate">
+                        <span className="font-semibold text-amber-900">B{i + 1}</span> · {p?.name}
+                      </span>
                     </span>
-                    <span className="text-slate-500">{p?.overall}</span>
+                    <span className="shrink-0 text-slate-500">{p?.overall}</span>
                   </li>
                 )
               })
@@ -321,14 +328,15 @@ export function TacticsPage() {
                   disabled={unavailable && !selected}
                   onClick={() => togglePlayer(p.id)}
                   className={cn(
-                    'flex w-full items-center justify-between rounded-md border px-3 py-2 text-left text-sm',
+                    'flex w-full items-center gap-2 rounded-md border px-3 py-2 text-left text-sm',
                     selected
                       ? 'border-sky-300 bg-sky-50'
                       : 'border-slate-200 bg-white hover:bg-slate-50',
                     unavailable && 'opacity-50',
                   )}
                 >
-                  <span>
+                  <PlayerFace name={p.name} size="xs" />
+                  <span className="min-w-0 flex-1 truncate">
                     <span className="font-semibold" title={roleLabel(p.role)}>
                       {roleShort(p.role)}
                     </span>{' '}
@@ -339,7 +347,7 @@ export function TacticsPage() {
                       <span className="ml-1 text-xs text-violet-700">ป่วย {p.illnessDays}ว</span>
                     ) : null}
                   </span>
-                  <span className="text-slate-500">{p.overall}</span>
+                  <span className="shrink-0 text-slate-500">{p.overall}</span>
                 </button>
               </li>
             )

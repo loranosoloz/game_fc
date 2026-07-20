@@ -8,6 +8,7 @@ import { ffpStatus } from '@/game/financeFfp'
 import { formationLabel } from '@/game/types'
 import { ensureAwards } from '@/game/awards'
 import { PageHeader, Panel, SectionLabel } from '@/components/ui'
+import { PlayerFace } from '@/components/PlayerFace'
 
 export function DataHubPage() {
   const save = useGameStore((s) => s.save)!
@@ -215,8 +216,11 @@ export function DataHubPage() {
           {seasonLeaders.length ? (
             <ul className="mt-2 space-y-1 text-sm">
               {seasonLeaders.map((p) => (
-                <li key={p.playerId} className="flex justify-between gap-2">
-                  <span className="truncate">{p.name}</span>
+                <li key={p.playerId} className="flex items-center justify-between gap-2">
+                  <span className="flex min-w-0 items-center gap-2">
+                    <PlayerFace name={p.name} size="xs" />
+                    <span className="truncate">{p.name}</span>
+                  </span>
                   <span className="shrink-0 tabular-nums text-xs">
                     {p.goalsLeague}G · shoe {p.shoePoints.toFixed(1)} · {p.appsLeague} นัด
                   </span>
@@ -262,11 +266,14 @@ export function DataHubPage() {
               <p className="text-xs font-semibold text-slate-500">Top players</p>
               <ul className="mt-1 space-y-1 text-sm">
                 {top.map((p) => (
-                  <li key={p.id} className="flex justify-between">
-                    <span>
-                      {roleShort(p.role)} {p.name}
+                  <li key={p.id} className="flex items-center justify-between gap-2">
+                    <span className="flex min-w-0 items-center gap-1.5">
+                      <PlayerFace name={p.name} size="xs" />
+                      <span className="truncate">
+                        {roleShort(p.role)} {p.name}
+                      </span>
                     </span>
-                    <span>{p.overall}</span>
+                    <span className="shrink-0">{p.overall}</span>
                   </li>
                 ))}
               </ul>
@@ -275,11 +282,14 @@ export function DataHubPage() {
               <p className="text-xs font-semibold text-slate-500">Rising PA</p>
               <ul className="mt-1 space-y-1 text-sm">
                 {rising.map((p) => (
-                  <li key={p.id} className="flex justify-between">
-                    <span>
-                      {roleShort(p.role)} {p.name}
+                  <li key={p.id} className="flex items-center justify-between gap-2">
+                    <span className="flex min-w-0 items-center gap-1.5">
+                      <PlayerFace name={p.name} size="xs" />
+                      <span className="truncate">
+                        {roleShort(p.role)} {p.name}
+                      </span>
                     </span>
-                    <span>PA {p.pa}</span>
+                    <span className="shrink-0">PA {p.pa}</span>
                   </li>
                 ))}
               </ul>

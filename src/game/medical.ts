@@ -7,7 +7,7 @@ import {
   pickInjuredBodyPart,
 } from './bodyMap'
 
-const HISTORY_CAP = 12
+const HISTORY_CAP = 24
 
 export const INJURY_TYPE_LABEL: Record<InjuryType, string> = {
   muscle: 'กล้ามเนื้อ',

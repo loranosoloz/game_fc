@@ -16,9 +16,9 @@ export function leagueSeasonStart(season: number): string {
   return `${season}-08-15`
 }
 
-/** ต้นช่วงปรีซีซั่นบนแถบวันที่ (ก่อนทัวร์) */
+/** ต้นช่วงปรีซีซั่นบนแถบวันที่ — หลังจบบอลโลก (15 ส.ค. − 26 วัน = 20 ก.ค.) */
 export function preSeasonCalendarStart(seasonStart: string): string {
-  return addDays(seasonStart, -18)
+  return addDays(seasonStart, -26)
 }
 
 /** วันก่อน Community Shield / Super Cup */

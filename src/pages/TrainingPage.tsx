@@ -5,6 +5,7 @@ import { roleShort } from '@/game/positions'
 import { cn } from '@/lib/cn'
 import { formatInjuryStatus, INJURY_TYPE_LABEL } from '@/game/medical'
 import { individualFocusOptions, resolveTrainingFocus } from '@/game/training'
+import { PlayerFace } from '@/components/PlayerFace'
 
 const FOCUSES: { id: TrainingFocus; label: string }[] = [
   { id: 'tactics', label: 'แท็กติก' },
@@ -175,17 +176,20 @@ export function TrainingPage() {
                 {injured.map((p) => (
                   <li
                     key={p.id}
-                    className="flex justify-between rounded bg-rose-50 px-2 py-1.5 text-rose-900"
+                    className="flex items-center justify-between gap-2 rounded bg-rose-50 px-2 py-1.5 text-rose-900"
                   >
-                    <span>
-                      <span className="font-semibold">{roleShort(p.role)}</span> {p.name}
-                      {p.injuryType ? (
-                        <span className="ml-1 text-xs text-rose-700">
-                          ({INJURY_TYPE_LABEL[p.injuryType]})
-                        </span>
-                      ) : null}
+                    <span className="flex min-w-0 items-center gap-2">
+                      <PlayerFace name={p.name} size="xs" />
+                      <span className="truncate">
+                        <span className="font-semibold">{roleShort(p.role)}</span> {p.name}
+                        {p.injuryType ? (
+                          <span className="ml-1 text-xs text-rose-700">
+                            ({INJURY_TYPE_LABEL[p.injuryType]})
+                          </span>
+                        ) : null}
+                      </span>
                     </span>
-                    <span>{p.injuryDays} วัน</span>
+                    <span className="shrink-0">{p.injuryDays} วัน</span>
                   </li>
                 ))}
               </ul>
@@ -198,11 +202,14 @@ export function TrainingPage() {
             ) : (
               <ul className="mt-2 space-y-1 text-sm">
                 {lowCond.map((p) => (
-                  <li key={p.id} className="flex justify-between rounded bg-amber-50 px-2 py-1.5">
-                    <span>
-                      <span className="font-semibold">{roleShort(p.role)}</span> {p.name}
+                  <li key={p.id} className="flex items-center justify-between gap-2 rounded bg-amber-50 px-2 py-1.5">
+                    <span className="flex min-w-0 items-center gap-2">
+                      <PlayerFace name={p.name} size="xs" />
+                      <span className="truncate">
+                        <span className="font-semibold">{roleShort(p.role)}</span> {p.name}
+                      </span>
                     </span>
-                    <span>{formatInjuryStatus(p)}</span>
+                    <span className="shrink-0">{formatInjuryStatus(p)}</span>
                   </li>
                 ))}
               </ul>
@@ -222,9 +229,12 @@ export function TrainingPage() {
               key={p.id}
               className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-50 py-1.5"
             >
-              <span>
-                <span className="font-semibold text-slate-500">{roleShort(p.role)}</span> {p.name}
-                <span className="ml-2 text-xs text-slate-400">OVR {p.overall}</span>
+              <span className="flex min-w-0 items-center gap-2">
+                <PlayerFace name={p.name} size="xs" />
+                <span className="truncate">
+                  <span className="font-semibold text-slate-500">{roleShort(p.role)}</span> {p.name}
+                  <span className="ml-2 text-xs text-slate-400">OVR {p.overall}</span>
+                </span>
               </span>
               <select
                 className="rounded border border-slate-300 px-2 py-1 text-xs"

@@ -635,13 +635,32 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
   advanced = processLoanObligationsOnSeasonEnd(advanced, relegatedIds)
   const withFees = tickFeeInstallments(advanced)
   const withPromo = tickPromotionClauses(ensureSquadLanguages(withFees), promotedIds)
-  // ท้ายสุดทุกปี — เปิดปรีซีซั่นใหม่ + เลื่อนวันที่ไปต้นหน้าต่างทัวร์ (ไม่ทับ Shield/ลีก)
-  const ready = openPreSeasonWindow(ensureFans(withPromo), startDate)
+  // ท้ายสุดทุกปี — เปิดปรีซีซั่นใหม่หลังฤดูร้อน/บอลโลก
+  let ready = openPreSeasonWindow(ensureFans(withPromo), startDate)
+  const summerBlurb = summer.reports.length
+    ? `จบฤดูร้อน: ${summer.reports.map((r) => r.labelTh).join(' · ')} · เลือกปรีซีซั่นก่อนเดินวัน`
+    : 'จบฤดูร้อน · เลือกปรีซีซั่นก่อนเดินวัน'
+  ready = {
+    ...ready,
+    inbox: [
+      {
+        id: `msg-post-summer-${newSeason}`,
+        date: ready.currentDate,
+        title: 'หลังฤดูร้อน · เข้าปรีซีซั่น',
+        body: summerBlurb,
+        read: false,
+      },
+      ...ready.inbox,
+    ].slice(0, 45),
+    preSeason: ready.preSeason
+      ? { ...ready.preSeason, note: `${summerBlurb} · ${ready.preSeason.note}` }
+      : ready.preSeason,
+  }
 
   return {
     ok: true,
     save: ready,
-    message: `เริ่มฤดูกาล ${newSeason} · ปรีซีซั่นเปิดแล้ว · ปีที่แล้วอันดับ #${humanRank}${
+    message: `เริ่มฤดูกาล ${newSeason} · ${summerBlurb} · ปีที่แล้วอันดับ #${humanRank}${
       promo.notes.length ? ` · ${promo.notes.join(', ')}` : ''
     }`,
   }

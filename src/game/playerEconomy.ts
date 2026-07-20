@@ -323,7 +323,7 @@ export function simulatePlayerSpending(save: GameSave, days = 7): GameSave {
               labelTh: def.labelTh,
               category: def.category,
               amount,
-              note: `${def.note} · กำไรกลับ +${gain.toLocaleString('th-TH')} ฿`,
+              note: `${def.note} · กำไรกลับ +${gain.toLocaleString('th-TH')} €`,
             })
           }
           continue
@@ -405,7 +405,7 @@ export function simulatePlayerSpending(save: GameSave, days = 7): GameSave {
             title: 'การใช้เงินนักเตะ',
             body: logs
               .slice(0, 5)
-              .map((l) => `${l.playerName}: ${l.labelTh} (−${l.amount.toLocaleString('th-TH')} ฿)`)
+              .map((l) => `${l.playerName}: ${l.labelTh} (−${l.amount.toLocaleString('th-TH')} €)`)
               .join(' · '),
             read: false,
           },

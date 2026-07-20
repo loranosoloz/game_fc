@@ -46,3 +46,15 @@ export function listLeagues() {
     teams: l.clubs.length,
   }))
 }
+
+/** รายชื่อสโมสรสำหรับหน้าเริ่มอาชีพ — เบา ไม่ดึง roster pack */
+export function listClubOptionsForLeague(leagueId: LeagueId) {
+  return getLeague(leagueId).clubs.map((def, i) => ({
+    id: `club-${i + 1}`,
+    name: def.name,
+    shortName: def.shortName,
+    color: def.color,
+    reputation: def.rep,
+    crestKey: def.key,
+  }))
+}

@@ -1,9 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useGameStore } from '@/store/gameStore'
 import { roleLabel, roleShort, squadRoleLabel } from '@/game/positions'
 import { formatMoney } from '@/lib/format'
 import { cn } from '@/lib/cn'
-import type { GameSave, LifestyleOrder, Player, SquadRole } from '@/game/types'
+import type {
+  GameSave,
+  InjuryRecord,
+  LifestyleOrder,
+  Player,
+  PlayerCareerProfile,
+  PlayerCareerSeason,
+  SquadRole,
+} from '@/game/types'
 import { knowledgeOf, revealPa, revealGrowth, revealHidden, visibleAttrsDetailed } from '@/game/scouting'
 import { personalitiesDb } from '@/game/attributes'
 import {
@@ -27,6 +35,8 @@ import { formatEur } from '@/game/fmInside'
 import { formatLanguagesTh, playerLanguages } from '@/game/languages'
 import { playerNationality } from '@/game/nationalTeams'
 import { canRecallLoanDeal, ensureLoans } from '@/game/loans'
+import { careerSeasonTotals } from '@/game/playerCareerSeed'
+import { getCareerByName, realCareerToView } from '@/game/careerDb'
 
 const ROLES: SquadRole[] = ['key', 'regular', 'squad', 'prospect']
 
@@ -79,14 +89,17 @@ export function SquadPage() {
                     key={p.id}
                     className="flex flex-wrap items-center justify-between gap-2 rounded border border-teal-200/70 bg-white/70 px-2 py-1.5"
                   >
-                    <span>
-                      {p.name} · {roleShort(p.role)} · CA {p.overall} · ที่{' '}
-                      {host?.shortName ?? p.clubId}
-                      {isBuyLoanBack
-                        ? ' · ซื้อ+ยืมกลับ (ฤดูกาลหน้าเข้าทีม)'
-                        : deal
-                          ? ` · ยืมถึง MD${deal.endMatchday}`
-                          : ''}
+                    <span className="flex min-w-0 items-center gap-2">
+                      <PlayerFace name={p.name} size="xs" />
+                      <span>
+                        {p.name} · {roleShort(p.role)} · CA {p.overall} · ที่{' '}
+                        {host?.shortName ?? p.clubId}
+                        {isBuyLoanBack
+                          ? ' · ซื้อ+ยืมกลับ (ฤดูกาลหน้าเข้าทีม)'
+                          : deal
+                            ? ` · ยืมถึง MD${deal.endMatchday}`
+                            : ''}
+                      </span>
                     </span>
                     {deal && !isBuyLoanBack ? (
                       <button
@@ -231,6 +244,49 @@ function PlayerDetailPanel({
   diary: { date: string; labelTh: string; category: string; missTraining: boolean }[]
   onLifestyleOrder: (playerId: string, order: LifestyleOrder) => void
 }) {
+  const [careerSeasons, setCareerSeasons] = useState<PlayerCareerSeason[]>([])
+  const [careerProfile, setCareerProfile] = useState<PlayerCareerProfile | null>(null)
+  const [careerInjuries, setCareerInjuries] = useState<InjuryRecord[]>([])
+  const [careerLoading, setCareerLoading] = useState(false)
+
+  useEffect(() => {
+    if (!player) {
+      setCareerSeasons([])
+      setCareerProfile(null)
+      setCareerInjuries([])
+      setCareerLoading(false)
+      return
+    }
+    let cancelled = false
+    setCareerLoading(true)
+    void getCareerByName(player.name)
+      .then((real) => {
+        if (cancelled) return
+        if (!real) {
+          setCareerSeasons([])
+          setCareerProfile(null)
+          setCareerInjuries([])
+          setCareerLoading(false)
+          return
+        }
+        const view = realCareerToView(real, player.name, player.age)
+        setCareerSeasons(view.careerSeasons)
+        setCareerProfile(view.careerProfile)
+        setCareerInjuries(view.injuryHistory)
+        setCareerLoading(false)
+      })
+      .catch(() => {
+        if (cancelled) return
+        setCareerSeasons([])
+        setCareerProfile(null)
+        setCareerInjuries([])
+        setCareerLoading(false)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [player?.id, player?.name, player?.age])
+
   if (!player) {
     return (
       <aside className="rounded-xl border border-slate-200 bg-white/80 p-5 text-sm text-slate-500">
@@ -244,7 +300,10 @@ function PlayerDetailPanel({
   const attrs = visibleAttrsDetailed(player.attrs, knowledge)
   const growth = revealGrowth(player.growth, knowledge)
   const hidden = revealHidden(player.hidden, knowledge)
-  const history = player.injuryHistory ?? []
+  const history = [
+    ...careerInjuries,
+    ...(player.injuryHistory ?? []).filter((r) => r.source !== 'history'),
+  ].slice(0, 16)
   const lastAct = player.lastActivityId ? getActivity(player.lastActivityId) : null
   const ban = formatBanStatus(player)
   const lifeOrder = (player.lifestyleOrder ?? 'none') as LifestyleOrder
@@ -340,6 +399,174 @@ function PlayerDetailPanel({
         </div>
       ) : null}
 
+      {careerLoading ? (
+        <p className="text-xs text-slate-500">กำลังโหลดประวัติอาชีพ…</p>
+      ) : null}
+
+      {(careerSeasons.length > 0 || careerProfile) && !careerLoading ? (
+        <div className="space-y-3">
+          <h4 className="text-sm font-semibold">ประวัติอาชีพ</h4>
+          {careerProfile?.source === 'transfermarkt' ? (
+            <p className="text-[10px] font-semibold tracking-wide text-emerald-700 uppercase">
+              แหล่งข้อมูล Transfermarkt (จริง)
+            </p>
+          ) : null}
+          {careerProfile?.summaryTh ? (
+            <p className="text-[11px] leading-relaxed text-slate-600">
+              {careerProfile.summaryTh}
+            </p>
+          ) : null}
+
+          {careerProfile?.clubs && careerProfile.clubs.length > 0 ? (
+            <div>
+              <p className="text-[11px] font-bold tracking-wide text-slate-500 uppercase">
+                สโมสร
+              </p>
+              <ul className="mt-1 space-y-0.5 text-xs text-slate-800">
+                {careerProfile.clubs.map((c) => (
+                  <li key={`${c.clubName}-${c.fromYear}`}>
+                    <span className="font-semibold">{c.clubName}</span>
+                    <span className="text-slate-500">
+                      {' '}
+                      · {c.fromYear}–{c.toYear}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
+          {careerProfile?.transfers && careerProfile.transfers.length > 0 ? (
+            <div>
+              <p className="text-[11px] font-bold tracking-wide text-slate-500 uppercase">
+                ประวัติย้าย
+              </p>
+              <ul className="mt-1 max-h-28 space-y-1 overflow-y-auto text-[11px] text-slate-700">
+                {[...careerProfile.transfers].reverse().map((t, i) => (
+                  <li key={`${t.year}-${t.toClub}-${i}`} className="rounded bg-slate-50 px-1.5 py-1">
+                    <span className="font-semibold tabular-nums">{t.year}</span>
+                    {' · '}
+                    {t.fromClub} → {t.toClub}
+                    {t.feeEur != null && t.kind === 'transfer'
+                      ? ` · €${(t.feeEur / 1_000_000).toFixed(1)}ม.`
+                      : t.kind === 'free'
+                        ? ' · ฟรี'
+                        : t.kind === 'loan'
+                          ? ' · ยืม'
+                          : t.kind === 'youth'
+                            ? ' · เยาวชน'
+                            : ''}
+                    {t.noteTh ? ` — ${t.noteTh}` : ''}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
+          {careerProfile?.titles && careerProfile.titles.length > 0 ? (
+            <div>
+              <p className="text-[11px] font-bold tracking-wide text-slate-500 uppercase">
+                แชมป์ / ถ้วย
+              </p>
+              <ul className="mt-1 flex flex-wrap gap-1">
+                {careerProfile.titles.slice(0, 16).map((t, i) => (
+                  <span
+                    key={`${t.year}-${t.label}-${i}`}
+                    className="rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-950"
+                    title={t.clubName ?? t.nation}
+                  >
+                    {t.year} · {t.labelTh}
+                    {t.clubName ? ` (${t.clubName})` : ''}
+                  </span>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
+          {careerProfile?.intl ? (
+            <div>
+              <p className="text-[11px] font-bold tracking-wide text-slate-500 uppercase">
+                ทีมชาติ · ฟุตบอลโลก
+              </p>
+              <p className="mt-0.5 text-xs text-slate-700">
+                {careerProfile.intl.nationTh} · แคป {careerProfile.intl.caps} · ประตูชาติ{' '}
+                {careerProfile.intl.goals}
+              </p>
+              {careerProfile.intl.worldCups.length > 0 ? (
+                <ul className="mt-1 space-y-0.5 text-[11px] text-slate-700">
+                  {careerProfile.intl.worldCups.map((w) => (
+                    <li key={w.year}>
+                      บอลโลก {w.year}: {w.apps} นัด · {w.goals} ประตู · {w.assists} แอส ·{' '}
+                      <span className={w.champion ? 'font-bold text-amber-800' : ''}>
+                        {w.bestStageTh}
+                        {w.champion ? ' 🏆' : ''}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="mt-0.5 text-[11px] text-slate-500">ยังไม่เคยเข้าฟุตบอลโลก</p>
+              )}
+              {careerProfile.intl.majorTournaments.length > 0 ? (
+                <ul className="mt-1 space-y-0.5 text-[11px] text-slate-600">
+                  {careerProfile.intl.majorTournaments.map((t) => (
+                    <li key={`${t.year}-${t.name}`}>
+                      {t.nameTh} {t.year}: {t.apps} นัด · {t.goals} ประตู · {t.bestStageTh}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          ) : null}
+
+          {(careerSeasons?.length ?? 0) > 0 ? (
+            <div>
+              <p className="text-[11px] font-bold tracking-wide text-slate-500 uppercase">
+                สถิติรายฤดูกาล / รวมต่อสโมสร
+              </p>
+              {(() => {
+                const tot = careerSeasonTotals(careerSeasons)
+                return (
+                  <p className="mt-0.5 text-xs text-slate-500">
+                    รวม {tot.seasons} ฤดูกาล · {tot.apps} นัด · {tot.goals} ประตู · {tot.assists}{' '}
+                    แอสซิสต์
+                  </p>
+                )
+              })()}
+              <div className="mt-1 max-h-40 overflow-auto">
+                <table className="w-full text-left text-[11px]">
+                  <thead>
+                    <tr className="border-b border-slate-200 text-slate-500">
+                      <th className="py-1 pr-1 font-semibold">ฤดูกาล</th>
+                      <th className="py-1 pr-1 font-semibold">ทีม</th>
+                      <th className="py-1 pr-1 font-semibold">นัด</th>
+                      <th className="py-1 pr-1 font-semibold">ยิง</th>
+                      <th className="py-1 font-semibold">แอส</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[...careerSeasons].reverse().map((s, i) => (
+                      <tr
+                        key={`${s.label}-${s.clubName}-${i}`}
+                        className="border-b border-slate-50 text-slate-800"
+                      >
+                        <td className="py-1 pr-1 tabular-nums">{s.label}</td>
+                        <td className="max-w-[6rem] truncate py-1 pr-1" title={s.clubName}>
+                          {s.clubName}
+                        </td>
+                        <td className="py-1 pr-1 tabular-nums">{s.apps}</td>
+                        <td className="py-1 pr-1 tabular-nums font-semibold">{s.goals}</td>
+                        <td className="py-1 tabular-nums">{s.assists}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
       <div>
         <h4 className="text-sm font-semibold">คำสั่งไลฟ์สไตล์</h4>
         <select
@@ -413,17 +640,32 @@ function PlayerDetailPanel({
           <p className="mt-2 text-xs text-emerald-700">พร้อมลงแข่ง · condition {player.condition}%</p>
         )}
         {history.length > 0 ? (
-          <p className="mt-1 text-xs text-slate-500">
-            ประวัติเจ็บ {history.length} ครั้งล่าสุด:{' '}
-            {history
-              .slice(0, 3)
-              .map((h) =>
-                h.bodyPart
-                  ? `${INJURY_TYPE_LABEL[h.type]}/${BODY_PART_LABEL[h.bodyPart]}`
-                  : INJURY_TYPE_LABEL[h.type],
-              )
-              .join(', ')}
-          </p>
+          <div className="mt-2">
+            <p className="text-xs font-semibold text-slate-700">
+              ประวัติเจ็บ {history.length} ครั้ง
+              {history.some((h) => h.chronic) ? (
+                <span className="ml-1 text-rose-700">(มีเรื้อรัง)</span>
+              ) : null}
+            </p>
+            <ul className="mt-1 max-h-28 space-y-1 overflow-y-auto text-[11px] text-slate-600">
+              {history.slice(0, 8).map((h, i) => (
+                <li
+                  key={`${h.date ?? i}-${h.type}-${h.bodyPart ?? ''}`}
+                  className={cn(
+                    'rounded px-1.5 py-1',
+                    h.chronic ? 'bg-rose-50 text-rose-900' : 'bg-slate-50',
+                  )}
+                >
+                  {h.date ? `${h.date} · ` : ''}
+                  {INJURY_TYPE_LABEL[h.type]}
+                  {h.bodyPart ? ` / ${BODY_PART_LABEL[h.bodyPart]}` : ''}
+                  {` · ${h.days} วัน`}
+                  {h.chronic ? ' · เรื้อรัง' : ''}
+                  {h.noteTh ? ` — ${h.noteTh}` : ''}
+                </li>
+              ))}
+            </ul>
+          </div>
         ) : null}
       </div>
 

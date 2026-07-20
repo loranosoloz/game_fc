@@ -288,7 +288,7 @@ export function assignFormWatch(
   const human = save.clubs.find((c) => c.id === save.humanClubId)!
   const cost = formWatchCost(save)
   if (human.balance < cost) {
-    return { ok: false, message: `งบไม่พอ (ต้องการ ${cost.toLocaleString('th-TH')} ฿)` }
+    return { ok: false, message: `งบไม่พอ (ต้องการ ${cost.toLocaleString('th-TH')} €)` }
   }
 
   const assignment: FormWatchAssignment = {
@@ -301,7 +301,7 @@ export function assignFormWatch(
 
   return {
     ok: true,
-    message: `ส่งสเกาต์ดูนัด MD${fx.matchday} · ค่าใช้จ่าย ${cost.toLocaleString('th-TH')} ฿`,
+    message: `ส่งสเกาต์ดูนัด MD${fx.matchday} · ค่าใช้จ่าย ${cost.toLocaleString('th-TH')} €`,
     save: {
       ...save,
       clubs: save.clubs.map((c) =>

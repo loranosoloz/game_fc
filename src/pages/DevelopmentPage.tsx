@@ -4,6 +4,7 @@ import type { IndividualFocus } from '@/game/types'
 import { individualFocusOptions } from '@/game/training'
 import { roleShort } from '@/game/positions'
 import { cn } from '@/lib/cn'
+import { PlayerFace } from '@/components/PlayerFace'
 
 export function DevelopmentPage() {
   const save = useGameStore((s) => s.save)!
@@ -40,20 +41,21 @@ export function DevelopmentPage() {
                   type="button"
                   onClick={() => setSelectedId(p.id)}
                   className={cn(
-                    'flex w-full items-center justify-between rounded-md border px-3 py-2 text-left',
+                    'flex w-full items-center gap-2.5 rounded-md border px-3 py-2 text-left',
                     selected?.id === p.id
                       ? 'border-sky-300 bg-sky-50'
                       : 'border-slate-100 bg-slate-50 hover:bg-slate-100',
                   )}
                 >
-                  <span>
+                  <PlayerFace name={p.name} size="sm" />
+                  <span className="min-w-0 flex-1">
                     <span className="font-semibold">{roleShort(p.role)}</span> {p.name}
                     <span className="mt-0.5 block text-xs text-slate-500">
                       Learn {p.growth.learningRate} · focus {focus}
                       {mentor ? ` · mentor ${mentor.name}` : ''}
                     </span>
                   </span>
-                  <span className="text-right text-xs">
+                  <span className="shrink-0 text-right text-xs">
                     <span className="block font-bold">CA {p.ca}</span>
                     <span className="text-slate-500">PA {p.pa}</span>
                   </span>
@@ -67,12 +69,15 @@ export function DevelopmentPage() {
       <section className="space-y-4 rounded-xl border border-slate-200 bg-white/80 p-5">
         {selected ? (
           <>
-            <h3 className="text-lg font-semibold">
-              {selected.name}{' '}
-              <span className="text-sm font-normal text-slate-500">
-                {roleShort(selected.role)} · {selected.age}y
-              </span>
-            </h3>
+            <div className="flex items-center gap-3">
+              <PlayerFace name={selected.name} size="lg" className="ring-2 ring-slate-200" />
+              <h3 className="text-lg font-semibold">
+                {selected.name}{' '}
+                <span className="block text-sm font-normal text-slate-500">
+                  {roleShort(selected.role)} · {selected.age}y · CA {selected.ca} / PA {selected.pa}
+                </span>
+              </h3>
+            </div>
             <div>
               <p className="mb-1 text-xs font-medium text-slate-500">Individual training focus</p>
               <div className="flex flex-wrap gap-1">

@@ -150,9 +150,9 @@ export function buildSeasonCalendar(
   const dateByLeagueMd: Record<number, string> = {}
   let weekIndex = 0
 
-  // ช่วงปรีซีซั่นก่อนเปิดลีก — ไม่ทับ MD1 / Super Cup (Shield = seasonStart−3)
-  const preWeeks = 3
-  let preCursor = addDays(seasonStart, -7 * preWeeks)
+  // ช่วงปรีซีซั่นหลังจบบอลโลก — เริ่ม 20 ก.ค. (seasonStart−26) จนถึงก่อน Shield
+  const preWeeks = 4
+  let preCursor = addDays(seasonStart, -26)
   for (let i = 0; i < preWeeks; i++) {
     weeks.push({
       weekIndex,
@@ -200,8 +200,8 @@ export function buildSeasonCalendar(
       weeks.push({
         weekIndex,
         date: cursor,
-        kind: 'rest',
-        labelTh: 'สัปดาห์พัก / นัดถ้วย·ยุโรปอย่างเดียว',
+        kind: 'cup_europe',
+        labelTh: 'สัปดาห์ถ้วย · ยุโรป (ไม่มีนัดลีก)',
       })
       weekIndex += 1
       cursor = addDays(cursor, 7)
@@ -228,6 +228,27 @@ export function ensureSeasonCalendar(save: GameSave): GameSave {
     Object.keys(cal.dateByLeagueMd ?? {}).length >= 10 &&
     hasFriendly
   ) {
+    // เซฟเก่า: สัปดาห์ถ้วยเคยเป็น kind rest → ย้ายเป็น cup_europe
+    if (cal.weeks.some((w) => w.kind === 'rest')) {
+      return {
+        ...save,
+        seasonCalendar: {
+          ...cal,
+          weeks: cal.weeks.map((w) =>
+            w.kind === 'rest'
+              ? {
+                  ...w,
+                  kind: 'cup_europe' as const,
+                  labelTh:
+                    w.labelTh.includes('ถ้วย') || w.labelTh.includes('ยุโรป')
+                      ? w.labelTh
+                      : 'สัปดาห์ถ้วย · ยุโรป (ไม่มีนัดลีก)',
+                }
+              : w,
+          ),
+        },
+      }
+    }
     return save
   }
   return {

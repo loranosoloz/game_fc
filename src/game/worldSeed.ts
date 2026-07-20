@@ -15,6 +15,7 @@ import { createBodyMap } from '@/game/bodyMap'
 import { rollPlayerSkills } from '@/game/playerSkills'
 import { createClubSocial, createPlayerSocial } from '@/game/social'
 import { createClubFans } from '@/game/fans'
+import { seedPlayerCareer } from '@/game/playerCareerSeed'
 import { engRosterForClub, engYouthForClub } from '@/data/world/engPlayers'
 import { eng2RosterForClub } from '@/data/world/eng2Players'
 import { espRosterForClub, espYouthForClub } from '@/data/world/espPlayers'
@@ -309,16 +310,8 @@ export function createClubsFromLeague(leagueId: LeagueId, humanClubId: string): 
   return [...div1, ...div2]
 }
 
-export function listClubOptionsForLeague(leagueId: LeagueId) {
-  return getLeague(leagueId).clubs.map((def, i) => ({
-    id: `club-${i + 1}`,
-    name: def.name,
-    shortName: def.shortName,
-    color: def.color,
-    reputation: def.rep,
-    crestKey: def.key,
-  }))
-}
+export { listClubOptionsForLeague } from '@/data/world'
+
 
 /** Pick a unique real footballer name (league bank → overflow → numbered suffix). */
 function uniqueRealName(
@@ -435,6 +428,7 @@ export function createPlayersForClubDef(opts: {
   const usedRoles = new Map<RoleCode, number>()
 
   for (const star of starQueue) {
+    if (usedNames.has(star.name)) continue
     n += 1
     usedNames.add(star.name)
     const asYouth = Boolean(star.isYouth)
@@ -450,12 +444,12 @@ export function createPlayersForClubDef(opts: {
     const hidden = makeHidden(rng)
     if (bio?.injuryProne === true) hidden.injuryProneness = Math.max(14, hidden.injuryProneness)
     if (bio?.injuryProne === false) hidden.injuryProneness = Math.min(8, hidden.injuryProneness)
-    // BIO £ wages preferred; else FMInside € wages (~£0.86 → ฿×45 ≈ ×39)
+    // BIO £ → € (~1.17) · FMInside € ใช้ตรง ๆ
     const wageFromBio =
-      bio?.wageWeeklyGbp != null ? Math.round(bio.wageWeeklyGbp * 45) : null
+      bio?.wageWeeklyGbp != null ? Math.round(bio.wageWeeklyGbp * 1.17) : null
     const wageFromFm =
       wageFromBio == null && fmInside?.wageEurPw != null
-        ? Math.round(fmInside.wageEurPw * 39)
+        ? Math.round(fmInside.wageEurPw)
         : null
     const wageResolved =
       wageFromBio ??
@@ -468,9 +462,9 @@ export function createPlayersForClubDef(opts: {
       bio?.releaseClauseGbp === null
         ? null
         : bio?.releaseClauseGbp != null
-          ? Math.round(bio.releaseClauseGbp * 45)
+          ? Math.round(bio.releaseClauseGbp * 1.17)
           : fmInside?.sellValueEur != null && star.ovr >= 72
-            ? Math.round(fmInside.sellValueEur * 39)
+            ? Math.round(fmInside.sellValueEur)
             : star.ovr >= 80
               ? Math.round(star.ovr ** 2 * 1200)
               : null
@@ -618,7 +612,17 @@ export function createPlayersForClubDef(opts: {
     else if (p.squadRole !== 'key') p.squadRole = pickSquadRole(p.overall, p.age, idx)
   })
 
-  return { players: clubPlayers, nextN: n }
+  const season = 2026
+  const seeded = clubPlayers.map((p) =>
+    seedPlayerCareer(p, {
+      leagueId,
+      clubName: club.name,
+      clubKey: club.crestKey ?? def.key,
+      currentSeason: season,
+    }),
+  )
+
+  return { players: seeded, nextN: n }
 }
 
 export function createPlayersFromLeague(

@@ -277,6 +277,8 @@ export function coachMatchModifiers(
       power: number
       attackingIQ: number
       defendingIQ: number
+      manManagement: number
+      adaptability: number
       strongVs: string[]
       weakVs: string[]
     } | null
@@ -293,6 +295,8 @@ export function coachMatchModifiers(
         power: manager.power,
         attackingIQ: manager.attackingIQ,
         defendingIQ: manager.defendingIQ,
+        manManagement: manager.manManagement,
+        adaptability: manager.adaptability,
         strongVs: manager.strongVs,
         weakVs: manager.weakVs,
         isHuman: true,
@@ -306,6 +310,8 @@ export function coachMatchModifiers(
       power: w.power,
       attackingIQ: w.attackingIQ,
       defendingIQ: w.defendingIQ,
+      manManagement: w.manManagement,
+      adaptability: w.adaptability,
       strongVs: w.strongVs,
       weakVs: w.weakVs,
       isHuman: false,
@@ -319,19 +325,28 @@ export function coachMatchModifiers(
   let awayAtk = 1
   let awayDef = 1
   const notes: string[] = []
+  /** สเกลโค้ช 1–100 · 80 = กลาง */
   const powerFactor = (p: number) => 1 + (p - 80) * 0.0018
+  const manFactor = (m: number) => 1 + (m - 80) * 0.0009
+  /** ปรับตัวสูง → โทษแผนที่ไม่ถนัดเบาลง */
+  const weakAtkMul = (adapt: number) => 0.955 + (adapt - 70) * 0.0009
+  const weakDefMul = (adapt: number) => 0.97 + (adapt - 70) * 0.0005
 
   if (home) {
     homeAtk *= powerFactor(home.attackingIQ)
     homeDef *= powerFactor(home.defendingIQ)
     homeAtk *= 1 + (home.power - 80) * 0.0012
     homeDef *= 1 + (home.power - 80) * 0.0012
+    homeAtk *= manFactor(home.manManagement)
+    homeDef *= manFactor(home.manManagement)
     // ที่ปรึกษาแผนใต้ผู้จัดการ — โบนัสเล็ก
     if (home.isHuman) {
       const advisor = getWorldCoach(homeClub.coachId)
       if (advisor) {
         homeAtk *= 1 + (advisor.power - 75) * 0.0004
         homeDef *= 1 + (advisor.power - 75) * 0.0004
+        homeAtk *= 1 + (advisor.manManagement - 75) * 0.00025
+        homeDef *= 1 + (advisor.manManagement - 75) * 0.00025
       }
     }
   }
@@ -340,11 +355,15 @@ export function coachMatchModifiers(
     awayDef *= powerFactor(away.defendingIQ)
     awayAtk *= 1 + (away.power - 80) * 0.0012
     awayDef *= 1 + (away.power - 80) * 0.0012
+    awayAtk *= manFactor(away.manManagement)
+    awayDef *= manFactor(away.manManagement)
     if (away.isHuman) {
       const advisor = getWorldCoach(awayClub.coachId)
       if (advisor) {
         awayAtk *= 1 + (advisor.power - 75) * 0.0004
         awayDef *= 1 + (advisor.power - 75) * 0.0004
+        awayAtk *= 1 + (advisor.manManagement - 75) * 0.00025
+        awayDef *= 1 + (advisor.manManagement - 75) * 0.00025
       }
     }
   }
@@ -358,8 +377,8 @@ export function coachMatchModifiers(
       notes.push(`${home.name} ถนัดชนะแผน「${styleLabelTh(aStyle)}」`)
     }
     if (home.weakVs.includes(aStyle)) {
-      homeAtk *= 0.955
-      homeDef *= 0.97
+      homeAtk *= weakAtkMul(home.adaptability)
+      homeDef *= weakDefMul(home.adaptability)
       notes.push(`${home.name} ไม่ถนัดกับ「${styleLabelTh(aStyle)}」`)
     }
   }
@@ -369,8 +388,8 @@ export function coachMatchModifiers(
       notes.push(`${away.name} ถนัดชนะแผน「${styleLabelTh(hStyle)}」`)
     }
     if (away.weakVs.includes(hStyle)) {
-      awayAtk *= 0.955
-      awayDef *= 0.97
+      awayAtk *= weakAtkMul(away.adaptability)
+      awayDef *= weakDefMul(away.adaptability)
       notes.push(`${away.name} ไม่ถนัดกับ「${styleLabelTh(hStyle)}」`)
     }
   }

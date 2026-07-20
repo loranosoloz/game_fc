@@ -14,6 +14,7 @@ import {
 import { staffLevel } from './staff'
 import { recomputeDynamics } from './dynamics'
 import { medicalFacilityBonus } from './facilities'
+import { dayAdvanceBlockMessage } from './advanceGates'
 
 /**
  * พักร้อน — ให้ระบบจำลองแมตช์เดย์ถัดไป N ครั้ง (AI เลือก XI ให้)
@@ -28,12 +29,26 @@ export function takeHoliday(
   if (save.seasonComplete) {
     return { ok: false, save, message: 'ฤดูกาลจบแล้ว — เริ่มฤดูกาลใหม่ก่อน', simulated: 0 }
   }
+  const gate = dayAdvanceBlockMessage(save)
+  if (gate) {
+    return { ok: false, save, message: `พักร้อนไม่ได้ — ${gate}`, simulated: 0 }
+  }
   const n = Math.max(1, Math.min(8, Math.round(matchdays)))
   let next = save
   let simulated = 0
 
   for (let i = 0; i < n; i++) {
     if (next.seasonComplete || next.board?.sacked) break
+
+    const midGate = dayAdvanceBlockMessage(next)
+    if (midGate && i > 0) {
+      return {
+        ok: true,
+        save: next,
+        message: `พักร้อน ${simulated} แมตช์เดย์แล้วหยุด — ${midGate}`,
+        simulated,
+      }
+    }
 
     if (hasPendingInternationalBreak(next)) {
       const br = advanceInternationalBreak(next)

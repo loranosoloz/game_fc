@@ -39,9 +39,22 @@ export function applyTrainingWeek(
   training: TrainingState,
   facilityBonus = 0,
   matchday = 0,
+  staffBoost: { coach?: number; attacking?: number; defending?: number; fitness?: number } = {},
 ): { players: Player[]; note: string; injuries: string[] } {
   const focus = resolveTrainingFocus(training, matchday)
-  const intensityMul = training.intensity === 'high' ? 1.35 : training.intensity === 'low' ? 0.7 : 1
+  const specialist =
+    focus === 'attacking'
+      ? (staffBoost.attacking ?? 0)
+      : focus === 'defending'
+        ? (staffBoost.defending ?? 0)
+        : focus === 'fitness'
+          ? (staffBoost.fitness ?? 0)
+          : focus === 'tactics' || focus === 'setpieces'
+            ? (staffBoost.coach ?? 0)
+            : (staffBoost.coach ?? 0) * 0.5
+  const staffMul = 1 + specialist / 28
+  const intensityMul =
+    (training.intensity === 'high' ? 1.35 : training.intensity === 'low' ? 0.7 : 1) * staffMul
   const facMul = 1 + facilityBonus
   const injuries: string[] = []
   const individual = training.individual ?? {}
@@ -68,7 +81,7 @@ export function applyTrainingWeek(
     } else {
       condition = clamp(condition - 3 * intensityMul, 40, 100)
       sharpness = clamp(sharpness + 2 * intensityMul, 30, 100)
-      if (focus === 'fitness') condition = clamp(condition + 1, 40, 100)
+      if (focus === 'fitness') condition = clamp(condition + 1 + (staffBoost.fitness ?? 0) / 20, 40, 100)
       if (focus === 'tactics') form = clamp(form + (Math.random() > 0.6 ? 1 : 0), 1, 20)
       if (focus === 'attacking' && (p.position === 'FW' || p.role === 'CAM')) {
         if (Math.random() < 0.12 * intensityMul * facMul * (p.growth.learningRate / 20)) {

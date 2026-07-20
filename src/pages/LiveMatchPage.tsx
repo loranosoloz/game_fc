@@ -193,7 +193,7 @@ export function LiveMatchPage() {
   const humanIsHome = live.humanFixture!.homeClubId === save.humanClubId
 
   return (
-    <div className="mx-auto flex min-h-dvh max-w-5xl flex-col gap-4 px-4 py-4 md:py-6">
+    <div className="flex min-h-dvh w-full flex-col gap-4 px-3 py-3 md:px-4 md:py-4 lg:px-5">
       <header className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="text-xs font-semibold tracking-[0.2em] text-slate-500 uppercase">

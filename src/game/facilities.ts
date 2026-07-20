@@ -277,7 +277,7 @@ export function proposeFacilityUpgrade(
 
   return {
     ok: true,
-    message: `ส่งข้อเสนอถึงเจ้าของแล้ว · ฿${cost.toLocaleString('th-TH')} จากบัญชีสโมสร`,
+    message: `ส่งข้อเสนอถึงเจ้าของแล้ว · €${cost.toLocaleString('th-TH')} จากบัญชีสโมสร`,
     save: {
       ...save,
       facilities: {
@@ -291,7 +291,7 @@ export function proposeFacilityUpgrade(
           id: uid('msg-fac-prop'),
           date: save.currentDate,
           title: 'เสนออัปเกรดสิ่งอำนวย',
-          body: `${note} · งบ ฿${cost.toLocaleString('th-TH')} (หักจากบัญชีสโมสรเมื่อเจ้าของอนุมัติ)`,
+          body: `${note} · งบ €${cost.toLocaleString('th-TH')} (หักจากบัญชีสโมสรเมื่อเจ้าของอนุมัติ)`,
           read: false,
         },
         ...save.inbox,
@@ -369,10 +369,10 @@ export function resolveFacilityProposal(
         facilities: fac,
         owner: {
           ...owner,
-          lastNote: `${owner.name} พร้อมพิจารณา แต่บัญชีสโมสรไม่พอ ฿${proposal.cost.toLocaleString('th-TH')}`,
+          lastNote: `${owner.name} พร้อมพิจารณา แต่บัญชีสโมสรไม่พอ €${proposal.cost.toLocaleString('th-TH')}`,
         },
       },
-      message: `บัญชีสโมสรไม่พอ (มี ฿${club.balance.toLocaleString('th-TH')} ต้องการ ฿${proposal.cost.toLocaleString('th-TH')}) — ของบ war chest หรือหาเงินก่อน`,
+      message: `บัญชีสโมสรไม่พอ (มี €${club.balance.toLocaleString('th-TH')} ต้องการ €${proposal.cost.toLocaleString('th-TH')}) — ของบ war chest หรือหาเงินก่อน`,
     }
   }
 
@@ -441,7 +441,7 @@ export function resolveFacilityProposal(
           id: uid('msg-fac-ok'),
           date: save.currentDate,
           title: 'เจ้าของอนุมัติ — เริ่มก่อสร้าง',
-          body: `${note} · หัก ฿${proposal.cost.toLocaleString('th-TH')} · เสร็จประมาณ MD${save.matchday + days}`,
+          body: `${note} · หัก €${proposal.cost.toLocaleString('th-TH')} · เสร็จประมาณ MD${save.matchday + days}`,
           read: false,
         },
         ...save.inbox,
@@ -520,7 +520,7 @@ export function processFacilities(save: GameSave): GameSave {
     clubs = clubs.map((c) =>
       c.id === save.humanClubId ? { ...c, balance: c.balance + boost } : c,
     )
-    note = `โซนพาณิชย์เปิด · รายได้เปิดตัว ฿${boost.toLocaleString('th-TH')}`
+    note = `โซนพาณิชย์เปิด · รายได้เปิดตัว €${boost.toLocaleString('th-TH')}`
     fans = {
       ...fans,
       factions: {

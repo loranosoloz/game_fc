@@ -160,7 +160,7 @@ export function processStadiumPresence(
           mood: clamp(fans.mood - 2),
           factions: { ...f, ultras: clamp(f.ultras + 2), soft: clamp(f.soft - 4) },
           protestActive: fans.mood < 40 || fans.protestActive,
-          lastEvent: `กลุ่มหัวรุนแรงจุดพลุ/ปาระเบิดควัน — สโมสรโดนปรับ ฿${fine.toLocaleString('th-TH')}`,
+          lastEvent: `กลุ่มหัวรุนแรงจุดพลุ/ปาระเบิดควัน — สโมสรโดนปรับ €${fine.toLocaleString('th-TH')}`,
         }
         fans = pushLog(fans, {
           date: save.currentDate,
@@ -216,7 +216,7 @@ export function processStadiumPresence(
           international: clamp(fans.factions.international + (won ? 3 : 1)),
           corporate: clamp(fans.factions.corporate + 1),
         },
-        lastEvent: `แฟนต่างชาติเต็มทัวร์ — ขายเสื้อเพิ่ม ฿${shirtBoost.toLocaleString('th-TH')}`,
+        lastEvent: `แฟนต่างชาติเต็มทัวร์ — ขายเสื้อเพิ่ม €${shirtBoost.toLocaleString('th-TH')}`,
       }
       fans = pushLog(fans, {
         date: save.currentDate,
@@ -665,7 +665,7 @@ export function outreachFanFaction(
   const cost = faction === 'international' ? 120_000 : faction === 'ultras' ? 40_000 : 60_000
   const human = clubs.find((c) => c.id === save.humanClubId)!
   if (human.balance < cost) {
-    return { ok: false, save, message: `งบไม่พอ (ต้องการ ฿${cost.toLocaleString('th-TH')})` }
+    return { ok: false, save, message: `งบไม่พอ (ต้องการ €${cost.toLocaleString('th-TH')})` }
   }
   clubs = clubs.map((c) =>
     c.id === human.id ? { ...c, balance: c.balance - cost } : c,

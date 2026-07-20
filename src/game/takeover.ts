@@ -184,7 +184,7 @@ export function evaluateTakeoverOffer(
 
   if (club.balance < 0) {
     seller += 16
-    sellerReasons.push(`คลับติดลบ ฿${Math.abs(club.balance).toLocaleString('th-TH')}`)
+    sellerReasons.push(`คลับติดลบ €${Math.abs(club.balance).toLocaleString('th-TH')}`)
   } else if (club.balance > 15_000_000) {
     seller -= 6
     sellerReasons.push('สภาพคล่องดี — ไม่ใช่แรงกดดันให้ขาย')
@@ -372,7 +372,7 @@ export function evaluateTakeoverOffer(
 
   const conditions = [
     keepManager ? 'รักษากรอบผู้จัดการปัจจุบัน' : 'ไม่การันตีเก้าอี้ผู้จัดการ',
-    `ฉีดเงินเข้าคลับ ~฿${promisedInvestment.toLocaleString('th-TH')}`,
+    `ฉีดเงินเข้าคลับ ~€${promisedInvestment.toLocaleString('th-TH')}`,
     investor.style === 'private_equity' ? 'อาจทบทวนค่าจ้าง/ขายส่วนเกิน' : null,
     investor.style === 'fan_ownership' ? 'จำกัดหนี้ใหม่ · เน้นชุมชน' : null,
   ]
@@ -828,7 +828,7 @@ export function attemptTakeoverDeal(
     relationship: offer.keepManager ? clamp(55 + offer.boardScore / 5) : 42,
     patience: investor.patience,
     takeoverHeat: 5,
-    lastNote: `เทคโอเวอร์สำเร็จโดย ${investor.name} · ฉีด ฿${offer.promisedInvestment.toLocaleString('th-TH')}`,
+    lastNote: `เทคโอเวอร์สำเร็จโดย ${investor.name} · ฉีด €${offer.promisedInvestment.toLocaleString('th-TH')}`,
     lastStadiumVisitMatchday: -99,
     stadiumLogs: [],
     pendingDemand: null,
@@ -866,7 +866,7 @@ export function attemptTakeoverDeal(
       : c,
   )
 
-  const note = `ขายคลับให้ ${investor.name} (${investor.styleLabel}) · บิด ฿${offer.bid.toLocaleString('th-TH')} · ฉีด ฿${offer.promisedInvestment.toLocaleString('th-TH')}`
+  const note = `ขายคลับให้ ${investor.name} (${investor.styleLabel}) · บิด €${offer.bid.toLocaleString('th-TH')} · ฉีด €${offer.promisedInvestment.toLocaleString('th-TH')}`
 
   const closedSave = clearInsolvencyAfterTakeover(
     {

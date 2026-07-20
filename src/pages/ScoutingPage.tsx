@@ -11,6 +11,7 @@ import {
 } from '@/game/scouting'
 import { formatMoney } from '@/lib/format'
 import { GhostButton, PageHeader, Panel, PrimaryButton, StatTile } from '@/components/ui'
+import { PlayerFace } from '@/components/PlayerFace'
 
 const PURPOSE_TH: Record<string, string> = {
   watch_team: 'ดูทีม',
@@ -184,7 +185,10 @@ export function ScoutingPage() {
                   className="flex items-start justify-between gap-2 rounded-lg border border-slate-100 bg-slate-50 px-3 py-2"
                 >
                   <div>
-                    <p className="font-semibold">{playerName(s.playerId)}</p>
+                    <p className="flex items-center gap-2 font-semibold">
+                      <PlayerFace name={playerName(s.playerId)} size="xs" />
+                      {playerName(s.playerId)}
+                    </p>
                     <p className="text-xs text-slate-600">{s.note}</p>
                     <p className="mt-0.5 text-[10px] text-slate-400">
                       MD{s.matchday} · {s.source === 'staff_watch' ? 'สตาฟ' : 'แขก'} · รู้{' '}
@@ -220,7 +224,10 @@ export function ScoutingPage() {
               const forms = recentFormForPlayer(scouting, p.id, 2)
               return (
                 <li key={p.id} className="rounded-md border border-slate-100 bg-slate-50 px-3 py-2">
-                  <span className="font-semibold text-slate-900">{p.name}</span>
+                  <span className="flex items-center gap-2">
+                    <PlayerFace name={p.name} size="xs" />
+                    <span className="font-semibold text-slate-900">{p.name}</span>
+                  </span>
                   <span className="mt-0.5 block">
                     OVR {revealOverall(p.overall, k)} · PA {revealPa(p.pa, k)} · รู้ {k}%
                     {scouting.alumniIds.includes(p.id) ? ' · อดีตทีม' : ''}

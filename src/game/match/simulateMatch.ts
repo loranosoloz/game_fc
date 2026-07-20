@@ -157,6 +157,8 @@ export interface SimulateMatchOpts {
       power: number
       attackingIQ: number
       defendingIQ: number
+      manManagement: number
+      adaptability: number
       strongVs: string[]
       weakVs: string[]
     } | null

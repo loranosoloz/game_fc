@@ -11,6 +11,7 @@ import { buildAwardsPitchPlayers } from '@/game/pitchLayout'
 import { formationLabel } from '@/game/types'
 import { MatchPitch } from '@/components/MatchPitch'
 import { PageHeader, Panel, SectionLabel } from '@/components/ui'
+import { PlayerFace } from '@/components/PlayerFace'
 import { cn } from '@/lib/cn'
 
 type TabId = 'week' | 'month' | 'managers' | 'season'
@@ -297,8 +298,11 @@ function SeasonAwardCard({
         !compact && 'p-4',
       )}
     >
-      <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <p className={cn('font-bold', compact ? 'text-sm' : 'text-base')}>{a.name}</p>
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className={cn('flex items-center gap-2 font-bold', compact ? 'text-sm' : 'text-base')}>
+          <PlayerFace name={a.name} size={compact ? 'xs' : 'sm'} />
+          {a.name}
+        </p>
         <p className="text-xs font-semibold tabular-nums text-slate-500">
           {a.kind === 'ballon_dor'
             ? `คะแนน ${a.value}`
@@ -364,10 +368,11 @@ function TeamAwardCard({ team, clubColor }: { team: TeamOfPeriod; clubColor: str
           <li
             key={p.playerId}
             className={cn(
-              'grid grid-cols-[2.5rem_1fr_auto_auto] items-center gap-2 border-b border-slate-50 py-1 last:border-0',
+              'grid grid-cols-[2rem_2.5rem_1fr_auto_auto] items-center gap-2 border-b border-slate-50 py-1 last:border-0',
               p.isHumanClub && 'bg-lime-50/80 font-semibold text-lime-950',
             )}
           >
+            <PlayerFace name={p.name} size="xs" />
             <span className="font-mono text-slate-500">{p.role}</span>
             <span className="truncate">{p.name}</span>
             <span className="text-slate-500">{p.clubShort}</span>
