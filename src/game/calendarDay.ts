@@ -12,6 +12,7 @@ import type { MatchdayReport, MatchdayReportLine } from './matchdayReport'
 import { ensureInsolvency } from './insolvency'
 import { tickWorldPulse } from './worldPulse'
 import { formatMoney } from '@/lib/format'
+import { tickSquadRegistration } from './squadRegistration'
 
 function addDays(iso: string, days: number) {
   const d = new Date(`${iso}T12:00:00Z`)
@@ -214,6 +215,8 @@ export function advanceCalendarDay(save: GameSave): AdvanceDayResult {
   } else {
     message += ` · มีนัดอื่น ${todays.length} นัดในปฏิทินวันนี้ (ลีก/ถ้วยคนละวันได้)`
   }
+
+  next = tickSquadRegistration(next)
 
   return { save: next, message, humanMatchToday, fixturesToday: todays.length }
 }

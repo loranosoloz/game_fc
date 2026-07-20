@@ -14,6 +14,9 @@ import { createBoardState, ensureBoard } from './board'
 import { createOwnerState, ensureOwner } from './owner'
 import { defaultTraining } from './training'
 import { ensurePlayerV3Fields } from './attributes'
+import { withAgentIdentity } from './agents'
+import { seedClubAffinity } from './playerAmbition'
+import { ensureClubLoyalty } from './playerLoyalty'
 import { ensurePlayerSkills } from './playerSkills'
 import { createDynamics } from './dynamics'
 import { createStaff, ensureStaffState } from './staff'
@@ -81,10 +84,14 @@ import {
   ensureClubQuests,
   ensureManagerProgress,
 } from './managerProgress'
+import { recomputeDynamics, ensureDynamics } from './dynamics'
 import {
   buildSeasonCalendar,
   ensureSeasonCalendar,
 } from './seasonCalendar'
+import {
+  ensureSquadRegistration,
+} from './squadRegistration'
 import { assignWorldCoaches, displaceClubCoachOnTakeover, ensureClubCoaches } from './worldCoaches'
 import { createAssociationsState, ensureAssociations } from './associations'
 import { createLoansState, ensureLoans } from './loans'
@@ -195,6 +202,9 @@ export function createNewGame(
       familiarity: Math.min(72, 48 + Math.round(managerProfile.power / 5)),
       setPieces: humanTactics.setPieces,
       opposition: humanTactics.opposition,
+      // มนุษย์ต้องเลือกกัปตันเองที่หน้าทีมก่อนเตะ
+      captainId: null,
+      viceCaptainId: null,
     }
   }
   const clubIds = domesticClubs.filter((c) => c.division === 1).map((c) => c.id)
@@ -459,6 +469,10 @@ export function ensurePhase5(save: GameSave): GameSave {
   else next = { ...next, board: ensureBoard(next) }
   if (!next.owner) next = { ...next, owner: ensureOwner(next) }
   if (!next.dynamics) next = { ...next, dynamics: createDynamics() }
+  else next = { ...next, dynamics: ensureDynamics(next.dynamics) }
+  if ((next.dynamics.hierarchy?.length ?? 0) === 0) {
+    next = { ...next, dynamics: recomputeDynamics(next) }
+  }
   if (!next.staff) next = { ...next, staff: createStaff(next.clubs, next.humanClubId) }
   else next = { ...next, staff: ensureStaffState(next.staff, next.clubs, next.humanClubId) }
   if (!next.dailyLogs) next = { ...next, dailyLogs: [] }
@@ -488,6 +502,7 @@ export function ensurePhase5(save: GameSave): GameSave {
   }
   next = ensureClubQuests(next)
   next = ensureSeasonCalendar(next)
+  next = ensureSquadRegistration(next)
   next = ensureSquadLanguages(next)
   next = seedCareerHonoursFromHistory(next)
   next = ensurePlayerCareerSeeds(next)
@@ -689,6 +704,13 @@ export function ensurePhase5(save: GameSave): GameSave {
     }
     // เติม/ฝังพลังแฝงตามความสามารถ + แอตทริบิวต์ล่าสุด
     nextP = { ...nextP, skills: ensurePlayerSkills(nextP) }
+    if (!nextP.clubAffinity?.dreamClubIds?.length) {
+      nextP = { ...nextP, clubAffinity: seedClubAffinity(nextP, next.clubs) }
+    }
+    if (!nextP.agentName || !nextP.agentKind) {
+      nextP = withAgentIdentity(nextP)
+    }
+    nextP = ensureClubLoyalty(nextP)
     return nextP
   })
   if (!next.scouting?.byPlayer) {
@@ -786,6 +808,8 @@ function migrateLegacy(raw: Record<string, unknown>): GameSave | null {
       familiarity: typeof t?.familiarity === 'number' ? t.familiarity : 55,
       startingXi: t?.startingXi ?? [],
       bench: t?.bench ?? [],
+      captainId: (t?.captainId as string | null | undefined) ?? null,
+      viceCaptainId: (t?.viceCaptainId as string | null | undefined) ?? null,
       setPieces: t?.setPieces ?? { ...DEFAULT_SET_PIECES },
     }
   }

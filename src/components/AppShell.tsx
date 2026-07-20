@@ -27,7 +27,9 @@ const navGroups = [
     label: 'ทีม',
     links: [
       { to: '/squad', label: 'สควอด' },
+      { to: '/registration', label: 'ทะเบียน' },
       { to: '/meetings', label: 'ประชุม' },
+      { to: '/dynamics', label: 'Dynamics' },
       { to: '/club-vision', label: 'บอร์ด' },
       { to: '/tactics', label: 'แท็กติก' },
       { to: '/training', label: 'ซ้อม' },

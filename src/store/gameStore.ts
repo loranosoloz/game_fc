@@ -30,7 +30,12 @@ import type { HalfTimeAdjustments } from '@/game/match/halfTime'
 import { MATCH_BENCH_SIZE } from '@/game/match/matchdaySquad'
 import { autoPickTactics } from '@/game/seed'
 import { FORMATION_SLOTS } from '@/game/types'
-import { buyPlayerFromAi, sellPlayerToAi, renewContract, triggerReleaseClause as triggerReleaseClauseFn } from '@/game/transfer'
+import { ensureSlotRoles, type TacticalRoleId } from '@/game/tacticalRoles'
+import { syncCaptainsWithXi } from '@/game/match/matchCaptain'
+import { ensurePlayerTacticalRoles, pickSlotRoleForPlayer } from '@/game/playerTacticalRoles'
+import { setPlayerStyleTrainOrder, styleTrainOrderLabel } from '@/game/styleTraining'
+import { getWorldCoach } from '@/game/worldCoaches'
+import { buyPlayerFromAi, sellPlayerToAi, renewContract, cancelContractNegotiation, triggerReleaseClause as triggerReleaseClauseFn } from '@/game/transfer'
 import {
   beginTransferDeadline,
   advanceTransferDeadlineHour,
@@ -44,6 +49,7 @@ import {
   startAuction,
 } from '@/game/transferDesk'
 import { acceptWantAwayBid, rejectWantAwayBid } from '@/game/wantAway'
+import { declineAgentApproach } from '@/game/agentApproach'
 import { arrangeLoan, recallLoan, exerciseLoanOption } from '@/game/loans'
 import {
   setTransferListed,
@@ -52,6 +58,7 @@ import {
   triggerBuyBack,
   canApproachBosman,
 } from '@/game/transferAdvanced'
+import { trySecretHandshake } from '@/game/playerAmbition'
 import {
   acceptRofrMatchOffer,
   declineRofrMatchOffer,
@@ -119,6 +126,14 @@ import { applyMatchdayChronicle } from '@/game/matchdayReport'
 import { advanceCalendarDay } from '@/game/calendarDay'
 import { dayAdvanceBlockMessage } from '@/game/advanceGates'
 import {
+  autoFillHumanRegList,
+  getRegistrationBlockers,
+  setPlayerOnRegList,
+  setRegShirtNumber,
+  submitSquadRegistration,
+  type SquadRegListKind,
+} from '@/game/squadRegistration'
+import {
   confirmNtCamp as confirmNtCampFn,
   ensureNtCamp,
   setNtCampFocus as setNtCampFocusFn,
@@ -144,9 +159,13 @@ interface GameStore {
   resetSave: () => void
   setFormation: (formation: FormationId, which?: 'ip' | 'oop') => void
   setInstructions: (patch: Partial<TeamInstructions>) => void
+  setPhaseInstructions: (patch: Partial<import('@/game/types').PhaseInstructions>) => void
   setSetPieces: (corners?: SetPiecePlan, freeKicks?: SetPiecePlan) => void
+  setSetPieceTakers: (patch: Partial<import('@/game/types').SetPieceTakers>) => void
   setOpposition: (patch: Partial<OppositionInstructions>) => void
   setStartingXi: (playerIds: string[]) => void
+  setSlotRoles: (slotRoles: import('@/game/tacticalRoles').TacticalRoleId[]) => void
+  setCaptains: (captainId: string | null, viceCaptainId?: string | null) => void
   setSquadRole: (playerId: string, role: SquadRole) => void
   setTraining: (patch: Partial<TrainingState>) => void
   runTrainingNow: () => void
@@ -168,6 +187,11 @@ interface GameStore {
   advanceDay: () => void
   markInboxRead: (id: string) => void
   clearStatus: () => void
+  /** ลงทะเบียนนักเตะลีก / UCL */
+  toggleRegPlayer: (kind: SquadRegListKind, playerId: string, on: boolean) => boolean
+  setRegNumber: (kind: SquadRegListKind, playerId: string, number: number) => boolean
+  submitRegistration: (kind: SquadRegListKind) => boolean
+  autoFillRegistration: (kind: SquadRegListKind) => boolean
   offerBuyPlayer: (
     playerId: string,
     fee: number,
@@ -196,6 +220,8 @@ interface GameStore {
   acceptTransferCounter: (offerId: string) => boolean
   acceptWantAwayOffer: (offerId: string) => boolean
   rejectWantAwayOffer: (offerId: string) => boolean
+  acceptAgentApproach: (offerId: string) => boolean
+  declineAgentApproachOffer: (offerId: string) => boolean
   offerExchange: (
     theirId: string,
     ourId: string,
@@ -209,9 +235,19 @@ interface GameStore {
   offerSellPlayer: (playerId: string, fee: number, opts?: { allowToRival?: boolean }) => boolean
   acceptRofrOffer: (offerId: string) => boolean
   declineRofrOffer: (offerId: string) => boolean
-  renewPlayerContract: (playerId: string, wage: number, years: number) => boolean
+  renewPlayerContract: (
+    playerId: string,
+    wage: number,
+    years: number,
+    bonuses?: { signingOnFee?: number; perAppearance?: number; perGoal?: number },
+  ) => boolean
+  cancelPlayerContractTalk: (playerId: string) => boolean
   triggerReleaseClause: (playerId: string, wage?: number, years?: number) => boolean
   setLifestyleOrder: (playerId: string, order: import('@/game/types').LifestyleOrder) => void
+  setStyleTrainOrder: (
+    playerId: string,
+    order: import('@/game/playerTacticalRoles').StyleTrainOrder,
+  ) => void
   loanInPlayer: (playerId: string) => boolean
   loanOutPlayer: (
     playerId: string,
@@ -229,6 +265,7 @@ interface GameStore {
   setPlayerTransferListed: (playerId: string, listed: boolean, minFee?: number) => boolean
   mutualTerminatePlayer: (playerId: string) => boolean
   signBosmanPreContract: (playerId: string, wage: number, years?: number) => boolean
+  tryPlayerSecretHandshake: (playerId: string) => boolean
   triggerPlayerBuyBack: (playerId: string) => boolean
   togglePlayerShortlist: (playerId: string) => void
   upgradeStaffRole: (role: 'coach' | 'scout' | 'physio') => void
@@ -330,14 +367,18 @@ export const useGameStore = create<GameStore>((set, get) => ({
   continueGame: () => {
     const sync = loadFromStorage()
     if (!sync) return false
-    set({ save: ensurePhase5(sync), status: null, liveMatch: null })
+    const next = ensurePhase5(sync)
+    saveToStorage(next)
+    set({ save: next, status: null, liveMatch: null })
     return true
   },
 
   continueGameAsync: async () => {
     const sync = loadFromStorage()
     if (sync) {
-      set({ save: ensurePhase5(sync), status: null, liveMatch: null })
+      const next = ensurePhase5(sync)
+      saveToStorage(next)
+      set({ save: next, status: null, liveMatch: null })
       return true
     }
     const save = await loadFromStorageAsync()
@@ -345,7 +386,9 @@ export const useGameStore = create<GameStore>((set, get) => ({
       set({ status: 'ไม่พบเซฟในเครื่อง' })
       return false
     }
-    set({ save: ensurePhase5(save), status: null, liveMatch: null })
+    const next = ensurePhase5(save)
+    saveToStorage(next)
+    set({ save: next, status: null, liveMatch: null })
     return true
   },
 
@@ -403,6 +446,25 @@ export const useGameStore = create<GameStore>((set, get) => ({
     set({ save: next })
   },
 
+  setPhaseInstructions: (patch) => {
+    const { save } = get()
+    if (!save) return
+    const current = save.tacticsByClub[save.humanClubId]
+    const base = current.phaseInstructions ?? {
+      buildup: 'mixed',
+      progression: 'patient',
+      finalThird: 'work_ball',
+      defensiveBlock: 'mid',
+      counterPress: true,
+    }
+    const next = patchHumanTactics(save, {
+      phaseInstructions: { ...base, ...patch },
+      familiarity: Math.max(30, current.familiarity - 3),
+    })
+    saveToStorage(next)
+    set({ save: next })
+  },
+
   setSetPieces: (corners, freeKicks) => {
     const { save } = get()
     if (!save) return
@@ -412,6 +474,23 @@ export const useGameStore = create<GameStore>((set, get) => ({
         corners: corners ?? current.setPieces.corners,
         freeKicks: freeKicks ?? current.setPieces.freeKicks,
       },
+    })
+    saveToStorage(next)
+    set({ save: next })
+  },
+
+  setSetPieceTakers: (patch) => {
+    const { save } = get()
+    if (!save) return
+    const current = save.tacticsByClub[save.humanClubId]
+    const base = current.setPieceTakers ?? {
+      corners: null,
+      freeKicks: null,
+      penalties: null,
+      throwIns: null,
+    }
+    const next = patchHumanTactics(save, {
+      setPieceTakers: { ...base, ...patch },
     })
     saveToStorage(next)
     set({ save: next })
@@ -439,19 +518,26 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (!save) return
     const humanId = save.humanClubId
     const current = save.tacticsByClub[humanId]
-    const slots = FORMATION_SLOTS[current.formation].length
-    const startingXi = playerIds.slice(0, slots)
+    const slots = FORMATION_SLOTS[current.formation]
+    const startingXi = playerIds.slice(0, slots.length)
+    const byId = new Map(save.players.map((p) => [p.id, p]))
+    const slotRoles = slots.map((slot, i) => {
+      const p = byId.get(startingXi[i] ?? '')
+      if (!p) return current.slotRoles?.[i]
+      return pickSlotRoleForPlayer(ensurePlayerTacticalRoles(p), slot, null)
+    })
     const rest = save.players
       .filter((p) => p.clubId === humanId && !startingXi.includes(p.id) && p.injuryDays <= 0)
       .sort((a, b) => b.overall - a.overall)
       .map((p) => p.id)
       .slice(0, MATCH_BENCH_SIZE)
-    const tactics: Tactics = {
+    const tactics: Tactics = syncCaptainsWithXi({
       ...current,
       startingXi,
       bench: rest,
+      slotRoles: ensureSlotRoles(slots, slotRoles),
       familiarity: Math.max(30, current.familiarity - 2),
-    }
+    })
     const next = {
       ...save,
       tacticsByClub: { ...save.tacticsByClub, [humanId]: tactics },
@@ -462,6 +548,51 @@ export const useGameStore = create<GameStore>((set, get) => ({
     }
     saveToStorage(next)
     set({ save: next })
+  },
+
+  setSlotRoles: (slotRoles: TacticalRoleId[]) => {
+    const { save } = get()
+    if (!save) return
+    const humanId = save.humanClubId
+    const current = save.tacticsByClub[humanId]
+    const slots = FORMATION_SLOTS[current.formation]
+    const next = patchHumanTactics(save, {
+      slotRoles: ensureSlotRoles(slots, slotRoles),
+      familiarity: Math.max(30, current.familiarity - 1),
+    })
+    saveToStorage(next)
+    set({ save: next })
+  },
+
+  setCaptains: (captainId, viceCaptainId) => {
+    const { save } = get()
+    if (!save) return
+    const current = save.tacticsByClub[save.humanClubId]
+    const squadIds = new Set(
+      save.players.filter((p) => p.clubId === save.humanClubId).map((p) => p.id),
+    )
+    const cap = captainId && squadIds.has(captainId) ? captainId : null
+    let vice =
+      viceCaptainId === undefined
+        ? (current.viceCaptainId ?? null)
+        : viceCaptainId && squadIds.has(viceCaptainId)
+          ? viceCaptainId
+          : null
+    if (vice && vice === cap) vice = null
+    // กัปตันต้องอยู่ใน XI ถึงจะใช้ในแมตช์ — ถ้ายังไม่อยู่ เก็บไว้แล้วเตือนตอนเช็คลิสต์
+    const next = patchHumanTactics(save, {
+      captainId: cap,
+      viceCaptainId: vice,
+    })
+    saveToStorage(next)
+    set({
+      save: next,
+      status: cap
+        ? current.startingXi.includes(cap)
+          ? `ตั้งกัปตันแล้ว`
+          : `ตั้งกัปตันแล้ว — ต้องจัดคนนี้ลง XI ก่อนเตะ`
+        : 'ยังไม่มีกัปตัน — เลือกที่หน้าทีมก่อนเตะ',
+    })
   },
 
   setSquadRole: (playerId, role) => {
@@ -519,27 +650,45 @@ export const useGameStore = create<GameStore>((set, get) => ({
         .filter((p) => p.clubId === save.humanClubId && p.injuryDays > 0)
         .map((p) => p.id),
     )
-    const { players, note } = applyTrainingWeek(
+    const { players, note, styleEvents, incidents, dynamics } = applyTrainingWeek(
       save.players,
       save.humanClubId,
       save.training,
       trainingFacilityBonus(save),
       save.matchday,
+      {
+        coach: staffLevel(save.staff, 'coach'),
+        attacking: staffLevel(save.staff, 'attacking'),
+        defending: staffLevel(save.staff, 'defending'),
+        fitness: staffLevel(save.staff, 'fitness'),
+      },
+      {
+        tactics: save.tacticsByClub[save.humanClubId],
+        dynamics: save.dynamics,
+        season: save.season,
+      },
     )
     const physio = staffLevel(save.staff, 'physio')
     const nextPlayers = players.map((p) => {
       if (!previouslyInjured.has(p.id)) return p
       return recoverInjuriesOneDay([p], physio)[0]
     })
+    const styleBody = (styleEvents ?? [])
+      .filter((e) => e.kind === 'level_up' || e.kind === 'unlocked' || e.kind === 'swapped')
+      .slice(0, 5)
+      .map((e) => e.noteTh)
+      .join(' · ')
+    const drama = (incidents ?? []).some((i) => i.kind === 'fight' || i.kind === 'argument')
     const next = {
       ...save,
       players: nextPlayers,
+      dynamics: dynamics ?? save.dynamics,
       inbox: [
         {
           id: `msg-train-${Date.now()}`,
           date: save.currentDate,
-          title: 'ซ้อมพิเศษ',
-          body: note,
+          title: drama ? 'ซ้อมพิเศษ · มีดราม่า' : 'ซ้อมพิเศษ',
+          body: note + (styleBody ? ` · ${styleBody}` : ''),
           read: false,
         },
         ...save.inbox,
@@ -565,7 +714,15 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (!save) return
     const humanId = save.humanClubId
     const current = save.tacticsByClub[humanId]
-    const picked = autoPickTactics(humanId, save.players, current.formation, current.formationOop)
+    const club = save.clubs.find((c) => c.id === humanId)
+    const coach = club?.coachId ? getWorldCoach(club.coachId) : null
+    const picked = autoPickTactics(
+      humanId,
+      save.players,
+      current.formation,
+      current.formationOop,
+      coach,
+    )
     const next = {
       ...save,
       tacticsByClub: {
@@ -587,6 +744,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (!save || save.seasonComplete) return
     if (save.board?.sacked) {
       set({ status: 'คุณถูกปลดแล้ว — เริ่มเกมใหม่ที่หน้าแรก' })
+      return
+    }
+
+    const regBlocks = getRegistrationBlockers(save)
+    if (regBlocks.length > 0) {
+      set({ status: regBlocks[0]!.message })
       return
     }
 
@@ -648,6 +811,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
     }
 
     const check = preMatchChecklist(save)
+    if (check.prep && !check.canForce) {
+      set({
+        status: 'ต้องเลือกกัปตันใน XI ที่หน้าทีมก่อน — ยังเล่นไม่ได้',
+      })
+      return
+    }
     if (check.prep && !check.ready && !opts?.force) {
       set({
         status: 'เตรียมนัดยังไม่ครบ — ไปหน้าแมตช์ยืนยัน XI + ทีมทอล์ค หรือกดเตะแบบรีบ',
@@ -707,6 +876,11 @@ export const useGameStore = create<GameStore>((set, get) => ({
       set({ status: 'คุณถูกปลดแล้ว — เริ่มเกมใหม่ที่หน้าแรก' })
       return false
     }
+    const regBlocks = getRegistrationBlockers(save)
+    if (regBlocks.length > 0) {
+      set({ status: regBlocks[0]!.message })
+      return false
+    }
     if (hasPendingInternationalBreak(save)) {
       let s = ensureNtCamp(save)
       if (s.career?.nationalNation && s.ntCamp && !s.ntCamp.confirmed) {
@@ -737,6 +911,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
       }
     }
     const check = preMatchChecklist(save)
+    if (check.prep && !check.canForce) {
+      set({
+        status: 'ต้องเลือกกัปตันใน XI ที่หน้าทีมก่อน — ยังเตะไม่ได้',
+      })
+      return false
+    }
     if (check.prep && !check.ready && !opts?.force) {
       set({
         status: 'ยังเตรียมนัดไม่ครบ — ยืนยัน XI + เลือกทีมทอล์ค หรือเตะแบบรีบ',
@@ -848,6 +1028,50 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
   clearStatus: () => set({ status: null }),
 
+  toggleRegPlayer: (kind, playerId, on) => {
+    const { save } = get()
+    if (!save) return false
+    const result = setPlayerOnRegList(save, kind, playerId, on)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  setRegNumber: (kind, playerId, number) => {
+    const { save } = get()
+    if (!save) return false
+    const result = setRegShirtNumber(save, kind, playerId, number)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  submitRegistration: (kind) => {
+    const { save } = get()
+    if (!save) return false
+    const result = submitSquadRegistration(save, kind)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  autoFillRegistration: (kind) => {
+    const { save } = get()
+    if (!save) return false
+    const result = autoFillHumanRegList(save, kind)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
   offerBuyPlayer: (playerId, fee, wage, contractYears = 3, opts) => {
     const { save } = get()
     if (!save) return false
@@ -917,6 +1141,68 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const { save } = get()
     if (!save) return false
     const result = rejectWantAwayBid(save, offerId)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  acceptAgentApproach: (offerId) => {
+    const { save } = get()
+    if (!save) return false
+    const desk = save.transferDesk
+    const offer = desk?.offers.find(
+      (o) => o.id === offerId && o.source === 'agent_approach' && o.status === 'pending',
+    )
+    if (!offer) {
+      set({ status: 'ไม่พบข้อเสนอเอเยนต์' })
+      return false
+    }
+    const result = buyPlayerFromAi(
+      save,
+      offer.playerId,
+      offer.fee,
+      offer.wage,
+      offer.contractYears,
+    )
+    set({ status: result.message })
+    if (!result.ok) {
+      if (result.save) {
+        saveToStorage(result.save)
+        set({ save: result.save })
+      }
+      return false
+    }
+    let next = result.save
+    next = {
+      ...next,
+      transferDesk: {
+        ...(next.transferDesk ?? desk!),
+        offers: (next.transferDesk?.offers ?? desk!.offers).map((o) =>
+          o.id === offerId ? { ...o, status: 'accepted' as const } : o,
+        ),
+      },
+      inbox: [
+        {
+          id: `msg-ag-ok-${Date.now()}`,
+          date: next.currentDate,
+          title: `รับข้อเสนอเอเยนต์: ${offer.agentName ?? 'เอเยนต์'}`,
+          body: offer.note,
+          read: false,
+        },
+        ...next.inbox,
+      ].slice(0, 40),
+    }
+    saveToStorage(next)
+    set({ save: next, status: result.message })
+    return true
+  },
+
+  declineAgentApproachOffer: (offerId) => {
+    const { save } = get()
+    if (!save) return false
+    const result = declineAgentApproach(save, offerId)
     set({ status: result.message })
     if (!result.ok) return false
     saveToStorage(result.save)
@@ -1001,10 +1287,22 @@ export const useGameStore = create<GameStore>((set, get) => ({
     return true
   },
 
-  renewPlayerContract: (playerId, wage, years) => {
+  renewPlayerContract: (playerId, wage, years, bonuses) => {
     const { save } = get()
     if (!save) return false
-    const result = renewContract(save, playerId, wage, years)
+    const result = renewContract(save, playerId, wage, years, bonuses)
+    set({ status: result.message })
+    if (result.save) {
+      saveToStorage(result.save)
+      set({ save: result.save })
+    }
+    return result.ok
+  },
+
+  cancelPlayerContractTalk: (playerId) => {
+    const { save } = get()
+    if (!save) return false
+    const result = cancelContractNegotiation(save, playerId)
     set({ status: result.message })
     if (result.save) {
       saveToStorage(result.save)
@@ -1036,6 +1334,19 @@ export const useGameStore = create<GameStore>((set, get) => ({
     }
     saveToStorage(next)
     set({ save: next, status: `ตั้งคำสั่งไลฟ์สไตล์: ${order}` })
+  },
+
+  setStyleTrainOrder: (playerId, order) => {
+    const { save } = get()
+    if (!save) return
+    const next = {
+      ...save,
+      players: save.players.map((p) =>
+        p.id === playerId ? setPlayerStyleTrainOrder(p, order) : p,
+      ),
+    }
+    saveToStorage(next)
+    set({ save: next, status: `ฝึกสไตล์: ${styleTrainOrderLabel(order)}` })
   },
 
   loanInPlayer: (playerId) => {
@@ -1125,6 +1436,17 @@ export const useGameStore = create<GameStore>((set, get) => ({
       return false
     }
     const result = signPreContract(save, playerId, wage, years)
+    set({ status: result.message })
+    if (!result.ok) return false
+    saveToStorage(result.save)
+    set({ save: result.save })
+    return true
+  },
+
+  tryPlayerSecretHandshake: (playerId) => {
+    const { save } = get()
+    if (!save) return false
+    const result = trySecretHandshake(save, playerId)
     set({ status: result.message })
     if (!result.ok) return false
     saveToStorage(result.save)

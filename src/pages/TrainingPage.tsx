@@ -5,6 +5,14 @@ import { roleShort } from '@/game/positions'
 import { cn } from '@/lib/cn'
 import { formatInjuryStatus, INJURY_TYPE_LABEL } from '@/game/medical'
 import { individualFocusOptions, resolveTrainingFocus } from '@/game/training'
+import { listSquadSeniors } from '@/game/squadSeniors'
+import {
+  ensurePlayerTacticalRoles,
+  formatStyleLevelStars,
+  type PlayerTacticalStyle,
+} from '@/game/playerTacticalRoles'
+import { styleTrainOrderLabel } from '@/game/styleTraining'
+import { tacticalRoleShort } from '@/game/tacticalRoles'
 import { PlayerFace } from '@/components/PlayerFace'
 
 const FOCUSES: { id: TrainingFocus; label: string }[] = [
@@ -64,6 +72,12 @@ export function TrainingPage() {
       save.players.filter((p) => p.clubId === save.humanClubId && p.injuryDays <= 0).length,
     )
 
+  const seniors = listSquadSeniors(
+    save.players.filter((p) => p.clubId === save.humanClubId),
+    save.tacticsByClub[save.humanClubId],
+    5,
+  )
+
   return (
     <div className="space-y-5">
       <div className="grid gap-6 lg:grid-cols-2">
@@ -72,7 +86,34 @@ export function TrainingPage() {
           <p className="text-sm text-slate-600">
             ตารางรายสัปดาห์หมุนตามแมตช์เดย์ · วันนี้ใช้「
             {FOCUSES.find((f) => f.id === todayFocus)?.label ?? todayFocus}」
+            · ซ้อมหนักเสี่ยงเจ็บ/ทะเลาะ · ซีเนียร์ช่วยคุมห้องซ้อม
           </p>
+
+          {save.dynamics?.lastNote ? (
+            <p className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-700">
+              ห้องแต่งตัว: {save.dynamics.lastNote}
+              {save.dynamics.cohesion != null
+                ? ` · สามัคคี ${save.dynamics.cohesion} · ลำดับชั้น ${save.dynamics.hierarchyStability}`
+                : ''}
+            </p>
+          ) : null}
+
+          {seniors.length > 0 ? (
+            <div className="rounded-md border border-emerald-200 bg-emerald-50/80 px-3 py-2">
+              <p className="text-xs font-semibold text-emerald-900">แกนซีเนียร์</p>
+              <ul className="mt-1 space-y-0.5 text-xs text-emerald-950">
+                {seniors.map((s) => (
+                  <li key={s.player.id}>
+                    {s.player.name}
+                    <span className="text-emerald-700">
+                      {' '}
+                      · {s.reasons.slice(0, 2).join(' · ')} · score {Math.round(s.score)}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
 
           {avgCond < 68 ? (
             <button
@@ -217,6 +258,52 @@ export function TrainingPage() {
           </div>
         </section>
       </div>
+
+      <section className="rounded-xl border border-slate-200 bg-white/80 p-5">
+        <h2 className="text-lg font-semibold">ฝึกสไตล์เล่น</h2>
+        <p className="mt-1 text-xs text-slate-500">
+          AI เลือกเป้าเป็นหลัก · สั่งบังคับได้ที่หน้า Squad · ซ้อมแต่ละแมตช์เดย์สะสม XP (★★★)
+        </p>
+        <ul className="mt-3 max-h-64 space-y-1.5 overflow-y-auto text-sm">
+          {squad.map((raw) => {
+            const p = ensurePlayerTacticalRoles(raw)
+            const styles = (p.preferredTacticalRoles ?? []) as PlayerTacticalStyle[]
+            const target = p.styleTrainTarget
+            const prog = p.styleTrainProgress ?? 0
+            return (
+              <li
+                key={p.id}
+                className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-50 py-1.5"
+              >
+                <span className="flex min-w-0 items-center gap-2">
+                  <PlayerFace name={p.name} size="xs" />
+                  <span className="truncate">
+                    <span className="font-semibold text-slate-500">{roleShort(p.role)}</span>{' '}
+                    {p.name}
+                    <span className="ml-2 text-[11px] text-slate-500">
+                      {styles
+                        .map((s) => `${tacticalRoleShort(s.id)}${formatStyleLevelStars(s.level)}`)
+                        .join(' ')}
+                    </span>
+                  </span>
+                </span>
+                <span className="shrink-0 text-xs text-indigo-800">
+                  {target
+                    ? `ฝึก ${tacticalRoleShort(target)}${
+                        styles.some((s) => s.id === target)
+                          ? ` · XP ${styles.find((s) => s.id === target)?.xp ?? 0}%`
+                          : ` · ปลดล็อก ${prog}%`
+                      }`
+                    : 'รอตั้งเป้า'}
+                  <span className="ml-1 text-slate-400">
+                    · {styleTrainOrderLabel(p.styleTrainOrder)}
+                  </span>
+                </span>
+              </li>
+            )
+          })}
+        </ul>
+      </section>
 
       <section className="rounded-xl border border-slate-200 bg-white/80 p-5">
         <h2 className="text-lg font-semibold">โฟกัสรายบุคคล</h2>

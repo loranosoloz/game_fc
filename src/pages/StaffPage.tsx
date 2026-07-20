@@ -7,6 +7,14 @@ import {
   staffRoleLabelTh,
   STAFF_ROLES,
 } from '@/game/staff'
+import {
+  ensureResponsibilities,
+  RESPONSIBILITY_LABEL,
+  RESPONSIBILITY_TASKS,
+  setResponsibility,
+} from '@/game/staffResponsibilities'
+import type { StaffResponsibilityTask } from '@/game/types'
+import { saveToStorage } from '@/game/save'
 import { attrsByGroup, MANAGER_ATTR_META } from '@/game/managerProfile'
 import { ensureManagerProgress, xpToNextLevel } from '@/game/managerProgress'
 import { getActivity } from '@/game/dailyLife'
@@ -52,15 +60,32 @@ const ROLE_META: Record<StaffRole, { title: string; desc: string }> = {
 
 export function StaffPage() {
   const save = useGameStore((s) => s.save)!
+  const setStore = useGameStore.setState
   const hireStaffMember = useGameStore((s) => s.hireStaffMember)
   const promoteToCoach = useGameStore((s) => s.promoteToCoach)
   const retirePlayerToStaff = useGameStore((s) => s.retirePlayerToStaff)
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
   const [marketRole, setMarketRole] = useState<StaffRole | 'ALL'>('ALL')
   const [hireAs, setHireAs] = useState<StaffRole>('attacking')
+  const [tab, setTab] = useState<'team' | 'responsibilities'>('responsibilities')
 
   const managerProfile = save.managerProfile
   const managerProgress = ensureManagerProgress(save)
+  const resp = ensureResponsibilities(save)
+
+  const ASSIGNEES: { id: string; label: string }[] = [
+    { id: 'manager', label: 'คุณ (ผู้จัดการ)' },
+    { id: 'assistant', label: 'ผู้ช่วย' },
+    { id: 'coach', label: 'โค้ช' },
+    { id: 'scout', label: 'สเกาต์' },
+    { id: 'none', label: 'ปิด' },
+  ]
+
+  const setTask = (task: StaffResponsibilityTask, assignee: string) => {
+    const next = setResponsibility(save, task, assignee)
+    saveToStorage(next)
+    setStore({ save: next, status: `มอบหมาย: ${RESPONSIBILITY_LABEL[task]}` })
+  }
 
   const pool = save.staff.pool ?? []
   const free = useMemo(
@@ -87,6 +112,62 @@ export function StaffPage() {
         }
       />
 
+      <div className="flex flex-wrap gap-1.5">
+        {(
+          [
+            ['responsibilities', 'มอบหมายงาน'],
+            ['team', 'ทีมงาน / ตลาด'],
+          ] as const
+        ).map(([id, label]) => (
+          <button
+            key={id}
+            type="button"
+            onClick={() => setTab(id)}
+            className={cn(
+              'rounded-lg px-3 py-1.5 text-xs font-bold',
+              tab === id ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200',
+            )}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      {tab === 'responsibilities' ? (
+        <Panel>
+          <h3 className="text-sm font-bold text-slate-900">Responsibilities — มอบหมายงานอัตโนมัติ</h3>
+          <p className="mt-1 text-xs text-slate-600">
+            สตาฟทำงานแทนหลังแมตช์เดย์ · {resp.lastAutoNote ?? '—'}
+          </p>
+          <ul className="mt-3 space-y-3">
+            {RESPONSIBILITY_TASKS.map((task) => (
+              <li
+                key={task}
+                className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-slate-100 bg-slate-50/80 px-3 py-2"
+              >
+                <div>
+                  <p className="text-sm font-semibold text-slate-900">{RESPONSIBILITY_LABEL[task]}</p>
+                  <p className="text-[10px] text-slate-500">{task}</p>
+                </div>
+                <select
+                  className="rounded border border-slate-200 bg-white px-2 py-1.5 text-xs font-semibold"
+                  value={resp.byTask[task] ?? 'manager'}
+                  onChange={(e) => setTask(task, e.target.value)}
+                >
+                  {ASSIGNEES.map((a) => (
+                    <option key={a.id} value={a.id}>
+                      {a.label}
+                    </option>
+                  ))}
+                </select>
+              </li>
+            ))}
+          </ul>
+        </Panel>
+      ) : null}
+
+      {tab === 'team' ? (
+        <>
       {managerProfile ? (
         <Panel className="border-lime-200 bg-lime-50/40">
           <p className="text-[11px] font-bold tracking-wider text-lime-800 uppercase">
@@ -356,6 +437,8 @@ export function StaffPage() {
           )}
         </ul>
       </Panel>
+        </>
+      ) : null}
     </div>
   )
 }

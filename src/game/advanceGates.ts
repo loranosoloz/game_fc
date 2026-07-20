@@ -1,10 +1,8 @@
-/**
- * เงื่อนไขก่อนเดินเวลา / พักร้อน — เหตุการณ์บังคับต้องเคลียร์ก่อน
- */
 import type { GameSave } from './types'
 import { isPreSeasonBlocking } from './preSeason'
 import { pendingTalkRequests } from './playerTalks'
 import { hasPendingInternationalBreak } from './internationalBreaks'
+import { getRegistrationBlockers } from './squadRegistration'
 
 export type AdvanceBlocker = {
   id: string
@@ -48,6 +46,14 @@ export function getDayAdvanceBlockers(save: GameSave): AdvanceBlocker[] {
         href: '/preseason',
       })
     }
+  }
+
+  for (const r of getRegistrationBlockers(save)) {
+    blockers.push({
+      id: r.id,
+      message: r.message,
+      href: r.href,
+    })
   }
 
   if (save.pressConference?.pending) {

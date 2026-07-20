@@ -40,6 +40,17 @@ export interface SeasonCalendarState {
   dateByLeagueMd: Record<number, string>
   /** ทัวร์นาเมนต์ฤดูร้อนก่อนเปิดฤดูกาลนี้ */
   summerEvents: IntlTournamentEvent[]
+  /**
+   * หมุดบังคับทุกฤดูกาล — กำหนดส่งทะเบียนนักเตะ (ลีก / UCL)
+   * sync จากระบบทะเบียนเมื่อสร้างฤดูกาลใหม่
+   */
+  registrationPins?: Array<{
+    id: string
+    date: string
+    matchday: number
+    kind: 'squad_reg_league' | 'squad_reg_ucl'
+    labelTh: string
+  }>
 }
 
 type TourneyDef = {
@@ -214,6 +225,8 @@ export function buildSeasonCalendar(
     weeks,
     dateByLeagueMd,
     summerEvents,
+    /** เติมจริงตอน ensureSquadRegistration หลังมี fixtures */
+    registrationPins: [],
   }
 }
 

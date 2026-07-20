@@ -17,6 +17,7 @@ import type {
 import { recomputeDynamics } from './dynamics'
 import { ensureClubFinance } from './playerEconomy'
 import { applyTransferDesireResponse, isTransferDesireKind } from './wantAway'
+import { openContractNegotiation } from './contractLifecycle'
 import {
   communicationTier,
   commTierLabelTh,
@@ -25,8 +26,74 @@ import {
   talkCommMultiplier,
 } from './languages'
 import { bumpPlayerRapport, markReleaseClauseKnown, bumpAgentRapport } from './releaseClauseIntel'
+import {
+  applyStyleDropRequestAgree,
+  applyStyleTrainRequestAgree,
+  pickAiStyleTarget,
+} from './styleTraining'
+import { tacticalRoleLabel, TACTICAL_ROLE_BY_ID, type TacticalRoleId } from './tacticalRoles'
+import { getWorldCoach } from './worldCoaches'
+import { ensurePlayerTacticalRoles } from './playerTacticalRoles'
 
 export const TALK_KINDS: TalkKindMeta[] = (talkDb.kinds ?? []) as TalkKindMeta[]
+
+/** บทสนทนาฝึกสไตล์ (นอก JSON หลัก) */
+const STYLE_TALK_DIALOGS: TalkDialogDef[] = [
+  {
+    id: 'style_train_generic',
+    kind: 'style_train_request',
+    labelTh: 'ขอฝึกสไตล์เล่นใหม่',
+    when: ['style_ambitious'],
+    urgencyBase: 5,
+    weight: 10,
+    playerLine: 'อยากฝึกสไตล์เล่นใหม่ให้เข้ากับทีม/ตัวเองมากขึ้น',
+    responses: {
+      agree: {
+        effects: { morale: 2, happiness: 2 },
+        outcomeTh: 'โค้ชตกลงเปิดคิวฝึกสไตล์ตามที่ขอ',
+      },
+      promise: {
+        effects: { morale: 1, happiness: 1, promise: { kind: 'minutes', dueDays: 5 } },
+        outcomeTh: 'สัญญาว่าจะจัดคิวฝึกให้เร็วๆ นี้',
+      },
+      refuse: {
+        effects: { morale: -1, happiness: -2 },
+        outcomeTh: 'ปฏิเสธคำขอฝึกสไตล์ — เขายังไม่พอใจ',
+      },
+      listen_only: {
+        effects: { happiness: 1 },
+        outcomeTh: 'รับฟังไว้ก่อน — ยังไม่สัญญา',
+      },
+    },
+  },
+  {
+    id: 'style_drop_generic',
+    kind: 'style_drop_request',
+    labelTh: 'ขอเลิกเล่นสไตล์เดิม',
+    when: ['style_mismatch'],
+    urgencyBase: 6,
+    weight: 10,
+    playerLine: 'ไม่อยากถูกบังคับเล่นสไตล์นี้อีก — ขอเปลี่ยนโฟกัสฝึก',
+    responses: {
+      agree: {
+        effects: { morale: 2, happiness: 2 },
+        outcomeTh: 'ตกลงเลิกบังคับสไตล์นั้น และปรับเป้าฝึก',
+      },
+      promise: {
+        effects: { morale: 1, happiness: 1 },
+        outcomeTh: 'สัญญาว่าจะลดการใช้สไตล์นั้น',
+      },
+      refuse: {
+        effects: { morale: -2, happiness: -2 },
+        outcomeTh: 'ยังบังคับแผนเดิม — เขารู้สึกไม่ได้รับการฟัง',
+      },
+      listen_only: {
+        effects: { happiness: 1 },
+        outcomeTh: 'รับฟังความไม่พอใจเรื่องสไตล์',
+      },
+    },
+  },
+]
 export const TALK_DIALOGS: TalkDialogDef[] = talkDb.dialogs as TalkDialogDef[]
 
 function clamp(n: number, lo: number, hi: number) {
@@ -123,6 +190,10 @@ function playerTags(p: Player, save: GameSave, inXi: boolean): Set<string> {
   if (p.condition < 60 || p.sharpness < 55) tags.add('fatigued')
   if (p.form >= 7 && p.overall >= 72) tags.add('form_good')
   if (p.age >= 28 || p.squadRole === 'key') tags.add('senior')
+  if ((p.styleMismatchStreak ?? 0) >= 2 || (p.styleDisliked?.length ?? 0) > 0) {
+    tags.add('style_mismatch')
+  }
+  if (amb >= 13 || (p.growth?.ambition ?? 10) >= 12) tags.add('style_ambitious')
   return tags
 }
 
@@ -323,6 +394,81 @@ function buildRequestForPlayer(
   }
 }
 
+function generateStyleTalkRequests(
+  save: GameSave,
+  pendingIds: Set<string>,
+  rng: () => number,
+): PlayerTalkRequest[] {
+  const out: PlayerTalkRequest[] = []
+  for (const club of save.clubs) {
+    const isHuman = club.id === save.humanClubId
+    const squad = save.players.filter((p) => p.clubId === club.id && p.injuryDays <= 0)
+    const coach = getWorldCoach(club.coachId)
+    let made = 0
+    const max = isHuman ? 2 : 1
+    for (const raw of squad) {
+      if (made >= max) break
+      const p = ensurePlayerTacticalRoles(raw)
+      const chanceMul = isHuman ? 1 : 0.45
+
+      if (
+        (p.styleMismatchStreak ?? 0) >= 2 &&
+        rng() < 0.28 * chanceMul &&
+        !pendingIds.has(`${p.id}:style_drop_request`)
+      ) {
+        const tac = save.tacticsByClub[p.clubId]
+        const idx = tac?.startingXi.indexOf(p.id) ?? -1
+        const slotStyle =
+          idx >= 0
+            ? tac?.slotRoles?.[idx]
+            : (p.styleDisliked?.[0] ?? p.preferredTacticalRoles?.[2]?.id)
+        if (slotStyle && TACTICAL_ROLE_BY_ID[slotStyle]) {
+          out.push({
+            id: uid('req'),
+            playerId: p.id,
+            clubId: p.clubId,
+            kind: 'style_drop_request',
+            dialogId: `style_drop_generic:${slotStyle}`,
+            labelTh: `ขอเลิก「${tacticalRoleLabel(slotStyle)}」`,
+            date: save.currentDate,
+            matchday: save.matchday,
+            urgency: 6,
+            message: `${p.name}: "ไม่อยากเล่นแบบ${tacticalRoleLabel(slotStyle)}อีก — ขอเปลี่ยนโฟกัสฝึก"`,
+            status: 'pending',
+          })
+          made++
+          continue
+        }
+      }
+
+      if (
+        ((p.growth?.ambition ?? 10) >= 12 || rng() < 0.08) &&
+        rng() < 0.18 * chanceMul &&
+        !pendingIds.has(`${p.id}:style_train_request`)
+      ) {
+        const target = pickAiStyleTarget(p, coach, save.matchday)
+        const owned = (p.preferredTacticalRoles ?? []).find((s) => s.id === target)
+        if (owned && owned.level >= 3) continue
+        out.push({
+          id: uid('req'),
+          playerId: p.id,
+          clubId: p.clubId,
+          kind: 'style_train_request',
+          dialogId: `style_train_generic:${target}`,
+          labelTh: `ขอฝึก「${tacticalRoleLabel(target)}」`,
+          date: save.currentDate,
+          matchday: save.matchday,
+          urgency: 5,
+          message: `${p.name}: "อยากฝึกเป็น${tacticalRoleLabel(target)} ให้เก่งขึ้น"`,
+          status: 'pending',
+        })
+        made++
+      }
+    }
+  }
+  return out
+}
+
 /** สร้างคำขอเรียกคุย — ทุกสโมสร (มนุษย์ + AI) */
 export function generatePlayerTalkRequests(save: GameSave): GameSave {
   const talks = ensureTalks(save)
@@ -361,6 +507,12 @@ export function generatePlayerTalkRequests(save: GameSave): GameSave {
         pendingIds.add(`${p.id}:${req.kind}`)
       }
     }
+  }
+
+  const styleReqs = generateStyleTalkRequests(save, pendingIds, rng)
+  for (const req of styleReqs) {
+    newReqs.push(req)
+    pendingIds.add(`${req.playerId}:${req.kind}`)
   }
 
   if (newReqs.length === 0) return { ...save, talks }
@@ -506,11 +658,23 @@ function addLog(talks: TalksState, log: TalkLog): TalksState {
 
 function findDialog(id: string | undefined, kind: PlayerRequestKind): TalkDialogDef | null {
   if (id) {
+    const styleHit = STYLE_TALK_DIALOGS.find((d) => d.id === id || id.startsWith(d.id))
+    if (styleHit) return styleHit
     const found = TALK_DIALOGS.find((d) => d.id === id)
     if (found) return found
   }
+  const styleKind = STYLE_TALK_DIALOGS.find((d) => d.kind === kind)
+  if (styleKind) return styleKind
   const pool = DIALOGS_BY_KIND.get(kind)
   return pool?.[0] ?? null
+}
+
+function parseStyleIdFromDialog(dialogId: string | undefined): TacticalRoleId | null {
+  if (!dialogId) return null
+  const m = dialogId.match(/:(.+)$/)
+  const id = m?.[1] as TacticalRoleId | undefined
+  if (id && TACTICAL_ROLE_BY_ID[id]) return id
+  return null
 }
 
 /** ผู้จัดการเริ่มคุย / ประชุมทีม (ทีมคุณเท่านั้น) */
@@ -712,6 +876,43 @@ export function respondToPlayerRequest(
       req.labelTh || dialog.labelTh,
     )
   }
+  // ฝึก / เลิกสไตล์เล่น
+  if (
+    (req.kind === 'style_train_request' || req.kind === 'style_drop_request') &&
+    (response === 'agree' || response === 'promise')
+  ) {
+    const styleId = parseStyleIdFromDialog(req.dialogId)
+    const coach = getWorldCoach(
+      next.clubs.find((c) => c.id === clubId)?.coachId,
+    )
+    next = {
+      ...next,
+      players: next.players.map((pl) => {
+        if (pl.id !== req.playerId) return pl
+        if (req.kind === 'style_train_request' && styleId) {
+          return applyStyleTrainRequestAgree(pl, styleId)
+        }
+        if (req.kind === 'style_drop_request' && styleId) {
+          return applyStyleDropRequestAgree(pl, styleId, coach)
+        }
+        return pl
+      }),
+    }
+  }
+  // ทวงค่าเหนื่อย/สัญญาใหม่ → เปิดโต๊ะต่อสัญญาจริง (ทีมคุณ)
+  if (
+    clubId === save.humanClubId &&
+    (req.kind === 'new_contract' || req.kind === 'wage_rise') &&
+    (response === 'agree' || response === 'promise')
+  ) {
+    next = openContractNegotiation(
+      next,
+      req.playerId,
+      req.kind === 'new_contract'
+        ? 'จากคำขอดูสัญญาใหม่ของนักเตะ'
+        : 'จากคำขอทบทวนค่าเหนื่อย — เอเยนต์เปิดโต๊ะแล้ว',
+    )
+  }
   if (clubId === save.humanClubId) {
     next = { ...next, dynamics: recomputeDynamics(next) }
   }
@@ -756,8 +957,19 @@ function promiseKept(
     case 'bonus':
     case 'housing':
     case 'gym':
-    case 'shirt_number':
+    case 'shirt_number': {
+      if (pr.kind === 'wage_review') {
+        const open = (save.contractTalks?.talks ?? []).some(
+          (t) => t.playerId === p.id && (t.status === 'open' || t.status === 'signed'),
+        )
+        if (open) return true
+        // ต่อสัญญาไปแล้วในช่วง promise
+        if ((p.contractYears ?? 0) > 1 && (p.contractEndSeason ?? 0) > save.season + 1) {
+          return true
+        }
+      }
       return (p.happiness ?? 10) >= 11
+    }
     case 'transfer_list':
     case 'loan':
       return Boolean(p.wantAway?.active) || (p.happiness ?? 10) >= 9

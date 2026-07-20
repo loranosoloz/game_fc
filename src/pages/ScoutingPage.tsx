@@ -8,7 +8,16 @@ import {
   recentFormForPlayer,
   revealOverall,
   revealPa,
+  upsertScoutAssignment,
+  removeScoutAssignment,
+  generateManualScoutReport,
+  runScoutFocusPass,
+  SCOUT_REGION_LABEL,
+  SCOUT_ROLE_LABEL,
 } from '@/game/scouting'
+import type { ScoutFocusRegion, ScoutFocusRole } from '@/game/types'
+import { saveToStorage } from '@/game/save'
+import { cn } from '@/lib/cn'
 import { formatMoney } from '@/lib/format'
 import { GhostButton, PageHeader, Panel, PrimaryButton, StatTile } from '@/components/ui'
 import { PlayerFace } from '@/components/PlayerFace'
@@ -28,6 +37,7 @@ const KIND_TH: Record<string, string> = {
 export function ScoutingPage() {
   const saveRaw = useGameStore((s) => s.save)!
   const save = ensurePhase5(saveRaw)
+  const setStore = useGameStore.setState
   const assignScoutWatch = useGameStore((s) => s.assignScoutWatch)
   const runScout = useGameStore((s) => s.runScout)
   const scouting = ensureScouting(save)
@@ -36,6 +46,10 @@ export function ScoutingPage() {
 
   const [watchFx, setWatchFx] = useState('')
   const [targetId, setTargetId] = useState('')
+  const [tab, setTab] = useState<'watches' | 'focus' | 'reports'>('focus')
+  const [focusRegion, setFocusRegion] = useState<ScoutFocusRegion>('europe')
+  const [focusRole, setFocusRole] = useState<ScoutFocusRole>('FW')
+  const [focusAge, setFocusAge] = useState(24)
 
   const upcoming = useMemo(
     () =>
@@ -70,17 +84,194 @@ export function ScoutingPage() {
   return (
     <div className="space-y-5">
       <PageHeader
-        title="สเกาต์ & แขกสนาม"
-        subtitle="ความรู้เริ่ม 0% · อดีตลูกทีม 50% · ดูฟอร์มได้ทีละนัด · แขกที่ไม่มีแข่งวันนั้นมาได้"
+        title="ศูนย์สรรหา · สเกาต์"
+        subtitle="โฟกัสสรรหา · รายงานซื้อ/เฝ้า/เลี่ยง · ดูฟอร์มทีละนัด · แขกสนาม"
       />
+
+      <div className="flex flex-wrap gap-1.5">
+        {(
+          [
+            ['focus', 'โฟกัสสรรหา'],
+            ['reports', 'รายงาน'],
+            ['watches', 'ดูฟอร์ม / แขก'],
+          ] as const
+        ).map(([id, label]) => (
+          <button
+            key={id}
+            type="button"
+            onClick={() => setTab(id)}
+            className={cn(
+              'rounded-lg px-3 py-1.5 text-xs font-bold',
+              tab === id ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200',
+            )}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
 
       <div className="grid gap-3 sm:grid-cols-4">
         <StatTile label="งบสโมสร" value={formatMoney(club.balance)} accent />
         <StatTile label="ดูฟอร์ม / นัด" value={formatMoney(cost)} hint="จ้างสตาฟไปดู" />
         <StatTile label="รอรายงาน" value={pending.length} />
-        <StatTile label="อดีตลูกทีม" value={alumniCount} hint="พื้นความรู้ 50%" />
+        <StatTile label="ใบรายงาน" value={(scouting.reports ?? []).length} />
       </div>
 
+      {tab === 'focus' ? (
+        <Panel>
+          <h3 className="text-sm font-bold text-slate-900">โฟกัสสรรหา (Recruitment focus)</h3>
+          <p className="mt-1 text-xs text-slate-600">
+            ตั้งโฟกัสแล้วระบบจะส่องผู้เล่นตามโซน/ตำแหน่งหลังแมตช์เดย์
+          </p>
+          <div className="mt-3 flex flex-wrap items-end gap-2">
+            <label className="text-xs">
+              โซน
+              <select
+                className="mt-0.5 block rounded border border-slate-200 px-2 py-1.5"
+                value={focusRegion}
+                onChange={(e) => setFocusRegion(e.target.value as ScoutFocusRegion)}
+              >
+                {(Object.keys(SCOUT_REGION_LABEL) as ScoutFocusRegion[]).map((k) => (
+                  <option key={k} value={k}>
+                    {SCOUT_REGION_LABEL[k]}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="text-xs">
+              ตำแหน่ง
+              <select
+                className="mt-0.5 block rounded border border-slate-200 px-2 py-1.5"
+                value={focusRole}
+                onChange={(e) => setFocusRole(e.target.value as ScoutFocusRole)}
+              >
+                {(Object.keys(SCOUT_ROLE_LABEL) as ScoutFocusRole[]).map((k) => (
+                  <option key={k} value={k}>
+                    {SCOUT_ROLE_LABEL[k]}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="text-xs">
+              อายุสูงสุด
+              <input
+                type="number"
+                min={18}
+                max={35}
+                className="mt-0.5 block w-20 rounded border border-slate-200 px-2 py-1.5"
+                value={focusAge}
+                onChange={(e) => setFocusAge(Number(e.target.value))}
+              />
+            </label>
+            <PrimaryButton
+              type="button"
+              onClick={() => {
+                const next = upsertScoutAssignment(save, {
+                  region: focusRegion,
+                  role: focusRole,
+                  maxAge: focusAge,
+                  active: true,
+                  labelTh: `${SCOUT_REGION_LABEL[focusRegion]} · ${SCOUT_ROLE_LABEL[focusRole]} ≤${focusAge}`,
+                })
+                saveToStorage(next)
+                setStore({ save: next, status: 'เพิ่มโฟกัสสรรหาแล้ว' })
+              }}
+            >
+              เพิ่มโฟกัส
+            </PrimaryButton>
+            <GhostButton
+              type="button"
+              onClick={() => {
+                const next = runScoutFocusPass(save)
+                saveToStorage(next)
+                setStore({ save: next, status: 'รันโฟกัสสรรหาแล้ว' })
+              }}
+            >
+              รันทันที
+            </GhostButton>
+          </div>
+          <ul className="mt-3 space-y-2">
+            {(scouting.assignments ?? []).map((a) => (
+              <li
+                key={a.id}
+                className="flex flex-wrap items-center justify-between gap-2 rounded-lg bg-slate-50 px-3 py-2 text-sm"
+              >
+                <span>
+                  {a.labelTh ??
+                    `${SCOUT_REGION_LABEL[a.region]} · ${SCOUT_ROLE_LABEL[a.role]} ≤${a.maxAge}`}
+                  {a.active ? '' : ' (ปิด)'}
+                </span>
+                <GhostButton
+                  type="button"
+                  className="!px-2 !py-1 text-xs"
+                  onClick={() => {
+                    const next = removeScoutAssignment(save, a.id)
+                    saveToStorage(next)
+                    setStore({ save: next })
+                  }}
+                >
+                  ลบ
+                </GhostButton>
+              </li>
+            ))}
+            {(scouting.assignments ?? []).length === 0 ? (
+              <li className="text-sm text-slate-500">ยังไม่มีโฟกัส</li>
+            ) : null}
+          </ul>
+        </Panel>
+      ) : null}
+
+      {tab === 'reports' ? (
+        <Panel>
+          <h3 className="text-sm font-bold text-slate-900">ใบรายงานสเกาต์</h3>
+          <ul className="mt-3 max-h-96 space-y-2 overflow-y-auto">
+            {(scouting.reports ?? []).map((r) => {
+              const p = save.players.find((x) => x.id === r.playerId)
+              return (
+                <li
+                  key={r.id}
+                  className={cn(
+                    'rounded-lg border px-3 py-2 text-sm',
+                    r.verdict === 'sign'
+                      ? 'border-emerald-200 bg-emerald-50/60'
+                      : r.verdict === 'avoid'
+                        ? 'border-rose-200 bg-rose-50/60'
+                        : 'border-slate-200 bg-white',
+                  )}
+                >
+                  <div className="flex flex-wrap items-center gap-2">
+                    <PlayerFace name={p?.name ?? r.playerId} size="xs" />
+                    <span className="font-semibold">{p?.name ?? r.playerId}</span>
+                    <span className="rounded bg-slate-800 px-1.5 py-0.5 text-[9px] font-bold text-white uppercase">
+                      {r.verdict}
+                    </span>
+                    <GhostButton
+                      type="button"
+                      className="!ml-auto !px-2 !py-1 text-xs"
+                      onClick={() => {
+                        const res = generateManualScoutReport(save, r.playerId)
+                        if (res.ok) {
+                          saveToStorage(res.save)
+                          setStore({ save: res.save, status: res.message })
+                        }
+                      }}
+                    >
+                      ส่องซ้ำ
+                    </GhostButton>
+                  </div>
+                  <p className="mt-1 text-xs text-slate-600">{r.summaryTh}</p>
+                </li>
+              )
+            })}
+            {(scouting.reports ?? []).length === 0 ? (
+              <li className="text-sm text-slate-500">ยังไม่มีรายงาน — ตั้งโฟกัสแล้วเดินแมตช์เดย์</li>
+            ) : null}
+          </ul>
+        </Panel>
+      ) : null}
+
+      {tab === 'watches' ? (
+        <>
       <Panel>
         <h3 className="text-sm font-bold text-slate-900">จ้างสเกาต์ดูฟอร์มนัดถัดไป</h3>
         <p className="mt-1 text-xs text-slate-500">
@@ -242,6 +433,8 @@ export function ScoutingPage() {
             })}
         </ul>
       </Panel>
+        </>
+      ) : null}
     </div>
   )
 }

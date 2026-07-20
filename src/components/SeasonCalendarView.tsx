@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import type { Club, Fixture, GameSave } from '@/game/types'
 import type { CalendarWeekKind, SeasonCalendarState, SeasonWeek } from '@/game/seasonCalendar'
+import type { CalendarRegPin } from '@/game/squadRegistration'
 import { cn } from '@/lib/cn'
 
 const KIND_STYLE: Record<
@@ -221,6 +223,7 @@ export function SeasonCalendarView({
   clubs = [],
   humanClubId,
   competitionNames = {},
+  regPins = [],
 }: {
   calendar: SeasonCalendarState
   currentDate: string
@@ -231,6 +234,8 @@ export function SeasonCalendarView({
   humanClubId?: string
   /** ชื่อถ้วยจริง เช่น FA Cup, EFL Cup, UCL */
   competitionNames?: Partial<Record<string, string>>
+  /** หมุดกำหนดส่งทะเบียนนักเตะ */
+  regPins?: CalendarRegPin[]
 }) {
   const compLabel = (kind: string) => competitionNames[kind] ?? defaultCompName(kind)
 
@@ -375,6 +380,38 @@ export function SeasonCalendarView({
               <span className="font-normal text-orange-800/80">· {e.weeks} สัปดาห์</span>
             </span>
           ))}
+        </div>
+      ) : null}
+
+      {regPins.length > 0 ? (
+        <div className="rounded-xl border border-rose-200 bg-rose-50/70 px-4 py-3">
+          <h3 className="text-sm font-bold text-rose-950">หมุดลงทะเบียนนักเตะ</h3>
+          <ul className="mt-2 space-y-1.5">
+            {regPins.map((pin) => (
+              <li key={pin.id}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedDate(pin.date)
+                    setViewMonth(monthKey(pin.date))
+                  }}
+                  className="flex w-full items-center gap-2 rounded-lg bg-white/90 px-2.5 py-1.5 text-left text-xs ring-1 ring-rose-100 hover:bg-white"
+                >
+                  <span className="rounded bg-rose-600 px-1.5 py-0.5 text-[9px] font-bold text-white">
+                    ทะเบียน
+                  </span>
+                  <span className="font-semibold text-slate-900">{pin.labelTh}</span>
+                  <span className="ml-auto text-slate-500">{pin.date}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+          <Link
+            to="/registration"
+            className="mt-2 inline-block text-xs font-bold text-rose-900 underline underline-offset-2"
+          >
+            ไปหน้าลงทะเบียน →
+          </Link>
         </div>
       ) : null}
 
@@ -537,6 +574,7 @@ export function SeasonCalendarView({
             const week = weekForDate(calendar.weeks, iso)
             const style = week ? KIND_STYLE[week.kind] : null
             const dayFixtures = humanFixturesByDate.get(iso) ?? []
+            const dayPins = regPins.filter((p) => p.date === iso)
             const isToday = iso === currentDate
             const isSelected = iso === selectedDate
             const dayNum = Number(iso.slice(8, 10))
@@ -553,6 +591,7 @@ export function SeasonCalendarView({
                   !inSeason && 'opacity-50',
                   isSelected && 'z-[1] ring-2 ring-slate-800 ring-inset',
                   isToday && !isSelected && 'ring-2 ring-lime-500 ring-inset',
+                  dayPins.length > 0 && 'ring-1 ring-rose-400 ring-inset',
                   'hover:brightness-[0.98]',
                 )}
               >
@@ -584,6 +623,15 @@ export function SeasonCalendarView({
                 </div>
 
                 <div className="mt-auto flex flex-col gap-0.5">
+                  {dayPins.map((pin) => (
+                    <span
+                      key={pin.id}
+                      className="truncate rounded bg-rose-600 px-1 py-0.5 text-[9px] font-bold leading-tight text-white"
+                      title={pin.labelTh}
+                    >
+                      ทะเบียน {pin.kind === 'squad_reg_ucl' ? 'UCL' : 'ลีก'}
+                    </span>
+                  ))}
                   {dayFixtures.slice(0, 2).map((f) => {
                     const home = humanClubId === f.homeClubId
                     const oppId = home ? f.awayClubId : f.homeClubId
@@ -631,6 +679,16 @@ export function SeasonCalendarView({
               วันนี้
             </span>
           ) : null}
+          {regPins
+            .filter((p) => p.date === selectedDate)
+            .map((p) => (
+              <span
+                key={p.id}
+                className="rounded-full bg-rose-100 px-2 py-0.5 text-[10px] font-bold text-rose-900"
+              >
+                {p.labelTh}
+              </span>
+            ))}
           {selectedWeek ? (
             <span
               className={cn(

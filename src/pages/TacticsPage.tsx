@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useGameStore } from '@/store/gameStore'
 import type {
   Mentality,
@@ -7,12 +7,15 @@ import type {
   SetPiecePlan,
   Tempo,
   Width,
+  PhaseInstructions,
 } from '@/game/types'
-import { FORMATION_SLOTS, ALL_FORMATIONS, FORMATION_LABEL_TH, formationLabel } from '@/game/types'
+import { FORMATION_SLOTS, ALL_FORMATIONS, FORMATION_LABEL_TH, formationLabel, DEFAULT_PHASE_INSTRUCTIONS } from '@/game/types'
 import { roleLabel, roleShort } from '@/game/positions'
+import { ensureSlotRoles } from '@/game/tacticalRoles'
 import { isUnavailable } from '@/game/discipline'
 import { cn } from '@/lib/cn'
 import { PlayerFace } from '@/components/PlayerFace'
+import { FormationLineupBoard } from '@/components/FormationLineupBoard'
 
 const FORMATIONS = ALL_FORMATIONS
 
@@ -62,12 +65,24 @@ export function TacticsPage() {
   const save = useGameStore((s) => s.save)!
   const setFormation = useGameStore((s) => s.setFormation)
   const setInstructions = useGameStore((s) => s.setInstructions)
+  const setPhaseInstructions = useGameStore((s) => s.setPhaseInstructions)
   const setSetPieces = useGameStore((s) => s.setSetPieces)
+  const setSetPieceTakers = useGameStore((s) => s.setSetPieceTakers)
   const setOpposition = useGameStore((s) => s.setOpposition)
   const setStartingXi = useGameStore((s) => s.setStartingXi)
+  const setSlotRoles = useGameStore((s) => s.setSlotRoles)
+  const setCaptains = useGameStore((s) => s.setCaptains)
   const autoPickHumanXi = useGameStore((s) => s.autoPickHumanXi)
+  const [tab, setTab] = useState<'shape' | 'phase' | 'setpieces' | 'opposition'>('shape')
 
   const tactics = save.tacticsByClub[save.humanClubId]
+  const phase = tactics.phaseInstructions ?? DEFAULT_PHASE_INSTRUCTIONS
+  const takers = tactics.setPieceTakers ?? {
+    corners: null,
+    freeKicks: null,
+    penalties: null,
+    throwIns: null,
+  }
   const nextFx = save.fixtures.find(
     (f) =>
       !f.played &&
@@ -94,6 +109,13 @@ export function TacticsPage() {
     [save.players, save.humanClubId],
   )
 
+  const xiPlayers = useMemo(() => {
+    const byId = new Map(save.players.map((p) => [p.id, p]))
+    return tactics.startingXi
+      .map((id) => byId.get(id))
+      .filter((p): p is NonNullable<typeof p> => Boolean(p))
+  }, [save.players, tactics.startingXi])
+
   const slots = FORMATION_SLOTS[tactics.formation]
 
   const togglePlayer = (playerId: string) => {
@@ -107,10 +129,111 @@ export function TacticsPage() {
   }
 
   return (
+    <div className="space-y-4">
+      <div className="flex flex-wrap gap-1.5">
+        {(
+          [
+            ['shape', 'รูป + คำสั่งทีม'],
+            ['phase', 'ตามเฟส'],
+            ['setpieces', 'เซ็ตพีซ'],
+            ['opposition', 'คู่แข่ง'],
+          ] as const
+        ).map(([id, label]) => (
+          <button
+            key={id}
+            type="button"
+            onClick={() => setTab(id)}
+            className={cn(
+              'rounded-lg px-3 py-1.5 text-xs font-bold',
+              tab === id ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200',
+            )}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
     <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
       <section className="space-y-4 rounded-xl border border-slate-200 bg-white/80 p-5">
         <h2 className="text-lg font-semibold">แผนการเล่น</h2>
 
+        {tab === 'phase' ? (
+          <div className="space-y-3">
+            <p className="text-xs text-slate-500">คำสั่งตามเฟส (แนว FM) — มีผล familiarity เมื่อเปลี่ยน</p>
+            {(
+              [
+                ['buildup', 'Build-up', ['play_out', 'mixed', 'long_ball'] as const],
+                ['progression', 'Progression', ['patient', 'direct', 'wing_play'] as const],
+                ['finalThird', 'Final third', ['work_ball', 'shoot', 'cross'] as const],
+                ['defensiveBlock', 'บล็อกรับ', ['high', 'mid', 'low'] as const],
+              ] as const
+            ).map(([key, label, opts]) => (
+              <ChipGroup
+                key={key}
+                label={label}
+                options={[...opts]}
+                value={phase[key]}
+                onChange={(v) => setPhaseInstructions({ [key]: v } as Partial<PhaseInstructions>)}
+              />
+            ))}
+            <label className="flex items-center gap-2 text-sm font-medium text-slate-700">
+              <input
+                type="checkbox"
+                checked={phase.counterPress}
+                onChange={(e) => setPhaseInstructions({ counterPress: e.target.checked })}
+              />
+              Counter-press หลังเสียบอล
+            </label>
+          </div>
+        ) : null}
+
+        {tab === 'setpieces' ? (
+          <div className="space-y-3">
+            <ChipGroup
+              label="มุม"
+              options={SET_PIECES}
+              value={tactics.setPieces.corners}
+              onChange={(v) => setSetPieces(v, undefined)}
+            />
+            <ChipGroup
+              label="ฟรีคิก"
+              options={SET_PIECES}
+              value={tactics.setPieces.freeKicks}
+              onChange={(v) => setSetPieces(undefined, v)}
+            />
+            {(
+              [
+                ['penalties', 'จุดโทษ'],
+                ['freeKicks', 'ฟรีคิก (คนยิง)'],
+                ['corners', 'มุม (คนส่ง)'],
+                ['throwIns', 'ทุ่ม'],
+              ] as const
+            ).map(([key, label]) => (
+              <label key={key} className="block text-xs">
+                <span className="font-medium text-slate-500">{label}</span>
+                <select
+                  className="mt-1 w-full rounded border border-slate-300 px-2 py-1.5 text-sm"
+                  value={takers[key] ?? ''}
+                  onChange={(e) =>
+                    setSetPieceTakers({ [key]: e.target.value || null })
+                  }
+                >
+                  <option value="">— ยังไม่ตั้ง —</option>
+                  {xiPlayers.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.name} · {roleShort(p.role)}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            ))}
+          </div>
+        ) : null}
+
+        {(tab === 'shape' || tab === 'opposition') ? (
+          <>
+        {tab === 'shape' ? (
+          <>
         <div>
           <p className="mb-1 text-xs font-medium text-slate-500">In Possession (IP)</p>
           <div className="flex flex-wrap gap-2">
@@ -204,7 +327,49 @@ export function TacticsPage() {
         </div>
 
         <div className="space-y-3 rounded-lg border border-slate-100 bg-slate-50/80 p-3">
-          <p className="text-sm font-semibold">Set pieces</p>
+          <p className="text-sm font-semibold">กัปตัน</p>
+          <p className="text-xs text-slate-500">
+            กัปตันรวบรวมทีมตอนตามหลัง · ห้ามลูกทีมเถียงกรรมการ
+          </p>
+          <label className="grid gap-1 text-xs">
+            <span>กัปตัน</span>
+            <select
+              className="rounded-md border border-slate-300 px-2 py-1.5 text-sm"
+              value={tactics.captainId ?? ''}
+              onChange={(e) => setCaptains(e.target.value || null, tactics.viceCaptainId)}
+            >
+              <option value="">— เลือก —</option>
+              {xiPlayers.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.name} ({p.overall})
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="grid gap-1 text-xs">
+            <span>รองกัปตัน</span>
+            <select
+              className="rounded-md border border-slate-300 px-2 py-1.5 text-sm"
+              value={tactics.viceCaptainId ?? ''}
+              onChange={(e) => setCaptains(tactics.captainId ?? null, e.target.value || null)}
+            >
+              <option value="">— เลือก —</option>
+              {xiPlayers
+                .filter((p) => p.id !== tactics.captainId)
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name} ({p.overall})
+                  </option>
+                ))}
+            </select>
+          </label>
+        </div>
+          </>
+        ) : null}
+
+        {tab === 'opposition' || tab === 'shape' ? (
+        <div className="space-y-3 rounded-lg border border-slate-100 bg-slate-50/80 p-3">
+          <p className="text-sm font-semibold">Set pieces (แผน)</p>
           <ChipGroup
             label="Corners"
             options={SET_PIECES}
@@ -218,7 +383,9 @@ export function TacticsPage() {
             onChange={(freeKicks) => setSetPieces(undefined, freeKicks)}
           />
         </div>
+        ) : null}
 
+        {tab === 'opposition' ? (
         <div className="space-y-3 rounded-lg border border-slate-100 bg-slate-50/80 p-3">
           <p className="text-sm font-semibold">Opposition instructions</p>
           <p className="text-xs text-slate-500">
@@ -261,6 +428,9 @@ export function TacticsPage() {
             onChange={(showOnto) => setOpposition({ showOnto })}
           />
         </div>
+        ) : null}
+          </>
+        ) : null}
 
         <button
           type="button"
@@ -270,9 +440,24 @@ export function TacticsPage() {
           เลือก XI อัตโนมัติ
         </button>
         <p className="text-xs text-slate-500">
-          ตัวจริง {tactics.startingXi.length}/{slots.length} · สำรอง {tactics.bench.length}/7 · ทีม
-          AI เลือก XI+ม้านั่งเองก่อนทุกแมตช์เดย์
+          ตัวจริง {tactics.startingXi.length}/{slots.length} · สำรอง {tactics.bench.length}/7 · กดจุดบนสนามจัดตัว + เลือกบทบาท
         </p>
+
+        <FormationLineupBoard
+          formation={tactics.formation}
+          startingXi={tactics.startingXi}
+          slotRoles={ensureSlotRoles(slots, tactics.slotRoles)}
+          players={squad}
+          benchIds={tactics.bench}
+          kitColor={save.clubs.find((c) => c.id === save.humanClubId)?.color ?? '#ffffff'}
+          onChangeXi={setStartingXi}
+          onChangeSlotRole={(i, roleId) => {
+            const next = ensureSlotRoles(slots, tactics.slotRoles)
+            next[i] = roleId
+            setSlotRoles(next)
+          }}
+        />
+
         <ol className="space-y-1 text-sm">
           {tactics.startingXi.map((id, i) => {
             const p = save.players.find((x) => x.id === id)
@@ -354,6 +539,7 @@ export function TacticsPage() {
           })}
         </ul>
       </section>
+    </div>
     </div>
   )
 }

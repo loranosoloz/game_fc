@@ -17,6 +17,19 @@ export type RoleCode =
   | 'ST'
   | 'SS'
 
+/** หน้าที่บทบาทในแผน (รับ / ซัพพอร์ต / บุก) */
+export type RoleDuty = 'defend' | 'support' | 'attack'
+
+/** เวกเตอร์พฤติกรรม off-ball ตามบทบาท */
+export interface BehavioralVectors {
+  forwardRunTendency: number
+  lateralHoldTendency: number
+  centralCutInAttractor: number
+  passingRiskTolerance: number
+  defensiveTrackingDrop: number
+  overlapTendency: number
+}
+
 export type FormationId =
   | '4-4-2'
   | '4-4-2-diamond'
@@ -257,8 +270,15 @@ export interface Player {
   sharpness: number
   form: number
   morale: number
-  /** Playing-time / role satisfaction (1–20) */
+  /** ความสุขจากเวลาเล่น / บทบาท (1–20) */
   happiness: number
+  /**
+   * ความภักดีต่อสโมสรปัจจุบัน (1–20)
+   * สูง = ยากอยากย้าย · ต่อสัญญาง่าย · เอเยนต์ยื่นขายน้อย
+   */
+  clubLoyalty?: number
+  /** สโมสรที่ค่า clubLoyalty อ้างถึง — เปลี่ยนแล้วรีเซ็ต */
+  loyaltyClubId?: string | null
   wage: number
   /** เงินส่วนตัวในกระเป๋า (€) — ได้จากค่าเหนื่อย ใช้จ่ายตามไลฟ์สไตล์ */
   cash: number
@@ -293,6 +313,8 @@ export interface Player {
   /** Optional release clause fee */
   releaseClause: number | null
   minutesPlayed: number
+  /** เบอร์เสื้อในสโมสร (จากทะเบียนลีก/UCL) */
+  shirtNumber?: number | null
   /** Youth academy product */
   isYouth: boolean
   /** Assigned mentor player id (same club) */
@@ -301,14 +323,47 @@ export interface Player {
   mediaHandling: number
   /** Special position skills (max 10) — unique pools per GK/DF/MF/FW */
   skills: string[]
+  /**
+   * สไตล์เล่นถนัด (สูงสุด 3) — level 3=เก่งมาก · 2=ใช้ได้ · 1=เล่นได้ · มี xp ฝึก
+   */
+  preferredTacticalRoles?: import('./playerTacticalRoles').PlayerTacticalStyle[]
+  /**
+   * ความคุ้นเคยบทบาทแท็กติก (0–100) — เล่นบทเดิมบ่อยขึ้นหลังแมตช์
+   * ถ้าไม่มีค่า จะ seed จาก preferredTacticalRoles
+   */
+  tacticalRoleFamiliarity?: Partial<Record<import('./tacticalRoles').TacticalRoleId, number>>
+  /** กำลังฝึกสไตล์นี้ (อาจอยู่นอกชุด 3 อัน) */
+  styleTrainTarget?: import('./tacticalRoles').TacticalRoleId | null
+  /** ความคืบหน้าปลดล็อกสไตล์ใหม่เข้าชุด (0–100) */
+  styleTrainProgress?: number
+  /** ai=ปล่อยนักเตะเลือก · lock=ห้ามเปลี่ยนเป้า · หรือบังคับ TacticalRoleId */
+  styleTrainOrder?: import('./playerTacticalRoles').StyleTrainOrder
+  /** สไตล์ที่ไม่อยากเล่น — AI หลีก / ขอแทนที่ */
+  styleDisliked?: import('./tacticalRoles').TacticalRoleId[]
+  /** นับแมตช์เดย์ที่ถูกบังคับเล่นสไตล์ไม่ชอบติดต่อกัน */
+  styleMismatchStreak?: number
   /** Last lifestyle activity id */
   lastActivityId?: string | null
   /** คำสั่งไลฟ์สไตล์จากผู้จัดการ */
   lifestyleOrder?: LifestyleOrder | null
   /** บุคลิกเอเยนต์ (seed ถ้าไม่มี) */
   agentStyle?: AgentStyle
+  /** ชื่อเอเยนต์จริง หรือ พ่อ/แม่ */
+  agentName?: string | null
+  /** บริษัทเอเยนต์ หรือ「ครอบครัว …」 */
+  agentAgency?: string | null
+  /** โปรอาชีพ vs พ่อแม่ในครอบครัว */
+  agentKind?: AgentKind | null
   /** บัญชีโซเชียลส่วนตัว */
   social: PlayerSocial
+  /** ความดัง 0–100 — ดังแล้วเล่นเฟลโดนด่าหนัก */
+  fame?: number
+  /** ขนาดแฟนคลับ (คน) */
+  fanClubSize?: number
+  /** ขนาดแอนตี้ / เฮตเตอร์ */
+  antiFanSize?: number
+  /** ดีลพรีเซ็นเตอร์แบรนด์ */
+  brandDeals?: import('./playerFame').BrandDeal[]
   /** ประวัติ FM26 / SortItOutSI (ถ้ามีใน data pack) */
   bio?: PlayerBio | null
   /** Status / attrs จาก FMInside (0–99) */
@@ -324,6 +379,16 @@ export interface Player {
   /** สโมสรขึ้นบัญชีย้ายทีม */
   transferListed?: boolean
   transferListMinFee?: number | null
+  /**
+   * ความสนใจตลาดจากคู่แข่ง/ข่าว (0–20)
+   * ดันค่าตัวขึ้นชั่วคราว แล้วค่อยคลายหลังแมตช์เดย์
+   */
+  marketHeat?: number
+  /**
+   * ประวัติฟอร์มรายแมตช์เดย์ (ล่าสุดท้ายสุด · สูงสุด ~16)
+   * ใช้คำนวณค่าตัวแบบสัปดาห์/เดือน
+   */
+  formHistory?: number[]
   /** % ขึ้นค่าเหนื่อยอัตโนมัติทุกฤดูกาล */
   annualWageRisePercent?: number | null
   /** % ขึ้นค่าเหนื่อยเมื่อติดโซนยุโรป */
@@ -348,6 +413,25 @@ export interface Player {
   } | null
   /** รางวัลติดตัวถาวรในเซฟ (Ballon / ดาวซัลโว / TOTW …) */
   careerHonours?: import('./awards').PlayerCareerHonour[]
+  /** ทีมในฝัน / สนใจ / ไม่ยอมไป — กระทบต่อสัญญาและรับข้อเสนอ */
+  clubAffinity?: PlayerClubAffinity | null
+  /** สัญญาใจลับ (tapping up) — รอหมดสัญญาเซ็นฟรี */
+  secretHandshake?: PlayerSecretHandshake | null
+}
+
+/** ความสนใจสโมสรของนักเตะ */
+export interface PlayerClubAffinity {
+  dreamClubIds: string[]
+  likedClubIds?: string[]
+  avoidClubIds?: string[]
+}
+
+/** สัญญาใจลับกับสโมสรอื่น */
+export interface PlayerSecretHandshake {
+  fromClubId: string
+  promisedAtMatchday: number
+  promise: 'wait_free'
+  exposed?: boolean
 }
 
 /** สถานะอยากย้าย — ข่าวสาธารณะถึงจะให้ AI แห่ยื่น */
@@ -363,11 +447,41 @@ export interface PlayerTransferDesire {
   reasonTh?: string
   /** บอร์ดสั่งให้รับข้อเสนอ / บังคับขาย */
   boardForced?: boolean
+  /** ทีมที่อยากไป (จาก dream list) */
+  preferredClubIds?: string[]
 }
 
 export type LifestyleOrder = 'none' | 'curfew' | 'extra_gym' | 'rest' | 'media_quiet'
 
 export type AgentStyle = 'greedy' | 'loyal' | 'aggressive' | 'balanced'
+export type AgentKind = 'pro' | 'family'
+
+export type PlayerSocialMood =
+  | 'buzzing'
+  | 'chill'
+  | 'salty'
+  | 'tilted'
+  | 'radio_silent'
+
+export type PlayerSocialPostKind =
+  | 'fan_roast'
+  | 'fan_praise'
+  | 'player_sulk'
+  | 'player_flex'
+  | 'player_clapback'
+  | 'teammate_defend'
+  | 'meme'
+  | 'agent_pr'
+
+export interface PlayerSocialPost {
+  id: string
+  date: string
+  matchday: number
+  kind: PlayerSocialPostKind
+  text: string
+  fromHandle: string
+  likes: number
+}
 
 export interface PlayerSocial {
   handle: string
@@ -376,6 +490,11 @@ export interface PlayerSocial {
   heat: number
   postsWeek: number
   verified: boolean
+  /** อารมณ์โซเชียลล่าสุด */
+  mood?: PlayerSocialMood
+  /** ไทม์ไลน์สั้นๆ ล่าสุด */
+  recentPosts?: PlayerSocialPost[]
+  lastDramaMatchday?: number
 }
 
 /** ประวัติจาก SortItOutSI FM26 (เงินเป็น GBP) */
@@ -505,6 +624,8 @@ export interface Club {
   coachId?: string | null
   /** แฟนของสโมสรนี้ (ทุกทีม) */
   clubFans?: ClubFansState | null
+  /** ห้ามขายให้นักซื้อถึง MD นี้ (หลังจับสัญญาใจ) buyerClubId → untilMatchday */
+  refuseBuyersUntil?: Record<string, number>
 }
 
 /** คู่อริระหว่างสโมสร — seed หรือเกิดเองระหว่างเซฟ */
@@ -547,17 +668,54 @@ export interface TeamInstructions {
   style: PlayStyle
 }
 
+/** คำสั่งตามเฟส (lite แนว FM) */
+export interface PhaseInstructions {
+  buildup: 'play_out' | 'mixed' | 'long_ball'
+  progression: 'patient' | 'direct' | 'wing_play'
+  finalThird: 'work_ball' | 'shoot' | 'cross'
+  defensiveBlock: 'high' | 'mid' | 'low'
+  counterPress: boolean
+}
+
+export const DEFAULT_PHASE_INSTRUCTIONS: PhaseInstructions = {
+  buildup: 'mixed',
+  progression: 'patient',
+  finalThird: 'work_ball',
+  defensiveBlock: 'mid',
+  counterPress: true,
+}
+
+export interface SetPieceTakers {
+  corners: string | null
+  freeKicks: string | null
+  penalties: string | null
+  throwIns: string | null
+}
+
 export interface Tactics {
   formation: FormationId
   formationOop: FormationId
   instructions: TeamInstructions
+  /** คำสั่งตามเฟส IP/OOP */
+  phaseInstructions?: PhaseInstructions
   familiarity: number
   startingXi: string[]
   bench: string[]
+  /**
+   * บทบาทต่อช่อง (index ตรง startingXi / FORMATION_SLOTS)
+   * เช่น ST → poacher | target_man | false_nine
+   */
+  slotRoles?: import('./tacticalRoles').TacticalRoleId[]
+  /** กัปตัน (ต้องอยู่ใน startingXi) */
+  captainId?: string | null
+  /** รองกัปตัน */
+  viceCaptainId?: string | null
   setPieces: {
     corners: SetPiecePlan
     freeKicks: SetPiecePlan
   }
+  /** ผู้รับผิดชอบเซ็ตพีซ */
+  setPieceTakers?: SetPieceTakers
   /** คำสั่งเจาะจงคู่แข่ง (กด/มาร์กดาว) */
   opposition?: OppositionInstructions
 }
@@ -637,6 +795,7 @@ export type MatchEventKind =
   | 'foul'
   | 'card'
   | 'var'
+  | 'offside'
   | 'penalty'
   | 'stoppage'
   | 'substitution'
@@ -650,6 +809,30 @@ export type MatchEventKind =
 export interface PitchSpot {
   x: number
   y: number
+}
+
+/** ตำแหน่งบนสนามจากซิม (ระบบเดียวกับ Agent.x/y ใน simulateMatch) */
+export interface MatchSpatialPlayer {
+  id: string
+  side: 'home' | 'away'
+  x: number
+  y: number
+  /** สภาพร่างกายสดในแมตช์ 0–100 */
+  condition?: number
+  /** พลังงานแมตช์ (stamina bar) 0–100 */
+  matchStamina?: number
+  /** ชีพจร/ burst zone 0–100 */
+  heartRate?: number
+  /** ความหนักจังหวะนี้ 0–100 (วิ่ง/เพรส) */
+  activityLoad?: number
+}
+
+/** เฟรมเชิงพื้นที่ต่อไฮไลต์ — ใช้ animate LiveMatch */
+export interface MatchSpatialFrame {
+  ball: PitchSpot
+  possessing: 'home' | 'away'
+  carrierId?: string
+  players: MatchSpatialPlayer[]
 }
 
 export interface MatchEvent {
@@ -670,6 +853,13 @@ export interface MatchEvent {
   awayGoals: number
   /** yellow | red when kind === 'card' */
   cardColor?: 'yellow' | 'red'
+  /** snapshot ตำแหน่งนักเตะ+ลูกจากซิม */
+  spatial?: MatchSpatialFrame
+  /** หยุดเกม — บาดเจ็บ / ใบแดง (รอเปลี่ยนตัวหรือแก้เกม) */
+  stoppageKind?: 'injury' | 'red_card'
+  stoppageSide?: 'home' | 'away'
+  /** ส่วนร่างกายที่บาดเจ็บกลางแมตช์ (เมื่อ stoppageKind === injury) */
+  injuryBodyPart?: BodyPartId
 }
 
 export interface TeamMatchStats {
@@ -693,6 +883,14 @@ export interface MatchPlayerRating {
   shots: number
   xg: number
   minutes: number
+  /** บทบาทแท็กติกที่ลงแข่ง */
+  tacticalRoleId?: import('./tacticalRoles').TacticalRoleId
+  /** โน้ตหน้าที่ตามบทบาท */
+  dutyNote?: string
+  /** คะแนนหน้าที่ (ใช้คำนวณเรตติ้ง) */
+  dutyScore?: number
+  /** ความคุ้นเคยบทบาทตอนจบนัด */
+  roleFamiliarity?: number
 }
 
 /** สรุปทำไมแพ้/ชนะจาก Match Engine ชั้นพื้นที่ */
@@ -728,6 +926,10 @@ export interface MatchResult {
   penalties?: { home: number; away: number }
   /** บาดเจ็บระหว่างแมตช์ (Burst Zone / soft-tissue) */
   inMatchInjuries?: Array<{ playerId: string; type: InjuryType; days: number }>
+  /** สภาพจบแมตช์ (stamina bar ในเกม) — ใช้เขียนกลับหลังนัด */
+  finalConditions?: Record<string, number>
+  /** นาทีลงจริงรายคน */
+  minutesOnPitch?: Record<string, number>
 }
 
 export interface InboxMessage {
@@ -988,11 +1190,41 @@ export interface PreMatchState {
   touchlineShouts?: import('./match/touchlineShouts').TouchlineShout[]
 }
 
+export type HierarchyTier = 'leader' | 'influential' | 'squad' | 'peripheral'
+
+export interface DynamicsHierarchyEntry {
+  playerId: string
+  tier: HierarchyTier
+  /** 0–100 */
+  influence: number
+}
+
+export interface DynamicsSocialGroup {
+  id: string
+  labelTh: string
+  memberIds: string[]
+  /** 0–100 */
+  mood: number
+}
+
+export interface DynamicsRivalry {
+  aId: string
+  bId: string
+  /** 0–100 */
+  intensity: number
+  reasonTh: string
+}
+
 export interface DynamicsState {
   cohesion: number
   hierarchyStability: number
   dressingRoomMood: number
   lastNote: string
+  /** ความเชื่อมั่นต่อผู้จัดการ 0–100 */
+  managerTrust?: number
+  hierarchy?: DynamicsHierarchyEntry[]
+  groups?: DynamicsSocialGroup[]
+  rivalries?: DynamicsRivalry[]
 }
 
 export type StaffRole =
@@ -1046,6 +1278,23 @@ export interface StaffState {
   /** World pool ~200 */
   pool: StaffPerson[]
   marketRefreshMatchday: number
+  /** มอบหมายงานอัตโนมัติ */
+  responsibilities?: StaffResponsibilities
+}
+
+export type StaffResponsibilityTask =
+  | 'training'
+  | 'opposition_report'
+  | 'contract_reminders'
+  | 'form_watches'
+  | 'set_piece_advice'
+  | 'press_prep'
+
+export interface StaffResponsibilities {
+  /** task → 'manager' | 'assistant' | 'scout' | 'coach' | 'none' | staffPersonId */
+  byTask: Partial<Record<StaffResponsibilityTask, string>>
+  lastAutoNote?: string
+  lastRunMatchday?: number
 }
 
 export interface DailyActivityDef {
@@ -1235,6 +1484,39 @@ export interface ScoutKnowledge {
   agentRapport?: Record<string, number>
   /** ความสนิทกับตัวนักเตะ 0–100 (คุย/เจรจา) */
   playerRapport?: Record<string, number>
+  /** โฟกัสสรรหา */
+  assignments?: ScoutAssignment[]
+  /** รายงานสรุปซื้อ/เฝ้า/เลี่ยง */
+  reports?: ScoutReportCard[]
+}
+
+export type ScoutFocusRegion =
+  | 'domestic'
+  | 'europe'
+  | 'south_america'
+  | 'africa'
+  | 'asia'
+  | 'any'
+
+export type ScoutFocusRole = 'GK' | 'DF' | 'MF' | 'FW' | 'any'
+
+export interface ScoutAssignment {
+  id: string
+  region: ScoutFocusRegion
+  role: ScoutFocusRole
+  maxAge: number
+  active: boolean
+  labelTh?: string
+}
+
+export interface ScoutReportCard {
+  id: string
+  playerId: string
+  date: string
+  matchday: number
+  verdict: 'sign' | 'monitor' | 'avoid'
+  summaryTh: string
+  knowledgeGain: number
 }
 
 export interface PressStory {
@@ -1582,6 +1864,12 @@ export interface PendingTransferOffer {
   exchangeTheirAccepted?: boolean
   exchangeOurWage?: number
   exchangeTheirWage?: number
+  /** เอเยนต์มายื่นขายลูกค้าให้เรา */
+  source?: 'agent_approach' | 'human' | 'ai'
+  agentName?: string
+  agentAgency?: string
+  agentClientCount?: number
+  approachReasonTh?: string
 }
 
 export interface TransferDeskState {
@@ -1865,6 +2153,22 @@ export interface GameSave {
   affiliates: AffiliatesState
   /** เจรจาสัญญาหลายรอบ */
   contractTalks: ContractTalkState
+  /**
+   * ผู้ช่วยเตือนสัญญาใกล้หมด + บันทึกทวงต่อสัญญา
+   * เตือนครั้งแรกเมื่อเหลือ ≤1 ปี แล้วทุก ~1 เดือน
+   */
+  assistantContractWatch?: {
+    lastRemindByPlayer: Record<string, { matchday: number; season: number }>
+    lastDemandByPlayer?: Record<string, number>
+  }
+  /**
+   * คูลดาวน์เอเยนต์มายื่นขาย
+   * เอเยนต์คนเดียวดูได้หลายลูกค้า — จำกัดความถี่ต่อเอเยนต์/ต่อนักเตะ
+   */
+  agentApproachWatch?: {
+    lastByAgentKey: Record<string, number>
+    lastByPlayerId: Record<string, number>
+  }
   /** สรุปลีกอื่นในโลก (เบา) */
   worldPulse: WorldPulseState
   /** พิธีกรรมก่อนเตะ (null เมื่อไม่มีนัด/หลังแข่งแล้ว) */
@@ -1885,6 +2189,8 @@ export interface GameSave {
   insolvency?: import('./insolvency').ClubInsolvencyState
   /** ประวัติย้ายสโมสรในอาชีพนี้ (world live DB) */
   playerMoveLog?: import('./playerWorldDb').PlayerMoveEvent[]
+  /** ลงทะเบียนนักเตะลีก / UCL + หมุดปฏิทิน */
+  squadRegistration?: import('./squadRegistration').SquadRegistrationState
 }
 
 export type FacilityKind = 'stadium' | 'training' | 'medical' | 'commercial' | 'youth'
@@ -1940,11 +2246,24 @@ export interface ContractNegotiation {
   /** ค่าเหนื่อยขั้นต่ำที่ฝั่งนักเตะ/เอเยนต์รับได้ตอนนี้ */
   askWage: number
   askYears: number
+  /** เงินเซ็นที่ขอ (0 = ไม่ยึดติด) */
+  askSigningOn?: number
+  /** โบนัสลงแข่งที่ขอ / นัด */
+  askPerAppearance?: number
+  /** โบนัสประตูที่ขอ */
+  askPerGoal?: number
+  lastOfferSigningOn?: number
+  lastOfferPerAppearance?: number
+  lastOfferPerGoal?: number
+  /** จุดติดปัจจุบันของรอบนี้ */
+  focus?: ContractFocus
   /** ค่าเอเยนต์ถ้าเซ็นสำเร็จ */
   agentFee: number
-  status: 'open' | 'signed' | 'walked'
+  status: 'open' | 'signed' | 'walked' | 'cancelled'
   note: string
 }
+
+export type ContractFocus = 'wage' | 'years' | 'signing' | 'appearance' | 'package'
 
 export interface ContractTalkState {
   talks: ContractNegotiation[]

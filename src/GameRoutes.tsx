@@ -65,6 +65,9 @@ const HistoryPage = lazy(() =>
 const MeetingsPage = lazy(() =>
   import('@/pages/MeetingsPage').then((m) => ({ default: m.MeetingsPage })),
 )
+const DynamicsPage = lazy(() =>
+  import('@/pages/DynamicsPage').then((m) => ({ default: m.DynamicsPage })),
+)
 const ClubVisionPage = lazy(() =>
   import('@/pages/ClubVisionPage').then((m) => ({ default: m.ClubVisionPage })),
 )
@@ -76,6 +79,9 @@ const PreSeasonPage = lazy(() =>
 )
 const CalendarPage = lazy(() =>
   import('@/pages/CalendarPage').then((m) => ({ default: m.CalendarPage })),
+)
+const RegistrationPage = lazy(() =>
+  import('@/pages/RegistrationPage').then((m) => ({ default: m.RegistrationPage })),
 )
 
 function RequireSave({ children }: { children: ReactNode }) {
@@ -119,7 +125,9 @@ export default function GameRoutes() {
           <Route path="/awards" element={<AwardsPage />} />
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/squad" element={<SquadPage />} />
+          <Route path="/registration" element={<RegistrationPage />} />
           <Route path="/meetings" element={<MeetingsPage />} />
+          <Route path="/dynamics" element={<DynamicsPage />} />
           <Route path="/club-vision" element={<ClubVisionPage />} />
           <Route path="/tactics" element={<TacticsPage />} />
           <Route path="/training" element={<TrainingPage />} />

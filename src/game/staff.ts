@@ -320,6 +320,18 @@ export function createStaff(clubs: Club[], humanClubId: string, seed = 2026): St
     members: fin.members,
     pool: fin.pool,
     marketRefreshMatchday: 0,
+    responsibilities: {
+      byTask: {
+        training: 'assistant',
+        opposition_report: 'assistant',
+        contract_reminders: 'manager',
+        form_watches: 'scout',
+        set_piece_advice: 'assistant',
+        press_prep: 'manager',
+      },
+      lastAutoNote: 'พร้อมมอบหมายงาน',
+      lastRunMatchday: -1,
+    },
   }
 }
 
@@ -332,6 +344,18 @@ export function ensureStaffState(staff: StaffState, clubs: Club[], humanClubId: 
       pool: fin.pool,
       members: fin.members,
       marketRefreshMatchday: staff.marketRefreshMatchday ?? 0,
+      responsibilities: staff.responsibilities ?? {
+        byTask: {
+          training: 'assistant',
+          opposition_report: 'assistant',
+          contract_reminders: 'manager',
+          form_watches: 'scout',
+          set_piece_advice: 'assistant',
+          press_prep: 'manager',
+        },
+        lastAutoNote: 'พร้อมมอบหมายงาน',
+        lastRunMatchday: -1,
+      },
     }
   }
   return createStaff(clubs, humanClubId)

@@ -1,11 +1,18 @@
 import mentoringDb from '@/data/mentoring.json'
 import developmentDb from '@/data/development.json'
-import type { GameSave, Player, TrainingFocus, TrainingState } from './types'
+import type { DynamicsState, GameSave, Player, Tactics, TrainingFocus, TrainingState } from './types'
 import { ATTR_BUMP, ATTR_MAX, ATTR_MIN, overallFromCa } from './attributes'
 import { applyInjury, tickPlayerInjury } from './medical'
 import { applyTrainingWear, bodyWearInjuryBonus } from './bodyMap'
 import { FOCUS_ATTRS } from './focusAttrs'
 import { tryUnlockPlayerSkill } from './playerSkills'
+import { progressStyleTraining, type StyleTrainEvent } from './styleTraining'
+import { scaleStaminaGain, scaleStaminaLoss } from './playerStamina'
+import { clampStaminaToMedical, medicalStaminaProfile } from './medicalStamina'
+import {
+  resolveTrainingIncidents,
+  type TrainingIncident,
+} from './trainingIncidents'
 
 export function defaultTraining(): TrainingState {
   return {
@@ -40,7 +47,19 @@ export function applyTrainingWeek(
   facilityBonus = 0,
   matchday = 0,
   staffBoost: { coach?: number; attacking?: number; defending?: number; fitness?: number } = {},
-): { players: Player[]; note: string; injuries: string[] } {
+  extras?: {
+    tactics?: Tactics | null
+    dynamics?: DynamicsState | null
+    season?: number
+  },
+): {
+  players: Player[]
+  note: string
+  injuries: string[]
+  styleEvents: StyleTrainEvent[]
+  incidents: TrainingIncident[]
+  dynamics?: DynamicsState
+} {
   const focus = resolveTrainingFocus(training, matchday)
   const specialist =
     focus === 'attacking'
@@ -57,14 +76,20 @@ export function applyTrainingWeek(
     (training.intensity === 'high' ? 1.35 : training.intensity === 'low' ? 0.7 : 1) * staffMul
   const facMul = 1 + facilityBonus
   const injuries: string[] = []
+  const styleEvents: StyleTrainEvent[] = []
   const individual = training.individual ?? {}
-  const next = players.map((p) => {
+  let next = players.map((p) => {
     if (p.clubId !== humanClubId) return p
     if (p.injuryDays > 0 || (p.illnessDays ?? 0) > 0) {
-      const condBoost = p.treatment === 'rest' || (p.illnessDays ?? 0) > 0 ? 8 : 5
+      const med = medicalStaminaProfile(p)
+      const condBoost =
+        scaleStaminaGain(
+          p.treatment === 'rest' || (p.illnessDays ?? 0) > 0 ? 8 : 5,
+          p.attrs?.stamina ?? 70,
+        ) * med.recoveryMul
       return {
         ...p,
-        condition: clamp(p.condition + condBoost, 40, 100),
+        condition: clampStaminaToMedical(p, p.condition + condBoost),
       }
     }
 
@@ -74,14 +99,20 @@ export function applyTrainingWeek(
     let overall = p.overall
     let ca = p.ca
     let attrs = { ...p.attrs }
+    const fit = p.attrs?.stamina ?? 70
 
     if (focus === 'rest') {
-      condition = clamp(condition + 8 * intensityMul, 40, 100)
+      condition = clamp(condition + scaleStaminaGain(8 * intensityMul, fit), 40, 100)
       sharpness = clamp(sharpness - 2, 30, 100)
     } else {
-      condition = clamp(condition - 3 * intensityMul, 40, 100)
+      condition = clamp(condition - scaleStaminaLoss(3 * intensityMul, fit), 40, 100)
       sharpness = clamp(sharpness + 2 * intensityMul, 30, 100)
-      if (focus === 'fitness') condition = clamp(condition + 1 + (staffBoost.fitness ?? 0) / 20, 40, 100)
+      if (focus === 'fitness')
+        condition = clamp(
+          condition + scaleStaminaGain(1 + (staffBoost.fitness ?? 0) / 20, fit),
+          40,
+          100,
+        )
       if (focus === 'tactics') form = clamp(form + (Math.random() > 0.6 ? 1 : 0), 1, 20)
       if (focus === 'attacking' && (p.position === 'FW' || p.role === 'CAM')) {
         if (Math.random() < 0.12 * intensityMul * facMul * (p.growth.learningRate / 20)) {
@@ -134,16 +165,54 @@ export function applyTrainingWeek(
     out = applyTrainingWear(out, focus !== 'rest' && training.intensity === 'high')
 
     const injuryChance =
-      (0.04 * (training.intensity === 'high' ? 1 : 0.4) * (p.hidden.injuryProneness / 12) +
+      (0.045 * (training.intensity === 'high' ? 1.15 : 0.4) * (p.hidden.injuryProneness / 12) +
         bodyWearInjuryBonus(out)) *
       (focus === 'rest' ? 0 : 1)
-    if (focus !== 'rest' && Math.random() < injuryChance) {
+    // ฟิตเนส/เกมรับ เสี่ยงเจ็บซ้อมมากกว่า
+    const focusInj =
+      focus === 'fitness' ? 1.25 : focus === 'defending' ? 1.15 : focus === 'attacking' ? 1.05 : 1
+    if (focus !== 'rest' && Math.random() < injuryChance * focusInj) {
       out = applyInjury(out, 'training')
       injuries.push(p.name)
     }
 
+    if (focus !== 'rest' || training.intensity !== 'high') {
+      const styleR = progressStyleTraining(out, {
+        intensity: focus === 'rest' ? 'low' : training.intensity,
+        matchday,
+        xpMul: focus === 'tactics' ? 1.15 : focus === 'rest' ? 0.45 : 1,
+      })
+      out = styleR.player
+      styleEvents.push(...styleR.events)
+    }
+
     return out
   })
+
+  // ทะเลาะ / ซีเนียร์ / พี่เลี้ยง
+  let dynamicsOut: DynamicsState | undefined
+  let incidents: TrainingIncident[] = []
+  if (extras?.dynamics) {
+    const resolved = resolveTrainingIncidents(next, humanClubId, {
+      training,
+      focus,
+      tactics: extras.tactics,
+      dynamics: extras.dynamics,
+      matchday,
+      season: extras.season,
+    })
+    next = resolved.players
+    dynamicsOut = resolved.dynamics
+    incidents = resolved.incidents
+    // จับเจ็บจากทะเลาะที่เพิ่งเกิด
+    for (const p of next) {
+      if (p.clubId !== humanClubId) continue
+      const prev = players.find((x) => x.id === p.id)
+      if (prev && prev.injuryDays <= 0 && p.injuryDays > 0 && !injuries.includes(p.name)) {
+        injuries.push(p.name)
+      }
+    }
+  }
 
   const focusTh: Record<TrainingFocus, string> = {
     tactics: 'แท็กติก',
@@ -153,12 +222,18 @@ export function applyTrainingWeek(
     setpieces: 'ลูกตั้งเตะ',
     rest: 'พักฟื้น',
   }
-  const note =
-    injuries.length > 0
-      ? `ซ้อมโฟกัส「${focusTh[focus]}」(${training.intensity}) — เจ็บจากซ้อม: ${injuries.join(', ')}`
-      : `ซ้อมโฟกัส「${focusTh[focus]}」ความเข้ม ${training.intensity} เสร็จสิ้น`
+  const parts: string[] = [
+    `ซ้อมโฟกัส「${focusTh[focus]}」ความเข้ม ${training.intensity}`,
+  ]
+  if (injuries.length > 0) parts.push(`เจ็บจากซ้อม: ${injuries.join(', ')}`)
+  if (incidents.length > 0) {
+    parts.push(...incidents.slice(0, 3).map((i) => i.text))
+  } else {
+    parts.push('เสร็จสิ้น')
+  }
+  const note = parts.join(' — ')
 
-  return { players: next, note, injuries }
+  return { players: next, note, injuries, styleEvents, incidents, dynamics: dynamicsOut }
 }
 
 export function recoverInjuriesOneDay(players: Player[], physioLevel = 8): Player[] {

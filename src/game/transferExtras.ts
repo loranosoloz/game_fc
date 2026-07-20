@@ -1,14 +1,15 @@
 /**
- * ระบบเสริมตลาด: เวลาลงตามสัญญา · เมดิคอล · ทะเบียนสควอด · ROFR ตอนขาย · สุภาพบุรุษ/คู่แข่ง
+ * ระบบเสริมตลาด: เวลาลงตามสัญญา · เมดิคอล · ขนาดสควอด · ROFR ตอนขาย · สุภาพบุรุษ/คู่แข่ง
+ * (ไม่มีโควตาสัญชาติ / home-grown — ทะเบียนลีก/UCL อยู่ที่ squadRegistration.ts)
  */
 import type { GameSave, Player, SquadStatusGuarantee } from './types'
 import { formatMoney } from '@/lib/format'
 import { injuryHistoryPenalty } from './medical'
-import { playerNationality } from './nationalTeams'
 import { areRivals, getRivalClubIds } from './rivalries'
 import { recordHatredWhileAtClub } from './fans'
 import { squadStatusPlayShare, mapSquadRoleToStatus } from './transferAdvanced'
-import nationalDb from '@/data/nationalTeams.json'
+import { ensurePlayerTacticalRoles, styleLevelForRole } from './playerTacticalRoles'
+import { REG_MAX_PLAYERS } from './squadRegistration'
 
 function uid(prefix: string) {
   return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 5)}`
@@ -17,51 +18,6 @@ function uid(prefix: string) {
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.round(n)))
 }
-
-const LEAGUE_DOMESTIC = (nationalDb as { leagueDomestic?: Record<string, string> }).leagueDomestic ?? {
-  eng: 'England',
-  esp: 'Spain',
-  ger: 'Germany',
-  fra: 'France',
-  ita: 'Italy',
-}
-
-/** สัญชาติในโซนยุโรป (นับเป็น EU สำหรับโควตา) */
-const EU_NATIONS = new Set([
-  'England',
-  'Scotland',
-  'Wales',
-  'Ireland',
-  'Northern Ireland',
-  'Spain',
-  'Germany',
-  'France',
-  'Italy',
-  'Portugal',
-  'Netherlands',
-  'Belgium',
-  'Denmark',
-  'Sweden',
-  'Norway',
-  'Austria',
-  'Switzerland',
-  'Croatia',
-  'Serbia',
-  'Poland',
-  'Czech Republic',
-  'Czechia',
-  'Hungary',
-  'Romania',
-  'Greece',
-  'Turkey',
-  'Ukraine',
-  'Bosnia',
-  'Kosovo',
-  'Finland',
-  'Iceland',
-  'Slovenia',
-  'Slovakia',
-])
 
 // ——— 1) Playing time vs contracted status ———
 
@@ -81,15 +37,32 @@ export function tickContractedPlayingTime(save: GameSave): GameSave {
 
     const ratio = actual / Math.max(1, expectedMin)
     if (ratio >= 0.75) {
-      // พอใจเล็กน้อย
+      // พอใจเล็กน้อย + โบนัสถ้าได้เล่นสไตล์ถนัด ★★★
+      let next = p
       if (ratio >= 1 && status === 'star') {
-        return {
-          ...p,
-          happiness: clamp((p.happiness ?? 10) + 1, 1, 20),
-          morale: clamp(p.morale + 1, 1, 20),
+        next = {
+          ...next,
+          happiness: clamp((next.happiness ?? 10) + 1, 1, 20),
+          morale: clamp(next.morale + 1, 1, 20),
         }
       }
-      return p
+      const tac = save.tacticsByClub[save.humanClubId]
+      const xiIdx = tac?.startingXi.indexOf(p.id) ?? -1
+      if (xiIdx >= 0 && tac?.slotRoles?.[xiIdx]) {
+        const lvl = styleLevelForRole(ensurePlayerTacticalRoles(p), tac.slotRoles[xiIdx]!)
+        if (lvl >= 3) {
+          next = {
+            ...next,
+            happiness: clamp((next.happiness ?? 10) + 1, 1, 20),
+          }
+        } else if (lvl === 0 && (p.styleDisliked ?? []).includes(tac.slotRoles[xiIdx]!)) {
+          next = {
+            ...next,
+            happiness: clamp((next.happiness ?? 10) - 1, 1, 20),
+          }
+        }
+      }
+      return next
     }
 
     // ลงน้อยกว่าสัญญา
@@ -337,98 +310,36 @@ export function runTransferMedical(player: Player): MedicalExamResult {
   }
 }
 
-// ——— 4) Squad registration ———
+// ——— 4) Squad size (ไม่มีโควตาสัญชาติ) ———
 
 export type SquadRegStatus = {
   total: number
   maxTotal: number
-  nonEu: number
-  maxNonEu: number
-  homeGrown: number
-  minHomeGrown: number
   ok: boolean
   reason: string
-}
-
-export function isEuNationality(nation: string): boolean {
-  return EU_NATIONS.has(nation)
-}
-
-export function isHomeGrownPlayer(player: Player, save: GameSave, clubId: string): boolean {
-  if (player.isYouth) return true
-  const club = save.clubs.find((c) => c.id === clubId)
-  const lid = club?.originLeagueId ?? save.leagueId ?? 'eng'
-  const domestic = LEAGUE_DOMESTIC[lid] ?? 'England'
-  const nat = playerNationality(player, save)
-  if (nat === domestic) return true
-  // ดาวรุ่งอายุน้อยที่คลับนานโดยประมาณ
-  if (player.age <= 21 && player.squadRole === 'prospect') return true
-  return false
 }
 
 export function squadRegistrationStatus(save: GameSave, clubId?: string): SquadRegStatus {
   const id = clubId ?? save.humanClubId
   const squad = save.players.filter((p) => p.clubId === id && !p.loanParentClubId)
-  // ยืมเข้า นับในทะเบียน
   const loanedIn = save.players.filter((p) => p.clubId === id && p.loanParentClubId)
-  const all = [...squad, ...loanedIn]
-  const maxTotal = 25
-  const maxNonEu = 17 // ผ่อนปรนจากจริง — เกมเล่นง่ายขึ้น
-  const minHomeGrown = 8
-
-  let nonEu = 0
-  let homeGrown = 0
-  for (const p of all) {
-    const nat = playerNationality(p, save)
-    if (!isEuNationality(nat)) nonEu++
-    if (isHomeGrownPlayer(p, save, id)) homeGrown++
-  }
-
-  const total = all.length
-  let ok = true
-  let reason = `ทะเบียน ${total}/${maxTotal} · นอกยุโรป ${nonEu}/${maxNonEu} · HG ${homeGrown}/${minHomeGrown}`
-  if (total > maxTotal) {
-    ok = false
-    reason = `สควอดเต็ม ${total}/${maxTotal} — ต้องปล่อย/ยืมออกก่อนซื้อเพิ่ม`
-  } else if (nonEu > maxNonEu) {
-    ok = false
-    reason = `โควตานอกยุโรปเต็ม ${nonEu}/${maxNonEu}`
-  } else if (homeGrown < minHomeGrown && total >= 18) {
-    // เตือนเมื่อสควอดใหญ่แต่ HG น้อย — บล็อกถ้าจะซื้อคนนอกและ HG ต่ำมาก
-    if (homeGrown < 5) {
-      ok = false
-      reason = `Home-grown ต่ำเกินไป (${homeGrown}/${minHomeGrown}) — ซื้อคนนอกยุโรป/นอกสมาคมไม่ได้`
-    }
-  }
-
-  return { total, maxTotal, nonEu, maxNonEu, homeGrown, minHomeGrown, ok, reason }
+  const total = squad.length + loanedIn.length
+  const maxTotal = REG_MAX_PLAYERS
+  const ok = total <= maxTotal
+  const reason = ok
+    ? `สควอด ${total}/${maxTotal}`
+    : `สควอดเต็ม ${total}/${maxTotal} — ต้องปล่อย/ยืมออกก่อนซื้อเพิ่ม`
+  return { total, maxTotal, ok, reason }
 }
 
-/** ตรวจก่อนซื้อ/ยืมเข้า — canAdd=ผู้เล่นใหม่จะนับยังไง */
+/** ตรวจก่อนซื้อ/ยืมเข้า — จำกัดขนาดสควอดเท่านั้น */
 export function canRegisterIncoming(
   save: GameSave,
-  incoming: Player,
+  _incoming: Player,
 ): { ok: true } | { ok: false; reason: string } {
   const status = squadRegistrationStatus(save)
   if (status.total >= status.maxTotal) {
     return { ok: false, reason: status.reason }
-  }
-  const nat = playerNationality(incoming, save)
-  const wouldNonEu = status.nonEu + (isEuNationality(nat) ? 0 : 1)
-  if (wouldNonEu > status.maxNonEu) {
-    return { ok: false, reason: `โควตานอกยุโรปจะเต็ม (${wouldNonEu}/${status.maxNonEu})` }
-  }
-  const wouldHg = status.homeGrown + (isHomeGrownPlayer(incoming, save, save.humanClubId) ? 1 : 0)
-  if (
-    !isHomeGrownPlayer(incoming, save, save.humanClubId) &&
-    status.total >= 18 &&
-    wouldHg < 5 &&
-    status.homeGrown < 5
-  ) {
-    return {
-      ok: false,
-      reason: `Home-grown ไม่พอ (${status.homeGrown}/${status.minHomeGrown}) — รับคนนอกสมาคมไม่ได้`,
-    }
   }
   return { ok: true }
 }

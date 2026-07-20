@@ -1,8 +1,13 @@
 /**
  * Matchday squad — ตัวจริง 11 + ตัวสำรองบนม้านั่ง
  */
-import type { GameSave, Player, Tactics } from '../types'
+import type { CompetitionKind, GameSave, Player, Tactics } from '../types'
 import { isUnavailable } from '../discipline'
+import {
+  competitionNeedsRegistration,
+  isPlayerRegisteredForMatch,
+} from '../squadRegistration'
+import { medicalStaminaProfile } from '../medicalStamina'
 
 /** จำนวนตัวสำรองมาตรฐานบนม้านั่ง */
 export const MATCH_BENCH_SIZE = 7
@@ -10,9 +15,19 @@ export const MATCH_BENCH_SIZE = 7
 /** ขั้นต่ำที่ยืนยัน XI ได้ (นอกจากตัวจริง 11) */
 export const MIN_BENCH_REQUIRED = 5
 
-export function availableSquadPlayers(save: GameSave, clubId: string): Player[] {
+export function availableSquadPlayers(
+  save: GameSave,
+  clubId: string,
+  competition?: CompetitionKind,
+): Player[] {
   return save.players
-    .filter((p) => p.clubId === clubId && !isUnavailable(p))
+    .filter((p) => {
+      if (p.clubId !== clubId || isUnavailable(p)) return false
+      if (competition && competitionNeedsRegistration(competition)) {
+        return isPlayerRegisteredForMatch(save, clubId, p.id, competition)
+      }
+      return true
+    })
     .slice()
     .sort((a, b) => b.overall - a.overall)
 }
@@ -40,9 +55,20 @@ export function ensureClubMatchdaySquad(
   save: GameSave,
   clubId: string,
   tactics: Tactics,
+  competition?: CompetitionKind,
 ): Tactics {
-  const pool = availableSquadPlayers(save, clubId)
-  return fillBench(tactics, pool, MATCH_BENCH_SIZE)
+  const pool = availableSquadPlayers(save, clubId, competition)
+  // ตัดคนไม่อยู่ในทะเบียนออกจาก XI แล้วเติมใหม่
+  let xi = tactics.startingXi.filter((id) => pool.some((p) => p.id === id))
+  if (xi.length < 11) {
+    for (const p of pool) {
+      if (xi.length >= 11) break
+      if (xi.includes(p.id)) continue
+      xi.push(p.id)
+    }
+  }
+  xi = xi.slice(0, 11)
+  return fillBench({ ...tactics, startingXi: xi }, pool, MATCH_BENCH_SIZE)
 }
 
 export function benchIssues(
@@ -59,10 +85,15 @@ export function benchIssues(
     )
   }
   for (const p of bench) {
-    if (p.injuryDays > 0) issues.push(`สำรอง ${p.name} เจ็บอยู่`)
-    if ((p.banMatches ?? 0) > 0) issues.push(`สำรอง ${p.name} ติดแบน`)
-    if ((p.leaveDays ?? 0) > 0) issues.push(`สำรอง ${p.name} ลา`)
-    if ((p.illnessDays ?? 0) > 0) issues.push(`สำรอง ${p.name} ป่วย`)
+    const med = medicalStaminaProfile(p)
+    if (med.status === 'out') {
+      if (p.injuryDays > 0) issues.push(`สำรอง ${p.name} เจ็บหนัก — ห้ามลง`)
+      else if ((p.banMatches ?? 0) > 0) issues.push(`สำรอง ${p.name} ติดแบน`)
+      else if ((p.leaveDays ?? 0) > 0) issues.push(`สำรอง ${p.name} ลา`)
+      else if ((p.illnessDays ?? 0) > 0) issues.push(`สำรอง ${p.name} ป่วย — ห้ามลง`)
+    } else if (med.status === 'limited') {
+      issues.push(`สำรอง ${p.name} ลงได้แบบประคอง (stamina ~${med.staminaCap}%)`)
+    }
   }
   return issues
 }

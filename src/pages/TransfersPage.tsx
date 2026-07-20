@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import { useGameStore } from '@/store/gameStore'
-import { estimatedValue, listMarketPlayers, minAcceptableFee, marketSellPremium, winterMarketHintTh } from '@/game/transfer'
-import { agentStyleFor, AGENT_STYLE_LABEL, AGENT_STYLE_DESC } from '@/game/agents'
+import { estimatedValue, listMarketPlayers, minAcceptableFee, marketSellPremium, winterMarketHintTh, marketValueHints } from '@/game/transfer'
+import { agentStyleFor, AGENT_STYLE_LABEL, AGENT_STYLE_DESC, agentLabelTh, AGENT_KIND_LABEL } from '@/game/agents'
+import { focusLabelTh, negotiationProfile } from '@/game/contractNegotiation'
 import { emptyAddonPackage } from '@/game/transferClauses'
 import type { TransferAddonPackage } from '@/game/types'
 import { analyzeBuy, analyzeSell, analyzeAddons } from '@/game/transferIntel'
@@ -31,7 +32,12 @@ import {
   pendingInstallmentsForClub,
   sellerPresentValue,
 } from '@/game/transferPayments'
-import { canApproachBosman } from '@/game/transferAdvanced'
+import { canApproachBosman, isBosmanApproachWindow } from '@/game/transferAdvanced'
+import {
+  affinityHintsTh,
+  hasHandshakeWith,
+} from '@/game/playerAmbition'
+import { listAgentApproachOffers } from '@/game/agentApproach'
 import {
   runTransferMedical,
   squadRegistrationStatus,
@@ -55,6 +61,7 @@ export function TransfersPage() {
   const setPlayerTransferListed = useGameStore((s) => s.setPlayerTransferListed)
   const mutualTerminatePlayer = useGameStore((s) => s.mutualTerminatePlayer)
   const signBosmanPreContract = useGameStore((s) => s.signBosmanPreContract)
+  const tryPlayerSecretHandshake = useGameStore((s) => s.tryPlayerSecretHandshake)
   const triggerPlayerBuyBack = useGameStore((s) => s.triggerPlayerBuyBack)
   const acceptRofrOffer = useGameStore((s) => s.acceptRofrOffer)
   const declineRofrOffer = useGameStore((s) => s.declineRofrOffer)
@@ -63,7 +70,10 @@ export function TransfersPage() {
   const acceptTransferCounter = useGameStore((s) => s.acceptTransferCounter)
   const acceptWantAwayOffer = useGameStore((s) => s.acceptWantAwayOffer)
   const rejectWantAwayOffer = useGameStore((s) => s.rejectWantAwayOffer)
+  const acceptAgentApproach = useGameStore((s) => s.acceptAgentApproach)
+  const declineAgentApproachOffer = useGameStore((s) => s.declineAgentApproachOffer)
   const renewPlayerContract = useGameStore((s) => s.renewPlayerContract)
+  const cancelPlayerContractTalk = useGameStore((s) => s.cancelPlayerContractTalk)
   const triggerClause = useGameStore((s) => s.triggerReleaseClause)
   const runScout = useGameStore((s) => s.runScout)
 
@@ -74,6 +84,9 @@ export function TransfersPage() {
   const [fee, setFee] = useState(0)
   const [wage, setWage] = useState(0)
   const [years, setYears] = useState(3)
+  const [signingOn, setSigningOn] = useState(0)
+  const [perAppearanceBonus, setPerAppearanceBonus] = useState(0)
+  const [perGoalBonus, setPerGoalBonus] = useState(0)
   const [addons, setAddons] = useState<TransferAddonPackage>(() => ({
     ...emptyAddonPackage(),
     appearanceFee: 50_000,
@@ -181,6 +194,7 @@ export function TransfersPage() {
       o.fromClubId === save.humanClubId &&
       o.expiresMatchday >= save.matchday,
   )
+  const agentPitches = listAgentApproachOffers(save)
   const squadReg = squadRegistrationStatus(save)
   const windowOpen = isTransferWindowOpen(save)
   const windowKind = transferWindowKind(save)
@@ -274,7 +288,7 @@ export function TransfersPage() {
           </strong>
           <br />
           <span className={cn('text-xs', squadReg.ok ? 'text-slate-500' : 'text-rose-700 font-semibold')}>
-            ทะเบียน: {squadReg.reason}
+            ขนาดสควอด: {squadReg.reason}
           </span>
         </p>
 
@@ -303,6 +317,76 @@ export function TransfersPage() {
                     >
                       ปล่อยผ่าน
                     </button>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        ) : null}
+
+        {agentPitches.length > 0 ? (
+          <div className="mt-3 rounded-lg border border-violet-200 bg-violet-50 px-3 py-2 text-sm">
+            <p className="font-semibold text-violet-950">เอเยนต์มาคุย — เสนอขายลูกค้า</p>
+            <p className="mt-0.5 text-[11px] text-violet-800">
+              เอเยนต์คนเดียวอาจดูแลหลายนักเตะ · ยื่นเพราะอยากย้าย / ไม่พอใจ / ทีมในฝัน ฯลฯ
+            </p>
+            <ul className="mt-2 space-y-2">
+              {agentPitches.map((o) => {
+                const p = save.players.find((x) => x.id === o.playerId)
+                const club = save.clubs.find((c) => c.id === o.fromClubId)
+                return (
+                  <li
+                    key={o.id}
+                    className="rounded border border-violet-200 bg-white/80 px-2 py-1.5"
+                  >
+                    <p className="font-medium text-slate-900">
+                      {o.agentName}{' '}
+                      <span className="font-normal text-slate-500">
+                        ({o.agentAgency}
+                        {o.agentClientCount != null
+                          ? ` · ลูกค้า ${o.agentClientCount} คน`
+                          : ''}
+                        )
+                      </span>
+                    </p>
+                    <p className="text-xs text-slate-700">
+                      เสนอ {p?.name ?? o.playerId} จาก {club?.shortName ?? '—'} · ขอ{' '}
+                      {formatMoney(o.fee)} · ค่าเหนื่อย {formatMoney(o.wage)} · {o.contractYears}{' '}
+                      ปี
+                    </p>
+                    {o.approachReasonTh ? (
+                      <p className="text-[11px] text-violet-900">เหตุผล: {o.approachReasonTh}</p>
+                    ) : null}
+                    <p className="text-[11px] text-slate-500">หมดอายุ MD{o.expiresMatchday}</p>
+                    <div className="mt-1 flex flex-wrap gap-2">
+                      <button
+                        type="button"
+                        className="rounded border border-violet-500 bg-violet-100 px-2 py-0.5 text-xs font-semibold text-violet-950"
+                        onClick={() => acceptAgentApproach(o.id)}
+                      >
+                        รับข้อเสนอ · ซื้อ
+                      </button>
+                      <button
+                        type="button"
+                        className="rounded border border-slate-300 bg-white px-2 py-0.5 text-xs"
+                        onClick={() => {
+                          setTab('buy')
+                          setSelectedId(o.playerId)
+                          setFee(o.fee)
+                          setWage(o.wage)
+                          setYears(o.contractYears)
+                        }}
+                      >
+                        เปิดในตลาด
+                      </button>
+                      <button
+                        type="button"
+                        className="rounded border border-rose-300 bg-rose-50 px-2 py-0.5 text-xs text-rose-900"
+                        onClick={() => declineAgentApproachOffer(o.id)}
+                      >
+                        ปฏิเสธ
+                      </button>
+                    </div>
                   </li>
                 )
               })}
@@ -591,6 +675,14 @@ export function TransfersPage() {
               PA {revealPa(selectedBuy.pa, knowledgeOf(scouting, selectedBuy.id))}
               <br />
               มูลค่าประเมิน: {formatMoney(selectedBuy.value)}
+              {marketValueHints(selectedBuy).length > 0 ? (
+                <>
+                  <br />
+                  <span className="text-amber-900">
+                    {marketValueHints(selectedBuy).join(' · ')}
+                  </span>
+                </>
+              ) : null}
               <br />
               ค่าตัวขั้นต่ำโดยประมาณ:{' '}
               {formatMoney(minAcceptableFee(selectedBuy, sellerClub, save))}
@@ -599,6 +691,17 @@ export function TransfersPage() {
                   {' '}
                   · วินเทอร์×{marketSellPremium(save, selectedBuy).toFixed(2)}
                 </span>
+              ) : null}
+              {(selectedBuy.marketHeat ?? 0) > 0 || (selectedBuy.form ?? 10) !== 10 ? (
+                <>
+                  <br />
+                  <span className="text-xs text-slate-500">
+                    ฟอร์ม {selectedBuy.form}/20
+                    {(selectedBuy.marketHeat ?? 0) > 0
+                      ? ` · ความสนใจตลาด ${selectedBuy.marketHeat}/20`
+                      : ''}
+                  </span>
+                </>
               ) : null}
             </p>
             {winterMarketHintTh(save) ? (
@@ -1152,18 +1255,47 @@ export function TransfersPage() {
             </button>
             {(() => {
               const bosman = canApproachBosman(save, selectedBuy.id)
+              const inBosman = isBosmanApproachWindow(selectedBuy, save)
+              const hasHs = hasHandshakeWith(selectedBuy, save.humanClubId)
+              const know = knowledgeOf(ensureScouting(save), selectedBuy.id)
+              const hints = affinityHintsTh(selectedBuy, save.clubs, know)
               return (
-                <button
-                  type="button"
-                  className="w-full rounded-md border border-emerald-300 bg-emerald-50 px-4 py-2 font-semibold text-emerald-950 hover:bg-emerald-100 disabled:opacity-50"
-                  disabled={!bosman.ok}
-                  title={bosman.ok ? 'เซ็นล่วงหน้า ย้ายฟรีฤดูกาลหน้า' : bosman.reason}
-                  onClick={() => signBosmanPreContract(selectedBuy.id, wage, years)}
-                >
-                  {bosman.ok
-                    ? 'เซ็นพรี-คอนแทรกต์ (บอสแมน / ฟรีฤดูกาลหน้า)'
-                    : `บอสแมนยังไม่ได้ (${bosman.reason})`}
-                </button>
+                <>
+                  {hints.length > 0 ? (
+                    <p className="rounded-md border border-slate-200 bg-slate-50 px-2 py-1.5 text-[11px] text-slate-700">
+                      {hints.join(' · ')}
+                    </p>
+                  ) : null}
+                  {hasHs ? (
+                    <p className="rounded-md border border-violet-200 bg-violet-50 px-2 py-1.5 text-[11px] font-medium text-violet-950">
+                      มีสัญญาใจแล้ว
+                      {selectedBuy.secretHandshake?.exposed ? ' (โดนจับแล้ว)' : ' (ลับ)'}
+                      — รอหน้าต่างบอสแมนแล้วเซ็นพรี-คอนแทรกต์
+                    </p>
+                  ) : null}
+                  {!inBosman && !hasHs ? (
+                    <button
+                      type="button"
+                      className="w-full rounded-md border border-violet-300 bg-violet-50 px-4 py-2 font-semibold text-violet-950 hover:bg-violet-100"
+                      onClick={() => tryPlayerSecretHandshake(selectedBuy.id)}
+                    >
+                      สัญญาใจ — อย่าต่อสัญญา รอหมดแล้วเซ็นฟรี
+                    </button>
+                  ) : null}
+                  <button
+                    type="button"
+                    className="w-full rounded-md border border-emerald-300 bg-emerald-50 px-4 py-2 font-semibold text-emerald-950 hover:bg-emerald-100 disabled:opacity-50"
+                    disabled={!bosman.ok}
+                    title={bosman.ok ? 'เซ็นล่วงหน้า ย้ายฟรีฤดูกาลหน้า' : bosman.reason}
+                    onClick={() => signBosmanPreContract(selectedBuy.id, wage, years)}
+                  >
+                    {bosman.ok
+                      ? hasHs
+                        ? 'เซ็นพรี-คอนแทรกต์ (มีสัญญาใจ — ง่ายขึ้น)'
+                        : 'เซ็นพรี-คอนแทรกต์ (บอสแมน / ฟรีฤดูกาลหน้า)'
+                      : `บอสแมนยังไม่ได้ (${bosman.reason})`}
+                  </button>
+                </>
               )
             })()}
             {selectedBuy.buyBack?.clubId === save.humanClubId ? (
@@ -1196,6 +1328,22 @@ export function TransfersPage() {
             </p>
             <p className="text-slate-600">
               มูลค่าประเมิน: {formatMoney(selectedSell.value)}
+              {marketValueHints(selectedSell).length > 0 ? (
+                <>
+                  <br />
+                  <span className="text-amber-900">
+                    {marketValueHints(selectedSell).join(' · ')}
+                  </span>
+                </>
+              ) : null}
+              {(selectedSell.marketHeat ?? 0) > 0 ? (
+                <>
+                  <br />
+                  <span className="text-xs text-slate-500">
+                    ฟอร์ม {selectedSell.form}/20 · ความสนใจตลาด {selectedSell.marketHeat}/20
+                  </span>
+                </>
+              ) : null}
               <br />
               สัญญาถึงฤดูกาล {selectedSell.contractEndSeason ?? '—'} · เหลือ ~
               {selectedSell.contractYears ?? '—'} ปี · ค่าเหนื่อย{' '}
@@ -1341,6 +1489,48 @@ export function TransfersPage() {
             </div>
             <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
               <p className="font-semibold text-slate-800">ต่อสัญญา</p>
+              <p className="mt-1 text-[11px] text-slate-500">
+                เจรจาหลายรอบตามนิสัยเอเยนต์/นักเตะ · จุดติดอาจเป็นค่าเหนื่อย · ปี · เงินเซ็น ·
+                โบนัสลงแข่ง — ยกเลิกได้ถ้าไม่ลงตัว
+              </p>
+              {(() => {
+                const open = (save.contractTalks?.talks ?? []).find(
+                  (t) => t.playerId === selectedSell.id && t.status === 'open',
+                )
+                const style = agentStyleFor(selectedSell)
+                const prof = negotiationProfile(selectedSell, style)
+                return (
+                  <>
+                    <p className="mt-1 rounded bg-slate-100 px-2 py-1 text-[11px] text-slate-700">
+                      {agentLabelTh(selectedSell)}
+                      {selectedSell.agentKind
+                        ? ` · ${AGENT_KIND_LABEL[selectedSell.agentKind]}`
+                        : ''}
+                    </p>
+                    <p className="mt-1 text-[11px] text-slate-500">
+                      สไตล์เจรจา: {AGENT_STYLE_LABEL[style]} — {AGENT_STYLE_DESC[style]} · สูงสุด{' '}
+                      {open?.maxRounds ?? prof.maxRounds} รอบ
+                    </p>
+                    {open ? (
+                      <p className="mt-1 rounded bg-amber-50 px-2 py-1 text-[11px] font-medium text-amber-950">
+                        รอบ {open.round}/{open.maxRounds}
+                        {open.focus ? ` · จุดติด: ${focusLabelTh(open.focus)}` : ''}
+                        {(open.askSigningOn ?? 0) > 0
+                          ? ` · ขอเงินเซ็น ~${formatMoney(open.askSigningOn!)}`
+                          : ''}
+                        {(open.askPerAppearance ?? 0) > 0
+                          ? ` · ขอโบนัสนัด ~${formatMoney(open.askPerAppearance!)}`
+                          : ''}
+                        {(open.askPerGoal ?? 0) > 0
+                          ? ` · ขอโบนัสประตู ~${formatMoney(open.askPerGoal!)}`
+                          : ''}
+                        <br />
+                        {open.note}
+                      </p>
+                    ) : null}
+                  </>
+                )
+              })()}
               <div className="mt-2 grid grid-cols-2 gap-2">
                 <label className="grid gap-1">
                   <span className="text-xs text-slate-500">ค่าเหนื่อย</span>
@@ -1362,21 +1552,60 @@ export function TransfersPage() {
                     onChange={(e) => setYears(Number(e.target.value))}
                   />
                 </label>
+                <label className="grid gap-1">
+                  <span className="text-xs text-slate-500">เงินเซ็น</span>
+                  <input
+                    type="number"
+                    className="rounded-md border border-slate-300 px-2 py-1.5"
+                    value={signingOn}
+                    onChange={(e) => setSigningOn(Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-1">
+                  <span className="text-xs text-slate-500">โบนัส/นัด</span>
+                  <input
+                    type="number"
+                    className="rounded-md border border-slate-300 px-2 py-1.5"
+                    value={perAppearanceBonus}
+                    onChange={(e) => setPerAppearanceBonus(Number(e.target.value))}
+                  />
+                </label>
+                <label className="grid gap-1 col-span-2">
+                  <span className="text-xs text-slate-500">โบนัส/ประตู (ถ้าขอ)</span>
+                  <input
+                    type="number"
+                    className="rounded-md border border-slate-300 px-2 py-1.5"
+                    value={perGoalBonus}
+                    onChange={(e) => setPerGoalBonus(Number(e.target.value))}
+                  />
+                </label>
               </div>
               <button
                 type="button"
                 className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-2 font-semibold hover:bg-white"
-                onClick={() => renewPlayerContract(selectedSell.id, wage, years)}
+                onClick={() =>
+                  renewPlayerContract(selectedSell.id, wage, years, {
+                    signingOnFee: signingOn,
+                    perAppearance: perAppearanceBonus,
+                    perGoal: perGoalBonus,
+                  })
+                }
               >
-                เจรจา/ต่อสัญญา
+                ยื่นข้อเสนอรอบนี้
               </button>
+              {(save.contractTalks?.talks ?? []).some(
+                (t) => t.playerId === selectedSell.id && t.status === 'open',
+              ) ? (
+                <button
+                  type="button"
+                  className="mt-2 w-full rounded-md border border-rose-300 bg-rose-50 px-3 py-2 text-sm font-semibold text-rose-950 hover:bg-rose-100"
+                  onClick={() => cancelPlayerContractTalk(selectedSell.id)}
+                >
+                  ยกเลิกการเจรจา (ไม่ลงตัว)
+                </button>
+              ) : null}
               <p className="mt-1 text-[11px] text-slate-500">
-                สูงสุด 3 รอบ · มีค่าเอเยนต์เมื่อเซ็น · ข้อเสนอต่ำเกินไปเอเยนต์จะโต้กลับ
-                {save.contractTalks?.talks?.find(
-                  (t) => t.playerId === selectedSell.id && t.status === 'open',
-                )
-                  ? ` · ${save.contractTalks.talks.find((t) => t.playerId === selectedSell.id && t.status === 'open')!.note}`
-                  : ''}
+                แต่ละรอบมีจุดติดชัดเจน · ครบรอบแล้วยังไม่ตกลง = เอเยนต์พาเดินออก · ยกเลิกเองได้แต่เบากว่า
               </p>
             </div>
           </div>

@@ -19,7 +19,11 @@ import { isTransferFrozen } from './clubAtmosphere'
 import { isTransferWindowOpen, transferWindowKind, transferWindowLabel } from './transferWindow'
 import { insolvencyBlocksBuying, ensureInsolvency } from './insolvency'
 import { appendPlayerMove } from './playerWorldDb'
-import { settleSellOnClauses } from './transferClauses'
+import {
+  attachClausesAfterBuy,
+  emptyAddonPackage,
+  settleSellOnClauses,
+} from './transferClauses'
 import {
   attachFeeInstallments,
   buildFeePaymentSchedule,
@@ -29,16 +33,29 @@ import {
 import {
   agentAskMul,
   agentFeeMul,
+  agentKindFeeMul,
   agentStyleFor,
   agentWalkHarder,
   AGENT_STYLE_LABEL,
 } from './agents'
 import {
+  counterAsks,
+  findStickingPoints,
+  negotiationProfile,
+  roundNoteTh,
+  seedContractBonusAsks,
+  stickingDetailTh,
+  type ContractBonusOffer,
+} from './contractNegotiation'
+import {
+  agentRapportOf,
   bumpAgentRapport,
   bumpPlayerRapport,
   isReleaseClauseKnown,
   markReleaseClauseKnown,
+  playerRapportOf,
 } from './releaseClauseIntel'
+import { analyzeBuy } from './transferIntel'
 import { resolveRofrForAi } from './transferAdvanced'
 import {
   canRegisterIncoming,
@@ -46,11 +63,31 @@ import {
   runTransferMedical,
 } from './transferExtras'
 import { heatRivalry } from './rivalries'
+import {
+  affinityWageMul,
+  clubDesireScore,
+  isAvoidClub,
+  renewAffinityWageMul,
+  sellerBlocksBuyer,
+  withEnsuredAffinity,
+} from './playerAmbition'
+import { rollingFormHints, rollingFormMarketMul } from './contractLifecycle'
+import {
+  ensureClubLoyalty,
+  loyaltyRefuseRenewChanceMul,
+  loyaltyRenewWageMul,
+  resetLoyaltyOnTransfer,
+} from './playerLoyalty'
 
 export function estimatedValue(player: Player, save?: GameSave): number {
   const ageFactor = player.age <= 24 ? 1.25 : player.age <= 29 ? 1.0 : player.age <= 32 ? 0.7 : 0.45
   const injuryFactor = injuryHistoryPenalty(player) * (player.injuryDays > 0 ? 0.85 : 1)
   let v = Math.round(player.overall ** 2 * 900 * ageFactor * injuryFactor)
+
+  // ฟอร์ม 1–20 → ~0.90–1.12
+  v = Math.round(v * formMarketMul(player))
+  // ความสนใจตลาด 0–20 → +0–18%
+  v = Math.round(v * heatMarketMul(player))
 
   const years = player.contractYears ?? 0
   if (years <= 0) v = Math.round(v * 0.15)
@@ -68,6 +105,58 @@ export function estimatedValue(player: Player, save?: GameSave): number {
   }
 
   return Math.max(50_000, v)
+}
+
+/** ฟอร์มสัปดาห์+เดือน → คูณค่าตัว (~0.90–1.25 เมื่อโก่ง) */
+export function formMarketMul(player: Player): number {
+  return rollingFormMarketMul(player)
+}
+
+/** ความสนใจตลาด → คูณค่าตัว (+0–18%) */
+export function heatMarketMul(player: Player): number {
+  const h = Math.min(20, Math.max(0, player.marketHeat ?? 0))
+  return 1 + (h / 20) * 0.18
+}
+
+/**
+ * ฟอร์ม + heat → คูณค่าเหนื่อยที่ขอตอนเจรจาเท่านั้น
+ * (สัญญาที่เซ็นแล้วไม่ขยับตามฟอร์มรายสัปดาห์ — ประเมินใหม่ตอนซื้อ/ต่อสัญญา)
+ * ~0.94–1.14
+ */
+export function negotiationWageMul(player: Player): number {
+  const f = Math.min(20, Math.max(1, formWindowAvgSafe(player)))
+  let m = 0.94 + (f / 20) * 0.16
+  const h = Math.min(20, Math.max(0, player.marketHeat ?? 0))
+  if (h >= 12) m *= 1.04
+  else if (h >= 7) m *= 1.02
+  return Math.round(m * 1000) / 1000
+}
+
+function formWindowAvgSafe(player: Player): number {
+  const hist = player.formHistory
+  if (!hist?.length) return player.form ?? 10
+  const slice = hist.slice(-4)
+  return slice.reduce((s, n) => s + n, 0) / slice.length
+}
+
+/** ข้อความสั้นๆ ว่าทำไมราคาขยับ — ใช้ใน UI ตลาด */
+export function marketValueHints(player: Player): string[] {
+  const hints: string[] = [...rollingFormHints(player)]
+  const h = player.marketHeat ?? 0
+  if (h >= 14) hints.push(`ตลาดร้อนแรง (${h}/20) · หลายสโมสรจับตา`)
+  else if (h >= 7) hints.push(`มีความสนใจซื้อ (${h}/20)`)
+  return hints
+}
+
+export function clampMarketHeat(n: number): number {
+  return Math.max(0, Math.min(20, Math.round(n)))
+}
+
+export function bumpMarketHeat(player: Player, delta: number): Player {
+  return {
+    ...player,
+    marketHeat: clampMarketHeat((player.marketHeat ?? 0) + delta),
+  }
 }
 
 /**
@@ -170,10 +259,29 @@ export function buyPlayerFromAi(
   }
   const insolvencyBlock = insolvencyBlocksBuying(save)
   if (insolvencyBlock) return { ok: false, message: insolvencyBlock }
-  const player = save.players.find((p) => p.id === playerId)
-  if (!player) return { ok: false, message: 'ไม่พบนักเตะ' }
+  const playerRaw = save.players.find((p) => p.id === playerId)
+  if (!playerRaw) return { ok: false, message: 'ไม่พบนักเตะ' }
+  const player = withEnsuredAffinity(playerRaw, save.clubs)
   if (player.clubId === save.humanClubId) {
     return { ok: false, message: 'นักเตะคนนี้อยู่ในทีมคุณแล้ว' }
+  }
+  if (isAvoidClub(player, save.humanClubId) && !player.wantAway?.boardForced) {
+    return {
+      ok: false,
+      message: `${player.name} ไม่สนใจย้ายมาสโมสรคุณ (ทีมที่เขาเลี่ยง)`,
+      save,
+    }
+  }
+  const sellerClubEarly = save.clubs.find((c) => c.id === player.clubId)
+  if (
+    sellerClubEarly &&
+    sellerBlocksBuyer(sellerClubEarly, save.humanClubId, save.matchday)
+  ) {
+    return {
+      ok: false,
+      message: `${sellerClubEarly.name} ห้ามขายให้คุณชั่วคราว (หลังจับสัญญาใจ/tapping-up) จนถึง MD${sellerClubEarly.refuseBuyersUntil?.[save.humanClubId]}`,
+      save,
+    }
   }
   let dealFee = offerFee
   if ((player.agentLockUntilMatchday ?? -1) >= save.matchday) {
@@ -248,7 +356,22 @@ export function buyPlayerFromAi(
     sellerDepth <= 2 ? (winterPrem > 1 ? 1.45 : 1.25) : sellerDepth <= 3 && winterPrem > 1 ? 1.18 : 1
   const rep = save.managerReputation ?? 50
   const repDiscount = 1 - (rep - 50) / 400
-  const acceptFee = minFee * depthPenalty * Math.max(0.9, Math.min(1.08, repDiscount))
+  let acceptFee = minFee * depthPenalty * Math.max(0.9, Math.min(1.08, repDiscount))
+
+  // Rapport + Transfer → ค่าตัวที่ยอมรับได้ขยับจริง (ไม่ใช่แค่ข้อความ)
+  {
+    const scouting = ensureScouting(save)
+    const aR = agentRapportOf(scouting, playerId)
+    const pR = playerRapportOf(scouting, playerId)
+    const rapportMul = 1 - Math.min(0.14, (aR * 0.7 + pR * 0.3) / 750)
+    const intel = analyzeBuy(save, player)
+    let intelMul = 1
+    if (intel.verdict === 'strongly_yes') intelMul = 0.94
+    else if (intel.verdict === 'yes') intelMul = 0.97
+    else if (intel.verdict === 'no') intelMul = 1.05
+    else if (intel.verdict === 'strongly_no') intelMul = 1.1
+    acceptFee = Math.round(acceptFee * rapportMul * intelMul)
+  }
 
   // ผู้ขายดูมูลค่าปัจจุบันของตารางผ่อน ไม่ใช่แค่ตัวเลขหน้าสัญญา
   if (!isFreeAgent && sellerNpv < acceptFee * 0.92) {
@@ -267,11 +390,21 @@ export function buyPlayerFromAi(
     }
   }
 
-  const wageFloor = Math.round(player.wage * 1.05)
+  const wageFloor = Math.round(
+    player.wage * 1.05 * negotiationWageMul(player) * affinityWageMul(player, save.humanClubId),
+  )
   if (offerWage < wageFloor) {
     return {
       ok: false,
-      message: `นักเตะขอค่าเหนื่อยอย่างน้อย ${formatMoney(wageFloor)}/สัปดาห์`,
+      message: `นักเตะขอค่าเหนื่อยอย่างน้อย ${formatMoney(wageFloor)}/สัปดาห์${
+        isAvoidClub(player, save.humanClubId)
+          ? ''
+          : affinityWageMul(player, save.humanClubId) < 1
+            ? ' (ทีมในฝัน — ขอลดนิด)'
+            : (player.form ?? 10) >= 15 || (player.marketHeat ?? 0) >= 7
+              ? ' (ฟอร์ม/ความสนใจตลาดดันราคา)'
+              : ''
+      }`,
       save,
     }
   }
@@ -283,25 +416,29 @@ export function buyPlayerFromAi(
 
   let players = save.players.map((p) =>
     p.id === playerId
-      ? {
-          ...p,
-          // ซื้อแล้วให้ต้นสังกัดยืมใช้ — ยังเล่นอยู่ทีมเดิมจนจบฤดูกาล
-          clubId: loanBack ? sellerId : buyer.id,
-          loanParentClubId: loanBack ? buyer.id : null,
-          wage: offerWage,
-          wageWeekly: offerWage,
-          morale: Math.min(20, p.morale + 2),
-          happiness: Math.min(20, (p.happiness ?? p.morale) + 2),
-          contractYears: contractYears,
-          contractEndSeason: save.season + contractYears,
-          wantAway: null,
-          transferListed: false,
-          preContract: null,
-          releaseClause:
-            dealFee > estimatedValue(p) * 1.4
-              ? Math.round(dealFee * 1.5)
-              : (p.releaseClause ?? Math.round(dealFee * 1.8)),
-        }
+      ? resetLoyaltyOnTransfer(
+          {
+            ...p,
+            // ซื้อแล้วให้ต้นสังกัดยืมใช้ — ยังเล่นอยู่ทีมเดิมจนจบฤดูกาล
+            clubId: loanBack ? sellerId : buyer.id,
+            loanParentClubId: loanBack ? buyer.id : null,
+            wage: offerWage,
+            wageWeekly: offerWage,
+            morale: Math.min(20, p.morale + 2),
+            happiness: Math.min(20, (p.happiness ?? p.morale) + 2),
+            contractYears: contractYears,
+            contractEndSeason: save.season + contractYears,
+            wantAway: null,
+            transferListed: false,
+            marketHeat: 0,
+            preContract: null,
+            releaseClause:
+              dealFee > estimatedValue(p) * 1.4
+                ? Math.round(dealFee * 1.5)
+                : (p.releaseClause ?? Math.round(dealFee * 1.8)),
+          },
+          loanBack ? sellerId : buyer.id,
+        )
       : p,
   )
 
@@ -492,10 +629,20 @@ export function sellPlayerToAi(
 
   const buyers = save.clubs
     .filter((c) => c.controlledBy === 'ai' && c.balance > askFee * 0.8)
-    .sort((a, b) => b.reputation - a.reputation)
+    .filter((c) => !isAvoidClub(withEnsuredAffinity(player, save.clubs), c.id))
+    .sort((a, b) => {
+      const pa = withEnsuredAffinity(player, save.clubs)
+      const da = affinityWageMul(pa, a.id) // lower wage mul = more desire — invert for sort
+      const db = affinityWageMul(pa, b.id)
+      if (da !== db) return da - db // dream first (0.94 before 1.0)
+      return b.reputation - a.reputation
+    })
 
   if (buyers.length === 0) {
-    return { ok: false, message: 'ไม่มีคลับ AI ที่มีงบพอสนใจข้อเสนอนี้' }
+    return {
+      ok: false,
+      message: 'ไม่มีคลับ AI ที่นักเตะยอมไปและมีงบพอ (อาจเลี่ยงทีมที่อยู่ในรายการ avoid)',
+    }
   }
 
   const maxReasonable = Math.round(value * 1.35)
@@ -539,13 +686,16 @@ export function sellPlayerToAi(
 
   let players = save.players.map((p) =>
     p.id === playerId
-      ? {
-          ...p,
-          clubId: buyer.id,
-          morale: Math.max(1, p.morale - 1),
-          happiness: Math.max(1, (p.happiness ?? p.morale) - 1),
-          wantAway: null,
-        }
+      ? resetLoyaltyOnTransfer(
+          {
+            ...p,
+            clubId: buyer.id,
+            morale: Math.max(1, p.morale - 1),
+            happiness: Math.max(1, (p.happiness ?? p.morale) - 1),
+            wantAway: null,
+          },
+          buyer.id,
+        )
       : p,
   )
 
@@ -693,12 +843,13 @@ export function listMarketPlayers(save: GameSave): Array<
     .sort((a, b) => b.overall - a.overall)
 }
 
-/** ต่อสัญญา / ปรับค่าเหนื่อยนักเตะในทีม */
+/** ต่อสัญญา / ปรับค่าเหนื่อยนักเตะในทีม — หลายรอบ · จุดติดตามนิสัยเอเยนต์/นักเตะ */
 export function renewContract(
   save: GameSave,
   playerId: string,
   newWage: number,
   years: number,
+  bonuses?: ContractBonusOffer,
 ): OfferResult {
   const player = save.players.find((p) => p.id === playerId)
   if (!player) return { ok: false, message: 'ไม่พบนักเตะ' }
@@ -723,14 +874,99 @@ export function renewContract(
   const style = agentStyleFor(player)
   const ambitionBump = player.overall >= 78 ? 1.12 : player.overall >= 72 ? 1.06 : 1.02
   const ageBump = player.age <= 24 ? 1.05 : player.age >= 32 ? 0.97 : 1
+  const formWageMul = negotiationWageMul(player)
+  const affinityPlayer = withEnsuredAffinity(player, save.clubs)
+  const clubFitMul = renewAffinityWageMul(affinityPlayer, save.humanClubId)
+  const loyaltyMul = loyaltyRenewWageMul(ensureClubLoyalty(affinityPlayer))
+  const notDreamHere = clubDesireScore(affinityPlayer, save.humanClubId) < 0.4
+  const highAmbition = (affinityPlayer.growth?.ambition ?? 10) >= 14 || affinityPlayer.overall >= 76
+  // ไม่ใช่ทีมในฝัน + ambition สูง → มีโอกาสปฏิเสธต่อสัญญาทันที (ภักดีสูงลดโอกาส)
+  if (
+    !talk &&
+    notDreamHere &&
+    highAmbition &&
+    !player.refuseContractRenewal &&
+    Math.random() <
+      (0.12 + (affinityPlayer.growth?.ambition ?? 10) / 200) *
+        loyaltyRefuseRenewChanceMul(affinityPlayer)
+  ) {
+    const nextPlayers = save.players.map((p) =>
+      p.id === playerId
+        ? {
+            ...p,
+            clubAffinity: affinityPlayer.clubAffinity,
+            refuseContractRenewal: true,
+            wantAway: {
+              active: true,
+              intensity: Math.min(20, (p.wantAway?.intensity ?? 6) + 3),
+              publicNews: p.wantAway?.publicNews ?? false,
+              refuseCount: (p.wantAway?.refuseCount ?? 0) + 1,
+              sinceMatchday: p.wantAway?.sinceMatchday ?? save.matchday,
+              reasonTh: 'อยากไปทีมในฝัน — ไม่ต่อสัญญา',
+              boardForced: p.wantAway?.boardForced,
+              preferredClubIds:
+                p.wantAway?.preferredClubIds ?? affinityPlayer.clubAffinity?.dreamClubIds,
+            },
+          }
+        : p,
+    )
+    return {
+      ok: false,
+      message: `${player.name} ปฏิเสธคุยต่อสัญญา — อยากไปทีมในฝัน / ไม่เห็นอนาคตที่นี่`,
+      save: {
+        ...save,
+        players: nextPlayers,
+        inbox: [
+          {
+            id: `msg-refuse-aff-${Date.now()}`,
+            date: save.currentDate,
+            title: `ไม่ต่อสัญญา: ${player.name}`,
+            body: 'นักเตะอ้างเป้าหมายสโมสรใหญ่ — อาจรอหมดสัญญา (บอสแมน) หรือกดให้ย้าย',
+            read: false,
+          },
+          ...save.inbox,
+        ].slice(0, 40),
+      },
+    }
+  }
   let askWage =
     talk?.askWage ??
-    Math.round(player.wage * ambitionBump * ageBump * agentAskMul(style))
+    Math.round(
+      player.wage *
+        ambitionBump *
+        ageBump *
+        agentAskMul(style) *
+        formWageMul *
+        clubFitMul *
+        loyaltyMul,
+    )
   let askYears = talk?.askYears ?? Math.max(2, Math.min(4, years + (style === 'aggressive' ? 1 : 0)))
+  const bonusSeed =
+    talk != null
+      ? {
+          askSigningOn: talk.askSigningOn ?? 0,
+          askPerAppearance: talk.askPerAppearance ?? 0,
+          askPerGoal: talk.askPerGoal ?? 0,
+        }
+      : seedContractBonusAsks(player, askWage, style)
+  let askSigningOn = bonusSeed.askSigningOn
+  let askPerAppearance = bonusSeed.askPerAppearance
+  let askPerGoal = bonusSeed.askPerGoal
+
+  const prof = negotiationProfile(player, style)
   const agentRate =
-    (0.06 + (player.overall >= 80 ? 0.04 : player.overall >= 74 ? 0.02 : 0)) * agentFeeMul(style)
+    (0.06 + (player.overall >= 80 ? 0.04 : player.overall >= 74 ? 0.02 : 0)) *
+    agentFeeMul(style) *
+    agentKindFeeMul(player.agentKind ?? undefined)
+  const offeredSigning = Math.max(0, Math.round(bonuses?.signingOnFee ?? talk?.lastOfferSigningOn ?? 0))
+  const offeredApp = Math.max(0, Math.round(bonuses?.perAppearance ?? talk?.lastOfferPerAppearance ?? 0))
+  const offeredGoal = Math.max(0, Math.round(bonuses?.perGoal ?? talk?.lastOfferPerGoal ?? 0))
   const agentFee = Math.round(newWage * 52 * years * agentRate)
-  const maxRounds = talk?.maxRounds ?? (agentWalkHarder(style) ? 2 : 3)
+  const maxRounds = Math.max(
+    1,
+    talk?.maxRounds ??
+      prof.maxRounds - (notDreamHere && highAmbition ? 1 : 0),
+  )
 
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
   const otherWages = save.players
@@ -739,32 +975,57 @@ export function renewContract(
   if (otherWages + newWage > club.wageBudgetWeekly * 1.15) {
     return { ok: false, message: 'เกินงบค่าเหนื่อยรายสัปดาห์ของสโมสร' }
   }
-  if (club.balance < agentFee) {
+  const upfront = agentFee + offeredSigning
+  if (club.balance < upfront) {
     return {
       ok: false,
-      message: `งบไม่พอค่าเอเยนต์ (~${formatMoney(agentFee)})`,
+      message: `งบไม่พอค่าเอเยนต์+เงินเซ็น (~${formatMoney(upfront)})`,
     }
   }
 
   const round = (talk?.round ?? 0) + 1
-  const wageOk = newWage >= askWage * 0.97
-  const yearsOk = years >= askYears || newWage >= askWage * 1.08
+  const draftTalk: ContractNegotiation = {
+    id: talk?.id ?? `ct-${Date.now()}`,
+    playerId,
+    playerName: player.name,
+    round: talk?.round ?? 0,
+    maxRounds,
+    lastOfferWage: newWage,
+    lastOfferYears: years,
+    askWage,
+    askYears,
+    askSigningOn,
+    askPerAppearance,
+    askPerGoal,
+    lastOfferSigningOn: offeredSigning,
+    lastOfferPerAppearance: offeredApp,
+    lastOfferPerGoal: offeredGoal,
+    focus: talk?.focus ?? 'wage',
+    agentFee,
+    status: 'open',
+    note: talk?.note ?? '',
+  }
 
-  if (!wageOk || !yearsOk) {
+  const stuck = findStickingPoints(
+    draftTalk,
+    {
+      wage: newWage,
+      years,
+      signingOnFee: offeredSigning,
+      perAppearance: offeredApp,
+      perGoal: offeredGoal,
+    },
+    prof,
+  )
+
+  if (stuck.length > 0) {
     if (round >= maxRounds) {
       const walked: ContractNegotiation = {
-        id: talk?.id ?? `ct-${Date.now()}`,
-        playerId,
-        playerName: player.name,
+        ...draftTalk,
         round,
-        maxRounds,
-        lastOfferWage: newWage,
-        lastOfferYears: years,
-        askWage,
-        askYears,
-        agentFee,
         status: 'walked',
-        note: `เจรจาล้ม — เอเยนต์(${AGENT_STYLE_LABEL[style]}) พานักเตะออกจากโต๊ะ`,
+        focus: stuck[0],
+        note: `เจรจาล้ม รอบ ${round}/${maxRounds} — จุดติด「${stickingDetailTh(stuck[0]!, draftTalk)}」· เอเยนต์(${AGENT_STYLE_LABEL[style]}) พาออกจากโต๊ะ`,
       }
       return {
         ok: false,
@@ -790,6 +1051,9 @@ export function renewContract(
                       sinceMatchday: p.wantAway?.sinceMatchday ?? save.matchday,
                       reasonTh: 'ไม่ยอมต่อสัญญา',
                       boardForced: p.wantAway?.boardForced,
+                      preferredClubIds:
+                        p.wantAway?.preferredClubIds ??
+                        withEnsuredAffinity(p, save.clubs).clubAffinity?.dreamClubIds,
                     },
                   }
                 : p,
@@ -799,7 +1063,7 @@ export function renewContract(
                 id: `msg-refuse-ct-${Date.now()}`,
                 date: save.currentDate,
                 title: `${player.name} ไม่ยอมต่อสัญญา`,
-                body: `เอเยนต์พาเดินออก — ล็อกเจรจาถึง MD${save.matchday + 10} · แฟนเริ่มเกลียด · เสี่ยงย้ายฟรีปลายสัญญา`,
+                body: `เจรจาไม่ลงตัวเรื่อง${stuck.map((f) => stickingDetailTh(f, draftTalk)).join(' · ')} — ล็อกถึง MD${save.matchday + 10}`,
                 read: false,
               },
               ...save.inbox,
@@ -816,22 +1080,28 @@ export function renewContract(
         })(),
       }
     }
-    // counter — ขึ้น ask เล็กน้อย
-    askWage = Math.round(askWage * (1.04 + round * 0.01))
-    askYears = Math.min(5, Math.max(askYears, years + (years < askYears ? 0 : 0)))
+
+    const countered = counterAsks(draftTalk, stuck, prof, round)
+    const focus = countered.focus ?? stuck[0]!
     const nextTalk: ContractNegotiation = {
-      id: talk?.id ?? `ct-${Date.now()}`,
-      playerId,
-      playerName: player.name,
+      ...draftTalk,
+      ...countered,
       round,
-      maxRounds,
-      lastOfferWage: newWage,
-      lastOfferYears: years,
-      askWage,
-      askYears,
-      agentFee: Math.round(askWage * 52 * askYears * agentRate),
+      askWage: countered.askWage,
+      askYears: countered.askYears,
+      askSigningOn: countered.askSigningOn,
+      askPerAppearance: countered.askPerAppearance,
+      askPerGoal: countered.askPerGoal,
+      focus,
+      agentFee: Math.round(countered.askWage * 52 * countered.askYears * agentRate),
       status: 'open',
-      note: `รอบ ${round}/${maxRounds}: เอเยนต์(${AGENT_STYLE_LABEL[style]}) ขอ ~${formatMoney(askWage)}/สัปดาห์ · ${askYears} ปี · ค่าเอเยนต์ประมาณ ${formatMoney(Math.round(askWage * 52 * askYears * agentRate))}`,
+      note: roundNoteTh(
+        round,
+        maxRounds,
+        focus,
+        prof.labelTh,
+        stickingDetailTh(focus, { ...draftTalk, ...countered }),
+      ),
     }
     return {
       ok: false,
@@ -839,10 +1109,10 @@ export function renewContract(
       save: {
         ...save,
         contractTalks: {
-          talks: [nextTalk, ...talks.filter((t) => !(t.playerId === playerId && t.status === 'open'))].slice(
-            0,
-            20,
-          ),
+          talks: [
+            nextTalk,
+            ...talks.filter((t) => !(t.playerId === playerId && t.status === 'open')),
+          ].slice(0, 20),
         },
       },
     }
@@ -859,6 +1129,8 @@ export function renewContract(
           morale: Math.min(20, p.morale + 1),
           happiness: Math.min(20, (p.happiness ?? p.morale) + 2),
           refuseContractRenewal: false,
+          clubLoyalty: Math.min(20, (p.clubLoyalty ?? 10) + 2),
+          loyaltyClubId: save.humanClubId,
           wantAway:
             p.wantAway?.reasonTh === 'ไม่ยอมต่อสัญญา' ? null : p.wantAway ?? null,
         }
@@ -866,58 +1138,88 @@ export function renewContract(
   )
 
   const signed: ContractNegotiation = {
-    id: talk?.id ?? `ct-${Date.now()}`,
-    playerId,
-    playerName: player.name,
+    ...draftTalk,
     round: Math.max(1, round),
-    maxRounds,
     lastOfferWage: newWage,
     lastOfferYears: years,
+    lastOfferSigningOn: offeredSigning,
+    lastOfferPerAppearance: offeredApp,
+    lastOfferPerGoal: offeredGoal,
     askWage,
     askYears,
+    askSigningOn,
+    askPerAppearance,
+    askPerGoal,
+    focus: 'wage',
     agentFee,
     status: 'signed',
-    note: `เซ็นแล้ว · เอเยนต์(${AGENT_STYLE_LABEL[style]}) ${formatMoney(agentFee)}`,
+    note: `เซ็นแล้ว รอบ ${round}/${maxRounds} · ${prof.labelTh} · เอเยนต์ ${formatMoney(agentFee)}${
+      offeredSigning > 0 ? ` · เงินเซ็น ${formatMoney(offeredSigning)}` : ''
+    }`,
+  }
+
+  const watch = save.assistantContractWatch
+  const clearedRemind = { ...(watch?.lastRemindByPlayer ?? {}) }
+  delete clearedRemind[playerId]
+  const clearedDemand = { ...(watch?.lastDemandByPlayer ?? {}) }
+  delete clearedDemand[playerId]
+
+  let nextSave: GameSave = {
+    ...save,
+    players: players.map((p) => (p.id === playerId ? { ...p, agentStyle: style } : p)),
+    clubs: save.clubs.map((c) =>
+      c.id === club.id ? { ...c, balance: c.balance - agentFee } : c,
+    ),
+    fans: {
+      ...ensureFans(save).fans,
+      hatedPlayers: (ensureFans(save).fans.hatedPlayers ?? []).filter(
+        (h) =>
+          !(h.playerId === playerId && h.stillAtClub && h.reason === 'refuse_contract'),
+      ),
+    },
+    contractTalks: {
+      talks: [
+        signed,
+        ...talks.filter((t) => !(t.playerId === playerId && t.status === 'open')),
+      ].slice(0, 20),
+    },
+    assistantContractWatch: {
+      lastRemindByPlayer: clearedRemind,
+      lastDemandByPlayer: clearedDemand,
+    },
+    inbox: [
+      {
+        id: `msg-renew-${Date.now()}`,
+        date: save.currentDate,
+        title: `ต่อสัญญา: ${player.name}`,
+        body: `สัญญาใหม่ ${years} ปี หมดฤดูกาล ${save.season + years} · ค่าเหนื่อย ${formatMoney(newWage)}/สัปดาห์ · จ่ายเอเยนต์(${AGENT_STYLE_LABEL[style]}) ${formatMoney(agentFee)}${
+          offeredSigning > 0 ? ` · เงินเซ็น ${formatMoney(offeredSigning)}` : ''
+        }${offeredApp > 0 ? ` · โบนัสนัด ${formatMoney(offeredApp)}` : ''}`,
+        read: false,
+      },
+      ...save.inbox,
+    ].slice(0, 40),
+  }
+
+  if (offeredSigning > 0 || offeredApp > 0 || offeredGoal > 0) {
+    nextSave = attachClausesAfterBuy(nextSave, {
+      playerId,
+      playerName: player.name,
+      buyerClubId: club.id,
+      sellerClubId: club.id,
+      addons: {
+        ...emptyAddonPackage(),
+        signingOnFee: offeredSigning,
+        perAppearance: offeredApp,
+        perGoal: offeredGoal,
+      },
+    })
   }
 
   return {
     ok: true,
     message: `ต่อสัญญา ${player.name} สำเร็จ · ${years} ปี · ${formatMoney(newWage)}/สัปดาห์ · เอเยนต์(${AGENT_STYLE_LABEL[style]}) ${formatMoney(agentFee)}`,
-    save: pushNews(
-      {
-        ...save,
-        players: players.map((p) =>
-          p.id === playerId ? { ...p, agentStyle: style } : p,
-        ),
-        clubs: save.clubs.map((c) =>
-          c.id === club.id ? { ...c, balance: c.balance - agentFee } : c,
-        ),
-        fans: {
-          ...ensureFans(save).fans,
-          hatedPlayers: (ensureFans(save).fans.hatedPlayers ?? []).filter(
-            (h) =>
-              !(h.playerId === playerId && h.stillAtClub && h.reason === 'refuse_contract'),
-          ),
-        },
-        contractTalks: {
-          talks: [signed, ...talks.filter((t) => !(t.playerId === playerId && t.status === 'open'))].slice(
-            0,
-            20,
-          ),
-        },
-        inbox: [
-          {
-            id: `msg-renew-${Date.now()}`,
-            date: save.currentDate,
-            title: `ต่อสัญญา: ${player.name}`,
-            body: `สัญญาใหม่ ${years} ปี หมดฤดูกาล ${save.season + years} · ค่าเหนื่อย ${formatMoney(newWage)}/สัปดาห์ · จ่ายเอเยนต์(${AGENT_STYLE_LABEL[style]}) ${formatMoney(agentFee)}`,
-            read: false,
-          },
-          ...save.inbox,
-        ].slice(0, 40),
-      },
-      newsAfterContract(save, player.name, years),
-    ),
+    save: pushNews(nextSave, newsAfterContract(save, player.name, years)),
   }
 }
 
@@ -927,6 +1229,72 @@ export function createContractTalks(): ContractTalkState {
 
 export function ensureContractTalks(save: GameSave): ContractTalkState {
   return save.contractTalks ?? createContractTalks()
+}
+
+/**
+ * ผู้จัดการยกเลิกโต๊ะต่อสัญญาเมื่อค่าเหนื่อย/ปีไม่ลงตัว
+ * (เบากว่าเอเยนต์พาเดินออก — ยังคุยใหม่ได้ทีหลัง)
+ */
+export function cancelContractNegotiation(
+  save: GameSave,
+  playerId: string,
+): OfferResult {
+  const player = save.players.find((p) => p.id === playerId)
+  if (!player) return { ok: false, message: 'ไม่พบนักเตะ' }
+  if (player.clubId !== save.humanClubId) {
+    return { ok: false, message: 'ยกเลิกได้เฉพาะนักเตะในทีมคุณ' }
+  }
+  const talks = ensureContractTalks(save).talks
+  const talk = talks.find((t) => t.playerId === playerId && t.status === 'open')
+  if (!talk) {
+    return { ok: false, message: 'ไม่มีโต๊ะเจรจาที่เปิดอยู่' }
+  }
+
+  const hardFeelings = talk.round >= 2
+  const cancelled: ContractNegotiation = {
+    ...talk,
+    status: 'cancelled',
+    note: hardFeelings
+      ? `ยกเลิกหลังคุยไป ${talk.round} รอบ — ค่าเหนื่อย/โบนัสไม่ลงตัว`
+      : 'ยกเลิกการเจรจา — ค่าเหนื่อย/โบนัสยังไม่ลงตัว',
+  }
+
+  const lockMd = save.matchday + (hardFeelings ? 4 : 2)
+  const players = save.players.map((p) =>
+    p.id === playerId
+      ? {
+          ...p,
+          happiness: Math.max(1, (p.happiness ?? 10) - (hardFeelings ? 2 : 1)),
+          morale: Math.max(1, p.morale - (hardFeelings ? 1 : 0)),
+          agentLockUntilMatchday: Math.max(p.agentLockUntilMatchday ?? 0, lockMd),
+        }
+      : p,
+  )
+
+  return {
+    ok: true,
+    message: cancelled.note,
+    save: {
+      ...save,
+      players,
+      contractTalks: {
+        talks: [cancelled, ...talks.filter((t) => !(t.playerId === playerId && t.status === 'open'))].slice(
+          0,
+          20,
+        ),
+      },
+      inbox: [
+        {
+          id: `msg-ct-cancel-${Date.now()}`,
+          date: save.currentDate,
+          title: `ยกเลิกเจรจาสัญญา: ${player.name}`,
+          body: `${cancelled.note} · ล็อกคุยเอเยนต์ถึง MD${lockMd} · เปิดโต๊ะใหม่ได้ทีหลังถ้ายังอยากอยู่`,
+          read: false,
+        },
+        ...save.inbox,
+      ].slice(0, 40),
+    },
+  }
 }
 
 /** กดเงื่อนไขซื้อขาด — จ่ายตาม releaseClause แล้วได้ตัวทันที */

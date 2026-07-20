@@ -5,11 +5,17 @@ import type {
   PlayerAttributes,
   PlayerGrowth,
   PlayerHidden,
+  ScoutAssignment,
+  ScoutFocusRegion,
+  ScoutFocusRole,
   ScoutFormSighting,
   ScoutKnowledge,
+  ScoutReportCard,
   StaffState,
 } from './types'
 import { staffLevel } from './staff'
+import { roleGroup } from './positions'
+import { playerNationality } from './nationalTeams'
 import attributesDb from '@/data/attributes.json'
 
 const ALUMNI_FLOOR = 50
@@ -23,6 +29,8 @@ export function emptyScoutExtras(): Pick<
   | 'knownReleaseClauseIds'
   | 'agentRapport'
   | 'playerRapport'
+  | 'assignments'
+  | 'reports'
 > {
   return {
     alumniIds: [],
@@ -32,6 +40,8 @@ export function emptyScoutExtras(): Pick<
     knownReleaseClauseIds: [],
     agentRapport: {},
     playerRapport: {},
+    assignments: [],
+    reports: [],
   }
 }
 
@@ -61,6 +71,8 @@ export function ensureScouting(save: GameSave): ScoutKnowledge {
     knownReleaseClauseIds: [...knownSet],
     agentRapport: raw.agentRapport ?? {},
     playerRapport: raw.playerRapport ?? {},
+    assignments: raw.assignments ?? [],
+    reports: raw.reports ?? [],
   }
 }
 
@@ -438,4 +450,205 @@ export function recentFormForPlayer(
   return (scouting.formSightings ?? [])
     .filter((s) => s.playerId === playerId)
     .slice(0, limit)
+}
+
+export const SCOUT_REGION_LABEL: Record<ScoutFocusRegion, string> = {
+  domestic: 'ลีกในประเทศ',
+  europe: 'ยุโรป',
+  south_america: 'อเมริกาใต้',
+  africa: 'แอฟริกา',
+  asia: 'เอเชีย',
+  any: 'ทั่วโลก',
+}
+
+export const SCOUT_ROLE_LABEL: Record<ScoutFocusRole, string> = {
+  GK: 'GK',
+  DF: 'DF',
+  MF: 'MF',
+  FW: 'FW',
+  any: 'ทุกตำแหน่ง',
+}
+
+export function upsertScoutAssignment(
+  save: GameSave,
+  assignment: Omit<ScoutAssignment, 'id'> & { id?: string },
+): GameSave {
+  const scouting = ensureScouting(save)
+  const id = assignment.id ?? `focus-${Date.now().toString(36)}`
+  const next: ScoutAssignment = {
+    id,
+    region: assignment.region,
+    role: assignment.role,
+    maxAge: assignment.maxAge,
+    active: assignment.active,
+    labelTh: assignment.labelTh,
+  }
+  const list = scouting.assignments ?? []
+  const idx = list.findIndex((a) => a.id === id)
+  const assignments =
+    idx >= 0 ? list.map((a, i) => (i === idx ? next : a)) : [...list, next].slice(0, 6)
+  return { ...save, scouting: { ...scouting, assignments } }
+}
+
+export function removeScoutAssignment(save: GameSave, id: string): GameSave {
+  const scouting = ensureScouting(save)
+  return {
+    ...save,
+    scouting: {
+      ...scouting,
+      assignments: (scouting.assignments ?? []).filter((a) => a.id !== id),
+    },
+  }
+}
+
+function regionMatch(region: ScoutFocusRegion, nation: string, leagueId: string): boolean {
+  if (region === 'any') return true
+  if (region === 'domestic') {
+    const map: Record<string, string> = {
+      eng: 'England',
+      esp: 'Spain',
+      ger: 'Germany',
+      fra: 'France',
+      ita: 'Italy',
+      tha: 'Thailand',
+    }
+    return nation === (map[leagueId] ?? 'England')
+  }
+  const europe = new Set([
+    'England',
+    'Spain',
+    'Germany',
+    'France',
+    'Italy',
+    'Portugal',
+    'Netherlands',
+    'Belgium',
+    'Croatia',
+    'Denmark',
+  ])
+  if (region === 'europe') return europe.has(nation)
+  if (region === 'south_america')
+    return ['Brazil', 'Argentina', 'Uruguay', 'Colombia', 'Chile'].includes(nation)
+  if (region === 'africa')
+    return ['Nigeria', 'Senegal', 'Morocco', 'Egypt', 'Ghana', 'Ivory Coast'].includes(nation)
+  if (region === 'asia')
+    return ['Japan', 'Korea Republic', 'South Korea', 'Thailand', 'Australia', 'China'].includes(
+      nation,
+    )
+  return true
+}
+
+/** รันโฟกัสสรรหา — สร้างรายงานสั้น + เพิ่มความรู้ */
+export function runScoutFocusPass(save: GameSave): GameSave {
+  const scouting = ensureScouting(save)
+  const active = (scouting.assignments ?? []).filter((a) => a.active)
+  if (active.length === 0) return { ...save, scouting }
+
+  const level = staffLevel(save.staff, 'scout')
+  const reports: ScoutReportCard[] = [...(scouting.reports ?? [])]
+  let nextScout = scouting
+  const notes: string[] = []
+
+  for (const focus of active) {
+    const candidates = save.players
+      .filter((p) => {
+        if (p.clubId === save.humanClubId) return false
+        if (p.age > focus.maxAge) return false
+        if (focus.role !== 'any' && roleGroup(p.role) !== focus.role) return false
+        const nat = playerNationality(p, save)
+        return regionMatch(focus.region, nat, save.leagueId)
+      })
+      .sort((a, b) => b.pa - a.pa || b.overall - a.overall)
+      .slice(0, 8)
+
+    const pick = candidates[Math.floor(Math.random() * Math.min(3, candidates.length))]
+    if (!pick) continue
+
+    const gain = 6 + Math.floor(level * 0.4)
+    nextScout = bumpKnowledge(nextScout, pick.id, gain, 85)
+    const kn = knowledgeOf(nextScout, pick.id)
+    let verdict: ScoutReportCard['verdict'] = 'monitor'
+    if (pick.pa >= 160 && pick.age <= 24 && kn >= 40) verdict = 'sign'
+    else if (pick.overall < 68 || (pick.growth?.injuryProneness ?? 10) >= 16) verdict = 'avoid'
+
+    const summaryTh =
+      verdict === 'sign'
+        ? `แนะนำซื้อ — ${pick.name} ศักยภาพสูง (ความรู้ ${kn}%)`
+        : verdict === 'avoid'
+          ? `เลี่ยง — ${pick.name} ความเสี่ยง/คุณภาพไม่คุ้ม`
+          : `เฝ้าดู — ${pick.name} น่าสนใจ ควรส่องเพิ่ม`
+
+    reports.unshift({
+      id: `srep-${Date.now().toString(36)}-${pick.id.slice(-4)}`,
+      playerId: pick.id,
+      date: save.currentDate,
+      matchday: save.matchday,
+      verdict,
+      summaryTh,
+      knowledgeGain: gain,
+    })
+    notes.push(summaryTh)
+  }
+
+  nextScout = { ...nextScout, reports: reports.slice(0, 40) }
+  return {
+    ...save,
+    scouting: nextScout,
+    inbox:
+      notes.length > 0
+        ? [
+            {
+              id: `msg-scout-focus-${save.matchday}`,
+              date: save.currentDate,
+              title: 'รายงานโฟกัสสรรหา',
+              body: notes.slice(0, 3).join(' · '),
+              read: false,
+            },
+            ...save.inbox,
+          ].slice(0, 45)
+        : save.inbox,
+  }
+}
+
+export function generateManualScoutReport(
+  save: GameSave,
+  playerId: string,
+): { ok: boolean; save: GameSave; message: string } {
+  const player = save.players.find((p) => p.id === playerId)
+  if (!player) return { ok: false, save, message: 'ไม่พบนักเตะ' }
+  if (player.clubId === save.humanClubId) {
+    return { ok: false, save, message: 'นักเตะในทีมคุณอยู่แล้ว' }
+  }
+  let scouting = ensureScouting(save)
+  const gain = 10 + Math.floor(staffLevel(save.staff, 'scout') * 0.5)
+  scouting = bumpKnowledge(scouting, playerId, gain, 90)
+  const kn = knowledgeOf(scouting, playerId)
+  let verdict: ScoutReportCard['verdict'] = 'monitor'
+  if (player.pa >= 155 && player.age <= 26) verdict = 'sign'
+  else if (player.overall < 66) verdict = 'avoid'
+  const summaryTh =
+    verdict === 'sign'
+      ? `ใบรายงาน: แนะนำเซ็น ${player.name} (ความรู้ ${kn}%)`
+      : verdict === 'avoid'
+        ? `ใบรายงาน: ไม่แนะนำ ${player.name}`
+        : `ใบรายงาน: เฝ้าดู ${player.name} ต่อ`
+
+  const report: ScoutReportCard = {
+    id: `srep-m-${Date.now().toString(36)}`,
+    playerId,
+    date: save.currentDate,
+    matchday: save.matchday,
+    verdict,
+    summaryTh,
+    knowledgeGain: gain,
+  }
+  scouting = {
+    ...scouting,
+    reports: [report, ...(scouting.reports ?? [])].slice(0, 40),
+  }
+  return {
+    ok: true,
+    message: summaryTh,
+    save: { ...save, scouting },
+  }
 }

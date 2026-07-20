@@ -1,6 +1,22 @@
 import { useEffect, useState } from 'react'
 import { useGameStore } from '@/store/gameStore'
 import { roleLabel, roleShort, squadRoleLabel } from '@/game/positions'
+import {
+  brandDealsLabelTh,
+  ensurePlayerFame,
+  fameLabelTh,
+} from '@/game/playerFame'
+import {
+  ensurePlayerTacticalRoles,
+  formatStyleLevelStars,
+  type PlayerTacticalStyle,
+  type StyleTrainOrder,
+} from '@/game/playerTacticalRoles'
+import {
+  styleTrainOrderLabel,
+  trainableStylesForPlayer,
+} from '@/game/styleTraining'
+import { tacticalRoleLabel, tacticalRoleShort } from '@/game/tacticalRoles'
 import { formatMoney } from '@/lib/format'
 import { cn } from '@/lib/cn'
 import type {
@@ -13,6 +29,7 @@ import type {
   SquadRole,
 } from '@/game/types'
 import { knowledgeOf, revealPa, revealGrowth, revealHidden, visibleAttrsDetailed } from '@/game/scouting'
+import { agentLabelTh, AGENT_KIND_LABEL } from '@/game/agents'
 import { personalitiesDb } from '@/game/attributes'
 import {
   formatInjuryStatus,
@@ -26,7 +43,14 @@ import { getActivity, recentLogsForPlayer } from '@/game/dailyLife'
 import { formatBanStatus } from '@/game/discipline'
 import { ensurePlayerSkills, skillDescription, skillLabel } from '@/game/playerSkills'
 import { wantAwayLabel } from '@/game/wantAway'
+import { affinityHintsTh } from '@/game/playerAmbition'
+import { loyaltyHintsTh, loyaltyLabelTh } from '@/game/playerLoyalty'
 import { ensurePlayerSocial, formatFollowers } from '@/game/social'
+import {
+  recentSocialForPlayer,
+  socialDramaSummaryTh,
+  SOCIAL_MOOD_LABEL,
+} from '@/game/socialDrama'
 import { PlayerFace } from '@/components/PlayerFace'
 import { bioForPlayerName } from '@/data/world/playerBios'
 import { formatGbp } from '@/game/playerBio'
@@ -51,7 +75,9 @@ const LIFESTYLE_OPTS: { id: LifestyleOrder; label: string }[] = [
 export function SquadPage() {
   const save = useGameStore((s) => s.save)!
   const setSquadRole = useGameStore((s) => s.setSquadRole)
+  const setCaptains = useGameStore((s) => s.setCaptains)
   const setLifestyleOrder = useGameStore((s) => s.setLifestyleOrder)
+  const setStyleTrainOrder = useGameStore((s) => s.setStyleTrainOrder)
   const recallLoanDeal = useGameStore((s) => s.recallLoanDeal)
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const squad = save.players
@@ -64,6 +90,10 @@ export function SquadPage() {
     )
     .sort((a, b) => b.overall - a.overall)
   const selected = squad.find((p) => p.id === selectedId) ?? null
+  const tactics = save.tacticsByClub[save.humanClubId]
+  const xiSet = new Set(tactics?.startingXi ?? [])
+  const captain = squad.find((p) => p.id === tactics?.captainId)
+  const vice = squad.find((p) => p.id === tactics?.viceCaptainId)
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
@@ -73,6 +103,69 @@ export function SquadPage() {
           {squad.length} คน · CA/PA · คลิกดู status / แอตทริบิวต์
           {ownedAway.length > 0 ? ` · นอกทีม (ยืม/ยืมกลับ) ${ownedAway.length} คน` : ''}
         </p>
+
+        <div
+          className={cn(
+            'mt-3 rounded-lg border px-3 py-3',
+            captain && xiSet.has(captain.id)
+              ? 'border-lime-300 bg-lime-50/80'
+              : 'border-amber-300 bg-amber-50/90',
+          )}
+        >
+          <p className="text-sm font-semibold text-slate-900">กัปตันทีม</p>
+          <p className="mt-0.5 text-xs text-slate-600">
+            ต้องเลือกก่อนเตะ · กัปตันต้องอยู่ใน XI
+            {!captain
+              ? ' — ยังไม่เลือก'
+              : !xiSet.has(captain.id)
+                ? ` — ${captain.name} ยังไม่อยู่ใน XI`
+                : ''}
+          </p>
+          <div className="mt-2 grid gap-2 sm:grid-cols-2">
+            <label className="grid gap-1 text-xs">
+              <span className="font-medium text-slate-600">กัปตัน</span>
+              <select
+                className="rounded-md border border-slate-300 bg-white px-2 py-1.5 text-sm"
+                value={tactics?.captainId ?? ''}
+                onChange={(e) => setCaptains(e.target.value || null, tactics?.viceCaptainId)}
+              >
+                <option value="">— เลือกกัปตัน —</option>
+                {squad.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name} · {roleShort(p.role)} · {p.overall}
+                    {xiSet.has(p.id) ? ' · XI' : ''}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="grid gap-1 text-xs">
+              <span className="font-medium text-slate-600">รองกัปตัน</span>
+              <select
+                className="rounded-md border border-slate-300 bg-white px-2 py-1.5 text-sm"
+                value={tactics?.viceCaptainId ?? ''}
+                onChange={(e) =>
+                  setCaptains(tactics?.captainId ?? null, e.target.value || null)
+                }
+              >
+                <option value="">— ไม่บังคับ —</option>
+                {squad
+                  .filter((p) => p.id !== tactics?.captainId)
+                  .map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.name} · {roleShort(p.role)} · {p.overall}
+                      {xiSet.has(p.id) ? ' · XI' : ''}
+                    </option>
+                  ))}
+              </select>
+            </label>
+          </div>
+          {captain ? (
+            <p className="mt-2 text-xs text-slate-700">
+              ตอนนี้: <strong>{captain.name}</strong>
+              {vice ? ` · รอง ${vice.name}` : ''}
+            </p>
+          ) : null}
+        </div>
         {ownedAway.length > 0 ? (
           <div className="mt-3 rounded-lg border border-teal-200 bg-teal-50/80 px-3 py-2 text-xs text-teal-950">
             <p className="font-semibold">นักเตะของคุณที่อยู่นอกทีม</p>
@@ -188,7 +281,7 @@ export function SquadPage() {
                     ) : (p.illnessDays ?? 0) > 0 ? (
                       <span className="text-violet-700">{formatIllnessStatus(p)}</span>
                     ) : (
-                      <span className="text-emerald-700">{p.condition}%</span>
+                      <span className="text-emerald-700">{p.condition}% sta</span>
                     )}
                   </td>
                 </tr>
@@ -209,6 +302,7 @@ export function SquadPage() {
         }
         diary={selected ? recentLogsForPlayer(save, selected.id, 10) : []}
         onLifestyleOrder={setLifestyleOrder}
+        onStyleTrainOrder={setStyleTrainOrder}
       />
     </div>
   )
@@ -236,6 +330,7 @@ function PlayerDetailPanel({
   mentorName,
   diary,
   onLifestyleOrder,
+  onStyleTrainOrder,
 }: {
   save: GameSave
   player: Player | null
@@ -243,6 +338,7 @@ function PlayerDetailPanel({
   mentorName: string | null
   diary: { date: string; labelTh: string; category: string; missTraining: boolean }[]
   onLifestyleOrder: (playerId: string, order: LifestyleOrder) => void
+  onStyleTrainOrder: (playerId: string, order: StyleTrainOrder) => void
 }) {
   const [careerSeasons, setCareerSeasons] = useState<PlayerCareerSeason[]>([])
   const [careerProfile, setCareerProfile] = useState<PlayerCareerProfile | null>(null)
@@ -331,6 +427,78 @@ function PlayerDetailPanel({
             Scout {knowledge}% · {mentorName ? `mentor ${mentorName}` : 'no mentor'} ·{' '}
             {formatMoney(player.wage)}/สัปดาห์ · กระเป๋า {formatMoney(player.cash ?? 0)}
           </p>
+          <p className="text-xs text-slate-600">
+            เอเยนต์: {agentLabelTh(player)}
+            {player.agentKind ? ` · ${AGENT_KIND_LABEL[player.agentKind]}` : ''}
+          </p>
+          <p className="text-xs text-slate-600">
+            ภักดีต่อสโมสร: {player.clubLoyalty ?? '—'}
+            /20 ({loyaltyLabelTh(player.clubLoyalty ?? 10)})
+          </p>
+          <p className="text-xs text-slate-600">
+            สไตล์ถนัด:{' '}
+            {(
+              (ensurePlayerTacticalRoles(player).preferredTacticalRoles ??
+                []) as PlayerTacticalStyle[]
+            )
+              .map((s) => {
+                const xp = s.xp ?? 0
+                return `${tacticalRoleShort(s.id)} ${formatStyleLevelStars(s.level)}${
+                  s.level < 3 ? ` (${xp}%)` : ''
+                }`
+              })
+              .join(' · ') || '—'}
+          </p>
+          {(() => {
+            const st = ensurePlayerTacticalRoles(player)
+            const target = st.styleTrainTarget
+            const prog = st.styleTrainProgress ?? 0
+            if (!target) return null
+            const inSet = (st.preferredTacticalRoles ?? []).some((s) => s.id === target)
+            return (
+              <p className="text-xs text-indigo-800">
+                กำลังฝึก: {tacticalRoleShort(target)}
+                {!inSet ? ` · ปลดล็อก ${prog}%` : ''}
+                {st.styleMismatchStreak && st.styleMismatchStreak >= 2
+                  ? ` · ไม่ชอบบทบาทช่อง ${st.styleMismatchStreak} นัด`
+                  : ''}
+              </p>
+            )
+          })()}
+          <div className="mt-1">
+            <label className="text-[11px] text-slate-500">คำสั่งฝึกสไตล์</label>
+            <select
+              className="mt-0.5 w-full rounded border border-slate-300 bg-white px-2 py-1 text-xs"
+              value={
+                typeof player.styleTrainOrder === 'string' &&
+                player.styleTrainOrder !== 'ai' &&
+                player.styleTrainOrder !== 'lock'
+                  ? player.styleTrainOrder
+                  : (player.styleTrainOrder ?? 'ai')
+              }
+              onChange={(e) =>
+                onStyleTrainOrder(player.id, e.target.value as StyleTrainOrder)
+              }
+            >
+              <option value="ai">AI เลือกเป้า</option>
+              <option value="lock">ล็อกเป้าปัจจุบัน</option>
+              {trainableStylesForPlayer(player).map((id) => (
+                <option key={id} value={id}>
+                  บังคับ: {tacticalRoleLabel(id)}
+                </option>
+              ))}
+            </select>
+            <p className="mt-0.5 text-[10px] text-slate-400">
+              {styleTrainOrderLabel(player.styleTrainOrder ?? 'ai')} · ★★★=เก่งมาก · ★=เล่นได้
+            </p>
+          </div>
+          {loyaltyHintsTh(player)
+            .slice(1)
+            .map((h) => (
+              <p key={h} className="text-[11px] text-emerald-800">
+                {h}
+              </p>
+            ))}
           {fm?.heightCm ? (
             <p className="mt-1 text-xs text-slate-500">
               {fm.heightCm} cm
@@ -360,6 +528,21 @@ function PlayerDetailPanel({
                 ? ` · กดดัน ${player.wantAway.intensity}/20`
                 : ''}
               {player.wantAway?.reasonTh ? ` · ${player.wantAway.reasonTh}` : ''}
+            </p>
+          ) : null}
+          {affinityHintsTh(player, save.clubs, knowledge).map((h) => (
+            <p
+              key={h}
+              className="mt-1 rounded bg-indigo-50 px-2 py-1 text-xs text-indigo-950"
+            >
+              {h}
+            </p>
+          ))}
+          {player.secretHandshake && knowledge >= 50 ? (
+            <p className="mt-1 rounded bg-violet-50 px-2 py-1 text-xs font-semibold text-violet-950">
+              {player.secretHandshake.exposed
+                ? 'สื่อ: มีสัญญาใจกับสโมสรอื่น'
+                : 'วงใน: อาจไม่ต่อสัญญา (สัญญาใจ?)'}
             </p>
           ) : null}
           {player.refuseContractRenewal ? (
@@ -605,7 +788,7 @@ function PlayerDetailPanel({
       <div>
         <h4 className="text-sm font-semibold">Status</h4>
         <ul className="mt-2 space-y-1.5">
-          <StatusBar label="Condition" value={player.condition} max={100} />
+          <StatusBar label="Stamina" value={player.condition} max={100} />
           <StatusBar label="Sharpness" value={player.sharpness} max={100} />
           <StatusBar label="Form" value={player.form} />
           <StatusBar label="Morale" value={player.morale} />
@@ -614,14 +797,57 @@ function PlayerDetailPanel({
         </ul>
         {(() => {
           const social = ensurePlayerSocial(player).social
+          const posts = recentSocialForPlayer(player, 5)
+          const moodLine = socialDramaSummaryTh(player)
           return (
-            <p className="mt-2 rounded-md bg-sky-50 px-2 py-1.5 text-xs text-sky-950">
-              {social.verified ? '✓ ' : ''}
-              <span className="font-semibold">{social.handle}</span>
-              {' · '}
-              {formatFollowers(social.followers)} ผู้ติดตาม · heat {social.heat} · โพสต์/
-              สัปดาห์ ~{social.postsWeek}
-            </p>
+            <div className="mt-2 space-y-1.5">
+              <p className="rounded-md bg-sky-50 px-2 py-1.5 text-xs text-sky-950">
+                {social.verified ? '✓ ' : ''}
+                <span className="font-semibold">{social.handle}</span>
+                {' · '}
+                {formatFollowers(social.followers)} ผู้ติดตาม · heat {social.heat} · โพสต์/
+                สัปดาห์ ~{social.postsWeek}
+                {social.mood && social.mood !== 'chill'
+                  ? ` · ${SOCIAL_MOOD_LABEL[social.mood]}`
+                  : ''}
+              </p>
+              {(() => {
+                const famed = ensurePlayerFame(player)
+                return (
+                  <p className="rounded-md bg-amber-50 px-2 py-1.5 text-xs text-amber-950">
+                    ความดัง {famed.fame ?? 0}/100 ({fameLabelTh(famed.fame ?? 0)})
+                    {' · '}
+                    แฟนคลับ {formatFollowers(famed.fanClubSize ?? 0)}
+                    {' · '}
+                    แอนตี้ {formatFollowers(famed.antiFanSize ?? 0)}
+                    <br />
+                    <span className="text-[11px] text-amber-900/80">
+                      พรีเซ็นเตอร์: {brandDealsLabelTh(famed.brandDeals)}
+                      {(famed.brandDeals?.length ?? 0) > 0
+                        ? ` · รวม ~${formatMoney(
+                            (famed.brandDeals ?? []).reduce((s, d) => s + d.weeklyPay, 0),
+                          )}/สัปดาห์`
+                        : ''}
+                    </span>
+                  </p>
+                )
+              })()}
+              {moodLine ? (
+                <p className="text-[11px] font-medium text-violet-900">{moodLine}</p>
+              ) : null}
+              {posts.length > 0 ? (
+                <ul className="space-y-1 rounded-md border border-slate-100 bg-white/80 px-2 py-1.5">
+                  {posts.map((post) => (
+                    <li key={post.id} className="text-[11px] leading-snug text-slate-700">
+                      <span className="font-semibold text-slate-500">{post.fromHandle}</span>
+                      {' · '}
+                      {post.text}
+                      <span className="text-slate-400"> · ♥{post.likes}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
           )
         })()}
         {player.injuryDays > 0 ? (
@@ -637,7 +863,7 @@ function PlayerDetailPanel({
             {player.illnessDays} วัน · ไม่พร้อมลงแข่ง
           </p>
         ) : (
-          <p className="mt-2 text-xs text-emerald-700">พร้อมลงแข่ง · condition {player.condition}%</p>
+          <p className="mt-2 text-xs text-emerald-700">พร้อมลงแข่ง · stamina {player.condition}%</p>
         )}
         {history.length > 0 ? (
           <div className="mt-2">

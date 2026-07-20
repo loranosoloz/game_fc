@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useGameStore } from '@/store/gameStore'
 import { sortedTable } from '@/game/simulate'
@@ -7,12 +7,17 @@ import { roleShort } from '@/game/positions'
 import { ffpStatus } from '@/game/financeFfp'
 import { formationLabel } from '@/game/types'
 import { ensureAwards } from '@/game/awards'
+import { reportKindLabelTh } from '@/game/matchdayReport'
+import { ensureDynamics } from '@/game/dynamics'
 import { PageHeader, Panel, SectionLabel } from '@/components/ui'
 import { PlayerFace } from '@/components/PlayerFace'
+import { cn } from '@/lib/cn'
 
 export function DataHubPage() {
   const save = useGameStore((s) => s.save)!
+  const [tab, setTab] = useState<'overview' | 'opposition' | 'chronicle' | 'dynamics'>('overview')
   const club = save.clubs.find((c) => c.id === save.humanClubId)!
+  const dynamics = ensureDynamics(save.dynamics)
   const table = sortedTable(save.table)
   const rank = table.findIndex((r) => r.clubId === save.humanClubId) + 1
   const squad = save.players.filter((p) => p.clubId === save.humanClubId)
@@ -105,15 +110,90 @@ export function DataHubPage() {
     <div className="space-y-5">
       <PageHeader
         title="Data Hub"
-        subtitle={`${club.name} · วิเคราะห์จากแมตช์เอนจิน · xG · เรตติ้ง · คู่แข่ง · ฟอร์ม`}
+        subtitle={`${club.name} · วิเคราะห์จากแมตช์เอนจิน · xG · เรตติ้ง · คู่แข่ง · ฟอร์ม · ไดนามิกส์`}
+        actions={
+          <Link to="/dynamics" className="text-xs font-semibold text-sky-800 underline underline-offset-2">
+            ห้องแต่งตัว →
+          </Link>
+        }
       />
 
+      <div className="flex flex-wrap gap-1.5">
+        {(
+          [
+            ['overview', 'ภาพรวม'],
+            ['opposition', 'คู่แข่ง'],
+            ['chronicle', 'พงศาวดาร'],
+            ['dynamics', 'ไดนามิกส์'],
+          ] as const
+        ).map(([id, label]) => (
+          <button
+            key={id}
+            type="button"
+            onClick={() => setTab(id)}
+            className={cn(
+              'rounded-lg px-3 py-1.5 text-xs font-bold',
+              tab === id ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200',
+            )}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      {tab === 'dynamics' ? (
+        <Panel>
+          <SectionLabel>ห้องแต่งตัว</SectionLabel>
+          <div className="mt-2 grid gap-2 sm:grid-cols-4 text-sm">
+            <p>สามัคคี <b>{dynamics.cohesion}</b></p>
+            <p>ลำดับชั้น <b>{dynamics.hierarchyStability}</b></p>
+            <p>บรรยากาศ <b>{dynamics.dressingRoomMood}</b></p>
+            <p>เชื่อมั่น <b>{dynamics.managerTrust ?? 55}</b></p>
+          </div>
+          <p className="mt-2 text-xs text-slate-600">{dynamics.lastNote}</p>
+          <Link to="/dynamics" className="mt-2 inline-block text-xs font-bold text-sky-800 underline">
+            จัดการเต็มหน้า →
+          </Link>
+        </Panel>
+      ) : null}
+
+      {tab === 'chronicle' ? (
+        <Panel>
+          <SectionLabel>Matchday Chronicle</SectionLabel>
+          <ul className="mt-3 max-h-[28rem] space-y-3 overflow-y-auto">
+            {(save.matchdayChronicle ?? []).slice(0, 20).map((rep) => (
+              <li key={`${rep.season}-${rep.matchday}-${rep.createdAt}`} className="rounded-lg border border-slate-100 bg-slate-50/80 px-3 py-2">
+                <p className="text-xs font-bold text-slate-800">
+                  S{rep.season} · MD{rep.matchday} · {rep.date} · {rep.resultsCount} นัด
+                </p>
+                <ul className="mt-1 space-y-0.5 text-[11px] text-slate-600">
+                  {rep.lines.slice(0, 6).map((line) => (
+                    <li key={line.id}>
+                      <span className="font-semibold text-slate-700">
+                        {reportKindLabelTh(line.kind)}
+                      </span>
+                      {' · '}
+                      {line.text}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+            {(save.matchdayChronicle ?? []).length === 0 ? (
+              <li className="text-sm text-slate-500">ยังไม่มีบันทึก — เดินแมตช์เดย์ก่อน</li>
+            ) : null}
+          </ul>
+        </Panel>
+      ) : null}
+
+      {tab === 'opposition' || tab === 'overview' ? (
+        <>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         <Stat label="อันดับ" value={`#${rank || '—'}`} />
         <Stat label="OVR เฉลี่ย" value={avg.toFixed(1)} />
         <Stat label="อายุเฉลี่ย" value={avgAge.toFixed(1)} />
         <Stat label="ความสามัคคี" value={String(save.dynamics.cohesion)} />
-        <Stat label="สภาพเฉลี่ย" value={avgCond.toFixed(0)} warn={restHint} />
+        <Stat label="Stamina เฉลี่ย" value={avgCond.toFixed(0)} warn={restHint} />
       </div>
 
       {restHint ? (
@@ -153,7 +233,12 @@ export function DataHubPage() {
                 <ul className="mt-2 space-y-1 text-xs">
                   {ratingLeaders.map((r) => (
                     <li key={r.playerId} className="flex justify-between gap-2">
-                      <span className="truncate">{r.name}</span>
+                      <span className="truncate">
+                        {r.name}
+                        {r.dutyNote ? (
+                          <span className="text-slate-400"> · {r.dutyNote}</span>
+                        ) : null}
+                      </span>
                       <span className="tabular-nums font-semibold">
                         {r.rating.toFixed(1)}
                         {r.goals > 0 ? ` · ${r.goals}G` : ''}
@@ -310,6 +395,8 @@ export function DataHubPage() {
           </ul>
         </Panel>
       </div>
+        </>
+      ) : null}
     </div>
   )
 }

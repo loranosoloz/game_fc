@@ -41,6 +41,7 @@ import { buildSeasonCalendar } from './seasonCalendar'
 import { createClubFinance } from './playerEconomy'
 import { createYouthState } from './youth'
 import { ensureFans, recordHatredAfterLeave } from './fans'
+import { ensureSquadRegistration } from './squadRegistration'
 import { areRivals } from './rivalries'
 import { autoPickTactics } from './seed'
 import { createTransferDesk } from './transferDesk'
@@ -621,6 +622,7 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
     worldCup: save.worldCup ?? null,
     awards: resetAwardsForNewSeason(save),
     insolvency: rollInsolvencyForNewSeason(save),
+    squadRegistration: undefined,
   }
 
   const summer = runSummerIntlTournaments(next)
@@ -656,6 +658,8 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
       ? { ...ready.preSeason, note: `${summerBlurb} · ${ready.preSeason.note}` }
       : ready.preSeason,
   }
+
+  ready = ensureSquadRegistration(ready)
 
   return {
     ok: true,

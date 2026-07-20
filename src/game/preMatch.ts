@@ -9,6 +9,11 @@ import { createDynamics } from './dynamics'
 import { buildOppositionReport } from './opposition'
 import type { TouchlineShout } from './match/touchlineShouts'
 import { benchIssues, ensureClubMatchdaySquad, MATCH_BENCH_SIZE } from './match/matchdaySquad'
+import { isPlayerRegisteredForMatch } from './squadRegistration'
+import {
+  canPlayMatch,
+  medicalStaminaProfile,
+} from './medicalStamina'
 
 function clamp(n: number, lo: number, hi: number) {
   return Math.max(lo, Math.min(hi, Math.round(n)))
@@ -112,11 +117,7 @@ export function predictedStartingXi(save: GameSave, clubId: string): Player[] {
   const tactics = save.tacticsByClub[clubId]
   const squad = save.players.filter((p) => p.clubId === clubId)
   const byId = new Map(squad.map((p) => [p.id, p]))
-  const available = (p: Player) =>
-    p.injuryDays <= 0 &&
-    (p.banMatches ?? 0) <= 0 &&
-    (p.leaveDays ?? 0) <= 0 &&
-    (p.illnessDays ?? 0) <= 0
+  const available = (p: Player) => canPlayMatch(p)
 
   const xi: Player[] = []
   for (const id of tactics?.startingXi ?? []) {
@@ -151,15 +152,37 @@ export function humanMatchAbsentees(save: GameSave): {
 export function lineupIssues(save: GameSave): string[] {
   const issues: string[] = []
   const tactics = save.tacticsByClub[save.humanClubId]
+  const fx = nextHumanFixture(save)
   const xi = (tactics?.startingXi ?? [])
     .map((id) => save.players.find((p) => p.id === id))
     .filter(Boolean) as Player[]
   if (xi.length < 11) issues.push(`XI ไม่ครบ 11 คน (มี ${xi.length})`)
+  if (!tactics?.captainId) {
+    issues.push('ยังไม่เลือกกัปตัน — ไปหน้าทีมเลือกก่อน')
+  } else if (!tactics.startingXi.includes(tactics.captainId)) {
+    const name =
+      save.players.find((p) => p.id === tactics.captainId)?.name ?? 'กัปตัน'
+    issues.push(`กัปตัน ${name} ไม่อยู่ใน XI — จัดลงตัวจริงหรือเปลี่ยนกัปตันที่หน้าทีม`)
+  }
   for (const p of xi) {
-    if (p.injuryDays > 0) issues.push(`${p.name} เจ็บอยู่`)
-    if ((p.banMatches ?? 0) > 0) issues.push(`${p.name} ติดแบน`)
-    if ((p.leaveDays ?? 0) > 0) issues.push(`${p.name} ลา`)
-    if ((p.illnessDays ?? 0) > 0) issues.push(`${p.name} ป่วย`)
+    const med = medicalStaminaProfile(p)
+    if (med.status === 'out') {
+      if (p.injuryDays > 0) issues.push(`${p.name} เจ็บหนัก — ห้ามลง (${med.noteTh})`)
+      else if ((p.illnessDays ?? 0) > 0) issues.push(`${p.name} ป่วย — ห้ามลง`)
+      else if ((p.banMatches ?? 0) > 0) issues.push(`${p.name} ติดแบน`)
+      else if ((p.leaveDays ?? 0) > 0) issues.push(`${p.name} ลา`)
+      else issues.push(`${p.name} ไม่พร้อมลง`)
+    } else if (med.status === 'limited') {
+      issues.push(
+        `${p.name} ลงได้แบบประคอง · stamina สูงสุด ~${med.staminaCap}% · ฟื้นช้า`,
+      )
+    }
+    if (
+      fx &&
+      !isPlayerRegisteredForMatch(save, save.humanClubId, p.id, fx.competition)
+    ) {
+      issues.push(`${p.name} ไม่ได้อยู่ในทะเบียนนัดนี้ — ไปหน้าลงทะเบียน`)
+    }
   }
   issues.push(...benchIssues(tactics, save.players))
   return issues
@@ -168,7 +191,12 @@ export function lineupIssues(save: GameSave): string[] {
 export function confirmLineup(save: GameSave): { ok: boolean; save: GameSave; message: string } {
   const fx = nextHumanFixture(save)
   if (!fx) return { ok: false, save, message: 'ไม่มีนัดถัดไป' }
-  const filled = ensureClubMatchdaySquad(save, save.humanClubId, save.tacticsByClub[save.humanClubId]!)
+  const filled = ensureClubMatchdaySquad(
+    save,
+    save.humanClubId,
+    save.tacticsByClub[save.humanClubId]!,
+    fx.competition,
+  )
   const nextSave: GameSave = {
     ...save,
     tacticsByClub: { ...save.tacticsByClub, [save.humanClubId]: filled },
@@ -267,12 +295,28 @@ export function preMatchChecklist(save: GameSave): {
     return { prep: null, steps: [], ready: false, canForce: false }
   }
   const issues = lineupIssues(save)
+  const captainOk =
+    Boolean(save.tacticsByClub[save.humanClubId]?.captainId) &&
+    (save.tacticsByClub[save.humanClubId]?.startingXi ?? []).includes(
+      save.tacticsByClub[save.humanClubId]?.captainId ?? '',
+    )
   const steps = [
     {
       id: 'brief',
       label: 'อ่านรายงานคู่แข่ง',
       done: true,
       detail: 'ดูฟอร์ม · จุดอ่อน · XI คาดการณ์ด้านล่าง',
+    },
+    {
+      id: 'captain',
+      label: 'เลือกกัปตัน (หน้าทีม)',
+      done: captainOk,
+      detail: captainOk
+        ? (() => {
+            const id = save.tacticsByClub[save.humanClubId]?.captainId
+            return save.players.find((p) => p.id === id)?.name ?? 'เลือกแล้ว'
+          })()
+        : 'ต้องเลือกกัปตันใน XI ที่หน้าทีมก่อนเตะ',
     },
     {
       id: 'lineup',
@@ -290,7 +334,9 @@ export function preMatchChecklist(save: GameSave): {
     },
   ]
   const ready = steps.every((s) => s.done)
-  return { prep, steps, ready, canForce: true }
+  // กัปตันบังคับ — ห้าม force ข้าม
+  const canForce = captainOk
+  return { prep, steps, ready, canForce }
 }
 
 export function enrichOppositionBrief(save: GameSave, opponentId: string) {

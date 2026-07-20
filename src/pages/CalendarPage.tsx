@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useGameStore } from '@/store/gameStore'
 import { ensurePhase5 } from '@/game/save'
+import { ensureSquadRegistration } from '@/game/squadRegistration'
 import { SeasonCalendarView } from '@/components/SeasonCalendarView'
 import { PageHeader, Panel } from '@/components/ui'
 import { LANG_LABEL_TH, managerLanguages } from '@/game/languages'
 
 export function CalendarPage() {
   const saveRaw = useGameStore((s) => s.save)!
-  const save = ensurePhase5(saveRaw)
+  const save = ensureSquadRegistration(ensurePhase5(saveRaw))
   const summerReports = save.lastIntlTournamentReports ?? []
   const mgrLangLabel = managerLanguages(save.managerProfile)
     .map((l) => LANG_LABEL_TH[l] ?? l)
@@ -19,12 +20,20 @@ export function CalendarPage() {
         title="ปฏิทินฤดูกาล"
         subtitle={`${save.leagueName} · S${save.season} · ${save.currentDate}`}
         actions={
-          <Link
-            to="/portal"
-            className="text-xs font-semibold text-sky-800 underline underline-offset-2"
-          >
-            ← กลับพอร์ทัล
-          </Link>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              to="/registration"
+              className="text-xs font-semibold text-rose-800 underline underline-offset-2"
+            >
+              ลงทะเบียนนักเตะ
+            </Link>
+            <Link
+              to="/portal"
+              className="text-xs font-semibold text-sky-800 underline underline-offset-2"
+            >
+              ← กลับพอร์ทัล
+            </Link>
+          </div>
         }
       />
 
@@ -38,6 +47,11 @@ export function CalendarPage() {
             fixtures={save.fixtures}
             clubs={save.clubs}
             humanClubId={save.humanClubId}
+            regPins={
+              save.seasonCalendar?.registrationPins?.length
+                ? save.seasonCalendar.registrationPins
+                : (save.squadRegistration?.pins ?? [])
+            }
             competitionNames={{
               league: save.leagueName,
               cup: save.cup.name,
