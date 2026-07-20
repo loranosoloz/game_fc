@@ -2,7 +2,6 @@
  * สถิติแมตช์ติดตัวนักเตะทุกคนบนโลก — อัปเดตหลังจบนัด (รวม AI vs AI)
  */
 import type {
-  CompetitionKind,
   Fixture,
   MatchEvent,
   MatchResult,
@@ -189,7 +188,7 @@ export function applyPlayerMatchStats(
       season: opts.season,
       matchday: fixture.matchday,
       date: fixture.date,
-      competition: fixture.competition as CompetitionKind,
+      competition: fixture.competition,
       clubId,
       opponentClubId: oppId,
       home: r.team === 'home',
