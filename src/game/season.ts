@@ -1,4 +1,5 @@
 import type { GameSave, InboxMessage, Player } from './types'
+import { rollPlayerLiveSeasonForNewSeason } from './playerMatchStats'
 import { blankTable, generateSeasonFixtures } from './fixtures'
 import {
   createUclState,
@@ -154,8 +155,10 @@ function rollPlayersForNewSeason(
   const aiClubs = clubs.filter((c) => c.controlledBy === 'ai' && !c.id.startsWith('ucl-'))
 
   const next = players.map((p) => {
+    const clubLabel = (id: string) =>
+      clubs.find((c) => c.id === id)?.shortName ?? clubs.find((c) => c.id === id)?.name ?? id
     let aged: Player = {
-      ...p,
+      ...rollPlayerLiveSeasonForNewSeason(p, newSeason, clubLabel),
       age: p.age + 1,
       seasonYellows: 0,
       minutesPlayed: 0,

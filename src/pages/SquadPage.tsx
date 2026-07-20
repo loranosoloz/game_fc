@@ -38,6 +38,7 @@ import {
 } from '@/game/medical'
 import { BODY_PART_LABEL } from '@/game/bodyMap'
 import { formatIllnessStatus, ILLNESS_TYPE_LABEL } from '@/game/illness'
+import { PlayerLiveSeasonPanel } from '@/components/PlayerLiveSeasonPanel'
 import { BodyMapFigure } from '@/components/BodyMapFigure'
 import { getActivity, recentLogsForPlayer } from '@/game/dailyLife'
 import { formatBanStatus } from '@/game/discipline'
@@ -233,6 +234,7 @@ export function SquadPage() {
                 <th className="py-2 pr-2 font-medium">อายุ</th>
                 <th className="py-2 pr-2 font-medium">OVR</th>
                 <th className="py-2 pr-2 font-medium">CA</th>
+                <th className="py-2 pr-2 font-medium">Szn</th>
                 <th className="py-2 pr-2 font-medium">Learn</th>
                 <th className="py-2 pr-2 font-medium">บทบาท</th>
                 <th className="py-2 font-medium">Medical</th>
@@ -261,6 +263,18 @@ export function SquadPage() {
                   <td className="py-2 pr-2">{p.age}</td>
                   <td className="py-2 pr-2 font-semibold">{p.overall}</td>
                   <td className="py-2 pr-2">{p.ca}</td>
+                  <td
+                    className="py-2 pr-2 tabular-nums text-xs text-slate-600"
+                    title={
+                      p.liveSeason && p.liveSeason.apps > 0
+                        ? `${p.liveSeason.apps} นัด · ${p.liveSeason.goals}G ${p.liveSeason.assists}A`
+                        : 'ยังไม่ลง'
+                    }
+                  >
+                    {p.liveSeason && p.liveSeason.apps > 0
+                      ? `${p.liveSeason.apps}·${p.liveSeason.goals}/${p.liveSeason.assists}`
+                      : '—'}
+                  </td>
                   <td className="py-2 pr-2">{p.growth.learningRate}</td>
                   <td className="py-2 pr-2" onClick={(e) => e.stopPropagation()}>
                     <select
@@ -552,6 +566,8 @@ function PlayerDetailPanel({
           ) : null}
         </div>
       </div>
+
+      <PlayerLiveSeasonPanel save={save} player={player} />
 
       {(player.careerHonours?.length ?? 0) > 0 ? (
         <div>

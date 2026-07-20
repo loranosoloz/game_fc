@@ -46,6 +46,7 @@ import { CoachFace } from '@/components/CoachFace'
 import { CoachCareerTimeline } from '@/components/CoachCareerTimeline'
 import { ClubCrest } from '@/components/ClubCrest'
 import { PlayerCareerHistory } from '@/components/PlayerCareerHistory'
+import { PlayerLiveSeasonPanel } from '@/components/PlayerLiveSeasonPanel'
 import { Panel } from '@/components/ui'
 import { useGameStore } from '@/store/gameStore'
 import { ensurePhase5 } from '@/game/save'
@@ -771,6 +772,7 @@ function LivePlayerDetail({
 
       {tab === 'career' ? (
         <div className="space-y-4">
+          <PlayerLiveSeasonPanel save={save} player={selected} />
           <PlayerCareerHistory playerName={selected.name} playerAge={selected.age} />
           <div>
             <SectionLabel>ประวัติย้ายในอาชีพนี้</SectionLabel>

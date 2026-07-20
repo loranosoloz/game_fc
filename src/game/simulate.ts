@@ -1,6 +1,7 @@
 import type { Club, Fixture, GameSave, InboxMessage, MatchResult, Player, TableRow, Tactics } from './types'
 import { applyMatchFatigue, simulateFixture } from './matchEngine'
 import { applyPostMatchRoleProgress } from './matchRoleRating'
+import { applyPlayerMatchStats } from './playerMatchStats'
 import { buildArchiveEntry } from './matchArchive'
 import { persistMatchArchiveSideEffect } from './matchStatsDb'
 import { applyHalfTimeTactics, type HalfTimeAdjustments, type HalfTimeSub } from './match/halfTime'
@@ -903,6 +904,14 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     players = applyPostMatchRoleProgress(players, result, {
       [fixture.homeClubId]: tacticsByClub[fixture.homeClubId],
       [fixture.awayClubId]: tacticsByClub[fixture.awayClubId],
+    })
+    // สถิติติดตัวนักเตะทุกคนที่ลงนัดนี้ (รวม AI ทั้งลีก)
+    players = applyPlayerMatchStats(players, fixture, result, {
+      season: save.season,
+      clubName: (id) =>
+        save.clubs.find((c) => c.id === id)?.shortName ??
+        save.clubs.find((c) => c.id === id)?.name ??
+        id,
     })
     tacticsByClub[fixture.homeClubId] = bumpFamiliarity(tacticsByClub[fixture.homeClubId], true)
     tacticsByClub[fixture.awayClubId] = bumpFamiliarity(tacticsByClub[fixture.awayClubId], true)
