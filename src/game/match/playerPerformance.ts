@@ -28,6 +28,12 @@ export interface PlayerPerfAccum {
   reds: number
   saves: number
   xgContrib: number
+  /** พาสสำเร็จในแมตช์ */
+  passesCompleted: number
+  /** ดริบสำเร็จ */
+  dribblesOk: number
+  tacticalRoleId?: string | null
+  roleFit?: number
 }
 
 export function createPerf(
@@ -51,6 +57,8 @@ export function createPerf(
     reds: 0,
     saves: 0,
     xgContrib: 0,
+    passesCompleted: 0,
+    dribblesOk: 0,
   }
 }
 

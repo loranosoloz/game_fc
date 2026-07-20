@@ -34,6 +34,7 @@ const CAP = {
   mys: 'Mys',
   sgp: 'Sgp',
   sau: 'Sau',
+  sau2: 'Sau2',
 }
 
 const LABELS = {
@@ -56,6 +57,7 @@ const LABELS = {
   mys: 'Malaysia Super League',
   sgp: 'Singapore Premier League',
   sau: 'Saudi Pro League',
+  sau2: 'Saudi First Division',
 }
 
 const arg = process.argv.find((a) => a.startsWith('--league='))

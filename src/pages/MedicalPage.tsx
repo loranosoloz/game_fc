@@ -12,6 +12,7 @@ import {
   formatInjuryStatus,
   recoveryTickAmount,
 } from '@/game/medical'
+import { medicalStaminaProfile } from '@/game/medicalStamina'
 import { BODY_PART_LABEL, bodyMapSummary } from '@/game/bodyMap'
 import { ILLNESS_TYPE_LABEL, isIll } from '@/game/illness'
 import { staffLevel } from '@/game/staff'
@@ -150,11 +151,21 @@ export function MedicalPage() {
                         </span>
                       </div>
                       <p className="mt-1 text-xs text-slate-600">
-                        Condition {p.condition}% · ฟื้น −{tick} วัน/tick · ประวัติ{' '}
-                        {(p.injuryHistory ?? []).length} ครั้ง
-                        {(p.injuryHistory ?? []).some((h) => h.chronic)
-                          ? ' · มีเรื้อรัง'
-                          : ''}
+                        Stamina {p.condition}%
+                        {(() => {
+                          const med = medicalStaminaProfile(p)
+                          return (
+                            <>
+                              {' '}
+                              · {med.status === 'out' ? 'ห้ามลง' : 'ลงได้แบบประคอง'} · เพดาน ~
+                              {med.staminaCap}% · ฟื้น×{med.recoveryMul.toFixed(2)} · ฟื้น −{tick}{' '}
+                              วัน/tick
+                            </>
+                          )
+                        })()}
+                      </p>
+                      <p className="mt-0.5 text-[11px] text-slate-500">
+                        {medicalStaminaProfile(p).detailTh}
                       </p>
                       <div className="mt-2 flex flex-wrap gap-1.5">
                         {TREATMENTS.map((t) => (
@@ -212,7 +223,7 @@ export function MedicalPage() {
                       </span>
                     </div>
                     <p className="mt-1 text-xs text-slate-600">
-                      Condition {p.condition}% · ไม่พร้อมลงแข่งจนกว่าจะหาย
+                      Stamina {p.condition}% · {medicalStaminaProfile(p).detailTh}
                     </p>
                   </li>
                 ))}

@@ -25,6 +25,9 @@ export function TransferIntelPanel({
         <p className="text-xs font-semibold tracking-wide uppercase">AI วิเคราะห์ตลาด</p>
         <p className="mt-1 text-base font-bold">{intel.verdictLabel}</p>
         <p className="text-xs opacity-80">ความมั่นใจ {intel.confidence}%</p>
+        <p className="mt-1 text-[11px] leading-snug opacity-75">
+          คำแนะนำนี้กระทบราคาที่ยอมรับได้จริงตอนยื่นซื้อ (ร่วมกับความสนิทเอเยนต์)
+        </p>
         <p className="mt-2 text-sm font-semibold">{intel.headline}</p>
         <p className="mt-1 text-xs leading-relaxed opacity-90">{intel.summary}</p>
       </div>

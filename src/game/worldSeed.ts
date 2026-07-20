@@ -16,6 +16,7 @@ import { rollPlayerSkills } from '@/game/playerSkills'
 import { createClubSocial, createPlayerSocial } from '@/game/social'
 import { createClubFans } from '@/game/fans'
 import { seedPlayerCareer } from '@/game/playerCareerSeed'
+import { withAgentIdentity } from '@/game/agents'
 import { engRosterForClub, engYouthForClub } from '@/data/world/engPlayers'
 import { eng2RosterForClub } from '@/data/world/eng2Players'
 import { espRosterForClub, espYouthForClub } from '@/data/world/espPlayers'
@@ -47,6 +48,7 @@ import { idnRosterForClub } from '@/data/world/idnPlayers'
 import { mysRosterForClub } from '@/data/world/mysPlayers'
 import { sgpRosterForClub } from '@/data/world/sgpPlayers'
 import { sauRosterForClub } from '@/data/world/sauPlayers'
+import { sau2RosterForClub } from '@/data/world/sau2Players'
 import { bioForPlayerName } from '@/data/world/playerBios'
 import {
   contractEndSeasonFromDate,
@@ -270,6 +272,11 @@ export function createClubsFromLeague(leagueId: LeagueId, humanClubId: string): 
     bsi: 68, ssb: 72, dgf: 70, swf: 69, eel: 64, cna: 61, gyn: 63, snm: 65,
     chn: 60, cbj: 60, asn: 60, jnd: 63,
   }
+  const SAU2_REP: Record<string, number> = {
+    ula: 70, dir: 68, fsy: 67, abh: 66, rae: 65, whd: 64, orb: 63, jba: 62,
+    tai: 62, btn: 61, zlf: 60, buk: 60, jed: 59, anw: 58, adl: 58, jdl: 57,
+    arb: 56, jbi: 55,
+  }
   const div2 = d2names.map((def, i) => {
     const id = `d2-${i + 1}`
     let rep = 42 + (i % 8) + Math.floor(i / 5)
@@ -281,6 +288,7 @@ export function createClubsFromLeague(leagueId: LeagueId, humanClubId: string): 
     if (leagueId === 'tha' && def.key && THA2_REP[def.key] != null) rep = THA2_REP[def.key]
     if (leagueId === 'jpn' && def.key && JPN2_REP[def.key] != null) rep = JPN2_REP[def.key]
     if (leagueId === 'kor' && def.key && KOR2_REP[def.key] != null) rep = KOR2_REP[def.key]
+    if (leagueId === 'sau' && def.key && SAU2_REP[def.key] != null) rep = SAU2_REP[def.key]
     const balance = Math.round(2_500_000 + rep * 90_000)
     return {
       id,
@@ -398,12 +406,13 @@ export function createPlayersForClubDef(opts: {
   const mysRoster = leagueId === 'mys' ? mysRosterForClub(def.key) : []
   const sgpRoster = leagueId === 'sgp' ? sgpRosterForClub(def.key) : []
   const sauRoster = leagueId === 'sau' ? sauRosterForClub(def.key) : []
+  const sau2Roster = leagueId === 'sau' ? sau2RosterForClub(def.key) : []
   const candidates = [
     engRoster, eng2Roster, espRoster, esp2Roster, gerRoster, ger2Roster,
     fraRoster, fra2Roster, itaRoster, ita2Roster, thaRoster, tha2Roster,
     jpnRoster, jpn2Roster, korRoster, kor2Roster, braRoster, turRoster,
     nedRoster, prtRoster, belRoster, scoRoster, autRoster, suiRoster,
-    denRoster, greRoster, vieRoster, idnRoster, mysRoster, sgpRoster, sauRoster,
+    denRoster, greRoster, vieRoster, idnRoster, mysRoster, sgpRoster, sauRoster, sau2Roster,
   ]
   const minRoster = leagueId === 'sgp' ? 12 : 16
   const realRoster = candidates.find((r) => r.length >= minRoster) ?? []
@@ -469,7 +478,8 @@ export function createPlayersForClubDef(opts: {
               ? Math.round(star.ovr ** 2 * 1200)
               : null
     const attrs = fmInside ? playerAttrsFromFmInside(fmInside) : makeAttrs(rng, star.ovr, star.role)
-    clubPlayers.push({
+    clubPlayers.push(
+      withAgentIdentity({
       id: `${idPrefix}-${n}`,
       clubId: club.id,
       name: star.name,
@@ -527,7 +537,8 @@ export function createPlayersForClubDef(opts: {
       ),
       bio: bio ?? null,
       fmInside: fmInside ?? null,
-    })
+    }),
+    )
   }
 
   if (!useFullEngRoster) for (const row of template) {
@@ -543,7 +554,8 @@ export function createPlayersForClubDef(opts: {
       const years = 1 + Math.floor(rng() * 4)
       const attrs = makeAttrs(rng, overall, row.role)
       const ovr = overallFromCa(ca)
-      clubPlayers.push({
+      clubPlayers.push(
+        withAgentIdentity({
         id: `${idPrefix}-${n}`,
         clubId: club.id,
         name,
@@ -599,7 +611,8 @@ export function createPlayersForClubDef(opts: {
           },
           club.social?.followers ?? 80_000,
         ),
-      })
+      }),
+      )
     }
   }
 

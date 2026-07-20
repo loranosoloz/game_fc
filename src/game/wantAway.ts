@@ -11,6 +11,7 @@ import { isTransferWindowOpen } from './transferWindow'
 import { pushNews } from './media'
 import { areRivals, heatRivalry } from './rivalries'
 import { recordHatredWhileAtClub } from './fans'
+import { bumpClubLoyalty, loyaltyWantAwayMul } from './playerLoyalty'
 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.round(n)))
@@ -78,14 +79,27 @@ export function activateWantAway(
   intensityBump = 4,
 ): Player {
   const cur = getWantAway(p)
-  return patchWantAway(p, {
+  const mul = loyaltyWantAwayMul(p)
+  // ภักดีสูงมาก — มีโอกาสไม่เปิดธงอยากย้าย แค่ภักดีลดนิด
+  if ((p.clubLoyalty ?? 10) >= 17 && intensityBump <= 5 && Math.random() < 0.55) {
+    return bumpClubLoyalty(p, -1)
+  }
+  const bump = Math.max(1, Math.round(intensityBump * mul))
+  const preferred =
+    cur.preferredClubIds?.length
+      ? cur.preferredClubIds
+      : p.clubAffinity?.dreamClubIds?.length
+        ? p.clubAffinity.dreamClubIds
+        : undefined
+  return patchWantAway(bumpClubLoyalty(p, mul < 0.6 ? -1 : -2), {
     active: true,
-    intensity: Math.max(cur.intensity, 6) + intensityBump,
+    intensity: Math.max(cur.intensity, 6) + bump,
     sinceMatchday: cur.active ? cur.sinceMatchday : matchday,
     reasonTh,
     publicNews: cur.publicNews,
     refuseCount: cur.refuseCount,
     boardForced: cur.boardForced,
+    preferredClubIds: preferred,
   })
 }
 
@@ -262,6 +276,21 @@ export function tickWantAwayDrama(save: GameSave): GameSave {
     const xi = save.tacticsByClub[save.humanClubId]?.startingXi ?? []
     if (!xi.includes(p.id) && p.injuryDays <= 0) intensity = Math.min(20, intensity + 1)
     if (publicNews) intensity = Math.min(20, intensity + 1)
+    // ภักดีสูง — กด intensity ลง / มีโอกาสเลิกอยากย้าย
+    const L = p.clubLoyalty ?? 10
+    if (L >= 14 && Math.random() < 0.28) intensity = Math.max(0, intensity - 2)
+    if (L >= 16 && intensity <= 8 && Math.random() < 0.35) {
+      return bumpClubLoyalty(
+        patchWantAway(p, {
+          active: false,
+          intensity: 0,
+          publicNews: false,
+          boardForced: false,
+          reasonTh: 'กลับมามั่นใจกับสโมสร',
+        }),
+        1,
+      )
+    }
 
     if (!publicNews && intensity >= 12 && Math.random() < 0.22) {
       publicNews = true
@@ -386,16 +415,27 @@ export function processWantAwayAiBids(save: GameSave): GameSave {
 
     const value = estimatedValue(p)
     const winterPrem = marketSellPremium(next, p)
+    const preferred = new Set([
+      ...(p.wantAway?.preferredClubIds ?? []),
+      ...(p.clubAffinity?.dreamClubIds ?? []),
+    ])
     const pool = next.clubs
       .filter((c) => c.controlledBy === 'ai' && c.balance > value * winterPrem * 0.65)
+      .filter((c) => !(p.clubAffinity?.avoidClubIds ?? []).includes(c.id))
       .sort((a, b) => {
+        const pa = preferred.has(a.id) ? 1 : 0
+        const pb = preferred.has(b.id) ? 1 : 0
+        if (pb !== pa) return pb - pa
         const ra = areRivals(next, a.id, save.humanClubId) ? 1 : 0
         const rb = areRivals(next, b.id, save.humanClubId) ? 1 : 0
         if (rb !== ra) return rb - ra
         return b.reputation - a.reputation
       })
 
-    const buyer = pool[Math.floor(Math.random() * Math.min(6, pool.length))]
+    // ทีมในฝันยื่นก่อน — ถ้ามีใน pool ให้สุ่มจาก top preferred ก่อน
+    const dreamPool = pool.filter((c) => preferred.has(c.id))
+    const pickFrom = dreamPool.length ? dreamPool : pool
+    const buyer = pickFrom[Math.floor(Math.random() * Math.min(6, pickFrom.length))]
     if (!buyer) continue
     if (desk.offers.some((o) => o.playerId === p.id && o.toClubId === buyer.id && o.status === 'pending')) {
       continue

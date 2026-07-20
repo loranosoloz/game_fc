@@ -1,6 +1,8 @@
 import type { Club, Fixture, GameSave, InboxMessage, MatchResult, Player, TableRow, Tactics } from './types'
 import { applyMatchFatigue, simulateFixture } from './matchEngine'
 import { applyPostMatchRoleProgress } from './matchRoleRating'
+import { buildArchiveEntry } from './matchArchive'
+import { persistMatchArchiveSideEffect } from './matchStatsDb'
 import { applyHalfTimeTactics, type HalfTimeAdjustments, type HalfTimeSub } from './match/halfTime'
 import { estimateAttendance } from './match/crowdPressure'
 import type { TouchlineShout } from './match/touchlineShouts'
@@ -28,6 +30,7 @@ import { transferWindowKind } from './transferWindow'
 import { winterWindowRange } from '@/data/world/leagueSize'
 import { maybeQueueInternationalBreak } from './internationalBreaks'
 import { tickWorldPulse } from './worldPulse'
+import { tickWorldWatch } from './worldWatch'
 import { applyTrainingWeek, updatePlayingTimeMorale } from './training'
 import {
   tickStyleTrainingForSave,
@@ -815,9 +818,17 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
   const rivalIds = rivalIdsForClub(workingSave, save.humanClubId, sorted)
   void humanRank
 
+  const archiveBatch: ReturnType<typeof buildArchiveEntry>[] = []
+
   for (const { fixture, result } of prepared.results) {
     playedClubs.add(fixture.homeClubId)
     playedClubs.add(fixture.awayClubId)
+    archiveBatch.push(
+      buildArchiveEntry(fixture, result, {
+        season: save.season,
+        humanClubId: save.humanClubId,
+      }),
+    )
     fixtures = fixtures.map((f) =>
       f.id === fixture.id
         ? {
@@ -830,6 +841,9 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
             attendance: result.attendance ?? fixture.attendance ?? f.attendance,
             penaltiesHome: result.penalties?.home,
             penaltiesAway: result.penalties?.away,
+            matchStats: result.stats
+              ? { home: { ...result.stats.home }, away: { ...result.stats.away } }
+              : f.matchStats,
           }
         : f,
     )
@@ -1526,6 +1540,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     clubFinance,
     inbox: inbox.slice(0, 40),
     lastHumanResult: humanResult ?? save.lastHumanResult,
+    matchArchive: persistMatchArchiveSideEffect(save, archiveBatch),
     matchday: prepared.matchday,
     seasonComplete: fixtures
       .filter((f) => f.competition === 'league')
@@ -1795,6 +1810,7 @@ export function applyPreparedMatchday(save: GameSave, prepared: PreparedMatchday
     prepared.results.map((r) => r.result),
   )
   next = tickWorldPulse(next)
+  next = tickWorldWatch(next)
   {
     const winter = winterWindowRange(next.leagueId || 'eng')
     if (next.matchday === winter.start && transferWindowKind(next) === 'winter') {

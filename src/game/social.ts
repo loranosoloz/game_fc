@@ -47,6 +47,8 @@ export function createPlayerSocial(
     heat: clamp(12 + mh + (player.overall - 60), 5, 55),
     postsWeek: clamp(1 + Math.floor(mh / 5) + (player.overall >= 80 ? 1 : 0), 1, 8),
     verified: player.overall >= 78 || mh >= 16,
+    mood: 'chill',
+    recentPosts: [],
   }
 }
 

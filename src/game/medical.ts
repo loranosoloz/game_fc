@@ -6,6 +6,12 @@ import {
   markBodyPartInjured,
   pickInjuredBodyPart,
 } from './bodyMap'
+import {
+  clampStaminaToMedical,
+  medicalDailyStaminaGain,
+  medicalPlayStatus,
+  staminaHitOnInjury,
+} from './medicalStamina'
 
 const HISTORY_CAP = 24
 
@@ -22,9 +28,9 @@ export const TREATMENT_LABEL: Record<InjuryTreatment, string> = {
 }
 
 export const TREATMENT_HINT: Record<InjuryTreatment, string> = {
-  rest: 'ฟื้นช้า แต่สภาพดีขึ้นชัด',
-  physio: 'สมดุล — แพทย์ช่วยเร่ง',
-  injection: 'หายเร็ว แต่เสี่ยงซ้ำ + สภาพไม่เต็ม',
+  rest: 'ฟื้นช้า แต่ stamina ขึ้นชัด · เหมาะเจ็บหนัก',
+  physio: 'สมดุล — แพทย์ช่วยเร่งวันหาย',
+  injection: 'หายเร็ว / ลงได้ง่าย แต่ stamina ฟื้นแย่ + เสี่ยงซ้ำ',
 }
 
 const TYPE_WEIGHTS: { type: InjuryType; w: number }[] = [
@@ -95,9 +101,13 @@ export function applyInjury(
     injuryType: rolled.type,
     treatment: player.treatment ?? 'physio',
     injuryHistory: history,
-    condition: Math.max(35, player.condition - (source === 'training' ? 15 : 8)),
+    condition: Math.max(
+      28,
+      player.condition - staminaHitOnInjury(rolled.type, source, player.attrs?.stamina ?? 70),
+    ),
   }
   next = markBodyPartInjured(next, bodyPart)
+  next = { ...next, condition: clampStaminaToMedical(next, next.condition) }
   return next
 }
 
@@ -132,7 +142,10 @@ export function tickPlayerInjury(player: Player, physioLevel: number): Player {
     const healed = healBodyMap(
       {
         ...player,
-        condition: Math.min(100, player.condition + 3 + Math.floor(physioLevel / 8)),
+        condition: Math.min(
+          100,
+          player.condition + medicalDailyStaminaGain({ ...player, injuryDays: 0 }, physioLevel),
+        ),
         injuryType: null,
         treatment: null,
         injuryBodyPart: null,
@@ -144,9 +157,7 @@ export function tickPlayerInjury(player: Player, physioLevel: number): Player {
   }
   const heal = recoveryTickAmount(player, physioLevel)
   const treatment = player.treatment ?? 'physio'
-  let condGain =
-    treatment === 'rest' ? 5 + Math.floor(physioLevel / 8) : 2 + Math.floor(physioLevel / 8)
-  if (treatment === 'injection') condGain = Math.max(1, condGain - 1)
+  const condGain = medicalDailyStaminaGain(player, physioLevel)
 
   const nextDays = Math.max(0, player.injuryDays - heal)
 
@@ -155,21 +166,33 @@ export function tickPlayerInjury(player: Player, physioLevel: number): Player {
       {
         ...player,
         injuryDays: nextDays + 2,
-        condition: Math.max(30, player.condition - 4),
+        condition: Math.max(28, player.condition - 4),
       },
       physioLevel,
       true,
     )
   }
 
-  const base = clearInjuryFields({
+  const withCond = {
     ...player,
-    condition: Math.min(100, player.condition + condGain),
+    condition: clampStaminaToMedical(
+      { ...player, injuryDays: nextDays },
+      player.condition + condGain,
+    ),
     injuryDays: nextDays,
     injuryType: nextDays > 0 ? player.injuryType : null,
     treatment: nextDays > 0 ? treatment : null,
     injuryBodyPart: nextDays > 0 ? player.injuryBodyPart : null,
-  })
+  }
+  // หายแล้ว — ปลดเพดาน ค่อยๆ ดัน stamina ขึ้นอีกนิด
+  const base = clearInjuryFields(
+    nextDays <= 0
+      ? {
+          ...withCond,
+          condition: Math.min(100, withCond.condition + 3 + Math.floor(physioLevel / 10)),
+        }
+      : withCond,
+  )
   return healBodyMap(base, physioLevel, nextDays > 0)
 }
 
@@ -177,7 +200,9 @@ export function formatInjuryStatus(player: Player): string {
   if (player.injuryDays <= 0) return `${player.condition}%`
   const type = player.injuryType ? INJURY_TYPE_LABEL[player.injuryType] : 'เจ็บ'
   const part = player.injuryBodyPart ? ` · ${BODY_PART_LABEL[player.injuryBodyPart]}` : ''
-  return `${type}${part} ${player.injuryDays}ว`
+  const status = medicalPlayStatus(player)
+  const tag = status === 'out' ? 'ห้ามลง' : status === 'limited' ? 'ลงได้·ล้า' : ''
+  return `${type}${part} ${player.injuryDays}ว${tag ? ` · ${tag}` : ''}`
 }
 
 export function setPlayerTreatment(player: Player, treatment: InjuryTreatment): Player {

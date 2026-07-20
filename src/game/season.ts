@@ -530,6 +530,7 @@ export function startNextSeason(save: GameSave): { ok: boolean; save: GameSave; 
     euroAccess,
     asiaAccess,
     lastHumanResult: null,
+    matchArchive: save.matchArchive ?? [],
     pressConference: null,
     playerInterview: null,
     internationalBreak: null,

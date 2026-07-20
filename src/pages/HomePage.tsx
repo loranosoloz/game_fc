@@ -168,6 +168,18 @@ export function HomePage() {
             >
               ฐานข้อมูล pack
             </Link>
+            <Link
+              to="/match-demo"
+              className="rounded-md border border-lime-500/50 bg-lime-400/10 px-3 py-1.5 text-xs font-semibold text-lime-200 hover:bg-lime-400/20"
+            >
+              El Clásico · จำลอง
+            </Link>
+            <Link
+              to="/match-demo-3d"
+              className="rounded-md border border-sky-500/50 bg-sky-400/10 px-3 py-1.5 text-xs font-semibold text-sky-200 hover:bg-sky-400/20"
+            >
+              El Clásico · 3D
+            </Link>
           </div>
         </div>
         <nav className="flex gap-1 overflow-x-auto border-t border-slate-800 bg-slate-950 px-2 lg:px-4">

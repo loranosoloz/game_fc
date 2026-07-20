@@ -18,6 +18,7 @@ import { rollPlayerSkills } from './playerSkills'
 import { createPlayerSocial } from './social'
 import { feederLevelSum } from './affiliates'
 import { proposeFacilityUpgrade } from './facilities'
+import { buildPlayerTacticalRoles } from './playerTacticalRoles'
 
 const YOUTH_NAME_POOL = [
   ...new Set([...Object.values(REAL_NAME_BANKS).flat(), ...REAL_NAME_OVERFLOW]),
@@ -120,6 +121,11 @@ export function maybePromoteYouth(save: GameSave): GameSave {
         role,
         attrs,
         id: `p-${maxId}`,
+      }),
+      preferredTacticalRoles: buildPlayerTacticalRoles({
+        role,
+        attrs,
+        fmInside: null,
       }),
       social: createPlayerSocial(
         {

@@ -15,9 +15,15 @@ import {
   FORMATION_LABEL_TH,
   formationLabel,
 } from '@/game/types'
-import { buildPitchPlayers, withActionOffset } from '@/game/pitchLayout'
+import { buildPitchPlayers, withActionOffset, markersFromSpatialFrame, ballSpotFromSpatial } from '@/game/pitchLayout'
 import { getReferee, homeBiasLabel, reputationLabel, strictnessLabel } from '@/game/referees'
 import { MatchStatsPanel } from '@/components/MatchStatsPanel'
+import { LiveMatchStatsStrip } from '@/components/LiveMatchStatsStrip'
+import { MatchSquadPanel } from '@/components/MatchSquadPanel'
+import { MatchPlayerDetailPanel } from '@/components/MatchPlayerDetailPanel'
+import { MatchOverlayModal } from '@/components/MatchOverlayModal'
+import { fitnessFromSpatial, squadStatusFromEvents } from '@/game/matchFitness'
+import { statsFromEventsUpTo } from '@/game/matchArchive'
 import { TEAM_TALK_OPTIONS, TOUCHLINE_SHOUT_OPTIONS } from '@/game/preMatch'
 import { halfTimeScoreLine, type HalfTimeAdjustments, type HalfTimeSub } from '@/game/match/halfTime'
 import type { TouchlineShout } from '@/game/match/touchlineShouts'
@@ -45,6 +51,8 @@ function kindTone(kind: MatchEventKind, cardColor?: 'yellow' | 'red') {
       return 'border-fuchsia-400 bg-fuchsia-50 text-fuchsia-950'
     case 'var':
       return 'border-violet-400 bg-violet-50 text-violet-950'
+    case 'offside':
+      return 'border-orange-400 bg-orange-50 text-orange-950'
     case 'foul':
       return 'border-orange-300 bg-orange-50 text-orange-950'
     case 'corner':
@@ -85,8 +93,11 @@ export function LiveMatchPage() {
   const [speed, setSpeed] = useState<'slow' | 'normal' | 'fast'>('normal')
   const [done, setDone] = useState(false)
   const [htOpen, setHtOpen] = useState(false)
+  const [stoppageOpen, setStoppageOpen] = useState(false)
+  const [selectedPlayerId, setSelectedPlayerId] = useState<string | null>(null)
   const feedRef = useRef<HTMLDivElement>(null)
   const htShownRef = useRef(false)
+  const stoppageSeenRef = useRef(new Set<string>())
 
   useEffect(() => {
     if (!live || !save) {
@@ -96,9 +107,16 @@ export function LiveMatchPage() {
 
   const events = live?.humanResult?.events ?? []
   const current = events[Math.min(index, Math.max(0, events.length - 1))]
-  const visible = events.slice(0, index + 1).slice(-12)
+  const visible = events.slice(0, index + 1).slice(-22)
   const needsHt =
     !!live?.halfTime && !live.halfTime.resolved && current?.kind === 'halftime'
+
+  const humanIsHome = live?.humanFixture?.homeClubId === save?.humanClubId
+  const humanStoppageSide: 'home' | 'away' | null = humanIsHome ? 'home' : 'away'
+  const needsHumanStoppage =
+    !!current?.stoppageKind &&
+    current.stoppageSide === humanStoppageSide &&
+    current.kind === 'tactical_window'
 
   // Auto-pause at half-time for adjustments
   useEffect(() => {
@@ -107,6 +125,13 @@ export function LiveMatchPage() {
     setPlaying(false)
     setHtOpen(true)
   }, [needsHt])
+
+  useEffect(() => {
+    if (!needsHumanStoppage || !current || stoppageSeenRef.current.has(current.id)) return
+    stoppageSeenRef.current.add(current.id)
+    setPlaying(false)
+    setStoppageOpen(true)
+  }, [needsHumanStoppage, current?.id])
 
   // After HT resolved, events grow — keep playing from current index
   useEffect(() => {
@@ -118,8 +143,9 @@ export function LiveMatchPage() {
   }, [live?.halfTime?.resolved, live?.humanResult?.events?.length])
 
   useEffect(() => {
-    if (!playing || done || !live || events.length === 0 || htOpen) return
+    if (!playing || done || !live || events.length === 0 || htOpen || stoppageOpen || selectedPlayerId) return
     if (needsHt) return
+    if (needsHumanStoppage) return
     if (index >= events.length - 1) {
       setDone(true)
       setPlaying(false)
@@ -144,7 +170,10 @@ export function LiveMatchPage() {
     live,
     events,
     htOpen,
+    stoppageOpen,
     needsHt,
+    needsHumanStoppage,
+    selectedPlayerId,
     current?.kind,
   ])
 
@@ -161,10 +190,25 @@ export function LiveMatchPage() {
     }
   }, [save, live])
 
+  const liveStats = useMemo(() => {
+    if (!live?.humanFixture || !live.humanResult) return null
+    const fx = live.humanFixture
+    return statsFromEventsUpTo(
+      events,
+      index,
+      fx.homeClubId,
+      fx.awayClubId,
+      live.humanResult.stats,
+    )
+  }, [live, events, index])
+
   const referee = live?.humanFixture ? getReferee(live.humanFixture.refereeId) : undefined
 
   const pitchPlayers = useMemo(() => {
     if (!save || !live?.humanFixture || !current) return []
+    if (current.spatial?.players?.length) {
+      return markersFromSpatialFrame(current.spatial, save.players)
+    }
     const fx = live.humanFixture
     const homeTactics = live.tacticsByClub[fx.homeClubId]
     const awayTactics = live.tacticsByClub[fx.awayClubId]
@@ -172,6 +216,43 @@ export function LiveMatchPage() {
     const away = buildPitchPlayers(awayTactics, save.players, 'away')
     return withActionOffset([...home, ...away], current.playerName, current.spot)
   }, [save, live, current])
+
+  const ballSpot = useMemo(() => {
+    if (current?.spatial) return ballSpotFromSpatial(current.spatial)
+    return current?.spot ?? { x: 50, y: 50 }
+  }, [current])
+
+  const humanTactics = live?.tacticsByClub[save?.humanClubId ?? '']
+
+  const squadStatus = useMemo(() => {
+    if (!live || !save) {
+      return { sentOff: new Set<string>(), injuredParts: new Map(), onPitch: new Set<string>() }
+    }
+    const fx = live.humanFixture!
+    const homeXi = live.tacticsByClub[fx.homeClubId]?.startingXi ?? []
+    const awayXi = live.tacticsByClub[fx.awayClubId]?.startingXi ?? []
+    return squadStatusFromEvents(events, index, current?.spatial, homeXi, awayXi)
+  }, [live, save, events, index, current?.spatial])
+
+  const selectedPlayer = useMemo(() => {
+    if (!save || !selectedPlayerId) return null
+    return save.players.find((p) => p.id === selectedPlayerId) ?? null
+  }, [save, selectedPlayerId])
+
+  const selectedFitness = useMemo(() => {
+    if (!selectedPlayer) return null
+    return fitnessFromSpatial(
+      current?.spatial,
+      selectedPlayer.id,
+      selectedPlayer,
+      current?.minute ?? 0,
+      squadStatus.onPitch.has(selectedPlayer.id),
+    )
+  }, [selectedPlayer, current?.spatial, current?.minute, squadStatus])
+
+  const selectedInjuryPart = selectedPlayerId
+    ? squadStatus.injuredParts.get(selectedPlayerId) ?? null
+    : null
 
   const skipToEnd = () => {
     if (live?.halfTime && !live.halfTime.resolved) {
@@ -183,6 +264,7 @@ export function LiveMatchPage() {
       setDone(true)
       setPlaying(false)
       setHtOpen(false)
+      setStoppageOpen(false)
     }, 0)
   }
 
@@ -190,7 +272,27 @@ export function LiveMatchPage() {
 
   const pulse = current.kind === 'goal' || current.kind === 'shot'
   const active = pitchPlayers.find((p) => p.active)
-  const humanIsHome = live.humanFixture!.homeClubId === save.humanClubId
+
+  const stoppageSubsUsed = humanIsHome
+    ? live.halfTime?.midState.homeSubsUsed ?? live.halfTime?.midState.subsUsed ?? 0
+    : live.halfTime?.midState.awaySubsUsed ?? live.halfTime?.midState.subsUsed ?? 0
+
+  const stoppageSentOff = new Set([
+    ...(live.halfTime?.midState.sentOffIds ?? []),
+    ...(current.stoppageKind === 'red_card' && current.playerId ? [current.playerId] : []),
+  ])
+
+  const stoppageInitialSubs =
+    current.stoppageKind === 'injury' && current.playerId
+      ? (() => {
+          const tac = live.tacticsByClub[save.humanClubId]!
+          const bench = tac.bench.filter((id) => !stoppageSentOff.has(id))
+          const rep = bench[0]
+          return rep ? [{ outId: current.playerId, inId: rep }] : []
+        })()
+      : []
+
+  const humanClub = humanIsHome ? clubs.home : clubs.away
 
   return (
     <div className="flex min-h-dvh w-full flex-col gap-4 px-3 py-3 md:px-4 md:py-4 lg:px-5">
@@ -221,8 +323,10 @@ export function LiveMatchPage() {
         </div>
       </header>
 
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_300px] xl:grid-cols-[minmax(0,1fr)_320px]">
+        <div className="min-w-0 space-y-4">
       <MatchPitch
-        spot={current.spot}
+        spot={ballSpot}
         players={pitchPlayers}
         homeColor={clubs.home.color}
         awayColor={clubs.away.color}
@@ -278,7 +382,37 @@ export function LiveMatchPage() {
         />
       ) : null}
 
-      {!htOpen && !done ? (
+      {stoppageOpen && needsHumanStoppage && current ? (
+        <HalfTimePanel
+          title={
+            current.stoppageKind === 'injury'
+              ? `หยุดเกม · ${current.playerName ?? 'ผู้เล่น'} \u0e1a\u0e32\u0e14\u0e40\u0e08\u0e47\u0e1a — เปลี่ยนตัวบังคับ`
+              : `หยุดเกม · ใบแดง · เหลือ 10 คน — แก้เกม`
+          }
+          scoreHome={current.homeGoals}
+          scoreAway={current.awayGoals}
+          humanIsHome={humanIsHome}
+          maxSubs={Math.max(0, 5 - stoppageSubsUsed)}
+          formation={live.tacticsByClub[save.humanClubId]!.formation}
+          formationOop={live.tacticsByClub[save.humanClubId]!.formationOop}
+          mentality={live.tacticsByClub[save.humanClubId]!.instructions.mentality}
+          pressing={live.tacticsByClub[save.humanClubId]!.instructions.pressing}
+          xi={live.tacticsByClub[save.humanClubId]!.startingXi}
+          bench={live.tacticsByClub[save.humanClubId]!.bench}
+          sentOff={stoppageSentOff}
+          forcedOutId={current.stoppageKind === 'injury' ? current.playerId : undefined}
+          initialSubs={stoppageInitialSubs}
+          hideTeamTalk
+          playerName={(id) => save.players.find((p) => p.id === id)?.name ?? id}
+          onContinue={(adj) => {
+            applyLiveAdjustments(adj, current.minute)
+            setStoppageOpen(false)
+            setPlaying(true)
+          }}
+        />
+      ) : null}
+
+      {!htOpen && !stoppageOpen && !done ? (
         <>
           <LiveSubBoard
             xi={live.tacticsByClub[save.humanClubId]!.startingXi}
@@ -326,7 +460,7 @@ export function LiveMatchPage() {
           type="button"
           className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-semibold hover:bg-slate-50"
           onClick={() => setPlaying((p) => !p)}
-          disabled={done || htOpen}
+          disabled={done || htOpen || stoppageOpen}
         >
           {playing ? 'หยุดชั่วคราว' : 'เล่นต่อ'}
         </button>
@@ -379,6 +513,17 @@ export function LiveMatchPage() {
         )}
       </div>
 
+      {clubs && liveStats ? (
+        <LiveMatchStatsStrip
+          homeName={clubs.home.shortName}
+          awayName={clubs.away.shortName}
+          homeGoals={liveStats.homeGoals}
+          awayGoals={liveStats.awayGoals}
+          home={liveStats.home}
+          away={liveStats.away}
+        />
+      ) : null}
+
       <section className="rounded-xl border border-slate-200 bg-white/90 p-4 shadow-sm">
         <h2 className="text-sm font-semibold tracking-wide text-slate-500 uppercase">
           คำบรรยาย
@@ -422,6 +567,58 @@ export function LiveMatchPage() {
           ) : null}
         </>
       ) : null}
+        </div>
+
+        <aside className="lg:sticky lg:top-4 lg:max-h-[calc(100dvh-6rem)] lg:self-start">
+          {humanTactics ? (
+            <MatchSquadPanel
+              players={save.players.filter((p) => p.clubId === save.humanClubId)}
+              homeXi={humanTactics.startingXi}
+              awayXi={[]}
+              homeBench={humanTactics.bench}
+              awayBench={[]}
+              homeLabel={humanClub.shortName}
+              awayLabel=""
+              homeColor={humanClub.color}
+              awayColor={clubs.away.color}
+              spatial={current.spatial}
+              minute={current.minute}
+              status={squadStatus}
+              selectedId={selectedPlayerId}
+              onSelect={(id) => {
+                setSelectedPlayerId(id)
+                setPlaying(false)
+              }}
+              ownSideOnly
+              focusSide="home"
+            />
+          ) : null}
+        </aside>
+      </div>
+
+      <MatchOverlayModal
+        open={Boolean(selectedPlayer && selectedFitness)}
+        dismissOnBackdrop
+        onClose={() => {
+          setSelectedPlayerId(null)
+          if (!done && !htOpen && !stoppageOpen) setPlaying(true)
+        }}
+        className="max-w-2xl border-lime-400"
+      >
+        {selectedPlayer && selectedFitness ? (
+          <MatchPlayerDetailPanel
+            player={selectedPlayer}
+            fitness={selectedFitness}
+            injuryPart={selectedInjuryPart}
+            minute={current.minute}
+            onClose={() => {
+              setSelectedPlayerId(null)
+              if (!done && !htOpen && !stoppageOpen) setPlaying(true)
+            }}
+            className="border-0 shadow-none"
+          />
+        ) : null}
+      </MatchOverlayModal>
     </div>
   )
 }
@@ -722,7 +919,9 @@ function HalfTimePanel(props: {
   xi: string[]
   bench: string[]
   sentOff: Set<string>
+  forcedOutId?: string
   initialSubs?: HalfTimeSub[]
+  hideTeamTalk?: boolean
   playerName: (id: string) => string
   onContinue: (adj: HalfTimeAdjustments) => void
 }) {
@@ -734,12 +933,19 @@ function HalfTimePanel(props: {
   const [talk, setTalk] = useState<TeamTalkKind | null>('inspire')
   const [shout, setShout] = useState<TouchlineShout | null>('encourage')
   const [subs, setSubs] = useState<HalfTimeSub[]>(props.initialSubs ?? [])
-  const [outId, setOutId] = useState('')
-  const [inId, setInId] = useState('')
+  const [outId, setOutId] = useState(props.forcedOutId ?? '')
+  const [inId, setInId] = useState(props.initialSubs?.[0]?.inId ?? '')
+
+  useEffect(() => {
+    if (props.forcedOutId) setOutId(props.forcedOutId)
+  }, [props.forcedOutId])
 
   const hint = halfTimeScoreLine(props.scoreHome, props.scoreAway, props.humanIsHome)
   const xiAvail = props.xi.filter((id) => !props.sentOff.has(id))
   const benchAvail = props.bench.filter((id) => !props.sentOff.has(id))
+  const outChoices = props.forcedOutId
+    ? xiAvail.filter((id) => id === props.forcedOutId)
+    : xiAvail
 
   const addSub = () => {
     if (!outId || !inId || subs.length >= maxSubs) return
@@ -854,18 +1060,20 @@ function HalfTimePanel(props: {
 
         <div>
           <p className="mb-1 text-xs font-medium text-slate-500">
-            เปลี่ยนตัว (เหลือ {maxSubs} จากโควต้า) · {subs.length}/{maxSubs} · ลงเมื่อบอลออก
+            {props.forcedOutId ? 'เปลี่ยนตัวบังคับ (\u0e1a\u0e32\u0e14\u0e40\u0e08\u0e47\u0e1a)' : 'เปลี่ยนตัว'} (เหลือ {maxSubs} จากโควต้า) ·{' '}
+            {subs.length}/{maxSubs} · ลงเมื่อบอลออก
           </p>
           <div className="flex flex-wrap items-end gap-2">
             <label className="text-xs">
               ออก
               <select
-                className="mt-0.5 block rounded border border-slate-300 px-2 py-1 text-sm"
+                className="mt-0.5 block rounded border border-slate-300 px-2 py-1 text-sm disabled:bg-slate-100"
                 value={outId}
+                disabled={Boolean(props.forcedOutId)}
                 onChange={(e) => setOutId(e.target.value)}
               >
                 <option value="">—</option>
-                {xiAvail.map((id) => (
+                {outChoices.map((id) => (
                   <option key={id} value={id}>
                     {props.playerName(id)}
                   </option>
@@ -913,74 +1121,88 @@ function HalfTimePanel(props: {
           ) : null}
         </div>
 
-        <div>
-          <p className="mb-1 text-xs font-medium text-slate-500">ทีมทอล์คพักครึ่ง</p>
-          <div className="flex flex-wrap gap-1.5">
-            {TEAM_TALK_OPTIONS.map((o) => (
-              <button
-                key={o.id}
-                type="button"
-                onClick={() => setTalk(o.id)}
-                className={cn(
-                  'rounded border px-2 py-1 text-xs',
-                  talk === o.id
-                    ? 'border-slate-900 bg-slate-900 text-lime-300'
-                    : 'border-slate-300',
-                )}
-              >
-                {o.label}
-              </button>
-            ))}
-          </div>
-        </div>
+        {!props.hideTeamTalk ? (
+          <>
+            <div>
+              <p className="mb-1 text-xs font-medium text-slate-500">ทีมทอล์คพักครึ่ง</p>
+              <div className="flex flex-wrap gap-1.5">
+                {TEAM_TALK_OPTIONS.map((o) => (
+                  <button
+                    key={o.id}
+                    type="button"
+                    onClick={() => setTalk(o.id)}
+                    className={cn(
+                      'rounded border px-2 py-1 text-xs',
+                      talk === o.id
+                        ? 'border-slate-900 bg-slate-900 text-lime-300'
+                        : 'border-slate-300',
+                    )}
+                  >
+                    {o.label}
+                  </button>
+                ))}
+              </div>
+            </div>
 
-        <div>
-          <p className="mb-1 text-xs font-medium text-slate-500">ตะโกนริมเส้น (ครึ่งหลัง)</p>
-          <div className="flex flex-wrap gap-1.5">
-            {TOUCHLINE_SHOUT_OPTIONS.map((o) => (
-              <button
-                key={o.id}
-                type="button"
-                onClick={() => setShout(o.id)}
-                className={cn(
-                  'rounded border px-2 py-1 text-xs',
-                  shout === o.id
-                    ? 'border-slate-900 bg-slate-900 text-lime-300'
-                    : 'border-slate-300',
-                )}
-              >
-                {o.label}
-              </button>
-            ))}
-          </div>
-        </div>
+            <div>
+              <p className="mb-1 text-xs font-medium text-slate-500">ตะโกนริมเส้น (ครึ่งหลัง)</p>
+              <div className="flex flex-wrap gap-1.5">
+                {TOUCHLINE_SHOUT_OPTIONS.map((o) => (
+                  <button
+                    key={o.id}
+                    type="button"
+                    onClick={() => setShout(o.id)}
+                    className={cn(
+                      'rounded border px-2 py-1 text-xs',
+                      shout === o.id
+                        ? 'border-slate-900 bg-slate-900 text-lime-300'
+                        : 'border-slate-300',
+                    )}
+                  >
+                    {o.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </>
+        ) : null}
       </div>
 
       <div className="mt-5 flex flex-wrap gap-2">
         <button
           type="button"
           className="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-lime-300 hover:bg-slate-800"
-          onClick={() =>
+          onClick={() => {
+            let finalSubs = subs
+            if (
+              props.forcedOutId &&
+              !subs.some((s) => s.outId === props.forcedOutId) &&
+              inId
+            ) {
+              finalSubs = [{ outId: props.forcedOutId, inId }]
+            }
             props.onContinue({
               formation,
               formationOop,
               mentality,
               pressing,
-              subs,
-              teamTalk: talk,
-              shouts: shout ? [shout] : [],
+              subs: finalSubs,
+              teamTalk: props.hideTeamTalk ? undefined : talk ?? undefined,
+              shouts: props.hideTeamTalk ? [] : shout ? [shout] : [],
             })
-          }
+          }}
         >
-          เตะครึ่งหลัง
+          {props.hideTeamTalk ? 'เล่นต่อ' : 'เตะครึ่งหลัง'}
         </button>
-        <button
-          type="button"
-          className="rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold hover:bg-slate-50"
-          onClick={() => props.onContinue({})}
-        >
-          ไม่เปลี่ยนอะไร · เตะต่อ
-        </button>
+        {!props.hideTeamTalk ? (
+          <button
+            type="button"
+            className="rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold hover:bg-slate-50"
+            onClick={() => props.onContinue({})}
+          >
+            ไม่เปลี่ยนอะไร · เตะต่อ
+          </button>
+        ) : null}
       </div>
     </section>
   )

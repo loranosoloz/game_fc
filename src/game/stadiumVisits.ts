@@ -1,5 +1,16 @@
+/**
+ * แขกเข้าสนาม — โค้ช/นักเตะ/คนดังมาดู
+ * วางแผนก่อนเตะ → มีผลรูปเกมคนที่ถูกจ้อง · หลังแมตช์เขียนรายงานสเกาต์
+ */
 import celebrities from '@/data/celebrities.json'
-import type { GameSave, Player, StadiumVisit, StadiumVisitPurpose, StadiumVisitorKind } from './types'
+import type {
+  Fixture,
+  GameSave,
+  Player,
+  StadiumVisit,
+  StadiumVisitPurpose,
+  StadiumVisitorKind,
+} from './types'
 import { bumpKnowledge, ensureScouting, knowledgeOf } from './scouting'
 import { staffLevel } from './staff'
 
@@ -16,7 +27,6 @@ function uid(prefix: string) {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`
 }
 
-/** สโมสรมีนัดในแมตช์เดย์นี้หรือไม่ */
 export function clubHasMatchThisDay(
   save: GameSave,
   clubId: string,
@@ -29,10 +39,6 @@ export function clubHasMatchThisDay(
   )
 }
 
-/**
- * นักเตะ “มีแข่ง” = สโมสรมีนัด และตัวเองพร้อมลง (ไม่เจ็บ/ไม่แบน)
- * เจ็บหรือแบน → ว่างมาเข้าสนามได้
- */
 export function playerBusyThisDay(save: GameSave, player: Player, matchday: number): boolean {
   if ((player.injuryDays ?? 0) > 0 || (player.illnessDays ?? 0) > 0) return false
   if ((player.banMatches ?? 0) > 0) return false
@@ -80,7 +86,6 @@ function collectCandidates(save: GameSave, matchday: number, rng: () => number):
   }
 
   const freePlayers = save.players.filter((p) => !playerBusyThisDay(save, p, matchday))
-  // prefer non-human, decent overall, or injured stars
   const pool = freePlayers
     .filter((p) => p.clubId !== save.humanClubId)
     .sort((a, b) => b.overall - a.overall)
@@ -111,21 +116,24 @@ function collectCandidates(save: GameSave, matchday: number, rng: () => number):
   return out
 }
 
-/**
- * สร้างแขกเข้าสนามบ้านหลังแมตช์ (เฉพาะเมื่อคุณเปิดบ้าน)
- * คนที่มีแข่งวันนั้นมาไม่ได้
- */
-export function generateStadiumVisits(
-  save: GameSave,
-  fixtureId: string,
-): GameSave {
-  const fx = save.fixtures.find((f) => f.id === fixtureId)
-  if (!fx) return save
-  if (fx.homeClubId !== save.humanClubId) return save
+function visitSeed(fixture: Fixture, season = 0): number {
+  return (
+    season * 1200 +
+    fixture.matchday * 77 +
+    fixture.homeClubId.length * 9 +
+    fixture.id.length * 13
+  )
+}
 
-  const rng = mulberry32(save.season * 1200 + fx.matchday * 77 + fx.homeClubId.length * 9)
-  const candidates = collectCandidates(save, fx.matchday, rng)
-  if (candidates.length === 0) return save
+/**
+ * วางแผนแขกก่อนเตะ (นัดเหย้ามนุษย์) — คนที่มีแข่งวันนั้นมาไม่ได้
+ */
+export function planMatchVisitors(save: GameSave, fixture: Fixture): StadiumVisit[] {
+  if (fixture.homeClubId !== save.humanClubId) return []
+
+  const rng = mulberry32(visitSeed(fixture, save.season))
+  const candidates = collectCandidates(save, fixture.matchday, rng)
+  if (candidates.length === 0) return []
 
   const count = 1 + (rng() < 0.45 ? 1 : 0) + (rng() < 0.2 ? 1 : 0)
   const picked: Candidate[] = []
@@ -147,32 +155,244 @@ export function generateStadiumVisits(
     .sort((a, b) => b.overall - a.overall)
     .slice(0, 15)
 
-  let scouting = ensureScouting(save)
   const visits: StadiumVisit[] = []
-  const inboxBits: string[] = []
-  const scoutLevel = staffLevel(save.staff, 'scout')
-
   for (const c of picked) {
     const purpose = pickPurpose(rng)
     let target: Player | undefined
     if (purpose === 'scout_player' || purpose === 'check_form') {
-      // แขกส่องทีมเรา หรือชี้เป้าตลาดให้เราได้ยิน
       target =
         rng() < 0.55
-          ? humanSquad[Math.floor(rng() * Math.min(6, humanSquad.length))]
+          ? humanSquad[Math.floor(rng() * Math.min(8, humanSquad.length))]
           : marketWatch[Math.floor(rng() * marketWatch.length)]
     }
+    visits.push({
+      id: uid('visit'),
+      date: fixture.date,
+      matchday: fixture.matchday,
+      fixtureId: fixture.id,
+      kind: c.kind,
+      name: c.name,
+      visitorPlayerId: c.visitorPlayerId,
+      visitorStaffId: c.visitorStaffId,
+      fromClubId: c.fromClubId,
+      purpose,
+      targetPlayerId: target?.id,
+      report: '', // เติมหลังแมตช์
+    })
+  }
+  return visits
+}
 
-    let report = ''
-    if (purpose === 'watch_team') {
-      report = `${c.name} มาดูภาพรวมทีม — ชื่นชมบรรยากาศอัฒจันทร์และความหนาแน่นของสควอด`
-      if (c.kind === 'celebrity') {
-        report += ' · คลิปโซเชียลอาจดันมู้ดแฟนเล็กน้อย'
+/** ผลต่อจิตวิทยาในแมตช์ — คนถูกจ้อง / ทีมถูกดู */
+export interface VisitorPsychEffect {
+  playerId?: string
+  /** ถ้าไม่มี playerId = ทั้งทีมเหย้า */
+  side?: 'home' | 'away'
+  moraleMod: number
+  focusMod: number
+  aggressionMod: number
+  noteTh: string
+}
+
+export function visitorPsychEffects(
+  visits: StadiumVisit[],
+  players: Player[],
+): VisitorPsychEffect[] {
+  const out: VisitorPsychEffect[] = []
+  for (const v of visits) {
+    const kindLabel =
+      v.kind === 'player' ? 'นักเตะ' : v.kind === 'coach' ? 'โค้ช' : 'คนดัง'
+
+    if (v.purpose === 'watch_team') {
+      if (v.kind === 'celebrity') {
+        out.push({
+          side: 'home',
+          moraleMod: 1.04,
+          focusMod: 1.0,
+          aggressionMod: 1.0,
+          noteTh: `${kindLabel} ${v.name} ในอัฒจันทร์ · มู้ดเหย้าขึ้นเล็กน้อย`,
+        })
+      } else if (v.kind === 'coach') {
+        out.push({
+          side: 'home',
+          moraleMod: 1.0,
+          focusMod: 1.05,
+          aggressionMod: 0.97,
+          noteTh: `โค้ช ${v.name} มาดูแผนทั้งทีม · ทุกคนระวังจังหวะมากขึ้น`,
+        })
+      } else {
+        out.push({
+          side: 'home',
+          moraleMod: 1.03,
+          focusMod: 1.02,
+          aggressionMod: 1.0,
+          noteTh: `นักเตะ ${v.name} แวะดูเกม · บรรยากาศในสนามเปลี่ยน`,
+        })
       }
-    } else if (purpose === 'check_form' && target) {
+      continue
+    }
+
+    if (!v.targetPlayerId) continue
+    const target = players.find((p) => p.id === v.targetPlayerId)
+    if (!target) continue
+    const composure = target.attrs.composure
+    const young = target.age <= 22
+
+    if (v.kind === 'coach') {
+      // โค้ชมาเช็คตัว — คนนิ่งได้บัฟ · คนกดดันง่ายเสียโฟกัส
+      if (composure >= 72) {
+        out.push({
+          playerId: target.id,
+          moraleMod: 1.06,
+          focusMod: 1.08,
+          aggressionMod: 1.0,
+          noteTh: `${target.name} รู้ว่าโค้ช ${v.name} จ้องอยู่ · อยากโชว์ฟอร์ม`,
+        })
+      } else {
+        out.push({
+          playerId: target.id,
+          moraleMod: 0.96,
+          focusMod: 0.9,
+          aggressionMod: 1.06,
+          noteTh: `${target.name} กดดัน — โค้ช ${v.name} นั่งดูอยู่ตรงๆ`,
+        })
+      }
+    } else if (v.kind === 'player') {
+      if (young) {
+        out.push({
+          playerId: target.id,
+          moraleMod: 1.08,
+          focusMod: 1.04,
+          aggressionMod: 1.02,
+          noteTh: `${target.name} ฮึกเหิม — มี ${v.name} มาดู`,
+        })
+      } else {
+        out.push({
+          playerId: target.id,
+          moraleMod: 1.03,
+          focusMod: 1.05,
+          aggressionMod: 1.0,
+          noteTh: `${v.name} จ้อง ${target.name} · อยากพิสูจน์ตัวเอง`,
+        })
+      }
+    } else {
+      // celebrity focus on one player
+      out.push({
+        playerId: target.id,
+        moraleMod: 1.05,
+        focusMod: young ? 0.94 : 1.02,
+        aggressionMod: 1.0,
+        noteTh: `คนดัง ${v.name} โฟกัส ${target.name} — กล้องโซเชียลจ่อ`,
+      })
+    }
+  }
+  return out
+}
+
+export function visitorKickoffLines(visits: StadiumVisit[]): string[] {
+  return visits.map((v) => {
+    const kind =
+      v.kind === 'player' ? 'นักเตะ' : v.kind === 'coach' ? 'โค้ช' : 'คนดัง'
+    if (v.targetPlayerId) {
+      return `อัฒจันทร์ · ${kind} ${v.name} มาดู (โฟกัสตัวเป้าหมาย)`
+    }
+    if (v.purpose === 'watch_team') {
+      return `อัฒจันทร์ · ${kind} ${v.name} มาดูภาพรวมทีม`
+    }
+    return `อัฒจันทร์ · ${kind} ${v.name} แวะสนาม`
+  })
+}
+
+/** เดโมแมตช์ — สร้างแขกจำลองจากรายชื่อในสกวดที่ไม่ได้ลง */
+export function planDemoVisitors(
+  fixture: Fixture,
+  players: Player[],
+  homeXi: string[],
+  awayXi: string[],
+  seed: number,
+): StadiumVisit[] {
+  const rng = mulberry32(seed + 404)
+  const onPitch = new Set([...homeXi, ...awayXi])
+  const free = players
+    .filter((p) => !onPitch.has(p.id) && (p.injuryDays ?? 0) <= 0)
+    .sort((a, b) => b.overall - a.overall)
+  const homeStars = players
+    .filter((p) => p.clubId === fixture.homeClubId && onPitch.has(p.id))
+    .sort((a, b) => b.overall - a.overall)
+
+  const visits: StadiumVisit[] = []
+  const n = 1 + (rng() < 0.5 ? 1 : 0)
+  for (let i = 0; i < n && free.length; i++) {
+    const guest = free[Math.floor(rng() * Math.min(12, free.length))]!
+    const purpose = pickPurpose(rng)
+    const target =
+      purpose === 'watch_team'
+        ? undefined
+        : homeStars[Math.floor(rng() * Math.min(5, homeStars.length))]
+    visits.push({
+      id: `demo-visit-${i}`,
+      date: fixture.date,
+      matchday: fixture.matchday,
+      fixtureId: fixture.id,
+      kind: guest.overall >= 80 ? 'player' : rng() < 0.35 ? 'coach' : 'player',
+      name: guest.name,
+      visitorPlayerId: guest.id,
+      fromClubId: guest.clubId,
+      purpose: target ? purpose : 'watch_team',
+      targetPlayerId: target?.id,
+      report: '',
+    })
+  }
+  // คนดังจำลอง 1 คนเป็นครั้งคราว
+  if (rng() < 0.4 && celebrities.length) {
+    const cel = celebrities[Math.floor(rng() * celebrities.length)]!
+    visits.push({
+      id: `demo-visit-cel`,
+      date: fixture.date,
+      matchday: fixture.matchday,
+      fixtureId: fixture.id,
+      kind: 'celebrity',
+      name: cel.name,
+      purpose: 'watch_team',
+      report: '',
+    })
+  }
+  return visits
+}
+
+/**
+ * หลังแมตช์ — บันทึกแขก + รายงานสเกาต์ (ใช้รายชื่อที่วางไว้ก่อนเตะถ้ามี)
+ */
+export function generateStadiumVisits(
+  save: GameSave,
+  fixtureId: string,
+  planned?: StadiumVisit[] | null,
+): GameSave {
+  const fx = save.fixtures.find((f) => f.id === fixtureId)
+  if (!fx) return save
+  if (fx.homeClubId !== save.humanClubId) return save
+
+  const visitsBase = planned?.length ? planned : planMatchVisitors(save, fx)
+  if (visitsBase.length === 0) return save
+
+  const rng = mulberry32(visitSeed(fx, save.season) + 99)
+  let scouting = ensureScouting(save)
+  const scoutLevel = staffLevel(save.staff, 'scout')
+  const inboxBits: string[] = []
+  const visits: StadiumVisit[] = []
+
+  for (const raw of visitsBase) {
+    const target = raw.targetPlayerId
+      ? save.players.find((p) => p.id === raw.targetPlayerId)
+      : undefined
+    let report = ''
+    if (raw.purpose === 'watch_team') {
+      report = `${raw.name} มาดูภาพรวมทีม — ชื่นชมบรรยากาศอัฒจันทร์และความหนาแน่นของสควอด`
+      if (raw.kind === 'celebrity') report += ' · คลิปโซเชียลอาจดันมู้ดแฟนเล็กน้อย'
+    } else if (raw.purpose === 'check_form' && target) {
       const formHint = 4 + Math.round(((target.overall - 60) / 40) * 5 + (rng() - 0.5) * 2)
       const form = Math.max(1, Math.min(10, formHint))
-      report = `${c.name} มาเช็คฟอร์ม ${target.name} ในนัดนี้ ≈ ${form}/10 — ${verdictForPlayer(target.overall).split('—')[0].trim()}`
+      report = `${raw.name} มาเช็คฟอร์ม ${target.name} ในนัดนี้ ≈ ${form}/10 — ${verdictForPlayer(target.overall).split('—')[0]!.trim()}`
       scouting = {
         ...scouting,
         formSightings: [
@@ -192,9 +412,9 @@ export function generateStadiumVisits(
       if (target.clubId !== save.humanClubId) {
         scouting = bumpKnowledge(scouting, target.id, 3 + Math.floor(scoutLevel * 0.2), 55)
       }
-    } else if (purpose === 'scout_player' && target) {
+    } else if (raw.purpose === 'scout_player' && target) {
       const verdict = verdictForPlayer(target.overall)
-      report = `${c.name} ส่อง ${target.name}: ${verdict}`
+      report = `${raw.name} ส่อง ${target.name}: ${verdict}`
       if (target.clubId !== save.humanClubId) {
         const gain = 8 + Math.floor(scoutLevel * 0.4)
         scouting = bumpKnowledge(scouting, target.id, gain, 65)
@@ -203,38 +423,22 @@ export function generateStadiumVisits(
         report += ' · แขกประเมินลูกทีมคุณต่อสาธารณะ'
       }
     } else {
-      report = `${c.name} แวะสนาม — สังเกตแท็กติกและชุดแข่ง`
+      report = `${raw.name} แวะสนาม — สังเกตแท็กติกและชุดแข่ง`
     }
 
     const kindLabel =
-      c.kind === 'player' ? 'นักเตะ' : c.kind === 'coach' ? 'โค้ช' : 'คนดัง'
-    visits.push({
-      id: uid('visit'),
-      date: fx.date,
-      matchday: fx.matchday,
-      fixtureId: fx.id,
-      kind: c.kind,
-      name: c.name,
-      visitorPlayerId: c.visitorPlayerId,
-      visitorStaffId: c.visitorStaffId,
-      fromClubId: c.fromClubId,
-      purpose,
-      targetPlayerId: target?.id,
-      report,
-    })
-    inboxBits.push(`[${kindLabel}] ${c.name}: ${report}`)
+      raw.kind === 'player' ? 'นักเตะ' : raw.kind === 'coach' ? 'โค้ช' : 'คนดัง'
+    visits.push({ ...raw, report })
+    inboxBits.push(`[${kindLabel}] ${raw.name}: ${report}`)
   }
-
-  if (visits.length === 0) return save
 
   scouting = {
     ...scouting,
     visits: [...visits, ...scouting.visits].slice(0, 40),
   }
 
-  // celebrity watch_team → tiny fan bump
   let fans = save.fans
-  if (picked.some((p) => p.kind === 'celebrity')) {
+  if (visits.some((p) => p.kind === 'celebrity')) {
     fans = {
       ...fans,
       mood: Math.min(100, fans.mood + 1),

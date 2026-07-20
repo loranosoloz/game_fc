@@ -25,6 +25,10 @@ export interface MatchMidState {
   matchYellows: Array<[string, number]>
   sentOffIds: string[]
   conditions: Record<string, number>
+  /** พลังงานแมตช์หลังพักครึ่ง */
+  matchStaminas?: Record<string, number>
+  /** นาทีลงสะสมถึงพักครึ่ง */
+  minutesOnPitch?: Record<string, number>
   homeXi: string[]
   awayXi: string[]
   possessing: 'home' | 'away'
@@ -116,6 +120,7 @@ export function aiAutoSubs(
   trailing: boolean,
   remaining: number,
   rng: () => number,
+  minute = 45,
 ): { tactics: Tactics; subs: HalfTimeSub[]; notes: string[] } {
   if (remaining <= 0) return { tactics, subs: [], notes: [] }
   const byId = new Map(players.map((p) => [p.id, p]))
@@ -123,12 +128,14 @@ export function aiAutoSubs(
   const subs: HalfTimeSub[] = []
   let xi = [...tactics.startingXi]
   let bench = [...tactics.bench]
-  const want = Math.min(remaining, trailing ? 2 : 1)
+  const want = Math.min(remaining, trailing ? 2 : minute >= 60 ? 2 : 1)
+  const fatigueLine = minute >= 75 ? 90 : minute >= 60 ? 84 : minute >= 45 ? 78 : 65
   for (let n = 0; n < want; n++) {
     const tired = [...xi]
       .map((id) => ({ id, c: conditions[id] ?? byId.get(id)?.condition ?? 70 }))
       .sort((a, b) => a.c - b.c)[0]
-    if (!tired || tired.c > 62) break
+    if (!tired) break
+    if (tired.c > fatigueLine && !(trailing && minute >= 55 && rng() < 0.5)) break
     const outP = byId.get(tired.id)
     const incoming = bench
       .map((id) => byId.get(id))
@@ -138,7 +145,8 @@ export function aiAutoSubs(
         return (b.condition ?? 0) - (a.condition ?? 0)
       })[0]
     if (!outP || !incoming) break
-    if (rng() > (trailing ? 0.85 : 0.55)) break
+    const subRoll = trailing ? 0.92 : minute >= 70 ? 0.82 : minute >= 55 ? 0.72 : 0.58
+    if (rng() > subRoll) break
     const outIdx = xi.indexOf(tired.id)
     if (outIdx < 0) break
     xi[outIdx] = incoming.id
@@ -152,6 +160,28 @@ export function aiAutoSubs(
     subs,
     notes,
   }
+}
+
+export function pickInjuryReplacement(
+  tactics: Tactics,
+  players: Player[],
+  outId: string,
+  sentOffIds: Set<string>,
+): HalfTimeSub | null {
+  const outP = players.find((p) => p.id === outId)
+  if (!outP) return null
+  const incoming = tactics.bench
+    .map((id) => players.find((p) => p.id === id))
+    .filter((p): p is Player => !!p && !sentOffIds.has(p.id))
+    .sort((a, b) => {
+      const score = (p: Player) =>
+        p.overall +
+        (p.role === outP.role ? 12 : 0) +
+        (p.position === outP.position ? 6 : 0)
+      return score(b) - score(a)
+    })[0]
+  if (!incoming || !tactics.startingXi.includes(outId)) return null
+  return { outId, inId: incoming.id }
 }
 
 export function halfTimeScoreLine(home: number, away: number, humanIsHome: boolean): string {

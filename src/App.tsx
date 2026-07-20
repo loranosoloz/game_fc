@@ -6,6 +6,12 @@ const GameRoutes = lazy(() => import('@/GameRoutes'))
 const BrowsePage = lazy(() =>
   import('@/pages/PlayerDatabasePage').then((m) => ({ default: m.PlayerDatabasePage })),
 )
+const MatchDemoPage = lazy(() =>
+  import('@/pages/MatchDemoPage').then((m) => ({ default: m.MatchDemoPage })),
+)
+const MatchDemo3DPage = lazy(() =>
+  import('@/pages/MatchDemo3DPage').then((m) => ({ default: m.MatchDemo3DPage })),
+)
 
 function PageFallback() {
   return (
@@ -24,6 +30,22 @@ export default function App() {
         element={
           <Suspense fallback={<PageFallback />}>
             <BrowsePage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/match-demo"
+        element={
+          <Suspense fallback={<PageFallback />}>
+            <MatchDemoPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/match-demo-3d"
+        element={
+          <Suspense fallback={<PageFallback />}>
+            <MatchDemo3DPage />
           </Suspense>
         }
       />

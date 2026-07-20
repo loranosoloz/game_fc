@@ -38,6 +38,9 @@ const CompetitionsPage = lazy(() =>
 const MatchPage = lazy(() =>
   import('@/pages/MatchPage').then((m) => ({ default: m.MatchPage })),
 )
+const ResultsArchivePage = lazy(() =>
+  import('@/pages/ResultsArchivePage').then((m) => ({ default: m.ResultsArchivePage })),
+)
 const LiveMatchPage = lazy(() =>
   import('@/pages/LiveMatchPage').then((m) => ({ default: m.LiveMatchPage })),
 )
@@ -82,6 +85,9 @@ const CalendarPage = lazy(() =>
 )
 const RegistrationPage = lazy(() =>
   import('@/pages/RegistrationPage').then((m) => ({ default: m.RegistrationPage })),
+)
+const WorldWatchPage = lazy(() =>
+  import('@/pages/WorldWatchPage').then((m) => ({ default: m.WorldWatchPage })),
 )
 
 function RequireSave({ children }: { children: ReactNode }) {
@@ -137,7 +143,9 @@ export default function GameRoutes() {
           <Route path="/data" element={<DataHubPage />} />
           <Route path="/development" element={<DevelopmentPage />} />
           <Route path="/competitions" element={<CompetitionsPage />} />
+          <Route path="/world" element={<WorldWatchPage />} />
           <Route path="/match" element={<MatchPage />} />
+          <Route path="/results" element={<ResultsArchivePage />} />
           <Route path="/table" element={<TablePage />} />
           <Route path="/transfers" element={<TransfersPage />} />
           <Route path="/scouting" element={<ScoutingPage />} />

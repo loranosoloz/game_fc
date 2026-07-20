@@ -30,6 +30,7 @@ import { idnRosterClubKeys, idnRosterForClub } from './idnPlayers'
 import { mysRosterClubKeys, mysRosterForClub } from './mysPlayers'
 import { sgpRosterClubKeys, sgpRosterForClub } from './sgpPlayers'
 import { sauRosterClubKeys, sauRosterForClub } from './sauPlayers'
+import { sau2RosterClubKeys, sau2RosterForClub } from './sau2Players'
 import { bioForPlayerName } from './playerBios'
 import { fmInsideForPlayerName } from './fmInsidePlayers'
 import { hasPhotoForPlayerName } from '@/lib/playerPhotos'
@@ -67,6 +68,7 @@ export type PackLeagueId =
   | 'mys'
   | 'sgp'
   | 'sau'
+  | 'sau2'
 
 export interface PackPlayerRow {
   id: string
@@ -121,6 +123,7 @@ const LEAGUE_META: Record<
   mys: { label: 'Malaysia Super League', keys: mysRosterClubKeys, roster: mysRosterForClub },
   sgp: { label: 'Singapore Premier League', keys: sgpRosterClubKeys, roster: sgpRosterForClub },
   sau: { label: 'Saudi Pro League', keys: sauRosterClubKeys, roster: sauRosterForClub },
+  sau2: { label: 'Saudi First Division', keys: sau2RosterClubKeys, roster: sau2RosterForClub },
 }
 
 const DIV2_LOOKUP: Partial<Record<PackLeagueId, LeagueId>> = {
@@ -132,6 +135,7 @@ const DIV2_LOOKUP: Partial<Record<PackLeagueId, LeagueId>> = {
   tha2: 'tha',
   jpn2: 'jpn',
   kor2: 'kor',
+  sau2: 'sau',
 }
 
 function clubLabel(leagueId: PackLeagueId, clubKey: string) {

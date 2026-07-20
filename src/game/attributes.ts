@@ -3,8 +3,12 @@ import personalitiesDb from '@/data/personalities.json'
 import developmentDb from '@/data/development.json'
 import type { Player, PlayerAttributes, PlayerGrowth, PlayerHidden, RoleCode } from './types'
 import { roleGroup } from './positions'
+import { withAgentIdentity } from './agents'
+import { ensureClubLoyalty } from './playerLoyalty'
 import { ensureBodyMap } from './bodyMap'
 import { ensurePlayerSkills } from './playerSkills'
+import { ensurePlayerTacticalRoles } from './playerTacticalRoles'
+import { ensurePlayerFame } from './playerFame'
 
 export { attributesDb, personalitiesDb, developmentDb }
 
@@ -204,7 +208,7 @@ export function ensurePlayerV3Fields(p: Partial<Player> & { id: string; clubId: 
       : makeAttrs(rng, overall, role),
   )
 
-  return {
+  const base = {
     id: p.id,
     clubId: p.clubId,
     name: p.name,
@@ -223,6 +227,11 @@ export function ensurePlayerV3Fields(p: Partial<Player> & { id: string; clubId: 
     form: p.form ?? 10,
     morale: p.morale ?? 12,
     happiness: p.happiness ?? p.morale ?? 12,
+    clubLoyalty:
+      typeof p.clubLoyalty === 'number'
+        ? Math.max(1, Math.min(20, Math.round(p.clubLoyalty)))
+        : undefined,
+    loyaltyClubId: p.loyaltyClubId ?? p.clubId ?? null,
     wage: p.wage ?? 2000,
     squadRole: p.squadRole ?? 'squad',
     injuryDays: p.injuryDays ?? 0,
@@ -251,6 +260,22 @@ export function ensurePlayerV3Fields(p: Partial<Player> & { id: string; clubId: 
     } as Player),
     wantAway: p.wantAway ?? null,
     refuseContractRenewal: p.refuseContractRenewal ?? false,
+    marketHeat:
+      typeof p.marketHeat === 'number'
+        ? Math.max(0, Math.min(20, Math.round(p.marketHeat)))
+        : 0,
+    formHistory: Array.isArray(p.formHistory)
+      ? p.formHistory
+          .filter((n): n is number => typeof n === 'number')
+          .map((n) => Math.max(1, Math.min(20, Math.round(n))))
+          .slice(-16)
+      : [Math.max(1, Math.min(20, Math.round(p.form ?? 10)))],
+    clubAffinity: p.clubAffinity ?? null,
+    secretHandshake: p.secretHandshake ?? null,
+    agentStyle: p.agentStyle,
+    agentName: p.agentName ?? null,
+    agentAgency: p.agentAgency ?? null,
+    agentKind: p.agentKind ?? null,
     cash:
       typeof p.cash === 'number'
         ? p.cash
@@ -267,7 +292,21 @@ export function ensurePlayerV3Fields(p: Partial<Player> & { id: string; clubId: 
       verified: (p.overall ?? 0) >= 78,
     },
     careerHonours: Array.isArray(p.careerHonours) ? p.careerHonours : [],
+    preferredTacticalRoles: p.preferredTacticalRoles,
+    tacticalRoleFamiliarity: p.tacticalRoleFamiliarity,
+    styleTrainTarget: p.styleTrainTarget ?? null,
+    styleTrainProgress: p.styleTrainProgress,
+    styleTrainOrder: p.styleTrainOrder,
+    styleDisliked: p.styleDisliked,
+    styleMismatchStreak: p.styleMismatchStreak,
+    fame: p.fame,
+    fanClubSize: p.fanClubSize,
+    antiFanSize: p.antiFanSize,
+    brandDeals: p.brandDeals,
   }
+  return ensurePlayerFame(
+    ensurePlayerTacticalRoles(ensureClubLoyalty(withAgentIdentity(base as Player))),
+  )
 }
 
 export function attrKeysVisible(): (keyof PlayerAttributes)[] {

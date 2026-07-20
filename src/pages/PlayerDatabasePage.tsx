@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   listAllPackPlayers,
@@ -10,15 +10,26 @@ import {
 import { bioForPlayerName } from '@/data/world/playerBios'
 import { fmInsideForPlayerName } from '@/data/world/fmInsidePlayers'
 import { formatGbp } from '@/game/playerBio'
-import { formatEur } from '@/game/fmInside'
+import { formatEur, playerAttrsFromFmInside } from '@/game/fmInside'
 import { formatMoney, formatCoachStat, coachStatTo20 } from '@/lib/format'
-import { roleLabel, roleShort } from '@/game/positions'
+import { roleGroup, roleLabel, roleShort } from '@/game/positions'
 import { attributesDb, personalitiesDb } from '@/game/attributes'
 import { BODY_PART_LABEL } from '@/game/bodyMap'
 import { formatBanStatus } from '@/game/discipline'
 import { formatIllnessStatus, ILLNESS_TYPE_LABEL } from '@/game/illness'
 import { INJURY_TYPE_LABEL, TREATMENT_LABEL } from '@/game/medical'
-import { ensurePlayerSkills, skillDescription, skillLabel } from '@/game/playerSkills'
+import {
+  ensurePlayerSkills,
+  listAllPositionSkills,
+  previewPlayerSkills,
+  skillCatalogStats,
+  skillDef,
+  skillDescription,
+  skillLabel,
+  skillSlotCount,
+  type CatalogSkillRow,
+} from '@/game/playerSkills'
+import { describeMods, SKILL_MODS } from '@/game/skillMods'
 import {
   allWorldCoaches,
   coachBlurb,
@@ -28,14 +39,14 @@ import {
   type WorldCoach,
 } from '@/game/worldCoaches'
 import { skillForRole } from '@/game/staff'
-import { formationLabel, type GameSave, type Player, type StaffPerson, type StaffRole } from '@/game/types'
+import { formationLabel, type GameSave, type Player, type PositionGroup, type StaffPerson, type StaffRole } from '@/game/types'
 import { cn } from '@/lib/cn'
 import { PlayerFace } from '@/components/PlayerFace'
 import { CoachFace } from '@/components/CoachFace'
 import { CoachCareerTimeline } from '@/components/CoachCareerTimeline'
 import { ClubCrest } from '@/components/ClubCrest'
 import { PlayerCareerHistory } from '@/components/PlayerCareerHistory'
-import { Panel, StatTile } from '@/components/ui'
+import { Panel } from '@/components/ui'
 import { useGameStore } from '@/store/gameStore'
 import { ensurePhase5 } from '@/game/save'
 import {
@@ -49,6 +60,15 @@ import {
   type LiveStatusFilter,
 } from '@/game/playerWorldDb'
 import {
+  AttrGrid,
+  AttrRow,
+  BROWSE_PAGE_SIZE,
+  BrowseDetailPane,
+  BrowseFilterBar,
+  BrowseListPane,
+  BrowsePageShell,
+  BrowseSplit,
+  DetailTabs,
   FilterSelect,
   IconBriefcase,
   IconBuilding,
@@ -56,15 +76,32 @@ import {
   IconLayers,
   IconLive,
   IconPackage,
+  IconSpark,
   IconStatus,
   IconUsers,
   IconWhistle,
+  ListPager,
+  pageSlice,
   SearchField,
+  SectionLabel,
 } from '@/components/browse/BrowseUi'
 
 type EnrichFilter = 'all' | 'bio' | 'fm' | 'photo' | 'missing'
 type PlayerDbMode = 'live' | 'pack'
-type EntityTab = 'players' | 'coaches' | 'staff'
+type EntityTab = 'players' | 'skills' | 'coaches' | 'staff'
+
+const POS_GROUP_TH: Record<PositionGroup, string> = {
+  GK: 'ผู้รักษาประตู',
+  DF: 'แนวรับ',
+  MF: 'กลางสนาม',
+  FW: 'แนวรุก',
+}
+
+const EFFECT_TH: Record<string, string> = {
+  attack: 'โจมตี',
+  defend: 'รับ',
+  both: 'ทั้งสอง',
+}
 
 const ROLE_TH: Record<StaffRole, string> = {
   coach: 'ผู้ช่วยผู้จัดการ',
@@ -86,12 +123,25 @@ function StatusBar({ label, value, max = 20 }: { label: string; value: number; m
     <li className="flex items-center gap-2 text-xs">
       <span className="w-20 shrink-0 text-slate-500">{label}</span>
       <span className="h-1.5 flex-1 overflow-hidden rounded bg-slate-100">
-        <span className="block h-full rounded bg-slate-700" style={{ width: `${pct}%` }} />
+        <span
+          className={cn(
+            'block h-full rounded',
+            pct >= 70 ? 'bg-emerald-600' : pct >= 40 ? 'bg-slate-700' : 'bg-amber-500',
+          )}
+          style={{ width: `${pct}%` }}
+        />
       </span>
-      <span className="w-10 text-right font-medium tabular-nums">
+      <span className="w-10 text-right font-medium tabular-nums text-slate-800">
         {max === 100 ? String(value) : `${value}/${max}`}
       </span>
     </li>
+  )
+}
+
+function rowSelected(active: boolean) {
+  return cn(
+    'cursor-pointer border-b border-slate-100 transition-colors hover:bg-slate-50',
+    active && 'bg-lime-50/80 ring-1 ring-inset ring-lime-200',
   )
 }
 
@@ -143,119 +193,414 @@ export function PlayerDatabasePage() {
   const [mode, setMode] = useState<PlayerDbMode>(hasSave ? 'live' : 'pack')
 
   const subtitle =
-    entity === 'coaches'
-      ? 'โค้ชโลก — พลัง · สไตล์ · ตำแหน่งงานในอาชีพ'
-      : entity === 'staff'
-        ? 'สตาฟในพูลอาชีพ — โค้ช / สเกาต์ / แพทย์'
-        : mode === 'live'
-          ? 'Live DB จากเซฟอาชีพ — สถานะ · ค่าพลัง · ประวัติอาชีพจริง'
-          : 'Pack JSON แม่แบบ — Bio / FM / ประวัติอาชีพจริง'
+    entity === 'skills'
+      ? `แคตตาล็อกพลังแฝง ${skillCatalogStats().total} สกิล — ผูกตำแหน่ง · มีผลในแมตช์`
+      : entity === 'coaches'
+        ? 'โค้ชโลก — พลัง · สไตล์ · ตำแหน่งงานในอาชีพ'
+        : entity === 'staff'
+          ? 'สตาฟในพูลอาชีพ — โค้ช / สเกาต์ / แพทย์'
+          : mode === 'live'
+            ? 'Live DB จากเซฟอาชีพ — สถานะ · ค่าพลัง · ประวัติอาชีพจริง'
+            : 'Pack JSON แม่แบบ — Bio / FM / ประวัติอาชีพจริง'
 
   return (
-    <div className="flex min-h-dvh w-full flex-col bg-slate-100">
-      <header className="sticky top-0 z-40 border-b border-slate-800 bg-slate-900 text-slate-100 shadow-md">
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-2.5 lg:px-6">
-          <div className="flex min-w-0 items-center gap-2.5">
-            <span className="flex size-8 items-center justify-center rounded-md bg-lime-400/15 text-lime-300">
-              <IconDatabase className="size-4" />
-            </span>
-            <div className="min-w-0">
-              <div className="flex flex-wrap items-baseline gap-x-2">
-                <h1 className="text-sm font-bold tracking-tight text-balance md:text-base">
-                  ฐานข้อมูล
-                </h1>
-                <span className="text-[10px] font-bold tracking-[0.14em] text-lime-300/90 uppercase">
-                  FC Manager
-                </span>
+    <BrowsePageShell
+      header={
+        <header className="shrink-0 border-b border-slate-800 bg-slate-900 text-slate-100">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-2.5 lg:px-6">
+            <div className="flex min-w-0 items-center gap-2.5">
+              <span className="flex size-8 items-center justify-center rounded-md bg-lime-400/15 text-lime-300">
+                <IconDatabase className="size-4" />
+              </span>
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-baseline gap-x-2">
+                  <h1 className="text-sm font-bold text-balance md:text-base">ฐานข้อมูล</h1>
+                  <span className="text-[10px] font-bold text-lime-300/90 uppercase">
+                    FC Manager
+                  </span>
+                </div>
+                <p className="truncate text-[11px] text-slate-400">{subtitle}</p>
               </div>
-              <p className="truncate text-[11px] text-slate-400">{subtitle}</p>
             </div>
+
+            <nav className="flex flex-1 flex-wrap items-center gap-1" aria-label="หมวดฐานข้อมูล">
+              {(
+                [
+                  ['players', 'นักเตะ', IconUsers],
+                  ['skills', 'พลังแฝง', IconSpark],
+                  ['coaches', 'โค้ชโลก', IconWhistle],
+                  ['staff', 'สตาฟ', IconBriefcase],
+                ] as const
+              ).map(([id, label, Icon]) => (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => setEntity(id)}
+                  className={cn(
+                    'inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-semibold transition-colors',
+                    entity === id
+                      ? 'bg-lime-400 text-slate-950'
+                      : 'text-slate-300 hover:bg-slate-800 hover:text-white',
+                  )}
+                >
+                  <Icon className="size-3.5" />
+                  {label}
+                </button>
+              ))}
+            </nav>
+
+            <Link
+              to={hasSave ? '/portal' : '/'}
+              className="rounded-md border border-slate-600 px-2.5 py-1.5 text-xs font-semibold text-slate-200 hover:bg-slate-800"
+            >
+              {hasSave ? '← กลับเกม' : '← หน้าแรก'}
+            </Link>
           </div>
 
-          <nav className="flex flex-1 flex-wrap items-center gap-1" aria-label="หมวดฐานข้อมูล">
-            {(
-              [
-                ['players', 'นักเตะ', IconUsers],
-                ['coaches', 'โค้ชโลก', IconWhistle],
-                ['staff', 'สตาฟ', IconBriefcase],
-              ] as const
-            ).map(([id, label, Icon]) => (
+          {entity === 'players' ? (
+            <div className="flex flex-wrap items-center gap-1 border-t border-slate-800 bg-slate-950/50 px-4 py-1.5 lg:px-6">
               <button
-                key={id}
                 type="button"
-                onClick={() => setEntity(id)}
+                disabled={!hasSave}
+                onClick={() => setMode('live')}
                 className={cn(
-                  'inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-semibold transition-colors',
-                  entity === id
-                    ? 'bg-lime-400 text-slate-950'
-                    : 'text-slate-300 hover:bg-slate-800 hover:text-white',
+                  'inline-flex items-center gap-1.5 rounded px-2.5 py-1 text-xs font-semibold',
+                  mode === 'live'
+                    ? 'bg-slate-100 text-slate-900'
+                    : 'text-slate-400 hover:bg-slate-800 hover:text-slate-100 disabled:opacity-40',
                 )}
               >
-                <Icon className="size-3.5" />
-                {label}
+                <IconLive className="size-3.5" />
+                Live (อาชีพนี้)
               </button>
-            ))}
-          </nav>
+              <button
+                type="button"
+                onClick={() => setMode('pack')}
+                className={cn(
+                  'inline-flex items-center gap-1.5 rounded px-2.5 py-1 text-xs font-semibold',
+                  mode === 'pack'
+                    ? 'bg-slate-100 text-slate-900'
+                    : 'text-slate-400 hover:bg-slate-800 hover:text-slate-100',
+                )}
+              >
+                <IconPackage className="size-3.5" />
+                Pack (แม่แบบ)
+              </button>
+            </div>
+          ) : null}
+        </header>
+      }
+    >
+      {entity === 'players' ? (
+        <>
+          {!hasSave && mode === 'live' ? (
+            <Panel tone="warn" className="shrink-0 py-3">
+              <p className="text-sm text-slate-700">
+                ยังไม่มีเซฟอาชีพ — เปิดโหมด Pack หรือเริ่มอาชีพใหม่เพื่อใช้ Live DB
+              </p>
+            </Panel>
+          ) : null}
+          {mode === 'live' && save ? <LiveDbView /> : <PackDbView />}
+        </>
+      ) : null}
 
-          <Link
-            to={hasSave ? '/portal' : '/'}
-            className="rounded-md border border-slate-600 px-2.5 py-1.5 text-xs font-semibold text-slate-200 hover:bg-slate-800"
+      {entity === 'skills' ? <SkillsCatalogDbView /> : null}
+      {entity === 'coaches' ? <CoachesDbView save={save} /> : null}
+      {entity === 'staff' ? <StaffDbView save={save} /> : null}
+    </BrowsePageShell>
+  )
+}
+
+type DetailTab = 'overview' | 'attrs' | 'skills' | 'career'
+
+const SKILL_EFFECT_TONE: Record<string, string> = {
+  attack: 'border-rose-200 bg-rose-50 text-rose-900',
+  defend: 'border-sky-200 bg-sky-50 text-sky-900',
+  both: 'border-emerald-200 bg-emerald-50 text-emerald-900',
+}
+
+function SkillChipList({ skillIds }: { skillIds: string[] }) {
+  if (skillIds.length === 0) {
+    return <p className="text-sm text-slate-500">ยังไม่มีพลังแฝง</p>
+  }
+  return (
+    <ul className="space-y-1.5">
+      {skillIds.map((id) => {
+        const def = skillDef(id)
+        const effect = def?.effect ?? 'both'
+        const power = def?.power ?? 1
+        return (
+          <li
+            key={id}
+            className={cn(
+              'rounded-lg border px-2.5 py-2',
+              SKILL_EFFECT_TONE[effect] ?? SKILL_EFFECT_TONE.both,
+            )}
+            title={skillDescription(id)}
           >
-            {hasSave ? '← กลับเกม' : '← หน้าแรก'}
-          </Link>
-        </div>
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-sm font-semibold">{skillLabel(id)}</span>
+              <span className="flex items-center gap-1.5">
+                <span
+                  className={cn(
+                    'rounded px-1.5 py-0.5 text-[10px] font-bold',
+                    effect === 'attack' && 'bg-rose-200/80 text-rose-900',
+                    effect === 'defend' && 'bg-sky-200/80 text-sky-900',
+                    effect === 'both' && 'bg-emerald-200/80 text-emerald-900',
+                  )}
+                >
+                  {EFFECT_TH[effect]}
+                </span>
+                <span className="text-[10px] font-bold opacity-80">
+                  {'★'.repeat(Math.min(3, Math.max(1, power)))}
+                </span>
+              </span>
+            </div>
+            <p className="mt-0.5 text-[11px] leading-snug text-pretty opacity-80">
+              {skillDescription(id)}
+            </p>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
 
-        {entity === 'players' ? (
-          <div className="flex flex-wrap items-center gap-1 border-t border-slate-800 bg-slate-950/50 px-4 py-1.5 lg:px-6">
-            <button
-              type="button"
-              disabled={!hasSave}
-              onClick={() => setMode('live')}
-              className={cn(
-                'inline-flex items-center gap-1.5 rounded px-2.5 py-1 text-xs font-semibold',
-                mode === 'live'
-                  ? 'bg-slate-100 text-slate-900'
-                  : 'text-slate-400 hover:bg-slate-800 hover:text-slate-100 disabled:opacity-40',
-              )}
-            >
-              <IconLive className="size-3.5" />
-              Live (อาชีพนี้)
-            </button>
-            <button
-              type="button"
-              onClick={() => setMode('pack')}
-              className={cn(
-                'inline-flex items-center gap-1.5 rounded px-2.5 py-1 text-xs font-semibold',
-                mode === 'pack'
-                  ? 'bg-slate-100 text-slate-900'
-                  : 'text-slate-400 hover:bg-slate-800 hover:text-slate-100',
-              )}
-            >
-              <IconPackage className="size-3.5" />
-              Pack (แม่แบบ)
-            </button>
-          </div>
-        ) : null}
-      </header>
-
-      <div className="mx-auto w-full max-w-[1800px] flex-1 space-y-4 px-4 py-4 lg:px-6 lg:py-5">
-        {entity === 'players' ? (
-          <>
-            {!hasSave && mode === 'live' ? (
-              <Panel tone="warn">
-                <p className="text-sm text-slate-700">
-                  ยังไม่มีเซฟอาชีพ — เปิดโหมด Pack หรือเริ่มอาชีพใหม่เพื่อใช้ Live DB
-                </p>
-              </Panel>
-            ) : null}
-
-            {mode === 'live' && save ? <LiveDbView /> : <PackDbView />}
-          </>
-        ) : null}
-
-        {entity === 'coaches' ? <CoachesDbView save={save} /> : null}
-        {entity === 'staff' ? <StaffDbView save={save} /> : null}
+function SkillsTabIntro({ overall, skillCount }: { overall: number; skillCount: number }) {
+  const slots = skillSlotCount(overall)
+  return (
+    <div className="space-y-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-xs text-slate-600">
+      <p>
+        OVR <span className="font-semibold tabular-nums text-slate-900">{overall}</span> → Owned{' '}
+        <span className="font-semibold text-slate-900">
+          {skillCount}/{slots}
+        </span>{' '}
+        สล็อต
+        {overall >= 90 ? ' (ดาวท็อปเต็ม 10)' : null}
+      </p>
+      <p className="text-[11px] text-slate-500">
+        ในแมตช์: Active คูณตามฟอร์ม (ร้อนแรงขึ้น · เย็น≤6 หลับสกิลอ่อน · ≥16 ปลุกชั่วคราว +1) ·
+        ใช้สูตรเดียวทั้ง human และ AI
+      </p>
+      <p className="text-[11px] text-slate-500">
+        จำนวน Owned ตาม OVR: ≥90→10 · ≥85→9 · ≥80→8 · ≥75→7 · ≥70→6 · ≥64→5 · ≥56→4 · ต่ำกว่า→3
+      </p>
+      <div className="flex flex-wrap gap-2 pt-0.5">
+        <span className="rounded border border-sky-200 bg-sky-50 px-2 py-0.5 font-medium text-sky-900">
+          ฟ้า = รับ
+        </span>
+        <span className="rounded border border-rose-200 bg-rose-50 px-2 py-0.5 font-medium text-rose-900">
+          ชมพู = โจมตี
+        </span>
+        <span className="rounded border border-emerald-200 bg-emerald-50 px-2 py-0.5 font-medium text-emerald-900">
+          เขียว = ทั้งสอง
+        </span>
+        <span className="rounded border border-slate-200 bg-white px-2 py-0.5 font-medium text-slate-700">
+          ★ = พลังสกิล 1–3
+        </span>
       </div>
+    </div>
+  )
+}
+
+function SkillsCatalogDbView() {
+  const all = useMemo(() => listAllPositionSkills(), [])
+  const stats = useMemo(() => skillCatalogStats(), [])
+  const [pos, setPos] = useState<PositionGroup | 'all'>('all')
+  const [effect, setEffect] = useState<'all' | 'attack' | 'defend' | 'both'>('all')
+  const [q, setQ] = useState('')
+  const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [page, setPage] = useState(1)
+
+  const filtered = useMemo(() => {
+    const needle = q.trim().toLowerCase()
+    return all.filter((s) => {
+      if (pos !== 'all' && s.position !== pos) return false
+      if (effect !== 'all' && s.effect !== effect) return false
+      if (!needle) return true
+      return (
+        s.id.toLowerCase().includes(needle) ||
+        s.labelTh.toLowerCase().includes(needle) ||
+        (s.descTh ?? '').toLowerCase().includes(needle) ||
+        POS_GROUP_TH[s.position].includes(needle)
+      )
+    })
+  }, [all, pos, effect, q])
+
+  useEffect(() => {
+    setPage(1)
+  }, [pos, effect, q])
+
+  const pageRows = useMemo(() => pageSlice(filtered, page), [filtered, page])
+  const selected: CatalogSkillRow | null =
+    filtered.find((s) => s.id === selectedId) ?? all.find((s) => s.id === selectedId) ?? null
+
+  return (
+    <div className="flex min-h-0 flex-1 flex-col gap-3">
+      <BrowseFilterBar>
+        <FilterSelect
+          label="ตำแหน่ง"
+          icon={<IconUsers />}
+          value={pos}
+          onChange={(e) => setPos(e.target.value as typeof pos)}
+        >
+          <option value="all">ทั้งหมด</option>
+          <option value="GK">GK · ผู้รักษาประตู</option>
+          <option value="DF">DF · แนวรับ</option>
+          <option value="MF">MF · กลางสนาม</option>
+          <option value="FW">FW · แนวรุก</option>
+        </FilterSelect>
+        <FilterSelect
+          label="ผลในแมตช์"
+          icon={<IconStatus />}
+          value={effect}
+          onChange={(e) => setEffect(e.target.value as typeof effect)}
+        >
+          <option value="all">ทั้งหมด</option>
+          <option value="attack">โจมตี</option>
+          <option value="defend">รับ</option>
+          <option value="both">ทั้งสอง</option>
+        </FilterSelect>
+        <SearchField value={q} onChange={setQ} placeholder="ชื่อ · id · คำอธิบาย" />
+      </BrowseFilterBar>
+
+      <BrowseSplit
+        list={
+          <BrowseListPane
+            title="แคตตาล็อกพลังแฝง"
+            subtitle={
+              <>
+                กรองได้ {filtered.length} / {stats.total} · สูงสุด {stats.maxPerPlayer} สล็อต/คน · GK{' '}
+                {stats.byPos.GK} · DF {stats.byPos.DF} · MF {stats.byPos.MF} · FW {stats.byPos.FW}
+              </>
+            }
+            pager={<ListPager page={page} total={filtered.length} onPage={setPage} />}
+          >
+            <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+              <thead className="sticky top-0 z-10 bg-white shadow-sm">
+                <tr className="border-b border-slate-200 text-xs text-slate-500 uppercase">
+                  <th className="px-3 py-2 font-medium">Pos</th>
+                  <th className="py-2 pr-2 font-medium">ชื่อ</th>
+                  <th className="py-2 pr-2 font-medium">ผล</th>
+                  <th className="py-2 pr-2 font-medium">พลัง</th>
+                  <th className="px-3 py-2 font-medium">id</th>
+                </tr>
+              </thead>
+              <tbody>
+                {pageRows.map((s) => (
+                  <tr
+                    key={s.id}
+                    className={rowSelected(selectedId === s.id)}
+                    onClick={() => setSelectedId(s.id)}
+                  >
+                    <td className="px-3 py-2 font-semibold text-slate-800">{s.position}</td>
+                    <td className="py-2 pr-2 font-medium text-slate-900">{s.labelTh}</td>
+                    <td
+                      className={cn(
+                        'py-2 pr-2 text-xs font-medium',
+                        s.effect === 'attack' && 'text-rose-700',
+                        s.effect === 'defend' && 'text-sky-800',
+                        s.effect === 'both' && 'text-emerald-800',
+                      )}
+                    >
+                      {EFFECT_TH[s.effect] ?? s.effect}
+                    </td>
+                    <td className="py-2 pr-2 text-xs font-bold tabular-nums text-amber-800">
+                      {'★'.repeat(Math.min(3, Math.max(1, s.power)))}
+                    </td>
+                    <td className="px-3 py-2 font-mono text-[11px] text-slate-500">{s.id}</td>
+                  </tr>
+                ))}
+                {pageRows.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="px-4 py-8 text-center text-sm text-slate-500">
+                      ไม่พบสกิลตามตัวกรอง
+                    </td>
+                  </tr>
+                ) : null}
+              </tbody>
+            </table>
+          </BrowseListPane>
+        }
+        detail={
+          selected ? (
+            <BrowseDetailPane
+              key={selected.id}
+              header={
+                <div>
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase">
+                    {selected.position} · {POS_GROUP_TH[selected.position]}
+                  </p>
+                  <h3 className="text-lg font-bold text-balance text-slate-900">
+                    {selected.labelTh}
+                  </h3>
+                  <p className="mt-0.5 font-mono text-xs text-slate-500">{selected.id}</p>
+                </div>
+              }
+            >
+              <div className="space-y-4">
+                <dl className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="rounded-md bg-slate-50 px-2.5 py-2">
+                    <dt className="text-slate-500">ผลในแมตช์</dt>
+                    <dd
+                      className={cn(
+                        'font-semibold',
+                        selected.effect === 'attack' && 'text-rose-800',
+                        selected.effect === 'defend' && 'text-sky-800',
+                        selected.effect === 'both' && 'text-emerald-800',
+                      )}
+                    >
+                      {EFFECT_TH[selected.effect]}
+                    </dd>
+                  </div>
+                  <div className="rounded-md bg-slate-50 px-2.5 py-2">
+                    <dt className="text-slate-500">ระดับพลัง</dt>
+                    <dd className="font-semibold text-amber-900">
+                      {selected.power}/3 · {'★'.repeat(Math.min(3, selected.power))}
+                    </dd>
+                  </div>
+                </dl>
+
+                <div>
+                  <SectionLabel>คำอธิบาย</SectionLabel>
+                  <p className="text-sm text-pretty text-slate-700">
+                    {selected.descTh ?? '—'}
+                  </p>
+                </div>
+
+                <div>
+                  <SectionLabel>โบนัสแมตช์ (mods)</SectionLabel>
+                  <p className="text-sm text-slate-700">
+                    {describeMods(SKILL_MODS[selected.id] ?? {}, selected.power)}
+                  </p>
+                  <ul className="mt-2 space-y-1 text-xs text-slate-600">
+                    {Object.entries(SKILL_MODS[selected.id] ?? {}).map(([k, v]) =>
+                      v ? (
+                        <li key={k} className="flex justify-between gap-2 border-b border-slate-100 py-1">
+                          <span>{k}</span>
+                          <span className="font-semibold tabular-nums">{v}</span>
+                        </li>
+                      ) : null,
+                    )}
+                  </ul>
+                </div>
+
+                <p className="text-[11px] text-slate-500">
+                  นักเตะตำแหน่งนี้สุ่ม/ฝังจากพูลนี้ · สูงสุด {stats.maxPerPlayer} สกิลต่อคน ตาม OVR
+                </p>
+              </div>
+            </BrowseDetailPane>
+          ) : (
+            <BrowseDetailPane
+              empty={
+                <p className="text-sm text-slate-500">
+                  เลือกสกิลจากตารางเพื่อดูคำอธิบายและโบนัสแมตช์
+                </p>
+              }
+            />
+          )
+        }
+      />
     </div>
   )
 }
@@ -267,6 +612,7 @@ function LivePlayerDetail({
   selected: LivePlayerRow
   save: GameSave
 }) {
+  const [tab, setTab] = useState<DetailTab>('overview')
   const p = selected.player
   const persona =
     personalitiesDb.archetypes.find((a) => a.id === p.personalityId)?.label ?? p.personalityId
@@ -276,173 +622,182 @@ function LivePlayerDetail({
   const fm = p.fmInside ?? fmInsideForPlayerName(p.name)
   const club = crestClubFromLive(save, selected.clubId)
 
-  return (
-    <div className="max-h-[calc(100dvh-10rem)] space-y-4 overflow-y-auto pr-1">
-      <div className="flex items-start gap-3">
-        <PlayerFace name={selected.name} size="md" />
-        <div className="min-w-0 flex-1">
-          <h3 className="text-lg font-bold text-balance text-slate-900">{selected.name}</h3>
-          <p className="text-sm text-slate-600">
-            {roleLabel(selected.role)} · อายุ {selected.age} · OVR {selected.overall} · CA{' '}
-            {selected.ca} · PA {p.pa}
+  const header = (
+    <div className="flex items-start gap-3">
+      <PlayerFace name={selected.name} size="md" />
+      <div className="min-w-0 flex-1">
+        <h3 className="text-lg font-bold text-balance text-slate-900">{selected.name}</h3>
+        <p className="text-sm text-slate-600">
+          {roleLabel(selected.role)} · อายุ {selected.age} · OVR{' '}
+          <span className="font-semibold tabular-nums text-slate-900">{selected.overall}</span> · CA{' '}
+          {selected.ca} · PA {p.pa}
+        </p>
+        <p className="mt-1 flex items-center gap-2 text-xs text-slate-500">
+          <ClubCrest club={club} size="xs" />
+          <span>
+            {selected.clubName} · {selected.nationality} · {persona}
+          </span>
+        </p>
+        {skills.length > 0 ? (
+          <p className="mt-1.5 text-[11px] font-medium text-emerald-800">
+            พลังแฝง {skills.length}/10 · {skills.slice(0, 3).map(skillLabel).join(' · ')}
+            {skills.length > 3 ? '…' : ''}
           </p>
-          <p className="mt-1 flex items-center gap-2 text-xs text-slate-500">
-            <ClubCrest club={club} size="xs" />
-            <span>
-              {selected.clubName} · {selected.nationality} · {persona}
-            </span>
-          </p>
-        </div>
-      </div>
-
-      <div className="rounded-lg border border-slate-200 bg-white p-3">
-        <PlayerCareerHistory playerName={selected.name} playerAge={selected.age} />
-      </div>
-
-      <dl className="grid grid-cols-2 gap-2 text-xs">
-        <div className="rounded-md bg-slate-50 px-2 py-1.5">
-          <dt className="text-slate-500">สถานะ</dt>
-          <dd className="font-semibold">{selected.statusLabel}</dd>
-        </div>
-        <div className="rounded-md bg-slate-50 px-2 py-1.5">
-          <dt className="text-slate-500">สัญญา</dt>
-          <dd className="font-semibold">
-            {selected.contractYears} ปี · {formatMoney(selected.wage)}/wk
-          </dd>
-        </div>
-      </dl>
-
-      {ban ? (
-        <p className="rounded bg-amber-50 px-2 py-1.5 text-xs font-semibold text-amber-900">{ban}</p>
-      ) : null}
-
-      <div>
-        <h4 className="text-xs font-bold tracking-wide text-slate-500 uppercase">Status</h4>
-        <ul className="mt-2 space-y-1.5">
-          <StatusBar label="Condition" value={p.condition} max={100} />
-          <StatusBar label="Sharpness" value={p.sharpness} max={100} />
-          <StatusBar label="Form" value={p.form} />
-          <StatusBar label="Morale" value={p.morale} />
-          <StatusBar label="Happiness" value={p.happiness ?? p.morale} />
-          <StatusBar label="Media" value={p.mediaHandling ?? 10} />
-        </ul>
-        {p.injuryDays > 0 ? (
-          <p className="mt-2 rounded bg-rose-50 px-2 py-1.5 text-xs text-rose-900">
-            เจ็บ: {p.injuryType ? INJURY_TYPE_LABEL[p.injuryType] : '—'}
-            {p.injuryBodyPart ? ` · ${BODY_PART_LABEL[p.injuryBodyPart]}` : ''} · {p.injuryDays} วัน ·
-            รักษา {p.treatment ? TREATMENT_LABEL[p.treatment] : '—'}
-          </p>
-        ) : (p.illnessDays ?? 0) > 0 ? (
-          <p className="mt-2 rounded bg-violet-50 px-2 py-1.5 text-xs text-violet-900">
-            ป่วย: {p.illnessType ? ILLNESS_TYPE_LABEL[p.illnessType] : '—'} · {p.illnessDays} วัน
-            {formatIllnessStatus(p) ? ` · ${formatIllnessStatus(p)}` : ''}
-          </p>
-        ) : (
-          <p className="mt-2 text-xs text-emerald-700">พร้อมลงแข่ง · condition {p.condition}%</p>
-        )}
-      </div>
-
-      {ATTR_GROUPS.map((group) => {
-        const rows = ATTR_META.filter((a) => a.group === group.id)
-        if (rows.length === 0) return null
-        if (group.id === 'goalkeeping' && p.role !== 'GK') return null
-        return (
-          <div key={group.id}>
-            <h4 className="text-xs font-bold tracking-wide text-slate-500 uppercase">
-              {group.labelTh} (1–99)
-            </h4>
-            <ul className="mt-1.5 grid grid-cols-2 gap-x-3 gap-y-0.5 text-xs sm:grid-cols-3">
-              {rows.map((row) => (
-                <li key={row.key} className="flex justify-between gap-2">
-                  <span className="truncate text-slate-500">{row.key}</span>
-                  <span className="font-semibold tabular-nums">{p.attrs[row.key]}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )
-      })}
-
-      <div className="grid grid-cols-2 gap-3">
-        <div>
-          <h4 className="text-xs font-bold tracking-wide text-slate-500 uppercase">Growth</h4>
-          <ul className="mt-1 space-y-0.5 text-xs">
-            {GROWTH_KEYS.map((k) => (
-              <li key={k} className="flex justify-between gap-2">
-                <span className="text-slate-500">{k}</span>
-                <span className="font-semibold tabular-nums">{p.growth[k]}/20</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-xs font-bold tracking-wide text-slate-500 uppercase">Hidden</h4>
-          <ul className="mt-1 space-y-0.5 text-xs">
-            {HIDDEN_KEYS.map((k) => (
-              <li key={k} className="flex justify-between gap-2">
-                <span className="text-slate-500">{k}</span>
-                <span className="font-semibold tabular-nums">{p.hidden[k]}/20</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      {skills.length > 0 ? (
-        <div>
-          <h4 className="text-xs font-bold tracking-wide text-slate-500 uppercase">
-            พลังแฝง ({skills.length}/10)
-          </h4>
-          <ul className="mt-1.5 flex flex-wrap gap-1">
-            {skills.map((id) => (
-              <li
-                key={id}
-                className="rounded border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-900"
-                title={skillDescription(id)}
-              >
-                {skillLabel(id)}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
-
-      {fm ? (
-        <div>
-          <h4 className="text-xs font-bold tracking-wide text-slate-500 uppercase">FMInside</h4>
-          <p className="mt-1 text-xs text-slate-700">
-            Rating {fm.rating ?? '—'} · Potential {fm.potential ?? '—'}
-            {fm.sellValueEur != null ? ` · ${formatEur(fm.sellValueEur)}` : ''}
-          </p>
-        </div>
-      ) : null}
-
-      <div>
-        <h4 className="text-xs font-bold tracking-wide text-slate-500 uppercase">
-          ประวัติย้ายในอาชีพนี้
-        </h4>
-        {moveLog.length === 0 ? (
-          <p className="mt-1 text-sm text-slate-500">ยังไม่มีบันทึกย้ายหลังเปิดระบบนี้</p>
-        ) : (
-          <ul className="mt-2 max-h-36 space-y-1.5 overflow-y-auto text-xs text-slate-700">
-            {moveLog.map((m) => {
-              const from = clubLabel(save.clubs, m.fromClubId).short
-              const to = clubLabel(save.clubs, m.toClubId).short
-              return (
-                <li key={m.id} className="rounded-md bg-slate-50 px-2 py-1.5">
-                  <span className="font-semibold">
-                    S{m.season} MD{m.matchday}
-                  </span>{' '}
-                  · {MOVE_KIND_LABEL[m.kind]} · {from} → {to}
-                  {m.fee != null && m.fee > 0 ? ` · ${formatMoney(m.fee)}` : ''}
-                  {m.note ? ` · ${m.note}` : ''}
-                </li>
-              )
-            })}
-          </ul>
-        )}
+        ) : null}
       </div>
     </div>
+  )
+
+  return (
+    <BrowseDetailPane
+      header={header}
+      tabs={
+        <DetailTabs
+          tabs={[
+            { id: 'overview', label: 'ภาพรวม' },
+            { id: 'attrs', label: 'ค่าพลัง' },
+            { id: 'skills', label: `พลังแฝง (${skills.length})` },
+            { id: 'career', label: 'อาชีพ' },
+          ]}
+          value={tab}
+          onChange={setTab}
+        />
+      }
+    >
+      {tab === 'overview' ? (
+        <div className="space-y-4">
+          <dl className="grid grid-cols-2 gap-2 text-xs">
+            <div className="rounded-md bg-slate-50 px-2.5 py-2">
+              <dt className="text-slate-500">สถานะ</dt>
+              <dd className="font-semibold text-slate-900">{selected.statusLabel}</dd>
+            </div>
+            <div className="rounded-md bg-slate-50 px-2.5 py-2">
+              <dt className="text-slate-500">สัญญา</dt>
+              <dd className="font-semibold text-slate-900">
+                {selected.contractYears} ปี · {formatMoney(selected.wage)}/wk
+              </dd>
+            </div>
+          </dl>
+
+          {ban ? (
+            <p className="rounded bg-amber-50 px-2 py-1.5 text-xs font-semibold text-amber-900">
+              {ban}
+            </p>
+          ) : null}
+
+          <div>
+            <SectionLabel>สถานะร่างกาย</SectionLabel>
+            <ul className="space-y-1.5">
+              <StatusBar label="Condition" value={p.condition} max={100} />
+              <StatusBar label="Sharpness" value={p.sharpness} max={100} />
+              <StatusBar label="Form" value={p.form} />
+              <StatusBar label="Morale" value={p.morale} />
+              <StatusBar label="Happiness" value={p.happiness ?? p.morale} />
+              <StatusBar label="Media" value={p.mediaHandling ?? 10} />
+            </ul>
+            {p.injuryDays > 0 ? (
+              <p className="mt-2 rounded bg-rose-50 px-2 py-1.5 text-xs text-rose-900">
+                เจ็บ: {p.injuryType ? INJURY_TYPE_LABEL[p.injuryType] : '—'}
+                {p.injuryBodyPart ? ` · ${BODY_PART_LABEL[p.injuryBodyPart]}` : ''} · {p.injuryDays}{' '}
+                วัน · รักษา {p.treatment ? TREATMENT_LABEL[p.treatment] : '—'}
+              </p>
+            ) : (p.illnessDays ?? 0) > 0 ? (
+              <p className="mt-2 rounded bg-violet-50 px-2 py-1.5 text-xs text-violet-900">
+                ป่วย: {p.illnessType ? ILLNESS_TYPE_LABEL[p.illnessType] : '—'} · {p.illnessDays} วัน
+                {formatIllnessStatus(p) ? ` · ${formatIllnessStatus(p)}` : ''}
+              </p>
+            ) : (
+              <p className="mt-2 text-xs text-emerald-700">พร้อมลงแข่ง · condition {p.condition}%</p>
+            )}
+          </div>
+
+          {fm ? (
+            <div>
+              <SectionLabel>FMInside</SectionLabel>
+              <p className="text-xs text-pretty text-slate-700">
+                Rating {fm.rating ?? '—'} · Potential {fm.potential ?? '—'}
+                {fm.sellValueEur != null ? ` · ${formatEur(fm.sellValueEur)}` : ''}
+              </p>
+            </div>
+          ) : null}
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <SectionLabel>Growth</SectionLabel>
+              <AttrGrid cols={2}>
+                {GROWTH_KEYS.map((k) => (
+                  <AttrRow key={k} label={k} value={p.growth[k]} max={20} />
+                ))}
+              </AttrGrid>
+            </div>
+            <div>
+              <SectionLabel>Hidden</SectionLabel>
+              <AttrGrid cols={2}>
+                {HIDDEN_KEYS.map((k) => (
+                  <AttrRow key={k} label={k} value={p.hidden[k]} max={20} />
+                ))}
+              </AttrGrid>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {tab === 'attrs' ? (
+        <div className="space-y-4">
+          {ATTR_GROUPS.map((group) => {
+            const rows = ATTR_META.filter((a) => a.group === group.id)
+            if (rows.length === 0) return null
+            if (group.id === 'goalkeeping' && p.role !== 'GK') return null
+            return (
+              <div key={group.id}>
+                <SectionLabel>{group.labelTh}</SectionLabel>
+                <AttrGrid>
+                  {rows.map((row) => (
+                    <AttrRow key={row.key} label={row.key} value={p.attrs[row.key]} />
+                  ))}
+                </AttrGrid>
+              </div>
+            )
+          })}
+        </div>
+      ) : null}
+
+      {tab === 'skills' ? (
+        <div className="space-y-3">
+          <SkillsTabIntro overall={selected.overall} skillCount={skills.length} />
+          <SkillChipList skillIds={skills} />
+        </div>
+      ) : null}
+
+      {tab === 'career' ? (
+        <div className="space-y-4">
+          <PlayerCareerHistory playerName={selected.name} playerAge={selected.age} />
+          <div>
+            <SectionLabel>ประวัติย้ายในอาชีพนี้</SectionLabel>
+            {moveLog.length === 0 ? (
+              <p className="text-sm text-slate-500">ยังไม่มีบันทึกย้ายหลังเปิดระบบนี้</p>
+            ) : (
+              <ul className="space-y-1.5 text-xs text-slate-700">
+                {moveLog.map((m) => {
+                  const from = clubLabel(save.clubs, m.fromClubId).short
+                  const to = clubLabel(save.clubs, m.toClubId).short
+                  return (
+                    <li key={m.id} className="rounded-md bg-slate-50 px-2.5 py-2">
+                      <span className="font-semibold">
+                        S{m.season} MD{m.matchday}
+                      </span>{' '}
+                      · {MOVE_KIND_LABEL[m.kind]} · {from} → {to}
+                      {m.fee != null && m.fee > 0 ? ` · ${formatMoney(m.fee)}` : ''}
+                      {m.note ? ` · ${m.note}` : ''}
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
+          </div>
+        </div>
+      ) : null}
+    </BrowseDetailPane>
   )
 }
 
@@ -456,6 +811,7 @@ function LiveDbView() {
   const [status, setStatus] = useState<LiveStatusFilter>('all')
   const [q, setQ] = useState('')
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [page, setPage] = useState(1)
 
   const clubs = useMemo(() => {
     const map = new Map<string, string>()
@@ -472,70 +828,69 @@ function LiveDbView() {
     [all, q, clubId, status],
   )
 
+  useEffect(() => {
+    setPage(1)
+  }, [q, clubId, status])
+
+  const pageRows = useMemo(() => pageSlice(filtered, page), [filtered, page])
+
   const selected: LivePlayerRow | null =
     filtered.find((r) => r.id === selectedId) ??
     all.find((r) => r.id === selectedId) ??
     null
 
   return (
-    <>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-        <StatTile label="ในอาชีพนี้" value={stats.total.toLocaleString('th-TH')} accent />
-        <StatTile label="พร้อม" value={String(stats.total - stats.injured - stats.banned - stats.free)} />
-        <StatTile label="เจ็บ/ป่วย" value={String(stats.injured)} />
-        <StatTile label="แบน" value={String(stats.banned)} />
-        <StatTile label="ยืมตัว" value={String(stats.loan)} />
-        <StatTile label="ขึ้นขาย/อยากย้าย" value={String(stats.listed)} hint={`ฟรีเอเยนต์ ${stats.free}`} />
-      </div>
+    <div className="flex min-h-0 flex-1 flex-col gap-3">
+      <BrowseFilterBar>
+        <FilterSelect
+          label="สโมสร"
+          icon={<IconBuilding />}
+          className="min-w-[14rem]"
+          value={clubId}
+          onChange={(e) => setClubId(e.target.value)}
+        >
+          <option value="all">ทุกสโมสร</option>
+          {clubs.map((c) => (
+            <option key={c.id} value={c.id}>
+              {c.name}
+            </option>
+          ))}
+        </FilterSelect>
+        <FilterSelect
+          label="สถานะ"
+          icon={<IconStatus />}
+          value={status}
+          onChange={(e) => setStatus(e.target.value as LiveStatusFilter)}
+        >
+          <option value="all">ทั้งหมด</option>
+          <option value="available">พร้อม</option>
+          <option value="injured">เจ็บ/ป่วย</option>
+          <option value="banned">แบน</option>
+          <option value="loan">ยืมตัว</option>
+          <option value="listed">ขึ้นขาย/อยากย้าย</option>
+          <option value="free_agent">ฟรีเอเยนต์</option>
+        </FilterSelect>
+        <SearchField value={q} onChange={setQ} placeholder="ชื่อ · สโมสร · สัญชาติ" />
+      </BrowseFilterBar>
 
-      <Panel>
-        <div className="flex flex-wrap gap-3">
-          <FilterSelect
-            label="สโมสร"
-            icon={<IconBuilding />}
-            className="min-w-[14rem]"
-            value={clubId}
-            onChange={(e) => setClubId(e.target.value)}
+      <BrowseSplit
+        list={
+          <BrowseListPane
+            title="รายชื่อ Live"
+            subtitle={
+              <>
+                กรองได้ {filtered.length.toLocaleString('th-TH')} /{' '}
+                {stats.total.toLocaleString('th-TH')} คน · หน้าละ {BROWSE_PAGE_SIZE}
+                {stats.injured > 0 ? ` · เจ็บ ${stats.injured}` : ''}
+                {stats.banned > 0 ? ` · แบน ${stats.banned}` : ''}
+                {stats.loan > 0 ? ` · ยืม ${stats.loan}` : ''}
+              </>
+            }
+            pager={<ListPager page={page} total={filtered.length} onPage={setPage} />}
           >
-            <option value="all">ทุกสโมสร</option>
-            {clubs.map((c) => (
-              <option key={c.id} value={c.id}>
-                {c.name}
-              </option>
-            ))}
-          </FilterSelect>
-          <FilterSelect
-            label="สถานะ"
-            icon={<IconStatus />}
-            value={status}
-            onChange={(e) => setStatus(e.target.value as LiveStatusFilter)}
-          >
-            <option value="all">ทั้งหมด</option>
-            <option value="available">พร้อม</option>
-            <option value="injured">เจ็บ/ป่วย</option>
-            <option value="banned">แบน</option>
-            <option value="loan">ยืมตัว</option>
-            <option value="listed">ขึ้นขาย/อยากย้าย</option>
-            <option value="free_agent">ฟรีเอเยนต์</option>
-          </FilterSelect>
-          <SearchField
-            value={q}
-            onChange={setQ}
-            placeholder="ชื่อ · สโมสร · สัญชาติ"
-          />
-        </div>
-      </Panel>
-
-      <div className="grid gap-4 xl:grid-cols-[minmax(0,1.15fr)_minmax(420px,1fr)]">
-        <Panel className="overflow-hidden p-0">
-          <div className="border-b border-slate-200 px-4 py-3">
-            <h3 className="text-sm font-bold text-slate-900">รายชื่อ Live</h3>
-            <p className="text-xs text-slate-500">คลิกเพื่อดูประวัติอาชีพ + สถานะ + ค่าพลัง</p>
-          </div>
-          <div className="max-h-[calc(100dvh-14rem)] overflow-auto">
             <table className="w-full min-w-[880px] border-collapse text-left text-sm">
-              <thead className="sticky top-0 bg-white shadow-sm">
-                <tr className="border-b border-slate-200 text-xs tracking-wide text-slate-500 uppercase">
+              <thead className="sticky top-0 z-10 bg-white shadow-sm">
+                <tr className="border-b border-slate-200 text-xs text-slate-500 uppercase">
                   <th className="px-3 py-2 font-medium">Pos</th>
                   <th className="py-2 pr-2 font-medium" />
                   <th className="py-2 pr-2 font-medium">ชื่อ</th>
@@ -546,15 +901,12 @@ function LiveDbView() {
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((r) => {
+                {pageRows.map((r) => {
                   const club = crestClubFromLive(save, r.clubId)
                   return (
                     <tr
                       key={r.id}
-                      className={cn(
-                        'cursor-pointer border-b border-slate-100 hover:bg-slate-50',
-                        selectedId === r.id && 'bg-sky-50',
-                      )}
+                      className={rowSelected(selectedId === r.id)}
                       onClick={() => setSelectedId(r.id)}
                     >
                       <td className="px-3 py-2 font-semibold" title={roleLabel(r.role)}>
@@ -587,7 +939,7 @@ function LiveDbView() {
                     </tr>
                   )
                 })}
-                {filtered.length === 0 ? (
+                {pageRows.length === 0 ? (
                   <tr>
                     <td colSpan={7} className="px-4 py-8 text-center text-sm text-slate-500">
                       ไม่พบนักเตะตามตัวกรอง
@@ -596,18 +948,17 @@ function LiveDbView() {
                 ) : null}
               </tbody>
             </table>
-          </div>
-        </Panel>
-
-        <Panel>
-          {!selected ? (
-            <p className="text-sm text-slate-500">เลือกนักเตะเพื่อดูประวัติอาชีพ + สถานะ + ค่าพลัง</p>
+          </BrowseListPane>
+        }
+        detail={
+          selected ? (
+            <LivePlayerDetail key={selected.id} selected={selected} save={save} />
           ) : (
-            <LivePlayerDetail selected={selected} save={save} />
-          )}
-        </Panel>
-      </div>
-    </>
+            <BrowseDetailPane empty={<p className="text-sm text-slate-500">เลือกนักเตะเพื่อดูสถานะ · ค่าพลัง · ประวัติอาชีพ</p>} />
+          )
+        }
+      />
+    </div>
   )
 }
 
@@ -615,74 +966,78 @@ function CoachDetail({ coach, save }: { coach: WorldCoach; save: GameSave | null
   const posting = coachPosting(save, coach.id)
   const career = getCoachCareer(coach.id)
 
-  return (
-    <div className="max-h-[calc(100dvh-10rem)] space-y-4 overflow-y-auto pr-1">
-      <div className="flex items-start gap-3">
-        <CoachFace coachId={coach.id} name={coach.name} size="lg" className="ring-2 ring-slate-200" />
-        <div>
-          <h3 className="text-lg font-bold text-slate-900">{coach.name}</h3>
-          <p className="text-sm text-slate-600">
-            พลัง {formatCoachStat(coach.power)} · {coach.nationTh} · {coach.tier}
-          </p>
-          <p className="text-xs text-slate-500">
-            {posting.label}
-            {posting.kind === 'free' && save ? ' · ว่างงาน' : ''}
-          </p>
-        </div>
-      </div>
-
-      <p className="text-sm text-slate-700">{coachBlurb(coach)}</p>
-
+  const header = (
+    <div className="flex items-start gap-3">
+      <CoachFace coachId={coach.id} name={coach.name} size="lg" className="ring-2 ring-slate-200" />
       <div>
-        <h4 className="text-xs font-bold tracking-wide text-slate-500 uppercase">ค่าพลังโค้ช</h4>
-        <ul className="mt-2 space-y-1.5">
-          <StatusBar label="Power" value={coachStatTo20(coach.power)} max={20} />
-          <StatusBar label="Attack IQ" value={coachStatTo20(coach.attackingIQ)} max={20} />
-          <StatusBar label="Defend IQ" value={coachStatTo20(coach.defendingIQ)} max={20} />
-          <StatusBar label="Man Mgmt" value={coachStatTo20(coach.manManagement)} max={20} />
-          <StatusBar label="Adapt" value={coachStatTo20(coach.adaptability)} max={20} />
-        </ul>
+        <h3 className="text-lg font-bold text-balance text-slate-900">{coach.name}</h3>
+        <p className="text-sm text-slate-600">
+          พลัง {formatCoachStat(coach.power)} · {coach.nationTh} · {coach.tier}
+        </p>
+        <p className="text-xs text-slate-500">
+          {posting.label}
+          {posting.kind === 'free' && save ? ' · ว่างงาน' : ''}
+        </p>
       </div>
-
-      <dl className="grid grid-cols-2 gap-2 text-xs">
-        <div className="rounded-md bg-slate-50 px-2 py-1.5">
-          <dt className="text-slate-500">สไตล์</dt>
-          <dd className="font-semibold">{coach.styleLabelTh}</dd>
-        </div>
-        <div className="rounded-md bg-slate-50 px-2 py-1.5">
-          <dt className="text-slate-500">แผนถนัด</dt>
-          <dd className="font-semibold">{formationLabel(coach.preferredFormation, true)}</dd>
-        </div>
-        <div className="rounded-md bg-slate-50 px-2 py-1.5">
-          <dt className="text-slate-500">OOP</dt>
-          <dd className="font-semibold">{formationLabel(coach.formationOop, true)}</dd>
-        </div>
-        <div className="rounded-md bg-slate-50 px-2 py-1.5">
-          <dt className="text-slate-500">กดดัน</dt>
-          <dd className="font-semibold">{coach.pressing}</dd>
-        </div>
-        <div className="rounded-md bg-slate-50 px-2 py-1.5">
-          <dt className="text-slate-500">ค่าเหนื่อย</dt>
-          <dd className="font-semibold">{formatMoney(coach.wageWeekly)}/wk</dd>
-        </div>
-        <div className="rounded-md bg-slate-50 px-2 py-1.5">
-          <dt className="text-slate-500">ค่าจ้าง</dt>
-          <dd className="font-semibold">{formatMoney(coach.hireFee)}</dd>
-        </div>
-      </dl>
-
-      <p className="text-xs text-slate-600">
-        แก้เกม: {coach.solveGame.map(solveLabelTh).join(' · ') || '—'}
-      </p>
-      <p className="text-xs text-emerald-800">
-        ถนัดชนะ: {coach.strongVs.map(styleLabelTh).join(', ') || '—'}
-      </p>
-      <p className="text-xs text-rose-800">
-        ไม่ถนัด: {coach.weakVs.map(styleLabelTh).join(', ') || '—'}
-      </p>
-
-      {career ? <CoachCareerTimeline coach={coach} compact /> : null}
     </div>
+  )
+
+  return (
+    <BrowseDetailPane header={header}>
+      <div className="space-y-4">
+        <p className="text-sm text-pretty text-slate-700">{coachBlurb(coach)}</p>
+
+        <div>
+          <SectionLabel>ค่าพลังโค้ช</SectionLabel>
+          <ul className="space-y-1.5">
+            <StatusBar label="Power" value={coachStatTo20(coach.power)} max={20} />
+            <StatusBar label="Attack IQ" value={coachStatTo20(coach.attackingIQ)} max={20} />
+            <StatusBar label="Defend IQ" value={coachStatTo20(coach.defendingIQ)} max={20} />
+            <StatusBar label="Man Mgmt" value={coachStatTo20(coach.manManagement)} max={20} />
+            <StatusBar label="Adapt" value={coachStatTo20(coach.adaptability)} max={20} />
+          </ul>
+        </div>
+
+        <dl className="grid grid-cols-2 gap-2 text-xs">
+          <div className="rounded-md bg-slate-50 px-2.5 py-2">
+            <dt className="text-slate-500">สไตล์</dt>
+            <dd className="font-semibold">{coach.styleLabelTh}</dd>
+          </div>
+          <div className="rounded-md bg-slate-50 px-2.5 py-2">
+            <dt className="text-slate-500">แผนถนัด</dt>
+            <dd className="font-semibold">{formationLabel(coach.preferredFormation, true)}</dd>
+          </div>
+          <div className="rounded-md bg-slate-50 px-2.5 py-2">
+            <dt className="text-slate-500">OOP</dt>
+            <dd className="font-semibold">{formationLabel(coach.formationOop, true)}</dd>
+          </div>
+          <div className="rounded-md bg-slate-50 px-2.5 py-2">
+            <dt className="text-slate-500">กดดัน</dt>
+            <dd className="font-semibold">{coach.pressing}</dd>
+          </div>
+          <div className="rounded-md bg-slate-50 px-2.5 py-2">
+            <dt className="text-slate-500">ค่าเหนื่อย</dt>
+            <dd className="font-semibold">{formatMoney(coach.wageWeekly)}/wk</dd>
+          </div>
+          <div className="rounded-md bg-slate-50 px-2.5 py-2">
+            <dt className="text-slate-500">ค่าจ้าง</dt>
+            <dd className="font-semibold">{formatMoney(coach.hireFee)}</dd>
+          </div>
+        </dl>
+
+        <p className="text-xs text-slate-600">
+          แก้เกม: {coach.solveGame.map(solveLabelTh).join(' · ') || '—'}
+        </p>
+        <p className="text-xs text-emerald-800">
+          ถนัดชนะ: {coach.strongVs.map(styleLabelTh).join(', ') || '—'}
+        </p>
+        <p className="text-xs text-rose-800">
+          ไม่ถนัด: {coach.weakVs.map(styleLabelTh).join(', ') || '—'}
+        </p>
+
+        {career ? <CoachCareerTimeline coach={coach} compact /> : null}
+      </div>
+    </BrowseDetailPane>
   )
 }
 
@@ -691,6 +1046,7 @@ function CoachesDbView({ save }: { save: GameSave | null }) {
   const [q, setQ] = useState('')
   const [posting, setPosting] = useState<'all' | 'club' | 'nt' | 'free'>('all')
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [page, setPage] = useState(1)
 
   const rows = useMemo(() => {
     const needle = q.trim().toLowerCase()
@@ -710,6 +1066,12 @@ function CoachesDbView({ save }: { save: GameSave | null }) {
       })
   }, [all, q, posting, save])
 
+  useEffect(() => {
+    setPage(1)
+  }, [q, posting])
+
+  const pageRows = useMemo(() => pageSlice(rows, page), [rows, page])
+
   const selected = rows.find((r) => r.coach.id === selectedId)?.coach ??
     all.find((c) => c.id === selectedId) ??
     null
@@ -728,46 +1090,38 @@ function CoachesDbView({ save }: { save: GameSave | null }) {
   }, [all, save])
 
   return (
-    <>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <StatTile label="โค้ชทั้งหมด" value={String(stats.total)} accent />
-        <StatTile label="คุมคลับ" value={String(stats.club)} />
-        <StatTile label="ทีมชาติ" value={String(stats.nt)} />
-        <StatTile label="ว่างงาน" value={String(stats.free)} />
-      </div>
+    <div className="flex min-h-0 flex-1 flex-col gap-3">
+      <BrowseFilterBar>
+        <FilterSelect
+          label="ตำแหน่งงาน"
+          icon={<IconBriefcase />}
+          value={posting}
+          onChange={(e) => setPosting(e.target.value as typeof posting)}
+          disabled={!save}
+        >
+          <option value="all">ทั้งหมด</option>
+          <option value="club">คุมคลับ</option>
+          <option value="nt">ทีมชาติ</option>
+          <option value="free">ว่างงาน</option>
+        </FilterSelect>
+        <SearchField value={q} onChange={setQ} placeholder="ชื่อ · สัญชาติ · สไตล์ · คลับ" />
+      </BrowseFilterBar>
 
-      <Panel>
-        <div className="flex flex-wrap gap-3">
-          <FilterSelect
-            label="ตำแหน่งงาน"
-            icon={<IconBriefcase />}
-            value={posting}
-            onChange={(e) => setPosting(e.target.value as typeof posting)}
-            disabled={!save}
+      <BrowseSplit
+        list={
+          <BrowseListPane
+            title="รายชื่อโค้ชโลก"
+            subtitle={
+              <>
+                กรองได้ {rows.length} / {stats.total} คน · หน้าละ {BROWSE_PAGE_SIZE} · คลับ{' '}
+                {stats.club} · ชาติ {stats.nt} · ว่าง {stats.free}
+              </>
+            }
+            pager={<ListPager page={page} total={rows.length} onPage={setPage} />}
           >
-            <option value="all">ทั้งหมด</option>
-            <option value="club">คุมคลับ</option>
-            <option value="nt">ทีมชาติ</option>
-            <option value="free">ว่างงาน</option>
-          </FilterSelect>
-          <SearchField
-            value={q}
-            onChange={setQ}
-            placeholder="ชื่อ · สัญชาติ · สไตล์ · คลับ"
-          />
-        </div>
-      </Panel>
-
-      <div className="grid gap-4 xl:grid-cols-[minmax(0,1.15fr)_minmax(420px,1fr)]">
-        <Panel className="overflow-hidden p-0">
-          <div className="border-b border-slate-200 px-4 py-3">
-            <h3 className="text-sm font-bold text-slate-900">รายชื่อโค้ชโลก</h3>
-            <p className="text-xs text-slate-500">คลิกเพื่อดูค่าพลัง · สไตล์ · ประวัติงาน</p>
-          </div>
-          <div className="max-h-[calc(100dvh-14rem)] overflow-auto">
             <table className="w-full min-w-[720px] border-collapse text-left text-sm">
-              <thead className="sticky top-0 bg-white shadow-sm">
-                <tr className="border-b border-slate-200 text-xs tracking-wide text-slate-500 uppercase">
+              <thead className="sticky top-0 z-10 bg-white shadow-sm">
+                <tr className="border-b border-slate-200 text-xs text-slate-500 uppercase">
                   <th className="py-2 pr-2 pl-3 font-medium" />
                   <th className="py-2 pr-2 font-medium">ชื่อ</th>
                   <th className="py-2 pr-2 font-medium">พลัง</th>
@@ -777,20 +1131,19 @@ function CoachesDbView({ save }: { save: GameSave | null }) {
                 </tr>
               </thead>
               <tbody>
-                {rows.map(({ coach: c, post }) => (
+                {pageRows.map(({ coach: c, post }) => (
                   <tr
                     key={c.id}
-                    className={cn(
-                      'cursor-pointer border-b border-slate-100 hover:bg-slate-50',
-                      selectedId === c.id && 'bg-sky-50',
-                    )}
+                    className={rowSelected(selectedId === c.id)}
                     onClick={() => setSelectedId(c.id)}
                   >
                     <td className="py-2 pr-2 pl-3">
                       <CoachFace coachId={c.id} name={c.name} size="xs" />
                     </td>
                     <td className="py-2 pr-2 font-medium text-slate-900">{c.name}</td>
-                    <td className="py-2 pr-2 font-semibold tabular-nums">{formatCoachStat(c.power)}</td>
+                    <td className="py-2 pr-2 font-semibold tabular-nums">
+                      {formatCoachStat(c.power)}
+                    </td>
                     <td className="py-2 pr-2 text-slate-700">{c.styleLabelTh}</td>
                     <td className="py-2 pr-2 text-xs text-slate-500">{c.nationTh}</td>
                     <td
@@ -805,7 +1158,7 @@ function CoachesDbView({ save }: { save: GameSave | null }) {
                     </td>
                   </tr>
                 ))}
-                {rows.length === 0 ? (
+                {pageRows.length === 0 ? (
                   <tr>
                     <td colSpan={6} className="px-4 py-8 text-center text-sm text-slate-500">
                       ไม่พบโค้ชตามตัวกรอง
@@ -814,18 +1167,17 @@ function CoachesDbView({ save }: { save: GameSave | null }) {
                 ) : null}
               </tbody>
             </table>
-          </div>
-        </Panel>
-
-        <Panel>
-          {!selected ? (
-            <p className="text-sm text-slate-500">เลือกโค้ชเพื่อดูค่าพลังและสไตล์</p>
+          </BrowseListPane>
+        }
+        detail={
+          selected ? (
+            <CoachDetail key={selected.id} coach={selected} save={save} />
           ) : (
-            <CoachDetail coach={selected} save={save} />
-          )}
-        </Panel>
-      </div>
-    </>
+            <BrowseDetailPane empty={<p className="text-sm text-slate-500">เลือกโค้ชเพื่อดูค่าพลังและสไตล์</p>} />
+          )
+        }
+      />
+    </div>
   )
 }
 
@@ -838,66 +1190,70 @@ function StaffDetail({
 }) {
   const skill = skillForRole(person, person.role)
 
-  return (
-    <div className="max-h-[calc(100dvh-10rem)] space-y-4 overflow-y-auto pr-1">
-      <div>
-        <h3 className="text-lg font-bold text-slate-900">{person.name}</h3>
-        <p className="text-sm text-slate-600">
-          {ROLE_TH[person.role]} · อายุ {person.age} · ทักษะหลัก {skill}/20 · ชื่อเสียง{' '}
-          {person.reputation}
-        </p>
-        <p className="text-xs text-slate-500">
-          {clubName}
-          {person.origin === 'ex_player' && person.formerPlayerName
-            ? ` · อดีตนักเตะ ${person.formerPlayerName}`
-            : ''}
-        </p>
-      </div>
-
-      <div>
-        <h4 className="text-xs font-bold tracking-wide text-slate-500 uppercase">Status</h4>
-        <ul className="mt-2 space-y-1.5">
-          <StatusBar label="Energy" value={person.energy} max={100} />
-          <StatusBar label="Morale" value={person.morale} />
-          <StatusBar label="Pro" value={person.professionalism} />
-          <StatusBar label="Ambition" value={person.ambition} />
-          <StatusBar label="Det" value={person.determination} />
-        </ul>
-      </div>
-
-      <div>
-        <h4 className="text-xs font-bold tracking-wide text-slate-500 uppercase">ทักษะสายงาน</h4>
-        <ul className="mt-2 space-y-1.5">
-          <StatusBar label="Coach" value={person.coachSkill} />
-          <StatusBar label="Attack" value={person.attackSkill ?? person.coachSkill} />
-          <StatusBar label="Defend" value={person.defendSkill ?? person.coachSkill} />
-          <StatusBar label="Fitness" value={person.fitnessSkill ?? person.coachSkill} />
-          <StatusBar label="Scout" value={person.scoutSkill} />
-          <StatusBar label="Physio" value={person.physioSkill} />
-        </ul>
-      </div>
-
-      <dl className="grid grid-cols-2 gap-2 text-xs">
-        <div className="rounded-md bg-slate-50 px-2 py-1.5">
-          <dt className="text-slate-500">ค่าเหนื่อย</dt>
-          <dd className="font-semibold">{formatMoney(person.wageWeekly)}/wk</dd>
-        </div>
-        <div className="rounded-md bg-slate-50 px-2 py-1.5">
-          <dt className="text-slate-500">ค่าจ้าง</dt>
-          <dd className="font-semibold">{formatMoney(person.hireFee)}</dd>
-        </div>
-        <div className="rounded-md bg-slate-50 px-2 py-1.5">
-          <dt className="text-slate-500">ปีในบทบาท</dt>
-          <dd className="font-semibold">{person.yearsInRole}</dd>
-        </div>
-        <div className="rounded-md bg-slate-50 px-2 py-1.5">
-          <dt className="text-slate-500">ที่มา</dt>
-          <dd className="font-semibold">
-            {person.origin === 'ex_player' ? 'อดีตนักเตะ' : 'สายอาชีพ'}
-          </dd>
-        </div>
-      </dl>
+  const header = (
+    <div>
+      <h3 className="text-lg font-bold text-balance text-slate-900">{person.name}</h3>
+      <p className="text-sm text-slate-600">
+        {ROLE_TH[person.role]} · อายุ {person.age} · ทักษะหลัก {skill}/20 · ชื่อเสียง{' '}
+        {person.reputation}
+      </p>
+      <p className="text-xs text-slate-500">
+        {clubName}
+        {person.origin === 'ex_player' && person.formerPlayerName
+          ? ` · อดีตนักเตะ ${person.formerPlayerName}`
+          : ''}
+      </p>
     </div>
+  )
+
+  return (
+    <BrowseDetailPane header={header}>
+      <div className="space-y-4">
+        <div>
+          <SectionLabel>สถานะ</SectionLabel>
+          <ul className="space-y-1.5">
+            <StatusBar label="Energy" value={person.energy} max={100} />
+            <StatusBar label="Morale" value={person.morale} />
+            <StatusBar label="Pro" value={person.professionalism} />
+            <StatusBar label="Ambition" value={person.ambition} />
+            <StatusBar label="Det" value={person.determination} />
+          </ul>
+        </div>
+
+        <div>
+          <SectionLabel>ทักษะสายงาน</SectionLabel>
+          <ul className="space-y-1.5">
+            <StatusBar label="Coach" value={person.coachSkill} />
+            <StatusBar label="Attack" value={person.attackSkill ?? person.coachSkill} />
+            <StatusBar label="Defend" value={person.defendSkill ?? person.coachSkill} />
+            <StatusBar label="Fitness" value={person.fitnessSkill ?? person.coachSkill} />
+            <StatusBar label="Scout" value={person.scoutSkill} />
+            <StatusBar label="Physio" value={person.physioSkill} />
+          </ul>
+        </div>
+
+        <dl className="grid grid-cols-2 gap-2 text-xs">
+          <div className="rounded-md bg-slate-50 px-2.5 py-2">
+            <dt className="text-slate-500">ค่าเหนื่อย</dt>
+            <dd className="font-semibold">{formatMoney(person.wageWeekly)}/wk</dd>
+          </div>
+          <div className="rounded-md bg-slate-50 px-2.5 py-2">
+            <dt className="text-slate-500">ค่าจ้าง</dt>
+            <dd className="font-semibold">{formatMoney(person.hireFee)}</dd>
+          </div>
+          <div className="rounded-md bg-slate-50 px-2.5 py-2">
+            <dt className="text-slate-500">ปีในบทบาท</dt>
+            <dd className="font-semibold">{person.yearsInRole}</dd>
+          </div>
+          <div className="rounded-md bg-slate-50 px-2.5 py-2">
+            <dt className="text-slate-500">ที่มา</dt>
+            <dd className="font-semibold">
+              {person.origin === 'ex_player' ? 'อดีตนักเตะ' : 'สายอาชีพ'}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </BrowseDetailPane>
   )
 }
 
@@ -907,6 +1263,7 @@ function StaffDbView({ save }: { save: GameSave | null }) {
   const [clubFilter, setClubFilter] = useState<'all' | 'free' | 'employed'>('all')
   const [q, setQ] = useState('')
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [page, setPage] = useState(1)
 
   const clubNameOf = (clubId: string | null) => {
     if (!clubId || !save) return 'ว่างงาน'
@@ -930,6 +1287,12 @@ function StaffDbView({ save }: { save: GameSave | null }) {
       )
     })
   }, [pool, role, clubFilter, q, save])
+
+  useEffect(() => {
+    setPage(1)
+  }, [role, clubFilter, q])
+
+  const pageRows = useMemo(() => pageSlice(filtered, page), [filtered, page])
 
   const selected = filtered.find((p) => p.id === selectedId) ?? pool.find((p) => p.id === selectedId) ?? null
 
@@ -958,7 +1321,7 @@ function StaffDbView({ save }: { save: GameSave | null }) {
 
   if (!save) {
     return (
-      <Panel tone="warn">
+      <Panel tone="warn" className="shrink-0 py-3">
         <p className="text-sm text-slate-700">
           สตาฟอยู่ในเซฟอาชีพ — เริ่มอาชีพใหม่หรือโหลดเซฟเพื่อดูพูลทีมงาน
         </p>
@@ -967,59 +1330,50 @@ function StaffDbView({ save }: { save: GameSave | null }) {
   }
 
   return (
-    <>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-        <StatTile label="ในพูล" value={String(stats.total)} accent />
-        <StatTile label="โค้ชซ้อม" value={String(stats.coaches)} />
-        <StatTile label="สเกาต์" value={String(stats.scout)} />
-        <StatTile label="แพทย์" value={String(stats.physio)} />
-        <StatTile label="ว่างงาน" value={String(stats.free)} hint={`มีงาน ${stats.employed}`} />
-      </div>
+    <div className="flex min-h-0 flex-1 flex-col gap-3">
+      <BrowseFilterBar>
+        <FilterSelect
+          label="บทบาท"
+          icon={<IconWhistle />}
+          value={role}
+          onChange={(e) => setRole(e.target.value as typeof role)}
+        >
+          <option value="all">ทั้งหมด</option>
+          <option value="coach">ผู้ช่วยผู้จัดการ</option>
+          <option value="attacking">โค้ชฝึกกองหน้า</option>
+          <option value="defending">โค้ชฝึกกองหลัง</option>
+          <option value="fitness">โค้ชฟิตเนส</option>
+          <option value="scout">สเกาต์</option>
+          <option value="physio">แพทย์</option>
+        </FilterSelect>
+        <FilterSelect
+          label="งาน"
+          icon={<IconBuilding />}
+          value={clubFilter}
+          onChange={(e) => setClubFilter(e.target.value as typeof clubFilter)}
+        >
+          <option value="all">ทั้งหมด</option>
+          <option value="employed">มีสโมสร</option>
+          <option value="free">ว่างงาน</option>
+        </FilterSelect>
+        <SearchField value={q} onChange={setQ} placeholder="ชื่อ · สโมสร · บทบาท" />
+      </BrowseFilterBar>
 
-      <Panel>
-        <div className="flex flex-wrap gap-3">
-          <FilterSelect
-            label="บทบาท"
-            icon={<IconWhistle />}
-            value={role}
-            onChange={(e) => setRole(e.target.value as typeof role)}
+      <BrowseSplit
+        list={
+          <BrowseListPane
+            title="รายชื่อสตาฟ"
+            subtitle={
+              <>
+                กรองได้ {filtered.length} / {stats.total} คน · หน้าละ {BROWSE_PAGE_SIZE} · ว่าง{' '}
+                {stats.free}
+              </>
+            }
+            pager={<ListPager page={page} total={filtered.length} onPage={setPage} />}
           >
-            <option value="all">ทั้งหมด</option>
-            <option value="coach">ผู้ช่วยผู้จัดการ</option>
-            <option value="attacking">โค้ชฝึกกองหน้า</option>
-            <option value="defending">โค้ชฝึกกองหลัง</option>
-            <option value="fitness">โค้ชฟิตเนส</option>
-            <option value="scout">สเกาต์</option>
-            <option value="physio">แพทย์</option>
-          </FilterSelect>
-          <FilterSelect
-            label="งาน"
-            icon={<IconBuilding />}
-            value={clubFilter}
-            onChange={(e) => setClubFilter(e.target.value as typeof clubFilter)}
-          >
-            <option value="all">ทั้งหมด</option>
-            <option value="employed">มีสโมสร</option>
-            <option value="free">ว่างงาน</option>
-          </FilterSelect>
-          <SearchField
-            value={q}
-            onChange={setQ}
-            placeholder="ชื่อ · สโมสร · บทบาท"
-          />
-        </div>
-      </Panel>
-
-      <div className="grid gap-4 xl:grid-cols-[minmax(0,1.15fr)_minmax(420px,1fr)]">
-        <Panel className="overflow-hidden p-0">
-          <div className="border-b border-slate-200 px-4 py-3">
-            <h3 className="text-sm font-bold text-slate-900">รายชื่อสตาฟ</h3>
-            <p className="text-xs text-slate-500">คลิกเพื่อดูสถานะและทักษะ</p>
-          </div>
-          <div className="max-h-[calc(100dvh-14rem)] overflow-auto">
             <table className="w-full min-w-[720px] border-collapse text-left text-sm">
-              <thead className="sticky top-0 bg-white shadow-sm">
-                <tr className="border-b border-slate-200 text-xs tracking-wide text-slate-500 uppercase">
+              <thead className="sticky top-0 z-10 bg-white shadow-sm">
+                <tr className="border-b border-slate-200 text-xs text-slate-500 uppercase">
                   <th className="px-3 py-2 font-medium">บทบาท</th>
                   <th className="py-2 pr-2 font-medium">ชื่อ</th>
                   <th className="py-2 pr-2 font-medium">อายุ</th>
@@ -1029,7 +1383,7 @@ function StaffDbView({ save }: { save: GameSave | null }) {
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((p) => {
+                {pageRows.map((p) => {
                   const skill = skillForRole(p, p.role)
                   const club =
                     p.clubId && save
@@ -1038,10 +1392,7 @@ function StaffDbView({ save }: { save: GameSave | null }) {
                   return (
                     <tr
                       key={p.id}
-                      className={cn(
-                        'cursor-pointer border-b border-slate-100 hover:bg-slate-50',
-                        selectedId === p.id && 'bg-sky-50',
-                      )}
+                      className={rowSelected(selectedId === p.id)}
                       onClick={() => setSelectedId(p.id)}
                     >
                       <td className="px-3 py-2 text-xs font-semibold text-slate-700">
@@ -1062,7 +1413,7 @@ function StaffDbView({ save }: { save: GameSave | null }) {
                     </tr>
                   )
                 })}
-                {filtered.length === 0 ? (
+                {pageRows.length === 0 ? (
                   <tr>
                     <td colSpan={6} className="px-4 py-8 text-center text-sm text-slate-500">
                       ไม่พบสตาฟตามตัวกรอง
@@ -1071,18 +1422,21 @@ function StaffDbView({ save }: { save: GameSave | null }) {
                 ) : null}
               </tbody>
             </table>
-          </div>
-        </Panel>
-
-        <Panel>
-          {!selected ? (
-            <p className="text-sm text-slate-500">เลือกสตาฟเพื่อดูสถานะและทักษะ</p>
+          </BrowseListPane>
+        }
+        detail={
+          selected ? (
+            <StaffDetail
+              key={selected.id}
+              person={selected}
+              clubName={clubNameOf(selected.clubId)}
+            />
           ) : (
-            <StaffDetail person={selected} clubName={clubNameOf(selected.clubId)} />
-          )}
-        </Panel>
-      </div>
-    </>
+            <BrowseDetailPane empty={<p className="text-sm text-slate-500">เลือกสตาฟเพื่อดูสถานะและทักษะ</p>} />
+          )
+        }
+      />
+    </div>
   )
 }
 
@@ -1096,6 +1450,7 @@ function PackDbView() {
   const [q, setQ] = useState('')
   const [enrich, setEnrich] = useState<EnrichFilter>('all')
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [page, setPage] = useState(1)
 
   const clubsInLeague = useMemo(() => {
     const map = new Map<string, string>()
@@ -1128,117 +1483,81 @@ function PackDbView() {
     })
   }, [all, league, clubKey, q, enrich])
 
+  useEffect(() => {
+    setPage(1)
+  }, [league, clubKey, q, enrich])
+
+  const pageRows = useMemo(() => pageSlice(filtered, page), [filtered, page])
+
   const selected: PackPlayerRow | null =
     filtered.find((r) => r.id === selectedId) ??
     all.find((r) => r.id === selectedId) ??
     null
-  const bio = selected ? bioForPlayerName(selected.name) : null
-  const fm = selected ? fmInsideForPlayerName(selected.name) : null
-
-  const leagueStatusHint = (id: PackLeagueId) => {
-    const s = stats.byLeague[id]
-    if (!s?.players) return '—'
-    return `รูป ${s.withPhoto}/${s.players} · FM ${s.withFm}/${s.players}`
-  }
 
   return (
-    <>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        <StatTile label="ทั้งหมดใน pack" value={stats.total.toLocaleString('th-TH')} accent />
-        <StatTile
-          label="มีรูป"
-          value={`${stats.withPhoto}`}
-          hint={`${Math.round((stats.withPhoto / Math.max(1, stats.total)) * 100)}%`}
-        />
-        <StatTile label="มี FM" value={`${stats.withFm}`} />
-        <StatTile label="มี Bio" value={`${stats.withBio}`} />
-        {(
-          [
-            ['eng', 'Premier League'],
-            ['eng2', 'Championship'],
-            ['esp', 'La Liga'],
-            ['esp2', 'LaLiga2'],
-            ['ger', 'Bundesliga'],
-            ['ger2', '2. Bundesliga'],
-            ['fra', 'Ligue 1'],
-            ['fra2', 'Ligue 2'],
-            ['ita', 'Serie A'],
-            ['ita2', 'Serie B'],
-            ['tha', 'ไทยลีก 1'],
-            ['tha2', 'ไทยลีก 2'],
-          ] as const
-        ).map(([id, label]) => (
-          <StatTile
-            key={id}
-            label={label}
-            value={stats.byLeague[id]?.players ?? 0}
-            hint={leagueStatusHint(id)}
-          />
-        ))}
-      </div>
+    <div className="flex min-h-0 flex-1 flex-col gap-3">
+      <BrowseFilterBar>
+        <FilterSelect
+          label="ลีก"
+          icon={<IconLayers />}
+          value={league}
+          onChange={(e) => {
+            setLeague(e.target.value as PackLeagueId | 'all')
+            setClubKey('all')
+          }}
+        >
+          <option value="all">ทุกลีกที่มี pack</option>
+          {leagues.map((l) => (
+            <option key={l.id} value={l.id}>
+              {l.label}
+            </option>
+          ))}
+        </FilterSelect>
+        <FilterSelect
+          label="สโมสร"
+          icon={<IconBuilding />}
+          className="min-w-[14rem]"
+          value={clubKey}
+          onChange={(e) => setClubKey(e.target.value)}
+        >
+          <option value="all">ทุกสโมสร</option>
+          {clubsInLeague.map((c) => (
+            <option key={c.key} value={c.key}>
+              {c.name}
+            </option>
+          ))}
+        </FilterSelect>
+        <FilterSelect
+          label="ข้อมูลเสริม"
+          icon={<IconPackage />}
+          value={enrich}
+          onChange={(e) => setEnrich(e.target.value as EnrichFilter)}
+        >
+          <option value="all">ทั้งหมด</option>
+          <option value="photo">มีรูป</option>
+          <option value="bio">มี Bio</option>
+          <option value="fm">มี FMInside</option>
+          <option value="missing">ยังขาดรูป / Bio / FM</option>
+        </FilterSelect>
+        <SearchField value={q} onChange={setQ} placeholder="ชื่อ · สโมสร · สัญชาติ · ตำแหน่ง" />
+      </BrowseFilterBar>
 
-      <Panel>
-        <div className="flex flex-wrap gap-3">
-          <FilterSelect
-            label="ลีก"
-            icon={<IconLayers />}
-            value={league}
-            onChange={(e) => {
-              setLeague(e.target.value as PackLeagueId | 'all')
-              setClubKey('all')
-            }}
+      <BrowseSplit
+        list={
+          <BrowseListPane
+            title="รายชื่อใน pack"
+            subtitle={
+              <>
+                กรองได้ {filtered.length.toLocaleString('th-TH')} /{' '}
+                {stats.total.toLocaleString('th-TH')} คน · หน้าละ {BROWSE_PAGE_SIZE} · รูป{' '}
+                {stats.withPhoto} · FM {stats.withFm} · Bio {stats.withBio}
+              </>
+            }
+            pager={<ListPager page={page} total={filtered.length} onPage={setPage} />}
           >
-            <option value="all">ทุกลีกที่มี pack</option>
-            {leagues.map((l) => (
-              <option key={l.id} value={l.id}>
-                {l.label}
-              </option>
-            ))}
-          </FilterSelect>
-          <FilterSelect
-            label="สโมสร"
-            icon={<IconBuilding />}
-            className="min-w-[14rem]"
-            value={clubKey}
-            onChange={(e) => setClubKey(e.target.value)}
-          >
-            <option value="all">ทุกสโมสร</option>
-            {clubsInLeague.map((c) => (
-              <option key={c.key} value={c.key}>
-                {c.name}
-              </option>
-            ))}
-          </FilterSelect>
-          <FilterSelect
-            label="ข้อมูลเสริม"
-            icon={<IconPackage />}
-            value={enrich}
-            onChange={(e) => setEnrich(e.target.value as EnrichFilter)}
-          >
-            <option value="all">ทั้งหมด</option>
-            <option value="photo">มีรูป</option>
-            <option value="bio">มี Bio</option>
-            <option value="fm">มี FMInside</option>
-            <option value="missing">ยังขาดรูป / Bio / FM</option>
-          </FilterSelect>
-          <SearchField
-            value={q}
-            onChange={setQ}
-            placeholder="ชื่อ · สโมสร · สัญชาติ · ตำแหน่ง"
-          />
-        </div>
-      </Panel>
-
-      <div className="grid gap-4 xl:grid-cols-[minmax(0,1.15fr)_minmax(420px,1fr)]">
-        <Panel className="overflow-hidden p-0">
-          <div className="border-b border-slate-200 px-4 py-3">
-            <h3 className="text-sm font-bold text-slate-900">รายชื่อใน pack</h3>
-            <p className="text-xs text-slate-500">คลิกแถวเพื่อดูประวัติอาชีพ · Bio · FM</p>
-          </div>
-          <div className="max-h-[calc(100dvh-14rem)] overflow-auto">
             <table className="w-full min-w-[880px] border-collapse text-left text-sm">
-              <thead className="sticky top-0 bg-white shadow-sm">
-                <tr className="border-b border-slate-200 text-xs tracking-wide text-slate-500 uppercase">
+              <thead className="sticky top-0 z-10 bg-white shadow-sm">
+                <tr className="border-b border-slate-200 text-xs text-slate-500 uppercase">
                   <th className="px-3 py-2 font-medium">Pos</th>
                   <th className="py-2 pr-2 font-medium" />
                   <th className="py-2 pr-2 font-medium">ชื่อ</th>
@@ -1250,15 +1569,12 @@ function PackDbView() {
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((r) => {
+                {pageRows.map((r) => {
                   const club = crestClubFromPack(r)
                   return (
                     <tr
                       key={r.id}
-                      className={cn(
-                        'cursor-pointer border-b border-slate-100 hover:bg-slate-50',
-                        selectedId === r.id && 'bg-sky-50',
-                      )}
+                      className={rowSelected(selectedId === r.id)}
                       onClick={() => setSelectedId(r.id)}
                     >
                       <td className="px-3 py-2 font-semibold" title={roleLabel(r.role)}>
@@ -1276,9 +1592,13 @@ function PackDbView() {
                           <span className="truncate">{r.clubShort}</span>
                         </span>
                       </td>
-                      <td className="py-2 pr-2 text-xs text-slate-500">{r.leagueId.toUpperCase()}</td>
-                      <td className="px-3 py-2 text-[10px] font-semibold tracking-wide">
-                        <span className={r.hasPhoto ? 'text-violet-800' : 'text-slate-300'}>PIC</span>
+                      <td className="py-2 pr-2 text-xs text-slate-500">
+                        {r.leagueId.toUpperCase()}
+                      </td>
+                      <td className="px-3 py-2 text-[10px] font-semibold">
+                        <span className={r.hasPhoto ? 'text-violet-800' : 'text-slate-300'}>
+                          PIC
+                        </span>
                         <span className="mx-1 text-slate-200">·</span>
                         <span className={r.hasBio ? 'text-lime-800' : 'text-slate-300'}>BIO</span>
                         <span className="mx-1 text-slate-200">·</span>
@@ -1287,7 +1607,7 @@ function PackDbView() {
                     </tr>
                   )
                 })}
-                {filtered.length === 0 ? (
+                {pageRows.length === 0 ? (
                   <tr>
                     <td colSpan={8} className="px-4 py-8 text-center text-sm text-slate-500">
                       ไม่พบนักเตะตามตัวกรอง
@@ -1296,113 +1616,172 @@ function PackDbView() {
                 ) : null}
               </tbody>
             </table>
-          </div>
-        </Panel>
-
-        <Panel>
-          {!selected ? (
-            <p className="text-sm text-slate-500">เลือกนักเตะจากตารางเพื่อดูรายละเอียด pack</p>
+          </BrowseListPane>
+        }
+        detail={
+          selected ? (
+            <PackPlayerDetail key={selected.id} selected={selected} />
           ) : (
-            <div className="max-h-[calc(100dvh-10rem)] space-y-4 overflow-y-auto pr-1">
-              <div className="flex items-start gap-3">
-                <PlayerFace name={selected.name} size="md" />
-                <div className="min-w-0 flex-1">
-                  <h3 className="text-lg font-bold text-balance text-slate-900">{selected.name}</h3>
-                  <p className="text-sm text-slate-600">
-                    {roleLabel(selected.role)} · อายุ {selected.age} · OVR {selected.ovr}
-                  </p>
-                  <p className="mt-1 flex items-center gap-2 text-xs text-slate-500">
-                    <ClubCrest club={crestClubFromPack(selected)} size="xs" />
-                    <span>
-                      {selected.clubName} · {selected.leagueLabel}
-                    </span>
-                  </p>
-                </div>
-              </div>
+            <BrowseDetailPane
+              empty={<p className="text-sm text-slate-500">เลือกนักเตะจากตารางเพื่อดูรายละเอียด pack</p>}
+            />
+          )
+        }
+      />
+    </div>
+  )
+}
 
-              <div className="rounded-lg border border-slate-200 bg-white p-3">
-                <PlayerCareerHistory playerName={selected.name} playerAge={selected.age} />
-              </div>
+function PackPlayerDetail({ selected }: { selected: PackPlayerRow }) {
+  const [tab, setTab] = useState<DetailTab>('overview')
+  const bio = bioForPlayerName(selected.name)
+  const fm = fmInsideForPlayerName(selected.name)
+  const skills = useMemo(() => {
+    const attrs = fm ? playerAttrsFromFmInside(fm) : null
+    return previewPlayerSkills({
+      id: selected.id,
+      position: roleGroup(selected.role),
+      role: selected.role,
+      overall: selected.ovr,
+      attrs,
+    })
+  }, [selected.id, selected.role, selected.ovr, fm])
 
-              <dl className="grid grid-cols-3 gap-2 text-xs">
-                <div className="rounded-md bg-slate-50 px-2 py-1.5">
-                  <dt className="text-slate-500">รูป</dt>
-                  <dd
-                    className={
-                      selected.hasPhoto ? 'font-medium text-violet-800' : 'font-medium text-amber-800'
-                    }
-                  >
-                    {selected.hasPhoto ? 'มี' : 'ยังไม่มี'}
-                  </dd>
-                </div>
-                <div className="rounded-md bg-slate-50 px-2 py-1.5">
-                  <dt className="text-slate-500">FM Pos</dt>
-                  <dd className="font-medium">{selected.fmPos ?? '—'}</dd>
-                </div>
-                <div className="rounded-md bg-slate-50 px-2 py-1.5">
-                  <dt className="text-slate-500">สัญชาติ</dt>
-                  <dd className="font-medium">{selected.nationality ?? '—'}</dd>
-                </div>
-              </dl>
-
-              <div>
-                <h4 className="text-xs font-bold tracking-wide text-slate-500 uppercase">Bio pack</h4>
-                {!bio ? (
-                  <p className="mt-1 text-sm text-amber-800">ยังไม่มีใน playerBiosEng.json</p>
-                ) : (
-                  <ul className="mt-1 space-y-1 text-sm text-slate-700">
-                    <li>
-                      ค่าตัว {formatGbp(bio.valueGbp)} · ค่าเหนื่อย {formatGbp(bio.wageWeeklyGbp)}/wk
-                    </li>
-                    <li>สัญญาถึง {bio.contractExpires ?? '—'}</li>
-                  </ul>
-                )}
-              </div>
-
-              <div>
-                <h4 className="text-xs font-bold tracking-wide text-slate-500 uppercase">FMInside</h4>
-                {!fm ? (
-                  <p className="mt-1 text-sm text-amber-800">ยังไม่มีใน fmInsideAttrs.json</p>
-                ) : (
-                  <div className="mt-1 space-y-3">
-                    <ul className="space-y-1 text-sm text-slate-700">
-                      <li>
-                        Rating {fm.rating ?? '—'} · Potential {fm.potential ?? '—'}
-                      </li>
-                      <li>
-                        มูลค่า {formatEur(fm.sellValueEur)} · ค่าเหนื่อย {formatEur(fm.wageEurPw)}/wk
-                      </li>
-                    </ul>
-                    {(
-                      [
-                        ['Goalkeeping', fm.attrs.goalkeeping ?? {}],
-                        ['Technical', fm.attrs.technical],
-                        ['Mental', fm.attrs.mental],
-                        ['Physical', fm.attrs.physical],
-                        ['Set Pieces', fm.attrs.setPieces],
-                      ] as const
-                    ).map(([title, group]) =>
-                      Object.keys(group).length > 0 ? (
-                        <div key={title}>
-                          <h5 className="text-xs font-semibold text-slate-600">{title}</h5>
-                          <ul className="mt-1 grid max-h-32 grid-cols-2 gap-x-2 gap-y-0.5 overflow-y-auto text-xs sm:grid-cols-3">
-                            {Object.entries(group).map(([k, v]) => (
-                              <li key={k} className="flex justify-between gap-2">
-                                <span className="truncate text-slate-500">{k}</span>
-                                <span className="font-medium tabular-nums">{v}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ) : null,
-                    )}
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-        </Panel>
+  const header = (
+    <div className="flex items-start gap-3">
+      <PlayerFace name={selected.name} size="md" />
+      <div className="min-w-0 flex-1">
+        <h3 className="text-lg font-bold text-balance text-slate-900">{selected.name}</h3>
+        <p className="text-sm text-slate-600">
+          {roleLabel(selected.role)} · อายุ {selected.age} · OVR{' '}
+          <span className="font-semibold tabular-nums text-slate-900">{selected.ovr}</span>
+        </p>
+        <p className="mt-1 flex items-center gap-2 text-xs text-slate-500">
+          <ClubCrest club={crestClubFromPack(selected)} size="xs" />
+          <span>
+            {selected.clubName} · {selected.leagueLabel}
+          </span>
+        </p>
+        {skills.length > 0 ? (
+          <p className="mt-1.5 text-[11px] font-medium text-emerald-800">
+            พลังแฝง {skills.length}/10 · {skills.slice(0, 3).map(skillLabel).join(' · ')}
+            {skills.length > 3 ? '…' : ''}
+          </p>
+        ) : null}
       </div>
-    </>
+    </div>
+  )
+
+  return (
+    <BrowseDetailPane
+      header={header}
+      tabs={
+        <DetailTabs
+          tabs={[
+            { id: 'overview', label: 'ภาพรวม' },
+            { id: 'attrs', label: 'FM Attrs' },
+            { id: 'skills', label: `พลังแฝง (${skills.length})` },
+            { id: 'career', label: 'อาชีพ' },
+          ]}
+          value={tab}
+          onChange={setTab}
+        />
+      }
+    >
+      {tab === 'overview' ? (
+        <div className="space-y-4">
+          <dl className="grid grid-cols-3 gap-2 text-xs">
+            <div className="rounded-md bg-slate-50 px-2.5 py-2">
+              <dt className="text-slate-500">รูป</dt>
+              <dd
+                className={
+                  selected.hasPhoto ? 'font-medium text-violet-800' : 'font-medium text-amber-800'
+                }
+              >
+                {selected.hasPhoto ? 'มี' : 'ยังไม่มี'}
+              </dd>
+            </div>
+            <div className="rounded-md bg-slate-50 px-2.5 py-2">
+              <dt className="text-slate-500">FM Pos</dt>
+              <dd className="font-medium">{selected.fmPos ?? '—'}</dd>
+            </div>
+            <div className="rounded-md bg-slate-50 px-2.5 py-2">
+              <dt className="text-slate-500">สัญชาติ</dt>
+              <dd className="font-medium">{selected.nationality ?? '—'}</dd>
+            </div>
+          </dl>
+
+          <div>
+            <SectionLabel>Bio pack</SectionLabel>
+            {!bio ? (
+              <p className="text-sm text-amber-800">ยังไม่มีใน playerBios pack</p>
+            ) : (
+              <ul className="space-y-1 text-sm text-slate-700">
+                <li>
+                  ค่าตัว {formatGbp(bio.valueGbp)} · ค่าเหนื่อย {formatGbp(bio.wageWeeklyGbp)}/wk
+                </li>
+                <li>สัญญาถึง {bio.contractExpires ?? '—'}</li>
+              </ul>
+            )}
+          </div>
+
+          <div>
+            <SectionLabel>FMInside สรุป</SectionLabel>
+            {!fm ? (
+              <p className="text-sm text-amber-800">ยังไม่มีใน fmInsideAttrs.json</p>
+            ) : (
+              <ul className="space-y-1 text-sm text-slate-700">
+                <li>
+                  Rating {fm.rating ?? '—'} · Potential {fm.potential ?? '—'}
+                </li>
+                <li>
+                  มูลค่า {formatEur(fm.sellValueEur)} · ค่าเหนื่อย {formatEur(fm.wageEurPw)}/wk
+                </li>
+              </ul>
+            )}
+          </div>
+        </div>
+      ) : null}
+
+      {tab === 'attrs' ? (
+        <div className="space-y-4">
+          {!fm ? (
+            <p className="text-sm text-amber-800">ยังไม่มีค่าพลัง FMInside</p>
+          ) : (
+            (
+              [
+                ['Goalkeeping', fm.attrs.goalkeeping ?? {}],
+                ['Technical', fm.attrs.technical],
+                ['Mental', fm.attrs.mental],
+                ['Physical', fm.attrs.physical],
+                ['Set Pieces', fm.attrs.setPieces],
+              ] as const
+            ).map(([title, group]) =>
+              Object.keys(group).length > 0 ? (
+                <div key={title}>
+                  <SectionLabel>{title}</SectionLabel>
+                  <AttrGrid>
+                    {Object.entries(group).map(([k, v]) => (
+                      <AttrRow key={k} label={k} value={v} max={99} />
+                    ))}
+                  </AttrGrid>
+                </div>
+              ) : null,
+            )
+          )}
+        </div>
+      ) : null}
+
+      {tab === 'skills' ? (
+        <div className="space-y-3">
+          <SkillsTabIntro overall={selected.ovr} skillCount={skills.length} />
+          <SkillChipList skillIds={skills} />
+        </div>
+      ) : null}
+
+      {tab === 'career' ? (
+        <PlayerCareerHistory playerName={selected.name} playerAge={selected.age} />
+      ) : null}
+    </BrowseDetailPane>
   )
 }

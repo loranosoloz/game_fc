@@ -59,6 +59,8 @@ function slimForLocalStorage(rawFull: string): string | null {
       playerMoveLog: (save.playerMoveLog ?? []).slice(0, 80),
       inbox: (save.inbox ?? []).slice(0, 25),
       dailyLogs: (save.dailyLogs ?? []).slice(0, 40),
+      // คลังสถิติเต็มอยู่ fc-manager-match-stats — ไม่ยัด localStorage
+      matchArchive: (save.matchArchive ?? []).slice(0, 24),
     }
     return JSON.stringify(slim)
   } catch {
@@ -169,4 +171,9 @@ export function clearAllSaves() {
     tx.objectStore(IDB_STORE).delete(IDB_KEY)
     db.close()
   })
+  void import('./matchStatsDb')
+    .then((m) => m.clearAllMatchStats())
+    .catch(() => {
+      /* */
+    })
 }

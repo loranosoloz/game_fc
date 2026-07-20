@@ -15,6 +15,11 @@ import { pushNationalTeamNews } from './nationalTeamNews'
 import { tickAssociationHiring, ensureAssociations } from './associations'
 import { applyIntlBreakMatchWear } from './intlTournaments'
 import {
+  applyIntlReturnStamina,
+  applyIntlWeekStamina,
+} from './playerStamina'
+import { staminaHitOnLeaveEvent } from './medicalStamina'
+import {
   applyNtCampFocusWear,
   clearNtCamp,
   ensureNtCamp,
@@ -69,15 +74,16 @@ export function maybeQueueInternationalBreak(save: GameSave): GameSave {
 
   const { callUps, snubs } = nationalTeamCallUps(withAssoc, slot.weeks)
   const callIds = callUps.map((c) => c.playerId)
-  let players = withAssoc.players.map((p) =>
-    callIds.includes(p.id)
-      ? {
-          ...p,
-          leaveDays: Math.max(p.leaveDays ?? 0, slot.weeks),
-          morale: clamp(p.morale + (callUps.find((c) => c.playerId === p.id)?.firstCap ? 2 : 1), 1, 20),
-        }
-      : p,
-  )
+  let players = withAssoc.players.map((p) => {
+    if (!callIds.includes(p.id)) return p
+    const hit = staminaHitOnLeaveEvent(p)
+    return {
+      ...p,
+      leaveDays: Math.max(p.leaveDays ?? 0, slot.weeks),
+      condition: Math.max(28, p.condition - hit),
+      morale: clamp(p.morale + (callUps.find((c) => c.playerId === p.id)?.firstCap ? 2 : 1), 1, 20),
+    }
+  })
   // หลุดโผ — โมราเลลดเล็กน้อยถ้าเป็นทีมผู้เล่น
   const snubIds = new Set(snubs.map((s) => s.playerId))
   players = players.map((p) =>
@@ -144,12 +150,11 @@ export function advanceInternationalBreak(save: GameSave): {
 
   let players = save.players.map((p) => {
     const away = called.has(p.id)
-    const heal = away ? 4 : 14
-    let nextP = {
-      ...p,
-      condition: clamp(p.condition + heal, 1, 100),
-      sharpness: clamp(p.sharpness + (away ? 1 : -2), 1, 100),
-      leaveDays: Math.max(0, (p.leaveDays ?? 0) - 1),
+    let nextP = applyIntlWeekStamina(p, away)
+    nextP = {
+      ...nextP,
+      sharpness: clamp(nextP.sharpness + (away ? 1 : -2), 1, 100),
+      leaveDays: Math.max(0, (nextP.leaveDays ?? 0) - 1),
     }
     nextP = tickPlayerInjury(nextP, physio)
     nextP = tickIllness(nextP, physio)
@@ -205,10 +210,10 @@ export function advanceInternationalBreak(save: GameSave): {
         injuryDays = 3 + (roll % 5)
         injuryType = 'muscle'
       }
+      const worn = applyIntlReturnStamina(p)
       return {
-        ...p,
+        ...worn,
         leaveDays: 0,
-        condition: clamp(p.condition - 8, 25, 100),
         injuryDays,
         injuryType,
       }

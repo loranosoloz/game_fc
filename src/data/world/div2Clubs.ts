@@ -342,12 +342,32 @@ export const DIV2_CLUB_NAMES: Record<LeagueId, Div2ClubDef[]> = {
     { key: 'xgm', name: 'PAOK B', shortName: 'XGM', color: '#0055A4' },
     { key: 'xgn', name: 'Olympiacos B', shortName: 'XGN', color: '#0055A4' },
   ],
-  // ASEAN + Saudi: no div2 scaffold yet (div2TeamCount = 0)
+  // ASEAN: no div2 scaffold yet (div2TeamCount = 0)
   vie: [],
   idn: [],
   mys: [],
   sgp: [],
-  sau: [],
+  /** Saudi First Division 2025/26 — 18 clubs · promo/releg 2 */
+  sau: [
+    { key: 'abh', name: 'Abha', shortName: 'ABH', color: '#E30613' },
+    { key: 'fsy', name: 'Al-Faisaly', shortName: 'FSY', color: '#0033A0' },
+    { key: 'dir', name: 'Al-Diriyah', shortName: 'DIR', color: '#008C45' },
+    { key: 'ula', name: 'Al-Ula', shortName: 'ULA', color: '#C4A35A' },
+    { key: 'orb', name: 'Al-Orobah', shortName: 'ORB', color: '#0033A0' },
+    { key: 'jba', name: 'Al-Jabalain', shortName: 'JBA', color: '#E30613' },
+    { key: 'rae', name: 'Al-Raed', shortName: 'RAE', color: '#E30613' },
+    { key: 'zlf', name: 'Al-Zulfi', shortName: 'ZLF', color: '#0033A0' },
+    { key: 'tai', name: 'Al-Tai', shortName: 'TAI', color: '#E30613' },
+    { key: 'whd', name: 'Al-Wehda', shortName: 'WHD', color: '#E30613' },
+    { key: 'buk', name: 'Al-Bukiryah', shortName: 'BUK', color: '#0033A0' },
+    { key: 'anw', name: 'Al-Anwar', shortName: 'ANW', color: '#F5A623' },
+    { key: 'jed', name: 'Jeddah', shortName: 'JED', color: '#0033A0' },
+    { key: 'adl', name: 'Al-Adalah', shortName: 'ADL', color: '#E30613' },
+    { key: 'jdl', name: 'Al-Jandal', shortName: 'JDL', color: '#008C45' },
+    { key: 'btn', name: 'Al-Batin', shortName: 'BTN', color: '#0033A0' },
+    { key: 'arb', name: 'Al-Arabi', shortName: 'ARB', color: '#E30613' },
+    { key: 'jbi', name: 'Al-Jubail', shortName: 'JBI', color: '#0033A0' },
+  ],
 }
 
 export const DIV2_LEAGUE_NAME: Record<LeagueId, { name: string; nameTh: string }> = {

@@ -3,6 +3,7 @@
  */
 import type { AgentLike } from './setPiecesTypes'
 import type { SetPiecePlan, TeamMatchStats } from '../types'
+import { setPiecePlanTh } from './matchDrama'
 
 export type { AgentLike } from './setPiecesTypes'
 
@@ -86,7 +87,7 @@ export function resolveCorner(
         kind: 'short_keep',
         takerId: taker.id,
         takerName: taker.name,
-        text: `มุมสั้น · ${taker.name} เปิดสั้นครองต่อ`,
+        text: `มุมสั้น · ${taker.name} เปิดสั้นครองต่อ (แผน「${setPiecePlanTh(ctx.plan)}」)`,
         spot,
       }
     }
@@ -100,7 +101,7 @@ export function resolveCorner(
   const gkStr = gk
     ? (gk.attrs.handling + gk.attrs.aerialReach + gk.attrs.reflexes) / 3 / 99
     : 0.55
-  const chance = clamp(0.12 + delivery * 0.25 + aerial * 0.35 - gkStr * 0.28, 0.06, 0.42)
+  const chance = clamp(0.1 + delivery * 0.2 + aerial * 0.28 - gkStr * 0.32, 0.05, 0.28)
 
   if (ctx.rng() < chance) {
     return {
@@ -109,7 +110,7 @@ export function resolveCorner(
       scorerName: target.name,
       takerId: taker.id,
       takerName: taker.name,
-      text: `ลูกมุมเข้า! ${target.name} (เปิดโดย ${taker.name} · ${ctx.plan})`,
+      text: `ลูกมุมเข้า! ${target.name} (เปิดโดย ${taker.name} · แผน「${setPiecePlanTh(ctx.plan)}」)`,
       spot: { x: 50, y: ctx.attackingUp ? 94 : 6 },
     }
   }
@@ -118,7 +119,7 @@ export function resolveCorner(
       kind: 'save',
       takerId: taker.id,
       takerName: taker.name,
-      text: `เซฟลูกมุมจาก ${taker.name}`,
+      text: `เซฟลูกมุมจาก ${taker.name} (แผน「${setPiecePlanTh(ctx.plan)}」)`,
       spot: { x: 50, y: ctx.attackingUp ? 96 : 4 },
     }
   }
@@ -126,7 +127,7 @@ export function resolveCorner(
     kind: 'clear',
     takerId: taker.id,
     takerName: taker.name,
-    text: `เคลียร์ลูกมุมของ ${taker.name}`,
+    text: `เคลียร์ลูกมุมของ ${taker.name} · แผน「${setPiecePlanTh(ctx.plan)}」ยังไม่คม`,
     spot,
   }
 }
@@ -147,7 +148,7 @@ export function resolveFreeKick(
       kind: 'short_keep',
       takerId: taker.id,
       takerName: taker.name,
-      text: `ฟรีคิกสั้น · ${taker.name} ส่งต่อ`,
+      text: `ฟรีคิกสั้น · ${taker.name} ส่งต่อ (แผน「${setPiecePlanTh(ctx.plan)}」)`,
       spot: ctx.spot,
     }
   }
@@ -171,7 +172,7 @@ export function resolveFreeKick(
         scorerName: taker.name,
         takerId: taker.id,
         takerName: taker.name,
-        text: `ฟรีคิกเข้า! ${taker.name} (${ctx.plan})`,
+        text: `ฟรีคิกเข้า! ${taker.name} · แผน「${setPiecePlanTh(ctx.plan)}」`,
         spot: { x: 50, y: ctx.attackingUp ? 94 : 6 },
       }
     }
@@ -207,7 +208,7 @@ export function resolveFreeKick(
       scorerName: target.name,
       takerId: taker.id,
       takerName: taker.name,
-      text: `ฟรีคิกเปิดเข้าหัว! ${target.name}`,
+      text: `ฟรีคิกเปิดเข้าหัว! ${target.name} (แผน「${setPiecePlanTh(ctx.plan)}」)`,
       spot: { x: 50, y: ctx.attackingUp ? 94 : 6 },
     }
   }
@@ -215,7 +216,7 @@ export function resolveFreeKick(
     kind: 'clear',
     takerId: taker.id,
     takerName: taker.name,
-    text: `เคลียร์ฟรีคิกจาก ${taker.name}`,
+    text: `เคลียร์ฟรีคิกจาก ${taker.name} · แผน「${setPiecePlanTh(ctx.plan)}」`,
     spot: ctx.spot,
   }
 }

@@ -13,6 +13,22 @@ export interface PitchPlayerMarker {
   highlight?: boolean
 }
 
+/** เสื้อขาว/สว่าง (เช่น Real Madrid) ต้องตัวอักษรเข้ม + ขอบ ไม่งั้นมองไม่เห็นบนสนาม */
+function kitContrast(hex: string): { text: string; ring: string } {
+  const h = hex.replace('#', '').trim()
+  const full =
+    h.length === 3
+      ? `${h[0]}${h[0]}${h[1]}${h[1]}${h[2]}${h[2]}`
+      : h.padEnd(6, '0').slice(0, 6)
+  const r = Number.parseInt(full.slice(0, 2), 16) || 0
+  const g = Number.parseInt(full.slice(2, 4), 16) || 0
+  const b = Number.parseInt(full.slice(4, 6), 16) || 0
+  const light = 0.299 * r + 0.587 * g + 0.114 * b > 170
+  return light
+    ? { text: '#0f172a', ring: 'ring-slate-800/70' }
+    : { text: '#ffffff', ring: 'ring-black/30' }
+}
+
 interface MatchPitchProps {
   spot: PitchSpot
   players: PitchPlayerMarker[]
@@ -26,6 +42,8 @@ interface MatchPitchProps {
   hideBall?: boolean
   /** โหมดรางวัล — ไม่แสดงป้ายเหย้า/เยือน */
   awardsMode?: boolean
+  /** โมชันนุ่มสำหรับ demo ต่อเนื่อง */
+  glide?: boolean
 }
 
 export function MatchPitch({
@@ -39,7 +57,14 @@ export function MatchPitch({
   className,
   hideBall = false,
   awardsMode = false,
+  glide = false,
 }: MatchPitchProps) {
+  const move = glide
+    ? { type: 'tween' as const, duration: 0.28, ease: 'easeInOut' as const }
+    : { type: 'spring' as const, stiffness: 100, damping: 18 }
+  const ballMove = glide
+    ? { type: 'tween' as const, duration: 0.22, ease: 'easeOut' as const }
+    : { type: 'spring' as const, stiffness: 90, damping: 16 }
   return (
     <div
       className={cn(
@@ -64,11 +89,25 @@ export function MatchPitch({
         <rect x="99" y="27" width="0.8" height="10" fill="rgba(255,255,255,0.95)" />
         {!awardsMode ? (
           <>
-            <circle cx="4" cy="6" r="2.2" fill={homeColor} />
+            <circle
+              cx="4"
+              cy="6"
+              r="2.2"
+              fill={homeColor}
+              stroke={kitContrast(homeColor).text === '#0f172a' ? '#0f172a' : 'rgba(255,255,255,0.5)'}
+              strokeWidth="0.35"
+            />
             <text x="8" y="7.2" fontSize="3.2" fill="white" fontFamily="sans-serif">
               {homeShort}
             </text>
-            <circle cx="90" cy="6" r="2.2" fill={awayColor} />
+            <circle
+              cx="90"
+              cy="6"
+              r="2.2"
+              fill={awayColor}
+              stroke={kitContrast(awayColor).text === '#0f172a' ? '#0f172a' : 'rgba(255,255,255,0.5)'}
+              strokeWidth="0.35"
+            />
             <text x="78" y="7.2" fontSize="3.2" fill="white" fontFamily="sans-serif" textAnchor="end">
               {awayShort}
             </text>
@@ -78,24 +117,25 @@ export function MatchPitch({
 
       {players.map((p) => {
         const color = p.highlight ? '#65a30d' : p.side === 'home' ? homeColor : awayColor
+        const contrast = kitContrast(color)
         return (
           <motion.div
             key={p.id}
             title={p.name}
             className={cn(
-              'pointer-events-none absolute flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-[10px] font-bold text-white shadow-md ring-2',
-              p.highlight || p.active ? 'z-20 ring-lime-300' : 'z-10 ring-black/25',
+              'pointer-events-none absolute flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-[10px] font-bold shadow-md ring-2',
+              p.highlight || p.active ? 'z-20 ring-lime-300' : cn('z-10', contrast.ring),
             )}
-            style={{ backgroundColor: color }}
+            style={{ backgroundColor: color, color: contrast.text }}
             animate={{
               left: `${p.spot.x}%`,
               top: `${p.spot.y}%`,
               scale: p.highlight || p.active ? 1.2 : 1,
             }}
             transition={{
-              left: { type: 'spring', stiffness: 100, damping: 18 },
-              top: { type: 'spring', stiffness: 100, damping: 18 },
-              scale: { duration: 0.25 },
+              left: move,
+              top: move,
+              scale: { duration: 0.2 },
             }}
           >
             {p.label}
@@ -112,9 +152,9 @@ export function MatchPitch({
             scale: pulse ? [1, 1.45, 1] : 1,
           }}
           transition={{
-            left: { type: 'spring', stiffness: 90, damping: 16 },
-            top: { type: 'spring', stiffness: 90, damping: 16 },
-            scale: { duration: 0.4 },
+            left: ballMove,
+            top: ballMove,
+            scale: { duration: 0.35 },
           }}
           aria-hidden
         />

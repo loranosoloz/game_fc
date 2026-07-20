@@ -1,5 +1,5 @@
 import type { GameSave, Player, PositionGroup, TransferAddonPackage } from './types'
-import { estimatedValue, marketSellPremium } from './transfer'
+import { estimatedValue, marketSellPremium, marketValueHints } from './transfer'
 import { groupLabel, roleLabel } from './positions'
 import { formatMoney } from '@/lib/format'
 import { fanMoodLabel } from './fans'
@@ -302,7 +302,11 @@ export function analyzeBuy(save: GameSave, player: Player, fans: FanState): Tran
       best && player.overall > best.overall
         ? `「เขาดีกว่าตัวหลักตำแหน่งนี้ (${best.name}) — ใส่ระบบเราได้ทันที」`
         : `「รับได้เป็นตัวหมุน ถ้าไม่แย่งเคมีห้องแต่งตัว」`,
-    financeVoice: `「มูลค่าประเมิน ${formatMoney(value)} · งบเหลือ ${formatMoney(human.balance)} · อย่าให้ดีลเดียวล็อกอนาคตคลับ」`,
+    financeVoice: `「มูลค่าประเมิน ${formatMoney(value)}${
+      marketValueHints(player).length
+        ? ` · ${marketValueHints(player).join(' · ')}`
+        : ''
+    } · งบเหลือ ${formatMoney(human.balance)} · อย่าให้ดีลเดียวล็อกอนาคตคลับ」`,
     suggestedFee,
     suggestedWage,
   }

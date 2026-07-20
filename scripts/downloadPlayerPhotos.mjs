@@ -46,6 +46,7 @@ const PACKS = {
   mys: path.join(ROOT, 'src/data/world/playersMys.json'),
   sgp: path.join(ROOT, 'src/data/world/playersSgp.json'),
   sau: path.join(ROOT, 'src/data/world/playersSau.json'),
+  sau2: path.join(ROOT, 'src/data/world/playersSau2.json'),
 }
 
 const ID_FILES = {
@@ -80,6 +81,7 @@ const ID_FILES = {
   mys: 'mys_fm_ids.json',
   sgp: 'sgp_fm_ids.json',
   sau: 'sau_fm_ids.json',
+  sau2: 'sau2_fm_ids.json',
 }
 
 function sleep(ms) {

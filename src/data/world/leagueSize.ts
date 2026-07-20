@@ -55,13 +55,12 @@ export function div2TeamCount(parentLeagueId: LeagueId | string): number {
     parentLeagueId === 'vie' ||
     parentLeagueId === 'idn' ||
     parentLeagueId === 'mys' ||
-    parentLeagueId === 'sgp' ||
-    parentLeagueId === 'sau'
+    parentLeagueId === 'sgp'
   ) {
     return 0
   }
   if (parentLeagueId === 'tha') return 16
-  if (parentLeagueId === 'ger' || parentLeagueId === 'fra') return 18
+  if (parentLeagueId === 'ger' || parentLeagueId === 'fra' || parentLeagueId === 'sau') return 18
   if (parentLeagueId === 'kor') return 12
   if (parentLeagueId === 'jpn') return 20
   return 20

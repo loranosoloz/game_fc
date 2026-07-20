@@ -12,7 +12,14 @@ import {
 import { createBodyMap } from './bodyMap'
 import { rollPlayerSkills } from './playerSkills'
 import { createClubSocial, createPlayerSocial } from './social'
-import { getWorldCoach, instructionsFromCoach } from './worldCoaches'
+import { getWorldCoach, instructionsFromCoach, type WorldCoach } from './worldCoaches'
+import {
+  ensurePlayerTacticalRoles,
+  pickSlotRoleForPlayer,
+  xiPickScore,
+} from './playerTacticalRoles'
+import { ensureSlotRoles, type TacticalRoleId } from './tacticalRoles'
+import { pickCaptainsFromXi } from './match/matchCaptain'
 
 const CLUB_DEFS: Array<{ name: string; shortName: string; color: string; rep: number }> = [
   { name: 'Northgate United', shortName: 'NOR', color: '#1d4ed8', rep: 78 },
@@ -207,6 +214,7 @@ export function autoPickTactics(
   players: Player[],
   formation: FormationId = '4-3-3',
   formationOop: FormationId = formation,
+  coach?: WorldCoach | null,
 ): Tactics {
   const slots = FORMATION_SLOTS[formation]
   const pool = players
@@ -218,28 +226,42 @@ export function autoPickTactics(
         (p.banMatches ?? 0) <= 0 &&
         (p.leaveDays ?? 0) <= 0,
     )
-    .slice()
-    .sort(
-      (a, b) =>
-        b.overall * (b.condition / 100) * (b.sharpness / 100) -
-        a.overall * (a.condition / 100) * (a.sharpness / 100),
-    )
+    .map((p) => ensurePlayerTacticalRoles(p))
 
   const used = new Set<string>()
   const startingXi: string[] = []
+  const slotRoles: TacticalRoleId[] = []
 
   for (const slot of slots) {
-    const pick =
-      pool.find((p) => !used.has(p.id) && p.role === slot) ??
-      pool.find((p) => !used.has(p.id) && p.position === roleGroup(slot)) ??
-      pool.find((p) => !used.has(p.id))
-    if (pick) {
-      used.add(pick.id)
-      startingXi.push(pick.id)
+    let best: Player | null = null
+    let bestScore = -1
+    for (const p of pool) {
+      if (used.has(p.id)) continue
+      const roleId = pickSlotRoleForPlayer(p, slot, coach)
+      const score = xiPickScore(p, slot, roleId, coach)
+      if (score > bestScore) {
+        bestScore = score
+        best = p
+      }
+    }
+    if (best) {
+      used.add(best.id)
+      startingXi.push(best.id)
+      slotRoles.push(pickSlotRoleForPlayer(best, slot, coach))
+    } else {
+      slotRoles.push(ensureSlotRoles([slot])[0]!)
     }
   }
 
-  const bench = pool.filter((p) => !used.has(p.id)).slice(0, 7).map((p) => p.id)
+  const bench = pool
+    .filter((p) => !used.has(p.id))
+    .slice()
+    .sort((a, b) => b.overall - a.overall)
+    .slice(0, 7)
+    .map((p) => p.id)
+
+  const caps = pickCaptainsFromXi(startingXi, players)
+
   return {
     formation,
     formationOop,
@@ -247,6 +269,9 @@ export function autoPickTactics(
     familiarity: 55,
     startingXi,
     bench,
+    slotRoles: ensureSlotRoles(slots, slotRoles),
+    captainId: caps.captainId,
+    viceCaptainId: caps.viceCaptainId,
     setPieces: { ...DEFAULT_SET_PIECES },
   }
 }
@@ -257,7 +282,7 @@ export function createTacticsForAll(clubs: Club[], players: Player[]): Record<st
     const coach = getWorldCoach(club.coachId)
     const formation = coach?.preferredFormation ?? '4-3-3'
     const oop = coach?.formationOop ?? formation
-    const base = autoPickTactics(club.id, players, formation, oop)
+    const base = autoPickTactics(club.id, players, formation, oop, coach)
     if (!coach) {
       map[club.id] = base
       continue

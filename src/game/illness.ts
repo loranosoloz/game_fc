@@ -1,4 +1,10 @@
 import type { IllnessType, Player } from './types'
+import {
+  clampStaminaToMedical,
+  medicalDailyStaminaGain,
+  medicalPlayStatus,
+  staminaHitOnIllness,
+} from './medicalStamina'
 
 export const ILLNESS_TYPE_LABEL: Record<IllnessType, string> = {
   cold: 'หวัด',
@@ -23,7 +29,9 @@ export function isIll(player: Player): boolean {
 export function formatIllnessStatus(player: Player): string | null {
   if (!isIll(player)) return null
   const t = player.illnessType ? ILLNESS_TYPE_LABEL[player.illnessType] : 'ป่วย'
-  return `${t} ${player.illnessDays}ว`
+  const status = medicalPlayStatus(player)
+  const tag = status === 'out' ? ' · ห้ามลง' : status === 'limited' ? ' · ลงได้·ล้า' : ''
+  return `${t} ${player.illnessDays}ว${tag}`
 }
 
 function pickIllness(rng: () => number): { type: IllnessType; days: number } {
@@ -42,15 +50,18 @@ function pickIllness(rng: () => number): { type: IllnessType; days: number } {
 export function applyIllness(player: Player, rng = Math.random): Player {
   if ((player.illnessDays ?? 0) > 0 || player.injuryDays > 0) return player
   const rolled = pickIllness(rng)
-  const condHit =
-    rolled.type === 'flu' || rolled.type === 'virus' ? 18 : rolled.type === 'fever' ? 14 : 10
-  return {
+  const hit = staminaHitOnIllness(rolled.type, player.attrs?.stamina ?? 70)
+  const next: Player = {
     ...player,
     illnessDays: rolled.days,
     illnessType: rolled.type,
-    condition: Math.max(35, player.condition - condHit),
+    condition: Math.max(28, player.condition - hit),
     sharpness: Math.max(30, player.sharpness - 4),
     morale: Math.max(1, player.morale - 1),
+  }
+  return {
+    ...next,
+    condition: clampStaminaToMedical(next, next.condition),
   }
 }
 
@@ -59,14 +70,25 @@ export function tickIllness(player: Player, physioLevel = 8): Player {
   if (days <= 0) {
     return { ...player, illnessDays: 0, illnessType: null }
   }
-  const heal = 1 + (physioLevel >= 12 ? 1 : 0) + (player.treatment === 'rest' ? 0 : 0)
-  // Resting while sick (no match) heals slightly faster via condition
+  const heal = 1 + (physioLevel >= 12 ? 1 : 0)
   const next = Math.max(0, days - heal)
-  return {
+  const gain = medicalDailyStaminaGain(
+    { ...player, illnessDays: next > 0 ? next : 0 },
+    physioLevel,
+  )
+  const extra = next <= 0 ? 3 : 0
+  const withDays: Player = {
     ...player,
     illnessDays: next,
     illnessType: next > 0 ? player.illnessType : null,
-    condition: Math.min(100, player.condition + (next > 0 ? 2 : 4) + Math.floor(physioLevel / 12)),
+    condition: player.condition + gain + extra,
+  }
+  return {
+    ...withDays,
+    condition:
+      next > 0
+        ? clampStaminaToMedical(withDays, withDays.condition)
+        : Math.min(100, withDays.condition),
   }
 }
 

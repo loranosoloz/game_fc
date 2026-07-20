@@ -15,15 +15,35 @@ import { formatMoney } from '@/lib/format'
 import { ensureClubFinance } from './playerEconomy'
 import { autoPickTactics } from './seed'
 import { injuryHistoryPenalty } from './medical'
+import { rollingFormMarketMul, formWindowAvg } from './contractLifecycle'
+import {
+  affinityWageMul,
+  hasHandshakeWith,
+  withEnsuredAffinity,
+} from './playerAmbition'
 
 function uid(prefix: string) {
   return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 5)}`
 }
 
+/** หลีกเลี่ยง circular import กับ transfer.ts */
+function negotiationFormHeatMul(player: Player): number {
+  const f = Math.min(20, Math.max(1, formWindowAvg(player, 4)))
+  let m = 0.94 + (f / 20) * 0.16
+  const h = Math.min(20, Math.max(0, player.marketHeat ?? 0))
+  if (h >= 12) m *= 1.04
+  else if (h >= 7) m *= 1.02
+  return Math.round(m * 1000) / 1000
+}
+
 function rawMarketValue(player: Player): number {
   const ageFactor = player.age <= 24 ? 1.25 : player.age <= 29 ? 1.0 : player.age <= 32 ? 0.7 : 0.45
   const injuryFactor = injuryHistoryPenalty(player) * (player.injuryDays > 0 ? 0.85 : 1)
-  return Math.round(player.overall ** 2 * 900 * ageFactor * injuryFactor)
+  let v = Math.round(player.overall ** 2 * 900 * ageFactor * injuryFactor)
+  v = Math.round(v * rollingFormMarketMul(player))
+  const h = Math.min(20, Math.max(0, player.marketHeat ?? 0))
+  v = Math.round(v * (1 + (h / 20) * 0.18))
+  return v
 }
 
 export const SQUAD_STATUS_LABEL: Record<SquadStatusGuarantee, string> = {
@@ -115,10 +135,23 @@ export function signPreContract(
 ): { ok: true; message: string; save: GameSave } | { ok: false; message: string } {
   const check = canApproachBosman(save, playerId)
   if (!check.ok) return { ok: false, message: check.reason }
-  const p = save.players.find((x) => x.id === playerId)!
-  const wageFloor = Math.round(p.wage * 1.05)
+  const pRaw = save.players.find((x) => x.id === playerId)!
+  const p = withEnsuredAffinity(pRaw, save.clubs)
+  const handshakeBonus = hasHandshakeWith(p, save.humanClubId) ? 0.9 : 1
+  const wageFloor = Math.round(
+    p.wage *
+      1.05 *
+      negotiationFormHeatMul(p) *
+      affinityWageMul(p, save.humanClubId) *
+      handshakeBonus,
+  )
   if (wage < wageFloor) {
-    return { ok: false, message: `นักเตะขออย่างน้อย ${formatMoney(wageFloor)}/สัปดาห์` }
+    return {
+      ok: false,
+      message: `นักเตะขออย่างน้อย ${formatMoney(wageFloor)}/สัปดาห์${
+        handshakeBonus < 1 ? ' (มีสัญญาใจ — ขอลดนิด)' : ''
+      }`,
+    }
   }
   const human = save.clubs.find((c) => c.id === save.humanClubId)!
   const next: GameSave = {
@@ -134,6 +167,7 @@ export function signPreContract(
               startSeason: save.season + 1,
               squadStatus: squadStatus ?? mapSquadRoleToStatus(pl.squadRole),
             },
+            secretHandshake: null,
             happiness: Math.min(20, (pl.happiness ?? 10) + 2),
           }
         : pl,

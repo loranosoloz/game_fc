@@ -28,3 +28,6 @@ npm-debug.log*
 
 # Test / coverage
 coverage/
+
+# Local datasets (too large for GitHub)
+scripts/_tm_data/*.duckdb

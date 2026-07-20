@@ -249,7 +249,16 @@ export function MatchPage() {
                   ? '✓ ยืนยัน XI แล้ว'
                   : 'ยืนยัน XI + ตัวสำรอง'}
               </PrimaryButton>
-              <Link to="/tactics" className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50">
+              <Link
+                to="/squad"
+                className="rounded-md border border-amber-400 bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-950 hover:bg-amber-100"
+              >
+                เลือกกัปตัน (หน้าทีม)
+              </Link>
+              <Link
+                to="/tactics"
+                className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+              >
                 แก้แท็กติก
               </Link>
             </div>
@@ -289,11 +298,15 @@ export function MatchPage() {
               >
                 ผลทันที
               </GhostButton>
-              <GhostButton onClick={() => enterLive(true)}>
+              <GhostButton disabled={!check.canForce} onClick={() => enterLive(true)}>
                 เตะแบบรีบ
               </GhostButton>
             </div>
-            {!check.ready ? (
+            {!check.canForce ? (
+              <p className="mt-2 text-xs font-semibold text-amber-900">
+                ยังเล่นไม่ได้ — ไปหน้าทีมเลือกกัปตัน และจัดลง XI ก่อน
+              </p>
+            ) : !check.ready ? (
               <p className="mt-2 text-xs text-amber-800">
                 ยังไม่ครบ: ยืนยัน XI + เลือกทีมทอล์ค (หรือเตะแบบรีบ)
               </p>
@@ -394,7 +407,7 @@ export function MatchPage() {
                     <span>
                       <span className="text-slate-400">{p.role}</span> {p.name}{' '}
                       <span className="tabular-nums text-slate-500">
-                        {p.overall} · C{p.condition}
+                        {p.overall} · S{p.condition}
                       </span>
                     </span>
                   </li>
@@ -512,7 +525,12 @@ export function MatchPage() {
           </Panel>
         )}
         <Panel>
-          <h3 className="text-sm font-bold text-slate-900">ผลล่าสุด</h3>
+          <div className="flex items-center justify-between gap-2">
+            <h3 className="text-sm font-bold text-slate-900">ผลล่าสุด</h3>
+            <Link to="/results" className="text-xs font-semibold text-sky-700 underline">
+              คลังสถิติทั้งหมด →
+            </Link>
+          </div>
           <ul className="mt-3 space-y-1.5 text-sm">
             {recent.length === 0 ? (
               <li className="text-slate-500">ยังไม่เคยลงแข่ง</li>
@@ -527,6 +545,9 @@ export function MatchPage() {
                   </span>
                   <span className="shrink-0 font-bold tabular-nums">
                     {f.homeGoals}–{f.awayGoals}
+                    {f.matchStats
+                      ? ` · ${f.matchStats.home.possession}–${f.matchStats.away.possession}%`
+                      : ''}
                   </span>
                 </li>
               ))

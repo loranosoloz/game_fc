@@ -2329,5 +2329,25 @@
       "shortName": "NJM",
       "color": "#0033A0"
     }
+  ],
+  "sau2": [
+    { "key": "abh", "name": "Abha", "id": 7920353, "rep": 66, "shortName": "ABH", "color": "#E30613" },
+    { "key": "fsy", "name": "Al-Faisaly", "id": 7920362, "rep": 67, "shortName": "FSY", "color": "#0033A0" },
+    { "key": "dir", "name": "Al-Diriyah", "id": 1031614, "rep": 68, "shortName": "DIR", "color": "#008C45" },
+    { "key": "ula", "name": "Al-Ula", "id": 1031640, "rep": 70, "shortName": "ULA", "color": "#C4A35A" },
+    { "key": "orb", "name": "Al-Orobah", "id": 7920357, "rep": 63, "shortName": "ORB", "color": "#0033A0" },
+    { "key": "jba", "name": "Al-Jabalain", "id": 135426, "rep": 62, "shortName": "JBA", "color": "#E30613" },
+    { "key": "rae", "name": "Al-Raed", "id": 135424, "rep": 65, "shortName": "RAE", "color": "#E30613" },
+    { "key": "zlf", "name": "Al-Zulfi", "id": 23228258, "rep": 60, "shortName": "ZLF", "color": "#0033A0" },
+    { "key": "tai", "name": "Al-Tai", "id": 106780, "rep": 62, "shortName": "TAI", "color": "#E30613" },
+    { "key": "whd", "name": "Al-Wehda", "id": 106781, "rep": 64, "shortName": "WHD", "color": "#E30613" },
+    { "key": "buk", "name": "Al-Bukiryah", "id": 23469190, "rep": 60, "shortName": "BUK", "color": "#0033A0" },
+    { "key": "anw", "name": "Al-Anwar", "id": 1030680, "rep": 58, "shortName": "ANW", "color": "#F5A623" },
+    { "key": "jed", "name": "Jeddah", "id": 23405283, "rep": 59, "shortName": "JED", "color": "#0033A0" },
+    { "key": "adl", "name": "Al-Adalah", "id": 7920361, "rep": 58, "shortName": "ADL", "color": "#E30613" },
+    { "key": "jdl", "name": "Al-Jandal", "id": 23002934, "rep": 57, "shortName": "JDL", "color": "#008C45" },
+    { "key": "btn", "name": "Al-Batin", "id": 7920492, "rep": 61, "shortName": "BTN", "color": "#0033A0" },
+    { "key": "arb", "name": "Al-Arabi", "id": 7920364, "rep": 56, "shortName": "ARB", "color": "#E30613" },
+    { "key": "jbi", "name": "Al-Jubail", "id": 23002953, "rep": 55, "shortName": "JBI", "color": "#0033A0" }
   ]
 }

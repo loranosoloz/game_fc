@@ -2,16 +2,18 @@ import type {
   FeePaymentPreset,
   GameSave,
   MatchResult,
+  MediaItem,
   PendingTransferOffer,
   TransferAddonPackage,
   TransferDeskState,
 } from './types'
-import { buyPlayerFromAi, estimatedValue, marketSellPremium, sellPlayerToAi } from './transfer'
+import { buyPlayerFromAi, estimatedValue, marketSellPremium, negotiationWageMul, sellPlayerToAi, bumpMarketHeat, clampMarketHeat } from './transfer'
 import { bumpAgentRapport, bumpPlayerRapport } from './releaseClauseIntel'
 import { formatMoney } from '@/lib/format'
 import { isTransferWindowOpen, transferWindowLabel } from './transferWindow'
 import { attachClausesAfterBuy, tickPerformanceClauses, resolveAddonPackage, tickIntlCapsClauses } from './transferClauses'
 import { processWantAwayAiBids } from './wantAway'
+import { processAiSecretHandshakes } from './playerAmbition'
 import {
   attachFeeInstallments,
   buildFeePaymentSchedule,
@@ -31,6 +33,7 @@ import {
 } from './fans'
 import { ensureClubFinance } from './playerEconomy'
 import { isTransferFrozen } from './clubAtmosphere'
+import { ensureMediaFeed, pushNews } from './media'
 
 function uid(prefix: string) {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`
@@ -86,7 +89,7 @@ export function submitNegotiatedBuy(
   // ถ้าราคาใกล้เคียง → ปิดทันที (หัก add-on เล็กน้อยจากความพึงพอใจ)
   // วินเทอร์ต้องใกล้ want มากขึ้น — ดู NPV ถ้าผ่อน
   const instantCut = winterPrem > 1 ? 0.99 : 0.97
-  if (npv >= want * instantCut && wage >= player.wage * 1.05) {
+  if (npv >= want * instantCut && wage >= player.wage * 1.05 * negotiationWageMul(player)) {
     const closed = buyPlayerFromAi(save, playerId, fee, wage, contractYears, opts)
     if (!closed.ok) return closed
     const withClauses = attachClausesAfterBuy(closed.save, {
@@ -519,33 +522,11 @@ export function processTransferDeskMatchday(save: GameSave, results: MatchResult
         : []
   next = tickPerformanceClauses(next, matchResults)
 
-  // Shortlist rival interest — AI กดดันค่าตัว
-  const shortlist = next.shortlist?.entries ?? []
-  if (shortlist.length && Math.random() < 0.35) {
-    const entry = shortlist[Math.floor(Math.random() * shortlist.length)]
-    const target = next.players.find((p) => p.id === entry.playerId)
-    if (target && target.clubId !== next.humanClubId) {
-      const rival = next.clubs
-        .filter((c) => c.controlledBy === 'ai' && c.id !== target.clubId)
-        .sort((a, b) => b.reputation - a.reputation)[0]
-      if (rival) {
-        const bump = Math.round(estimatedValue(target) * (1.05 + Math.random() * 0.12))
-        next = {
-          ...next,
-          inbox: [
-            {
-              id: uid('msg-sl'),
-              date: next.currentDate,
-              title: 'คู่แข่งสนใจ Shortlist',
-              body: `${rival.name} สนใจ ${target.name} — ตลาดประเมินแรงขึ้น ~${formatMoney(bump)} · รีบเจรจาก่อนโดนแย่ง`,
-              read: false,
-            },
-            ...next.inbox,
-          ].slice(0, 40),
-        }
-      }
-    }
-  }
+  // ความสนใจตลาด: shortlist · ฟอร์มร้อน · listed/wantAway · คลาย heat · ปาดหน้า
+  next = tickMarketHeatAndGazumps(next)
+
+  // AI สัญญาใจกับดาวในทีมคุณ (tapping-up สองทาง)
+  next = processAiSecretHandshakes(next)
 
   // ROFR: มีทีมยื่นซื้อนักเตะที่คุณเคยขาย (ถือสิทธิ์ปฏิเสธครั้งแรก)
   if (Math.random() < 0.4) {
@@ -573,6 +554,213 @@ export function processTransferDeskMatchday(save: GameSave, results: MatchResult
   // ลองจ่ายงวดค่าตัวที่ครบกำหนด / ค้าง
   next = tickFeeInstallments(next)
   next = tickIntlCapsClauses(next)
+
+  return next
+}
+
+function pushRomano(save: GameSave, story: Omit<MediaItem, 'channel'> & { channel?: MediaItem['channel'] }): GameSave {
+  const media = ensureMediaFeed(save)
+  const item: MediaItem = {
+    ...story,
+    channel: 'romano',
+  }
+  return {
+    ...save,
+    media: {
+      ...media,
+      romano: [item, ...media.romano].slice(0, 40),
+    },
+  }
+}
+
+/**
+ * มิติตลาด: ดัน/คลาย marketHeat · ข่าวสนใจ · AI ปาดหน้าข้อเสนอซื้อที่ค้าง
+ */
+export function tickMarketHeatAndGazumps(save: GameSave): GameSave {
+  let next = save
+  const inbox: GameSave['inbox'] = []
+  const heatById = new Map<string, number>()
+
+  const getHeat = (id: string, base: number) => heatById.get(id) ?? base
+  const setHeat = (id: string, h: number) => heatById.set(id, clampMarketHeat(h))
+
+  for (const p of next.players) {
+    setHeat(p.id, p.marketHeat ?? 0)
+  }
+
+  // 1) คู่แข่งสนใจคนใน shortlist
+  const shortlist = next.shortlist?.entries ?? []
+  if (shortlist.length && Math.random() < 0.4) {
+    const entry = shortlist[Math.floor(Math.random() * shortlist.length)]!
+    const target = next.players.find((p) => p.id === entry.playerId)
+    if (target && target.clubId !== next.humanClubId) {
+      const rival = next.clubs
+        .filter((c) => c.controlledBy === 'ai' && c.id !== target.clubId && c.id !== next.humanClubId)
+        .sort((a, b) => b.reputation - a.reputation)[0]
+      if (rival) {
+        const h = getHeat(target.id, target.marketHeat ?? 0)
+        setHeat(target.id, h + 3 + Math.floor(Math.random() * 3))
+        const bump = Math.round(estimatedValue({ ...target, marketHeat: getHeat(target.id, h) }, next))
+        inbox.push({
+          id: uid('msg-sl'),
+          date: next.currentDate,
+          title: 'คู่แข่งสนใจ Shortlist',
+          body: `${rival.name} สนใจ ${target.name} — มูลค่าตลาดขยับ ~${formatMoney(bump)} · รีบเจรจาก่อนโดนแย่ง`,
+          read: false,
+        })
+        next = pushRomano(next, {
+          id: uid('rom-heat'),
+          date: next.currentDate,
+          headline: `วงใน: ${rival.shortName} จับตา ${target.name}`,
+          body: `แหล่งข่าวใกล้ตลาดบอกว่ามีสโมสรอื่นคุยเบื้องต้น — ความสนใจตลาดเพิ่มขึ้น`,
+          tone: 'rumor',
+          reliability: Math.round(45 + Math.random() * 30),
+          subjectName: target.name,
+          tags: ['transfer', 'market_heat', target.id],
+        })
+      }
+    }
+  }
+
+  // 2) ฟอร์มร้อน + OVR สูง → สุ่มความสนใจ
+  if (Math.random() < 0.28) {
+    const hot = next.players
+      .filter(
+        (p) =>
+          p.clubId !== next.humanClubId &&
+          (p.form ?? 10) >= 15 &&
+          p.overall >= 74 &&
+          !p.loanParentClubId,
+      )
+      .sort((a, b) => b.overall - a.overall)
+      .slice(0, 8)
+    if (hot.length) {
+      const target = hot[Math.floor(Math.random() * hot.length)]!
+      setHeat(target.id, getHeat(target.id, target.marketHeat ?? 0) + 2 + Math.floor(Math.random() * 2))
+      if (Math.random() < 0.55) {
+        inbox.push({
+          id: uid('msg-form'),
+          date: next.currentDate,
+          title: 'ข่าวสนใจซื้อ',
+          body: `${target.name} ฟอร์มร้อน (${target.form}/20) — มีสโมสรสอบถามต้นสังกัด`,
+          read: false,
+        })
+      }
+    }
+  }
+
+  // 3) ขึ้นขาย / want away สาธารณะ → +heat
+  for (const p of next.players) {
+    let delta = 0
+    if (p.transferListed) delta += 1
+    if (p.wantAway?.active && p.wantAway.publicNews) delta += 2
+    else if (p.wantAway?.active) delta += 1
+    if (delta > 0 && Math.random() < 0.5) {
+      setHeat(p.id, getHeat(p.id, p.marketHeat ?? 0) + delta)
+    }
+  }
+
+  // 4) คลาย heat ทุกแมตช์เดย์
+  for (const p of next.players) {
+    const h = getHeat(p.id, p.marketHeat ?? 0)
+    if (h <= 0) continue
+    const decay = 1 + (Math.random() < 0.35 ? 1 : 0)
+    setHeat(p.id, h - decay)
+  }
+
+  next = {
+    ...next,
+    players: next.players.map((p) => {
+      const h = heatById.get(p.id)
+      if (h == null || h === (p.marketHeat ?? 0)) return p
+      return { ...p, marketHeat: h }
+    }),
+  }
+
+  // 5) ปาดหน้า: AI ยื่นสูงกว่าข้อเสนอซื้อของ human ที่ค้าง
+  const desk = ensureTransferDesk(next)
+  const openBuys = desk.offers.filter(
+    (o) =>
+      (o.status === 'pending' || o.status === 'countered') &&
+      o.kind === 'buy' &&
+      o.toClubId === next.humanClubId,
+  )
+
+  if (openBuys.length && Math.random() < 0.45) {
+    const offer = openBuys[Math.floor(Math.random() * openBuys.length)]!
+    const target = next.players.find((p) => p.id === offer.playerId)
+    if (target && target.clubId !== next.humanClubId) {
+      const heat = target.marketHeat ?? 0
+      const form = target.form ?? 10
+      const gazumpChance = 0.2 + heat / 40 + (form >= 15 ? 0.15 : 0) + (target.overall >= 78 ? 0.1 : 0)
+      if (Math.random() < gazumpChance) {
+        const rival = next.clubs
+          .filter(
+            (c) =>
+              c.controlledBy === 'ai' &&
+              c.id !== target.clubId &&
+              c.id !== next.humanClubId,
+          )
+          .sort((a, b) => b.reputation - a.reputation)[Math.floor(Math.random() * 3)]
+        if (rival) {
+          const humanFee = offer.counterFee ?? offer.fee
+          const snipedFee = Math.round(humanFee * (1.08 + Math.random() * 0.12))
+          next = {
+            ...next,
+            players: next.players.map((p) =>
+              p.id === target.id ? bumpMarketHeat(p, 4) : p,
+            ),
+            transferDesk: {
+              ...desk,
+              offers: desk.offers.map((o) =>
+                o.id === offer.id
+                  ? {
+                      ...o,
+                      status: 'rejected' as const,
+                      note: `โดนปาดหน้าโดย ${rival.shortName} (~${formatMoney(snipedFee)})`,
+                    }
+                  : o,
+              ),
+            },
+          }
+          inbox.push({
+            id: uid('msg-gz'),
+            date: next.currentDate,
+            title: 'โดนปาดหน้า!',
+            body: `${rival.name} ยื่น ${formatMoney(snipedFee)} สำหรับ ${target.name} — สูงกว่าข้อคุณ · ดีลของคุณถูกปฏิเสธ ต้นสังกัดขึ้นราคาจากความสนใจ`,
+            read: false,
+          })
+          next = pushRomano(next, {
+            id: uid('rom-gz'),
+            date: next.currentDate,
+            headline: `Here we go?: ${rival.shortName} ปาดหน้าดีล ${target.name}`,
+            body: `มีข้อเสนอสูงกว่าที่ ${next.clubs.find((c) => c.id === next.humanClubId)?.shortName ?? 'คุณ'} ยื่นไว้ — ความเชื่อมั่นข่าวสูง`,
+            tone: 'rumor',
+            reliability: Math.round(70 + Math.random() * 20),
+            subjectName: target.name,
+            tags: ['transfer', 'gazump', target.id],
+          })
+          next = pushNews(next, {
+            id: uid('news-gz'),
+            date: next.currentDate,
+            channel: 'news',
+            headline: `${rival.shortName} แย่ง ${target.name} จากวงเจรจา`,
+            body: `ตลาดเดือด — ค่าตัวถูกดันขึ้นจากความสนใจหลายฝ่าย`,
+            tone: 'rumor',
+            tags: ['gazump', target.id],
+            subjectName: target.name,
+          })
+        }
+      }
+    }
+  }
+
+  if (inbox.length) {
+    next = {
+      ...next,
+      inbox: [...inbox, ...next.inbox].slice(0, 40),
+    }
+  }
 
   return next
 }

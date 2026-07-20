@@ -757,6 +757,8 @@ export interface Fixture {
   /** ผลยิงจุดโทษ (ถ้วย) */
   penaltiesHome?: number
   penaltiesAway?: number
+  /** สถิติแมตช์หลังเตะ (ครองบอล · ยิง · มุม ฯลฯ) */
+  matchStats?: { home: TeamMatchStats; away: TeamMatchStats }
 }
 
 export type MatchWeather = 'clear' | 'rain' | 'wind' | 'cold' | 'hot'
@@ -2054,6 +2056,11 @@ export interface GameSave {
   tableDiv2: TableRow[]
   inbox: InboxMessage[]
   lastHumanResult: MatchResult | null
+  /**
+   * สำรองคลังสถิติบางส่วนในเซฟ (~48 นัด) — คลังเต็มอยู่ใน IndexedDB (`matchStatsDb`)
+   * + MySQL `game_fc` สำหรับ sync/export (`db/schema.sql`)
+   */
+  matchArchive?: import('./matchArchive').MatchArchiveEntry[]
   seasonComplete: boolean
   fans: FanState
   training: TrainingState
@@ -2191,6 +2198,53 @@ export interface GameSave {
   playerMoveLog?: import('./playerWorldDb').PlayerMoveEvent[]
   /** ลงทะเบียนนักเตะลีก / UCL + หมุดปฏิทิน */
   squadRegistration?: import('./squadRegistration').SquadRegistrationState
+  /** ติดตามคลับอื่น · ฟีดโลก · ความสนใจทีมชาติ */
+  worldWatch?: WorldWatchState
+}
+
+export type WorldActivityKind =
+  | 'transfer'
+  | 'match'
+  | 'training'
+  | 'board'
+  | 'injury'
+  | 'contract'
+  | 'scout'
+  | 'media'
+  | 'youth'
+  | 'nt_watch'
+  | 'rivalry'
+
+export interface WorldActivityEvent {
+  id: string
+  date: string
+  matchday: number
+  season: number
+  kind: WorldActivityKind
+  clubId: string
+  otherClubId?: string
+  playerId?: string
+  headlineTh: string
+  bodyTh: string
+  /** 1–3 */
+  importance: number
+}
+
+export interface WorldNtInterest {
+  playerId: string
+  nation: string
+  /** 0–100 */
+  level: number
+  noteTh: string
+  lastUpdateMatchday: number
+}
+
+export interface WorldWatchState {
+  watchedClubIds: string[]
+  primaryRivalId: string | null
+  feed: WorldActivityEvent[]
+  ntInterest: WorldNtInterest[]
+  lastTickMatchday: number
 }
 
 export type FacilityKind = 'stadium' | 'training' | 'medical' | 'commercial' | 'youth'

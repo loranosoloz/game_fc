@@ -27,7 +27,7 @@ import { PlayerFace } from '@/components/PlayerFace'
 
 const TABS: { id: MediaChannel; label: string; hint: string }[] = [
   { id: 'news', label: 'ข่าว', hint: 'สำนักข่าวประเทศละ 2 ช่อง · ผลแข่ง · ดีล' },
-  { id: 'social', label: 'โซเชียล', hint: 'แฟน · สตอรี่นักเตะ · ทอล์คโชว์ท้องถิ่น' },
+  { id: 'social', label: 'โซเชียล', hint: 'แฟนด่า/ชม · นักเตะตัดพ้อ/ฉลอง · มีม · ทอล์คโชว์' },
   { id: 'romano', label: 'Romano', hint: 'ข่าวหลังบ้าน · ความเชื่อมั่น %' },
 ]
 
@@ -383,6 +383,12 @@ export function MediaPage() {
 
       {tab === 'social' ? (
         <div className="grid gap-4 lg:grid-cols-3">
+          <Panel className="lg:col-span-3">
+            <p className="text-xs text-slate-600">
+              หลังแมตช์เดย์: เรตติ้งต่ำ → แฟนด่า/มีม · นักเตะอาจตัดพ้อหรือตอกกลับ · เรตติ้งสูง/MOM →
+              แฟนชม + โพสฉลอง · เพื่อนร่วมทีมอาจออกโรงป้อง · ดูไทม์ไลน์สั้นๆ ได้ที่หน้า Squad
+            </p>
+          </Panel>
           <Panel>
             <h3 className="text-sm font-bold text-slate-900">สโมสรติดตามเยอะสุด</h3>
             <ul className="mt-2 space-y-1.5 text-sm">

@@ -18,6 +18,9 @@ export interface AiSolveContext {
   coach: WorldCoach | null | undefined
   rng: () => number
   sentOffIds?: Set<string>
+  /** เหลือ 10 คนหลังใบแดง */
+  menDown?: boolean
+  playersOnPitch?: number
 }
 
 export interface AiSolveResult {
@@ -159,7 +162,13 @@ export function aiSolveGame(ctx: AiSolveContext): AiSolveResult {
   const trailing = diff < 0
   const protectLead = diff > 0 && late
   const wantSubs =
-    trailing || protectLead || (diff === 0 && late) || (mid && rng() < 0.45) || (early2h && trailing)
+    trailing ||
+    protectLead ||
+    (diff === 0 && late) ||
+    (mid && rng() < 0.55) ||
+    (early2h && trailing) ||
+    (ctx.menDown && diff < 0 && ctx.remainingSubs > 0) ||
+    (ctx.minute >= 58 && ctx.remainingSubs > 0 && rng() < 0.62)
 
   let subs: HalfTimeSub[] = []
   if (wantSubs && ctx.remainingSubs > 0) {
@@ -170,6 +179,7 @@ export function aiSolveGame(ctx: AiSolveContext): AiSolveResult {
       trailing || (diff === 0 && late),
       ctx.remainingSubs,
       rng,
+      ctx.minute,
     )
     tactics = auto.tactics
     subs = auto.subs
@@ -201,8 +211,46 @@ export function aiSolveGame(ctx: AiSolveContext): AiSolveResult {
     }
   }
 
+  // —— 10 คน (ใบแดง) — ทับแผนเดิม ——
+  const menDown =
+    ctx.menDown ?? (ctx.playersOnPitch != null && ctx.playersOnPitch < 11)
+  if (menDown) {
+    if (diff < 0) {
+      mentality = 'attacking'
+      tempo = 'fast'
+      pressing = solve.includes('gegenpress') ? 'high' : 'medium'
+      width = 'wide'
+      formation = pickAttackingForm(formation, ctx.coach)
+      notes.unshift('10 คน — ส่งตัวรุก ไล่เก็บสกอร์')
+    } else if (diff > 0 && late) {
+      mentality = 'defensive'
+      pressing = 'low'
+      tempo = 'slow'
+      width = 'narrow'
+      formation = pickDefensiveForm(formation, ctx.coach)
+      formationOop = pickDefensiveForm(formationOop, ctx.coach)
+      notes.unshift('10 คน — ยันเสมอ/รักษาผลนำ')
+    } else if (diff >= 0) {
+      mentality = 'defensive'
+      pressing = 'low'
+      tempo = 'slow'
+      formationOop = pickDefensiveForm(formationOop, ctx.coach)
+      notes.unshift('10 คน — รอเวลา ลดช่องว่าง')
+    } else {
+      notes.unshift('10 คน — ปรับแผน')
+    }
+    tactics = {
+      ...tactics,
+      formation,
+      formationOop,
+      instructions: { ...tactics.instructions, mentality, pressing, tempo, width },
+    }
+  }
+
   const shout =
-    diff < 0
+    menDown
+      ? `แก้เกม 10 คน: ${notes[0] ?? `${formation} · ${mentality}`}`
+      : diff < 0
       ? ctx.coach?.inGameLosing
         ? `AI แก้เกม: ${ctx.coach.inGameLosing}`
         : `AI เปิดเกมไล่ (${mentality}/${pressing})`

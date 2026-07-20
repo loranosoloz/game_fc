@@ -49,6 +49,35 @@ export function skillsForRole(role: RoleCode): PositionSkillDef[] {
   return skillsForPosition(roleGroup(role))
 }
 
+export type CatalogSkillRow = PositionSkillDef & { position: PositionGroup }
+
+/** แคตตาล็อกพลังแฝงทั้งหมด (ผูก DB / Browse) */
+export function listAllPositionSkills(): CatalogSkillRow[] {
+  const order: PositionGroup[] = ['GK', 'DF', 'MF', 'FW']
+  const out: CatalogSkillRow[] = []
+  for (const position of order) {
+    for (const s of skillsForPosition(position)) {
+      out.push({ ...s, position })
+    }
+  }
+  return out
+}
+
+export function skillCatalogStats() {
+  const all = listAllPositionSkills()
+  const byPos: Record<PositionGroup, number> = { GK: 0, DF: 0, MF: 0, FW: 0 }
+  let attack = 0
+  let defend = 0
+  let both = 0
+  for (const s of all) {
+    byPos[s.position]++
+    if (s.effect === 'attack') attack++
+    else if (s.effect === 'defend') defend++
+    else both++
+  }
+  return { total: all.length, maxPerPlayer: MAX_PLAYER_SKILLS, byPos, attack, defend, both }
+}
+
 export function skillDef(id: string): PositionSkillDef | undefined {
   for (const pos of Object.keys(BY_POS) as PositionGroup[]) {
     const hit = BY_POS[pos].find((s) => s.id === id)
@@ -318,6 +347,71 @@ export function ensurePlayerSkills(player: Player): string[] {
   return [...ability, ...extras].slice(0, MAX_PLAYER_SKILLS)
 }
 
+/** พรีวิวพลังแฝงจาก pack / รายชื่อภายนอกเซฟ (stable จาก id) */
+export function previewPlayerSkills(input: SkillAssignInput): string[] {
+  const id = input.id || `${input.role ?? input.position}-${input.overall}`
+  return assignPlayerSkills(input, rngFromId(id))
+}
+
+/**
+ * ฟอร์ม (1–20) → ตัวคูณความแรงสกิลในแมตช์
+ * form 10 ≈ 1.0 · ร้อนสูงสุด ~1.25 · เย็นต่ำสุด ~0.55
+ */
+export function formSkillMul(form: number): number {
+  const f = Number.isFinite(form) ? form : 10
+  return Math.min(1.25, Math.max(0.55, 0.55 + f * 0.045))
+}
+
+/**
+ * สกิลที่ Active ในแมตช์นี้ (Owned ± ตามฟอร์ม)
+ * - form ≤ 6: สกิลอ่อน (★1) หลับชั่วคราว
+ * - form ≥ 16: ปลุกสกิลพูล +1 ชั่วคราว
+ * ไม่แก้ Player.skills ถาวร
+ */
+export function activeSkillsForMatch(player: Player): string[] {
+  const owned = ensurePlayerSkills(player)
+  const form = player.form ?? 10
+  let active = [...owned]
+
+  if (form <= 6 && active.length > 0) {
+    const ranked = active
+      .map((id) => ({ id, power: skillDef(id)?.power ?? 1 }))
+      .sort((a, b) => a.power - b.power || a.id.localeCompare(b.id))
+    const muteCount = Math.min(form <= 4 ? 2 : 1, Math.max(0, active.length - 1))
+    const mute = new Set<string>()
+    for (const s of ranked) {
+      if (mute.size >= muteCount) break
+      if (s.power <= 1) mute.add(s.id)
+    }
+    for (const s of ranked) {
+      if (mute.size >= muteCount) break
+      mute.add(s.id)
+    }
+    active = active.filter((id) => !mute.has(id))
+  }
+
+  if (form >= 16) {
+    const pos = player.position ?? roleGroup(player.role)
+    const ownedSet = new Set(owned)
+    const input: SkillAssignInput = {
+      id: player.id,
+      position: pos,
+      role: player.role,
+      overall: player.overall,
+      attrs: player.attrs,
+    }
+    const rng = rngFromId(`${player.id}-form-boost`)
+    const candidates = skillsForPosition(pos)
+      .filter((s) => !ownedSet.has(s.id))
+      .map((s) => ({ s, score: scoreSkillForPlayer(s, input, rng) }))
+      .sort((a, b) => b.score - a.score)
+    const pick = candidates[0]?.s
+    if (pick && !active.includes(pick.id)) active.push(pick.id)
+  }
+
+  return active.slice(0, MAX_PLAYER_SKILLS + 1)
+}
+
 function addSkillToProfile(profile: XiSkillProfile, skillId: string, power: number) {
   const mods = SKILL_MODS[skillId] ?? fallbackMods(skillDef(skillId)?.effect ?? 'attack')
   for (const [key, weight] of Object.entries(mods) as [SkillModKey, number][]) {
@@ -335,10 +429,12 @@ function softCapProfile(profile: XiSkillProfile): XiSkillProfile {
   return out
 }
 
-/** Aggregate XI skill profile for match engine. */
+/**
+ * Aggregate XI skill profile for match engine.
+ * ใช้ Active skills × formSkillMul — ฝั่ง human / AI / AI vs AI ใช้สูตรเดียวกัน
+ */
 export function xiSkillProfile(players: Player[], xiIds: string[]): XiSkillProfile {
   const raw = emptySkillProfile()
-  // emptySkillProfile starts at 1; we accumulate bonuses on top of 1
   for (const key of Object.keys(raw) as SkillModKey[]) raw[key] = 1
 
   let n = 0
@@ -347,13 +443,45 @@ export function xiSkillProfile(players: Player[], xiIds: string[]): XiSkillProfi
     if (!p) continue
     if (p.injuryDays > 0 || (p.illnessDays ?? 0) > 0) continue
     n += 1
-    for (const sid of ensurePlayerSkills(p)) {
+    const mul = formSkillMul(p.form ?? 10)
+    for (const sid of activeSkillsForMatch(p)) {
       const d = skillDef(sid)
-      addSkillToProfile(raw, sid, d?.power ?? 1)
+      addSkillToProfile(raw, sid, (d?.power ?? 1) * mul)
     }
   }
   if (n === 0) return emptySkillProfile()
   return softCapProfile(raw)
+}
+
+/** โปรไฟล์จากรายชื่อ Agent บนสนาม (หลังเปลี่ยนตัว / ใบแดง) */
+export function xiSkillProfileFromXiPlayers(onPitch: Player[]): XiSkillProfile {
+  return xiSkillProfile(onPitch, onPitch.map((p) => p.id))
+}
+
+/**
+ * ตัวคูณเข้า utility / ความยาก — ค่าโปรไฟล์ใกล้ 1.0–1.2
+ * blend น้อยๆ ให้ไม่ท่วมแอตทริบิวต์
+ */
+export function skillMatchFactor(profile: XiSkillProfile, key: SkillModKey, weight = 0.65): number {
+  const v = profile[key] ?? 1
+  const blended = 1 + (v - 1) * weight
+  return Math.min(1.16, Math.max(0.86, blended))
+}
+
+/** เลือกสกิล Active ที่ตรง keys มากสุด — สำหรับไฮไลต์ในแมตช์ */
+export function bestSkillLabelForKeys(skillIds: string[], keys: SkillModKey[]): string | null {
+  let best: { id: string; score: number } | null = null
+  for (const sid of skillIds) {
+    const mods = SKILL_MODS[sid]
+    const d = skillDef(sid)
+    if (!mods || !d) continue
+    let score = 0
+    for (const k of keys) score += (mods[k] ?? 0) * d.power
+    if (score <= 0) continue
+    if (!best || score > best.score) best = { id: sid, score }
+  }
+  if (!best || best.score < 1.5) return null
+  return skillLabel(best.id)
 }
 
 /** @deprecated use xiSkillProfile — kept for callers expecting attack/defend only */
@@ -371,13 +499,14 @@ export function playerSkillWeight(
   keys: SkillModKey[],
 ): number {
   let w = 1
-  for (const sid of ensurePlayerSkills(player)) {
+  const mul = formSkillMul(player.form ?? 10)
+  for (const sid of activeSkillsForMatch(player)) {
     const d = skillDef(sid)
     const mods = SKILL_MODS[sid]
     if (!mods || !d) continue
     for (const k of keys) {
       const m = mods[k]
-      if (m) w += m * d.power * 0.35
+      if (m) w += m * d.power * 0.35 * mul
     }
   }
   return w

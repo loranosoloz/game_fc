@@ -107,6 +107,7 @@ import { createFacilitiesState, ensureFacilities } from './facilities'
 import { createAffiliates, ensureAffiliates } from './affiliates'
 import { createContractTalks, ensureContractTalks } from './transfer'
 import { createWorldPulse, ensureWorldPulse } from './worldPulse'
+import { ensureWorldWatch } from './worldWatch'
 import { ensureWorldCup } from './worldCup'
 import { ensureAllSocial } from './social'
 import { persistSaveSync, loadSaveRawAsync, clearAllSaves } from './idbSave'
@@ -324,6 +325,7 @@ export function createNewGame(
         : []),
     ],
     lastHumanResult: null,
+    matchArchive: [],
     seasonComplete: false,
     fans: createFanState(human.reputation),
     training: defaultTraining(),
@@ -507,6 +509,7 @@ export function ensurePhase5(save: GameSave): GameSave {
   next = seedCareerHonoursFromHistory(next)
   next = ensurePlayerCareerSeeds(next)
   if (next.lastMatchdayReport === undefined) next = { ...next, lastMatchdayReport: null }
+  if (next.matchArchive === undefined) next = { ...next, matchArchive: [] }
   if (!next.matchdayChronicle) next = { ...next, matchdayChronicle: [] }
   if (next.lastIntlTournamentReports === undefined) {
     next = { ...next, lastIntlTournamentReports: [] }
@@ -566,6 +569,7 @@ export function ensurePhase5(save: GameSave): GameSave {
   if (!next.contractTalks) next = { ...next, contractTalks: ensureContractTalks(next) }
   if (!next.worldPulse) next = { ...next, worldPulse: createWorldPulse(next.leagueId || 'eng') }
   else next = { ...next, worldPulse: ensureWorldPulse(next) }
+  next = { ...next, worldWatch: ensureWorldWatch(next) }
   if (next.preMatch === undefined) next = { ...next, preMatch: null }
   if (!next.awards) {
     next = { ...next, awards: emptyAwardsState(monthKeyFromDate(next.currentDate)) }

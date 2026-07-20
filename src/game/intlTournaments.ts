@@ -14,6 +14,7 @@ import {
   applyTournamentPlayerFame,
   bumpClubReputation,
 } from './reputation'
+import { applyIntlMatchWearStamina, scaleStaminaLoss } from './playerStamina'
 
 export interface IntlMatchResultLite {
   home: string
@@ -253,7 +254,11 @@ export function runSummerIntlTournaments(save: GameSave): {
       return {
         ...p,
         leaveDays: Math.max(p.leaveDays ?? 0, leave),
-        condition: clamp(p.condition - (isFriendly ? 4 : 10 + rng() * 8), 25, 100),
+        condition: clamp(
+          p.condition - scaleStaminaLoss(isFriendly ? 4 : 10 + rng() * 8, p.attrs?.stamina ?? 70),
+          25,
+          100,
+        ),
         sharpness: clamp(p.sharpness + (isFriendly ? 1 : 3), 1, 100),
         morale: clamp(p.morale + 1, 1, 20),
         injuryDays: injure ? Math.max(p.injuryDays, 5 + Math.floor(rng() * 10)) : p.injuryDays,
@@ -388,12 +393,12 @@ export function applyIntlBreakMatchWear(save: GameSave): GameSave {
   const players = save.players.map((p) => {
     if (!called.has(p.id)) return p
     const injure = rng() < 0.04
+    const worn = applyIntlMatchWearStamina(p, 1, rng)
     return {
-      ...p,
-      condition: clamp(p.condition - (4 + rng() * 6), 30, 100),
-      sharpness: clamp(p.sharpness + 2, 1, 100),
-      injuryDays: injure ? Math.max(p.injuryDays, 3 + Math.floor(rng() * 8)) : p.injuryDays,
-      injuryType: injure ? (p.injuryType ?? ('muscle' as const)) : p.injuryType,
+      ...worn,
+      sharpness: clamp(worn.sharpness + 2, 1, 100),
+      injuryDays: injure ? Math.max(worn.injuryDays, 3 + Math.floor(rng() * 8)) : worn.injuryDays,
+      injuryType: injure ? (worn.injuryType ?? ('muscle' as const)) : worn.injuryType,
     }
   })
   return { ...save, players }

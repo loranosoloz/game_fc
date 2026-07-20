@@ -17,7 +17,12 @@
 Roster ยังใช้ FMTU เพราะหน้าสโมสรจัด squad depth ง่าย — แต่ **fmId ชุดเดียวกับ FMInside**  
 ต่อไปถ้าจะรวม roster เข้า FMInside คลับเพจได้ (มี face + ลิงก์ผู้เล่น)
 
-BIO (SortItOutSI) = **ออปชัน** ไม่บังคับ
+BIO (SortItOutSI) = **ออปชัน** ไม่บังคับ  
+Pack: `playerBiosEng.json` (PL+Championship) · `playerBiosEsp/Ger/Fra/Ita.json` · `playerBiosEsp2/Ger2/Fra2/Ita2/Eng2.json` · `playerBiosSau/Tur.json`  
+สร้างเพิ่ม: `node scripts/buildLeagueBios.mjs <esp|ger|fra|ita|esp2|ger2|fra2|ita2|eng2|sau|tur|all|div2|extra> --all`  
+แมปชื่อ roster ↔ BIO ด้วยชื่อ / accent / **fmId** / หน้า person SI (`--fetch-missing`)  
+ลีกรอง: `node scripts/buildLeagueBios.mjs div2 --all`  
+ซาอุ+ตุรกี: `node scripts/buildLeagueBios.mjs extra --all`
 
 ---
 
@@ -138,7 +143,9 @@ node scripts/buildYouthFromFmtu.mjs --league=eng,esp,ger,fra,ita
 | `downloadPlayerPhotos.mjs` | รูป: **FMInside** → fallback **SortItOutSI cutout** |
 | `retryMissingFaces.mjs` | โหลดซ้ำคนที่ยังขาด (SOI / FotMob) |
 | `downloadCrests.mjs` | ตราจาก **FMInside logos** |
-| `buildPlayerBios.mjs` | BIO เสริม (optional) |
+| `buildPlayerBios.mjs` | BIO เสริม PL (optional) |
+| `buildChampionshipBios.mjs` | BIO Championship → merge Eng |
+| `buildLeagueBios.mjs` | BIO top + div2 (`all` / `div2`) |
 
 ```bash
 # รูปทุกลีก
@@ -262,7 +269,7 @@ node scripts/buildFmInsideAttrs.mjs
 | `idn` | Liga 1 (อินโดฯ) | 18 | `--league=idn` |
 | `mys` | Super League (มาเลย์) | 12 | `--league=mys` |
 | `sgp` | Premier League (สิงคโปร์) | 8 | `--league=sgp` |
-| `sau` | Saudi Pro League | 18 | `--league=sau` · **ไม่บังคับ FFP** · งบสูง |
+| `sau` | Saudi Pro League | 18 | `--league=sau` · **ไม่บังคับ FFP** · งบสูง · Div2 = Saudi First Division (`sau2` pack จริง 18) · ตกชั้น 2 |
 
 \* kor2 = 12 สโมสรที่มี FM id ยืนยันแล้ว (drop NEED_LOOKUP)
 

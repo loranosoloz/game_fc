@@ -9,6 +9,7 @@ import type {
   MatchBreakdown,
   MatchEvent,
   MatchResult,
+  MatchSpatialFrame,
   Player,
   Referee,
   Tactics,
@@ -16,11 +17,52 @@ import type {
   TeamTalkKind,
 } from '../types'
 import { FORMATION_SLOTS, formationLabel } from '../types'
+import { ensureSlotRoles } from '../tacticalRoles'
+import { pickSlotRoleForPlayer, playerSlotRoleFit } from '../playerTacticalRoles'
+import { canPlayMatch, isLimitedPlay, medicalStaminaProfile } from '../medicalStamina'
+import { pickInjuredBodyPart, ensureBodyMap } from '../bodyMap'
+import { simToLivePitchSpot } from '../pitchLayout'
 import { getReferee, refereeKickoffNote } from '../referees'
 import { weatherMatchModifiers } from '../weather'
 import { coachMatchModifiers, getWorldCoach } from '../worldCoaches'
 import { FORMATION_ANCHORS, FORMATION_SPATIAL, widthLambda } from './formationAnchors'
-import { attractorOffset, ROLE_VECTORS } from './attractors'
+import { attractorOffset, resolveRoleVectors } from './attractors'
+import {
+  applyRoleToActionU,
+  roleActionNote,
+  roleCarryWeight,
+  roleDribbleLine,
+  roleFatigueMul,
+  rolePassLine,
+  rolePhaseNote,
+  roleReceiveScore,
+  roleWantsBuildPass,
+} from './matchRoleEffects'
+import {
+  captainArgueMul,
+  captainCalmArgueLine,
+  captainOnPitch,
+  captainOrganizeLine,
+  ensureCaptains,
+  syncCaptainsWithXi,
+} from './matchCaptain'
+import {
+  dissentBookingChance,
+  formationInPlayNote,
+  offsideChance,
+  offsideText,
+  refArgueChance,
+  refArgueLine,
+  setPiecePlanTh,
+  setPiecePlanWorkingLine,
+  tacticsShapeNote,
+  timeWasteChance,
+  timeWasteLine,
+} from './matchDrama'
+import {
+  visitorKickoffLines,
+  visitorPsychEffects,
+} from '../stadiumVisits'
 import { countInZone, overloadPressureFactor, primaryZone } from './zones'
 import { findFreePlayers, passNetworkScore, roleFitPenalty } from './passNetwork'
 import { minTti, pitchControlProb, reactionTime, vmax } from './spatial'
@@ -43,10 +85,17 @@ import { keyEventCount, springTicksPerKeyEvent, timingNoteTh } from './engineTim
 import { resolveTackle } from './foulMatrix'
 import { resolveShapeAnchor, shapeNoteTh } from './shapeDynamic'
 import type { HalfTimeSub, MatchMidState } from './halfTime'
-import { applyHalfTimeTactics, MAX_MATCH_SUBS } from './halfTime'
+import { applyHalfTimeTactics, MAX_MATCH_SUBS, pickInjuryReplacement } from './halfTime'
 import { aiSolveGame } from './aiSolveGame'
 import { STOPPAGE, ceilStoppageMinutes, stoppageAnnounceTh } from './stoppageTime'
 import { resolveCorner, resolveFreeKick } from './setPieces'
+import {
+  applySpatialToAgents,
+  buildCornerSetupSpatial,
+  buildThrowInSetupSpatial,
+  cornerSpotForAttack,
+  throwInSpot,
+} from './setPieceSetup'
 import type { AgentLike } from './setPiecesTypes'
 import { resolvePassBlock } from './passBlocking'
 import {
@@ -55,6 +104,7 @@ import {
   familiarityPositionNoise,
 } from './tacticalFamiliarity'
 import {
+  computeAgentFatigueLoad,
   createBurstState,
   effectiveCondition,
   rollBurstInjury,
@@ -78,6 +128,14 @@ import {
 } from './tacticalCounter'
 import { ppmNote, ppmUtilityMult } from './playerTraits'
 import {
+  activeSkillsForMatch,
+  bestSkillLabelForKeys,
+  formSkillMul,
+  skillMatchFactor,
+  xiSkillProfileFromXiPlayers,
+  type XiSkillProfile,
+} from '../playerSkills'
+import {
   UnderloadTracker,
   crowdCommentary,
   lateHomeFightCommentary,
@@ -85,12 +143,14 @@ import {
 import {
   accumulateFromEvents,
   createPerf,
-  finalizePlayerRatings,
   shotXg,
 } from './playerPerformance'
+import { finalizeRoleAwareRatings } from '../matchRoleRating'
+import { roleFamiliarityFitMul } from '../roleFamiliarity'
 import { applyInjury, rollInjury } from '../medical'
 import { fanTicketMultiplier } from '../fans'
 import type { FanState } from '../types'
+import { applyHalftimeStaminaRecovery } from '../playerStamina'
 import {
   buildPenOrder,
   needsDecisiveWinner,
@@ -130,6 +190,17 @@ interface Agent {
   psych: AgentPsychMods
   fit: number
   burst: BurstState
+  /** สะสมระยะวิ่งต่อจังหวะไฮไลต์ */
+  tickMove: number
+  prevX: number
+  prevY: number
+  /** ความหนักล่าสุด 0–100 สำหรับ UI */
+  lastActivityLoad: number
+  /** บทบาทสไตล์เล่นของช่องนี้ */
+  tacticalRoleId?: string
+  /** พลังแฝง Active แมตช์นี้ (ตามฟอร์ม) — human/AI เหมือนกัน */
+  activeSkills: string[]
+  formSkillMul: number
 }
 
 export interface SimulateMatchOpts {
@@ -169,9 +240,23 @@ export interface SimulateMatchOpts {
     passion?: number
     fans?: FanState
   }
+  /** แขกในอัฒจันทร์ (โค้ช/นักเตะ/คนดัง) — มีผลจิตวิทยา */
+  stadiumVisitors?: import('../types').StadiumVisit[]
 }
 
 export type LayeredMatchOutput = MatchResult & { midState?: MatchMidState }
+
+function enrichAgentSkills(a: Omit<Agent, 'activeSkills' | 'formSkillMul'> & Partial<Pick<Agent, 'activeSkills' | 'formSkillMul'>>): Agent {
+  return {
+    ...a,
+    tickMove: a.tickMove ?? 0,
+    prevX: a.prevX ?? a.x,
+    prevY: a.prevY ?? a.y,
+    lastActivityLoad: a.lastActivityLoad ?? 0,
+    activeSkills: a.activeSkills ?? activeSkillsForMatch(a.player),
+    formSkillMul: a.formSkillMul ?? formSkillMul(a.player.form ?? 10),
+  }
+}
 
 function buildSide(
   team: 'home' | 'away',
@@ -180,26 +265,36 @@ function buildSide(
   talk: TeamTalkKind | null | undefined,
   isHuman: boolean,
   opponentClubId?: string,
+  coachId?: string | null,
 ): Agent[] {
   const formation = tactics.formation
   const anchors = FORMATION_ANCHORS[formation]
   const slots = FORMATION_SLOTS[formation]
   const talkMods = isHuman ? psychFromTeamTalk(talk) : { moraleMod: 1, focusMod: 1 }
+  const coach = getWorldCoach(coachId)
+  const slotRoles = ensureSlotRoles(slots, tactics.slotRoles)
+  const hasExplicitRoles = Boolean(tactics.slotRoles?.some(Boolean))
   const agents: Agent[] = []
   for (let i = 0; i < 11; i++) {
     const pid = tactics.startingXi[i]
     const p = players.find((x) => x.id === pid)
     if (!p) continue
-    const unavailable =
-      p.injuryDays > 0 || (p.banMatches ?? 0) > 0 || (p.leaveDays ?? 0) > 0 || (p.illnessDays ?? 0) > 0
+    const unavailable = !canPlayMatch(p)
     if (unavailable) continue
     // ห้ามลงแข่งเจอทีมแม่ (loan exclusivity)
     if (opponentClubId && p.loanParentClubId === opponentClubId) continue
     const slotRole = slots[i] ?? p.role
     const an = anchors[i] ?? { x: 50, y: 50, role: slotRole }
+    const worldY = team === 'away' ? 100 - an.y : an.y
     const psych = defaultPsych()
     psych.moraleMod = talkMods.moraleMod
     psych.focusMod = talkMods.focusMod
+    // มี slotRoles จากแผน → ใช้ตามแผน · ไม่มี → เลือกจากสไตล์นักเตะ/โค้ช
+    const tacticalRoleId = hasExplicitRoles
+      ? slotRoles[i]!
+      : pickSlotRoleForPlayer(p, slotRole, coach)
+    const med = medicalStaminaProfile(p)
+    const startCond = Math.min(p.condition, med.staminaCap)
     agents.push({
       id: p.id,
       team,
@@ -207,13 +302,24 @@ function buildSide(
       role: slotRole,
       slotIndex: i,
       x: an.x,
-      y: an.y,
+      y: worldY,
       anchorX: an.x,
-      anchorY: an.y,
-      condition: p.condition,
+      anchorY: worldY,
+      condition: startCond,
       psych,
-      fit: roleFitPenalty(p.role, slotRole),
-      burst: createBurstState(p.condition),
+      fit:
+        roleFitPenalty(p.role, slotRole) *
+        playerSlotRoleFit(p, tacticalRoleId) *
+        roleFamiliarityFitMul(p, tacticalRoleId) *
+        (isLimitedPlay(p) ? 0.92 : 1),
+      burst: createBurstState(startCond),
+      tickMove: 0,
+      prevX: an.x,
+      prevY: worldY,
+      lastActivityLoad: 0,
+      tacticalRoleId,
+      activeSkills: activeSkillsForMatch(p),
+      formSkillMul: formSkillMul(p.form ?? 10),
     })
   }
   return agents
@@ -238,17 +344,24 @@ function updatePositions(
     const formIp = tac.formation as FormationId
     const formOop = (tac.formationOop ?? tac.formation) as FormationId
     for (const a of agents.filter((x) => x.team === side)) {
-      // Dynamic IP / OOP anchor each tick
+      // Dynamic IP / OOP anchor each tick — เยือนพลิก y เป็นพิกัดโลก (เหย้าบุก +y)
       const shape = resolveShapeAnchor(a.slotIndex, formIp, formOop, inPoss)
+      const worldY = attackingUp ? shape.y : 100 - shape.y
       a.anchorX = shape.x
-      a.anchorY = shape.y
+      a.anchorY = worldY
       const attr = a.player.attrs
       const errScale =
         (((1 - attr.positioning / 99) * 6 + (1 - attr.workRate / 99) * 3) / a.psych.focusMod) *
         famNoise
       let tx = a.anchorX + lx * (ballX - 50)
-      let ty = a.anchorY + ly * ((attackingUp ? ballY : 100 - ballY) - 50) * 0.25
-      const off = attractorOffset(a.role, tac.instructions.mentality, inPoss, attackingUp)
+      let ty = a.anchorY + ly * (ballY - 50) * 0.25
+      const off = attractorOffset(
+        a.role,
+        tac.instructions.mentality,
+        inPoss,
+        attackingUp,
+        a.tacticalRoleId,
+      )
       tx += off.dx
       ty += off.dy
       const spatial = FORMATION_SPATIAL[formIp]
@@ -259,8 +372,13 @@ function updatePositions(
       }
       tx += (rng() - 0.5) * errScale * 0.35
       ty += (rng() - 0.5) * errScale * 0.35
-      a.x = clamp(a.x + (tx - a.x) * springAlpha, 2, 98)
-      a.y = clamp(a.y + (ty - a.y) * springAlpha, 2, 98)
+      const nx = clamp(a.x + (tx - a.x) * springAlpha, 2, 98)
+      const ny = clamp(a.y + (ty - a.y) * springAlpha, 2, 98)
+      a.tickMove += Math.hypot(nx - a.prevX, ny - a.prevY)
+      a.x = nx
+      a.y = ny
+      a.prevX = nx
+      a.prevY = ny
     }
   }
 }
@@ -312,14 +430,18 @@ export function simulateLayeredMatch(
 
   const homeClub = clubs.find((c) => c.id === fixture.homeClubId)!
   const awayClub = clubs.find((c) => c.id === fixture.awayClubId)!
-  let homeTactics = tacticsByClub[fixture.homeClubId]
-  let awayTactics = tacticsByClub[fixture.awayClubId]
-  const homeForm = homeTactics.formation as FormationId
-  const awayForm = awayTactics.formation as FormationId
-
   const humanId = opts.humanClubId ?? opts.humanCtx?.humanClubId
   const homeIsHuman = humanId === fixture.homeClubId
   const awayIsHuman = humanId === fixture.awayClubId
+  let homeTactics = homeIsHuman
+    ? syncCaptainsWithXi(tacticsByClub[fixture.homeClubId])
+    : ensureCaptains(tacticsByClub[fixture.homeClubId], players)
+  let awayTactics = awayIsHuman
+    ? syncCaptainsWithXi(tacticsByClub[fixture.awayClubId])
+    : ensureCaptains(tacticsByClub[fixture.awayClubId], players)
+  const homeForm = homeTactics.formation as FormationId
+  const awayForm = awayTactics.formation as FormationId
+
   const phase = opts.phase ?? 'full'
   const resume = opts.resume
 
@@ -333,6 +455,7 @@ export function simulateLayeredMatch(
     phase === 'secondHalf' ? opts.teamTalk : opts.teamTalk,
     homeIsHuman,
     fixture.awayClubId,
+    homeClub.coachId,
   )
   let awayAgents = buildSide(
     'away',
@@ -341,6 +464,7 @@ export function simulateLayeredMatch(
     phase === 'secondHalf' && awayIsHuman ? opts.teamTalk : undefined,
     awayIsHuman,
     fixture.homeClubId,
+    awayClub.coachId,
   )
 
   // On 2H resume: rebuild from current tactics XI (หลัง HT subs), drop sent-off, restore fatigue
@@ -359,12 +483,19 @@ export function simulateLayeredMatch(
         talk,
         isHuman,
         team === 'home' ? fixture.awayClubId : fixture.homeClubId,
+        team === 'home' ? homeClub.coachId : awayClub.coachId,
       )
-      return rebuilt.map((a) => ({
-        ...a,
-        condition: resume.conditions[a.id] ?? a.condition,
-        burst: createBurstState(resume.conditions[a.id] ?? a.condition),
-      }))
+      return rebuilt.map((a) => {
+        const cond = resume.conditions[a.id] ?? a.condition
+        const ms = resume.matchStaminas?.[a.id]
+        const burst = createBurstState(cond)
+        if (typeof ms === 'number') burst.matchStamina = ms
+        return {
+          ...a,
+          condition: cond,
+          burst,
+        }
+      })
     }
     homeAgents = restoreSide('home', homeTactics, homeIsHuman)
     awayAgents = restoreSide('away', awayTactics, awayIsHuman)
@@ -377,7 +508,7 @@ export function simulateLayeredMatch(
       .slice(0, 11)
       .map((p, i) => {
         const an = FORMATION_ANCHORS[homeForm][i]!
-        return {
+        return enrichAgentSkills({
           id: p.id,
           team: 'home' as const,
           player: p,
@@ -391,7 +522,7 @@ export function simulateLayeredMatch(
           psych: defaultPsych(),
           fit: 1,
           burst: createBurstState(resume?.conditions[p.id] ?? p.condition),
-        }
+        })
       })
   }
   if (awayAgents.length < 8) {
@@ -400,22 +531,30 @@ export function simulateLayeredMatch(
       .slice(0, 11)
       .map((p, i) => {
         const an = FORMATION_ANCHORS[awayForm][i]!
-        return {
+        return enrichAgentSkills({
           id: p.id,
           team: 'away' as const,
           player: p,
           role: an.role,
           slotIndex: i,
           x: an.x,
-          y: an.y,
+          y: 100 - an.y,
           anchorX: an.x,
-          anchorY: an.y,
+          anchorY: 100 - an.y,
           condition: resume?.conditions[p.id] ?? p.condition,
           psych: defaultPsych(),
           fit: 1,
           burst: createBurstState(resume?.conditions[p.id] ?? p.condition),
-        }
+        })
       })
+  }
+
+  /** พลังแฝง XI — คำนวณเหมือนกันทั้ง human และ AI (รวม AI vs AI) */
+  let homeSkillProf: XiSkillProfile = xiSkillProfileFromXiPlayers(homeAgents.map((a) => a.player))
+  let awaySkillProf: XiSkillProfile = xiSkillProfileFromXiPlayers(awayAgents.map((a) => a.player))
+  const refreshSkillProfiles = () => {
+    homeSkillProf = xiSkillProfileFromXiPlayers(homeAgents.map((a) => a.player))
+    awaySkillProf = xiSkillProfileFromXiPlayers(awayAgents.map((a) => a.player))
   }
 
   const all = () => [...homeAgents, ...awayAgents]
@@ -448,6 +587,32 @@ export function simulateLayeredMatch(
   const maxSubs = resume?.maxSubs ?? MAX_MATCH_SUBS
   let lastAiSolveMinute = -99
 
+  /** นาทีลงสนาม — สะสมข้ามครึ่ง */
+  const minutesOnPitch = new Map<string, number>(
+    Object.entries(resume?.minutesOnPitch ?? {}),
+  )
+  const entryMinute = new Map<string, number>()
+  for (const a of [...homeAgents, ...awayAgents]) {
+    entryMinute.set(a.id, minuteBase)
+  }
+  const closePitchMinutes = (playerId: string, atMinute: number) => {
+    const entered = entryMinute.get(playerId)
+    if (entered == null) return
+    const add = Math.max(0, atMinute - entered)
+    minutesOnPitch.set(playerId, (minutesOnPitch.get(playerId) ?? 0) + add)
+    entryMinute.delete(playerId)
+  }
+  const openPitchMinutes = (playerId: string, atMinute: number) => {
+    if (!entryMinute.has(playerId)) entryMinute.set(playerId, atMinute)
+  }
+  const snapshotPitchMinutes = (atMinute: number): Record<string, number> => {
+    const out: Record<string, number> = { ...Object.fromEntries(minutesOnPitch) }
+    for (const [id, entered] of entryMinute) {
+      out[id] = (out[id] ?? 0) + Math.max(0, atMinute - entered)
+    }
+    return out
+  }
+
   const wx = weatherMatchModifiers(fixture.weather ?? 'clear')
   const pitch = pitchPhysicsFromWeather(fixture.weather ?? 'clear')
   const inMatchInjuries: NonNullable<import('../types').MatchResult['inMatchInjuries']> = []
@@ -477,12 +642,20 @@ export function simulateLayeredMatch(
   let possessionTicks = { home: 0, away: 0 }
 
   const perfMap = new Map<string, ReturnType<typeof createPerf>>()
-  const touchPerf = (a: { id: string; player: { name: string; overall: number }; team: 'home' | 'away' }) => {
+  const touchPerf = (a: {
+    id: string
+    player: { name: string; overall: number }
+    team: 'home' | 'away'
+    tacticalRoleId?: string | null
+    fit?: number
+  }) => {
     let p = perfMap.get(a.id)
     if (!p) {
       p = createPerf(a.id, a.player.name, a.team, a.player.overall)
       perfMap.set(a.id, p)
     }
+    if (a.tacticalRoleId != null) p.tacticalRoleId = a.tacticalRoleId
+    if (a.fit != null) p.roleFit = a.fit
     return p
   }
   for (const a of [...homeAgents, ...awayAgents]) touchPerf(a)
@@ -545,6 +718,40 @@ export function simulateLayeredMatch(
   const awayStats = resume ? { ...resume.awayStats } : blankStats()
   const events: MatchEvent[] = resume ? [...resume.events] : []
   let eid = resume?.nextEid ?? 0
+
+  let possessing: 'home' | 'away' =
+    resume?.possessing ??
+    (rng() < 0.5 + (opts.humanDynamicsBonus ?? 1) * 0.02 ? 'home' : 'away')
+  let ballX = 50
+  let ballY = 50
+
+  const captureSpatial = (carrierId?: string): MatchSpatialFrame => {
+    const agents = [...homeAgents, ...awayAgents]
+    let carrier = carrierId
+    if (!carrier && agents.length) {
+      carrier = [...(possessing === 'home' ? homeAgents : awayAgents)]
+        .sort(
+          (a, b) =>
+            Math.hypot(a.x - ballX, a.y - ballY) - Math.hypot(b.x - ballX, b.y - ballY),
+        )[0]?.id
+    }
+    return {
+      ball: { x: ballX, y: ballY },
+      possessing,
+      carrierId: carrier,
+      players: agents.map((a) => ({
+        id: a.id,
+        side: a.team,
+        x: a.x,
+        y: a.y,
+        condition: Math.round(a.condition),
+        matchStamina: Math.round(a.burst.matchStamina),
+        heartRate: Math.round(a.burst.heartRate),
+        activityLoad: Math.round(a.lastActivityLoad),
+      })),
+    }
+  }
+
   const push = (
     minute: number,
     kind: MatchEvent['kind'],
@@ -552,19 +759,22 @@ export function simulateLayeredMatch(
     spot: { x: number; y: number },
     extra?: Partial<MatchEvent>,
   ) => {
+    const spatial = extra?.spatial ?? captureSpatial(extra?.playerId)
     events.push({
       id: `ev-${fixture.id}-${eid++}`,
       minute,
       kind,
       text,
-      spot,
       homeGoals,
       awayGoals,
       ...extra,
+      spot: simToLivePitchSpot(spot),
+      spatial,
     })
   }
 
   const ref = opts.referee ?? getReferee(fixture.refereeId) ?? getReferee('ref-01')!
+  const hasVar = matchHasVar(fixture.competition, ref)
   if (phase === 'firstHalf' || phase === undefined) {
     push(0, 'kickoff', refereeKickoffNote(ref), { x: 50, y: 50 })
     if (pitch.noteTh !== 'สนามปกติ') {
@@ -577,6 +787,100 @@ export function simulateLayeredMatch(
       { x: 50, y: 50 },
       { clubId: homeClub.id },
     )
+    push(
+      0,
+      'commentary',
+      tacticsShapeNote(
+        homeClub.shortName,
+        homeTactics.formation,
+        homeTactics.formationOop ?? homeTactics.formation,
+        homeTactics.instructions.style,
+        homeTactics.instructions.mentality,
+        homeTactics.instructions.pressing,
+        homeTactics.instructions.tempo,
+        homeTactics.instructions.width,
+      ),
+      { x: 50, y: 50 },
+      { clubId: homeClub.id },
+    )
+    push(
+      0,
+      'commentary',
+      tacticsShapeNote(
+        awayClub.shortName,
+        awayTactics.formation,
+        awayTactics.formationOop ?? awayTactics.formation,
+        awayTactics.instructions.style,
+        awayTactics.instructions.mentality,
+        awayTactics.instructions.pressing,
+        awayTactics.instructions.tempo,
+        awayTactics.instructions.width,
+      ),
+      { x: 50, y: 50 },
+      { clubId: awayClub.id },
+    )
+    if (hasVar) {
+      push(0, 'commentary', 'นัดนี้มี VAR · ตรวจสอบประตู / ใบแดงได้', { x: 50, y: 50 })
+    }
+    {
+      const homeCap = homeAgents.find((a) => a.id === homeTactics.captainId)
+      const awayCap = awayAgents.find((a) => a.id === awayTactics.captainId)
+      if (homeCap) {
+        push(
+          0,
+          'commentary',
+          `กัปตัน ${homeClub.shortName}: ${homeCap.player.name}`,
+          { x: 50, y: 50 },
+          { clubId: homeClub.id, playerId: homeCap.id },
+        )
+      }
+      if (awayCap) {
+        push(
+          0,
+          'commentary',
+          `กัปตัน ${awayClub.shortName}: ${awayCap.player.name}`,
+          { x: 50, y: 50 },
+          { clubId: awayClub.id, playerId: awayCap.id },
+        )
+      }
+    }
+    // แขกในอัฒจันทร์
+    const visitors = opts.stadiumVisitors ?? []
+    if (visitors.length) {
+      for (const line of visitorKickoffLines(visitors)) {
+        push(0, 'commentary', line, { x: 50, y: 50 }, { clubId: homeClub.id })
+      }
+      const effects = visitorPsychEffects(visitors, players)
+      for (const ef of effects) {
+        if (ef.playerId) {
+          const agent = all().find((a) => a.id === ef.playerId)
+          if (agent) {
+            agent.psych = {
+              ...agent.psych,
+              moraleMod: agent.psych.moraleMod * ef.moraleMod,
+              focusMod: agent.psych.focusMod * ef.focusMod,
+              aggressionMod: agent.psych.aggressionMod * ef.aggressionMod,
+              note: ef.noteTh,
+              expiresMinute: 90,
+            }
+          }
+        } else if (ef.side) {
+          const side = ef.side === 'home' ? homeAgents : awayAgents
+          for (const a of side) {
+            a.psych = {
+              ...a.psych,
+              moraleMod: a.psych.moraleMod * ef.moraleMod,
+              focusMod: a.psych.focusMod * ef.focusMod,
+              aggressionMod: a.psych.aggressionMod * ef.aggressionMod,
+            }
+          }
+        }
+        push(0, 'commentary', ef.noteTh, { x: 50, y: 50 }, {
+          clubId: homeClub.id,
+          playerId: ef.playerId,
+        })
+      }
+    }
   } else if (phase === 'secondHalf') {
     push(
       45,
@@ -635,12 +939,6 @@ export function simulateLayeredMatch(
     }
   }
 
-  let possessing: 'home' | 'away' =
-    resume?.possessing ??
-    (rng() < 0.5 + (opts.humanDynamicsBonus ?? 1) * 0.02 ? 'home' : 'away')
-  let ballX = 50
-  let ballY = 50
-  const hasVar = matchHasVar(fixture.competition, ref)
   /** สะสมเศษนาทีทดเวลาในครึ่งนี้ */
   let stoppageAccum = 0
   const bumpStoppage = (mins: number) => {
@@ -653,6 +951,7 @@ export function simulateLayeredMatch(
     sentOff.add(agent.id)
     if (agent.team === 'home') homeAgents = homeAgents.filter((a) => a.id !== agent.id)
     else awayAgents = awayAgents.filter((a) => a.id !== agent.id)
+    refreshSkillProfiles()
   }
 
   const nearestDefender = (defs: Agent[], x: number, y: number): Agent | null => {
@@ -771,6 +1070,14 @@ export function simulateLayeredMatch(
       }
     }
     dismissAgent(fouler)
+    resolveMatchStoppage(
+      minute,
+      fouler.team,
+      'red_card',
+      fouler.id,
+      fouler.player.name,
+      spot,
+    )
     return true
   }
 
@@ -790,9 +1097,12 @@ export function simulateLayeredMatch(
       playerName: taker.player.name,
     })
     atkStats.shots += 1
-    const finish = (taker.player.attrs.finishing + taker.player.attrs.composure) / 2 / 99
+    const finish =
+      ((taker.player.attrs.finishing + taker.player.attrs.composure) / 2 / 99) *
+      skillMatchFactor(taker.team === 'home' ? homeSkillProf : awaySkillProf, 'finish')
     const gkStr = gk
-      ? (gk.player.attrs.handling + gk.player.attrs.reflexes) / 2 / 99
+      ? ((gk.player.attrs.handling + gk.player.attrs.reflexes) / 2 / 99) *
+        skillMatchFactor(gk.team === 'home' ? homeSkillProf : awaySkillProf, 'save')
       : 0.5
     const scored = rng() < clamp(0.55 + finish * 0.35 - gkStr * 0.25, 0.35, 0.88)
     if (scored) {
@@ -828,6 +1138,7 @@ export function simulateLayeredMatch(
       null,
       false,
       side === 'home' ? fixture.awayClubId : fixture.homeClubId,
+      side === 'home' ? homeClub.coachId : awayClub.coachId,
     )
       .filter((a) => !sentOff.has(a.id))
       .map((a) => {
@@ -845,6 +1156,7 @@ export function simulateLayeredMatch(
       awayAgents = rebuilt
       awayTactics = tactics
     }
+    refreshSkillProfiles()
   }
 
   const pendingCount = (side: 'home' | 'away') =>
@@ -894,6 +1206,10 @@ export function simulateLayeredMatch(
         remaining,
       )
       if (subsApplied <= 0) continue
+      for (const s of sideSubs.slice(0, subsApplied)) {
+        closePitchMinutes(s.outId, minute)
+        openPitchMinutes(s.inId, minute)
+      }
       rebuildSide(side, tactics)
       if (side === 'home') homeSubsUsed += subsApplied
       else awaySubsUsed += subsApplied
@@ -917,6 +1233,134 @@ export function simulateLayeredMatch(
     commitPendingSubs(minute)
   }
 
+  /** แก้เกม/ซับ ช่วงหยุดเกม (บาดเจ็บ · ใบแดง) — AI auto · human รอ UI */
+  const applyStoppageTactics = (
+    side: 'home' | 'away',
+    minute: number,
+    menDown: boolean,
+    injuryOutId?: string,
+  ) => {
+    const isHumanSide =
+      (side === 'home' && homeIsHuman) || (side === 'away' && awayIsHuman)
+    const tac = side === 'home' ? homeTactics : awayTactics
+    const used = side === 'home' ? homeSubsUsed : awaySubsUsed
+    const club = side === 'home' ? homeClub : awayClub
+    const agents = side === 'home' ? homeAgents : awayAgents
+    const conds: Record<string, number> = {}
+    for (const a of agents) conds[a.id] = a.condition
+    const ourG = side === 'home' ? homeGoals : awayGoals
+    const theirG = side === 'home' ? awayGoals : homeGoals
+
+    const forcedSubs: HalfTimeSub[] = []
+    if (injuryOutId) {
+      const rep = pickInjuryReplacement(tac, players, injuryOutId, sentOff)
+      if (rep) forcedSubs.push(rep)
+    }
+
+    // ผู้เล่น: บาดเจ็บ = ซับบังคับใน engine · ใบแดง = รอแก้เกมใน UI
+    if (isHumanSide && menDown && !injuryOutId) return
+    if (isHumanSide && injuryOutId) {
+      if (forcedSubs.length) queueSubs(side, forcedSubs, minute)
+      return
+    }
+
+    const solved = aiSolveGame({
+      tactics: tac,
+      players,
+      conditions: conds,
+      ourGoals: ourG,
+      theirGoals: theirG,
+      minute,
+      remainingSubs: Math.max(0, maxSubs - used - pendingCount(side)),
+      coach: getWorldCoach(club.coachId),
+      rng,
+      sentOffIds: sentOff,
+      menDown,
+      playersOnPitch: agents.length,
+    })
+
+    const instrChanged =
+      solved.tactics.formation !== tac.formation ||
+      solved.tactics.formationOop !== tac.formationOop ||
+      solved.tactics.instructions.mentality !== tac.instructions.mentality ||
+      solved.tactics.instructions.pressing !== tac.instructions.pressing
+
+    if (instrChanged) {
+      if (side === 'home') homeTactics = solved.tactics
+      else awayTactics = solved.tactics
+      rebuildSide(side, solved.tactics)
+    }
+
+    if (solved.shout) {
+      push(minute, 'commentary', solved.shout, { x: 50, y: 50 }, { clubId: club.id })
+    }
+    for (const note of solved.notes.slice(0, 2)) {
+      push(minute, 'commentary', note, { x: 50, y: 50 }, { clubId: club.id })
+    }
+
+    const subs = [
+      ...forcedSubs,
+      ...solved.subs.filter((s) => !forcedSubs.some((f) => f.outId === s.outId)),
+    ]
+    if (subs.length) queueSubs(side, subs, minute)
+  }
+
+  const resolveMatchStoppage = (
+    minute: number,
+    side: 'home' | 'away',
+    reason: 'injury' | 'red_card',
+    playerId: string,
+    playerName: string,
+    spot: { x: number; y: number },
+    injuredAgent?: Agent,
+  ) => {
+    const club = side === 'home' ? homeClub : awayClub
+    const onPitch = (side === 'home' ? homeAgents : awayAgents).length
+
+    const injuryPart =
+      reason === 'injury' && injuredAgent
+        ? pickInjuredBodyPart('muscle', ensureBodyMap(injuredAgent.player))
+        : undefined
+
+    push(
+      minute,
+      'tactical_window',
+      reason === 'injury'
+        ? `หยุดเกม · ${playerName} บาดเจ็บกลางทาง — ต้องเปลี่ยนตัว`
+        : `หยุดเกม · ใบแดง ${playerName} · เหลือ ${onPitch} คน — แก้เกม`,
+      spot,
+      {
+        clubId: club.id,
+        playerId,
+        playerName,
+        stoppageKind: reason,
+        stoppageSide: side,
+        injuryBodyPart: injuryPart,
+      },
+    )
+
+    applyStoppageTactics(
+      side,
+      minute,
+      reason === 'red_card' || onPitch <= 10,
+      reason === 'injury' ? playerId : undefined,
+    )
+
+    if (reason === 'injury' && injuredAgent) {
+      dismissAgent(injuredAgent)
+    }
+
+    onDeadBall(minute)
+
+    const opp: 'home' | 'away' = side === 'home' ? 'away' : 'home'
+    if (reason === 'red_card') {
+      const oppMenUp = (opp === 'home' ? homeAgents : awayAgents).length > onPitch
+      if (oppMenUp) {
+        applyStoppageTactics(opp, minute, false)
+      }
+    }
+  }
+
   /** AI แก้เกมได้ตลอด — แผน/กดทันที · เปลี่ยนตัวคิวรอบอลออก */
   const runAiSolve = (side: 'home' | 'away', minute: number, force = false) => {
     const isHumanSide =
@@ -928,14 +1372,18 @@ export function simulateLayeredMatch(
     const checkpoint =
       minute === 15 ||
       minute === 30 ||
+      minute === 38 ||
       minute === 50 ||
       minute === 55 ||
       minute === 60 ||
+      minute === 62 ||
       minute === 65 ||
       minute === 70 ||
+      minute === 72 ||
       minute === 75 ||
       minute === 80 ||
       minute === 85 ||
+      minute === 88 ||
       minute % 15 === 0
     if (!force && !goalEvent && !checkpoint) return
     if (!force && !goalEvent && minute - lastAiSolveMinute < 4) return
@@ -1020,7 +1468,7 @@ export function simulateLayeredMatch(
     if (solved.subs.length > 0) {
       queueSubs(side, solved.subs, minute)
     }
-    if (solved.notes.length && rng() < 0.5) {
+    if (solved.notes.length && (instrChanged || rng() < 0.72)) {
       push(minute, 'commentary', `AI ปรับแผน: ${solved.notes[0]}`, { x: 50, y: 50 }, {
         clubId: club.id,
       })
@@ -1056,6 +1504,121 @@ export function simulateLayeredMatch(
     attrs: a.player.attrs,
   })
 
+  /** หลังเซฟ/เคลียร์ — กันยิงซ้ำทันที */
+  let attackCooldown = 0
+
+  const runThrowInSequence = (minute: number, atkTeam: 'home' | 'away') => {
+    const attackingUp = atkTeam === 'home'
+    const attackers = atkTeam === 'home' ? homeAgents : awayAgents
+    const defenders = atkTeam === 'home' ? awayAgents : homeAgents
+    const club = atkTeam === 'home' ? homeClub : awayClub
+    const spot = throwInSpot(attackingUp, rng)
+    const { spatial, takerId } = buildThrowInSetupSpatial(
+      attackers,
+      defenders,
+      atkTeam,
+      spot,
+      rng,
+    )
+    applySpatialToAgents(all(), spatial)
+    ballX = spot.x
+    ballY = spot.y
+    possessing = atkTeam
+    const takerName = takerId
+      ? (players.find((p) => p.id === takerId)?.name ?? 'ลูกทุ่ม')
+      : 'ลูกทุ่ม'
+    push(minute, 'commentary', `ลูกทุ่ม · ${takerName} เตรียมทุ่มเร็ว`, spot, {
+      clubId: club.id,
+      playerId: takerId,
+      playerName: takerName,
+      spatial,
+    })
+    push(
+      minute,
+      'commentary',
+      setPiecePlanWorkingLine(club.shortName, 'throw', 'mixed', true),
+      spot,
+      { clubId: club.id, playerId: takerId },
+    )
+    const taker = attackers.find((a) => a.id === takerId) ?? attackers.find((a) => a.role !== 'GK')
+    if (taker) {
+      ballX = clamp(taker.x, 10, 90)
+      ballY = clamp(taker.y + (attackingUp ? -10 : 10), 5, 95)
+      taker.x = ballX
+      taker.y = ballY
+      touchPerf(taker).keyActions += 0.2
+    }
+    attackCooldown = Math.max(attackCooldown, 1)
+  }
+
+  const runCornerSequence = (
+    minute: number,
+    atkTeam: 'home' | 'away',
+    stats: TeamMatchStats,
+    label: string,
+  ) => {
+    const attackingUp = atkTeam === 'home'
+    const attackers = atkTeam === 'home' ? homeAgents : awayAgents
+    const defenders = atkTeam === 'home' ? awayAgents : homeAgents
+    const club = atkTeam === 'home' ? homeClub : awayClub
+    const tac = atkTeam === 'home' ? homeTactics : awayTactics
+    const plan = tac.setPieces?.corners ?? 'mixed'
+    const planTh = setPiecePlanTh(plan)
+    const cornerSpot = cornerSpotForAttack(attackingUp, rng)
+    const { spatial, takerId } = buildCornerSetupSpatial(
+      attackers,
+      defenders,
+      atkTeam,
+      cornerSpot,
+      rng,
+    )
+    applySpatialToAgents(all(), spatial)
+    ballX = cornerSpot.x
+    ballY = cornerSpot.y
+    possessing = atkTeam
+    const takerName = takerId
+      ? (players.find((p) => p.id === takerId)?.name ?? '')
+      : ''
+    push(minute, 'corner', `${label} · แผน「${planTh}」`, cornerSpot, {
+      clubId: club.id,
+      playerId: takerId,
+      spatial,
+    })
+    push(
+      minute,
+      'commentary',
+      `เข้ากรอบรอเปิด · ${takerName || 'เตะมุม'} · เป้า${planTh}`,
+      cornerSpot,
+      {
+        clubId: club.id,
+        playerId: takerId,
+        playerName: takerName || undefined,
+        spatial,
+      },
+    )
+    const corner = resolveCorner(
+      attackers.map(toLike),
+      defenders.map(toLike),
+      stats,
+      {
+        plan,
+        minute,
+        attackingUp,
+        rng,
+      },
+    )
+    const worked = corner.kind === 'goal' || corner.kind === 'save' || corner.kind === 'short_keep'
+    push(
+      minute,
+      'commentary',
+      setPiecePlanWorkingLine(club.shortName, 'corner', plan, worked),
+      cornerSpot,
+      { clubId: club.id, playerId: takerId },
+    )
+    applySpOutcome(corner, minute, atkTeam, stats)
+    attackCooldown = Math.max(attackCooldown, 2)
+  }
+
   const applySpOutcome = (
     outcome: import('./setPieces').SetPieceOutcome,
     minute: number,
@@ -1070,6 +1633,16 @@ export function simulateLayeredMatch(
       if (atkTeam === 'home') homeGoals += 1
       else awayGoals += 1
       bumpStoppage(STOPPAGE.goal)
+      if (outcome.scorerId) {
+        const scorer = all().find((a) => a.id === outcome.scorerId)
+        if (scorer) {
+          const perf = touchPerf(scorer)
+          perf.goals += 1
+          perf.shots += 1
+          perf.shotsOnTarget += 1
+          perf.keyActions += 0.5
+        }
+      }
       push(minute, 'goal', outcome.text, outcome.spot, {
         clubId: club.id,
         playerId: outcome.scorerId,
@@ -1078,6 +1651,7 @@ export function simulateLayeredMatch(
       possessing = atkTeam === 'home' ? 'away' : 'home'
       ballX = 50
       ballY = 50
+      attackCooldown = Math.max(attackCooldown, 2)
       onDeadBall(minute)
     } else if (outcome.kind === 'save') {
       atkStats.shots += 1
@@ -1085,6 +1659,9 @@ export function simulateLayeredMatch(
       bumpStoppage(STOPPAGE.save)
       push(minute, 'save', outcome.text, outcome.spot, { clubId: defClub.id })
       possessing = atkTeam === 'home' ? 'away' : 'home'
+      ballX = 50
+      ballY = possessing === 'home' ? 12 : 88
+      attackCooldown = Math.max(attackCooldown, 3)
       onDeadBall(minute)
     } else if (outcome.kind === 'short_keep') {
       push(minute, 'commentary', outcome.text, outcome.spot, {
@@ -1092,18 +1669,32 @@ export function simulateLayeredMatch(
         playerId: outcome.takerId,
         playerName: outcome.takerName,
       })
+      attackCooldown = Math.max(attackCooldown, 1)
     } else {
       bumpStoppage(STOPPAGE.ballOut)
       push(minute, 'commentary', outcome.text, outcome.spot, {
         clubId: club.id,
         playerId: outcome.takerId,
       })
-      possessing = atkTeam === 'home' ? 'away' : 'home'
-      onDeadBall(minute)
+      if (rng() < 0.32) {
+        runThrowInSequence(minute, atkTeam)
+      } else {
+        possessing = atkTeam === 'home' ? 'away' : 'home'
+        ballX = 50
+        ballY = possessing === 'home' ? 12 : 88
+        attackCooldown = Math.max(attackCooldown, 2)
+        onDeadBall(minute)
+      }
     }
   }
 
   for (let seq = 0; seq < keyEvents; seq++) {
+    if (attackCooldown > 0) attackCooldown--
+
+    for (const a of all()) {
+      a.tickMove = 0
+    }
+
     const minute = Math.min(
       minuteBase + minuteSpan,
       minuteBase + Math.max(1, Math.ceil(((seq + 1) / keyEvents) * minuteSpan)),
@@ -1128,6 +1719,8 @@ export function simulateLayeredMatch(
 
     const attackers = possessing === 'home' ? homeAgents : awayAgents
     const defenders = possessing === 'home' ? awayAgents : homeAgents
+    const atkSkills = possessing === 'home' ? homeSkillProf : awaySkillProf
+    const defSkills = possessing === 'home' ? awaySkillProf : homeSkillProf
     const atkForm = possessing === 'home' ? homeForm : awayForm
     const defTac = possessing === 'home' ? awayTactics : homeTactics
     const coachAtk = possessing === 'home' ? coachMod.homeAtk : coachMod.awayAtk
@@ -1145,12 +1738,14 @@ export function simulateLayeredMatch(
       freeNotes.push(`${minute}' ${frees[0]!.note}`)
     }
 
-    // pick carrier: free player preferred else highest overall near ball
+    // pick carrier: free player preferred else nearest + บทบาทชอบครองบอล
     let carrier =
       attackers.find((a) => frees.some((f) => f.agentId === a.id)) ??
       [...attackers].sort((a, b) => {
-        const da = Math.hypot(a.x - ballX, a.y - ballY)
-        const db = Math.hypot(b.x - ballX, b.y - ballY)
+        const wa = roleCarryWeight(a.role, a.tacticalRoleId)
+        const wb = roleCarryWeight(b.role, b.tacticalRoleId)
+        const da = Math.hypot(a.x - ballX, a.y - ballY) / Math.max(0.35, wa)
+        const db = Math.hypot(b.x - ballX, b.y - ballY) / Math.max(0.35, wb)
         return da - db || b.player.overall - a.player.overall
       })[0]
 
@@ -1287,55 +1882,116 @@ export function simulateLayeredMatch(
       const attrRaw =
         (carrier.player.attrs.passing + carrier.player.attrs.technique + carrier.player.attrs.vision) / 3
       let u =
-        0.55 * (attrRaw / 99) +
-        0.25 * pc +
-        0.15 * net.triangleBonus -
-        0.2 * pressure +
-        (frees.some((f) => f.agentId === m.id) ? 0.18 : 0)
-      if (bias === 'triangulation' && dist < 22) u += 0.08
-      if (bias === 'direct' && dist > 28) u += 0.06
+        0.72 * (attrRaw / 99) +
+        0.28 * pc +
+        0.18 * net.triangleBonus -
+        0.12 * pressure +
+        0.22 +
+        (frees.some((f) => f.agentId === m.id) ? 0.22 : 0)
+      // ระยะสั้น/กลาง = พาสพื้นฐานของฟุตบอล
+      if (dist < 18) u += 0.14
+      else if (dist < 28) u += 0.08
+      if (bias === 'triangulation' && dist < 22) u += 0.1
+      if (bias === 'direct' && dist > 28) u += 0.08
       if (bias === 'flank' && (m.role === 'LM' || m.role === 'RM' || m.role === 'LW' || m.role === 'RW'))
-        u += 0.07
-      if (bias === 'central_am' && (m.role === 'CAM' || m.role === 'ST')) u += 0.07
-      if (bias === 'long_to_st' && m.role === 'ST') u += 0.09
-      // PPM — บวก utility ตามนิสัย (ขัดแผนได้)
+        u += 0.09
+      if (bias === 'central_am' && (m.role === 'CAM' || m.role === 'ST')) u += 0.09
+      if (bias === 'long_to_st' && m.role === 'ST') u += 0.12
+      // PPM — บวก utility ตามนิสัย (ขัดแผนได้) · ใช้ Active skills ตามฟอร์ม
       const passKind = dist >= 26 ? 'pass_long' : 'pass_short'
-      u *= ppmUtilityMult(carrier.player.skills, passKind)
+      u *= ppmUtilityMult(carrier.activeSkills, passKind)
+      // พลังแฝง XI — create/distribute ฝั่งรุก · press ฝั่งรับกด utility พาส
+      u *= skillMatchFactor(atkSkills, 'create')
+      u *= skillMatchFactor(atkSkills, 'distribute', 0.35)
+      u /= skillMatchFactor(defSkills, 'press', 0.4)
       u *= carrier.fit * m.fit * numAtk
       if (underCrowd) u *= crowd.awayNerve
       // คู่แข่งมาร์ก/กดเป้าพาส
       if (defTac.opposition?.markPlayerId === m.id) u *= 0.72
       if (defTac.opposition?.pressPlayerId === m.id) u *= 0.85
-      const risk = ROLE_VECTORS[carrier.role].vectors.passingRiskTolerance
-      const diff = (dist / 35) * (1.1 - risk * 0.3) * (wx.attack < 1 ? 1.08 : 1)
+      const mateProg = possessing === 'home' ? m.y : 100 - m.y
+      const mateWide = Math.abs(m.x - 50)
+      u = applyRoleToActionU('pass', u, carrier.role, carrier.tacticalRoleId)
+      u *= roleReceiveScore(
+        carrier.tacticalRoleId,
+        m.role,
+        m.tacticalRoleId,
+        mateProg,
+        mateWide,
+      )
+      // สร้างเกมกลางสนาม — ดัน utility พาสขึ้นชัด
+      const carrierProg0 = possessing === 'home' ? carrier.y : 100 - carrier.y
+      if (carrierProg0 < 58) u *= 1.22
+      if (roleWantsBuildPass(carrier.tacticalRoleId)) u *= 1.18
+      {
+        const atkInstr = (possessing === 'home' ? homeTactics : awayTactics).instructions
+        if (atkInstr.style === 'possession') u *= 1.12
+        if (atkInstr.style === 'counter' && dist >= 26) u *= 1.14
+        if (atkInstr.tempo === 'fast' && dist < 20) u *= 1.06
+        if (atkInstr.tempo === 'slow') u *= 1.08
+      }
+      const risk = resolveRoleVectors(carrier.role, carrier.tacticalRoleId).vectors
+        .passingRiskTolerance
+      const diff = (dist / 38) * (1.05 - risk * 0.28) * (wx.attack < 1 ? 1.08 : 1)
       actions.push({ kind: 'pass', target: m, u, diff })
     }
 
-    // dribble
+    // dribble — รองจากพาส นอกจากบทบาทชอบพาลูก
     {
       const attrRaw = (carrier.player.attrs.dribbling + carrier.player.attrs.pace + carrier.player.attrs.agility) / 3
-      let u = 0.4 * (attrRaw / 99) - 0.25 * pressure + 0.05
-      u *= ppmUtilityMult(carrier.player.skills, 'dribble')
-      actions.push({ kind: 'dribble', u, diff: 0.55 + pressure * 0.1 })
+      let u = 0.32 * (attrRaw / 99) - 0.28 * pressure + 0.02
+      u *= ppmUtilityMult(carrier.activeSkills, 'dribble')
+      u *= skillMatchFactor(atkSkills, 'dribble')
+      u *= skillMatchFactor(atkSkills, 'pace', 0.35)
+      u /= skillMatchFactor(defSkills, 'duel', 0.35)
+      u = applyRoleToActionU('dribble', u, carrier.role, carrier.tacticalRoleId)
+      if (roleWantsBuildPass(carrier.tacticalRoleId)) u *= 0.72
+      actions.push({ kind: 'dribble', u, diff: 0.64 + pressure * 0.14 })
     }
 
     // shoot if advanced
-    const prog = possessing === 'home' ? carrier.y : 100 - carrier.y
-    if (prog > 62) {
+    let prog = possessing === 'home' ? carrier.y : 100 - carrier.y
+    // เพื่อนลึกกว่า → ดันพาสหาเขา (ไม่ย้าย carrier เงียบๆ)
+    if (prog < 62) {
+      const deeper = [...attackers]
+        .filter((a) => a.id !== carrier.id && a.role !== 'GK')
+        .sort((a, b) => {
+          const pa = possessing === 'home' ? a.y : 100 - a.y
+          const pb = possessing === 'home' ? b.y : 100 - b.y
+          return pb - pa
+        })[0]
+      const deepProg = deeper
+        ? possessing === 'home'
+          ? deeper.y
+          : 100 - deeper.y
+        : 0
+      if (deeper && deepProg > prog + 8) {
+        const deepPass = actions.find((a) => a.kind === 'pass' && a.target?.id === deeper.id)
+        if (deepPass) deepPass.u *= 1.35
+      }
+    }
+    if (prog > 52) {
       const attrRaw =
         (carrier.player.attrs.finishing +
           carrier.player.attrs.composure * (underCrowd ? crowd.awayNerve : 1) +
           carrier.player.attrs.technique) /
         3
-      let u = 0.35 * (attrRaw / 99) + (prog - 62) / 80 - 0.15 * pressure
-      if (zone === 'zone14' || zone === 'box_opp' || zone === 'am') u += 0.12
+      let u = 0.4 * (attrRaw / 99) + (prog - 52) / 65 - 0.1 * pressure
+      if (zone === 'zone14' || zone === 'box_opp' || zone === 'am') u += 0.16
+      if (prog > 78) u += 0.18
       u *= coachAtk * wx.attack * numAtk
-      u *= ppmUtilityMult(carrier.player.skills, 'shoot')
+      u *= ppmUtilityMult(carrier.activeSkills, 'shoot')
+      u *= skillMatchFactor(atkSkills, 'finish')
+      u *= skillMatchFactor(atkSkills, 'attack', 0.4)
+      u = applyRoleToActionU('shoot', u, carrier.role, carrier.tacticalRoleId)
       const gk = defenders.find((d) => d.role === 'GK') ?? defenders[0]
       const gkStr = gk
         ? (gk.player.attrs.handling + gk.player.attrs.reflexes) / 2 / 99
         : 0.5
-      let diff = 0.45 + gkStr * 0.4 * coachDef + (100 - prog) / 120
+      let diff = 0.48 + gkStr * 0.4 * coachDef + (100 - prog) / 115
+      diff *= skillMatchFactor(defSkills, 'save')
+      diff *= skillMatchFactor(defSkills, 'defend', 0.4)
+      if (attackCooldown > 0) u *= 0.32
       if (oi?.showOnto === 'weaker_foot' && oi.markPlayerId === carrier.id) {
         diff *= 1.18
         u *= 0.9
@@ -1349,17 +2005,101 @@ export function simulateLayeredMatch(
     }
 
     actions.sort((a, b) => b.u - a.u)
-    // soft pick top
-    const pick = actions[rng() < 0.7 ? 0 : Math.min(actions.length - 1, 1)]!
-    if (pick?.kind === 'pass' && pick.target && rng() < 0.08) {
+    // soft pick top — ในกรอบสุดท้ายบังคับให้มีโอกาสยิงจริง (กันพาสวนตลอด)
+    let pick = actions[rng() < 0.7 ? 0 : Math.min(actions.length - 1, 1)]!
+    const passActs = actions.filter((a) => a.kind === 'pass' && a.target)
+    const bestPass = passActs[0]
+    // สร้างเกม / บทบาทเพลย์เมกเกอร์ — บังคับพาสบ่อยๆ ให้เห็นการส่งบอล
+    if (bestPass && prog < 70) {
+      const forcePass =
+        prog < 52
+          ? roleWantsBuildPass(carrier.tacticalRoleId)
+            ? 0.78
+            : 0.62
+          : roleWantsBuildPass(carrier.tacticalRoleId)
+            ? 0.55
+            : 0.38
+      if (rng() < forcePass) pick = bestPass
+    }
+    const shootAct = actions.find((a) => a.kind === 'shoot')
+    if (shootAct && prog > 60 && attackCooldown === 0) {
+      const forceP = prog > 80 ? 0.38 : prog > 72 ? 0.24 : 0.12
+      if (rng() < forceP) pick = shootAct
+    }
+    if (pick?.kind === 'pass' && pick.target && rng() < 0.12) {
       const dist = Math.hypot(pick.target.x - carrier.x, pick.target.y - carrier.y)
-      const note = ppmNote(carrier.player.skills, dist >= 26 ? 'pass_long' : 'pass_short')
+      const note = ppmNote(carrier.activeSkills, dist >= 26 ? 'pass_long' : 'pass_short')
       if (note) {
         const ppmClub = possessing === 'home' ? homeClub : awayClub
         push(minute, 'commentary', `${carrier.player.name} · ${note}`, { x: carrier.x, y: carrier.y }, {
           clubId: ppmClub.id,
           playerId: carrier.id,
         })
+      }
+    }
+    if (
+      (pick.kind === 'pass' || pick.kind === 'dribble' || pick.kind === 'shoot') &&
+      rng() < 0.14
+    ) {
+      const rn = roleActionNote(carrier.role, carrier.tacticalRoleId, pick.kind)
+      if (rn) {
+        const roleClub = possessing === 'home' ? homeClub : awayClub
+        push(minute, 'commentary', `${carrier.player.name} · ${rn}`, { x: carrier.x, y: carrier.y }, {
+          clubId: roleClub.id,
+          playerId: carrier.id,
+        })
+      }
+    }
+    // โน้ตเฟสสร้างเกม — เพิ่มความหนาแน่นฟีด
+    if (pick.kind !== 'shoot' && rng() < 0.22) {
+      const phase = rolePhaseNote(carrier.player.name, carrier.tacticalRoleId, prog, pressure)
+      if (phase) {
+        push(minute, 'commentary', phase, { x: carrier.x, y: carrier.y }, {
+          clubId: (possessing === 'home' ? homeClub : awayClub).id,
+          playerId: carrier.id,
+        })
+      }
+    }
+    // แผน/ฟอร์เมชันกำลังทำงาน
+    if (rng() < 0.22) {
+      const club = possessing === 'home' ? homeClub : awayClub
+      const tacNow = possessing === 'home' ? homeTactics : awayTactics
+      const shape = formationInPlayNote(
+        club.shortName,
+        tacNow.formation,
+        tacNow.instructions.style,
+        prog,
+      )
+      if (shape) {
+        push(minute, 'commentary', shape, { x: carrier.x, y: carrier.y }, { clubId: club.id })
+      }
+    }
+    // ถ่วงเวลาเมื่อนำช่วงท้าย
+    {
+      const gd =
+        possessing === 'home' ? homeGoals - awayGoals : awayGoals - homeGoals
+      const tacNow = possessing === 'home' ? homeTactics : awayTactics
+      const tw = timeWasteChance({
+        minute,
+        goalDiff: gd,
+        mentality: tacNow.instructions.mentality,
+        tempo: tacNow.instructions.tempo,
+        style: tacNow.instructions.style,
+      })
+      if (tw > 0 && rng() < tw) {
+        bumpStoppage(STOPPAGE.timeWaste)
+        push(
+          minute,
+          'commentary',
+          timeWasteLine(carrier.player.name, minute),
+          { x: carrier.x, y: carrier.y },
+          {
+            clubId: (possessing === 'home' ? homeClub : awayClub).id,
+            playerId: carrier.id,
+          },
+        )
+        // ถ่วงเวลา = ชอบพาสสั้น/ดริบช้า แทนยิง
+        if (pick.kind === 'shoot' && bestPass && rng() < 0.65) pick = bestPass
       }
     }
 
@@ -1379,18 +2119,130 @@ export function simulateLayeredMatch(
         : pick.kind === 'dribble'
           ? (carrier.player.attrs.dribbling + carrier.player.attrs.pace) / 2
           : (carrier.player.attrs.passing + carrier.player.attrs.technique) / 2
+    const skillAtkMul =
+      pick.kind === 'shoot'
+        ? skillMatchFactor(atkSkills, 'finish') * skillMatchFactor(atkSkills, 'attack', 0.35)
+        : pick.kind === 'dribble'
+          ? skillMatchFactor(atkSkills, 'dribble')
+          : skillMatchFactor(atkSkills, 'create') * skillMatchFactor(atkSkills, 'distribute', 0.3)
+    const skillDefMul =
+      pick.kind === 'shoot'
+        ? skillMatchFactor(defSkills, 'save') * skillMatchFactor(defSkills, 'defend', 0.35)
+        : pick.kind === 'dribble'
+          ? skillMatchFactor(defSkills, 'duel')
+          : skillMatchFactor(defSkills, 'press', 0.45) * skillMatchFactor(defSkills, 'defend', 0.25)
     const success =
-      (aTarget / 99) * (effCond / 100) * moraleIndex + gaussian(rng) * alpha
-    const ok = success > (pick.diff * famPen) / 2.2
+      (aTarget / 99) * (effCond / 100) * moraleIndex * skillAtkMul + gaussian(rng) * alpha
+    const ok = success > ((pick.diff * famPen) / 2.2) * skillDefMul
 
     const spot = { x: carrier.x, y: carrier.y }
     const team = possessing === 'home' ? homeClub : awayClub
     const stats = possessing === 'home' ? homeStats : awayStats
 
+    // แขกยังจ้องอยู่ — เตือนกลางเกม
+    if (
+      carrier.psych.note &&
+      (carrier.psych.note.includes('จ้อง') ||
+        carrier.psych.note.includes('กดดัน') ||
+        carrier.psych.note.includes('ฮึกเหิม')) &&
+      rng() < 0.09
+    ) {
+      push(minute, 'commentary', carrier.psych.note, spot, {
+        clubId: team.id,
+        playerId: carrier.id,
+      })
+    }
+
+    // กัปตันรวบรวมทีมตอนตามหลัง
+    {
+      const atkAgents = possessing === 'home' ? homeAgents : awayAgents
+      const tacCap = possessing === 'home' ? homeTactics : awayTactics
+      const { leaderId } = captainOnPitch(tacCap, atkAgents)
+      const gd =
+        possessing === 'home' ? homeGoals - awayGoals : awayGoals - homeGoals
+      if (leaderId && gd < 0 && minute >= 20 && rng() < 0.11) {
+        const cap = atkAgents.find((a) => a.id === leaderId)
+        if (cap) {
+          const det = cap.player.growth?.determination ?? 10
+          const boost = 1 + Math.min(0.1, det * 0.006)
+          for (const a of atkAgents) {
+            a.psych = {
+              ...a.psych,
+              moraleMod: a.psych.moraleMod * boost,
+              focusMod: a.psych.focusMod * (1 + Math.min(0.08, det * 0.005)),
+              expiresMinute: Math.max(a.psych.expiresMinute, minute + 10),
+            }
+          }
+          push(minute, 'commentary', captainOrganizeLine(cap.player.name, true), spot, {
+            clubId: team.id,
+            playerId: cap.id,
+          })
+        }
+      }
+    }
+
     if (pick.kind === 'pass') {
       const target = pick.target
       if (ok && target) {
         const passDist = Math.hypot(target.x - carrier.x, target.y - carrier.y)
+        const mateProg = possessing === 'home' ? target.y : 100 - target.y
+        const carrierProgPass = possessing === 'home' ? carrier.y : 100 - carrier.y
+        const atkStyle = (possessing === 'home' ? homeTactics : awayTactics).instructions.style
+        const osP = offsideChance({
+          passDist,
+          mateProg,
+          carrierProg: carrierProgPass,
+          throughBall:
+            mateProg - carrierProgPass > 14 ||
+            (target.role === 'ST' && passDist >= 22),
+          style: atkStyle,
+        })
+        if (rng() < osP) {
+          bumpStoppage(STOPPAGE.offside)
+          push(minute, 'offside', offsideText(target.player.name, 'pass'), spot, {
+            clubId: team.id,
+            playerId: target.id,
+            playerName: target.player.name,
+          })
+          // บางจังหวะ VAR ยืนยัน/พลิกล้ำ
+          if (hasVar && mateProg > 80 && rng() < 0.28) {
+            bumpStoppage(STOPPAGE.varCheck)
+            push(minute, 'var', `VAR ตรวจสอบล้ำหน้าของ ${target.player.name}...`, spot, {
+              clubId: team.id,
+              playerId: target.id,
+            })
+            if (rng() < 0.35) {
+              push(minute, 'var', `VAR เล่นต่อ! ${target.player.name} ไม่ล้ำ`, spot, {
+                clubId: team.id,
+                playerId: target.id,
+              })
+              ballX = target.x
+              ballY = target.y
+              push(
+                minute,
+                'commentary',
+                rolePassLine(
+                  carrier.player.name,
+                  target.player.name,
+                  carrier.tacticalRoleId,
+                  passDist,
+                ),
+                spot,
+                { clubId: team.id, playerId: carrier.id },
+              )
+            } else {
+              push(minute, 'var', `VAR ยืนยันล้ำหน้า · ${target.player.name}`, spot, {
+                clubId: team.id,
+                playerId: target.id,
+              })
+              possessing = possessing === 'home' ? 'away' : 'home'
+              onDeadBall(minute)
+            }
+          } else {
+            possessing = possessing === 'home' ? 'away' : 'home'
+            onDeadBall(minute)
+          }
+        } else {
         const lowBlock =
           defTac.instructions.mentality === 'defensive' || defTac.instructions.pressing === 'low'
             ? 1
@@ -1459,18 +2311,41 @@ export function simulateLayeredMatch(
         } else {
           ballX = target.x
           ballY = target.y
-          if (rng() < 0.15) {
-            push(minute, 'commentary', `${carrier.player.name} เปิดบอลหา ${target.player.name}`, spot, {
+          touchPerf(carrier).passesCompleted += 1
+          touchPerf(carrier).keyActions += 0.12
+          // พาสสำเร็จ — โชว์เกือบทุกครั้ง (แมตช์เน้นข้อความ)
+          push(
+            minute,
+            'commentary',
+            rolePassLine(
+              carrier.player.name,
+              target.player.name,
+              carrier.tacticalRoleId,
+              passDist,
+            ),
+            spot,
+            {
               clubId: team.id,
               playerId: carrier.id,
-            })
+            },
+          )
+          // สวิตช์เกม / เปิดกว้าง
+          if (passDist >= 30 && Math.abs(target.x - carrier.x) > 22 && rng() < 0.45) {
+            push(
+              minute,
+              'commentary',
+              `${carrier.player.name} สลับเกมไปฝั่ง ${target.player.name}`,
+              spot,
+              { clubId: team.id, playerId: carrier.id },
+            )
           }
+        }
         }
       } else {
         possessing = possessing === 'home' ? 'away' : 'home'
         bumpStoppage(STOPPAGE.ballOut)
         onDeadBall(minute)
-        if (rng() < 0.2) {
+        if (rng() < 0.72) {
           push(minute, 'commentary', `ตัดพาสจาก ${carrier.player.name} · ลูกออกจากจังหวะ`, spot, {
             clubId: possessing === 'home' ? homeClub.id : awayClub.id,
           })
@@ -1480,6 +2355,17 @@ export function simulateLayeredMatch(
       if (ok) {
         ballY = clamp(ballY + (possessing === 'home' ? 8 : -8), 5, 95)
         carrier.y = ballY
+        touchPerf(carrier).dribblesOk += 1
+        touchPerf(carrier).keyActions += 0.15
+        if (rng() < 0.7) {
+          push(
+            minute,
+            'commentary',
+            roleDribbleLine(carrier.player.name, carrier.tacticalRoleId, true),
+            spot,
+            { clubId: team.id, playerId: carrier.id },
+          )
+        }
       } else {
         // Tackle matrix: clean win / mistackle / foul (+ pen / cards)
         const fouler = nearestDefender(defenders, carrier.x, carrier.y)
@@ -1487,6 +2373,15 @@ export function simulateLayeredMatch(
           possessing = possessing === 'home' ? 'away' : 'home'
           bumpStoppage(STOPPAGE.ballOut)
           onDeadBall(minute)
+          if (rng() < 0.55) {
+            push(
+              minute,
+              'commentary',
+              roleDribbleLine(carrier.player.name, carrier.tacticalRoleId, false),
+              spot,
+              { clubId: team.id, playerId: carrier.id },
+            )
+          }
         } else {
           const attackProgress = possessing === 'home' ? carrier.y : 100 - carrier.y
           const tackle = resolveTackle(rng, {
@@ -1503,18 +2398,16 @@ export function simulateLayeredMatch(
           if (tackle.kind === 'clean_win') {
             possessing = possessing === 'home' ? 'away' : 'home'
             bumpStoppage(STOPPAGE.tackleWin)
-            if (rng() < 0.35) {
-              push(minute, 'commentary', `${fouler.player.name} สกัดสะอาด`, spot, {
-                clubId: fouler.team === 'home' ? homeClub.id : awayClub.id,
-                playerId: fouler.id,
-                playerName: fouler.player.name,
-              })
-            }
+            push(minute, 'commentary', `${fouler.player.name} สไลด์สกัด!`, spot, {
+              clubId: fouler.team === 'home' ? homeClub.id : awayClub.id,
+              playerId: fouler.id,
+              playerName: fouler.player.name,
+            })
           } else if (tackle.kind === 'mistackle') {
             bumpStoppage(STOPPAGE.mistackle)
             ballY = clamp(ballY + (possessing === 'home' ? 4 : -4), 5, 95)
             carrier.y = ballY
-            if (rng() < 0.2) {
+            if (rng() < 0.55) {
               push(minute, 'commentary', `${fouler.player.name} แท็กเคิลพลาด`, spot, {
                 clubId: fouler.team === 'home' ? homeClub.id : awayClub.id,
                 playerId: fouler.id,
@@ -1530,6 +2423,72 @@ export function simulateLayeredMatch(
               playerId: fouler.id,
               playerName: fouler.player.name,
             })
+            // เถียงกรรมการ — กัปตันอาจห้าม
+            {
+              const foulSideAgents = fouler.team === 'home' ? homeAgents : awayAgents
+              const foulTac = fouler.team === 'home' ? homeTactics : awayTactics
+              const { leaderId } = captainOnPitch(foulTac, foulSideAgents)
+              const capAgent = leaderId
+                ? foulSideAgents.find((a) => a.id === leaderId)
+                : undefined
+              const argueBase = refArgueChance({
+                card: Boolean(tackle.card),
+                nearBox: attackProgress >= 70,
+                aggression: fouler.player.hidden.dirtiness * 5,
+                refStrictness: ref.strictness,
+              })
+              const argueP =
+                argueBase *
+                captainArgueMul({
+                  hasCaptainOnPitch: Boolean(capAgent),
+                  captainDetermination: capAgent?.player.growth?.determination ?? 10,
+                  arguerIsCaptain: Boolean(leaderId && (fouler.id === leaderId || carrier.id === leaderId)),
+                })
+              if (rng() < argueP) {
+                bumpStoppage(STOPPAGE.argue)
+                const level =
+                  rng() < dissentBookingChance(ref.strictness, Boolean(tackle.card))
+                    ? 'booked'
+                    : rng() < 0.45
+                      ? 'dissent'
+                      : 'moan'
+                const arguer = rng() < 0.55 ? fouler : carrier
+                push(
+                  minute,
+                  'commentary',
+                  refArgueLine(arguer.player.name, ref.name, level),
+                  spot,
+                  {
+                    clubId: arguer.team === 'home' ? homeClub.id : awayClub.id,
+                    playerId: arguer.id,
+                  },
+                )
+                if (level === 'booked') {
+                  issueBooking(arguer, minute, spot, false, {
+                    color: 'yellow',
+                    secondYellow: false,
+                    text: 'ใบเหลือง · เถียงกรรมการ',
+                  })
+                }
+              } else if (
+                capAgent &&
+                argueBase > 0.15 &&
+                rng() < 0.55 &&
+                fouler.id !== capAgent.id &&
+                carrier.id !== capAgent.id
+              ) {
+                const hot = rng() < 0.5 ? fouler : carrier
+                if (hot.team === capAgent.team) {
+                  push(
+                    minute,
+                    'commentary',
+                    captainCalmArgueLine(capAgent.player.name, hot.player.name),
+                    spot,
+                    { clubId: capAgent.team === 'home' ? homeClub.id : awayClub.id, playerId: capAgent.id },
+                  )
+                }
+              }
+            }
             const nearOwnBox = attackProgress >= 78
             if (tackle.card) {
               bumpStoppage(tackle.card.color === 'red' ? STOPPAGE.red : STOPPAGE.yellow)
@@ -1545,20 +2504,34 @@ export function simulateLayeredMatch(
             } else if (attackProgress > 52 && rng() < 0.5) {
               // ฟรีคิกนอกกรอบ
               const atkTac = possessing === 'home' ? homeTactics : awayTactics
+              const fkPlan = atkTac.setPieces?.freeKicks ?? 'direct'
               const fk = resolveFreeKick(
                 attackers.map(toLike),
                 defenders.map(toLike),
                 {
-                  plan: atkTac.setPieces?.freeKicks ?? 'direct',
+                  plan: fkPlan,
                   minute,
                   attackingUp: possessing === 'home',
                   rng,
                   spot,
                 },
               )
-              push(minute, 'commentary', `ฟรีคิก · แผน ${atkTac.setPieces?.freeKicks ?? 'direct'}`, spot, {
-                clubId: team.id,
-              })
+              push(
+                minute,
+                'commentary',
+                `ฟรีคิก · แผน「${setPiecePlanTh(fkPlan)}」`,
+                spot,
+                { clubId: team.id },
+              )
+              const fkWorked =
+                fk.kind === 'goal' || fk.kind === 'save' || fk.kind === 'short_keep'
+              push(
+                minute,
+                'commentary',
+                setPiecePlanWorkingLine(team.shortName, 'freeKick', fkPlan, fkWorked),
+                spot,
+                { clubId: team.id },
+              )
               applySpOutcome(fk, minute, possessing, stats)
             } else {
               onDeadBall(minute)
@@ -1567,6 +2540,27 @@ export function simulateLayeredMatch(
         }
       }
     } else if (pick.kind === 'shoot') {
+      // ล้ำหน้าก่อนยิง (ตัดหลังเร็ว)
+      if (
+        prog > 78 &&
+        rng() <
+          offsideChance({
+            passDist: 20,
+            mateProg: prog,
+            carrierProg: Math.max(40, prog - 12),
+            throughBall: true,
+            style: (possessing === 'home' ? homeTactics : awayTactics).instructions.style,
+          }) * 0.85
+      ) {
+        bumpStoppage(STOPPAGE.offside)
+        push(minute, 'offside', offsideText(carrier.player.name, 'shot'), spot, {
+          clubId: team.id,
+          playerId: carrier.id,
+          playerName: carrier.player.name,
+        })
+        possessing = possessing === 'home' ? 'away' : 'home'
+        onDeadBall(minute)
+      } else {
       bumpStoppage(STOPPAGE.shot)
       stats.shots += 1
       const xgAdd = shotXg(prog, ok)
@@ -1580,110 +2574,173 @@ export function simulateLayeredMatch(
         playerId: carrier.id,
       })
       if (ok) {
+        // ยิงเข้ากรอบ — ยังต้องแปลงเป็นประตูตาม xG + GK (เดิม: ok = เข้าทันที → สกอร์บวม)
         stats.shotsOnTarget += 1
         perf.shotsOnTarget += 1
-        if (possessing === 'home') homeGoals += 1
-        else awayGoals += 1
-        perf.goals += 1
-        bumpStoppage(STOPPAGE.goal)
-        push(minute, 'goal', `เข้าแล้ว! ${carrier.player.name}`, spot, {
-          clubId: team.id,
-          playerId: carrier.id,
-          playerName: carrier.player.name,
-        })
-        const goalVar = varCheckGoal(rng, hasVar)
-        if (goalVar !== 'none') {
-          bumpStoppage(STOPPAGE.varCheck)
-          push(minute, 'var', `VAR ตรวจสอบประตูของ ${carrier.player.name}...`, spot, {
+        const gkAgent = defenders.find((d) => d.role === 'GK')
+        const gkStr = gkAgent
+          ? (gkAgent.player.attrs.handling + gkAgent.player.attrs.reflexes) / 2 / 99
+          : 0.55
+        const finish =
+          (carrier.player.attrs.finishing + carrier.player.attrs.composure) / 2 / 99
+        const convertP = clamp(
+          xgAdd *
+            (0.7 + finish * 0.35) *
+            (skillAtkMul / Math.max(0.85, skillDefMul)) /
+            (0.8 + gkStr * 1.05),
+          0.04,
+          0.2,
+        )
+        if (rng() < convertP) {
+          if (possessing === 'home') homeGoals += 1
+          else awayGoals += 1
+          perf.goals += 1
+          bumpStoppage(STOPPAGE.goal)
+          push(minute, 'goal', `เข้าแล้ว! ${carrier.player.name}`, spot, {
             clubId: team.id,
             playerId: carrier.id,
+            playerName: carrier.player.name,
           })
-          if (goalVar === 'overturn') {
-            if (possessing === 'home') homeGoals = Math.max(0, homeGoals - 1)
-            else awayGoals = Math.max(0, awayGoals - 1)
-            push(minute, 'var', varEventText('overturn', carrier.player.name), spot, {
+          const finishSkill = bestSkillLabelForKeys(carrier.activeSkills, ['finish', 'attack'])
+          if (finishSkill && rng() < 0.55) {
+            push(minute, 'commentary', `พลังแฝง · ${finishSkill}`, spot, {
               clubId: team.id,
               playerId: carrier.id,
               playerName: carrier.player.name,
             })
-          } else {
-            push(minute, 'var', varEventText('check_ok', carrier.player.name), spot, {
+          }
+          const goalVar = varCheckGoal(rng, hasVar)
+          if (goalVar !== 'none') {
+            bumpStoppage(STOPPAGE.varCheck)
+            push(minute, 'var', `VAR ตรวจสอบประตูของ ${carrier.player.name}...`, spot, {
               clubId: team.id,
               playerId: carrier.id,
             })
+            if (goalVar === 'overturn') {
+              if (possessing === 'home') homeGoals = Math.max(0, homeGoals - 1)
+              else awayGoals = Math.max(0, awayGoals - 1)
+              push(minute, 'var', varEventText('overturn', carrier.player.name), spot, {
+                clubId: team.id,
+                playerId: carrier.id,
+                playerName: carrier.player.name,
+              })
+            } else {
+              push(minute, 'var', varEventText('check_ok', carrier.player.name), spot, {
+                clubId: team.id,
+                playerId: carrier.id,
+              })
+            }
           }
-        }
-        possessing = possessing === 'home' ? 'away' : 'home'
-        ballX = 50
-        ballY = 50
-        onDeadBall(minute)
-      } else {
-        if (rng() < 0.45) {
+          possessing = possessing === 'home' ? 'away' : 'home'
+          ballX = 50
+          ballY = 50
+          onDeadBall(minute)
+        } else {
           bumpStoppage(STOPPAGE.save)
-          push(minute, 'save', `เซฟ!`, { x: 50, y: possessing === 'home' ? 95 : 5 }, {
+          const saveSkill = gkAgent
+            ? bestSkillLabelForKeys(gkAgent.activeSkills, ['save', 'claim', 'defend'])
+            : null
+          const saveText =
+            saveSkill && rng() < 0.22
+              ? `เซฟ! · พลังแฝง ${saveSkill}`
+              : `เซฟ!`
+          push(minute, 'save', saveText, { x: 50, y: possessing === 'home' ? 95 : 5 }, {
             clubId: possessing === 'home' ? awayClub.id : homeClub.id,
+            playerId: gkAgent?.id,
+            playerName: gkAgent?.player.name,
           })
-          stats.shotsOnTarget += 1
-          // เซฟออกข้าง → มุม
+          attackCooldown = Math.max(attackCooldown, 2)
           if (rng() < 0.55) {
-            push(minute, 'corner', `ลูกมุม!`, spot, { clubId: team.id })
-            const corner = resolveCorner(
-              attackers.map(toLike),
-              defenders.map(toLike),
-              stats,
-              {
-                plan: (possessing === 'home' ? homeTactics : awayTactics).setPieces?.corners ?? 'mixed',
-                minute,
-                attackingUp: possessing === 'home',
-                rng,
-              },
-            )
-            applySpOutcome(corner, minute, possessing, stats)
+            runCornerSequence(minute, possessing, stats, `ลูกมุม!`)
           } else {
             possessing = possessing === 'home' ? 'away' : 'home'
+            ballX = 50
+            ballY = possessing === 'home' ? 12 : 88
+            attackCooldown = Math.max(attackCooldown, 3)
+            onDeadBall(minute)
+          }
+        }
+      } else {
+        if (rng() < 0.28) {
+          // บล็อก/หลุดใกล้กรอบ — นับเป็นเข้ากรอบแล้วเซฟได้บ้าง
+          bumpStoppage(STOPPAGE.save)
+          const gkAgent = defenders.find((d) => d.role === 'GK')
+          const saveSkill = gkAgent
+            ? bestSkillLabelForKeys(gkAgent.activeSkills, ['save', 'claim', 'defend'])
+            : null
+          const saveText =
+            saveSkill && rng() < 0.22
+              ? `เซฟ! · พลังแฝง ${saveSkill}`
+              : `เซฟ!`
+          push(minute, 'save', saveText, { x: 50, y: possessing === 'home' ? 95 : 5 }, {
+            clubId: possessing === 'home' ? awayClub.id : homeClub.id,
+            playerId: gkAgent?.id,
+            playerName: gkAgent?.player.name,
+          })
+          stats.shotsOnTarget += 1
+          attackCooldown = Math.max(attackCooldown, 2)
+          if (rng() < 0.55) {
+            runCornerSequence(minute, possessing, stats, `ลูกมุม!`)
+          } else {
+            possessing = possessing === 'home' ? 'away' : 'home'
+            ballX = 50
+            ballY = possessing === 'home' ? 12 : 88
+            attackCooldown = Math.max(attackCooldown, 3)
             onDeadBall(minute)
           }
         } else {
           bumpStoppage(STOPPAGE.ballOut)
-          // ยิงหลุดใกล้เส้น → มุม
           if (prog > 70 && rng() < 0.4) {
-            push(minute, 'corner', `ลูกมุมจากยิงหลุด`, spot, { clubId: team.id })
-            const corner = resolveCorner(
-              attackers.map(toLike),
-              defenders.map(toLike),
-              stats,
-              {
-                plan: (possessing === 'home' ? homeTactics : awayTactics).setPieces?.corners ?? 'mixed',
-                minute,
-                attackingUp: possessing === 'home',
-                rng,
-              },
-            )
-            applySpOutcome(corner, minute, possessing, stats)
+            runCornerSequence(minute, possessing, stats, `ลูกมุมจากยิงหลุด`)
           } else {
             possessing = possessing === 'home' ? 'away' : 'home'
+            ballX = 50
+            ballY = possessing === 'home' ? 12 : 88
+            attackCooldown = Math.max(attackCooldown, 2)
             onDeadBall(minute)
           }
         }
       }
+      } // end else (not offside)
     }
 
-    // expire psych + fatigue / burst zone
+    // expire psych + fatigue / burst zone — แยกตามการวิ่ง/บทบาท
+    const actionKind =
+      pick.kind === 'dribble' ? 'dribble' : pick.kind === 'shoot' ? 'shoot' : pick.kind === 'pass' ? 'pass' : 'idle'
     for (const a of all()) {
       if (a.psych.expiresMinute && minute > a.psych.expiresMinute) {
         a.psych = defaultPsych()
       }
       const sideTac = a.team === 'home' ? homeTactics : awayTactics
-      const sprinting =
-        (pick.kind === 'dribble' && a.id === carrier.id) ||
-        sideTac.instructions.pressing === 'high'
+      const teamHasBall = a.team === possessing
+      const { load, sprinting } = computeAgentFatigueLoad({
+        role: a.role,
+        workRate: a.player.attrs.workRate,
+        stamina: a.player.attrs.stamina,
+        tickMove: a.tickMove,
+        isCarrier: a.id === carrier.id,
+        actionKind,
+        teamHasBall,
+        pressing: sideTac.instructions.pressing,
+        tempo: sideTac.instructions.tempo,
+        ballDist: Math.hypot(a.x - ballX, a.y - ballY),
+      })
+      const roleFatigue = roleFatigueMul(a.role, a.tacticalRoleId)
+      const medFatigue = medicalStaminaProfile(a.player).matchFatigueMul
+      const loadAdj = load * roleFatigue * medFatigue
+      a.lastActivityLoad = Math.round(loadAdj * 100)
       a.burst = tickMatchFatigue(a.burst, {
         pressing: sideTac.instructions.pressing,
         tempo: sideTac.instructions.tempo,
         sprinting,
+        activityLoad: loadAdj,
         weatherInjury: wx.fatigue,
       })
-      a.condition = clamp(a.condition - 0.12 * (wx.fatigue ?? 1) * (sprinting ? 1.4 : 1), 40, 100)
+      a.condition = clamp(
+        a.condition - 0.2 * (wx.fatigue ?? 1) * loadAdj * (sprinting ? 1.25 : 1),
+        28,
+        100,
+      )
       // เจ้าบ้านตามหลังช่วงท้าย — Stamina Regeneration Spike จากเสียงเชียร์
       if (
         a.team === 'home' &&
@@ -1712,17 +2769,15 @@ export function simulateLayeredMatch(
         const type = rolled.type === 'bone' ? ('muscle' as const) : rolled.type
         const days = type === 'muscle' ? Math.max(3, Math.min(rolled.days, 14)) : rolled.days
         inMatchInjuries.push({ playerId: a.id, type, days })
-        const clubId = a.team === 'home' ? homeClub.id : awayClub.id
-        push(
+        resolveMatchStoppage(
           minute,
-          'commentary',
-          `${a.player.name} บาดเจ็บกล้ามเนื้อ! (Burst Zone) · พักประมาณ ${days} วัน`,
+          a.team,
+          'injury',
+          a.id,
+          a.player.name,
           { x: a.x, y: a.y },
-          { clubId, playerId: a.id, playerName: a.player.name },
+          a,
         )
-        bumpStoppage(STOPPAGE.foul)
-        onDeadBall(minute)
-        dismissAgent(a)
       }
     }
 
@@ -1771,7 +2826,7 @@ export function simulateLayeredMatch(
           playerId: carrier.id,
         })
         const finish = (carrier.player.attrs.finishing + carrier.player.attrs.composure) / 2 / 99
-        if (rng() < 0.22 + finish * 0.25) {
+        if (rng() < 0.07 + finish * 0.12) {
           stats.shotsOnTarget += 1
           if (possessing === 'home') homeGoals += 1
           else awayGoals += 1
@@ -1821,7 +2876,11 @@ export function simulateLayeredMatch(
 
   const buildMid = (clock: number): MatchMidState => {
     const conditions: Record<string, number> = {}
-    for (const a of all()) conditions[a.id] = a.condition
+    const matchStaminas: Record<string, number> = {}
+    for (const a of all()) {
+      conditions[a.id] = a.condition
+      matchStaminas[a.id] = a.burst.matchStamina
+    }
     return {
       homeGoals,
       awayGoals,
@@ -1831,6 +2890,8 @@ export function simulateLayeredMatch(
       matchYellows: [...matchYellows.entries()],
       sentOffIds: [...sentOff],
       conditions,
+      matchStaminas,
+      minutesOnPitch: snapshotPitchMinutes(clock),
       homeXi: (homeTactics.startingXi.length ? homeTactics.startingXi : homeAgents.map((a) => a.id)).filter(
         (id) => !sentOff.has(id),
       ),
@@ -1854,7 +2915,14 @@ export function simulateLayeredMatch(
 
   // HT after 1H regulation + stoppage
   if (phase === 'firstHalf') {
+    runAiSolve('home', halfEndMinute, true)
+    runAiSolve('away', halfEndMinute, true)
     onDeadBall(halfEndMinute)
+    // พักครึ่ง ~15 นาที — ฟื้น stamina
+    {
+      const ht = applyHalftimeStaminaRecovery(all())
+      push(halfEndMinute, 'commentary', ht.noteTh, { x: 50, y: 50 })
+    }
     push(
       halfEndMinute,
       'halftime',
@@ -1988,8 +3056,21 @@ export function simulateLayeredMatch(
     resume?.events?.length ? events.slice(resume.events.length) : events,
     perfMap,
   )
-  const { ratings: playerRatings, momPlayerId, momName } = finalizePlayerRatings(
+  const { ratings: playerRatings, momPlayerId, momName } = finalizeRoleAwareRatings(
     perfMap,
+    new Map(
+      [...perfMap.entries()].map(([id, p]) => [
+        id,
+        {
+          tacticalRoleId: p.tacticalRoleId,
+          roleCode: all().find((a) => a.id === id)?.role,
+          passesCompleted: p.passesCompleted,
+          dribblesOk: p.dribblesOk,
+          roleFit: p.roleFit,
+        },
+      ]),
+    ),
+    players,
     phase === 'firstHalf' ? 45 : 90,
   )
 
@@ -2063,6 +3144,12 @@ export function simulateLayeredMatch(
     wentToPens: wentToPens || undefined,
     penalties,
     inMatchInjuries: inMatchInjuries.length ? inMatchInjuries : undefined,
+    finalConditions:
+      phase === 'firstHalf'
+        ? undefined
+        : Object.fromEntries(all().map((a) => [a.id, Math.round(a.condition)])),
+    minutesOnPitch:
+      phase === 'firstHalf' ? undefined : snapshotPitchMinutes(halfEndMinute),
   }
 
   if (phase === 'firstHalf') {

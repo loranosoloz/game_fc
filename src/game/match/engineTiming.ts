@@ -18,15 +18,16 @@ export const CONCEPTUAL_TICKS_PER_MATCH =
 
 /** Key Match Events — highlights that resolve Pass/Dribble/Shoot/Tackle. */
 export function keyEventCount(fidelity: MatchFidelity): number {
-  return fidelity === 'human' ? 72 : 48
+  // human: หนาแน่นพอให้ฟีด/พาสอ่านรู้เรื่อง · ai: เบาสำหรับซิมทั้งลีก
+  return fidelity === 'human' ? 112 : 52
 }
 
 /**
  * Spring micro-ticks between each key event.
- * human: 72×12 ≈ 864 position steps · ai: 48×8 ≈ 384
+ * human: 112×10 ≈ 1120 position steps · ai: 52×7 ≈ 364
  */
 export function springTicksPerKeyEvent(fidelity: MatchFidelity): number {
-  return fidelity === 'human' ? 12 : 8
+  return fidelity === 'human' ? 10 : 7
 }
 
 export function totalSpringTicks(fidelity: MatchFidelity): number {

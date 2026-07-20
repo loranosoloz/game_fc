@@ -508,14 +508,23 @@ export function generateRomanoIntel(save: GameSave): MediaItem[] {
   // Transfer rumor on a market target
   const targets = save.players
     .filter((p) => p.clubId !== save.humanClubId && p.overall >= 72)
-    .sort((a, b) => b.overall - a.overall)
+    .sort((a, b) => {
+      const heat = (x: typeof a) => (x.marketHeat ?? 0) * 2 + (x.form ?? 10) + x.overall
+      return heat(b) - heat(a)
+    })
     .slice(0, 12)
   if (targets.length && rng() < 0.55) {
     const p = targets[Math.floor(rng() * Math.min(6, targets.length))]
     const seller = save.clubs.find((c) => c.id === p.clubId)
-    const reliability = Math.round(35 + rng() * 55)
+    const reliability = Math.round(35 + rng() * 55 + Math.min(15, (p.marketHeat ?? 0)))
     const value = roughValue(p.overall, p.age)
     const hereWeGo = reliability >= 85
+    const heatNote =
+      (p.marketHeat ?? 0) >= 10
+        ? ` · ความสนใจตลาด ${p.marketHeat}/20`
+        : (p.form ?? 10) >= 15
+          ? ` · ฟอร์มร้อน ${p.form}/20`
+          : ''
     items.push(
       item(
         'romano',
@@ -524,14 +533,38 @@ export function generateRomanoIntel(save: GameSave): MediaItem[] {
           ? `Here we go: ${p.name} → ${club.shortName}`
           : reliability >= 70
             ? `Here we go? ${club.shortName} ลุยดีล ${p.name}`
-            : `วงใน: ${club.shortName} สนใจ ${p.name}`,
+            : (p.marketHeat ?? 0) >= 12
+              ? `หลายสโมสรจับตา ${p.name}`
+              : `วงใน: ${club.shortName} สนใจ ${p.name}`,
         hereWeGo
-          ? `ข้อตกลงใกล้ปิด — มูลค่าแถว ${(value / 1_000_000).toFixed(1)} ล้าน · ${seller?.name ?? 'ต้นสังกัด'} เปิดเจรจา`
-          : `แหล่งข่าวใกล้สโมสรบอกว่ามีการคุยเบื้องต้น · ความเชื่อมั่นข่าว ${reliability}% · ยังไม่ใช่ข้อตกลงสุดท้าย`,
+          ? `ข้อตกลงใกล้ปิด — มูลค่าแถว ${(value / 1_000_000).toFixed(1)} ล้าน · ${seller?.name ?? 'ต้นสังกัด'} เปิดเจรจา${heatNote}`
+          : `แหล่งข่าวใกล้สโมสรบอกว่ามีการคุยเบื้องต้น · ความเชื่อมั่นข่าว ${reliability}%${heatNote}`,
         'rumor',
         {
           tags: ['transfer', p.id],
           reliability,
+          subjectName: p.name,
+        },
+      ),
+    )
+  }
+
+  // Hot market heat — หลายทีมจับตา (นอกจาก rumor ซื้อของ human)
+  const heated = save.players
+    .filter((p) => (p.marketHeat ?? 0) >= 12 && p.clubId !== save.humanClubId)
+    .sort((a, b) => (b.marketHeat ?? 0) - (a.marketHeat ?? 0))
+  if (heated[0] && rng() < 0.4) {
+    const p = heated[0]
+    items.push(
+      item(
+        'romano',
+        save.currentDate,
+        `ตลาดเดือด: ${p.name}`,
+        `หลายสโมสรสอบถามต้นสังกัด · ความสนใจ ${p.marketHeat}/20 · ฟอร์ม ${p.form}/20 — ค่าตัวถูกดันขึ้น`,
+        'rumor',
+        {
+          tags: ['market_heat', p.id],
+          reliability: Math.round(50 + rng() * 30),
           subjectName: p.name,
         },
       ),

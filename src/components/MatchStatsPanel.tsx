@@ -109,6 +109,9 @@ export function MatchStatsPanel({
               >
                 <span className="truncate font-medium text-slate-800">
                   {r.team === 'home' ? 'H' : 'A'} · {r.name}
+                  {r.dutyNote ? (
+                    <span className="ml-1 font-normal text-slate-400">· {r.dutyNote}</span>
+                  ) : null}
                 </span>
                 <span className="tabular-nums text-slate-500">
                   {r.goals > 0 ? `${r.goals}G ` : ''}

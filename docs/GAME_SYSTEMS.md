@@ -962,6 +962,8 @@ Data: `src/data/world/` · New game เลือกลีก+สโมสร · 
 - มัลติเพลเยอร์ / editor โลกเต็ม / แอปมือถือ native
 - MySQL เป็น runtime ของเกม Vite — ใช้ IndexedDB ในเบราว์เซอร์แทน (MySQL ได้ทีหลังเป็น pipeline export)
 
+**อัปเดต:** คลังสถิติแมตช์ (`/results`) เก็บเต็มใน IndexedDB `fc-manager-match-stats` (`matchStatsDb.ts`) · เซฟ JSON เก็บสำรองบาง · MySQL DB `game_fc` พร้อม schema (`db/schema.sql` / `npm run db:migrate`) สำหรับ sync/วิเคราะห์ทีหลัง
+
 ---
 
 ## 28. Sync เอกสาร (ก.ค. 2026 รอบ 2) — FM-depth lite + ทะเบียน

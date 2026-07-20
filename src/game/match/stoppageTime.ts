@@ -16,6 +16,9 @@ export const STOPPAGE = {
   mistackle: 0.08,
   save: 0.1,
   shot: 0.05,
+  offside: 0.25,
+  timeWaste: 0.35,
+  argue: 0.2,
 } as const
 
 /** ปัดขึ้นเสมอ — แม้ 0.01 ก็ได้ 1 นาที · 1.10 ได้ 2 */

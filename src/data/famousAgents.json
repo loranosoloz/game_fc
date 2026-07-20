@@ -1,0 +1,315 @@
+{
+  "agents": [
+    {
+      "id": "mendes",
+      "name": "Jorge Mendes",
+      "agency": "Gestifute",
+      "style": "greedy",
+      "note": "โปรตุเกส · ลูกค้าซูเปอร์สตาร์"
+    },
+    {
+      "id": "pimenta",
+      "name": "Rafaela Pimenta",
+      "agency": "Pimenta Sports / ex-Raiola",
+      "style": "greedy",
+      "note": "สานต่อเครือข่าย Raiola"
+    },
+    {
+      "id": "barnett",
+      "name": "Jonathan Barnett",
+      "agency": "Stellar Group",
+      "style": "aggressive",
+      "note": "อังกฤษ · สตาร์พรีเมียร์ลีก"
+    },
+    {
+      "id": "zahavi",
+      "name": "Pini Zahavi",
+      "agency": "Pini Zahavi",
+      "style": "aggressive",
+      "note": "อิสราเอล · ดีลใหญ่ยุโรป"
+    },
+    {
+      "id": "joorabchian",
+      "name": "Kia Joorabchian",
+      "agency": "Media Sports Investment",
+      "style": "aggressive",
+      "note": "ดีลพรีเมียร์ลีก / อเมริกาใต้"
+    },
+    {
+      "id": "cetinkaya",
+      "name": "Hasan Cetinkaya",
+      "agency": "Hasan Cetinkaya Sports",
+      "style": "loyal",
+      "note": "สวีเดน · สตาร์สแกนดิเนเวีย"
+    },
+    {
+      "id": "pastorello",
+      "name": "Federico Pastorello",
+      "agency": "P&P Sport Management",
+      "style": "greedy",
+      "note": "อิตาลี"
+    },
+    {
+      "id": "ndiaye",
+      "name": "Meissa N'Diaye",
+      "agency": "Sport Cover",
+      "style": "balanced",
+      "note": "แอฟริกาตะวันตก"
+    },
+    {
+      "id": "strzelecki",
+      "name": "Volker Strzelecki",
+      "agency": "Unique Sports Group",
+      "style": "balanced",
+      "note": "เยอรมนี"
+    },
+    {
+      "id": "wittmann",
+      "name": "Roger Wittmann",
+      "agency": "Rogon",
+      "style": "aggressive",
+      "note": "เยอรมนี · Bundesliga"
+    },
+    {
+      "id": "kroth",
+      "name": "Thomas Kroth",
+      "agency": "PRO Profil",
+      "style": "balanced",
+      "note": "เยอรมนี"
+    },
+    {
+      "id": "cury",
+      "name": "André Cury",
+      "agency": "André Cury / CAA",
+      "style": "greedy",
+      "note": "บราซิล · Real Madrid links"
+    },
+    {
+      "id": "ribeiro",
+      "name": "Wagner Ribeiro",
+      "agency": "Wagner Ribeiro",
+      "style": "greedy",
+      "note": "บราซิล"
+    },
+    {
+      "id": "segura",
+      "name": "José Antonio Martín «Petón»",
+      "agency": "Bahía Internacional",
+      "style": "loyal",
+      "note": "สเปน"
+    },
+    {
+      "id": "guti",
+      "name": "Juanma López",
+      "agency": "Bahía / ROOF",
+      "style": "balanced",
+      "note": "สเปน"
+    },
+    {
+      "id": "wasserman",
+      "name": "Wasserman Football",
+      "agency": "Wasserman",
+      "style": "aggressive",
+      "note": "เอเจนซี่ใหญ่สหรัฐ/ยุโรป"
+    },
+    {
+      "id": "caa",
+      "name": "CAA Sports",
+      "agency": "CAA",
+      "style": "greedy",
+      "note": "เอเจนซี่ใหญ่ระดับโลก"
+    },
+    {
+      "id": "rocnation",
+      "name": "Roc Nation Sports",
+      "agency": "Roc Nation",
+      "style": "aggressive",
+      "note": "สหรัฐ"
+    },
+    {
+      "id": "base",
+      "name": "Base Soccer Agency",
+      "agency": "Base Soccer",
+      "style": "balanced",
+      "note": "อังกฤษ"
+    },
+    {
+      "id": "icm",
+      "name": "ICM Stellar Sports",
+      "agency": "ICM Stellar",
+      "style": "aggressive",
+      "note": "อังกฤษ / สากล"
+    },
+    {
+      "id": "world_in_motion",
+      "name": "World in Motion",
+      "agency": "World in Motion",
+      "style": "balanced",
+      "note": "อังกฤษ"
+    },
+    {
+      "id": "lian_sports",
+      "name": "Lian Sports",
+      "agency": "Lian Sports",
+      "style": "greedy",
+      "note": "เนเธอร์แลนด์ / ตุรกี"
+    },
+    {
+      "id": "promoesport",
+      "name": "Promoesport",
+      "agency": "Promoesport",
+      "style": "balanced",
+      "note": "สเปน"
+    },
+    {
+      "id": "gestifute_team",
+      "name": "Gestifute Team",
+      "agency": "Gestifute",
+      "style": "greedy",
+      "note": "ทีมงาน Mendes"
+    }
+  ],
+  "playerLinks": {
+    "Cristiano Ronaldo": "mendes",
+    "Bernardo Silva": "mendes",
+    "Bruno Fernandes": "mendes",
+    "João Félix": "mendes",
+    "Joao Felix": "mendes",
+    "Rúben Dias": "mendes",
+    "Ruben Dias": "mendes",
+    "Diogo Jota": "mendes",
+    "Gonçalo Ramos": "mendes",
+    "Goncalo Ramos": "mendes",
+    "Nuno Mendes": "mendes",
+    "Rafael Leão": "mendes",
+    "Rafael Leao": "mendes",
+    "José Sá": "mendes",
+    "Jose Sa": "mendes",
+    "Erling Haaland": "pimenta",
+    "Erling Braut Haaland": "pimenta",
+    "Marcus Thuram": "pimenta",
+    "Moise Kean": "pimenta",
+    "Matthijs de Ligt": "pimenta",
+    "Maarten Stekelenburg": "pimenta",
+    "Zlatan Ibrahimović": "cetinkaya",
+    "Zlatan Ibrahimovic": "cetinkaya",
+    "Dejan Kulusevski": "cetinkaya",
+    "Alexander Isak": "cetinkaya",
+    "Viktor Gyökeres": "cetinkaya",
+    "Viktor Gyokeres": "cetinkaya",
+    "Gareth Bale": "barnett",
+    "Raheem Sterling": "barnett",
+    "Jack Grealish": "barnett",
+    "Jordan Henderson": "barnett",
+    "Harry Maguire": "barnett",
+    "Bukayo Saka": "wasserman",
+    "Phil Foden": "base",
+    "Jude Bellingham": "caa",
+    "Declan Rice": "wasserman",
+    "Mason Mount": "base",
+    "Marcus Rashford": "wasserman",
+    "Jadon Sancho": "wasserman",
+    "Vinícius Júnior": "cury",
+    "Vinicius Junior": "cury",
+    "Vinícius Jr": "cury",
+    "Vinicius Jr": "cury",
+    "Rodrygo": "cury",
+    "Rodrygo Goes": "cury",
+    "Endrick": "ribeiro",
+    "Neymar": "ribeiro",
+    "Neymar Jr": "ribeiro",
+    "Neymar Jr.": "ribeiro",
+    "Richarlison": "ribeiro",
+    "Gabriel Jesus": "ribeiro",
+    "Casemiro": "ribeiro",
+    "Lionel Messi": "family_messi",
+    "Kylian Mbappé": "family_mbappe",
+    "Kylian Mbappe": "family_mbappe",
+    "Luka Modrić": "family_modric",
+    "Luka Modric": "family_modric",
+    "Robert Lewandowski": "strzelecki",
+    "Manuel Neuer": "wittmann",
+    "Joshua Kimmich": "wittmann",
+    "Jamal Musiala": "wittmann",
+    "Florian Wirtz": "wittmann",
+    "Kai Havertz": "kroth",
+    "Antonio Rüdiger": "wittmann",
+    "Antonio Rudiger": "wittmann",
+    "Pedri": "promoesport",
+    "Gavi": "promoesport",
+    "Lamine Yamal": "promoesport",
+    "Frenkie de Jong": "lian_sports",
+    "Virgil van Dijk": "lian_sports",
+    "Cody Gakpo": "lian_sports",
+    "Mohamed Salah": "zahavi",
+    "Sadio Mané": "ndiaye",
+    "Sadio Mane": "ndiaye",
+    "Kalidou Koulibaly": "ndiaye",
+    "Achraf Hakimi": "joorabchian",
+    "Paulo Dybala": "pastorello",
+    "Romelu Lukaku": "pastorello",
+    "Paul Pogba": "pimenta",
+    "Gianluigi Donnarumma": "pastorello",
+    "Lautaro Martínez": "pastorello",
+    "Lautaro Martinez": "pastorello",
+    "Kevin De Bruyne": "icm",
+    "Thibaut Courtois": "icm",
+    "Eden Hazard": "icm",
+    "Roméo Lavia": "icm",
+    "Romeo Lavia": "icm",
+    "Cole Palmer": "wasserman",
+    "Evan Ferguson": "base",
+    "Antoine Griezmann": "segura",
+    "Álvaro Morata": "segura",
+    "Alvaro Morata": "segura",
+    "Ferran Torres": "guti",
+    "Rodri": "segura",
+    "Rodrigo Hernández": "segura",
+    "Son Heung-min": "caa",
+    "Heung-Min Son": "caa",
+    "Takefusa Kubo": "caa",
+    "Kaoru Mitoma": "wasserman",
+    "Harry Kane": "wasserman",
+    "James Maddison": "world_in_motion",
+    "Ollie Watkins": "world_in_motion",
+    "William Saliba": "caa",
+    "Eduardo Camavinga": "mendes",
+    "Aurélien Tchouaméni": "mendes",
+    "Aurelien Tchouameni": "mendes",
+    "Khvicha Kvaratskhelia": "zahavi",
+    "Victor Osimhen": "ndiaye",
+    "Nicolas Jackson": "ndiaye",
+    "Randal Kolo Muani": "ndiaye",
+    "Ousmane Dembélé": "caa",
+    "Ousmane Dembele": "caa",
+    "Karim Benzema": "joorabchian",
+    "Sergio Ramos": "segura",
+    "Toni Kroos": "wittmann",
+    "Ilkay Gündogan": "wittmann",
+    "Ilkay Gundogan": "wittmann",
+    "Martin Ødegaard": "cetinkaya",
+    "Martin Odegaard": "cetinkaya",
+    "Erling Braut Håland": "pimenta"
+  },
+  "familyOverrides": {
+    "family_messi": {
+      "name": "Jorge Messi",
+      "agency": "ครอบครัว Messi",
+      "style": "loyal",
+      "kind": "family"
+    },
+    "family_mbappe": {
+      "name": "Wilfried Mbappé",
+      "agency": "ครอบครัว Mbappé",
+      "style": "aggressive",
+      "kind": "family"
+    },
+    "family_modric": {
+      "name": "ครอบครัว Modrić",
+      "agency": "ครอบครัว Modrić",
+      "style": "loyal",
+      "kind": "family"
+    }
+  },
+  "proOvrThreshold": 80
+}

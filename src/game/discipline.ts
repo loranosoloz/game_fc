@@ -1,15 +1,11 @@
 import type { GameSave, MatchEvent, Player } from './types'
 import { formatIllnessStatus } from './illness'
+import { canPlayMatch } from './medicalStamina'
 
 const YELLOW_THRESHOLD = 5
 
 export function isUnavailable(player: Player): boolean {
-  return (
-    player.injuryDays > 0 ||
-    (player.illnessDays ?? 0) > 0 ||
-    (player.banMatches ?? 0) > 0 ||
-    (player.leaveDays ?? 0) > 0
-  )
+  return !canPlayMatch(player)
 }
 
 export function formatBanStatus(player: Player): string | null {

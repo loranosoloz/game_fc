@@ -41,4 +41,11 @@ export {
 } from './playerPerformance'
 export { parseTacticalCounter, applyCounterToTactics } from './tacticalCounter'
 export { ppmUtilityMult, ppmNote } from './playerTraits'
+export {
+  formSkillMul,
+  activeSkillsForMatch,
+  skillMatchFactor,
+  xiSkillProfile,
+  xiSkillProfileFromXiPlayers,
+} from '../playerSkills'
 export { UnderloadTracker } from './adaptiveCommentary'

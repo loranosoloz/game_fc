@@ -1,15 +1,7 @@
-import type { RoleCode, TeamInstructions } from '../types'
+import type { BehavioralVectors, RoleCode, RoleDuty, TeamInstructions } from '../types'
+import { TACTICAL_ROLE_BY_ID, type TacticalRoleId } from '../tacticalRoles'
 
-export type RoleDuty = 'defend' | 'support' | 'attack'
-
-export interface BehavioralVectors {
-  forwardRunTendency: number
-  lateralHoldTendency: number
-  centralCutInAttractor: number
-  passingRiskTolerance: number
-  defensiveTrackingDrop: number
-  overlapTendency: number
-}
+export type { RoleDuty, BehavioralVectors }
 
 export interface RoleVectorDef {
   roleName: string
@@ -122,27 +114,50 @@ export function dutyScaleFromMentality(mentality: TeamInstructions['mentality'])
  * Off-ball attractor offset (relative grid deltas)
  * V_final = V_formation + ω_role*A_role + ω_duty*A_duty
  */
+export function resolveRoleVectors(
+  role: RoleCode,
+  tacticalRoleId?: string | null,
+): RoleVectorDef {
+  if (tacticalRoleId) {
+    const tr = TACTICAL_ROLE_BY_ID[tacticalRoleId as TacticalRoleId]
+    if (tr && tr.slots.includes(role)) {
+      return { roleName: tr.id, duty: tr.duty, vectors: tr.vectors }
+    }
+  }
+  return ROLE_VECTORS[role]
+}
+
+/**
+ * Off-ball attractor offset (relative grid deltas)
+ * V_final = V_formation + ω_role*A_role + ω_duty*A_duty
+ */
 export function attractorOffset(
   role: RoleCode,
   mentality: TeamInstructions['mentality'],
   inPossession: boolean,
   attackingRight: boolean,
+  tacticalRoleId?: string | null,
 ): { dx: number; dy: number } {
+  const defn = resolveRoleVectors(role, tacticalRoleId)
   if (!inPossession) {
-    const v = ROLE_VECTORS[role].vectors
+    const v = defn.vectors
     return {
       dx: 0,
       dy: -8 * v.defensiveTrackingDrop * (attackingRight ? 1 : -1),
     }
   }
-  const defn = ROLE_VECTORS[role]
   const v = defn.vectors
-  const dutyW = dutyScaleFromMentality(mentality) * (defn.duty === 'attack' ? 1.2 : defn.duty === 'defend' ? 0.5 : 0.85)
+  const dutyW =
+    dutyScaleFromMentality(mentality) *
+    (defn.duty === 'attack' ? 1.2 : defn.duty === 'defend' ? 0.5 : 0.85)
   const dir = attackingRight ? 1 : -1
   const towardCenter = role === 'LW' || role === 'LM' ? 1 : role === 'RW' || role === 'RM' ? -1 : 0
   const dx =
     towardCenter * 12 * v.centralCutInAttractor +
-    (role === 'LB' || role === 'LM' ? -1 : role === 'RB' || role === 'RM' ? 1 : 0) * 10 * v.overlapTendency
-  const dy = dir * (14 * v.forwardRunTendency * dutyW - 6 * v.lateralHoldTendency * (1 - dutyW * 0.3))
+    (role === 'LB' || role === 'LM' ? -1 : role === 'RB' || role === 'RM' ? 1 : 0) *
+      10 *
+      v.overlapTendency
+  const dy =
+    dir * (14 * v.forwardRunTendency * dutyW - 6 * v.lateralHoldTendency * (1 - dutyW * 0.3))
   return { dx, dy }
 }
