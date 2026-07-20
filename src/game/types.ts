@@ -135,6 +135,62 @@ export interface PlayerCareerSeason {
   reds?: number
 }
 
+/** สถิติฤดูกาลปัจจุบันในเซฟ — อัปเดตทุกนัด (รวม AI) */
+export interface PlayerLiveSeasonStats {
+  season: number
+  clubId: string
+  apps: number
+  starts: number
+  goals: number
+  assists: number
+  minutes: number
+  yellows: number
+  reds: number
+  ratingSum: number
+  motm: number
+  cleanSheets: number
+  shots: number
+  xg: number
+  saves: number
+}
+
+/** นัดล่าสุดติดตัวนักเตะ (cap ในเกม) */
+export interface PlayerMatchLogEntry {
+  fixtureId: string
+  season: number
+  matchday: number
+  date: string
+  competition: CompetitionKind
+  clubId: string
+  opponentClubId: string
+  home: boolean
+  goals: number
+  assists: number
+  minutes: number
+  rating: number
+  yellows: number
+  reds: number
+  motm: boolean
+  shots: number
+  xg: number
+}
+
+/** แถวฤดูกาลที่จบแล้วในเซฟ (เก็บจาก liveSeason ตอนขึ้นปีใหม่ / ย้ายทีม) */
+export interface PlayerSeasonHistoryRow {
+  season: number
+  label: string
+  clubId: string
+  clubName: string
+  apps: number
+  goals: number
+  assists: number
+  minutes: number
+  yellows: number
+  reds: number
+  avgRating: number
+  motm: number
+}
+
 export interface PlayerCareerClubStint {
   clubName: string
   clubKey?: string
@@ -291,10 +347,16 @@ export interface Player {
   /** Per-region fitness — all clubs (human + AI) */
   bodyMap: BodyMap
   injuryHistory: InjuryRecord[]
-  /** สถิติฤดูกาลย้อนหลัง (ยิง / แอสซิสต์ / นัด) */
+  /** สถิติฤดูกาลย้อนหลัง (ยิง / แอสซิสต์ / นัด) — ข้อมูล TM / seed ไม่เก็บในเซฟสด */
   careerSeasons?: PlayerCareerSeason[]
   /** ประวัติอาชีพครบ: ย้ายทีม · แชมป์ · ทีมชาติ · ฟุตบอลโลก */
   careerProfile?: PlayerCareerProfile
+  /** สถิติฤดูกาลปัจจุบันในเซฟ — อัปเดตหลังทุกนัดทั่วโลก */
+  liveSeason?: PlayerLiveSeasonStats
+  /** นัดล่าสุดที่ลง (รวม AI) */
+  recentMatches?: PlayerMatchLogEntry[]
+  /** ฤดูกาลที่แล้วในเซฟนี้ (หลังขึ้นปีใหม่) */
+  seasonHistory?: PlayerSeasonHistoryRow[]
   /** Days remaining sick (0 = healthy) — all clubs including AI */
   illnessDays: number
   illnessType: IllnessType | null
